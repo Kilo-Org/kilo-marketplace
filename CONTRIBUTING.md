@@ -1,6 +1,6 @@
-# Contributing to Awesome Claude Skills
+# Contributing to Kilo Skills Marketplace
 
-Thank you for your interest in contributing to the premier collection of Claude Skills! This guide will help you add new skills that benefit the entire Claude community.
+Thank you for your interest in contributing to the Kilo Skills Marketplace! This guide will help you add new skills that benefit the entire community.
 
 ## Before You Start
 
@@ -181,5 +181,5 @@ Skills for organizing files, managing tasks, and personal productivity.
 
 ---
 
-Thank you for contributing to Awesome Claude Skills!
+Thank you for contributing to Kilo Skills Marketplace!
 

@@ -1,11 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "awesome-claude-skills",
+  "name": "kilo-skills-marketplace",
   "version": "1.0.0",
-  "description": "A curated marketplace of practical Claude Skills for enhancing productivity across Claude.ai, Claude Code, and the Claude API",
+  "description": "Kilo Skills Marketplace - A curated collection of practical Claude Skills for enhancing productivity across Claude.ai, Claude Code, and the Claude API",
   "owner": {
-    "name": "ComposioHQ",
-    "email": "tech@composio.dev"
+    "name": "Kilo",
+    "email": "support@kilocode.ai"
   },
   "plugins": [
     {

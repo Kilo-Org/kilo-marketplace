@@ -1,12 +1,4 @@
-<h1 align="center">Awesome Claude Skills</h1>
-
-<p align="center">
-<a href="https://platform.composio.dev/?utm_source=Github&utm_medium=Youtube&utm_campaign=2025-11&utm_content=AwesomeSkills">
-  <img width="1280" height="640" alt="Composio banner" src="https://github.com/user-attachments/assets/e91255af-e4ba-4d71-b1a8-bd081e8a234a">
-</a>
-
-
-</p>
+<h1 align="center">Kilo Skills Marketplace</h1>
 
 <p align="center">
   <a href="https://awesome.re">
@@ -15,58 +7,14 @@
   <a href="https://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
   </a>
-  <a href="https://www.apache.org/licenses/LICENSE-2.0">
+  <a href="./LICENSE">
     <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square" alt="License: Apache-2.0" />
   </a>
 </p>
-<div>
-<p align="center">
-  <a href="https://twitter.com/composio">
-    <img src="https://img.shields.io/badge/Follow on X-000000?style=for-the-badge&logo=x&logoColor=white" alt="Follow on X" />
-  </a>
-  <a href="https://www.linkedin.com/company/composiohq/">
-    <img src="https://img.shields.io/badge/Follow on LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Follow on LinkedIn" />
-  </a>
-  <a href="https://discord.com/invite/composio">
-    <img src="https://img.shields.io/badge/Join our Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join our Discord" />
-  </a>
-  </p>
-</div>
+
+> **Attribution**: This project is a fork of [Awesome Claude Skills](https://github.com/ComposioHQ/awesome-claude-skills) by ComposioHQ. We thank the original creators for their excellent work in curating this collection of Claude Skills.
 
 A curated list of practical Claude Skills for enhancing productivity across Claude.ai, Claude Code, and the Claude API.
-
----
-
-## Quickstart: Connect Claude to 500+ Apps
-
-The **connect-apps** plugin lets Claude perform real actions - send emails, create issues, post to Slack. It handles auth and connects to 500+ apps using Composio under the hood.
-
-### 1. Install the Plugin
-
-```bash
-claude --plugin-dir ./connect-apps-plugin
-```
-
-### 2. Run Setup
-
-```
-/connect-apps:setup
-```
-
-Paste your API key when asked. (Get a free key at [platform.composio.dev](https://platform.composio.dev/?utm_source=Github&utm_content=AwesomeSkills))
-
-### 3. Restart & Try It
-
-```bash
-exit
-claude
-```
-
-> **Want skills that do more than generate text?** Claude can send emails, create issues, post to Slack, and take actions across 1000+ apps. [See how →](./connect/)
-
-If you receive the email, Claude is now connected to 500+ apps.
-
-**[See all supported apps →](./connect-apps/)**
 
 ---
 
@@ -319,25 +267,6 @@ We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING
 
 - [Lenny's Newsletter](https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code) - 50 ways people use Claude Code
 - [Notion Skills](https://www.notion.so/notiondevs/Notion-Skills-for-Claude-28da4445d27180c7af1df7d8615723d0) - Notion integration skills
-
-
-## Join the Community
-
-- [Join our Discord](https://discord.com/invite/composio) - Chat with other developers building Claude Skills
-- [Follow on Twitter/X](https://x.com/composio) - Stay updated on new skills and features
-- Questions? [support@composio.dev](mailto:support@composio.dev)
-
----
-
-<p align="center">
-  <b>Join 20,000+ developers building agents that ship</b>
-</p>
-
-<p align="center">
-  <a href="https://platform.composio.dev/?utm_source=Github&utm_content=AwesomeSkills">
-    <img src="https://img.shields.io/badge/Get_Started_Free-4F46E5?style=for-the-badge" alt="Get Started"/>
-  </a>
-</p>
 
 ## License
 
