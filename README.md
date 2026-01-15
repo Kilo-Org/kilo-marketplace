@@ -12,15 +12,15 @@
   </a>
 </p>
 
-> **Attribution**: This project is a fork of [Awesome Claude Skills](https://github.com/ComposioHQ/awesome-claude-skills) by ComposioHQ. We thank the original creators for their excellent work in curating this collection of Claude Skills.
+> **Attribution**: This project is a fork of [Awesome Claude Skills](https://github.com/ComposioHQ/awesome-claude-skills) by ComposioHQ. We thank the original creators for their excellent work in curating this collection of Skills.
 
-A curated list of practical Claude Skills for enhancing productivity across Claude.ai, Claude Code, and the Claude API.
+A curated list of practical Skills for enhancing productivity across the Kilo extensions, Kilo CLI, and the whole Kilo ecosystem.
 
 ---
 
 ## Contents
 
-- [What Are Claude Skills?](#what-are-claude-skills)
+- [What Are Skills?](#what-are-skills)
 - [Skills](#skills)
   - [Document Processing](#document-processing)
   - [Development & Code Tools](#development--code-tools)
@@ -37,9 +37,9 @@ A curated list of practical Claude Skills for enhancing productivity across Clau
 - [Resources](#resources)
 - [License](#license)
 
-## What Are Claude Skills?
+## What Are Skills?
 
-Claude Skills are customizable workflows that teach Claude how to perform specific tasks according to your unique requirements. Skills enable Claude to execute tasks in a repeatable, standardized manner across all Claude platforms.
+Kilo Skills are customizable workflows that teach Kilo how to perform specific tasks according to your unique requirements. Skills enable Kilo to execute tasks in a repeatable, standardized manner across all Kilo platforms.
 
 ## Skills
 
@@ -49,43 +49,43 @@ Claude Skills are customizable workflows that teach Claude how to perform specif
 - [pdf](https://github.com/anthropics/skills/tree/main/skills/pdf) - Extract text, tables, metadata, merge & annotate PDFs.
 - [pptx](https://github.com/anthropics/skills/tree/main/skills/pptx) - Read, generate, and adjust slides, layouts, templates.
 - [xlsx](https://github.com/anthropics/skills/tree/main/skills/xlsx) - Spreadsheet manipulation: formulas, charts, data transformations.
-- [Markdown to EPUB Converter](https://github.com/smerchek/claude-epub-skill) - Converts markdown documents and chat summaries into professional EPUB ebook files. *By [@smerchek](https://github.com/smerchek)*
+- [Markdown to EPUB Converter](https://github.com/smerchek/claude-epub-skill) - Converts markdown documents and chat summaries into professional EPUB ebook files. _By [@smerchek](https://github.com/smerchek)_
 
 ### Development & Code Tools
 
-- [artifacts-builder](https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder) - Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui).
+- [artifacts-builder](https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder) - Suite of tools for creating elaborate, multi-component HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui).
 - [aws-skills](https://github.com/zxkane/aws-skills) - AWS development with CDK best practices, cost optimization MCP servers, and serverless/event-driven architecture patterns.
 - [Changelog Generator](./changelog-generator/) - Automatically creates user-facing changelogs from git commits by analyzing history and transforming technical commits into customer-friendly release notes.
-- [Claude Code Terminal Title](https://github.com/bluzername/claude-code-terminal-title) - Gives each Claud-Code terminal window a dynamic title that describes the work being done so you don't lose track of what window is doing what.
-- [D3.js Visualization](https://github.com/chrisvoncsefalvay/claude-d3js-skill) - Teaches Claude to produce D3 charts and interactive data visualizations. *By [@chrisvoncsefalvay](https://github.com/chrisvoncsefalvay)*
-- [FFUF Web Fuzzing](https://github.com/jthack/ffuf_claude_skill) - Integrates the ffuf web fuzzer so Claude can run fuzzing tasks and analyze results for vulnerabilities. *By [@jthack](https://github.com/jthack)*
+- [Terminal Title](https://github.com/bluzername/claude-code-terminal-title) - Gives each terminal window a dynamic title that describes the work being done so you don't lose track of what window is doing what.
+- [D3.js Visualization](https://github.com/chrisvoncsefalvay/claude-d3js-skill) - Teaches Kilo to produce D3 charts and interactive data visualizations. _By [@chrisvoncsefalvay](https://github.com/chrisvoncsefalvay)_
+- [FFUF Web Fuzzing](https://github.com/jthack/ffuf_claude_skill) - Integrates the ffuf web fuzzer so Kilo can run fuzzing tasks and analyze results for vulnerabilities. _By [@jthack](https://github.com/jthack)_
 - [finishing-a-development-branch](https://github.com/obra/superpowers/tree/main/skills/finishing-a-development-branch) - Guides completion of development work by presenting clear options and handling chosen workflow.
-- [iOS Simulator](https://github.com/conorluddy/ios-simulator-skill) - Enables Claude to interact with iOS Simulator for testing and debugging iOS applications. *By [@conorluddy](https://github.com/conorluddy)*
-- [LangSmith Fetch](./langsmith-fetch/) - Debug LangChain and LangGraph agents by automatically fetching and analyzing execution traces from LangSmith Studio. First AI observability skill for Claude Code. *By [@OthmanAdi](https://github.com/OthmanAdi)*
+- [iOS Simulator](https://github.com/conorluddy/ios-simulator-skill) - Enables Kilo to interact with iOS Simulator for testing and debugging iOS applications. _By [@conorluddy](https://github.com/conorluddy)_
+- [LangSmith Fetch](./langsmith-fetch/) - Debug LangChain and LangGraph agents by automatically fetching and analyzing execution traces from LangSmith Studio. First AI observability skill for Kilo. _By [@OthmanAdi](https://github.com/OthmanAdi)_
 - [MCP Builder](./mcp-builder/) - Guides creation of high-quality MCP (Model Context Protocol) servers for integrating external APIs and services with LLMs using Python or TypeScript.
 - [move-code-quality-skill](https://github.com/1NickPappas/move-code-quality-skill) - Analyzes Move language packages against the official Move Book Code Quality Checklist for Move 2024 Edition compliance and best practices.
-- [Playwright Browser Automation](https://github.com/lackeyjb/playwright-skill) - Model-invoked Playwright automation for testing and validating web applications. *By [@lackeyjb](https://github.com/lackeyjb)*
+- [Playwright Browser Automation](https://github.com/lackeyjb/playwright-skill) - Model-invoked Playwright automation for testing and validating web applications. _By [@lackeyjb](https://github.com/lackeyjb)_
 - [prompt-engineering](https://github.com/NeoLabHQ/context-engineering-kit/tree/master/plugins/customaize-agent/skills/prompt-engineering) - Teaches well-known prompt engineering techniques and patterns, including Anthropic best practices and agent persuasion principles.
 - [pypict-claude-skill](https://github.com/omkamal/pypict-claude-skill) - Design comprehensive test cases using PICT (Pairwise Independent Combinatorial Testing) for requirements or code, generating optimized test suites with pairwise coverage.
 - [reddit-fetch](https://github.com/ykdojo/claude-code-tips/tree/main/skills/reddit-fetch) - Fetches Reddit content via Gemini CLI when WebFetch is blocked or returns 403 errors.
-- [Skill Creator](./skill-creator/) - Provides guidance for creating effective Claude Skills that extend capabilities with specialized knowledge, workflows, and tool integrations.
-- [Skill Seekers](https://github.com/yusufkaraaslan/Skill_Seekers) - Automatically converts any documentation website into a Claude AI skill in minutes. *By [@yusufkaraaslan](https://github.com/yusufkaraaslan)*
+- [Skill Creator](./skill-creator/) - Provides guidance for creating effective Kilo Skills that extend capabilities with specialized knowledge, workflows, and tool integrations.
+- [Skill Seekers](https://github.com/yusufkaraaslan/Skill_Seekers) - Automatically converts any documentation website into a Kilo skill in minutes. _By [@yusufkaraaslan](https://github.com/yusufkaraaslan)_
 - [software-architecture](https://github.com/NeoLabHQ/context-engineering-kit/tree/master/plugins/ddd/skills/software-architecture) - Implements design patterns including Clean Architecture, SOLID principles, and comprehensive software design best practices.
 - [subagent-driven-development](https://github.com/NeoLabHQ/context-engineering-kit/tree/master/plugins/sadd/skills/subagent-driven-development) - Dispatches independent subagents for individual tasks with code review checkpoints between iterations for rapid, controlled development.
 - [test-driven-development](https://github.com/obra/superpowers/tree/main/skills/test-driven-development) - Use when implementing any feature or bugfix, before writing implementation code.
 - [using-git-worktrees](https://github.com/obra/superpowers/blob/main/skills/using-git-worktrees/) - Creates isolated git worktrees with smart directory selection and safety verification.
-- [Connect](./connect/) - Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions across Gmail, Slack, GitHub, Notion, and 1000+ services.
+- [Connect](./connect/) - Connect Kilo to any app. Send emails, create issues, post messages, update databases - take real actions across Gmail, Slack, GitHub, Notion, and 1000+ services.
 - [Webapp Testing](./webapp-testing/) - Tests local web applications using Playwright for verifying frontend functionality, debugging UI behavior, and capturing screenshots.
 
 ### Data & Analysis
 
-- [CSV Data Summarizer](https://github.com/coffeefuelbump/csv-data-summarizer-claude-skill) - Automatically analyzes CSV files and generates comprehensive insights with visualizations without requiring user prompts. *By [@coffeefuelbump](https://github.com/coffeefuelbump)*
-- [postgres](https://github.com/sanjay3290/ai-skills/tree/main/skills/postgres) - Execute safe read-only SQL queries against PostgreSQL databases with multi-connection support and defense-in-depth security. *By [@sanjay3290](https://github.com/sanjay3290)*
+- [CSV Data Summarizer](https://github.com/coffeefuelbump/csv-data-summarizer-claude-skill) - Automatically analyzes CSV files and generates comprehensive insights with visualizations without requiring user prompts. _By [@coffeefuelbump](https://github.com/coffeefuelbump)_
+- [postgres](https://github.com/sanjay3290/ai-skills/tree/main/skills/postgres) - Execute safe read-only SQL queries against PostgreSQL databases with multi-connection support and defense-in-depth security. _By [@sanjay3290](https://github.com/sanjay3290)_
 - [root-cause-tracing](https://github.com/obra/superpowers/tree/main/skills/root-cause-tracing) - Use when errors occur deep in execution and you need to trace back to find the original trigger.
 
 ### Business & Marketing
 
-- [Brand Guidelines](./brand-guidelines/) - Applies Anthropic's official brand colors and typography to artifacts for consistent visual identity and professional design standards.
+- [Brand Guidelines](./brand-guidelines/) - Applies brand colors and typography to artifacts for consistent visual identity and professional design standards.
 - [Competitive Ads Extractor](./competitive-ads-extractor/) - Extracts and analyzes competitors' ads from ad libraries to understand messaging and creative approaches that resonate.
 - [Domain Name Brainstormer](./domain-name-brainstormer/) - Generates creative domain name ideas and checks availability across multiple TLDs including .com, .io, .dev, and .ai extensions.
 - [Internal Comms](./internal-comms/) - Helps write internal communications including 3P updates, company newsletters, FAQs, status reports, and project updates using company-specific formats.
@@ -98,12 +98,12 @@ Claude Skills are customizable workflows that teach Claude how to perform specif
 - [Content Research Writer](./content-research-writer/) - Assists in writing high-quality content by conducting research, adding citations, improving hooks, and providing section-by-section feedback.
 - [family-history-research](https://github.com/emaynard/claude-family-history-research-skill) - Provides assistance with planning family history and genealogy research projects.
 - [Meeting Insights Analyzer](./meeting-insights-analyzer/) - Analyzes meeting transcripts to uncover behavioral patterns including conflict avoidance, speaking ratios, filler words, and leadership style.
-- [NotebookLM Integration](https://github.com/PleasePrompto/notebooklm-skill) - Lets Claude Code chat directly with NotebookLM for source-grounded answers based exclusively on uploaded documents. *By [@PleasePrompto](https://github.com/PleasePrompto)*
+- [NotebookLM Integration](https://github.com/PleasePrompto/notebooklm-skill) - Lets Kilo chat directly with NotebookLM for source-grounded answers based exclusively on uploaded documents. _By [@PleasePrompto](https://github.com/PleasePrompto)_
 
 ### Creative & Media
 
 - [Canvas Design](./canvas-design/) - Creates beautiful visual art in PNG and PDF documents using design philosophy and aesthetic principles for posters, designs, and static pieces.
-- [imagen](https://github.com/sanjay3290/ai-skills/tree/main/skills/imagen) - Generate images using Google Gemini's image generation API for UI mockups, icons, illustrations, and visual assets. *By [@sanjay3290](https://github.com/sanjay3290)*
+- [imagen](https://github.com/sanjay3290/ai-skills/tree/main/skills/imagen) - Generate images using Google Gemini's image generation API for UI mockups, icons, illustrations, and visual assets. _By [@sanjay3290](https://github.com/sanjay3290)_
 - [Image Enhancer](./image-enhancer/) - Improves image and screenshot quality by enhancing resolution, sharpness, and clarity for professional presentations and documentation.
 - [Slack GIF Creator](./slack-gif-creator/) - Creates animated GIFs optimized for Slack with validators for size constraints and composable animation primitives.
 - [Theme Factory](./theme-factory/) - Applies professional font and color themes to artifacts including slides, docs, reports, and HTML landing pages with 10 pre-set themes.
@@ -136,49 +136,52 @@ Claude Skills are customizable workflows that teach Claude how to perform specif
 
 ## Getting Started
 
-### Using Skills in Claude.ai
+### Using Skills in Kilo VS Code Extension
 
 1. Click the skill icon (🧩) in your chat interface.
 2. Add skills from the marketplace or upload custom skills.
-3. Claude automatically activates relevant skills based on your task.
+3. Kilo automatically activates relevant skills based on your task.
 
-### Using Skills in Claude Code
+### Using Skills in Kilo CLI
 
-1. Place the skill in `~/.config/claude-code/skills/`:
+1. Place the skill in `~/.kilocode/skills/`:
+
    ```bash
-   mkdir -p ~/.config/claude-code/skills/
-   cp -r skill-name ~/.config/claude-code/skills/
+   mkdir -p ~/.kilocode/skills/
+   cp -r skill-name ~/.kilocode/skills/
    ```
 
 2. Verify skill metadata:
+
    ```bash
-   head ~/.config/claude-code/skills/skill-name/SKILL.md
+   head ~/.kilocode/skills/skill-name/SKILL.md
    ```
 
-3. Start Claude Code:
+3. Start Kilo CLI:
+
    ```bash
-   claude
+   kilo
    ```
 
 4. The skill loads automatically and activates when relevant.
 
 ### Using Skills via API
 
-Use the Claude Skills API to programmatically load and manage skills:
+Use the Kilo Skills API to programmatically load and manage skills:
 
 ```python
-import anthropic
+import kilo
 
-client = anthropic.Anthropic(api_key="your-api-key")
+client = kilo.Kilo(api_key="your-api-key")
 
 response = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
+    model="your-model",
     skills=["skill-id-here"],
     messages=[{"role": "user", "content": "Your prompt"}]
 )
 ```
 
-See the [Skills API documentation](https://docs.claude.com/en/api/skills-guide) for details.
+See the [Skills API documentation](https://docs.kilocode.ai/api/skills-guide) for details.
 
 ## Creating Skills
 
@@ -214,7 +217,7 @@ Detailed description of the skill's purpose and capabilities.
 
 ## Instructions
 
-[Detailed instructions for Claude on how to execute this skill]
+[Detailed instructions for Kilo on how to execute this skill]
 
 ## Examples
 
@@ -225,8 +228,8 @@ Detailed description of the skill's purpose and capabilities.
 
 - Focus on specific, repeatable tasks
 - Include clear examples and edge cases
-- Write instructions for Claude, not end users
-- Test across Claude.ai, Claude Code, and API
+- Write instructions for Kilo, not end users
+- Test across Kilo VS Code extension, Kilo CLI, and API
 - Document prerequisites and dependencies
 - Include error handling guidance
 
@@ -251,22 +254,20 @@ We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING
 
 ### Official Documentation
 
-- [Claude Skills Overview](https://www.anthropic.com/news/skills) - Official announcement and features
-- [Skills User Guide](https://support.claude.com/en/articles/12512180-using-skills-in-claude) - How to use skills in Claude
-- [Creating Custom Skills](https://support.claude.com/en/articles/12512198-creating-custom-skills) - Skill development guide
-- [Skills API Documentation](https://docs.claude.com/en/api/skills-guide) - API integration guide
-- [Agent Skills Blog Post](https://anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) - Engineering deep dive
+- [Kilo Skills Overview](https://kilocode.ai/skills) - Official announcement and features
+- [Skills User Guide](https://docs.kilocode.ai/skills/using-skills) - How to use skills in Kilo
+- [Creating Custom Skills](https://docs.kilocode.ai/skills/creating-custom-skills) - Skill development guide
+- [Skills API Documentation](https://docs.kilocode.ai/api/skills-guide) - API integration guide
 
 ### Community Resources
 
-- [Anthropic Skills Repository](https://github.com/anthropics/skills) - Official example skills
-- [Claude Community](https://community.anthropic.com) - Discuss skills with other users
-- [Skills Marketplace](https://claude.ai/marketplace) - Discover and share skills
+- [Kilo Skills Repository](https://github.com/kilocode/skills) - Official example skills
+- [Kilo Community](https://community.kilocode.ai) - Discuss skills with other users
+- [Skills Marketplace](https://kilocode.ai/marketplace) - Discover and share skills
 
 ### Inspiration & Use Cases
 
-- [Lenny's Newsletter](https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code) - 50 ways people use Claude Code
-- [Notion Skills](https://www.notion.so/notiondevs/Notion-Skills-for-Claude-28da4445d27180c7af1df7d8615723d0) - Notion integration skills
+- [Notion Skills](https://www.notion.so/notiondevs/Notion-Skills-for-Kilo-28da4445d27180c7af1df7d8615723d0) - Notion integration skills
 
 ## License
 
@@ -276,6 +277,6 @@ Individual skills may have different licenses - please check each skill's folder
 
 ---
 
-**Note**: Claude Skills work across Claude.ai, Claude Code, and the Claude API. Once you create a skill, it's portable across all platforms, making your workflows consistent everywhere you use Claude.
+**Note**: Kilo Skills work across the Kilo VS Code extension, Kilo CLI, and the Kilo API. Once you create a skill, it's portable across all platforms, making your workflows consistent everywhere you use Kilo.
 
 - [AgentsKB](https://agentskb.com) - Upgrade your AI with researched answers. We did the research so your AI gets it right the first time.
