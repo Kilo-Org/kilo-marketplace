@@ -1,6 +1,6 @@
-# Contributing to Awesome Claude Skills
+# Contributing to Kilo Marketplace
 
-Thank you for your interest in contributing to the premier collection of Claude Skills! This guide will help you add new skills that benefit the entire Claude community.
+Thank you for your interest in contributing to the Kilo Marketplace! This guide will help you add new skills that benefit the entire community.
 
 ## Before You Start
 
@@ -25,8 +25,9 @@ All skills must:
 Create a new folder with your skill name (use lowercase and hyphens):
 
 ```
-skill-name/
-└── SKILL.md
+skills/
+└──skill-name/
+    └── SKILL.md
 ```
 
 ## SKILL.md Template
@@ -58,15 +59,18 @@ Detailed description of the skill and what it helps users accomplish.
 ## How to Use
 
 ### Basic Usage
-
 ```
+
 Simple example prompt
+
 ```
 
 ### Advanced Usage
 
 ```
+
 More complex example prompt with options
+
 ```
 
 ## Example
@@ -75,7 +79,9 @@ More complex example prompt with options
 
 **Output**:
 ```
+
 Show what the skill produces
+
 ```
 
 **Inspired by:** [Attribution to original source, if applicable]
@@ -93,32 +99,14 @@ Show what the skill produces
 - Use case 3
 ```
 
-## Adding Your Skill to README
-
-1. Choose the appropriate category:
-   - Business & Marketing
-   - Communication & Writing
-   - Creative & Media
-   - Development
-   - Productivity & Organization
-
-2. Add your skill in alphabetical order within the category:
-
-```markdown
-- [Skill Name](./skill-name/) - One-sentence description. Inspired by [Person/Source].
-```
-
-3. Follow the existing format exactly - no emojis, consistent punctuation.
-
 ## Pull Request Process
 
 1. Fork the repository
 2. Create a branch: `git checkout -b add-skill-name`
 3. Add your skill folder with SKILL.md
-4. Update README.md with your skill in the appropriate category
-5. Commit your changes: `git commit -m "Add [Skill Name] skill"`
-6. Push to your fork: `git push origin add-skill-name`
-7. Open a Pull Request
+4. Commit your changes: `git commit -m "Add [Skill Name] skill"`
+5. Push to your fork: `git push origin add-skill-name`
+6. Open a Pull Request
 
 ## Pull Request Guidelines
 
@@ -158,28 +146,9 @@ or
 ```
 
 Examples:
+
 - **Inspired by:** Dan Shipper's meeting analysis workflow
 - **Inspired by:** Teresa Torres's content research process
 - **Credit:** Based on Notion's documentation workflow
 
-## Skill Categories
-
-### Business & Marketing
-Skills for lead generation, competitive research, branding, and business development.
-
-### Communication & Writing
-Skills for improving communication, analyzing conversations, and creating content.
-
-### Creative & Media
-Skills for working with images, videos, audio, and creative content.
-
-### Development
-Skills for software development, documentation, and technical workflows.
-
-### Productivity & Organization
-Skills for organizing files, managing tasks, and personal productivity.
-
----
-
-Thank you for contributing to Awesome Claude Skills!
-
+Thank you for contributing to Kilo Marketplace!

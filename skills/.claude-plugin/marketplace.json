@@ -1,11 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "awesome-claude-skills",
-  "version": "1.0.0",
-  "description": "A curated marketplace of practical Claude Skills for enhancing productivity across Claude.ai, Claude Code, and the Claude API",
+  "name": "kilo-skills-marketplace",
+  "version": "0.0.1",
+  "description": "Kilo Skills Marketplace - A curated collection of practical Skills",
   "owner": {
-    "name": "ComposioHQ",
-    "email": "tech@composio.dev"
+    "name": "Kilo",
+    "email": "hi@kilocode.ai"
   },
   "plugins": [
     {
@@ -150,30 +150,6 @@
       "name": "tailored-resume-generator",
       "description": "Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and achievements to maximize interview chances.",
       "source": "./tailored-resume-generator",
-      "category": "productivity-organization"
-    },
-    {
-      "name": "document-skills-docx",
-      "description": "Skills for working with Microsoft Word documents including creation, editing, and formatting using DOCX format.",
-      "source": "./document-skills/docx",
-      "category": "productivity-organization"
-    },
-    {
-      "name": "document-skills-pdf",
-      "description": "Skills for working with PDF documents including creation, editing, forms, and advanced PDF operations.",
-      "source": "./document-skills/pdf",
-      "category": "productivity-organization"
-    },
-    {
-      "name": "document-skills-pptx",
-      "description": "Skills for working with PowerPoint presentations including creation, editing, and formatting using PPTX format.",
-      "source": "./document-skills/pptx",
-      "category": "productivity-organization"
-    },
-    {
-      "name": "document-skills-xlsx",
-      "description": "Skills for working with Excel spreadsheets including creation, editing, formulas, and data manipulation.",
-      "source": "./document-skills/xlsx",
       "category": "productivity-organization"
     }
   ]
