@@ -1,5 +1,5 @@
 ---
-name: youtube-downloader
+name: video-downloader
 description: Download YouTube videos with customizable quality and format options. Use this skill when the user asks to download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p), multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.
 ---
 
@@ -31,6 +31,7 @@ Use `-q` or `--quality` to specify video quality:
 - `worst`: Lowest quality available
 
 Example:
+
 ```bash
 python scripts/download_video.py "URL" -q 720p
 ```
@@ -44,6 +45,7 @@ Use `-f` or `--format` to specify output format (video downloads only):
 - `mkv`: Matroska container
 
 Example:
+
 ```bash
 python scripts/download_video.py "URL" -f webm
 ```
@@ -67,16 +69,19 @@ python scripts/download_video.py "URL" -o /path/to/directory
 ## Complete Examples
 
 1. Download video in 1080p as MP4:
+
 ```bash
 python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -q 1080p
 ```
 
 2. Download audio only as MP3:
+
 ```bash
 python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -a
 ```
 
 3. Download in 720p as WebM to custom directory:
+
 ```bash
 python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -q 720p -f webm -o /custom/path
 ```
@@ -84,6 +89,7 @@ python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -
 ## How It Works
 
 The skill uses `yt-dlp`, a robust YouTube downloader that:
+
 - Automatically installs itself if not present
 - Fetches video information before downloading
 - Selects the best available streams matching your criteria
