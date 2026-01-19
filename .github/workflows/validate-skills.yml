@@ -1,0 +1,49 @@
+name: Validate Skills
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'skills/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Clone skills-ref and install
+        run: |
+          git clone --depth 1 https://github.com/agentskills/agentskills.git /tmp/agentskills
+          cd /tmp/agentskills/skills-ref
+          uv sync
+          echo "/tmp/agentskills/skills-ref/.venv/bin" >> $GITHUB_PATH
+
+      - name: Validate all skills
+        run: |
+          failed=0
+          for skill_dir in skills/*/; do
+            # Skip hidden directories like .claude-plugin
+            if [[ "$(basename "$skill_dir")" == .* ]]; then
+              continue
+            fi
+            echo "Validating: $skill_dir"
+            if ! skills-ref validate "$skill_dir"; then
+              failed=1
+            fi
+          done
+          exit $failed
