@@ -127,6 +127,24 @@ Your PR should:
 - Write clear, accessible documentation
 - Test your skills before submitting
 
+## Automated Packaging
+
+When skills are merged to `main`, a GitHub Action automatically packages them as tarballs and uploads them to GitHub Releases. This enables:
+
+- **Easy distribution**: Skills with extra files (scripts, fonts, templates) are bundled together
+- **Version tracking**: Each release is tagged with the commit SHA
+- **API access**: Skills can be downloaded via:
+  - `/api/marketplace/skills/{id}/download` → redirects to tarball URL
+  - `/api/marketplace/skills/{id}/version` → returns latest commit SHA
+
+The workflow:
+1. Detects which skills changed in the push
+2. Creates a `.tar.gz` for each changed skill
+3. Uploads to a timestamped release (e.g., `skills-20240119143000-abc1234`)
+4. Updates the `skills-latest` release for easy access
+
+You can also manually trigger the workflow to repackage all skills via the GitHub Actions UI.
+
 ## Questions?
 
 Open an issue if you have questions about contributing or need help structuring your skill.

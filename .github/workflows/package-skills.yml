@@ -1,0 +1,94 @@
+name: Package Skills
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed skills
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # Package all skills on manual trigger
+            skills=$(find skills -maxdepth 1 -mindepth 1 -type d ! -name '.*' -printf '%f\n' | sort)
+          else
+            # Get changed skills from the push
+            skills=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | \
+              grep '^skills/' | \
+              cut -d'/' -f2 | \
+              grep -v '^\.' | \
+              sort -u)
+          fi
+          
+          if [ -z "$skills" ]; then
+            echo "No skills to package"
+            echo "skills=" >> $GITHUB_OUTPUT
+          else
+            echo "Skills to package:"
+            echo "$skills"
+            # Convert to JSON array for matrix
+            echo "skills=$(echo "$skills" | jq -R -s -c 'split("\n") | map(select(length > 0))')" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Package skills
+        if: steps.changed.outputs.skills != ''
+        run: |
+          mkdir -p dist
+          for skill in $(echo '${{ steps.changed.outputs.skills }}' | jq -r '.[]'); do
+            if [ -d "skills/$skill" ]; then
+              echo "Packaging: $skill"
+              tar -czf "dist/${skill}.tar.gz" -C skills "$skill"
+              echo "Created: dist/${skill}.tar.gz"
+            fi
+          done
+          ls -la dist/
+
+      - name: Get version info
+        if: steps.changed.outputs.skills != ''
+        id: version
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "date=$(date -u +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+
+      - name: Create or update release
+        if: steps.changed.outputs.skills != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: skills-${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha_short }}
+          name: Skills Release ${{ steps.version.outputs.date }}
+          body: |
+            Automated skills release from commit ${{ steps.version.outputs.sha }}
+            
+            ## Packaged Skills
+            ${{ steps.changed.outputs.skills }}
+          files: dist/*.tar.gz
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update latest release tag
+        if: steps.changed.outputs.skills != ''
+        run: |
+          # Also upload to a "latest" release for easy access
+          gh release upload skills-latest dist/*.tar.gz --clobber 2>/dev/null || \
+          gh release create skills-latest dist/*.tar.gz \
+            --title "Latest Skills" \
+            --notes "Latest packaged skills. Updated automatically on each push to main."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
