@@ -1,154 +1,175 @@
 items:
   - id: competitive-ads-extractor
-    description: Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what
-      messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.
+    description: >-
+      Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging,
+      problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/competitive-ads-extractor
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/competitive-ads-extractor/SKILL.md
   - id: domain-name-brainstormer
-    description: Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com,
-      .io, .dev, .ai, etc.). Saves hours of brainstorming and manual checking.
+    description: >-
+      Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io,
+      .dev, .ai, etc.). Saves hours of brainstorming and manual checking.
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/domain-name-brainstormer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/domain-name-brainstormer/SKILL.md
   - id: internal-comms
-    description: A set of resources to help me write all kinds of internal communications, using the formats that my company
-      likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status
-      reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
+    description: >-
+      A set of resources to help me write all kinds of internal communications, using the formats that my company likes
+      to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports,
+      leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/internal-comms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/internal-comms/SKILL.md
   - id: lead-research-assistant
-    description: Identifies high-quality leads for your product or service by analyzing your business, searching for target
+    description: >-
+      Identifies high-quality leads for your product or service by analyzing your business, searching for target
       companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing
       professionals.
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lead-research-assistant
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lead-research-assistant/SKILL.md
   - id: content-research-writer
-    description: Assists in writing high-quality content by conducting research, adding citations, improving hooks,
-      iterating on outlines, and providing real-time feedback on each section. Transforms your writing process from solo
-      effort to collaborative partnership.
+    description: >-
+      Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on
+      outlines, and providing real-time feedback on each section. Transforms your writing process from solo effort to
+      collaborative partnership.
     category: communication-writing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/content-research-writer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/content-research-writer/SKILL.md
   - id: meeting-insights-analyzer
-    description: Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and
-      actionable feedback. Identifies when you avoid conflict, use filler words, dominate conversations, or miss
-      opportunities to listen. Perfect for professionals seeking to improve their communication and leadership skills.
+    description: >-
+      Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable
+      feedback. Identifies when you avoid conflict, use filler words, dominate conversations, or miss opportunities to
+      listen. Perfect for professionals seeking to improve their communication and leadership skills.
     category: communication-writing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
   - id: canvas-design
-    description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill
-      when the user asks to create a poster, piece of art, design, or other static piece. Create original visual
-      designs, never copying existing artists' work to avoid copyright violations.
+    description: >-
+      Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the
+      user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never
+      copying existing artists' work to avoid copyright violations.
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/canvas-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/canvas-design/SKILL.md
   - id: image-enhancer
-    description: Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity.
-      Perfect for preparing images for presentations, documentation, or social media posts.
+    description: >-
+      Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect
+      for preparing images for presentations, documentation, or social media posts.
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/image-enhancer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/image-enhancer/SKILL.md
   - id: slack-gif-creator
-    description: Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable
+    description: >-
+      Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable
       animation primitives. This skill applies when users request animated GIFs or emoji animations for Slack from
       descriptions like "make me a GIF for Slack of X doing Y".
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/slack-gif-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/slack-gif-creator/SKILL.md
   - id: theme-factory
-    description: Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing
-      pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been
-      creating, or can generate a new theme on-the-fly.
+    description: >-
+      Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages,
+      etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or
+      can generate a new theme on-the-fly.
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/theme-factory
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/theme-factory/SKILL.md
   - id: video-downloader
-    description: Download YouTube videos with customizable quality and format options. Use this skill when the user asks to
+    description: >-
+      Download YouTube videos with customizable quality and format options. Use this skill when the user asks to
       download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p),
       multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/video-downloader
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/video-downloader/SKILL.md
   - id: artifacts-builder
-    description: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web
+    description: >-
+      Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web
       technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or
       shadcn/ui components - not for simple single-file HTML/JSX artifacts.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/artifacts-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/artifacts-builder/SKILL.md
   - id: changelog-generator
-    description: Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing
-      changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual
-      changelog writing into minutes of automated generation.
+    description: >-
+      Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes,
+      and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog
+      writing into minutes of automated generation.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/changelog-generator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/changelog-generator/SKILL.md
   - id: connect
-    description: Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions
-      across Gmail, Slack, GitHub, Notion, and 1000+ services.
+    description: >-
+      Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions across
+      Gmail, Slack, GitHub, Notion, and 1000+ services.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/connect
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/connect/SKILL.md
   - id: langsmith-fetch
-    description: Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging
-      agent behavior, investigating errors, analyzing tool calls, checking memory operations, or examining agent
-      performance. Automatically fetches recent traces and analyzes execution patterns. Requires langsmith-fetch CLI
-      installed.
+    description: >-
+      Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
+      behavior, investigating errors, analyzing tool calls, checking memory operations, or examining agent performance.
+      Automatically fetches recent traces and analyzes execution patterns. Requires langsmith-fetch CLI installed.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/langsmith-fetch
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/langsmith-fetch/SKILL.md
   - id: mcp-builder
-    description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with
-      external services through well-designed tools. Use when building MCP servers to integrate external APIs or
-      services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
+    description: >-
+      Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external
+      services through well-designed tools. Use when building MCP servers to integrate external APIs or services,
+      whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
   - id: skill-creator
-    description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or
-      update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool
-      integrations.
+    description: >-
+      Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
+      existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-creator/SKILL.md
   - id: skill-share
-    description: A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team
+    description: >-
+      A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team
       collaboration and skill discovery.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
   - id: webapp-testing
-    description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying
-      frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+    description: >-
+      Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend
+      functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
   - id: file-organizer
-    description: Intelligently organizes your files and folders across your computer by understanding context, finding
-      duplicates, suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your
-      digital workspace tidy without manual effort.
+    description: >-
+      Intelligently organizes your files and folders across your computer by understanding context, finding duplicates,
+      suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your digital
+      workspace tidy without manual effort.
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/file-organizer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/file-organizer/SKILL.md
   - id: invoice-organizer
-    description: Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key
+    description: >-
+      Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key
       information, renaming them consistently, and sorting them into logical folders. Turns hours of manual bookkeeping
       into minutes of automated organization.
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/invoice-organizer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/invoice-organizer/SKILL.md
   - id: raffle-winner-picker
-    description: Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests.
-      Ensures fair, unbiased selection with transparency.
+    description: >-
+      Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures
+      fair, unbiased selection with transparency.
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/raffle-winner-picker
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/raffle-winner-picker/SKILL.md
   - id: tailored-resume-generator
-    description: Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and
+    description: >-
+      Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and
       achievements to maximize interview chances
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tailored-resume-generator
