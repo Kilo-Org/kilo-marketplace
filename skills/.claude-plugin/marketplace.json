@@ -9,12 +9,6 @@
   },
   "plugins": [
     {
-      "name": "brand-guidelines",
-      "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
-      "source": "./brand-guidelines",
-      "category": "business-marketing"
-    },
-    {
       "name": "competitive-ads-extractor",
       "description": "Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.",
       "source": "./competitive-ads-extractor",
@@ -99,12 +93,6 @@
       "category": "development"
     },
     {
-      "name": "developer-growth-analysis",
-      "description": "Analyzes your recent Claude Code chat history to identify coding patterns, development gaps, and areas for improvement, curates relevant learning resources from HackerNews, and automatically sends a personalized growth report to your Slack DMs.",
-      "source": "./developer-growth-analysis",
-      "category": "development"
-    },
-    {
       "name": "langsmith-fetch",
       "description": "Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent behavior, investigating errors, analyzing tool calls, checking memory operations, or examining agent performance. Automatically fetches recent traces and analyzes execution patterns. Requires langsmith-fetch CLI installed.",
       "source": "./langsmith-fetch",
@@ -126,12 +114,6 @@
       "name": "skill-share",
       "description": "A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team collaboration and skill discovery.",
       "source": "./skill-share",
-      "category": "development"
-    },
-    {
-      "name": "template-skill",
-      "description": "Replace with description of the skill and when Claude should use it.",
-      "source": "./template-skill",
       "category": "development"
     },
     {
