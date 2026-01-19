@@ -1,0 +1,50 @@
+name: Validate Skills
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'skills/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-skills-ref
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install skills-ref
+        run: pip install git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref
+
+      - name: Validate all skills
+        run: |
+          failed=0
+          for skill_dir in skills/*/; do
+            # Skip hidden directories like .claude-plugin
+            if [[ "$(basename "$skill_dir")" == .* ]]; then
+              continue
+            fi
+            echo "Validating: $skill_dir"
+            if ! skills-ref validate "$skill_dir"; then
+              failed=1
+            fi
+          done
+          exit $failed
