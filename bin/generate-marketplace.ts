@@ -9,13 +9,21 @@ import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
-import * as yaml from "yaml";
+import { Document, Scalar } from "yaml";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillsDir = path.join(__dirname, "..", "skills");
 
 const GITHUB_BASE_URL = "https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills";
 const RAW_BASE_URL = "https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills";
+
+// Create a folded block scalar with strip chomping (>-)
+function foldedScalar(value: string): Scalar {
+  const scalar = new Scalar(value);
+  scalar.type = Scalar.BLOCK_FOLDED;
+  scalar.blockChomping = "strip";
+  return scalar;
+}
 
 const items = fs
   .readdirSync(skillsDir, { withFileTypes: true })
@@ -27,7 +35,7 @@ const items = fs
     console.log(`Added: ${data.name}`);
     return {
       id: dir.name,
-      description: data.description,
+      description: foldedScalar(data.description),
       category: data.metadata?.category || undefined,
       githubUrl: `${GITHUB_BASE_URL}/${dir.name}`,
       rawUrl: `${RAW_BASE_URL}/${dir.name}/SKILL.md`,
@@ -38,7 +46,8 @@ const items = fs
     return catCmp !== 0 ? catCmp : a.id.localeCompare(b.id);
   });
 
-const output = yaml.stringify({ items }, { lineWidth: 120 });
+const doc = new Document({ items });
+const output = doc.toString({ lineWidth: 120 });
 
 fs.writeFileSync(path.join(skillsDir, "skills.yaml"), output);
 
