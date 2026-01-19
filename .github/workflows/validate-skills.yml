@@ -23,15 +23,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v4
-
-      - name: Clone skills-ref and install
-        run: |
-          git clone --depth 1 https://github.com/agentskills/agentskills.git /tmp/agentskills
-          cd /tmp/agentskills/skills-ref
-          uv sync
-          echo "/tmp/agentskills/skills-ref/.venv/bin" >> $GITHUB_PATH
+      - name: Install skills-ref
+        run: pip install git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref
 
       - name: Validate all skills
         run: |
