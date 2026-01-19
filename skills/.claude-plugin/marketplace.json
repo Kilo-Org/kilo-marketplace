@@ -10,92 +10,92 @@
   "plugins": [
     {
       "name": "brand-guidelines",
-      "description": "Applies Anthropic's official brand colors and typography to artifacts for consistent visual identity and professional design standards.",
+      "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
       "source": "./brand-guidelines",
       "category": "business-marketing"
     },
     {
       "name": "competitive-ads-extractor",
-      "description": "Extracts and analyzes competitors' ads from ad libraries to understand messaging and creative approaches that resonate.",
+      "description": "Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.",
       "source": "./competitive-ads-extractor",
       "category": "business-marketing"
     },
     {
       "name": "domain-name-brainstormer",
-      "description": "Generates creative domain name ideas and checks availability across multiple TLDs including .com, .io, .dev, and .ai extensions.",
+      "description": "Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of brainstorming and manual checking.",
       "source": "./domain-name-brainstormer",
       "category": "business-marketing"
     },
     {
       "name": "internal-comms",
-      "description": "Helps write internal communications including 3P updates, company newsletters, FAQs, status reports, and project updates using company-specific formats.",
+      "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
       "source": "./internal-comms",
       "category": "business-marketing"
     },
     {
       "name": "lead-research-assistant",
-      "description": "Identifies and qualifies high-quality leads by analyzing your product, searching for target companies, and providing actionable outreach strategies.",
+      "description": "Identifies high-quality leads for your product or service by analyzing your business, searching for target companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing professionals.",
       "source": "./lead-research-assistant",
       "category": "business-marketing"
     },
     {
       "name": "content-research-writer",
-      "description": "Assists in writing high-quality content by conducting research, adding citations, improving hooks, and providing section-by-section feedback.",
+      "description": "Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on outlines, and providing real-time feedback on each section. Transforms your writing process from solo effort to collaborative partnership.",
       "source": "./content-research-writer",
       "category": "communication-writing"
     },
     {
       "name": "meeting-insights-analyzer",
-      "description": "Analyzes meeting transcripts to uncover behavioral patterns including conflict avoidance, speaking ratios, filler words, and leadership style.",
+      "description": "Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable feedback. Identifies when you avoid conflict, use filler words, dominate conversations, or miss opportunities to listen. Perfect for professionals seeking to improve their communication and leadership skills.",
       "source": "./meeting-insights-analyzer",
       "category": "communication-writing"
     },
     {
       "name": "canvas-design",
-      "description": "Creates beautiful visual art in PNG and PDF documents using design philosophy and aesthetic principles for posters, designs, and static pieces.",
+      "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
       "source": "./canvas-design",
       "category": "creative-media"
     },
     {
       "name": "image-enhancer",
-      "description": "Improves image and screenshot quality by enhancing resolution, sharpness, and clarity for professional presentations and documentation.",
+      "description": "Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect for preparing images for presentations, documentation, or social media posts.",
       "source": "./image-enhancer",
       "category": "creative-media"
     },
     {
       "name": "slack-gif-creator",
-      "description": "Creates animated GIFs optimized for Slack with validators for size constraints and composable animation primitives.",
+      "description": "Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable animation primitives. This skill applies when users request animated GIFs or emoji animations for Slack from descriptions like \"make me a GIF for Slack of X doing Y\".",
       "source": "./slack-gif-creator",
       "category": "creative-media"
     },
     {
       "name": "theme-factory",
-      "description": "Applies professional font and color themes to artifacts including slides, docs, reports, and HTML landing pages with 10 pre-set themes.",
+      "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
       "source": "./theme-factory",
       "category": "creative-media"
     },
     {
       "name": "video-downloader",
-      "description": "Downloads videos from YouTube and other platforms for offline viewing, editing, or archival with support for various formats and quality options.",
+      "description": "Download YouTube videos with customizable quality and format options. Use this skill when the user asks to download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p), multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.",
       "source": "./video-downloader",
       "category": "creative-media"
     },
     {
-      "name": "algorithmic-art",
-      "description": "Creates algorithmic art and generative designs using computational creativity techniques.",
-      "source": "./algorithmic-art",
-      "category": "creative-media"
-    },
-    {
       "name": "artifacts-builder",
-      "description": "Builds elaborate, multi-component Claude.ai HTML artifacts using modern frontend technologies including React, Tailwind CSS, and shadcn/ui.",
+      "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
       "source": "./artifacts-builder",
       "category": "development"
     },
     {
       "name": "changelog-generator",
-      "description": "Automatically creates user-facing changelogs from git commits by analyzing history and transforming technical commits into customer-friendly release notes.",
+      "description": "Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.",
       "source": "./changelog-generator",
+      "category": "development"
+    },
+    {
+      "name": "connect",
+      "description": "Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions across Gmail, Slack, GitHub, Notion, and 1000+ services.",
+      "source": "./connect",
       "category": "development"
     },
     {
@@ -105,50 +105,62 @@
       "category": "development"
     },
     {
+      "name": "langsmith-fetch",
+      "description": "Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent behavior, investigating errors, analyzing tool calls, checking memory operations, or examining agent performance. Automatically fetches recent traces and analyzes execution patterns. Requires langsmith-fetch CLI installed.",
+      "source": "./langsmith-fetch",
+      "category": "development"
+    },
+    {
       "name": "mcp-builder",
-      "description": "Guides creation of high-quality MCP (Model Context Protocol) servers for integrating external APIs and services with LLMs using Python or TypeScript.",
+      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
       "source": "./mcp-builder",
       "category": "development"
     },
     {
       "name": "skill-creator",
-      "description": "Provides guidance for creating effective Claude Skills that extend capabilities with specialized knowledge, workflows, and tool integrations.",
+      "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
       "source": "./skill-creator",
       "category": "development"
     },
     {
-      "name": "webapp-testing",
-      "description": "Tests local web applications using Playwright for verifying frontend functionality, debugging UI behavior, and capturing screenshots.",
-      "source": "./webapp-testing",
+      "name": "skill-share",
+      "description": "A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team collaboration and skill discovery.",
+      "source": "./skill-share",
       "category": "development"
     },
     {
       "name": "template-skill",
-      "description": "A template skill that demonstrates the structure and format for creating new Claude Skills.",
+      "description": "Replace with description of the skill and when Claude should use it.",
       "source": "./template-skill",
       "category": "development"
     },
     {
+      "name": "webapp-testing",
+      "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
+      "source": "./webapp-testing",
+      "category": "development"
+    },
+    {
       "name": "file-organizer",
-      "description": "Intelligently organizes files and folders by understanding context, finding duplicates, and suggesting better organizational structures.",
+      "description": "Intelligently organizes your files and folders across your computer by understanding context, finding duplicates, suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your digital workspace tidy without manual effort.",
       "source": "./file-organizer",
       "category": "productivity-organization"
     },
     {
       "name": "invoice-organizer",
-      "description": "Automatically organizes invoices and receipts for tax preparation by reading files, extracting information, and renaming consistently.",
+      "description": "Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key information, renaming them consistently, and sorting them into logical folders. Turns hours of manual bookkeeping into minutes of automated organization.",
       "source": "./invoice-organizer",
       "category": "productivity-organization"
     },
     {
       "name": "raffle-winner-picker",
-      "description": "Randomly selects winners from lists, spreadsheets, or Google Sheets for giveaways and contests with cryptographically secure randomness.",
+      "description": "Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures fair, unbiased selection with transparency.",
       "source": "./raffle-winner-picker",
       "category": "productivity-organization"
     },
     {
       "name": "tailored-resume-generator",
-      "description": "Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and achievements to maximize interview chances.",
+      "description": "Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and achievements to maximize interview chances",
       "source": "./tailored-resume-generator",
       "category": "productivity-organization"
     }

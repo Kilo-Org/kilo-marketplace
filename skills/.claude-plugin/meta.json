@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kilo-skills-marketplace",
+  "version": "0.0.1",
+  "description": "Kilo Skills Marketplace - A curated collection of practical Skills",
+  "owner": {
+    "name": "Kilo",
+    "email": "hi@kilocode.ai"
+  }
+}
