@@ -97,9 +97,9 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/video-downloader.tar.gz
   - id: artifacts-builder
     description: >-
-      Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web
-      technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or
-      shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+      Suite of tools for creating elaborate, multi-component HTML artifacts using modern frontend web technologies
+      (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui
+      components - not for simple single-file HTML/JSX artifacts.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/artifacts-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/artifacts-builder/SKILL.md
