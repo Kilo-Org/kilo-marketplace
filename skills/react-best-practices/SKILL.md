@@ -5,6 +5,9 @@ license: MIT
 metadata:
   author: vercel
   version: "1.0.0"
+source:
+  repository: https://github.com/vercel-labs/agent-skills
+  path: skills/claude.ai/react-best-practices
 ---
 
 # Vercel React Best Practices

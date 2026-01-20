@@ -4,6 +4,9 @@ description: Deploy applications and websites to Vercel. Use this skill when the
 metadata:
   author: vercel
   version: "1.0.0"
+source:
+  repository: https://github.com/vercel-labs/agent-skills
+  path: skills/claude.ai/vercel-deploy-claimable
 ---
 
 # Vercel Deploy
