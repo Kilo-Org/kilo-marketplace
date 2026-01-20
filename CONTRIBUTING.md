@@ -16,9 +16,8 @@ All skills must:
 2. **Be well-documented** - Include clear instructions, examples, and use cases.
 3. **Be accessible** - Written for non-technical users when possible.
 4. **Include examples** - Show practical, real-world usage.
-5. **Be tested** - Verify the skill works across Claude.ai, Claude Code, and/or API.
+5. **Be tested** - Verify the skill works in Kilo Code
 6. **Be safe** - Confirm before destructive operations.
-7. **Be portable** - Work across Claude platforms when applicable.
 
 ## Skill Structure
 

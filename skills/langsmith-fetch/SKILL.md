@@ -12,6 +12,7 @@ Debug LangChain and LangGraph agents by fetching execution traces directly from 
 ## When to Use This Skill
 
 Automatically activate when user mentions:
+
 - 🐛 "Debug my agent" or "What went wrong?"
 - 🔍 "Show me recent traces" or "What happened?"
 - ❌ "Check for errors" or "Why did it fail?"
@@ -22,17 +23,20 @@ Automatically activate when user mentions:
 ## Prerequisites
 
 ### 1. Install langsmith-fetch
+
 ```bash
 pip install langsmith-fetch
 ```
 
 ### 2. Set Environment Variables
+
 ```bash
 export LANGSMITH_API_KEY="your_langsmith_api_key"
 export LANGSMITH_PROJECT="your_project_name"
 ```
 
 **Verify setup:**
+
 ```bash
 echo $LANGSMITH_API_KEY
 echo $LANGSMITH_PROJECT
@@ -45,11 +49,13 @@ echo $LANGSMITH_PROJECT
 **When user asks:** "What just happened?" or "Debug my agent"
 
 **Execute:**
+
 ```bash
 langsmith-fetch traces --last-n-minutes 5 --limit 5 --format pretty
 ```
 
 **Analyze and report:**
+
 1. ✅ Number of traces found
 2. ⚠️ Any errors or failures
 3. 🛠️ Tools that were called
@@ -57,6 +63,7 @@ langsmith-fetch traces --last-n-minutes 5 --limit 5 --format pretty
 5. 💰 Token usage
 
 **Example response format:**
+
 ```
 Found 3 traces in the last 5 minutes:
 
@@ -88,11 +95,13 @@ Trace 3: ✅ Success
 **When user provides:** Trace ID or says "investigate that error"
 
 **Execute:**
+
 ```bash
 langsmith-fetch trace <trace-id> --format json
 ```
 
 **Analyze JSON and report:**
+
 1. 🎯 What the agent was trying to do
 2. 🛠️ Which tools were called (in order)
 3. ✅ Tool results (success/failure)
@@ -101,6 +110,7 @@ langsmith-fetch trace <trace-id> --format json
 6. 🔧 Suggested fix
 
 **Example response format:**
+
 ```
 Deep Dive Analysis - Trace abc123
 
@@ -136,6 +146,7 @@ Execution Time: 8.7 seconds
 **When user says:** "Save this session" or "Export traces"
 
 **Execute:**
+
 ```bash
 # Create session folder with timestamp
 SESSION_DIR="langsmith-debug/session-$(date +%Y%m%d-%H%M%S)"
@@ -149,6 +160,7 @@ langsmith-fetch threads "$SESSION_DIR/threads" --limit 20
 ```
 
 **Report:**
+
 ```
 ✅ Session exported successfully!
 
@@ -172,6 +184,7 @@ Session size: 2.3 MB
 **When user asks:** "Show me errors" or "What's failing?"
 
 **Execute:**
+
 ```bash
 # Fetch recent traces
 langsmith-fetch traces --last-n-minutes 30 --limit 50 --format json > recent-traces.json
@@ -181,6 +194,7 @@ grep -i "error\|failed\|exception" recent-traces.json
 ```
 
 **Analyze and report:**
+
 1. 📊 Total errors found
 2. ❌ Error types and frequency
 3. 🕐 When errors occurred
@@ -188,6 +202,7 @@ grep -i "error\|failed\|exception" recent-traces.json
 5. 💡 Common patterns
 
 **Example response format:**
+
 ```
 Error Analysis - Last 30 Minutes
 
@@ -228,7 +243,9 @@ Error Breakdown:
 **User says:** "My agent isn't doing anything"
 
 **Steps:**
+
 1. Check if traces exist:
+
    ```bash
    langsmith-fetch traces --last-n-minutes 5 --limit 5
    ```
@@ -251,6 +268,7 @@ Error Breakdown:
 **User says:** "Why did it use the wrong tool?"
 
 **Steps:**
+
 1. Get the specific trace
 2. Review available tools at execution time
 3. Check agent's reasoning for tool selection
@@ -264,7 +282,9 @@ Error Breakdown:
 **User says:** "Agent doesn't remember things"
 
 **Steps:**
+
 1. Search for memory operations:
+
    ```bash
    langsmith-fetch traces --last-n-minutes 10 --limit 20 --format raw | grep -i "memory\|recall\|store"
    ```
@@ -282,7 +302,9 @@ Error Breakdown:
 **User says:** "Agent is too slow"
 
 **Steps:**
+
 1. Export with metadata:
+
    ```bash
    langsmith-fetch traces ./perf-analysis --last-n-minutes 30 --limit 50 --include-metadata
    ```
@@ -301,21 +323,27 @@ Error Breakdown:
 ## Output Format Guide
 
 ### Pretty Format (Default)
+
 ```bash
 langsmith-fetch traces --limit 5 --format pretty
 ```
+
 **Use for:** Quick visual inspection, showing to users
 
 ### JSON Format
+
 ```bash
 langsmith-fetch traces --limit 5 --format json
 ```
+
 **Use for:** Detailed analysis, syntax-highlighted review
 
 ### Raw Format
+
 ```bash
 langsmith-fetch traces --limit 5 --format raw
 ```
+
 **Use for:** Piping to other commands, automation
 
 ---
@@ -323,6 +351,7 @@ langsmith-fetch traces --limit 5 --format raw
 ## Advanced Features
 
 ### Time-Based Filtering
+
 ```bash
 # After specific timestamp
 langsmith-fetch traces --after "2025-12-24T13:00:00Z" --limit 20
@@ -332,6 +361,7 @@ langsmith-fetch traces --last-n-minutes 60 --limit 100
 ```
 
 ### Include Metadata
+
 ```bash
 # Get extra context
 langsmith-fetch traces --limit 10 --include-metadata
@@ -340,6 +370,7 @@ langsmith-fetch traces --limit 10 --include-metadata
 ```
 
 ### Concurrent Fetching (Faster)
+
 ```bash
 # Speed up large exports
 langsmith-fetch traces ./output --limit 100 --concurrent 10
@@ -352,12 +383,14 @@ langsmith-fetch traces ./output --limit 100 --concurrent 10
 ### "No traces found matching criteria"
 
 **Possible causes:**
+
 1. No agent activity in the timeframe
 2. Tracing is disabled
 3. Wrong project name
 4. API key issues
 
 **Solutions:**
+
 ```bash
 # 1. Try longer timeframe
 langsmith-fetch traces --last-n-minutes 1440 --limit 50
@@ -376,6 +409,7 @@ langsmith-fetch threads --limit 10
 ### "Project not found"
 
 **Solution:**
+
 ```bash
 # View current config
 langsmith-fetch config show
@@ -390,6 +424,7 @@ langsmith-fetch config set project "your-project-name"
 ### Environment variables not persisting
 
 **Solution:**
+
 ```bash
 # Add to shell config file (~/.bashrc or ~/.zshrc)
 echo 'export LANGSMITH_API_KEY="your_key"' >> ~/.bashrc
@@ -404,12 +439,14 @@ source ~/.bashrc
 ## Best Practices
 
 ### 1. Regular Health Checks
+
 ```bash
 # Quick check after making changes
 langsmith-fetch traces --last-n-minutes 5 --limit 5
 ```
 
 ### 2. Organized Storage
+
 ```
 langsmith-debug/
 ├── sessions/
@@ -420,13 +457,16 @@ langsmith-debug/
 ```
 
 ### 3. Document Findings
+
 When you find bugs:
+
 1. Export the problematic trace
 2. Save to `error-cases/` folder
 3. Note what went wrong in a README
 4. Share trace ID with team
 
 ### 4. Integration with Development
+
 ```bash
 # Before committing code
 langsmith-fetch traces --last-n-minutes 10 --limit 5
@@ -469,7 +509,7 @@ langsmith-fetch traces --limit 10 --include-metadata
 
 ---
 
-## Notes for Claude
+## Notes for Kilo
 
 - Always check if `langsmith-fetch` is installed before running commands
 - Verify environment variables are set

@@ -57,7 +57,7 @@ Navigate to your messy invoice folder:
 cd ~/Desktop/receipts-to-sort
 ```
 
-Then ask Claude Code:
+Then ask Kilo Code:
 ```
 Organize these invoices for taxes
 ```

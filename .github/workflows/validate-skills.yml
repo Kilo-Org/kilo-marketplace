@@ -38,7 +38,7 @@ jobs:
         run: |
           failed=0
           for skill_dir in skills/*/; do
-            # Skip hidden directories like .claude-plugin
+            # Skip hidden directories
             if [[ "$(basename "$skill_dir")" == .* ]]; then
               continue
             fi

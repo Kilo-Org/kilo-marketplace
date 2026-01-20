@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p dist
           for skill_dir in skills/*/; do
-            # Skip hidden directories like .claude-plugin
+            # Skip hidden directories
             skill=$(basename "$skill_dir")
             if [[ "$skill" == .* ]]; then
               continue
