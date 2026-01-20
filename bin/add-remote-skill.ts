@@ -2,10 +2,11 @@
 /**
  * Add a remote skill from a GitHub repository.
  *
- * Usage: npx tsx bin/add-remote-skill.ts <github-repo-url> <path-to-skill-directory>
+ * Usage: npx tsx bin/add-remote-skill.ts <github-url-with-path>
  *
  * Example:
- *   npx tsx bin/add-remote-skill.ts https://github.com/vercel-labs/agent-skills skills/claude.ai/web-design-guidelines
+ *   npx tsx bin/add-remote-skill.ts https://github.com/vercel-labs/agent-skills/tree/main/skills/claude.ai/web-design-guidelines
+ *   npx tsx bin/add-remote-skill.ts https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/pr-creator
  *
  * This script will:
  * 1. Clone/download the specified directory from the GitHub repo
@@ -22,21 +23,33 @@ import matter from "gray-matter";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillsDir = path.join(__dirname, "..", "skills");
 
-function parseGitHubUrl(url: string): { owner: string; repo: string } {
-  // Handle various GitHub URL formats
-  const patterns = [
-    /github\.com\/([^\/]+)\/([^\/]+?)(?:\.git)?(?:\/|$)/,
-    /github\.com:([^\/]+)\/([^\/]+?)(?:\.git)?$/,
-  ];
-
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match) {
-      return { owner: match[1], repo: match[2] };
-    }
+function parseGitHubUrl(url: string): {
+  owner: string;
+  repo: string;
+  skillPath: string;
+} {
+  // Handle GitHub URL with path: https://github.com/owner/repo/tree/branch/path/to/skill
+  const treePattern =
+    /github\.com\/([^\/]+)\/([^\/]+)\/tree\/[^\/]+\/(.+?)(?:\/)?$/;
+  const treeMatch = url.match(treePattern);
+  if (treeMatch) {
+    return { owner: treeMatch[1], repo: treeMatch[2], skillPath: treeMatch[3] };
   }
 
-  throw new Error(`Invalid GitHub URL: ${url}`);
+  // Handle GitHub URL with blob (file): https://github.com/owner/repo/blob/branch/path/to/file
+  const blobPattern =
+    /github\.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+?)(?:\/)?$/;
+  const blobMatch = url.match(blobPattern);
+  if (blobMatch) {
+    // Get the directory containing the file
+    const filePath = blobMatch[3];
+    const dirPath = path.dirname(filePath);
+    return { owner: blobMatch[1], repo: blobMatch[2], skillPath: dirPath };
+  }
+
+  throw new Error(
+    `Invalid GitHub URL: ${url}\n\nExpected format: https://github.com/owner/repo/tree/branch/path/to/skill`,
+  );
 }
 
 function getSkillName(skillPath: string): string {
@@ -47,19 +60,22 @@ function getSkillName(skillPath: string): string {
 async function main() {
   const args = process.argv.slice(2);
 
-  if (args.length < 2) {
+  if (args.length < 1) {
     console.error(
-      "Usage: npx tsx bin/add-remote-skill.ts <github-repo-url> <path-to-skill-directory>",
+      "Usage: npx tsx bin/add-remote-skill.ts <github-url-with-path>",
     );
     console.error(
-      "\nExample: npx tsx bin/add-remote-skill.ts https://github.com/vercel-labs/agent-skills skills/claude.ai/web-design-guidelines",
+      "\nExample: npx tsx bin/add-remote-skill.ts https://github.com/vercel-labs/agent-skills/tree/main/skills/claude.ai/web-design-guidelines",
+    );
+    console.error(
+      "         npx tsx bin/add-remote-skill.ts https://github.com/google-gemini/gemini-cli/tree/main/.gemini/skills/pr-creator",
     );
     process.exit(1);
   }
 
-  const [repoUrl, skillPath] = args;
+  const [fullUrl] = args;
 
-  const { owner, repo } = parseGitHubUrl(repoUrl);
+  const { owner, repo, skillPath } = parseGitHubUrl(fullUrl);
   const skillName = getSkillName(skillPath);
   const targetDir = path.join(skillsDir, skillName);
 
