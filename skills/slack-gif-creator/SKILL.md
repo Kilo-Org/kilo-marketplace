@@ -4,6 +4,9 @@ description: Toolkit for creating animated GIFs optimized for Slack, with valida
 license: Complete terms in LICENSE.txt
 metadata:
   category: creative-media
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: slack-gif-creator
 ---
 
 # Slack GIF Creator - Flexible Toolkit

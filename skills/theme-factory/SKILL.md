@@ -4,6 +4,9 @@ description: Toolkit for styling artifacts with a theme. These artifacts can be 
 license: Complete terms in LICENSE.txt
 metadata:
   category: creative-media
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: theme-factory
 ---
 
 

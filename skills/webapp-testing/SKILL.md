@@ -4,6 +4,9 @@ description: Toolkit for interacting with and testing local web applications usi
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: webapp-testing
 ---
 
 # Web Application Testing

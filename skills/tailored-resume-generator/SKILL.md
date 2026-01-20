@@ -3,6 +3,9 @@ name: tailored-resume-generator
 description: Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and achievements to maximize interview chances
 metadata:
   category: productivity-organization
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: tailored-resume-generator
 ---
 
 # Tailored Resume Generator

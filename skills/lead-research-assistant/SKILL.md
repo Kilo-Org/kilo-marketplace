@@ -3,6 +3,9 @@ name: lead-research-assistant
 description: Identifies high-quality leads for your product or service by analyzing your business, searching for target companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing professionals.
 metadata:
   category: business-marketing
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: lead-research-assistant
 ---
 
 # Lead Research Assistant

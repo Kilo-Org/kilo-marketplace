@@ -4,6 +4,9 @@ description: A skill that creates new agent skills and automatically shares them
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: skill-share
 ---
 
 ## When to use this skill

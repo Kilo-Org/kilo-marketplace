@@ -4,6 +4,9 @@ description: Suite of tools for creating elaborate, multi-component HTML artifac
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: artifacts-builder
 ---
 
 # Artifacts Builder

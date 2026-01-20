@@ -4,6 +4,9 @@ description: A set of resources to help me write all kinds of internal communica
 license: Complete terms in LICENSE.txt
 metadata:
   category: business-marketing
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: internal-comms
 ---
 
 ## When to use this skill

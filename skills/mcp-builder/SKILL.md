@@ -4,6 +4,9 @@ description: Guide for creating high-quality MCP (Model Context Protocol) server
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: mcp-builder
 ---
 
 # MCP Server Development Guide

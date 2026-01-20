@@ -4,6 +4,9 @@ description: Guide for creating effective skills. This skill should be used when
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
+source:
+  repository: https://github.com/ComposioHQ/awesome-claude-skills
+  path: skill-creator
 ---
 
 # Skill Creator
