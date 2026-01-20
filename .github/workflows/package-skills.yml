@@ -1,6 +1,12 @@
 name: Package Skills
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "skills/**"
+      - "bin/**"
   workflow_dispatch:
 
 permissions:

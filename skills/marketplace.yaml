@@ -6,6 +6,7 @@ items:
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/competitive-ads-extractor
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/competitive-ads-extractor/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/competitive-ads-extractor.tar.gz
   - id: domain-name-brainstormer
     description: >-
       Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io,
@@ -13,6 +14,7 @@ items:
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/domain-name-brainstormer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/domain-name-brainstormer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/domain-name-brainstormer.tar.gz
   - id: internal-comms
     description: >-
       A set of resources to help me write all kinds of internal communications, using the formats that my company likes
@@ -21,6 +23,7 @@ items:
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/internal-comms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/internal-comms/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/internal-comms.tar.gz
   - id: lead-research-assistant
     description: >-
       Identifies high-quality leads for your product or service by analyzing your business, searching for target
@@ -29,6 +32,7 @@ items:
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lead-research-assistant
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lead-research-assistant/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lead-research-assistant.tar.gz
   - id: content-research-writer
     description: >-
       Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on
@@ -37,6 +41,7 @@ items:
     category: communication-writing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/content-research-writer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/content-research-writer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/content-research-writer.tar.gz
   - id: meeting-insights-analyzer
     description: >-
       Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable
@@ -45,6 +50,7 @@ items:
     category: communication-writing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
   - id: canvas-design
     description: >-
       Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the
@@ -53,6 +59,7 @@ items:
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/canvas-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/canvas-design/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/canvas-design.tar.gz
   - id: image-enhancer
     description: >-
       Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect
@@ -60,6 +67,7 @@ items:
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/image-enhancer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/image-enhancer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/image-enhancer.tar.gz
   - id: slack-gif-creator
     description: >-
       Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable
@@ -68,6 +76,7 @@ items:
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/slack-gif-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/slack-gif-creator/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/slack-gif-creator.tar.gz
   - id: theme-factory
     description: >-
       Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages,
@@ -76,6 +85,7 @@ items:
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/theme-factory
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/theme-factory/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/theme-factory.tar.gz
   - id: video-downloader
     description: >-
       Download YouTube videos with customizable quality and format options. Use this skill when the user asks to
@@ -84,6 +94,7 @@ items:
     category: creative-media
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/video-downloader
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/video-downloader/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/video-downloader.tar.gz
   - id: artifacts-builder
     description: >-
       Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web
@@ -92,6 +103,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/artifacts-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/artifacts-builder/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/artifacts-builder.tar.gz
   - id: changelog-generator
     description: >-
       Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes,
@@ -100,6 +112,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/changelog-generator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/changelog-generator/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/changelog-generator.tar.gz
   - id: connect
     description: >-
       Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions across
@@ -107,6 +120,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/connect
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/connect/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/connect.tar.gz
   - id: langsmith-fetch
     description: >-
       Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
@@ -115,6 +129,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/langsmith-fetch
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/langsmith-fetch/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/langsmith-fetch.tar.gz
   - id: mcp-builder
     description: >-
       Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external
@@ -123,6 +138,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
@@ -130,6 +146,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-creator/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-creator.tar.gz
   - id: skill-share
     description: >-
       A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team
@@ -137,6 +154,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-share.tar.gz
   - id: webapp-testing
     description: >-
       Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend
@@ -144,6 +162,7 @@ items:
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
   - id: file-organizer
     description: >-
       Intelligently organizes your files and folders across your computer by understanding context, finding duplicates,
@@ -152,6 +171,7 @@ items:
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/file-organizer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/file-organizer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/file-organizer.tar.gz
   - id: invoice-organizer
     description: >-
       Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key
@@ -160,6 +180,7 @@ items:
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/invoice-organizer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/invoice-organizer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/invoice-organizer.tar.gz
   - id: raffle-winner-picker
     description: >-
       Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures
@@ -167,6 +188,7 @@ items:
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/raffle-winner-picker
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/raffle-winner-picker/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/raffle-winner-picker.tar.gz
   - id: tailored-resume-generator
     description: >-
       Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and
@@ -174,3 +196,4 @@ items:
     category: productivity-organization
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tailored-resume-generator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tailored-resume-generator/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tailored-resume-generator.tar.gz

@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "tsx": "^4.19.2",
     "yaml": "^2.7.0"
   }
 }
