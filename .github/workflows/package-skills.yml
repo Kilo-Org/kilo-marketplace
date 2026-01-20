@@ -1,0 +1,65 @@
+name: Package Skills
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "skills/**"
+      - "bin/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Package all skills
+        run: |
+          mkdir -p dist
+          for skill_dir in skills/*/; do
+            # Skip hidden directories
+            skill=$(basename "$skill_dir")
+            if [[ "$skill" == .* ]]; then
+              continue
+            fi
+            echo "Packaging: $skill"
+            tar -czf "dist/${skill}.tar.gz" -C skills "$skill"
+            echo "Created: dist/${skill}.tar.gz"
+          done
+          ls -la dist/
+
+      - name: Get version info
+        id: version
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "date=$(date -u +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: skills-${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha_short }}
+          name: Skills Release ${{ steps.version.outputs.date }}
+          body: |
+            Automated skills release from commit ${{ steps.version.outputs.sha }}
+          files: dist/*.tar.gz
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update latest release tag
+        run: |
+          # Also upload to a "latest" release for easy access
+          gh release upload skills-latest dist/*.tar.gz --clobber 2>/dev/null || \
+          gh release create skills-latest dist/*.tar.gz \
+            --title "Latest Skills" \
+            --notes "Latest packaged skills. Updated automatically."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

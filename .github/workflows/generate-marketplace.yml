@@ -1,0 +1,59 @@
+name: Generate Marketplace
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "bin/**"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: bin/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: bin
+
+      - name: Generate marketplace.yaml
+        run: pnpm exec tsx generate-marketplace.ts
+        working-directory: bin
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet skills/marketplace.yaml; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add skills/marketplace.yaml
+          git commit -m "chore: regenerate marketplace.yaml"
+          git push
