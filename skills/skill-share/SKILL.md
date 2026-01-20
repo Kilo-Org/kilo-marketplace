@@ -1,6 +1,6 @@
 ---
 name: skill-share
-description: A skill that creates new Kilo Code skills and automatically shares them on Slack using Rube for seamless team collaboration and skill discovery.
+description: A skill that creates new agent skills and automatically shares them on Slack using Rube for seamless team collaboration and skill discovery.
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
@@ -9,7 +9,7 @@ metadata:
 ## When to use this skill
 
 Use this skill when you need to:
-- **Create new Kilo Code skills** with proper structure and metadata
+- **Create new agent skills** with proper structure and metadata
 - **Generate skill packages** ready for distribution
 - **Automatically share created skills** on Slack channels for team visibility
 - **Validate skill structure** before sharing
