@@ -199,28 +199,3 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/file-organizer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/file-organizer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/file-organizer.tar.gz
-  - id: invoice-organizer
-    description: >-
-      Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key
-      information, renaming them consistently, and sorting them into logical folders. Turns hours of manual bookkeeping
-      into minutes of automated organization.
-    category: productivity-organization
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/invoice-organizer
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/invoice-organizer/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/invoice-organizer.tar.gz
-  - id: raffle-winner-picker
-    description: >-
-      Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures
-      fair, unbiased selection with transparency.
-    category: productivity-organization
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/raffle-winner-picker
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/raffle-winner-picker/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/raffle-winner-picker.tar.gz
-  - id: tailored-resume-generator
-    description: >-
-      Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and
-      achievements to maximize interview chances
-    category: productivity-organization
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tailored-resume-generator
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tailored-resume-generator/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tailored-resume-generator.tar.gz
