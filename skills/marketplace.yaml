@@ -147,6 +147,32 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-share.tar.gz
+  - id: vercel-deploy
+    description: >-
+      Deploy applications and websites to Vercel. Use this skill when the user requests deployment actions such as
+      "Deploy my app", "Deploy this to production", "Create a preview deployment", "Deploy and give me the link", or
+      "Push this live". No authentication required - returns preview URL and claimable deployment link.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-deploy
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-deploy/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-deploy.tar.gz
+  - id: vercel-react-best-practices
+    description: >-
+      React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when
+      writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks
+      involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-react-best-practices
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-react-best-practices/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-react-best-practices.tar.gz
+  - id: web-design-guidelines
+    description: >-
+      Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility",
+      "audit design", "review UX", or "check my site against best practices".
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/web-design-guidelines
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/web-design-guidelines/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/web-design-guidelines.tar.gz
   - id: webapp-testing
     description: >-
       Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend
@@ -189,26 +215,3 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tailored-resume-generator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tailored-resume-generator/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tailored-resume-generator.tar.gz
-  - id: react-best-practices
-    description: >-
-      React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when
-      writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks
-      involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/react-best-practices
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/react-best-practices/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/react-best-practices.tar.gz
-  - id: vercel-deploy-claimable
-    description: >-
-      Deploy applications and websites to Vercel. Use this skill when the user requests deployment actions such as
-      "Deploy my app", "Deploy this to production", "Create a preview deployment", "Deploy and give me the link", or
-      "Push this live". No authentication required - returns preview URL and claimable deployment link.
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-deploy-claimable
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-deploy-claimable/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-deploy-claimable.tar.gz
-  - id: web-design-guidelines
-    description: >-
-      Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility",
-      "audit design", "review UX", or "check my site against best practices".
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/web-design-guidelines
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/web-design-guidelines/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/web-design-guidelines.tar.gz
