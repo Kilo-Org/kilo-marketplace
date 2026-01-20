@@ -2,9 +2,6 @@ name: Generate Marketplace
 
 on:
   pull_request:
-    paths:
-      - "skills/**"
-      - "bin/**"
 
 permissions:
   contents: write
@@ -36,14 +33,18 @@ jobs:
         run: pnpm install
         working-directory: bin
 
-      - name: Generate marketplace.yaml
+      - name: Generate skills marketplace.yaml
         run: pnpm exec tsx generate-skill-marketplace.ts
+        working-directory: bin
+
+      - name: Generate modes marketplace.yaml
+        run: pnpm exec tsx generate-modes-marketplace.ts
         working-directory: bin
 
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet skills/marketplace.yaml; then
+          if git diff --quiet skills/marketplace.yaml modes/marketplace.yaml; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -54,6 +55,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add skills/marketplace.yaml
+          git add skills/marketplace.yaml modes/marketplace.yaml
           git commit -m "chore: regenerate marketplace.yaml"
           git push
