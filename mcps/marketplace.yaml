@@ -1375,6 +1375,40 @@ items:
         key: KAGI_SUMMARIZER_ENGINE
         placeholder: cecil
         optional: true
+  - id: laravel-boost
+    name: Laravel Boost
+    description: Official Laravel MCP server providing comprehensive AI-powered development tools including database schema inspection, query execution, route analysis, artisan command access, configuration management, documentation search, error tracking, and extensible skills system for Laravel applications.
+    author: laravel
+    url: https://github.com/laravel/boost
+    tags:
+      - laravel
+      - php
+      - database
+      - artisan
+      - routes
+      - configuration
+      - documentation
+      - error-tracking
+      - ai-integration
+      - web-development
+      - official
+    prerequisites:
+      - PHP 8.1 or higher
+      - Laravel 10.x, 11.x, or 12.x
+      - Composer
+      - Laravel Boost package installed via composer require laravel/boost --dev
+    content:
+      - name: PHP Artisan
+        prerequisites:
+          - PHP 8.1+
+          - Laravel 10.x/11.x/12.x
+          - Laravel Boost package installed
+        content: |
+          {
+            "command": "php",
+            "args": ["artisan", "boost:mcp"]
+          }
+    parameters: []
   - id: linear
     name: Linear
     description: Facilitates project management with the Linear API, enabling issue tracking, project organization, and team
