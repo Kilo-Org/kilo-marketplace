@@ -1,0 +1,28 @@
+id: scala-metals
+name: Scala Metals
+description: Provides access to the latest Scala Metals tools ( compiler, language server, and more ) for up-to-date code documentation and examples.
+ Ensures LLMs and AI code editors have accurate, version-specific information directly from the source, eliminating outdated or hallucinated API details.
+author: Scala Metals
+url: https://github.com/scalameta/metals
+tags:
+  - scala
+  - metals
+  - development
+content:
+  
+  - name: Scala Metals server
+    content:
+      id: {{METALS_MCP_ID}}
+      name: Scala Metals server {{METALS_MCP_ID}}
+      content: |
+       {
+          "type": "streamable-http",
+          "url": "{{METALS_MCP_URL}}"
+       } 
+parameters:
+  - name: Metals MCP ID
+    key: METALS_MCP_ID
+    placeholder: metals mcp id
+  - name: Metals MCP URL
+    key: METALS_MCP_URL
+    placeholder: metals mcp url
