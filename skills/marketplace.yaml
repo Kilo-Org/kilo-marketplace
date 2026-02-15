@@ -104,140 +104,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/artifacts-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/artifacts-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/artifacts-builder.tar.gz
-  - id: agent-md-refactor
-    description: >-
-      Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure
-      principles. Splits monolithic files into organized, linked documentation.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/agent-md-refactor
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/agent-md-refactor/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/agent-md-refactor.tar.gz
-  - id: angular-component
-    description: >-
-      Create modern Angular standalone components following v20+ best practices. Use for building UI components with
-      signal-based inputs/outputs, OnPush change detection, host bindings, content projection, and lifecycle hooks.
-      Triggers on component creation, refactoring class-based inputs to signals, adding host bindings, or implementing
-      accessible interactive components.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-component
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-component/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-component.tar.gz
-  - id: angular-di
-    description: >-
-      Implement dependency injection in Angular v20+ using inject(), injection tokens, and provider configuration. Use
-      for service architecture, providing dependencies at different levels, creating injectable tokens, and managing
-      singleton vs scoped services. Triggers on service creation, configuring providers, using injection tokens, or
-      understanding DI hierarchy.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-di
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-di/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-di.tar.gz
-  - id: angular-directives
-    description: >-
-      Create custom directives in Angular v20+ for DOM manipulation and behavior extension. Use for attribute
-      directives that modify element behavior/appearance, structural directives for portals/overlays, and host
-      directives for composition. Triggers on creating reusable DOM behaviors, extending element functionality, or
-      composing behaviors across components. Note - use native @if/@for/@switch for control flow, not custom structural
-      directives.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-directives
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-directives/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-directives.tar.gz
-  - id: angular-forms
-    description: >-
-      Build signal-based forms in Angular v21+ using the new Signal Forms API. Use for form creation with automatic
-      two-way binding, schema-based validation, field state management, and dynamic forms. Triggers on form
-      implementation, adding validation, creating multi-step forms, or building forms with conditional fields. Signal
-      Forms are experimental but recommended for new Angular projects.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-forms
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-forms/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-forms.tar.gz
-  - id: angular-http
-    description: >-
-      Implement HTTP data fetching in Angular v20+ using resource(), httpResource(), and HttpClient. Use for API calls,
-      data loading with signals, request/response handling, and interceptors. Triggers on data fetching, API
-      integration, loading states, error handling, or converting Observable-based HTTP to signal-based patterns.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-http
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-http/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-http.tar.gz
-  - id: angular-routing
-    description: >-
-      Implement routing in Angular v20+ applications with lazy loading, functional guards, resolvers, and route
-      parameters. Use for navigation setup, protected routes, route-based data loading, and nested routing. Triggers on
-      route configuration, adding authentication guards, implementing lazy loading, or reading route parameters with
-      signals.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-routing
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-routing/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-routing.tar.gz
-  - id: angular-signals
-    description: >-
-      Implement signal-based reactive state management in Angular v20+. Use for creating reactive state with signal(),
-      derived state with computed(), dependent state with linkedSignal(), and side effects with effect(). Triggers on
-      state management questions, converting from BehaviorSubject/Observable patterns to signals, or implementing
-      reactive data flows.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-signals
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-signals/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-signals.tar.gz
-  - id: angular-ssr
-    description: >-
-      Implement server-side rendering and hydration in Angular v20+ using @angular/ssr. Use for SSR setup, hydration
-      strategies, prerendering static pages, and handling browser-only APIs. Triggers on SSR configuration, fixing
-      hydration mismatches, prerendering routes, or making code SSR-compatible.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-ssr
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-ssr/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-ssr.tar.gz
-  - id: angular-testing
-    description: >-
-      Write unit and integration tests for Angular v21+ applications using Vitest or Jasmine with TestBed, component
-      harnesses, and modern testing patterns. Use for testing components with signals, OnPush change detection,
-      services with inject(), and HTTP interactions. Triggers on test creation, testing signal-based components,
-      mocking dependencies, or setting up test infrastructure.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-testing
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-testing/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-testing.tar.gz
-  - id: angular-tooling
-    description: >-
-      Use Angular CLI and development tools effectively in Angular v20+ projects. Use for project setup, code
-      generation, building, testing, and configuration. Triggers on creating new projects, generating
-      components/services/modules, configuring builds, running tests, or optimizing production builds.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-tooling
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-tooling/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-tooling.tar.gz
-  - id: find-skills
-    description: >-
-      Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X",
-      "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the
-      user is looking for functionality that might exist as an installable skill.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/find-skills
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/find-skills/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/find-skills.tar.gz
-  - id: frontend-design
-    description: >-
-      Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user
-      asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing
-      pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates
-      creative, polished code and UI design that avoids generic AI aesthetics.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/frontend-design
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/frontend-design/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/frontend-design.tar.gz
-  - id: vercel-composition-patterns
-    description: >-
-      React composition patterns that scale. Use when refactoring components with boolean prop proliferation, building
-      flexible component libraries, or designing reusable APIs. Triggers on tasks involving compound components,
-      render props, context providers, or component architecture. Includes React 19 API changes.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-composition-patterns
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-composition-patterns/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-composition-patterns.tar.gz
   - id: changelog-generator
     description: >-
       Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes,
@@ -324,6 +190,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: gemini-king-mode
+    description: >-
+      Frontend-focused instruction profile for producing bold, intentional UI output with concise default responses and
+      an ULTRATHINK deep-analysis mode. This skill should be used when the user asks for Gemini King Mode behavior,
+      avant-garde frontend direction, or ULTRATHINK-style exhaustive UI reasoning.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gemini-king-mode
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gemini-king-mode/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gemini-king-mode.tar.gz
   - id: file-organizer
     description: >-
       Intelligently organizes your files and folders across your computer by understanding context, finding duplicates,
