@@ -1,10 +1,13 @@
 ---
 name: competitive-ads-extractor
-description: Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.
+description: >-
+  Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn,
+  etc.) to understand what messaging, problems, and creative approaches are
+  working. Helps inspire and improve your own ad campaigns.
 metadata:
   category: business-marketing
   source:
-    repository: https://github.com/ComposioHQ/awesome-claude-skills
+    repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: competitive-ads-extractor
 ---
 
