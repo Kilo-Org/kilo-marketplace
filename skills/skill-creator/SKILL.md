@@ -1,11 +1,14 @@
 ---
 name: skill-creator
-description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends the agent's capabilities with specialized knowledge, workflows, or tool integrations.
+description: >-
+  Guide for creating effective skills. This skill should be used when users want
+  to create a new skill (or update an existing skill) that extends Kilo's
+  capabilities with specialized knowledge, workflows, or tool integrations.
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
   source:
-    repository: https://github.com/ComposioHQ/awesome-claude-skills
+    repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: skill-creator
 ---
 
