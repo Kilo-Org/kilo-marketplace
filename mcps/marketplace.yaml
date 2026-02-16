@@ -1377,7 +1377,9 @@ items:
         optional: true
   - id: laravel-boost
     name: Laravel Boost
-    description: Official Laravel MCP server providing comprehensive AI-powered development tools including database schema inspection, query execution, route analysis, artisan command access, configuration management, documentation search, error tracking, and extensible skills system for Laravel applications.
+    description: Official Laravel MCP server providing comprehensive AI-powered development tools including database schema
+      inspection, query execution, route analysis, artisan command access, configuration management, documentation
+      search, error tracking, and extensible skills system for Laravel applications.
     author: laravel
     url: https://github.com/laravel/boost
     tags:
@@ -1816,6 +1818,36 @@ items:
         key: NEON_API_KEY
         placeholder: your_neon_api_key
         optional: true
+  - id: nia
+    name: Nia
+    description: Nia is an API and MCP layer that gives agents continuously updated context from libraries, research papers,
+      and docs, so they don't hallucinate and you skip manual ingestion.
+    author: Nozomio Labs
+    url: https://docs.trynia.ai
+    tags:
+      - documentation
+      - knowledge-base
+      - repository-indexing
+      - semantic-search
+      - research-papers
+      - code-context
+      - ai-research
+    prerequisites:
+      - Nia account (https://app.trynia.ai)
+    content:
+      - name: Remote Server
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://apigcp.trynia.ai/mcp",
+            "headers": {
+              "Authorization": "Bearer {{NIA_API_KEY}}"
+            }
+          }
+    parameters:
+      - name: Nia API Key
+        key: NIA_API_KEY
+        placeholder: your_nia_api_key_here
   - id: notion
     name: Notion
     description: Official Notion MCP Server that provides seamless integration with Notion APIs, enabling advanced
