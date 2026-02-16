@@ -18,8 +18,8 @@ items:
   - id: internal-comms
     description: >-
       A set of resources to help me write all kinds of internal communications, using the formats that my company likes
-      to use. This skill should be used whenever asked to write some sort of internal communications (status reports,
-      leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
+      to use. The agent should use this skill whenever asked to write some sort of internal communications (status
+      reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/internal-comms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/internal-comms/SKILL.md
@@ -143,7 +143,7 @@ items:
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
-      existing skill) that extends the agent's capabilities with specialized knowledge, workflows, or tool integrations.
+      existing skill) that extends Kilo's capabilities with specialized knowledge, workflows, or tool integrations.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-creator/SKILL.md
