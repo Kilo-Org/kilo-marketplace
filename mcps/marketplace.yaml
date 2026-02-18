@@ -1097,30 +1097,21 @@ items:
       - collaboration
       - api-integration
     prerequisites:
+      - Node.js
       - GitHub account
-      - Docker
-    content: >
+      - Classic GitHub Personal Access Token (generate at https://github.com/settings/tokens/new)
+    content: |
       {
-        "command": "docker",
-        "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "-e", "GITHUB_TOOLSETS", "-e", "GITHUB_READ_ONLY", "ghcr.io/github/github-mcp-server"],
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
         "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "{{GITHUB_PERSONAL_ACCESS_TOKEN}}",
-          "GITHUB_TOOLSETS": "{{GITHUB_TOOLSETS}}",
-          "GITHUB_READ_ONLY": "{{GITHUB_READ_ONLY}}"
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "{{GITHUB_PERSONAL_ACCESS_TOKEN}}"
         }
       }
     parameters:
       - name: GitHub Personal Access Token
         key: GITHUB_PERSONAL_ACCESS_TOKEN
-        placeholder: ghp_your_github_personal_access_token
-      - name: GitHub Toolsets
-        key: GITHUB_TOOLSETS
-        placeholder: repos,issues,pull_requests,code_security
-        optional: true
-      - name: GitHub Read Only (1 for true, 0 for false)
-        key: GITHUB_READ_ONLY
-        placeholder: "0"
-        optional: true
+        placeholder: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (classic PAT from https://github.com/settings/tokens/new)
   - id: gitlab
     name: GitLab
     description: Enables comprehensive GitLab project management including file operations, issue tracking, merge requests,
