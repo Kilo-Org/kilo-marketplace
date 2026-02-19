@@ -1,0 +1,10 @@
+Attribution and license status notice
+
+Source:
+https://github.com/aicodeking/yt-tutorial/blob/main/gemini-king-mode.md
+
+As of 2026-02-15, no repository-level LICENSE file was found at:
+- https://raw.githubusercontent.com/aicodeking/yt-tutorial/main/LICENSE
+- https://raw.githubusercontent.com/aicodeking/yt-tutorial/main/LICENSE.md
+
+Upstream licensing terms are unspecified. Review and confirm usage rights before redistribution.
