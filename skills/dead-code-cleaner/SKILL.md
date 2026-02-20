@@ -205,7 +205,7 @@ cargo +nightly udeps
    grep -r "functionName" --include="*.js" --include="*.ts" --include="*.jsx" --include="*.tsx"
    
    # Search in configuration files
-   grep -r "functionName" --include="*.{json,yaml,yml,xml}"
+   grep -r "functionName" --include="*.json" --include="*.yaml" --include="*.yml" --include="*.xml"
    ```
 
 3. **Check for dynamic patterns**
