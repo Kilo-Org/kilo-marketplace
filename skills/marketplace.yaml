@@ -122,6 +122,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/create-pull-request.tar.gz
+  - id: dead-code-cleaner
+    description: >-
+      This skill should be used when the user wants to identify and safely remove dead code from a codebase. It provides
+      systematic procedures for detecting unused imports, functions, variables, exports, unreachable code, and other
+      dead code patterns across multiple programming languages with verification steps to ensure safe removal.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dead-code-cleaner
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dead-code-cleaner/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dead-code-cleaner.tar.gz
   - id: langsmith-fetch
     description: >-
       Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
