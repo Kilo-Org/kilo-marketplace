@@ -202,7 +202,7 @@ cargo +nightly udeps
 2. **Search for indirect usage**
    ```bash
    # Search for string references
-   grep -r "functionName" --include="*.{js,ts,jsx,tsx}"
+   grep -r "functionName" --include="*.js" --include="*.ts" --include="*.jsx" --include="*.tsx"
    
    # Search in configuration files
    grep -r "functionName" --include="*.{json,yaml,yml,xml}"
