@@ -114,7 +114,7 @@ vulture src/
 pyflakes src/
 
 # Remove unused imports automatically
-autoflake --remove-all-unused-imports --in-place -r src/
+autoflake --check -r src/
 ```
 
 **Common Patterns to Check:**
