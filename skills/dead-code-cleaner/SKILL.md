@@ -113,7 +113,7 @@ vulture src/
 # Check for unused imports
 pyflakes src/
 
-# Remove unused imports automatically
+# Check for removable unused imports
 autoflake --check -r src/
 ```
 
