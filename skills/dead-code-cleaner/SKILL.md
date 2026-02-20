@@ -280,7 +280,7 @@ cargo +nightly udeps
 ### Framework-Specific Patterns
 
 **React:**
-- Component exports may be used in JSX without explicit imports
+- Exported components may appear unused to basic static analysis but are consumed via JSX
 - Higher-order components may reference components dynamically
 - Check for usage in route configurations
 
