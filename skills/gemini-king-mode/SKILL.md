@@ -5,7 +5,7 @@ license: Unknown (upstream repository does not publish a LICENSE file)
 metadata:
   category: development
   source:
-    repository: https://github.com/aicodeking/yt-tutorial/blob/main/gemini-king-mode.md
+    repository: https://github.com/aicodeking/yt-tutorial
     path: gemini-king-mode.md
 ---
 
