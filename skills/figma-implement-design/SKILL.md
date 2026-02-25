@@ -33,22 +33,26 @@ This skill provides a structured workflow for translating Figma designs into pro
 
 If any MCP call fails because Figma MCP is not connected, pause and help the user set it up.
 
-Add the Figma MCP server to your configuration:
-
-**VS Code Extension:** Open Kilo Code Settings > Agent Behaviour > MCP Servers, then click "Edit Global MCP" (or "Edit Project MCP" for project-specific config) and add:
+The Figma MCP server runs locally via the Figma Desktop app. Ensure the Figma Desktop app is running, then add the Figma Desktop MCP server to your config:
 
 ```json
 {
-  "mcpServers": {
-    "figma": {
-      "type": "streamable-http",
-      "url": "https://mcp.figma.com/mcp"
+  "mcp": {
+    "Figma Desktop": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp"
     }
   }
 }
 ```
 
-**CLI:** Edit `~/.kilocode/cli/global/settings/mcp_settings.json` (or `.kilocode/mcp.json` in your project root) with the same configuration above.
+**VS Code Extension:** Open Kilo Code Settings > Agent Behaviour > MCP Servers, then click "Edit Global MCP" (or "Edit Project MCP" for project-specific config) and add the config above.
+
+**CLI:** Add the `mcp` block to your config file. Config locations:
+- **Global:** `~/.config/kilo/config.json`
+- **Project:** `./.kilocode/config.json` in your project root
+
+Project-level configuration takes precedence over global settings.
 
 After adding the server, restart Kilo Code so it can connect to the Figma MCP server, then continue with Step 1.
 
