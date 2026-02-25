@@ -122,6 +122,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/create-pull-request.tar.gz
+  - id: figma-implement-design
+    description: >-
+      Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow (design
+      context, screenshots, assets, and project-convention translation). Trigger when the user provides Figma URLs or
+      node IDs, or asks to implement designs or components that must match Figma specs. Requires a working Figma MCP
+      server connection.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/figma-implement-design
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/figma-implement-design/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/figma-implement-design.tar.gz
   - id: langsmith-fetch
     description: >-
       Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
