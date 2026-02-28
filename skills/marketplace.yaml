@@ -95,6 +95,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/video-downloader
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/video-downloader/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/video-downloader.tar.gz
+  - id: add-documentation
+    description: >-
+      This skill should be used when the user wants to add documentation to a project. It helps create comprehensive
+      documentation including README files, API documentation, code comments, and other documentation artifacts. Use
+      when the user asks to document code, create documentation, or improve project documentation.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/add-documentation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/add-documentation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/add-documentation.tar.gz
   - id: artifacts-builder
     description: >-
       Suite of tools for creating elaborate, multi-component HTML artifacts using modern frontend web technologies
