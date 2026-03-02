@@ -1,12 +1,15 @@
 ---
 name: figma-implement-design
-description: "Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow (design context, screenshots, assets, and project-convention translation). Trigger when the user provides Figma URLs or node IDs, or asks to implement designs or components that must match Figma specs. Requires a working Figma MCP server connection."
-license: Apache-2.0
+description: >-
+  Translate Figma nodes into production-ready code with 1:1 visual fidelity
+  using the Figma MCP workflow (design context, screenshots, assets, and
+  project-convention translation). Trigger when the user provides Figma URLs or
+  node IDs, or asks to implement designs or components that must match Figma
+  specs. Requires a working Figma MCP server connection.
 metadata:
-  author: openai
   category: development
   source:
-    repository: https://github.com/openai/skills
+    repository: 'https://github.com/openai/skills'
     path: skills/.curated/figma-implement-design
 ---
 
@@ -32,30 +35,16 @@ This skill provides a structured workflow for translating Figma designs into pro
 
 ### Step 0: Set up Figma MCP (if not already configured)
 
-If any MCP call fails because Figma MCP is not connected, pause and help the user set it up.
+If any MCP call fails because Figma MCP is not connected, pause and set it up:
 
-The Figma MCP server runs locally via the Figma Desktop app. Ensure the Figma Desktop app is running, then add the Figma Desktop MCP server to your config:
+1. Add the Figma MCP:
+   - `codex mcp add figma --url https://mcp.figma.com/mcp`
+2. Enable remote MCP client:
+   - Set `[features].rmcp_client = true` in `config.toml` **or** run `codex --enable rmcp_client`
+3. Log in with OAuth:
+   - `codex mcp login figma`
 
-```json
-{
-  "mcp": {
-    "Figma Desktop": {
-      "type": "remote",
-      "url": "http://127.0.0.1:3845/mcp"
-    }
-  }
-}
-```
-
-**VS Code Extension:** Open Kilo Code Settings > Agent Behaviour > MCP Servers, then click "Edit Global MCP" (or "Edit Project MCP" for project-specific config) and add the config above.
-
-**CLI:** Add the `mcp` block to your `kilo.json` config file. Config locations:
-- **Global:** `~/.config/kilo/kilo.json`
-- **Project:** `./kilo.json` or `./.kilo/kilo.json` in your project root
-
-Project-level configuration takes precedence over global settings.
-
-After adding the server, restart Kilo Code so it can connect to the Figma MCP server, then continue with Step 1.
+After successful login, the user will have to restart codex. You should finish your answer and tell them so when they try again they can continue with Step 1.
 
 ### Step 1: Get Node ID
 

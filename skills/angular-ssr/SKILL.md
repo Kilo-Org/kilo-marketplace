@@ -1,11 +1,14 @@
 ---
 name: angular-ssr
-description: Implement server-side rendering and hydration in Angular v20+ using @angular/ssr. Use for SSR setup, hydration strategies, prerendering static pages, and handling browser-only APIs. Triggers on SSR configuration, fixing hydration mismatches, prerendering routes, or making code SSR-compatible.
-license: Complete terms in LICENSE.txt
+description: >-
+  Implement server-side rendering and hydration in Angular v20+ using
+  @angular/ssr. Use for SSR setup, hydration strategies, prerendering static
+  pages, and handling browser-only APIs. Triggers on SSR configuration, fixing
+  hydration mismatches, prerendering routes, or making code SSR-compatible.
 metadata:
   category: development
   source:
-    repository: https://github.com/analogjs/angular-skills
+    repository: 'https://github.com/analogjs/angular-skills'
     path: skills/angular-ssr
 ---
 

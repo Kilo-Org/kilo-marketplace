@@ -1,6 +1,5 @@
 ---
-
-name: video-downloader
+name: youtube-downloader
 description: >-
   Download YouTube videos with customizable quality and format options. Use this
   skill when the user asks to download, save, or grab YouTube videos. Supports
