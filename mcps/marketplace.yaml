@@ -634,8 +634,8 @@ items:
   - id: dbt
     name: dbt
     description: A MCP server for interacting with dbt, providing AI agents with context from dbt Core, dbt Fusion, and dbt
-      Platform. Supports SQL execution, Semantic Layer queries, project discovery, dbt CLI operations, Admin API management,
-      code generation, and column-level lineage tracing.
+      Platform. Supports SQL execution, Semantic Layer queries, project discovery, dbt CLI operations, Admin API
+      management, code generation, and column-level lineage tracing.
     author: dbt-labs
     url: https://github.com/dbt-labs/dbt-mcp
     tags:
