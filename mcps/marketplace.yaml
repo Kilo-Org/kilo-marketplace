@@ -648,27 +648,24 @@ items:
       - mcp-server
       - llm
     prerequisites:
-      - dbt Cloud account (for platform features)
-      - dbt Cloud service token
+      - Python and uv
     content:
-      - name: UVX
+      - name: UVX (dbt Cloud)
+        description: Uses OAuth to authenticate with your dbt Cloud account. Provides platform features (Discovery API, Semantic Layer, job management) without local CLI commands.
         prerequisites:
-          - Python and uv
+          - dbt Cloud account with static subdomain
         content: |
           {
             "command": "uvx",
             "args": ["dbt-mcp"],
             "env": {
-              "DBT_HOST": "{{DBT_HOST}}",
-              "DBT_TOKEN": "{{DBT_TOKEN}}",
-              "DBT_PROD_ENV_ID": "{{DBT_PROD_ENV_ID}}",
-              "DBT_DEV_ENV_ID": "{{DBT_DEV_ENV_ID}}",
-              "DBT_USER_ID": "{{DBT_USER_ID}}"
+              "DBT_HOST": "{{DBT_HOST}}"
             }
           }
-      - name: UVX with Local dbt Project
+      - name: UVX (dbt Cloud + CLI)
+        description: Uses OAuth with dbt Cloud and also enables local dbt CLI commands for running, building, and testing dbt projects.
         prerequisites:
-          - Python and uv
+          - dbt Cloud account with static subdomain
           - dbt CLI installed locally
         content: |
           {
@@ -676,10 +673,6 @@ items:
             "args": ["dbt-mcp"],
             "env": {
               "DBT_HOST": "{{DBT_HOST}}",
-              "DBT_TOKEN": "{{DBT_TOKEN}}",
-              "DBT_PROD_ENV_ID": "{{DBT_PROD_ENV_ID}}",
-              "DBT_DEV_ENV_ID": "{{DBT_DEV_ENV_ID}}",
-              "DBT_USER_ID": "{{DBT_USER_ID}}",
               "DBT_PROJECT_DIR": "{{DBT_PROJECT_DIR}}",
               "DBT_PATH": "{{DBT_PATH}}"
             }
@@ -691,40 +684,53 @@ items:
           - name: dbt Executable Path
             key: DBT_PATH
             placeholder: /path/to/your/dbt/executable
-            optional: true
+      - name: UVX (CLI only)
+        description: Runs dbt MCP locally with your dbt project using dbt Core or Fusion CLI. No dbt Cloud account required.
+        prerequisites:
+          - dbt CLI installed locally
+        content: |
+          {
+            "command": "uvx",
+            "args": ["dbt-mcp"],
+            "env": {
+              "DBT_PROJECT_DIR": "{{DBT_PROJECT_DIR}}",
+              "DBT_PATH": "{{DBT_PATH}}"
+            }
+          }
+        parameters:
+          - name: dbt Project Directory
+            key: DBT_PROJECT_DIR
+            placeholder: /path/to/your/dbt/project
+          - name: dbt Executable Path
+            key: DBT_PATH
+            placeholder: /path/to/your/dbt/executable
       - name: Docker
+        description: Container-based installation using a dbt Cloud service token for authentication. Provides platform features without local dbt installation.
         prerequisites:
           - Docker
-        content: >
+          - dbt Cloud account
+          - dbt Cloud service token
+        content: |
           {
             "command": "docker",
-            "args": ["run", "-i", "--rm", "-e", "DBT_HOST", "-e", "DBT_TOKEN", "-e", "DBT_PROD_ENV_ID", "-e", "DBT_DEV_ENV_ID", "-e", "DBT_USER_ID", "ghcr.io/dbt-labs/dbt-mcp:latest"],
+            "args": ["run", "-i", "--rm", "-e", "DBT_HOST", "-e", "DBT_TOKEN", "-e", "DBT_PROD_ENV_ID", "ghcr.io/dbt-labs/dbt-mcp:latest"],
             "env": {
               "DBT_HOST": "{{DBT_HOST}}",
               "DBT_TOKEN": "{{DBT_TOKEN}}",
-              "DBT_PROD_ENV_ID": "{{DBT_PROD_ENV_ID}}",
-              "DBT_DEV_ENV_ID": "{{DBT_DEV_ENV_ID}}",
-              "DBT_USER_ID": "{{DBT_USER_ID}}"
+              "DBT_PROD_ENV_ID": "{{DBT_PROD_ENV_ID}}"
             }
           }
+        parameters:
+          - name: dbt Production Environment ID
+            key: DBT_PROD_ENV_ID
+            placeholder: your_production_environment_id
+          - name: dbt Service Token
+            key: DBT_TOKEN
+            placeholder: your_dbt_service_token
     parameters:
       - name: dbt Host
         key: DBT_HOST
         placeholder: cloud.getdbt.com
-      - name: dbt Service Token
-        key: DBT_TOKEN
-        placeholder: your_dbt_service_token
-      - name: dbt Production Environment ID
-        key: DBT_PROD_ENV_ID
-        placeholder: your_production_environment_id
-      - name: dbt Development Environment ID
-        key: DBT_DEV_ENV_ID
-        placeholder: your_development_environment_id
-        optional: true
-      - name: dbt User ID
-        key: DBT_USER_ID
-        placeholder: your_user_id
-        optional: true
   - id: e2b
     name: Code Interpreter
     description: Adds secure code execution capabilities to Claude Desktop using E2B Sandbox, supporting both JavaScript and
