@@ -8,6 +8,7 @@ metadata:
   source:
     repository: https://github.com/openai/skills
     path: skills/.curated/figma-implement-design
+    license_path: skills/.curated/figma-implement-design/LICENSE.txt
 ---
 
 

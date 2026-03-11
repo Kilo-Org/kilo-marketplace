@@ -10,6 +10,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: skill-creator
+    license_path: skill-creator/LICENSE.txt
 ---
 
 # Skill Creator

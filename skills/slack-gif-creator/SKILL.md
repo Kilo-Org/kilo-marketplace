@@ -11,6 +11,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: slack-gif-creator
+    license_path: slack-gif-creator/LICENSE.txt
 ---
 
 # Slack GIF Creator - Flexible Toolkit

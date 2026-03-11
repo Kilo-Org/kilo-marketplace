@@ -11,6 +11,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: canvas-design
+    license_path: canvas-design/LICENSE.txt
 ---
 
 These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.

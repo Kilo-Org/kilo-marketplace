@@ -11,6 +11,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: artifacts-builder
+    license_path: artifacts-builder/LICENSE.txt
 ---
 
 # Artifacts Builder

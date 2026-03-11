@@ -12,6 +12,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: internal-comms
+    license_path: internal-comms/LICENSE.txt
 ---
 
 ## When to use this skill

@@ -10,6 +10,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: webapp-testing
+    license_path: webapp-testing/LICENSE.txt
 ---
 
 # Web Application Testing

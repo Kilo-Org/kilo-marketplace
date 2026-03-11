@@ -11,6 +11,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: theme-factory
+    license_path: theme-factory/LICENSE.txt
 ---
 
 

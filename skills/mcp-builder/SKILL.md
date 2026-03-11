@@ -11,6 +11,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: mcp-builder
+    license_path: mcp-builder/LICENSE.txt
 ---
 
 # MCP Server Development Guide
