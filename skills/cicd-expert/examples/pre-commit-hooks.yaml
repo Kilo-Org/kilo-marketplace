@@ -1,0 +1,66 @@
+# Pre-commit hooks configuration
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # Check for common issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: debug-statements
+
+  # Python formatting
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  # Python linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=120', '--extend-ignore=E203,W503']
+
+  # JavaScript/TypeScript formatting
+  - repo: https://github.com/prettier/prettier
+    rev: 3.0.0
+    hooks:
+      - id: prettier
+        types: [javascript]
+        args: ['--tab-width=2']
+
+  # TypeScript linting
+  - repo: https://github.com/typescript-eslint/typescript-eslint
+    rev: v6.0.0
+    hooks:
+      - id: typescript-eslint
+        args: ['--fix']
+
+  # Markdown linting
+  - repo: https://github.com/DavidAnson/markdownlint
+    rev: v0.34.0
+    hooks:
+      - id: markdownlint
+
+  # Docker file linting
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint
+
+  # Secret scanning
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.0.0
+    hooks:
+      - id: trufflehog
+        args: ['--no-verification']
