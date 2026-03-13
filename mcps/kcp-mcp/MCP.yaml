@@ -32,6 +32,10 @@ content:
     content: |
       {
         "command": "npx",
-        "args": ["-y", "kcp-mcp", "--commands-dir", "/path/to/custom/manifests"],
+        "args": ["-y", "kcp-mcp", "--commands-dir", "{{COMMANDS_DIR}}"],
         "env": {}
       }
+parameters:
+  - name: Custom Manifests Directory
+    key: COMMANDS_DIR
+    placeholder: /path/to/custom/manifests
