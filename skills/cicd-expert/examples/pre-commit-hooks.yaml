@@ -31,26 +31,33 @@ repos:
       - id: flake8
         args: ['--max-line-length=120', '--extend-ignore=E203,W503']
 
-  # JavaScript/TypeScript formatting
-  - repo: https://github.com/prettier/prettier
-    rev: 3.0.0
+  # JavaScript/TypeScript formatting (using local hook with npx)
+  - repo: local
     hooks:
       - id: prettier
+        name: prettier
+        entry: npx prettier --write
+        language: node
         types: [javascript]
         args: ['--tab-width=2']
 
-  # TypeScript linting
-  - repo: https://github.com/typescript-eslint/typescript-eslint
-    rev: v6.0.0
+  # TypeScript type checking (using local hook with npx)
+  - repo: local
     hooks:
-      - id: typescript-eslint
-        args: ['--fix']
+      - id: typescript
+        name: TypeScript type check
+        entry: npx tsc --noEmit
+        language: node
+        types: [typescript]
 
-  # Markdown linting
-  - repo: https://github.com/DavidAnson/markdownlint
-    rev: v0.34.0
+  # Markdown linting (using local hook with npx)
+  - repo: local
     hooks:
       - id: markdownlint
+        name: markdownlint
+        entry: npx markdownlint
+        language: node
+        types: [markdown]
 
   # Docker file linting
   - repo: https://github.com/hadolint/hadolint
