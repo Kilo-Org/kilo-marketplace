@@ -36,9 +36,9 @@ repos:
     hooks:
       - id: prettier
         name: prettier
-        entry: npx prettier --write
+        entry: npx prettier --check
         language: node
-        types: [javascript]
+        types: [javascript, typescript]
         args: ['--tab-width=2']
 
   # TypeScript type checking (using local hook with npx)
@@ -48,6 +48,7 @@ repos:
         name: TypeScript type check
         entry: npx tsc --noEmit
         language: node
+        pass_filenames: false
         types: [typescript]
 
   # Markdown linting (using local hook with npx)
