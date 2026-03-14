@@ -49,6 +49,7 @@ repos:
         entry: npx tsc --noEmit
         language: node
         pass_filenames: false
+        always_run: true
         types: [typescript]
 
   # Markdown linting (using local hook with npx)
