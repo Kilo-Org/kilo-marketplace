@@ -36,7 +36,7 @@ The CI/CD Expert provides the following capabilities:
 
 ### Basic Usage
 
-```bash
+```text
 # Create a pre-commit hook
 "Create a pre-commit hook that runs linting"
 
