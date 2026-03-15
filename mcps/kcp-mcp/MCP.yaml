@@ -38,5 +38,5 @@ content:
 parameters:
   - name: Custom Manifests Directory
     key: COMMANDS_DIR
-    description: Absolute path to a directory containing your own KCP YAML manifests (e.g. ~/.kcp/commands). Only required when using the "Local (with custom manifest directory)" configuration.
+    description: Absolute path to a directory containing kcp-commands YAML manifests (see github.com/Cantara/kcp-commands for the format). Only required when using the "Local (with custom manifest directory)" option.
     placeholder: ~/.kcp/commands
