@@ -1,0 +1,21 @@
+diff -ruN a/content-research-writer/SKILL.md b/content-research-writer/SKILL.md
+--- a/content-research-writer/SKILL.md	2026-03-16 12:13:58
++++ b/content-research-writer/SKILL.md	2026-03-16 11:26:25
+@@ -52,7 +52,7 @@
+ touch article-draft.md
+ ```
+ 
+-Open Claude Code from this directory and start writing.
++Open Kilo Code from this directory and start writing.
+ 
+ ### Basic Workflow
+ 
+@@ -490,7 +490,7 @@
+ 
+ ## Pro Tips
+ 
+-1. **Work in VS Code**: Better than web Claude for long-form writing
++1. **Work in VS Code**: Better than web chat for long-form writing
+ 2. **One section at a time**: Get feedback incrementally
+ 3. **Save research separately**: Keep a research.md file
+ 4. **Version your drafts**: article-v1.md, article-v2.md, etc.

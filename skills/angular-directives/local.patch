@@ -1,0 +1,1125 @@
+diff -ruN a/angular-directives/LICENSE b/angular-directives/LICENSE
+--- a/angular-directives/LICENSE	2026-03-16 12:13:57
++++ b/angular-directives/LICENSE	1970-01-01 01:00:00
+@@ -1,21 +0,0 @@
+-MIT License
+-
+-Copyright (c) 2026 Brandon Roberts
+-
+-Permission is hereby granted, free of charge, to any person obtaining a copy
+-of this software and associated documentation files (the "Software"), to deal
+-in the Software without restriction, including without limitation the rights
+-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-copies of the Software, and to permit persons to whom the Software is
+-furnished to do so, subject to the following conditions:
+-
+-The above copyright notice and this permission notice shall be included in all
+-copies or substantial portions of the Software.
+-
+-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-SOFTWARE.
+diff -ruN a/angular-directives/LICENSE.txt b/angular-directives/LICENSE.txt
+--- a/angular-directives/LICENSE.txt	1970-01-01 01:00:00
++++ b/angular-directives/LICENSE.txt	2026-03-16 11:26:25
+@@ -0,0 +1,202 @@
++
++                                 Apache License
++                           Version 2.0, January 2004
++                        http://www.apache.org/licenses/
++
++   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
++
++   1. Definitions.
++
++      "License" shall mean the terms and conditions for use, reproduction,
++      and distribution as defined by Sections 1 through 9 of this document.
++
++      "Licensor" shall mean the copyright owner or entity authorized by
++      the copyright owner that is granting the License.
++
++      "Legal Entity" shall mean the union of the acting entity and all
++      other entities that control, are controlled by, or are under common
++      control with that entity. For the purposes of this definition,
++      "control" means (i) the power, direct or indirect, to cause the
++      direction or management of such entity, whether by contract or
++      otherwise, or (ii) ownership of fifty percent (50%) or more of the
++      outstanding shares, or (iii) beneficial ownership of such entity.
++
++      "You" (or "Your") shall mean an individual or Legal Entity
++      exercising permissions granted by this License.
++
++      "Source" form shall mean the preferred form for making modifications,
++      including but not limited to software source code, documentation
++      source, and configuration files.
++
++      "Object" form shall mean any form resulting from mechanical
++      transformation or translation of a Source form, including but
++      not limited to compiled object code, generated documentation,
++      and conversions to other media types.
++
++      "Work" shall mean the work of authorship, whether in Source or
++      Object form, made available under the License, as indicated by a
++      copyright notice that is included in or attached to the work
++      (an example is provided in the Appendix below).
++
++      "Derivative Works" shall mean any work, whether in Source or Object
++      form, that is based on (or derived from) the Work and for which the
++      editorial revisions, annotations, elaborations, or other modifications
++      represent, as a whole, an original work of authorship. For the purposes
++      of this License, Derivative Works shall not include works that remain
++      separable from, or merely link (or bind by name) to the interfaces of,
++      the Work and Derivative Works thereof.
++
++      "Contribution" shall mean any work of authorship, including
++      the original version of the Work and any modifications or additions
++      to that Work or Derivative Works thereof, that is intentionally
++      submitted to Licensor for inclusion in the Work by the copyright owner
++      or by an individual or Legal Entity authorized to submit on behalf of
++      the copyright owner. For the purposes of this definition, "submitted"
++      means any form of electronic, verbal, or written communication sent
++      to the Licensor or its representatives, including but not limited to
++      communication on electronic mailing lists, source code control systems,
++      and issue tracking systems that are managed by, or on behalf of, the
++      Licensor for the purpose of discussing and improving the Work, but
++      excluding communication that is conspicuously marked or otherwise
++      designated in writing by the copyright owner as "Not a Contribution."
++
++      "Contributor" shall mean Licensor and any individual or Legal Entity
++      on behalf of whom a Contribution has been received by Licensor and
++      subsequently incorporated within the Work.
++
++   2. Grant of Copyright License. Subject to the terms and conditions of
++      this License, each Contributor hereby grants to You a perpetual,
++      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
++      copyright license to reproduce, prepare Derivative Works of,
++      publicly display, publicly perform, sublicense, and distribute the
++      Work and such Derivative Works in Source or Object form.
++
++   3. Grant of Patent License. Subject to the terms and conditions of
++      this License, each Contributor hereby grants to You a perpetual,
++      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
++      (except as stated in this section) patent license to make, have made,
++      use, offer to sell, sell, import, and otherwise transfer the Work,
++      where such license applies only to those patent claims licensable
++      by such Contributor that are necessarily infringed by their
++      Contribution(s) alone or by combination of their Contribution(s)
++      with the Work to which such Contribution(s) was submitted. If You
++      institute patent litigation against any entity (including a
++      cross-claim or counterclaim in a lawsuit) alleging that the Work
++      or a Contribution incorporated within the Work constitutes direct
++      or contributory patent infringement, then any patent licenses
++      granted to You under this License for that Work shall terminate
++      as of the date such litigation is filed.
++
++   4. Redistribution. You may reproduce and distribute copies of the
++      Work or Derivative Works thereof in any medium, with or without
++      modifications, and in Source or Object form, provided that You
++      meet the following conditions:
++
++      (a) You must give any other recipients of the Work or
++          Derivative Works a copy of this License; and
++
++      (b) You must cause any modified files to carry prominent notices
++          stating that You changed the files; and
++
++      (c) You must retain, in the Source form of any Derivative Works
++          that You distribute, all copyright, patent, trademark, and
++          attribution notices from the Source form of the Work,
++          excluding those notices that do not pertain to any part of
++          the Derivative Works; and
++
++      (d) If the Work includes a "NOTICE" text file as part of its
++          distribution, then any Derivative Works that You distribute must
++          include a readable copy of the attribution notices contained
++          within such NOTICE file, excluding those notices that do not
++          pertain to any part of the Derivative Works, in at least one
++          of the following places: within a NOTICE text file distributed
++          as part of the Derivative Works; within the Source form or
++          documentation, if provided along with the Derivative Works; or,
++          within a display generated by the Derivative Works, if and
++          wherever such third-party notices normally appear. The contents
++          of the NOTICE file are for informational purposes only and
++          do not modify the License. You may add Your own attribution
++          notices within Derivative Works that You distribute, alongside
++          or as an addendum to the NOTICE text from the Work, provided
++          that such additional attribution notices cannot be construed
++          as modifying the License.
++
++      You may add Your own copyright statement to Your modifications and
++      may provide additional or different license terms and conditions
++      for use, reproduction, or distribution of Your modifications, or
++      for any such Derivative Works as a whole, provided Your use,
++      reproduction, and distribution of the Work otherwise complies with
++      the conditions stated in this License.
++
++   5. Submission of Contributions. Unless You explicitly state otherwise,
++      any Contribution intentionally submitted for inclusion in the Work
++      by You to the Licensor shall be under the terms and conditions of
++      this License, without any additional terms or conditions.
++      Notwithstanding the above, nothing herein shall supersede or modify
++      the terms of any separate license agreement you may have executed
++      with Licensor regarding such Contributions.
++
++   6. Trademarks. This License does not grant permission to use the trade
++      names, trademarks, service marks, or product names of the Licensor,
++      except as required for reasonable and customary use in describing the
++      origin of the Work and reproducing the content of the NOTICE file.
++
++   7. Disclaimer of Warranty. Unless required by applicable law or
++      agreed to in writing, Licensor provides the Work (and each
++      Contributor provides its Contributions) on an "AS IS" BASIS,
++      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
++      implied, including, without limitation, any warranties or conditions
++      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
++      PARTICULAR PURPOSE. You are solely responsible for determining the
++      appropriateness of using or redistributing the Work and assume any
++      risks associated with Your exercise of permissions under this License.
++
++   8. Limitation of Liability. In no event and under no legal theory,
++      whether in tort (including negligence), contract, or otherwise,
++      unless required by applicable law (such as deliberate and grossly
++      negligent acts) or agreed to in writing, shall any Contributor be
++      liable to You for damages, including any direct, indirect, special,
++      incidental, or consequential damages of any character arising as a
++      result of this License or out of the use or inability to use the
++      Work (including but not limited to damages for loss of goodwill,
++      work stoppage, computer failure or malfunction, or any and all
++      other commercial damages or losses), even if such Contributor
++      has been advised of the possibility of such damages.
++
++   9. Accepting Warranty or Additional Liability. While redistributing
++      the Work or Derivative Works thereof, You may choose to offer,
++      and charge a fee for, acceptance of support, warranty, indemnity,
++      or other liability obligations and/or rights consistent with this
++      License. However, in accepting such obligations, You may act only
++      on Your own behalf and on Your sole responsibility, not on behalf
++      of any other Contributor, and only if You agree to indemnify,
++      defend, and hold each Contributor harmless for any liability
++      incurred by, or claims asserted against, such Contributor by reason
++      of your accepting any such warranty or additional liability.
++
++   END OF TERMS AND CONDITIONS
++
++   APPENDIX: How to apply the Apache License to your work.
++
++      To apply the Apache License to your work, attach the following
++      boilerplate notice, with the fields enclosed by brackets "[]"
++      replaced with your own identifying information. (Don't include
++      the brackets!)  The text should be enclosed in the appropriate
++      comment syntax for the file format. We also recommend that a
++      file or class name and description of purpose be included on the
++      same "printed page" as the copyright notice for easier
++      identification within third-party archives.
++
++   Copyright [yyyy] [name of copyright owner]
++
++   Licensed under the Apache License, Version 2.0 (the "License");
++   you may not use this file except in compliance with the License.
++   You may obtain a copy of the License at
++
++       http://www.apache.org/licenses/LICENSE-2.0
++
++   Unless required by applicable law or agreed to in writing, software
++   distributed under the License is distributed on an "AS IS" BASIS,
++   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++   See the License for the specific language governing permissions and
++   limitations under the License.
+\ No newline at end of file
+diff -ruN a/angular-directives/SKILL.md b/angular-directives/SKILL.md
+--- a/angular-directives/SKILL.md	2026-03-16 12:13:57
++++ b/angular-directives/SKILL.md	2026-03-16 11:27:43
+@@ -1,450 +1,444 @@
+----
+-name: angular-directives
+-description: >-
+-  Create custom directives in Angular v20+ for DOM manipulation and behavior
+-  extension. Use for attribute directives that modify element
+-  behavior/appearance, structural directives for portals/overlays, and host
+-  directives for composition. Triggers on creating reusable DOM behaviors,
+-  extending element functionality, or composing behaviors across components.
+-  Note - use native @if/@for/@switch for control flow, not custom structural
+-  directives.
++---
++name: angular-directives
++description: Create custom directives in Angular v20+ for DOM manipulation and behavior extension. Use for attribute directives that modify element behavior/appearance, structural directives for portals/overlays, and host directives for composition. Triggers on creating reusable DOM behaviors, extending element functionality, or composing behaviors across components. Note - use native @if/@for/@switch for control flow, not custom structural directives.
++license: MIT
+ metadata:
+   category: development
+   source:
+-    repository: 'https://github.com/analogjs/angular-skills'
++    repository: https://github.com/analogjs/angular-skills
+     path: skills/angular-directives
+     license_path: LICENSE
+----
+-
+-# Angular Directives
+-
+-Create custom directives for reusable DOM manipulation and behavior in Angular v20+.
+-
+-## Attribute Directives
+-
+-Modify the appearance or behavior of an element:
+-
+-```typescript
+-import { Directive, input, effect, inject, ElementRef } from '@angular/core';
+-
+-@Directive({
+-  selector: '[appHighlight]',
+-})
+-export class Highlight {
+-  private el = inject(ElementRef<HTMLElement>);
+-  
+-  // Input with alias matching selector
+-  color = input('yellow', { alias: 'appHighlight' });
+-  
+-  constructor() {
+-    effect(() => {
+-      this.el.nativeElement.style.backgroundColor = this.color();
+-    });
+-  }
+-}
+-
+-// Usage: <p appHighlight="lightblue">Highlighted text</p>
+-// Usage: <p appHighlight>Default yellow highlight</p>
+-```
+-
+-### Using host Property
+-
+-Prefer `host` over `@HostBinding`/`@HostListener`:
+-
+-```typescript
+-@Directive({
+-  selector: '[appTooltip]',
+-  host: {
+-    '(mouseenter)': 'show()',
+-    '(mouseleave)': 'hide()',
+-    '[attr.aria-describedby]': 'tooltipId',
+-  },
+-})
+-export class Tooltip {
+-  text = input.required<string>({ alias: 'appTooltip' });
+-  position = input<'top' | 'bottom' | 'left' | 'right'>('top');
+-  
+-  tooltipId = `tooltip-${crypto.randomUUID()}`;
+-  private tooltipEl: HTMLElement | null = null;
+-  private el = inject(ElementRef<HTMLElement>);
+-  
+-  show() {
+-    this.tooltipEl = document.createElement('div');
+-    this.tooltipEl.id = this.tooltipId;
+-    this.tooltipEl.className = `tooltip tooltip-${this.position()}`;
+-    this.tooltipEl.textContent = this.text();
+-    this.tooltipEl.setAttribute('role', 'tooltip');
+-    document.body.appendChild(this.tooltipEl);
+-    this.positionTooltip();
+-  }
+-  
+-  hide() {
+-    this.tooltipEl?.remove();
+-    this.tooltipEl = null;
+-  }
+-  
+-  private positionTooltip() {
+-    // Position logic based on this.position() and this.el
+-  }
+-}
+-
+-// Usage: <button appTooltip="Click to save" position="bottom">Save</button>
+-```
+-
+-### Class and Style Manipulation
+-
+-```typescript
+-@Directive({
+-  selector: '[appButton]',
+-  host: {
+-    'class': 'btn',
+-    '[class.btn-primary]': 'variant() === "primary"',
+-    '[class.btn-secondary]': 'variant() === "secondary"',
+-    '[class.btn-sm]': 'size() === "small"',
+-    '[class.btn-lg]': 'size() === "large"',
+-    '[class.disabled]': 'disabled()',
+-    '[attr.disabled]': 'disabled() || null',
+-  },
+-})
+-export class Button {
+-  variant = input<'primary' | 'secondary'>('primary');
+-  size = input<'small' | 'medium' | 'large'>('medium');
+-  disabled = input(false, { transform: booleanAttribute });
+-}
+-
+-// Usage: <button appButton variant="primary" size="large">Click</button>
+-```
+-
+-### Event Handling
+-
+-```typescript
+-@Directive({
+-  selector: '[appClickOutside]',
+-  host: {
+-    '(document:click)': 'onDocumentClick($event)',
+-  },
+-})
+-export class ClickOutside {
+-  private el = inject(ElementRef<HTMLElement>);
+-  
+-  clickOutside = output<void>();
+-  
+-  onDocumentClick(event: MouseEvent) {
+-    if (!this.el.nativeElement.contains(event.target as Node)) {
+-      this.clickOutside.emit();
+-    }
+-  }
+-}
+-
+-// Usage: <div appClickOutside (clickOutside)="closeMenu()">...</div>
+-```
+-
+-### Keyboard Shortcuts
+-
+-```typescript
+-@Directive({
+-  selector: '[appShortcut]',
+-  host: {
+-    '(document:keydown)': 'onKeydown($event)',
+-  },
+-})
+-export class Shortcut {
+-  key = input.required<string>({ alias: 'appShortcut' });
+-  ctrl = input(false, { transform: booleanAttribute });
+-  shift = input(false, { transform: booleanAttribute });
+-  alt = input(false, { transform: booleanAttribute });
+-  
+-  triggered = output<KeyboardEvent>();
+-  
+-  onKeydown(event: KeyboardEvent) {
+-    const keyMatch = event.key.toLowerCase() === this.key().toLowerCase();
+-    const ctrlMatch = this.ctrl() ? event.ctrlKey || event.metaKey : !event.ctrlKey && !event.metaKey;
+-    const shiftMatch = this.shift() ? event.shiftKey : !event.shiftKey;
+-    const altMatch = this.alt() ? event.altKey : !event.altKey;
+-    
+-    if (keyMatch && ctrlMatch && shiftMatch && altMatch) {
+-      event.preventDefault();
+-      this.triggered.emit(event);
+-    }
+-  }
+-}
+-
+-// Usage: <button appShortcut="s" ctrl (triggered)="save()">Save (Ctrl+S)</button>
+-```
+-
+-## Structural Directives
+-
+-Use structural directives for DOM manipulation beyond control flow (portals, overlays, dynamic insertion points). For conditionals and loops, use native `@if`, `@for`, `@switch`.
+-
+-### Portal Directive
+-
+-Render content in a different DOM location:
+-
+-```typescript
+-import { Directive, inject, TemplateRef, ViewContainerRef, OnInit, OnDestroy, input } from '@angular/core';
+-
+-@Directive({
+-  selector: '[appPortal]',
+-})
+-export class Portal implements OnInit, OnDestroy {
+-  private templateRef = inject(TemplateRef<any>);
+-  private viewContainerRef = inject(ViewContainerRef);
+-  private viewRef: EmbeddedViewRef<any> | null = null;
+-  
+-  // Target container selector or element
+-  target = input<string | HTMLElement>('body', { alias: 'appPortal' });
+-  
+-  ngOnInit() {
+-    const container = this.getContainer();
+-    if (container) {
+-      this.viewRef = this.viewContainerRef.createEmbeddedView(this.templateRef);
+-      this.viewRef.rootNodes.forEach(node => container.appendChild(node));
+-    }
+-  }
+-  
+-  ngOnDestroy() {
+-    this.viewRef?.destroy();
+-  }
+-  
+-  private getContainer(): HTMLElement | null {
+-    const target = this.target();
+-    if (typeof target === 'string') {
+-      return document.querySelector(target);
+-    }
+-    return target;
+-  }
+-}
+-
+-// Usage: Render modal at body level
+-// <div *appPortal="'body'">
+-//   <div class="modal">Modal content</div>
+-// </div>
+-```
+-
+-### Lazy Render Directive
+-
+-Defer rendering until condition is met (one-time):
+-
+-```typescript
+-@Directive({
+-  selector: '[appLazyRender]',
+-})
+-export class LazyRender {
+-  private templateRef = inject(TemplateRef<any>);
+-  private viewContainer = inject(ViewContainerRef);
+-  private rendered = false;
+-  
+-  condition = input.required<boolean>({ alias: 'appLazyRender' });
+-  
+-  constructor() {
+-    effect(() => {
+-      // Only render once when condition becomes true
+-      if (this.condition() && !this.rendered) {
+-        this.viewContainer.createEmbeddedView(this.templateRef);
+-        this.rendered = true;
+-      }
+-    });
+-  }
+-}
+-
+-// Usage: Render heavy component only when tab is first activated
+-// <div *appLazyRender="activeTab() === 'reports'">
+-//   <app-heavy-reports />
+-// </div>
+-```
+-
+-### Template Outlet with Context
+-
+-```typescript
+-interface TemplateContext<T> {
+-  $implicit: T;
+-  item: T;
+-  index: number;
+-}
+-
+-@Directive({
+-  selector: '[appTemplateOutlet]',
+-})
+-export class TemplateOutlet<T> {
+-  private viewContainer = inject(ViewContainerRef);
+-  private currentView: EmbeddedViewRef<TemplateContext<T>> | null = null;
+-  
+-  template = input.required<TemplateRef<TemplateContext<T>>>({ alias: 'appTemplateOutlet' });
+-  context = input.required<T>({ alias: 'appTemplateOutletContext' });
+-  index = input(0, { alias: 'appTemplateOutletIndex' });
+-  
+-  constructor() {
+-    effect(() => {
+-      const template = this.template();
+-      const context = this.context();
+-      const index = this.index();
+-      
+-      if (this.currentView) {
+-        this.currentView.context.$implicit = context;
+-        this.currentView.context.item = context;
+-        this.currentView.context.index = index;
+-        this.currentView.markForCheck();
+-      } else {
+-        this.currentView = this.viewContainer.createEmbeddedView(template, {
+-          $implicit: context,
+-          item: context,
+-          index,
+-        });
+-      }
+-    });
+-  }
+-}
+-
+-// Usage: Custom list with template
+-// <ng-template #itemTemplate let-item let-i="index">
+-//   <div>{{ i }}: {{ item.name }}</div>
+-// </ng-template>
+-// <ng-container 
+-//   *appTemplateOutlet="itemTemplate; context: item; index: i"
+-// />
+-```
+-
+-## Host Directives
+-
+-Compose directives on components or other directives:
+-
+-```typescript
+-// Reusable behavior directives
+-@Directive({
+-  selector: '[focusable]',
+-  host: {
+-    'tabindex': '0',
+-    '(focus)': 'onFocus()',
+-    '(blur)': 'onBlur()',
+-    '[class.focused]': 'isFocused()',
+-  },
+-})
+-export class Focusable {
+-  isFocused = signal(false);
+-  
+-  onFocus() { this.isFocused.set(true); }
+-  onBlur() { this.isFocused.set(false); }
+-}
+-
+-@Directive({
+-  selector: '[disableable]',
+-  host: {
+-    '[class.disabled]': 'disabled()',
+-    '[attr.aria-disabled]': 'disabled()',
+-  },
+-})
+-export class Disableable {
+-  disabled = input(false, { transform: booleanAttribute });
+-}
+-
+-// Component using host directives
+-@Component({
+-  selector: 'app-custom-button',
+-  hostDirectives: [
+-    Focusable,
+-    {
+-      directive: Disableable,
+-      inputs: ['disabled'],
+-    },
+-  ],
+-  host: {
+-    'role': 'button',
+-    '(click)': 'onClick($event)',
+-    '(keydown.enter)': 'onClick($event)',
+-    '(keydown.space)': 'onClick($event)',
+-  },
+-  template: `<ng-content />`,
+-})
+-export class CustomButton {
+-  private disableable = inject(Disableable);
+-  
+-  clicked = output<void>();
+-  
+-  onClick(event: Event) {
+-    if (!this.disableable.disabled()) {
+-      this.clicked.emit();
+-    }
+-  }
+-}
+-
+-// Usage: <app-custom-button disabled>Click me</app-custom-button>
+-```
+-
+-### Exposing Host Directive Outputs
+-
+-```typescript
+-@Directive({
+-  selector: '[hoverable]',
+-  host: {
+-    '(mouseenter)': 'onEnter()',
+-    '(mouseleave)': 'onLeave()',
+-    '[class.hovered]': 'isHovered()',
+-  },
+-})
+-export class Hoverable {
+-  isHovered = signal(false);
+-  
+-  hoverChange = output<boolean>();
+-  
+-  onEnter() {
+-    this.isHovered.set(true);
+-    this.hoverChange.emit(true);
+-  }
+-  
+-  onLeave() {
+-    this.isHovered.set(false);
+-    this.hoverChange.emit(false);
+-  }
+-}
+-
+-@Component({
+-  selector: 'app-card',
+-  hostDirectives: [
+-    {
+-      directive: Hoverable,
+-      outputs: ['hoverChange'],
+-    },
+-  ],
+-  template: `<ng-content />`,
+-})
+-export class Card {}
+-
+-// Usage: <app-card (hoverChange)="onHover($event)">...</app-card>
+-```
+-
+-## Directive Composition API
+-
+-Combine multiple behaviors:
+-
+-```typescript
+-// Base directives
+-@Directive({ selector: '[withRipple]' })
+-export class Ripple {
+-  // Ripple effect implementation
+-}
+-
+-@Directive({ selector: '[withElevation]' })
+-export class Elevation {
+-  elevation = input(2);
+-}
+-
+-// Composed component
+-@Component({
+-  selector: 'app-material-button',
+-  hostDirectives: [
+-    Ripple,
+-    {
+-      directive: Elevation,
+-      inputs: ['elevation'],
+-    },
+-    {
+-      directive: Disableable,
+-      inputs: ['disabled'],
+-    },
+-  ],
+-  template: `<ng-content />`,
+-})
+-export class MaterialButton {}
+-```
+-
+-For advanced patterns, see [references/directive-patterns.md](references/directive-patterns.md).
++---
++
++# Angular Directives
++
++Create custom directives for reusable DOM manipulation and behavior in Angular v20+.
++
++## Attribute Directives
++
++Modify the appearance or behavior of an element:
++
++```typescript
++import { Directive, input, effect, inject, ElementRef } from '@angular/core';
++
++@Directive({
++  selector: '[appHighlight]',
++})
++export class Highlight {
++  private el = inject(ElementRef<HTMLElement>);
++  
++  // Input with alias matching selector
++  color = input('yellow', { alias: 'appHighlight' });
++  
++  constructor() {
++    effect(() => {
++      this.el.nativeElement.style.backgroundColor = this.color();
++    });
++  }
++}
++
++// Usage: <p appHighlight="lightblue">Highlighted text</p>
++// Usage: <p appHighlight>Default yellow highlight</p>
++```
++
++### Using host Property
++
++Prefer `host` over `@HostBinding`/`@HostListener`:
++
++```typescript
++@Directive({
++  selector: '[appTooltip]',
++  host: {
++    '(mouseenter)': 'show()',
++    '(mouseleave)': 'hide()',
++    '[attr.aria-describedby]': 'tooltipId',
++  },
++})
++export class Tooltip {
++  text = input.required<string>({ alias: 'appTooltip' });
++  position = input<'top' | 'bottom' | 'left' | 'right'>('top');
++  
++  tooltipId = `tooltip-${crypto.randomUUID()}`;
++  private tooltipEl: HTMLElement | null = null;
++  private el = inject(ElementRef<HTMLElement>);
++  
++  show() {
++    this.tooltipEl = document.createElement('div');
++    this.tooltipEl.id = this.tooltipId;
++    this.tooltipEl.className = `tooltip tooltip-${this.position()}`;
++    this.tooltipEl.textContent = this.text();
++    this.tooltipEl.setAttribute('role', 'tooltip');
++    document.body.appendChild(this.tooltipEl);
++    this.positionTooltip();
++  }
++  
++  hide() {
++    this.tooltipEl?.remove();
++    this.tooltipEl = null;
++  }
++  
++  private positionTooltip() {
++    // Position logic based on this.position() and this.el
++  }
++}
++
++// Usage: <button appTooltip="Click to save" position="bottom">Save</button>
++```
++
++### Class and Style Manipulation
++
++```typescript
++@Directive({
++  selector: '[appButton]',
++  host: {
++    'class': 'btn',
++    '[class.btn-primary]': 'variant() === "primary"',
++    '[class.btn-secondary]': 'variant() === "secondary"',
++    '[class.btn-sm]': 'size() === "small"',
++    '[class.btn-lg]': 'size() === "large"',
++    '[class.disabled]': 'disabled()',
++    '[attr.disabled]': 'disabled() || null',
++  },
++})
++export class Button {
++  variant = input<'primary' | 'secondary'>('primary');
++  size = input<'small' | 'medium' | 'large'>('medium');
++  disabled = input(false, { transform: booleanAttribute });
++}
++
++// Usage: <button appButton variant="primary" size="large">Click</button>
++```
++
++### Event Handling
++
++```typescript
++@Directive({
++  selector: '[appClickOutside]',
++  host: {
++    '(document:click)': 'onDocumentClick($event)',
++  },
++})
++export class ClickOutside {
++  private el = inject(ElementRef<HTMLElement>);
++  
++  clickOutside = output<void>();
++  
++  onDocumentClick(event: MouseEvent) {
++    if (!this.el.nativeElement.contains(event.target as Node)) {
++      this.clickOutside.emit();
++    }
++  }
++}
++
++// Usage: <div appClickOutside (clickOutside)="closeMenu()">...</div>
++```
++
++### Keyboard Shortcuts
++
++```typescript
++@Directive({
++  selector: '[appShortcut]',
++  host: {
++    '(document:keydown)': 'onKeydown($event)',
++  },
++})
++export class Shortcut {
++  key = input.required<string>({ alias: 'appShortcut' });
++  ctrl = input(false, { transform: booleanAttribute });
++  shift = input(false, { transform: booleanAttribute });
++  alt = input(false, { transform: booleanAttribute });
++  
++  triggered = output<KeyboardEvent>();
++  
++  onKeydown(event: KeyboardEvent) {
++    const keyMatch = event.key.toLowerCase() === this.key().toLowerCase();
++    const ctrlMatch = this.ctrl() ? event.ctrlKey || event.metaKey : !event.ctrlKey && !event.metaKey;
++    const shiftMatch = this.shift() ? event.shiftKey : !event.shiftKey;
++    const altMatch = this.alt() ? event.altKey : !event.altKey;
++    
++    if (keyMatch && ctrlMatch && shiftMatch && altMatch) {
++      event.preventDefault();
++      this.triggered.emit(event);
++    }
++  }
++}
++
++// Usage: <button appShortcut="s" ctrl (triggered)="save()">Save (Ctrl+S)</button>
++```
++
++## Structural Directives
++
++Use structural directives for DOM manipulation beyond control flow (portals, overlays, dynamic insertion points). For conditionals and loops, use native `@if`, `@for`, `@switch`.
++
++### Portal Directive
++
++Render content in a different DOM location:
++
++```typescript
++import { Directive, inject, TemplateRef, ViewContainerRef, OnInit, OnDestroy, input } from '@angular/core';
++
++@Directive({
++  selector: '[appPortal]',
++})
++export class Portal implements OnInit, OnDestroy {
++  private templateRef = inject(TemplateRef<any>);
++  private viewContainerRef = inject(ViewContainerRef);
++  private viewRef: EmbeddedViewRef<any> | null = null;
++  
++  // Target container selector or element
++  target = input<string | HTMLElement>('body', { alias: 'appPortal' });
++  
++  ngOnInit() {
++    const container = this.getContainer();
++    if (container) {
++      this.viewRef = this.viewContainerRef.createEmbeddedView(this.templateRef);
++      this.viewRef.rootNodes.forEach(node => container.appendChild(node));
++    }
++  }
++  
++  ngOnDestroy() {
++    this.viewRef?.destroy();
++  }
++  
++  private getContainer(): HTMLElement | null {
++    const target = this.target();
++    if (typeof target === 'string') {
++      return document.querySelector(target);
++    }
++    return target;
++  }
++}
++
++// Usage: Render modal at body level
++// <div *appPortal="'body'">
++//   <div class="modal">Modal content</div>
++// </div>
++```
++
++### Lazy Render Directive
++
++Defer rendering until condition is met (one-time):
++
++```typescript
++@Directive({
++  selector: '[appLazyRender]',
++})
++export class LazyRender {
++  private templateRef = inject(TemplateRef<any>);
++  private viewContainer = inject(ViewContainerRef);
++  private rendered = false;
++  
++  condition = input.required<boolean>({ alias: 'appLazyRender' });
++  
++  constructor() {
++    effect(() => {
++      // Only render once when condition becomes true
++      if (this.condition() && !this.rendered) {
++        this.viewContainer.createEmbeddedView(this.templateRef);
++        this.rendered = true;
++      }
++    });
++  }
++}
++
++// Usage: Render heavy component only when tab is first activated
++// <div *appLazyRender="activeTab() === 'reports'">
++//   <app-heavy-reports />
++// </div>
++```
++
++### Template Outlet with Context
++
++```typescript
++interface TemplateContext<T> {
++  $implicit: T;
++  item: T;
++  index: number;
++}
++
++@Directive({
++  selector: '[appTemplateOutlet]',
++})
++export class TemplateOutlet<T> {
++  private viewContainer = inject(ViewContainerRef);
++  private currentView: EmbeddedViewRef<TemplateContext<T>> | null = null;
++  
++  template = input.required<TemplateRef<TemplateContext<T>>>({ alias: 'appTemplateOutlet' });
++  context = input.required<T>({ alias: 'appTemplateOutletContext' });
++  index = input(0, { alias: 'appTemplateOutletIndex' });
++  
++  constructor() {
++    effect(() => {
++      const template = this.template();
++      const context = this.context();
++      const index = this.index();
++      
++      if (this.currentView) {
++        this.currentView.context.$implicit = context;
++        this.currentView.context.item = context;
++        this.currentView.context.index = index;
++        this.currentView.markForCheck();
++      } else {
++        this.currentView = this.viewContainer.createEmbeddedView(template, {
++          $implicit: context,
++          item: context,
++          index,
++        });
++      }
++    });
++  }
++}
++
++// Usage: Custom list with template
++// <ng-template #itemTemplate let-item let-i="index">
++//   <div>{{ i }}: {{ item.name }}</div>
++// </ng-template>
++// <ng-container 
++//   *appTemplateOutlet="itemTemplate; context: item; index: i"
++// />
++```
++
++## Host Directives
++
++Compose directives on components or other directives:
++
++```typescript
++// Reusable behavior directives
++@Directive({
++  selector: '[focusable]',
++  host: {
++    'tabindex': '0',
++    '(focus)': 'onFocus()',
++    '(blur)': 'onBlur()',
++    '[class.focused]': 'isFocused()',
++  },
++})
++export class Focusable {
++  isFocused = signal(false);
++  
++  onFocus() { this.isFocused.set(true); }
++  onBlur() { this.isFocused.set(false); }
++}
++
++@Directive({
++  selector: '[disableable]',
++  host: {
++    '[class.disabled]': 'disabled()',
++    '[attr.aria-disabled]': 'disabled()',
++  },
++})
++export class Disableable {
++  disabled = input(false, { transform: booleanAttribute });
++}
++
++// Component using host directives
++@Component({
++  selector: 'app-custom-button',
++  hostDirectives: [
++    Focusable,
++    {
++      directive: Disableable,
++      inputs: ['disabled'],
++    },
++  ],
++  host: {
++    'role': 'button',
++    '(click)': 'onClick($event)',
++    '(keydown.enter)': 'onClick($event)',
++    '(keydown.space)': 'onClick($event)',
++  },
++  template: `<ng-content />`,
++})
++export class CustomButton {
++  private disableable = inject(Disableable);
++  
++  clicked = output<void>();
++  
++  onClick(event: Event) {
++    if (!this.disableable.disabled()) {
++      this.clicked.emit();
++    }
++  }
++}
++
++// Usage: <app-custom-button disabled>Click me</app-custom-button>
++```
++
++### Exposing Host Directive Outputs
++
++```typescript
++@Directive({
++  selector: '[hoverable]',
++  host: {
++    '(mouseenter)': 'onEnter()',
++    '(mouseleave)': 'onLeave()',
++    '[class.hovered]': 'isHovered()',
++  },
++})
++export class Hoverable {
++  isHovered = signal(false);
++  
++  hoverChange = output<boolean>();
++  
++  onEnter() {
++    this.isHovered.set(true);
++    this.hoverChange.emit(true);
++  }
++  
++  onLeave() {
++    this.isHovered.set(false);
++    this.hoverChange.emit(false);
++  }
++}
++
++@Component({
++  selector: 'app-card',
++  hostDirectives: [
++    {
++      directive: Hoverable,
++      outputs: ['hoverChange'],
++    },
++  ],
++  template: `<ng-content />`,
++})
++export class Card {}
++
++// Usage: <app-card (hoverChange)="onHover($event)">...</app-card>
++```
++
++## Directive Composition API
++
++Combine multiple behaviors:
++
++```typescript
++// Base directives
++@Directive({ selector: '[withRipple]' })
++export class Ripple {
++  // Ripple effect implementation
++}
++
++@Directive({ selector: '[withElevation]' })
++export class Elevation {
++  elevation = input(2);
++}
++
++// Composed component
++@Component({
++  selector: 'app-material-button',
++  hostDirectives: [
++    Ripple,
++    {
++      directive: Elevation,
++      inputs: ['elevation'],
++    },
++    {
++      directive: Disableable,
++      inputs: ['disabled'],
++    },
++  ],
++  template: `<ng-content />`,
++})
++export class MaterialButton {}
++```
++
++For advanced patterns, see [references/directive-patterns.md](references/directive-patterns.md).
