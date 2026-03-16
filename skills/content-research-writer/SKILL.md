@@ -52,7 +52,7 @@ Create your draft file:
 touch article-draft.md
 ```
 
-Open Kilo Code from this directory and start writing.
+Open Claude Code from this directory and start writing.
 
 ### Basic Workflow
 
@@ -490,7 +490,7 @@ Ready for the next section!
 
 ## Pro Tips
 
-1. **Work in VS Code**: Better than web chat for long-form writing
+1. **Work in VS Code**: Better than web Claude for long-form writing
 2. **One section at a time**: Get feedback incrementally
 3. **Save research separately**: Keep a research.md file
 4. **Version your drafts**: article-v1.md, article-v2.md, etc.
