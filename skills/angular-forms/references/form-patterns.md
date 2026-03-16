@@ -310,11 +310,12 @@ form.statusChanges.subscribe(status => {
 });
 ```
 
-### Unified Events (Angular v21+)
+### Unified Events (Angular v18+)
 
 ```typescript
 import { 
-  ValueChangeEvent, StatusChangeEvent, 
+  ValueChangeEvent, StatusChangeEvent,
+  PristineChangeEvent,TouchedChangeEvent,
   FormSubmittedEvent, FormResetEvent 
 } from '@angular/forms';
 
@@ -324,6 +325,12 @@ form.events.subscribe(event => {
   }
   if (event instanceof StatusChangeEvent) {
     console.log('Status changed:', event.status);
+  }
+  if (event instanceof PristineChangeEvent) {
+    console.log('Pristine changed:', event.pristine);
+  }
+  if (event instanceof TouchedChangeEvent) {
+    console.log('Touched changed:', event.touched);
   }
   if (event instanceof FormSubmittedEvent) {
     console.log('Form submitted');
