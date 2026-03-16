@@ -157,6 +157,17 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
         continue;
       }
 
+      // Save any existing local LICENSE file before we wipe the directory,
+      // so we can restore it if the upstream doesn't provide one.
+      let savedLicense: { name: string; content: Buffer } | null = null;
+      for (const licenseName of ["LICENSE", "LICENSE.txt"]) {
+        const licensePath = path.join(skill.dir, licenseName);
+        if (fs.existsSync(licensePath)) {
+          savedLicense = { name: licenseName, content: fs.readFileSync(licensePath) };
+          break;
+        }
+      }
+
       // Remove current skill contents (except .git artifacts, if any)
       const existingEntries = fs.readdirSync(skill.dir);
       for (const entry of existingEntries) {
@@ -212,6 +223,17 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
             `  ⚠ ${skill.name}: license_path "${skill.source.license_path}" not found in ${repoUrl}`,
           );
         }
+      }
+
+      // If no LICENSE file ended up in the skill dir (neither from upstream
+      // nor from license_path), restore the previously saved local one.
+      const hasLicense = fs.existsSync(path.join(skill.dir, "LICENSE"))
+        || fs.existsSync(path.join(skill.dir, "LICENSE.txt"));
+      if (!hasLicense && savedLicense) {
+        fs.writeFileSync(
+          path.join(skill.dir, savedLicense.name),
+          savedLicense.content,
+        );
       }
 
       console.log(`  ✓ ${skill.name}`);
