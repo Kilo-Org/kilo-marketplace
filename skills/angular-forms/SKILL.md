@@ -1,12 +1,19 @@
 ---
 name: angular-forms
-description: Build signal-based forms in Angular v21+ using the new Signal Forms API. Use for form creation with automatic two-way binding, schema-based validation, field state management, and dynamic forms. Triggers on form implementation, adding validation, creating multi-step forms, or building forms with conditional fields. Signal Forms are experimental but recommended for new Angular projects.
-license: Complete terms in LICENSE.txt
+description: >-
+  Build signal-based forms in Angular v21+ using the new Signal Forms API. Use
+  for form creation with automatic two-way binding, schema-based validation,
+  field state management, and dynamic forms. Triggers on form implementation,
+  adding validation, creating multi-step forms, or building forms with
+  conditional fields. Signal Forms are experimental but recommended for new
+  Angular projects. Don't use for template-driven forms without signals or
+  third-party form libraries like Formly or ngx-formly.
 metadata:
   category: development
   source:
-    repository: https://github.com/analogjs/angular-skills
+    repository: 'https://github.com/analogjs/angular-skills'
     path: skills/angular-forms
+    license_path: LICENSE
 ---
 
 # Angular Signal Forms

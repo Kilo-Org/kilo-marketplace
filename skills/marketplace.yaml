@@ -138,7 +138,8 @@ items:
       Build signal-based forms in Angular v21+ using the new Signal Forms API. Use for form creation with automatic
       two-way binding, schema-based validation, field state management, and dynamic forms. Triggers on form
       implementation, adding validation, creating multi-step forms, or building forms with conditional fields. Signal
-      Forms are experimental but recommended for new Angular projects.
+      Forms are experimental but recommended for new Angular projects. Don't use for template-driven forms without
+      signals or third-party form libraries like Formly or ngx-formly.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-forms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-forms/SKILL.md
@@ -183,10 +184,11 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-ssr.tar.gz
   - id: angular-testing
     description: >-
-      Write unit and integration tests for Angular v21+ applications using Vitest or Jasmine with TestBed, component
-      harnesses, and modern testing patterns. Use for testing components with signals, OnPush change detection, services
-      with inject(), and HTTP interactions. Triggers on test creation, testing signal-based components, mocking
-      dependencies, or setting up test infrastructure.
+      Write unit and integration tests for Angular v20+ applications using Vitest or Jasmine with TestBed and modern
+      testing patterns. Use for testing components with signals, OnPush change detection, services with inject(), and
+      HTTP interactions. Triggers on test creation, testing signal-based components, mocking dependencies, or setting up
+      test infrastructure. Don't use for E2E testing with Cypress or Playwright, or for testing non-Angular
+      JavaScript/TypeScript code.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-testing/SKILL.md
@@ -195,7 +197,9 @@ items:
     description: >-
       Use Angular CLI and development tools effectively in Angular v20+ projects. Use for project setup, code
       generation, building, testing, and configuration. Triggers on creating new projects, generating
-      components/services/modules, configuring builds, running tests, or optimizing production builds.
+      components/services/modules, configuring builds, running tests, or optimizing production builds. Don't use for Nx
+      workspace commands, custom Webpack configurations, or non-Angular CLI build systems like Vite standalone or
+      esbuild direct usage.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-tooling
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-tooling/SKILL.md
@@ -277,7 +281,7 @@ items:
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
-      existing skill) that extends Kilo's capabilities with specialized knowledge, workflows, or tool integrations.
+      existing skill) that extends the agent's capabilities with specialized knowledge, workflows, or tool integrations.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-creator/SKILL.md

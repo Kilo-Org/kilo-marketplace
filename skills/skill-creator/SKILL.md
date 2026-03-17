@@ -2,7 +2,7 @@
 name: skill-creator
 description: >-
   Guide for creating effective skills. This skill should be used when users want
-  to create a new skill (or update an existing skill) that extends Kilo's
+  to create a new skill (or update an existing skill) that extends the agent's
   capabilities with specialized knowledge, workflows, or tool integrations.
 license: Complete terms in LICENSE.txt
 metadata:
@@ -21,7 +21,7 @@ This skill provides guidance for creating effective skills.
 
 Skills are modular, self-contained packages that extend the agent's capabilities by providing
 specialized knowledge, workflows, and tools. Think of them as "onboarding guides" for specific
-domains or tasks—they transform a general-purpose agent into a specialized agent
+domains or tasks—they transform the agent from a general-purpose agent into a specialized agent
 equipped with procedural knowledge that no model can fully possess.
 
 ### What Skills Provide
@@ -50,7 +50,7 @@ skill-name/
 
 #### SKILL.md (required)
 
-**Metadata Quality:** The `name` and `description` in YAML frontmatter determine when the agent will use the skill. Be specific about what the skill does and when to use it. Use the third-person (e.g. "This skill should be used when..." instead of "Use this skill when...").
+**Metadata Quality:** The `name` and `description` in YAML frontmatter determine when the skill will be used. Be specific about what the skill does and when to use it. Use the third-person (e.g. "This skill should be used when..." instead of "Use this skill when...").
 
 #### Bundled Resources (optional)
 
@@ -163,7 +163,7 @@ After initialization, customize or remove the generated SKILL.md and example fil
 
 ### Step 4: Edit the Skill
 
-When editing the (newly-generated or existing) skill, remember that the skill is being created for another agent instance to use. Focus on including information that would be beneficial and non-obvious to the agent. Consider what procedural knowledge, domain-specific details, or reusable assets would help another agent instance execute these tasks more effectively.
+When editing the (newly-generated or existing) skill, remember that the skill is being created for another instance of the agent to use. Focus on including information that would be beneficial and non-obvious to another agent instance. Consider what procedural knowledge, domain-specific details, or reusable assets would help another agent instance execute these tasks more effectively.
 
 #### Start with Reusable Skill Contents
 

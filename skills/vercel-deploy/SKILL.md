@@ -6,6 +6,7 @@ description: >-
   production", "Create a preview deployment", "Deploy and give me the link", or
   "Push this live". No authentication required - returns preview URL and
   claimable deployment link.
+license: MIT
 metadata:
   author: vercel
   version: 1.0.0
