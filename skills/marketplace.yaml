@@ -18,8 +18,8 @@ items:
   - id: internal-comms
     description: >-
       A set of resources to help me write all kinds of internal communications, using the formats that my company likes
-      to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports,
-      leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
+      to use. The agent should use this skill whenever asked to write some sort of internal communications (status
+      reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/internal-comms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/internal-comms/SKILL.md
@@ -206,9 +206,9 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-tooling.tar.gz
   - id: artifacts-builder
     description: >-
-      Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web
-      technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or
-      shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+      Suite of tools for creating elaborate, multi-component HTML artifacts using modern frontend web technologies
+      (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui
+      components - not for simple single-file HTML/JSX artifacts.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/artifacts-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/artifacts-builder/SKILL.md
