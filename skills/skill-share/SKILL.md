@@ -1,7 +1,7 @@
 ---
 name: skill-share
 description: >-
-  A skill that creates new Claude skills and automatically shares them on Slack
+  A skill that creates new agent skills and automatically shares them on Slack
   using Rube for seamless team collaboration and skill discovery.
 license: Complete terms in LICENSE.txt
 metadata:
@@ -14,7 +14,7 @@ metadata:
 ## When to use this skill
 
 Use this skill when you need to:
-- **Create new Claude skills** with proper structure and metadata
+- **Create new agent skills** with proper structure and metadata
 - **Generate skill packages** ready for distribution
 - **Automatically share created skills** on Slack channels for team visibility
 - **Validate skill structure** before sharing
@@ -64,7 +64,7 @@ This skill is ideal for:
 ## Example Usage
 
 ```
-When you ask Claude to create a skill called "pdf-analyzer":
+When you ask the agent to create a skill called "pdf-analyzer":
 1. Creates /skill-pdf-analyzer/ with SKILL.md template
 2. Generates structured directories (scripts/, references/, assets/)
 3. Validates the skill structure

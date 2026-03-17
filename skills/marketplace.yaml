@@ -272,14 +272,14 @@ items:
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
-      existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+      existing skill) that extends the agent's capabilities with specialized knowledge, workflows, or tool integrations.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-creator/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-creator.tar.gz
   - id: skill-share
     description: >-
-      A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team
+      A skill that creates new agent skills and automatically shares them on Slack using Rube for seamless team
       collaboration and skill discovery.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
