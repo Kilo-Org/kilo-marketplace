@@ -181,11 +181,24 @@ test:
     - npm test -- --coverage
   coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
   artifacts:
-    reports:
-      junit: junit.xml
-      coverage_report:
-        coverage_format: cobertura
-        path: coverage/cobertura-coverage.xml
+    paths:
+      - coverage/
+    expire_in: 1 week
+
+# Alternative: For advanced reporting (requires Jest reporter configuration), use this version:
+# test:
+#   stage: test
+#   image: node:${NODE_VERSION}
+#   script:
+#     - npm ci
+#     - npm test -- --coverage --reporters=junit --reporters=cobertura
+#   coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+#   artifacts:
+#     reports:
+#       junit: junit.xml
+#       coverage_report:
+#         coverage_format: cobertura
+#         path: coverage/cobertura-coverage.xml
 
 build:
   stage: build

@@ -5,7 +5,7 @@
 repos:
   # Check for common issues
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -19,14 +19,14 @@ repos:
 
   # Python formatting
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 24.10.0
     hooks:
       - id: black
         language_version: python3.10
 
   # Python linting
   - repo: https://github.com/pycqa/flake8
-    rev: 6.0.0
+    rev: 7.1.1
     hooks:
       - id: flake8
         args: ['--max-line-length=120', '--extend-ignore=E203,W503']
@@ -69,7 +69,7 @@ repos:
 
   # Secret scanning
   - repo: https://github.com/trufflesecurity/trufflehog
-    rev: v3.0.0
+    rev: v3.65.2
     hooks:
       - id: trufflehog
-        args: ['--no-verification']
+        args: ['--no-update']
