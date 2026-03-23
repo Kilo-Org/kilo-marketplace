@@ -32,6 +32,13 @@ The CI/CD Expert provides the following capabilities:
 3. **Local Validation** - Run linting, formatting, type checking, and unit tests locally before committing
 4. **Best Practices** - Provide recommendations for CI/CD workflows and industry best practices
 
+> **Critical Principle: Local/CI Parity**
+> Pre-commit hooks MUST match CI/CD workflows 1:1. Jobs should never pass locally but fail in the cloud. This means:
+> - The same commands run in hooks must run in CI pipelines
+> - The same tool versions and configurations
+> - The same environment settings
+> - Never skip checks locally that run in CI
+
 ## How to Use
 
 ### Basic Usage
@@ -63,6 +70,54 @@ If existing configurations are found, the skill will:
 - Offer to update/modify the existing configuration
 - Ask before overwriting
 - Suggest improvements to existing setup
+
+### Ensure 1:1 Matching
+
+When creating or updating configurations, the skill MUST ensure:
+
+1. **Command Parity**: Pre-commit hooks run the exact same commands as CI jobs
+2. **Config Parity**: Same linter/formatter configs, same eslint config, same rules
+3. **Version Parity**: Same tool versions (use lockfiles where possible)
+4. **Environment Parity**: Same Node.js/Python versions, same dependencies
+
+Example of CORRECT 1:1 matching:
+```yaml
+# .github/workflows/ci.yml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+# .pre-commit-config.yaml (MUST match exactly)
+repos:
+  - repo: local
+    hooks:
+      - id: lint
+        name: Lint
+        entry: npm run lint
+        language: system
+        stages: [commit]
+      - id: typecheck
+        name: TypeCheck
+        entry: npm run typecheck
+        language: system
+        stages: [commit]
+      - id: test
+        name: Test
+        entry: npm test
+        language: system
+        stages: [commit]
+```
+
+Example of WRONG (causes local pass/cloud fail):
+```yaml
+# CI runs lint + typecheck + test
+# But pre-commit only runs lint (WRONG!)
+```
 
 ### Advanced Configuration
 
@@ -267,11 +322,12 @@ npm run check
 
 ## Tips
 
-1. **Start with pre-commit hooks** - They're faster and catch issues early
-2. **Keep hooks fast** - Long-running checks belong in CI pipelines, not pre-commit
-3. **Use caching** - Configure cache in your CI pipelines to speed up builds
-4. **Fail fast** - Configure pipelines to fail early on linting errors before running tests
-5. **Environment parity** - Use Docker containers to ensure consistent environments
+1. **Local/CI Parity First** - ALWAYS match pre-commit hooks 1:1 with CI workflows. Never skip checks locally that run in CI
+2. **Start with pre-commit hooks** - They're faster and catch issues early
+3. **Keep hooks fast** - Long-running checks belong in CI pipelines, not pre-commit
+4. **Use caching** - Configure cache in your CI pipelines to speed up builds
+5. **Fail fast** - Configure pipelines to fail early on linting errors before running tests
+6. **Environment parity** - Use Docker containers to ensure consistent environments
 
 ## Common Use Cases
 
