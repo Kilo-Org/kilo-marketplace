@@ -109,14 +109,14 @@ The Kilo Marketplace does **not** host the source code for contributed skills di
 ### How It Works
 
 1. **Create a public GitHub repository** for your skill (or a repository containing multiple skills).
-2. **Add a `SKILL.md`** file with the required frontmatter, including a `metadata.source` section that points back to your repository.
-3. **Submit a PR to this marketplace** that adds your skill using the `add-remote-skill` tooling (see below), which pulls in your skill and records the source reference.
+2. **Add a `SKILL.md`** file with the standard frontmatter (`name`, `description`, etc.).
+3. **Submit a PR to this marketplace** that adds your skill using the `add-remote-skill` tooling (see below). The script automatically pulls in your skill and adds the `metadata.source` reference to the frontmatter.
 
 The marketplace periodically syncs with source repositories to pull in updates, so you don't need to submit a new PR every time you change your skill.
 
-### Required Frontmatter for Contributed Skills
+### The `metadata.source` Frontmatter
 
-Every contributed skill's `SKILL.md` must include a `metadata.source` section in its YAML frontmatter. This tells the marketplace where the canonical source lives:
+Every contributed skill in the marketplace must have a `metadata.source` section in its YAML frontmatter. This tells the marketplace where the canonical source lives. **You don't need to add this yourself** — the `add-remote-skill` script (see below) adds it automatically when importing your skill. But for reference, here's what it looks like:
 
 ```yaml
 ---
