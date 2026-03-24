@@ -17,16 +17,16 @@ tags:
 prerequisites:
   - Node.js 18+
 content:
-  - name: NPX
+  - name: NPX (with knowledge.yaml path)
     prerequisites:
       - Node.js 18+
     content: |
       {
         "command": "npx",
-        "args": ["-y", "kcp-mcp"],
+        "args": ["-y", "kcp-mcp", "{{KNOWLEDGE_YAML_PATH}}"],
         "env": {}
       }
-  - name: Local (with custom manifest directory)
+  - name: Local (with custom kcp-commands directory)
     prerequisites:
       - Node.js 18+
     content: |
@@ -36,7 +36,11 @@ content:
         "env": {}
       }
 parameters:
-  - name: Custom Manifests Directory
+  - name: Knowledge YAML Path
+    key: KNOWLEDGE_YAML_PATH
+    description: Absolute path to your project knowledge.yaml manifest file. The server reads this to expose structured knowledge as MCP resources. MCP clients do not guarantee cwd, so an absolute path is required.
+    placeholder: /absolute/path/to/your/project/knowledge.yaml
+  - name: Custom Commands Directory
     key: COMMANDS_DIR
-    description: Absolute path to a directory containing kcp-commands YAML manifests (see github.com/Cantara/kcp-commands for the format). Only required when using the "Local (with custom manifest directory)" option.
+    description: Absolute path to a directory containing kcp-commands YAML manifests (see github.com/Cantara/kcp-commands for the format). Only required when using the "Local (with custom kcp-commands directory)" option.
     placeholder: ~/.kcp/commands
