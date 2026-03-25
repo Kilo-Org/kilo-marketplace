@@ -1,10 +1,6 @@
 ---
 name: create-pull-request
-description: >-
-  Create a GitHub pull request following project conventions. Use when the user
-  asks to create a PR, submit changes for review, or open a pull request.
-  Handles commit analysis, branch management, and PR creation using the gh CLI
-  tool.
+description: "Creates a GitHub pull request with conventional commit analysis, branch management, and template-driven descriptions using the gh CLI. Use when the user asks to create a PR, submit changes for review, open a pull request, or push a feature branch for code review."
 metadata:
   category: development
   source:
@@ -14,7 +10,7 @@ metadata:
 
 # Create Pull Request
 
-This skill guides you through creating a well-structured GitHub pull request that follows project conventions and best practices.
+Creates a well-structured GitHub pull request by analyzing commits, managing branches, and generating template-driven descriptions via the `gh` CLI.
 
 ## Prerequisites Check
 

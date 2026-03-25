@@ -1,11 +1,6 @@
 ---
 name: figma-implement-design
-description: >-
-  Translate Figma nodes into production-ready code with 1:1 visual fidelity
-  using the Figma MCP workflow (design context, screenshots, assets, and
-  project-convention translation). Trigger when the user provides Figma URLs or
-  node IDs, or asks to implement designs or components that must match Figma
-  specs. Requires a working Figma MCP server connection.
+description: "Translates Figma design nodes into production-ready, pixel-perfect code by fetching design context, screenshots, and assets via the Figma MCP server, then mapping them to project conventions and design tokens. Use when the user provides a Figma URL or node ID, asks to implement a UI component from Figma, or needs to build a page layout matching Figma specs."
 metadata:
   category: development
   source:
@@ -16,10 +11,6 @@ metadata:
 
 
 # Implement Design
-
-## Overview
-
-This skill provides a structured workflow for translating Figma designs into production-ready code with pixel-perfect accuracy. It ensures consistent integration with the Figma MCP server, proper use of design tokens, and 1:1 visual parity with designs.
 
 ## Prerequisites
 
@@ -271,16 +262,6 @@ When in doubt, prefer the project's design system patterns over literal Figma tr
 
 **Cause:** The project's design system tokens have different values than those specified in the Figma design.
 **Solution:** When project tokens differ from Figma values, prefer project tokens for consistency but adjust spacing/sizing to maintain visual fidelity.
-
-## Understanding Design Implementation
-
-The Figma implementation workflow establishes a reliable process for translating designs to code:
-
-**For designers:** Confidence that implementations will match their designs with pixel-perfect accuracy.
-**For developers:** A structured approach that eliminates guesswork and reduces back-and-forth revisions.
-**For teams:** Consistent, high-quality implementations that maintain design system integrity.
-
-By following this workflow, you ensure that every Figma design is implemented with the same level of care and attention to detail.
 
 ## Additional Resources
 

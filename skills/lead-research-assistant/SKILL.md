@@ -1,6 +1,6 @@
 ---
 name: lead-research-assistant
-description: "Identify and qualify potential leads by analyzing a product's value proposition, defining ideal customer profiles, researching matching companies, scoring them by fit, and providing personalized outreach strategies. Use when building sales prospect lists, preparing for business development outreach, researching target accounts, or qualifying leads for a specific product or service."
+description: "Identifies and qualifies sales leads by analyzing a product's value proposition, defining ideal customer profiles (ICP), researching matching companies via job postings and GitHub signals, scoring prospects by fit on a 1-10 scale, and delivering personalized outreach strategies with conversation starters. Use when building prospect lists, preparing for business development outreach, researching target accounts, qualifying leads for a product or service, or generating personalized sales messaging."
 metadata:
   category: business-marketing
   source:
@@ -8,112 +8,103 @@ metadata:
     path: lead-research-assistant
 ---
 
-# Lead Research Assistant
-
-Identifies and qualifies potential leads by analyzing a product or service, defining the ideal customer profile, researching matching companies, and delivering prioritized prospect lists with personalized outreach strategies.
-
 ## Workflow
 
-### Step 1: Understand the Product or Service
+### Step 1: Understand the Product
 
-Gather context about what is being sold:
+Gather context about what is being sold. If run from a code directory, analyze README, landing page copy, and package metadata to extract the value proposition automatically. Otherwise, ask for:
 
-- If run from a code directory, analyze the codebase to understand the product automatically
-- Identify the core value proposition and key differentiators
-- Understand what problems the product solves and for whom
-- Note pricing model and competitive positioning
+- Core value proposition and key differentiators
+- Problems solved and target buyer persona
+- Pricing model and competitive positioning
 
-### Step 2: Define the Ideal Customer Profile (ICP)
+### Step 2: Define the ICP
 
-Work with the user to establish targeting criteria:
-
-- **Industry and sector**: Which verticals are the best fit
-- **Company size**: Employee count or revenue range
-- **Geography**: Location preferences or restrictions
-- **Technology stack**: Tools or platforms that signal fit (e.g., companies using Kubernetes)
-- **Pain points**: Specific problems that map to the product's value proposition
-- **Budget indicators**: Funding stage, revenue signals, or technology spend patterns
+Confirm targeting criteria: industry, company size, geography, tech stack signals, budget indicators (funding stage, revenue range).
 
 ### Step 3: Research and Identify Leads
 
-Search for companies matching the ICP using available signals:
+Use web search with targeted queries for each signal type:
 
-- Job postings that mention relevant technologies or pain points
-- GitHub activity showing relevant tech stack usage
-- Recent funding rounds or growth indicators
-- News about expansion, hiring, or relevant initiatives
-- Complementary product usage that suggests need
+```
+# Job postings signaling need
+site:linkedin.com/jobs "[target technology]" OR "[pain point keyword]"
+site:lever.co "[company type]" "[relevant role]"
+site:greenhouse.io "[target technology]"
+
+# GitHub signals for tech stack fit
+site:github.com "[technology]" org:[company]
+# Search GitHub orgs for repos using specific dependencies
+https://github.com/orgs/[company]/repositories?q=[technology]
+
+# Funding and growth signals
+site:crunchbase.com "[company name]" "Series"
+site:techcrunch.com "[company name]" "raises" OR "funding"
+```
+
+Cross-reference signals: a company hiring for a relevant role AND using the relevant tech stack AND recently funded scores higher than one signal alone.
+
+**Validation**: Require at least 2 independent signals per lead before advancing to scoring. If searches return fewer than 5 candidates, broaden ICP criteria or add new signal sources.
 
 ### Step 4: Score and Prioritize
 
-Rate each lead on a 1–10 fit score based on:
+Rate each lead 1-10 based on weighted criteria:
 
-- Alignment with ICP criteria
-- Signals of immediate need (active job postings, recent pain-point mentions)
-- Budget availability (funding stage, company size)
-- Competitive landscape (are they already using a competitor?)
-- Timing indicators (contract renewal cycles, fiscal year planning)
+| Factor | Weight | Scoring |
+|--------|--------|---------|
+| ICP alignment | 30% | Industry + size + geography match |
+| Active need signals | 25% | Job postings, pain-point mentions |
+| Budget availability | 20% | Funding stage, company revenue |
+| Timing indicators | 15% | Contract renewals, fiscal year, recent changes |
+| Competitive landscape | 10% | No incumbent vs. displacing competitor |
 
-### Step 5: Deliver Actionable Lead Profiles
+### Step 5: Deliver Lead Profiles
 
-For each lead, provide a structured profile:
+**Validation**: Verify LinkedIn URLs resolve and company websites are active before including in output. Drop leads scoring below 5/10.
+
+For each qualifying lead, output a structured profile:
 
 ```markdown
 ## Lead: [Company Name]
 
-**Website**: [URL]
-**Priority Score**: [X/10]
-**Industry**: [Industry] | **Size**: [Employee count]
+**Website**: [URL] | **Score**: [X/10] | **Industry**: [Industry] | **Size**: [N employees]
 
-**Why They're a Good Fit**:
-- [Specific reason based on their business]
-- [Signal that indicates need]
+**Fit signals**:
+- [Specific evidence from research — job posting URL, GitHub repo, funding round]
+- [Second signal with source link]
 
-**Target Decision Maker**: [Role/Title]
-**LinkedIn**: [URL if available]
+**Decision Maker**: [Role/Title] — [LinkedIn URL]
 
-**Value Proposition for Them**:
-[How the product solves their specific problem]
-
-**Outreach Strategy**:
-[Personalized approach — mention specific pain points, recent news, or relevant context]
-
-**Conversation Starters**:
-- [Specific talking point 1]
-- [Specific talking point 2]
+**Personalized Outreach**:
+- Hook: [Reference their specific pain point or recent news]
+- Value prop: [How the product solves their specific problem]
+- Ask: [Specific CTA — demo, call, pilot]
 ```
 
-### Step 6: Suggest Next Steps
+### Step 6: Export and Next Steps
 
-After delivering the lead list:
+```python
+import csv
 
-- Offer to draft personalized outreach messages for top leads
-- Suggest saving results to CSV for CRM import
-- Recommend prioritization based on timing and urgency signals
-- Offer deeper research on the highest-scoring prospects
+leads = [
+    {"company": "Acme Corp", "score": 9, "contact": "VP Eng", "linkedin": "https://...", "hook": "..."},
+    # ... additional leads
+]
 
-## Examples
+with open("leads.csv", "w", newline="") as f:
+    writer = csv.DictWriter(f, fieldnames=leads[0].keys())
+    writer.writeheader()
+    writer.writerows(leads)
+```
 
-### Example 1: Developer Tool Leads
+After delivery, offer to: draft personalized outreach emails for top-3 leads, do deeper research on highest-scoring prospects, or refine ICP criteria based on which leads feel strongest.
 
-**Prompt**: "I'm building a tool that masks sensitive data in AI coding assistant queries. Find potential leads."
+## Example
 
-**Research process**: Search for companies with GitHub repos referencing Copilot or Cursor in their workflows. Check job postings for "AI coding assistant" or "code security" roles. Look for fintech/healthcare companies with recent SOC 2 or HIPAA compliance mentions. Cross-reference with companies that have public incidents involving exposed secrets in code.
+**Prompt:** "I'm building a tool that masks sensitive data in AI coding assistant queries. Find potential leads."
 
-**Output**: Identifies companies that use AI coding assistants (Copilot, Cursor), handle sensitive data (fintech, healthcare, legal), have evidence in GitHub repos of coding agent usage, and may have compliance requirements around data exposure. Includes LinkedIn URLs of relevant decision-makers (VP Engineering, CISO).
+**Research approach**: Search GitHub for orgs with Copilot/Cursor repos (`site:github.com copilot configuration`), job boards for "AI coding assistant" or "code security" roles (`site:lever.co "AI security" OR "code privacy"`), and Crunchbase for funded fintech/healthcare companies with SOC 2 or HIPAA requirements.
 
-### Example 2: Consulting Practice
-
-**Prompt**: "I run a consulting practice for remote team productivity. Find me 10 companies in the Bay Area that recently went remote."
-
-**Output**: Identifies companies that recently posted remote job listings, announced remote-first policies, are hiring distributed teams, and show signs of remote work challenges. Provides personalized outreach strategies for each.
+**Output**: Prioritized list of 10 companies using AI coding assistants that handle sensitive data, each with fit score, evidence links, decision-maker LinkedIn URLs (VP Engineering, CISO), and a personalized outreach hook referencing their specific compliance needs.
 
 **Inspired by:** Use case from Lenny's Newsletter
-
-## Tips
-
-1. **Be specific about your product**: The more detail about unique value, the better the lead matching
-2. **Run from your codebase**: Automatic product understanding leads to better targeting
-3. **Provide ICP context**: Industry, size, and location constraints sharpen results
-4. **Request follow-up research**: Ask for deeper dives on the most promising leads
-5. **Iterate on criteria**: Refine the ICP based on which leads feel strongest

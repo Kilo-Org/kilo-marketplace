@@ -1,9 +1,6 @@
 ---
 name: image-enhancer
-description: >-
-  Improves the quality of images, especially screenshots, by enhancing
-  resolution, sharpness, and clarity. Perfect for preparing images for
-  presentations, documentation, or social media posts.
+description: "Upscales, sharpens, and removes compression artifacts from images and screenshots, optimizing output for web, print, or social media. Use when improving image quality, upscaling low-resolution screenshots, or preparing visuals for publication."
 metadata:
   category: creative-media
   source:
@@ -11,97 +8,100 @@ metadata:
     path: image-enhancer
 ---
 
-# Image Enhancer
+## Workflow
 
-This skill takes your images and screenshots and makes them look better—sharper, clearer, and more professional.
+### 1. Analyze
 
-## When to Use This Skill
+Inspect the source image to determine enhancement strategy:
 
-- Improving screenshot quality for blog posts or documentation
-- Enhancing images before sharing on social media
-- Preparing images for presentations or reports
-- Upscaling low-resolution images
-- Sharpening blurry photos
-- Cleaning up compressed images
+```python
+from PIL import Image
 
-## What This Skill Does
-
-1. **Analyzes Image Quality**: Checks resolution, sharpness, and compression artifacts
-2. **Enhances Resolution**: Upscales images intelligently
-3. **Improves Sharpness**: Enhances edges and details
-4. **Reduces Artifacts**: Cleans up compression artifacts and noise
-5. **Optimizes for Use Case**: Adjusts based on intended use (web, print, social media)
-
-## How to Use
-
-### Basic Enhancement
-
-```
-Improve the image quality of screenshot.png
+img = Image.open("screenshot.png")
+print(f"Resolution: {img.size[0]}x{img.size[1]}")
+print(f"Format: {img.format} | Mode: {img.mode}")
+print(f"File size: {os.path.getsize('screenshot.png') / 1024:.1f} KB")
 ```
 
-```
-Enhance all images in this folder
+Check for: resolution < target, visible blur or softness, compression artifacts (blocky areas in JPEGs), noise in dark regions.
+
+### 2. Enhance
+
+Apply enhancements using Pillow or OpenCV depending on the task:
+
+**Upscale (Pillow — basic bicubic)**:
+```python
+from PIL import Image, ImageFilter
+
+img = Image.open("input.png")
+target = (img.width * 2, img.height * 2)
+upscaled = img.resize(target, Image.LANCZOS)
+upscaled.save("output.png")
 ```
 
-### Specific Improvements
+**Sharpen (OpenCV — unsharp mask)**:
+```python
+import cv2
+import numpy as np
 
-```
-Upscale this image to 4K resolution
-```
-
-```
-Sharpen this blurry screenshot
-```
-
-```
-Reduce compression artifacts in this image
+img = cv2.imread("input.png")
+blurred = cv2.GaussianBlur(img, (0, 0), 3)
+sharpened = cv2.addWeighted(img, 1.5, blurred, -0.5, 0)
+cv2.imwrite("output.png", sharpened)
 ```
 
-### Batch Processing
-
+**Remove JPEG artifacts (OpenCV — bilateral filter)**:
+```python
+img = cv2.imread("input.jpg")
+cleaned = cv2.bilateralFilter(img, 9, 75, 75)
+cv2.imwrite("output.png", cleaned)  # Save as PNG to avoid re-compression
 ```
-Improve the quality of all PNG files in this directory
+
+For high-quality AI upscaling, use `realesrgan-ncnn-vulkan`:
+```bash
+realesrgan-ncnn-vulkan -i input.png -o output.png -s 4 -n realesrgan-x4plus
+```
+
+### 3. Optimize for Target
+
+| Target | Action |
+|--------|--------|
+| **Web** | Compress with `pillow` quality 85, max width 1920px |
+| **Print** | Ensure 300 DPI: `img.save("out.png", dpi=(300, 300))` |
+| **Social** | Resize to platform specs (e.g., 1200x630 for Open Graph) |
+| **Retina** | Output at 2x display resolution |
+
+### 4. Save and Verify
+
+```python
+import shutil, os
+
+# Preserve original
+shutil.copy2("screenshot.png", "screenshot-original.png")
+
+# Save enhanced version
+enhanced.save("screenshot.png", optimize=True)
+
+# Verify output
+result = Image.open("screenshot.png")
+assert result.size[0] >= img.size[0], "Output should not be smaller than input"
+print(f"Before: {os.path.getsize('screenshot-original.png')/1024:.0f}KB → After: {os.path.getsize('screenshot.png')/1024:.0f}KB")
 ```
 
 ## Example
 
-**User**: "Improve the image quality of screenshot-2024.png"
+**Prompt:** "Upscale screenshot-2024.png to retina resolution and sharpen it"
 
-**Output**:
 ```
 Analyzing screenshot-2024.png...
+  Resolution: 1920x1080 | Format: PNG | Issue: slight blur, standard DPI
 
-Current specs:
-- Resolution: 1920x1080
-- Format: PNG
-- Quality: Good, but slight blur
+Steps applied:
+  1. Upscaled 2x via LANCZOS → 3840x2160
+  2. Applied unsharp mask (amount=1.5, radius=3)
+  3. Verified: output resolution 3840x2160, no visible artifacts
 
-Enhancements applied:
-✓ Upscaled to 2560x1440 (retina)
-✓ Sharpened edges
-✓ Enhanced text clarity
-✓ Optimized file size
-
-Saved as: screenshot-2024-enhanced.png
-Original preserved as: screenshot-2024-original.png
+Saved: screenshot-2024.png (enhanced)
+Backup: screenshot-2024-original.png
 ```
-
-**Inspired by:** Lenny Rachitsky's workflow from his newsletter - used for screenshots in his articles
-
-## Tips
-
-- Always keeps original files as backup
-- Works best with screenshots and digital images
-- Can batch process entire folders
-- Specify output format if needed (PNG for quality, JPG for smaller size)
-- For social media, mention the platform for optimal sizing
-
-## Common Use Cases
-
-- **Blog Posts**: Enhance screenshots before publishing
-- **Documentation**: Make UI screenshots crystal clear
-- **Social Media**: Optimize images for Twitter, LinkedIn, Instagram
-- **Presentations**: Upscale images for large screens
-- **Print Materials**: Increase resolution for physical media
 

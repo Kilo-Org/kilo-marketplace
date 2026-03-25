@@ -1,6 +1,6 @@
 ---
 name: file-organizer
-description: "Analyze directory structures, find duplicate files, propose logical folder hierarchies, and automate cleanup tasks across a computer's filesystem. Use when organizing messy downloads folders, finding and removing duplicates, restructuring project directories, or establishing better file organization habits."
+description: "Analyzes directory structures, finds duplicate files by content hash, proposes logical folder hierarchies, and automates file cleanup with confirmation-based safety. Use when organizing messy downloads folders, finding and removing duplicates, restructuring project directories, reclaiming disk space, or establishing consistent file naming conventions."
 metadata:
   category: productivity-organization
   source:
@@ -10,7 +10,7 @@ metadata:
 
 # File Organizer
 
-Intelligent file and folder organization assistant that analyzes directory structures, identifies duplicates, proposes better hierarchies, and automates cleanup — reducing the cognitive load of manual organization.
+Analyzes directory structures, identifies duplicates by content hash, proposes better folder hierarchies, and automates cleanup with confirmation-based safety guards.
 
 ## Workflow
 

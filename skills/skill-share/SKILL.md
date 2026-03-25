@@ -1,8 +1,6 @@
 ---
 name: skill-share
-description: >-
-  A skill that creates new agent skills and automatically shares them on Slack
-  using Rube for seamless team collaboration and skill discovery.
+description: "Scaffolds new agent skills with SKILL.md, validates structure, packages as zip, and posts announcements to Slack via Rube. Use when creating, packaging, or sharing agent skills with a team."
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
@@ -11,77 +9,96 @@ metadata:
     path: skill-share
 ---
 
-## When to use this skill
+## Workflow
 
-Use this skill when you need to:
-- **Create new agent skills** with proper structure and metadata
-- **Generate skill packages** ready for distribution
-- **Automatically share created skills** on Slack channels for team visibility
-- **Validate skill structure** before sharing
-- **Package and distribute** skills to your team
+### 1. Scaffold
 
-Also use this skill when:
-- **User says he wants to create/share his skill** 
+Create the skill directory and SKILL.md from a name and description:
 
-This skill is ideal for:
-- Creating skills as part of team workflows
-- Building internal tools that need skill creation + team notification
-- Automating the skill development pipeline
-- Collaborative skill creation with team notifications
+```bash
+SKILL_NAME="pdf-analyzer"
+SKILL_DIR="skill-${SKILL_NAME}"
 
-## Key Features
+mkdir -p "${SKILL_DIR}"/{scripts,references,assets}
 
-### 1. Skill Creation
-- Creates properly structured skill directories with SKILL.md
-- Generates standardized scripts/, references/, and assets/ directories
-- Auto-generates YAML frontmatter with required metadata
-- Enforces naming conventions (hyphen-case)
+cat > "${SKILL_DIR}/SKILL.md" << 'TEMPLATE'
+---
+name: pdf-analyzer
+description: "Analyzes PDF documents and extracts structured content. Use when parsing, summarizing, or extracting data from PDF files."
+metadata:
+  category: development
+---
 
-### 2. Skill Validation
-- Validates SKILL.md format and required fields
-- Checks naming conventions
-- Ensures metadata completeness before packaging
+# PDF Analyzer
 
-### 3. Skill Packaging
-- Creates distributable zip files
-- Includes all skill assets and documentation
-- Runs validation automatically before packaging
-
-### 4. Slack Integration via Rube
-- Automatically sends created skill information to designated Slack channels
-- Shares skill metadata (name, description, link)
-- Posts skill summary for team discovery
-- Provides direct links to skill files
-
-## How It Works
-
-1. **Initialization**: Provide skill name and description
-2. **Creation**: Skill directory is created with proper structure
-3. **Validation**: Skill metadata is validated for correctness
-4. **Packaging**: Skill is packaged into a distributable format
-5. **Slack Notification**: Skill details are posted to your team's Slack channel
-
-## Example Usage
-
-```
-When you ask the agent to create a skill called "pdf-analyzer":
-1. Creates /skill-pdf-analyzer/ with SKILL.md template
-2. Generates structured directories (scripts/, references/, assets/)
-3. Validates the skill structure
-4. Packages the skill as a zip file
-5. Posts to Slack: "New Skill Created: pdf-analyzer - Advanced PDF analysis and extraction capabilities"
+[Skill instructions here]
+TEMPLATE
 ```
 
-## Integration with Rube
+Required frontmatter fields for a valid SKILL.md:
+- `name` — kebab-case identifier (must match directory name)
+- `description` — quoted string with "Use when..." clause
+- `metadata.category` — one of: development, business-marketing, communication-writing, creative-media
 
-This skill leverages Rube for:
-- **SLACK_SEND_MESSAGE**: Posts skill information to team channels
-- **SLACK_POST_MESSAGE_WITH_BLOCKS**: Shares rich formatted skill metadata
-- **SLACK_FIND_CHANNELS**: Discovers target channels for skill announcements
+### 2. Validate
+
+Check the skill passes structural validation before packaging:
+
+```bash
+# Verify required files exist
+test -f "${SKILL_DIR}/SKILL.md" || echo "ERROR: Missing SKILL.md"
+
+# Verify frontmatter has required fields
+head -20 "${SKILL_DIR}/SKILL.md" | grep -q "^name:" || echo "ERROR: Missing name field"
+head -20 "${SKILL_DIR}/SKILL.md" | grep -q "^description:" || echo "ERROR: Missing description field"
+
+# Verify name is kebab-case
+echo "${SKILL_NAME}" | grep -qE '^[a-z][a-z0-9]*(-[a-z0-9]+)*$' || echo "ERROR: Name must be kebab-case"
+```
+
+**Common validation failures:**
+- Name contains uppercase or underscores — convert to kebab-case
+- Description uses `>` (chevron) instead of quoted string — wrap in double quotes
+- Missing `metadata` block — add category at minimum
+
+### 3. Package
+
+Bundle the validated skill into a distributable zip:
+
+```bash
+# Run validation first, then package
+cd "${SKILL_DIR}" && zip -r "../${SKILL_NAME}.zip" . -x "*.DS_Store" "*.git*"
+echo "Packaged: ${SKILL_NAME}.zip ($(du -h "../${SKILL_NAME}.zip" | cut -f1))"
+```
+
+### 4. Share on Slack (via Rube)
+
+Post an announcement to the team channel:
+
+| Rube Action | Purpose | When to Use |
+|---|---|---|
+| `SLACK_SEND_MESSAGE` | Post skill name + description to a channel | Simple announcements |
+| `SLACK_POST_MESSAGE_WITH_BLOCKS` | Share rich-formatted metadata with sections | Detailed skill launches |
+| `SLACK_FIND_CHANNELS` | Discover available channels by name | Finding the right target channel |
+
+## Example
+
+**Prompt:** "Create and share a new skill called pdf-analyzer"
+
+```
+1. Scaffolded skill-pdf-analyzer/
+   ├── SKILL.md (frontmatter + body template)
+   ├── scripts/
+   ├── references/
+   └── assets/
+2. Validation passed (name ✓, description ✓, metadata ✓)
+3. Packaged as pdf-analyzer.zip (2.1 KB)
+4. Posted to #skills via SLACK_SEND_MESSAGE:
+   "New Skill: pdf-analyzer — Analyzes PDF documents and extracts structured content"
+```
 
 ## Requirements
 
-- Slack workspace connection via Rube
-- Write access to skill creation directory
-- Python 3.7+ for skill creation scripts
-- Target Slack channel for skill notifications
+- Slack workspace connected via Rube
+- Write access to the skill creation directory
+- Python 3.7+

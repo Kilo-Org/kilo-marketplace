@@ -1,6 +1,6 @@
 ---
 name: competitive-ads-extractor
-description: "Extract competitor ads from ad libraries (Facebook Ad Library, LinkedIn, TikTok), capture screenshots, and analyze messaging patterns, creative approaches, audience targeting, and copy formulas. Use when researching competitor ad strategies, planning ad campaigns, finding inspiration for creative, or analyzing market positioning through paid media."
+description: "Extracts competitor ads from Facebook Ad Library, LinkedIn, TikTok, and Google Ads Transparency Center, then analyzes messaging patterns, creative formats, audience targeting, and copy formulas to produce actionable campaign insights. Use when researching competitor ad strategies, planning paid media campaigns, auditing creative approaches, benchmarking ad copy, or mapping competitive positioning through paid channels."
 metadata:
   category: business-marketing
   source:
@@ -10,63 +10,50 @@ metadata:
 
 # Competitive Ads Extractor
 
-Extracts competitor ads from ad libraries and analyzes what's working — the problems they highlight, use cases they target, and copy/creative that resonates — to inform and inspire ad campaigns.
+Extracts competitor ads from public ad transparency libraries and analyzes what's working — the problems they highlight, use cases they target, and copy/creative patterns that resonate — to produce actionable campaign insights.
 
 ## Workflow
 
-### Step 1: Identify Target Competitors and Platforms
+### Step 1: Gather Requirements
 
-Gather context:
+Collect targeting parameters before extraction:
 
-- Which competitors to analyze (specific companies or a competitive set)
-- Which platforms to check (Facebook Ad Library, LinkedIn, TikTok, Google Ads Transparency)
-- Focus area: messaging, creative, audience targeting, or all
-- Time period: current ads only, or trend analysis over quarters
+- **Competitors**: Specific companies or a competitive set to analyze
+- **Platforms**: Facebook Ad Library, LinkedIn Ad Library, TikTok Creative Center, Google Ads Transparency
+- **Focus**: Messaging, creative formats, audience targeting, or full audit
+- **Time window**: Current ads only, or quarterly trend analysis
 
-### Step 2: Extract Ads from Ad Libraries
+### Step 2: Extract Ads
 
-Navigate to the relevant ad library (e.g., `https://www.facebook.com/ads/library/` for Meta ads) and search for the competitor by company name or page. Browse active ads and for each one, capture:
+Navigate to the relevant ad library (e.g., `https://www.facebook.com/ads/library/`) and search by company name or page. For each active ad, capture:
 
-- Screenshot of the ad creative
-- Headline and body copy text
-- Call-to-action button text
+- Screenshot of the ad creative (save to `competitor-ads/[company-name]/`)
+- Headline, body copy, and CTA button text
 - Format: static image, video, or carousel
-- Any visible targeting or placement info
+- Visible targeting or placement info
 
-Save screenshots to a local directory (e.g., `competitor-ads/[company-name]/`) organized by competitor. If no ads are found, verify the company name spelling and check whether they run ads on that platform — some companies concentrate spend on a single channel.
+If no ads are found, verify spelling and check alternative platforms — some companies concentrate spend on a single channel.
 
-### Step 3: Analyze Messaging Patterns
+### Step 3: Analyze Patterns
 
-Categorize extracted ads and identify patterns:
+Categorize extracted ads across four dimensions:
 
-- **Problems highlighted**: Which pain points appear most frequently
-- **Use cases targeted**: What jobs-to-be-done the ads address
-- **Value propositions**: How they frame their product's benefits
-- **Audience segments**: Different messages for different personas (e.g., founders vs. enterprise)
+| Dimension | What to look for |
+|-----------|-----------------|
+| **Pain points** | Which problems appear most frequently across ads |
+| **Use cases** | Jobs-to-be-done the ads address |
+| **Value props** | How benefits are framed (cost savings, speed, quality) |
+| **Audiences** | Different messages for different personas (founders vs. enterprise) |
 
-### Step 4: Evaluate Creative Approaches
+### Step 4: Evaluate Creative and Copy
 
-Identify successful creative patterns:
+**Creative patterns**: Before/after splits, feature GIFs, social proof (user counts, logos, testimonials), data-driven hooks (specific numbers or percentages). Frequency of a format often correlates with performance.
 
-- **Before/After splits**: Showing chaos → organized solution
-- **Feature showcases**: GIF or video of product in action
-- **Social proof**: User counts, customer logos, testimonials
-- **Data-driven**: Leading with specific numbers or percentages
+**Copy formulas**: Sentence structure, emotional triggers (fear, aspiration, curiosity), CTA patterns ("Try for free", "Get started", "See how"), benefit-focused vs. feature-focused framing.
 
-Note which formats appear most frequently — frequency often correlates with performance.
+### Step 5: Deliver Insights
 
-### Step 5: Analyze Copy Formulas
-
-Extract headline and body copy patterns:
-
-- Sentence length and structure
-- Emotional triggers (fear, aspiration, curiosity)
-- CTA patterns ("Try for free", "Get started", "See how")
-- Benefit-focused vs. feature-focused framing
-
-### Step 6: Deliver Actionable Insights
-
-Present findings with clear recommendations:
+Present findings with clear, prioritized recommendations:
 
 ```markdown
 # [Competitor] Ad Analysis
@@ -100,23 +87,14 @@ Present findings with clear recommendations:
 
 ## Common Workflows
 
-**Ad campaign planning**: Extract competitor ads → Identify successful patterns → Note messaging gaps → Brainstorm unique angles → Draft test variations
-
-**Positioning research**: Analyze 5 competitors → Map positioning landscape → Find underserved angles → Develop differentiated messaging
-
-**Trend tracking**: Compare a competitor's ads across quarters — what messaging shifted and why
+- **Campaign planning**: Extract ads --> identify patterns --> find messaging gaps --> brainstorm angles --> draft test variations
+- **Positioning research**: Analyze 5+ competitors --> map positioning landscape --> find underserved angles --> develop differentiated messaging
+- **Trend tracking**: Compare a competitor's ads across quarters to spot messaging shifts
 
 ## Tips
 
 1. **Track over time**: Save ads monthly to spot evolving strategies
-2. **Look for frequency**: Ads that run longest are likely performing well
+2. **Frequency = signal**: Ads that run longest are likely performing well
 3. **Segment by audience**: Same competitor often runs different messages for different personas
-4. **Compare platforms**: LinkedIn vs. Facebook messaging often differs significantly
-5. **Use for inspiration, not copying**: Adapt successful patterns to your own brand voice
-
-### Legal and Ethical Guidelines
-
-- Use extracted ads for research and inspiration only
-- Do not copy ad creative or messaging directly
-- Respect intellectual property — adapt patterns, don't plagiarize
-- All ad libraries used are public transparency tools
+4. **Cross-platform**: LinkedIn vs. Facebook messaging often differs significantly — compare both
+5. **Adapt, don't copy**: Use patterns for inspiration; all ad libraries are public transparency tools

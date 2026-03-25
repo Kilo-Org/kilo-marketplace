@@ -1,6 +1,6 @@
 ---
 name: migrating-dbt-core-to-fusion
-description: Classifies dbt-core to Fusion migration errors into actionable categories (auto-fixable, guided fixes, needs input, blocked). Use when a user needs help triaging migration errors to understand what they can fix vs what requires Fusion engine updates.
+description: "Triages and classifies dbt-core to Fusion migration errors into four actionable categories: auto-fixable, guided fixes, needs user input, and blocked on Fusion updates. Use when migrating a dbt project to Fusion and encountering compilation errors, or when needing to understand which migration issues are user-fixable versus engine-level blockers."
 allowed-tools: "Bash(dbt:*), Bash(git:*), Bash(uvx:*), Read, Write, Edit, Glob, Grep, WebFetch(domain:api.github.com)"
 compatibility: "dbt Fusion"
 metadata:

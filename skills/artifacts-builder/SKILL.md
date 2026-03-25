@@ -1,10 +1,6 @@
 ---
 name: artifacts-builder
-description: >-
-  Suite of tools for creating elaborate, multi-component HTML
-  artifacts using modern frontend web technologies (React, Tailwind CSS,
-  shadcn/ui). Use for complex artifacts requiring state management, routing, or
-  shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+description: "Builds multi-component HTML artifacts using React 18, TypeScript, Tailwind CSS, and shadcn/ui via automated init and bundle scripts. Produces a single self-contained HTML file from a full React project. Use when creating interactive dashboards, data visualizations, multi-page apps, or any artifact requiring state management, routing, or shadcn/ui components — not for simple single-file HTML/JSX."
 license: Complete terms in LICENSE.txt
 metadata:
   category: development
@@ -16,69 +12,46 @@ metadata:
 
 # Artifacts Builder
 
-To build powerful frontend HTML artifacts, follow these steps:
-1. Initialize the frontend repo using `scripts/init-artifact.sh`
-2. Develop your artifact by editing the generated code
-3. Bundle all code into a single HTML file using `scripts/bundle-artifact.sh`
-4. Display artifact to user
-5. (Optional) Test the artifact
+Creates production-grade, self-contained HTML artifacts from full React + TypeScript projects. Uses `scripts/init-artifact.sh` for scaffolding and `scripts/bundle-artifact.sh` to inline all assets into a single shareable HTML file.
 
-**Stack**: React 18 + TypeScript + Vite + Parcel (bundling) + Tailwind CSS + shadcn/ui
+**Stack**: React 18 + TypeScript + Vite + Parcel (bundling) + Tailwind CSS 3.4.1 + shadcn/ui (40+ components)
 
-## Design & Style Guidelines
-
-VERY IMPORTANT: To avoid what is often referred to as "AI slop", avoid using excessive centered layouts, purple gradients, uniform rounded corners, and Inter font.
-
-## Quick Start
+## Workflow
 
 ### Step 1: Initialize Project
 
-Run the initialization script to create a new React project:
 ```bash
 bash scripts/init-artifact.sh <project-name>
-cd <project-name>
 ```
 
-This creates a fully configured project with:
-- ✅ React + TypeScript (via Vite)
-- ✅ Tailwind CSS 3.4.1 with shadcn/ui theming system
-- ✅ Path aliases (`@/`) configured
-- ✅ 40+ shadcn/ui components pre-installed
-- ✅ All Radix UI dependencies included
-- ✅ Parcel configured for bundling (via .parcelrc)
-- ✅ Node 18+ compatibility (auto-detects and pins Vite version)
+Creates a configured project with:
+- React + TypeScript via Vite (auto-detects Node 18+ and pins Vite version)
+- Tailwind CSS with shadcn/ui theming and path aliases (`@/`)
+- 40+ pre-installed shadcn/ui components with all Radix UI dependencies
+- Parcel bundling configuration via `.parcelrc`
 
-### Step 2: Develop Your Artifact
+### Step 2: Develop the Artifact
 
-To build the artifact, edit the generated files. See **Common Development Tasks** below for guidance.
+Edit the generated files to build the artifact. Component reference: https://ui.shadcn.com/docs/components
 
-### Step 3: Bundle to Single HTML File
+### Step 3: Bundle to Single HTML
 
-To bundle the React app into a single HTML artifact:
 ```bash
 bash scripts/bundle-artifact.sh
 ```
 
-This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Kilo sessions as an artifact.
+Produces `bundle.html` — a self-contained file with all JS, CSS, and dependencies inlined. Requires `index.html` in the project root.
 
-**Requirements**: Your project must have an `index.html` in the root directory.
+The script installs bundling dependencies (parcel, @parcel/config-default, parcel-resolver-tspaths, html-inline), builds with Parcel (no source maps), and inlines all assets.
 
-**What the script does**:
-- Installs bundling dependencies (parcel, @parcel/config-default, parcel-resolver-tspaths, html-inline)
-- Creates `.parcelrc` config with path alias support
-- Builds with Parcel (no source maps)
-- Inlines all assets into single HTML using html-inline
+### Step 4: Share the Artifact
 
-### Step 4: Share Artifact with User
+Share `bundle.html` in the conversation so the user can view it directly.
 
-Finally, share the bundled HTML file in conversation with the user so they can view it as an artifact.
+### Step 5: Test (Optional)
 
-### Step 5: Testing/Visualizing the Artifact (Optional)
+Only test if requested or if issues arise. Use available tools (Playwright, Puppeteer, or other skills). Avoid testing upfront to minimize latency between request and delivery.
 
-Note: This is a completely optional step. Only perform if necessary or requested.
+## Design Guidelines
 
-To test/visualize the artifact, use available tools (including other Skills or built-in tools like Playwright or Puppeteer). In general, avoid testing the artifact upfront as it adds latency between the request and when the finished artifact can be seen. Test later, after presenting the artifact, if requested or if issues arise.
-
-## Reference
-
-- **shadcn/ui components**: https://ui.shadcn.com/docs/components
+Avoid generic "AI slop" aesthetics: no excessive centered layouts, purple gradients, uniform rounded corners, or Inter font. Aim for distinctive, intentional design choices.
