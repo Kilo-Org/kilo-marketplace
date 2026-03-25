@@ -1,9 +1,6 @@
 ---
 name: domain-name-brainstormer
-description: >-
-  Generates creative domain name ideas for your project and checks availability
-  across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of
-  brainstorming and manual checking.
+description: "Generate creative domain name ideas based on a project description and check availability across multiple TLDs (.com, .io, .dev, .ai, .app). Use when launching a new project or company, rebranding, registering a side project domain, or finding available alternatives when a preferred name is taken."
 metadata:
   category: business-marketing
   source:
@@ -13,208 +10,101 @@ metadata:
 
 # Domain Name Brainstormer
 
-This skill helps you find the perfect domain name for your project by generating creative options and checking what's actually available to register.
+Generates creative, brandable domain name options for a project and checks availability across multiple TLDs — saving hours of manual brainstorming and availability checking.
 
-## When to Use This Skill
+## Workflow
 
-- Starting a new project or company
-- Launching a product or service
-- Creating a personal brand or portfolio site
-- Rebranding an existing project
-- Registering a domain for a side project
-- Finding available alternatives when your first choice is taken
+### Step 1: Understand the Project
 
-## What This Skill Does
+Gather context to generate relevant names:
 
-1. **Understands Your Project**: Analyzes what you're building and who it's for
-2. **Generates Creative Names**: Creates relevant, memorable domain options
-3. **Checks Availability**: Verifies which domains are actually available across multiple TLDs
-4. **Multiple Extensions**: Suggests .com, .io, .dev, .ai, .app, and more
-5. **Provides Alternatives**: Offers variations if top choices are taken
-6. **Branding Insights**: Explains why certain names work well
+- What the project does and who it serves
+- Target audience and industry
+- Preferred keywords or word roots (e.g., "pixel", "studio")
+- TLD preferences (.com, .io, .dev, .ai, .app)
+- Name style: descriptive, abstract, compound word, or invented
+- Length preference: short (under 8 chars) or flexible
 
-## How to Use
+### Step 2: Generate Domain Name Candidates
 
-### Basic Brainstorming
+Create 10–15 candidates using strategies:
 
-```
-I'm building a project management tool for remote teams. 
-Suggest domain names.
-```
+- **Compound words**: Combine two relevant terms (e.g., "SnippetBox", "CodeClip")
+- **Portmanteaus**: Blend words together (e.g., "Netlify" from "internet" + "simplify")
+- **Descriptive**: Clearly state the function (e.g., "ShareCode")
+- **Abstract/Invented**: Unique coined words (e.g., "Vercel", "Figma")
+- **Keyword + TLD hacks**: Use the TLD as part of the name (e.g., "del.icio.us")
 
-```
-Help me brainstorm domain names for a personal finance app
-```
+### Step 3: Check Availability
 
-### Specific Preferences
+For each candidate, check availability across requested TLDs:
 
 ```
-I need a domain name for my AI writing assistant. 
-Prefer short names with .ai or .io extension.
-```
-
-### With Keywords
-
-```
-Suggest domain names using the words "pixel" or "studio" 
-for my design agency
-```
-
-## Example
-
-**User**: "I'm building a tool for developers to share code snippets. Suggest creative domain names."
-
-**Output**:
-```
-Analyzing your project...
-Target audience: Developers
-Key features: Code sharing, snippets, collaboration
-
 🎯 Domain Name Suggestions
 
 ## Available (.com)
-1. ✓ snippetbox.com - Clear, memorable, available!
-   Why: Directly describes the product, easy to remember
-
-2. ✓ codeclip.com - Short and snappy
-   Why: Implies quick code sharing, only 8 characters
-
-3. ✓ devpaste.com - Developer-focused
-   Why: Familiar to devs (like pastebin), clear purpose
+1. ✓ snippetbox.com — Clear, memorable
+2. ✓ codeclip.com — Short, only 8 characters
 
 ## Available (Alternative TLDs)
-4. ✓ snippet.dev - Perfect extension for developers
-   Why: .dev extension signals developer tool
+3. ✓ snippet.dev — Perfect .dev extension for developer audience
+4. ✓ codebox.io — Tech-forward, popular with startups
 
-5. ✓ codebox.io - Tech-forward
-   Why: .io popular with tech startups, clean name
-
-6. ✓ sharecode.app - Descriptive
-   Why: .app extension, clearly states the action
-
-## Premium/Taken (.com)
+## Taken / Premium
 - codeshare.com (Taken, est. $2,500)
 - snippets.com (Taken, premium domain)
-
-## Recommendations
-
-🏆 Top Pick: snippet.dev
-- Perfect for developer audience
-- Short and memorable  
-- .dev extension adds credibility
-- Available now!
-
-🥈 Runner-up: snippetbox.com
-- .com is universally recognized
-- Slightly longer but descriptive
-- Great brandability
-
-Next steps:
-1. Register your favorite before someone else does!
-2. Want me to check more variations?
-3. Need help with logo ideas for these names?
 ```
+
+### Step 4: Provide Recommendations
+
+Rank the top picks with reasoning:
+
+- **Top pick**: Best combination of availability, memorability, and brand fit
+- **Runner-up**: Strong alternative with different trade-offs
+- **Budget option**: Available at standard registration price
+
+Include pricing context: standard domains (~$10–15/year), premium TLDs like .io/.ai (~$30–50/year), and aftermarket domains (variable).
+
+### Step 5: Suggest Next Steps
+
+- Register the chosen domain before it's taken
+- Check matching social media handle availability (@username)
+- Consider registering key TLD variants to protect the brand
+- Verify no trademark conflicts
+
+## Example
+
+**Prompt**: "I'm building a tool for developers to share code snippets. Suggest creative domain names."
+
+**Output**: Analyzes project (target: developers, features: code sharing, snippets). Generates candidates: snippetbox.com (available, descriptive), codeclip.com (short, available), snippet.dev (perfect .dev extension), codebox.io (tech-forward). Top pick: snippet.dev — short, memorable, .dev signals developer tool. Runner-up: snippetbox.com — .com universally recognized, great brandability.
 
 **Inspired by:** Ben Aiad's use case from Lenny's Newsletter
 
-## Domain Naming Tips
+## What Makes a Good Domain Name
 
-### What Makes a Good Domain
+- **Short**: Under 15 characters, ideally under 10
+- **Memorable**: Easy to recall after hearing once
+- **Pronounceable**: Can be spoken in conversation without spelling it out
+- **No hyphens**: Easier to share verbally
+- **Brandable**: Unique enough to stand out in the market
 
-✓ **Short**: Under 15 characters ideal
-✓ **Memorable**: Easy to recall and spell
-✓ **Pronounceable**: Can be said in conversation
-✓ **Descriptive**: Hints at what you do
-✓ **Brandable**: Unique enough to stand out
-✓ **No hyphens**: Easier to share verbally
+## TLD Guide
 
-### TLD Guide
+| TLD | Best For | Price Range |
+|-----|----------|-------------|
+| .com | Universal, trusted, any business | $10–15/yr |
+| .io | Tech startups, developer tools | $30–50/yr |
+| .dev | Developer-focused products | $12–20/yr |
+| .ai | AI/ML products | $30–80/yr |
+| .app | Mobile or web applications | $14–20/yr |
+| .co | Alternative to .com | $10–25/yr |
+| .design | Creative and design agencies | $30–40/yr |
 
-- **.com**: Universal, trusted, great for businesses
-- **.io**: Tech startups, developer tools
-- **.dev**: Developer-focused products
-- **.ai**: AI/ML products
-- **.app**: Mobile or web applications
-- **.co**: Alternative to .com
-- **.xyz**: Modern, creative projects
-- **.design**: Creative/design agencies
-- **.tech**: Technology companies
+## Tips
 
-## Advanced Features
-
-### Check Similar Variations
-
-```
-Check availability for "codebase" and similar variations 
-across .com, .io, .dev
-```
-
-### Industry-Specific
-
-```
-Suggest domain names for a sustainable fashion brand, 
-checking .eco and .fashion TLDs
-```
-
-### Multilingual Options
-
-```
-Brainstorm domain names in English and Spanish for 
-a language learning app
-```
-
-### Competitor Analysis
-
-```
-Show me domain patterns used by successful project 
-management tools, then suggest similar available ones
-```
-
-## Example Workflows
-
-### Startup Launch
-1. Describe your startup idea
-2. Get 10-15 domain suggestions across TLDs
-3. Review availability and pricing
-4. Pick top 3 favorites
-5. Register immediately
-
-### Personal Brand
-1. Share your name and profession
-2. Get variations (firstname.com, firstnamelastname.dev, etc.)
-3. Check social media handle availability too
-4. Register consistent brand across platforms
-
-### Product Naming
-1. Describe product and target market
-2. Get creative, brandable names
-3. Check trademark conflicts
-4. Verify domain and social availability
-5. Test names with target audience
-
-## Tips for Success
-
-1. **Act Fast**: Good domains get taken quickly
-2. **Register Variations**: Get .com and .io to protect brand
-3. **Avoid Numbers**: Hard to communicate verbally
-4. **Check Social Media**: Make sure @username is available too
-5. **Say It Out Loud**: Test if it's easy to pronounce
-6. **Check Trademarks**: Ensure no legal conflicts
-7. **Think Long-term**: Will it still make sense in 5 years?
-
-## Pricing Context
-
-When suggesting domains, I'll note:
-- Standard domains: ~$10-15/year
-- Premium TLDs (.io, .ai): ~$30-50/year
-- Taken domains: Market price if listed
-- Premium domains: $hundreds to $thousands
-
-## Related Tools
-
-After picking a domain:
-- Check logo design options
-- Verify social media handles
-- Research trademark availability
-- Plan brand identity colors/fonts
-
+1. **Act fast**: Good domains get registered quickly
+2. **Register variations**: Get .com and your primary TLD to protect the brand
+3. **Avoid numbers**: Hard to communicate verbally
+4. **Say it out loud**: Test pronunciation before committing
+5. **Check trademarks**: Ensure no legal conflicts exist
+6. **Think long-term**: Will the name still fit if the project evolves?
