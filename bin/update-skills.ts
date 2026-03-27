@@ -95,6 +95,41 @@ function groupByRepo(
 }
 
 /**
+ * Try to apply a patch file to a skill directory.
+ * Returns true if patch applied successfully, false otherwise.
+ */
+function applyPatch(skillDir: string, patchContent: string): boolean {
+  // Write patch to a temp file
+  const tempPatch = path.join("/tmp", `skill-patch-${Date.now()}.patch`);
+  try {
+    fs.writeFileSync(tempPatch, patchContent);
+
+    // Try applying the patch with --forward to skip already-applied hunks
+    // Use -p2 to strip "a/skill-name/" prefix down to the bare filename
+    try {
+      execSync(`patch -p2 --forward --no-backup-if-mismatch -d "${skillDir}" < "${tempPatch}"`, {
+        stdio: "pipe",
+        encoding: "utf-8",
+      });
+      return true;
+    } catch (err: any) {
+      // patch exits 1 if some hunks failed
+      const output = (err.stdout || "") + (err.stderr || "");
+      if (output.includes("FAILED")) {
+        return false;
+      }
+      // If all hunks were already applied, that's fine
+      if (output.includes("Reversed")) {
+        return true;
+      }
+      return false;
+    }
+  } finally {
+    if (fs.existsSync(tempPatch)) fs.unlinkSync(tempPatch);
+  }
+}
+
+/**
  * Fetch all skills from a single repository via sparse checkout,
  * then copy each skill directory over the local one and re-apply
  * the source metadata.
@@ -155,6 +190,13 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
           `  ✗ ${skill.name}: no SKILL.md at upstream path, skipping`,
         );
         continue;
+      }
+
+      // Save local.patch before we wipe the directory
+      const patchPath = path.join(skill.dir, "local.patch");
+      let savedPatch: string | null = null;
+      if (fs.existsSync(patchPath)) {
+        savedPatch = fs.readFileSync(patchPath, "utf-8");
       }
 
       // Save any existing local LICENSE file before we wipe the directory,
@@ -236,7 +278,23 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
         );
       }
 
-      console.log(`  ✓ ${skill.name}`);
+      // Apply local.patch if one was saved
+      if (savedPatch) {
+        const applied = applyPatch(skill.dir, savedPatch);
+        if (applied) {
+          // Restore the patch file itself (it was part of the wiped directory)
+          fs.writeFileSync(path.join(skill.dir, "local.patch"), savedPatch);
+          console.log(`  ✓ ${skill.name} (patch applied)`);
+        } else {
+          // Write the patch file back so the user can manually resolve
+          fs.writeFileSync(path.join(skill.dir, "local.patch"), savedPatch);
+          console.warn(`  ⚠ ${skill.name}: updated but patch FAILED to apply cleanly`);
+          console.warn(`    Review ${path.join(skill.dir, "local.patch")} and re-apply manually`);
+          console.warn(`    Then run: npx tsx bin/generate-patches.ts ${skill.name}`);
+        }
+      } else {
+        console.log(`  ✓ ${skill.name}`);
+      }
     }
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });

@@ -1,0 +1,12 @@
+diff -ruN a/langsmith-fetch/SKILL.md b/langsmith-fetch/SKILL.md
+--- a/langsmith-fetch/SKILL.md	2026-03-16 12:13:58
++++ b/langsmith-fetch/SKILL.md	2026-03-16 11:26:25
+@@ -477,7 +477,7 @@
+ 
+ ---
+ 
+-## Notes for Claude
++## Notes for Kilo
+ 
+ - Always check if `langsmith-fetch` is installed before running commands
+ - Verify environment variables are set
