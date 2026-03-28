@@ -285,6 +285,150 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
+  - id: qor-audit
+    description: >-
+      Adversarial audit of blueprint to generate mandatory PASS/VETO verdict. Use when Claude needs to review
+      architecture plans before implementation for: (1) L2/L3 risk grade work, (2) Security-critical paths, (3)
+      Architecture changes, or any work requiring formal approval before proceeding.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-audit
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-audit/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-audit.tar.gz
+  - id: qor-bootstrap
+    description: >-
+      Initialize QoreLogic S.H.I.E.L.D. DNA for a new project by creating CONCEPT, ARCHITECTURE_PLAN, and META_LEDGER
+      with genesis hash. Use when: (1) Starting a new project, (2) First-time QoreLogic setup, or (3) Re-initializing
+      after project reset.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-bootstrap
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-bootstrap/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-bootstrap.tar.gz
+  - id: qor-course-correct
+    description: >-
+      Process-level drift recovery through collaborative diagnosis. Use when: (1) Multiple consecutive VETOs from
+      /ql-audit, (2) Recurring Shadow Genome patterns (same failure >2 times), (3) User feels stuck or direction has
+      gone wrong, (4) Scope creep detected (implementation diverging from CONCEPT.md), or (5) Significant time elapsed
+      with no /ql-substantiate seal.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-course-correct
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-course-correct/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-course-correct.tar.gz
+  - id: qor-debug
+    description: >
+      Two-phase diagnostic system combining rapid root-cause identification with residual sweep verification. Prevents
+      cascading AI debugging damage by enforcing four mandatory analysis layers before any code change.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-debug
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-debug/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-debug.tar.gz
+  - id: qor-document
+    description: >-
+      Documentation Author that creates and maintains all project documentation through parallel authoring modes. Use
+      when: (1) Creating release documentation, (2) Generating session artifacts, (3) Authoring component-level
+      documentation, or (4) Maintaining living documentation systems.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-document
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-document/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-document.tar.gz
+  - id: qor-help
+    description: >-
+      Quick reference that summarizes the purpose and usage of all QoreLogic commands. Use when: (1) Need to understand
+      available commands, (2) Unsure which command to use, or (3) Looking for command overview.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-help
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-help/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-help.tar.gz
+  - id: qor-implement
+    description: >-
+      Specialist Implementation Pass that translates gated blueprint into reality using Section 4 Simplicity Razor and
+      TDD-Light methodology. Use when: (1) Implementing after PASS verdict from /ql-audit, (2) Building features from
+      approved architecture plans, or (3) Creating code under KISS constraints.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-implement
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-implement/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-implement.tar.gz
+  - id: qor-organize
+    description: >-
+      Adaptive workspace organization that detects project type, analyzes existing conventions, and proposes
+      context-aware restructuring. Supports software repos, monorepos, data science, documentation, and hybrid
+      workspaces.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-organize
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-organize/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-organize.tar.gz
+  - id: qor-plan
+    description: >-
+      Planning protocol following Rich Hickey's "Simple Made Easy" principles for creating implementation plans. Use
+      when: (1) Designing complex features, (2) Planning multi-phase implementations, (3) Architecting new components,
+      or (4) Any work requiring systematic planning before implementation.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-plan
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-plan/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-plan.tar.gz
+  - id: qor-refactor
+    description: >-
+      KISS Refactor and Simplification Pass that flattens logic, deconstructs bloat, and verifies structural integrity.
+      Use when: (1) Code violates Section 4 Simplicity Razor, (2) Functions exceed 40 lines or files exceed 250 lines,
+      (3) Nesting depth exceeds 3 levels, or (4) General code cleanup needed.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-refactor
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-refactor/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-refactor.tar.gz
+  - id: qor-repo-audit
+    description: >-
+      /ql-repo-audit - Repository Governance Audit
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-repo-audit
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-repo-audit/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-repo-audit.tar.gz
+  - id: qor-repo-release
+    description: >-
+      Delivery Gate Orchestration - orchestrates release workflow after /ql-substantiate seals a session. Version bump,
+      metadata sync, git tag, release pipeline trigger.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-repo-release
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-repo-release/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-repo-release.tar.gz
+  - id: qor-repo-scaffold
+    description: >-
+      /ql-repo-scaffold - Generate Governance Scaffold
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-repo-scaffold
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-repo-scaffold/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-repo-scaffold.tar.gz
+  - id: qor-research
+    description: >-
+      Deep research phase for investigating external codebases, APIs, and dependencies before implementation. Use when
+      you need to verify actual interfaces, discover recent changes, or build accurate integration knowledge.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-research
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-research/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-research.tar.gz
+  - id: qor-status
+    description: >-
+      /ql-status - Lifecycle Diagnostic
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-status
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-status/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-status.tar.gz
+  - id: qor-substantiate
+    description: >-
+      S.H.I.E.L.D. Substantiation and Session Seal that verifies implementation against blueprint and cryptographically
+      seals the session. Use when: (1) Implementation is complete, (2) Ready to verify Reality matches Promise, (3) Need
+      to seal session with Merkle hash, or (4) Preparing to hand off completed work.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-substantiate
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-substantiate/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-substantiate.tar.gz
+  - id: qor-validate
+    description: >-
+      Merkle Chain Validator that recalculates and verifies cryptographic integrity of the project's Meta Ledger. Use
+      when: (1) Verifying chain integrity before handoff, (2) Detecting tampering or corruption, (3) Auditing decision
+      history, or (4) Validating after manual ledger edits.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qor-validate
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qor-validate/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qor-validate.tar.gz
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
