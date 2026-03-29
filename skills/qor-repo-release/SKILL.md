@@ -54,7 +54,11 @@ git checkout -b release/vX.Y.Z
 #### Pull Latest
 
 ```bash
+# If the current branch already tracks a remote branch:
 git pull --rebase
+
+# If this is a freshly created local release/hotfix branch with no upstream yet:
+git fetch origin
 ```
 
 **Note**: After release, create a PR to merge the release/hotfix branch into `main`.
@@ -207,8 +211,8 @@ Calculate and record content hash and chain hash per standard Merkle chain proto
 - **NEVER** skip the pre-flight validation
 - **NEVER** proceed past Step 6 if preflight has ANY [FAIL] — Step 6 is a hard ABORT gate
 - **NEVER** commit `[RELEASE] vX.Y.Z` without confirmed preflight PASS (the commit-msg hook enforces this at the git layer)
-- **NEVER** release from a feature branch — must be on `main`
-- **NEVER** tag without pulling latest `main` first
+- **NEVER** release from a feature branch - must be on `release/*` or `hotfix/*`
+- **NEVER** tag without pulling latest changes from the branch's source base first
 - **ALWAYS** use `/ql-document` for release metadata authoring
 - **ALWAYS** run pre-flight twice (before and after metadata authoring)
 - **ALWAYS** use `[RELEASE] vX.Y.Z` commit message format
