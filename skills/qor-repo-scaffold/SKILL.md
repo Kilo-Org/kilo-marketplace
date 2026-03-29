@@ -21,7 +21,7 @@ metadata:
 
 ## Purpose
 
-Generate missing repository governance files. Uses templates with variable substitution for project-specific values.
+Generate missing repository governance files using the bundled templates in this package, with variable substitution for project-specific values.
 
 ## Execution Protocol
 
@@ -60,7 +60,7 @@ IF no missing files:
 
 ### Step 3: Generate Missing Files
 
-For each file marked MISSING, load template and substitute variables:
+For each file marked MISSING, load a bundled template when one exists in this package and substitute variables. If no bundled template exists for a missing file, report it as a follow-up item instead of claiming it was generated:
 
 | Missing File | Template |
 |--------------|----------|
@@ -68,8 +68,7 @@ For each file marked MISSING, load template and substitute variables:
 | CONTRIBUTING.md | Standard guide |
 | SECURITY.md | Security policy |
 | GOVERNANCE.md | Project governance |
-| .github/ISSUE_TEMPLATE/*.yml | Issue templates |
-| .github/PULL_REQUEST_TEMPLATE.md | PR template |
+| .github/ISSUE_TEMPLATE/bug_report.yml | `references/Issue templates/bug_report.yml` |
 
 ### Step 4: Stage Files
 
@@ -104,7 +103,7 @@ git add [created files]
 - **NEVER** overwrite existing files
 - **NEVER** auto-commit (stage only, user owns final review)
 - **ALWAYS** run /ql-repo-audit first to identify gaps
-- **ALWAYS** use template substitution for project-specific values
+- **ALWAYS** use template substitution only for bundled templates that actually exist in this package
 - **ALWAYS** make template substitution idempotent
 
 ## Success Criteria
@@ -113,7 +112,7 @@ Scaffold succeeds when:
 
 - [ ] Project context detected (name, license, email, year)
 - [ ] /ql-repo-audit run to identify missing files
-- [ ] All missing files generated from templates
+- [ ] All missing files with bundled templates generated from templates
 - [ ] Template variables substituted correctly
 - [ ] Files staged (not committed)
 - [ ] Report generated listing created files

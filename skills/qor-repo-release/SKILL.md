@@ -75,17 +75,18 @@ Report: "No seal found. Run /ql-substantiate before releasing."
 
 ### Step 2: Run Pre-Flight
  
-Execute `release-gate.cjs --preflight` from `./`:
+If the repository bundles `./release-gate.cjs`, run its preflight from `./`.
+Otherwise, run an equivalent manual preflight covering working tree cleanliness, required release docs present in this repo, and ledger/backlog consistency:
  
 ```bash
 node ./release-gate.cjs --preflight
 ```
  
-Additionally verify: uncommitted skill files (`git diff --name-only -- .claude/commands/ql-*.md`), help doc version markers (COMPONENT_HELP.md, PROCESS_GUIDE.md), and backlog coherence (no duplicate B-items, version table current). STOP if any check fails.
+Additionally verify any release-relevant docs that exist in the current repository, plus backlog coherence (no duplicate B-items, version table current). STOP if any check fails.
 
 ### Step 3: Confirm Version Bump
 
-Read current version from `./package.json`.
+Read the current version from the repository's canonical version source (for example `package.json`, `pyproject.toml`, `Cargo.toml`, or another project manifest).
 
 Ask the user:
 
@@ -95,11 +96,13 @@ Wait for response before proceeding.
 
 ### Step 4: Apply Version Bump
 
-Execute:
+If the repository bundles `./release-gate.cjs`, use it:
 
 ```bash
 node ./release-gate.cjs --bump <level>
 ```
+
+Otherwise, update the canonical version source manually and keep all release markers in sync.
 
 Report: `vX.Y.Z -> vA.B.C (<level> bump)`
 
@@ -112,7 +115,7 @@ Invoke `/ql-document` in RELEASE_METADATA mode with the target version:
 3. Author the 3 required files:
    - `./CHANGELOG.md` — `## [A.B.C] - YYYY-MM-DD`
    - `./README.md` — Current Release + What's New
-   - `./docs/BACKLOG.md` � Mark previous version RELEASED and add the new version row
+   - `./docs/BACKLOG.md` - Mark previous version RELEASED and add the new version row
 4. Present authored content to user for review before writing
 
 **Confirmation gate** — Show authored content. User approves or edits before files are written.
@@ -121,13 +124,13 @@ Invoke `/ql-document` in RELEASE_METADATA mode with the target version:
 
 **INTERDICTION**: Documentation versioning MUST be verified complete before any commit or tag. This gate cannot be bypassed.
 
-Execute `release-gate.cjs --preflight`:
+Run the same preflight approach from Step 2:
 
 ```bash
 node ./release-gate.cjs --preflight
 ```
 
-**INTERDICTION**: If ANY check shows [FAIL], ABORT. List failing checks and return to Step 5. All version markers (CHANGELOG, README, COMPONENT_HELP, PROCESS_GUIDE, BACKLOG) must show vA.B.C before proceeding.
+**INTERDICTION**: If ANY check shows [FAIL], ABORT. List failing checks and return to Step 5. All version markers in files that exist for this repository (for example `CHANGELOG.md`, `README.md`, repo-specific docs, and `docs/BACKLOG.md`) must show vA.B.C before proceeding.
 
 ### Step 7: Stage and Commit
 
@@ -142,7 +145,7 @@ Ask: "Stage and commit these changes as `[RELEASE] vA.B.C`? (y/n)"
 If confirmed:
 
 ```bash
-git add -f ./package.json ./CHANGELOG.md ./README.md ./docs/COMPONENT_HELP.md ./docs/PROCESS_GUIDE.md ./docs/BACKLOG.md
+git add -f [canonical version file] ./CHANGELOG.md ./README.md ./docs/BACKLOG.md [other existing release docs]
 git commit -m "[RELEASE] vA.B.C"
 ```
 
@@ -150,13 +153,13 @@ Note: `-f` is required because `./docs/` is in `.gitignore` but tracked.
 
 ### Step 8: Create Tag
 
-Execute:
+If the repository bundles `./release-gate.cjs`, use it:
 
 ```bash
 node ./release-gate.cjs --tag
 ```
 
-This runs preflight internally and creates an annotated git tag.
+Otherwise, create an annotated git tag manually after confirming the preflight is still green.
 
 ### Step 9: Confirm Push
 
@@ -210,8 +213,8 @@ Calculate and record content hash and chain hash per standard Merkle chain proto
 - **ALWAYS** run pre-flight twice (before and after metadata authoring)
 - **ALWAYS** use `[RELEASE] vX.Y.Z` commit message format
 - **ALWAYS** record the delivery in META_LEDGER
-- **ALWAYS** update version markers in `docs/COMPONENT_HELP.md` and `docs/PROCESS_GUIDE.md`
-- **ALWAYS** update `README.md` (root) Current Release marker and Socket badge version
+- **ALWAYS** update version markers in any release-relevant docs that exist for this repository
+- **ALWAYS** update `README.md` (root) if it includes release/version markers
 - **ALWAYS** update `docs/BACKLOG.md` version summary table: mark previous version RELEASED, add new version row
 - **ALWAYS** use `git add -f` for gitignored-but-tracked paths (e.g., `./docs/`)
 
