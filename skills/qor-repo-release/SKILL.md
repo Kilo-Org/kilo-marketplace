@@ -57,8 +57,13 @@ git checkout -b release/vX.Y.Z
 # If the current branch already tracks a remote branch:
 git pull --rebase
 
-# If this is a freshly created local release/hotfix branch with no upstream yet:
+# If this is a freshly created local `release/*` branch with no upstream yet:
 git fetch origin
+git rebase origin/main
+
+# If this is a freshly created local `hotfix/*` branch with no upstream yet:
+git fetch origin
+git rebase origin/[source-base-branch]
 ```
 
 **Note**: After release, create a PR to merge the release/hotfix branch into `main`.
