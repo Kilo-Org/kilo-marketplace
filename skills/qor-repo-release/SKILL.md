@@ -74,18 +74,18 @@ Report: "No seal found. Run /ql-substantiate before releasing."
 ```
 
 ### Step 2: Run Pre-Flight
-
-Execute `release-gate.cjs --preflight` from `FailSafe/extension/`:
-
+ 
+Execute `release-gate.cjs --preflight` from `./`:
+ 
 ```bash
-node scripts/release-gate.cjs --preflight
+node ./release-gate.cjs --preflight
 ```
-
+ 
 Additionally verify: uncommitted skill files (`git diff --name-only -- .claude/commands/ql-*.md`), help doc version markers (COMPONENT_HELP.md, PROCESS_GUIDE.md), and backlog coherence (no duplicate B-items, version table current). STOP if any check fails.
 
 ### Step 3: Confirm Version Bump
 
-Read current version from `FailSafe/extension/package.json`.
+Read current version from `./package.json`.
 
 Ask the user:
 
@@ -110,8 +110,8 @@ Invoke `/ql-document` in RELEASE_METADATA mode with the target version:
 1. Read recent META_LEDGER entries (from last DELIVER or SUBSTANTIATE to current)
 2. Read SYSTEM_STATE.md for implementation summary
 3. Author the 3 required files:
-   - `FailSafe/extension/CHANGELOG.md` — `## [A.B.C] - YYYY-MM-DD`
-   - `FailSafe/extension/README.md` — Current Release + What's New
+   - `./CHANGELOG.md` — `## [A.B.C] - YYYY-MM-DD`
+   - `./README.md` — Current Release + What's New
    - Root `CHANGELOG.md` — `## [A.B.C]`
 4. Present authored content to user for review before writing
 
@@ -142,11 +142,11 @@ Ask: "Stage and commit these changes as `[RELEASE] vA.B.C`? (y/n)"
 If confirmed:
 
 ```bash
-git add -f FailSafe/extension/package.json FailSafe/extension/CHANGELOG.md FailSafe/extension/README.md FailSafe/extension/docs/COMPONENT_HELP.md FailSafe/extension/docs/PROCESS_GUIDE.md CHANGELOG.md README.md docs/BACKLOG.md
+git add -f ./package.json ./CHANGELOG.md ./README.md ./docs/COMPONENT_HELP.md ./docs/PROCESS_GUIDE.md CHANGELOG.md README.md docs/BACKLOG.md
 git commit -m "[RELEASE] vA.B.C"
 ```
 
-Note: `-f` is required because `FailSafe/extension/docs/` is in `.gitignore` but tracked.
+Note: `-f` is required because `./docs/` is in `.gitignore` but tracked.
 
 ### Step 8: Create Tag
 
@@ -213,7 +213,7 @@ Calculate and record content hash and chain hash per standard Merkle chain proto
 - **ALWAYS** update version markers in `docs/COMPONENT_HELP.md` and `docs/PROCESS_GUIDE.md`
 - **ALWAYS** update `README.md` (root) Current Release marker and Socket badge version
 - **ALWAYS** update `docs/BACKLOG.md` version summary table: mark previous version RELEASED, add new version row
-- **ALWAYS** use `git add -f` for gitignored-but-tracked paths (e.g., `FailSafe/extension/docs/`)
+- **ALWAYS** use `git add -f` for gitignored-but-tracked paths (e.g., `./docs/`)
 
 ## Success Criteria
 

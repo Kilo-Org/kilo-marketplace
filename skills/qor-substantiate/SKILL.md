@@ -173,31 +173,27 @@ Preserve only the final AUDIT_REPORT.md (or archive it).
 
 Template: `references/ql-substantiate-templates.md`.
 
-### Step 9.5: Final Commit & Push
+### Step 9.5: Stage Artifacts (for user commit)
 
-**Stage All Artifacts**:
-```bash
-git add docs/CONCEPT.md
-git add docs/ARCHITECTURE_PLAN.md
-git add docs/META_LEDGER.md
-git add docs/SYSTEM_STATE.md
-git add docs/BACKLOG.md
-git add src/
-```
+  **Stage All Artifacts**:
+  ```bash
+  git add docs/CONCEPT.md
+  git add docs/ARCHITECTURE_PLAN.md
+  git add docs/META_LEDGER.md
+  git add docs/SYSTEM_STATE.md
+  git add docs/BACKLOG.md
+  git add src/
+  ```
 
-**Commit Session Seal**:
-```bash
-git commit -m "seal: [plan-slug] - Session substantiated
+  **Next Steps**: Review the staged files and then commit and push when ready.
 
-Merkle seal: [chain-hash]
-Verdict: PASS
-Files: [file-count]"
-```
-
-**Push to Remote**:
-```bash
-git push origin [current-branch]
-```
+  Example commit message:
+  ```
+  seal: [plan-slug] - Session substantiated
+  Merkle seal: [chain-hash]
+  Verdict: PASS
+  Files: [file-count]
+  ```
 
 REPORT: "Session committed and pushed to [current-branch]"
 

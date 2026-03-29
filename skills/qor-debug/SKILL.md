@@ -56,7 +56,7 @@ If invoking proactively (no specific failure), state which files or logic paths 
 
 **Phase 1 — Rapid Root-Cause (ql-fixer)**
 
-Launch the `ql-fixer` agent (use `subagent_type: "ql-fixer"`) with the problem description. The fixer runs all four layers (Dijkstra, Hamming/Shannon, Turing/Hopper, Zeller) focused on the REPORTED symptoms. It identifies root causes and proposes fixes.
+Launch the `general` agent (use `subagent_type: "general"`) with the problem description. The fixer runs all four layers (Dijkstra, Hamming/Shannon, Turing/Hopper, Zeller) focused on the REPORTED symptoms. It identifies root causes and proposes fixes.
 
 Apply the proposed fixes.
 
@@ -93,7 +93,7 @@ The Fixer produces a final diagnosis with:
 - **ALWAYS** distinguish symptom from root cause
 - **ALWAYS** check for similar patterns elsewhere in the codebase
 - **ALWAYS** document findings with line numbers and evidence
-- **ALWAYS** use `subagent_type: "ql-fixer"` (not `ultimate-debugger`)
+- **ALWAYS** use `subagent_type: "general"` (not `ultimate-debugger`)
 
 ## Integration with QoreLogic
 

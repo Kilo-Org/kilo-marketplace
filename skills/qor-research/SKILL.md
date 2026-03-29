@@ -34,9 +34,8 @@ Your role is to discover facts, not to assume. Every finding must be traceable t
 ### Step 2: State Verification
 
 ```
-Read: .failsafe/governance/META_LEDGER.md (verify chain state)
-Read: .failsafe/governance/ARCHITECTURE_PLAN.md (understand what we're building)
-Read: memory/failsafe-bridge.md (existing knowledge to verify/update)
+Read: docs/META_LEDGER.md (verify chain state)
+Read: docs/ARCHITECTURE_PLAN.md (understand what we're building)
 ```
 
 ### Step 3: Target Discovery
