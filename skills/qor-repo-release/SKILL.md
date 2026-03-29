@@ -98,7 +98,7 @@ Wait for response before proceeding.
 Execute:
 
 ```bash
-node scripts/release-gate.cjs --bump <level>
+node ./release-gate.cjs --bump <level>
 ```
 
 Report: `vX.Y.Z -> vA.B.C (<level> bump)`
@@ -108,11 +108,11 @@ Report: `vX.Y.Z -> vA.B.C (<level> bump)`
 Invoke `/ql-document` in RELEASE_METADATA mode with the target version:
 
 1. Read recent META_LEDGER entries (from last DELIVER or SUBSTANTIATE to current)
-2. Read SYSTEM_STATE.md for implementation summary
+2. Read `docs/SYSTEM_STATE.md` for implementation summary
 3. Author the 3 required files:
    - `./CHANGELOG.md` — `## [A.B.C] - YYYY-MM-DD`
    - `./README.md` — Current Release + What's New
-   - Root `CHANGELOG.md` — `## [A.B.C]`
+   - `./docs/BACKLOG.md` � Mark previous version RELEASED and add the new version row
 4. Present authored content to user for review before writing
 
 **Confirmation gate** — Show authored content. User approves or edits before files are written.
@@ -124,7 +124,7 @@ Invoke `/ql-document` in RELEASE_METADATA mode with the target version:
 Execute `release-gate.cjs --preflight`:
 
 ```bash
-node scripts/release-gate.cjs --preflight
+node ./release-gate.cjs --preflight
 ```
 
 **INTERDICTION**: If ANY check shows [FAIL], ABORT. List failing checks and return to Step 5. All version markers (CHANGELOG, README, COMPONENT_HELP, PROCESS_GUIDE, BACKLOG) must show vA.B.C before proceeding.
@@ -142,7 +142,7 @@ Ask: "Stage and commit these changes as `[RELEASE] vA.B.C`? (y/n)"
 If confirmed:
 
 ```bash
-git add -f ./package.json ./CHANGELOG.md ./README.md ./docs/COMPONENT_HELP.md ./docs/PROCESS_GUIDE.md CHANGELOG.md README.md docs/BACKLOG.md
+git add -f ./package.json ./CHANGELOG.md ./README.md ./docs/COMPONENT_HELP.md ./docs/PROCESS_GUIDE.md ./docs/BACKLOG.md
 git commit -m "[RELEASE] vA.B.C"
 ```
 
@@ -153,7 +153,7 @@ Note: `-f` is required because `./docs/` is in `.gitignore` but tracked.
 Execute:
 
 ```bash
-node scripts/release-gate.cjs --tag
+node ./release-gate.cjs --tag
 ```
 
 This runs preflight internally and creates an annotated git tag.
