@@ -154,7 +154,7 @@ Create `docs/RESEARCH_BRIEF.md`:
 
 ## Updated Knowledge
 
-[New information that should be added to memory/failsafe-bridge.md]
+[New information that should be added to the project's persistent memory file (for example `memory/project-knowledge.md` if present)]
 
 ---
 
@@ -163,7 +163,7 @@ _Research complete. Findings are advisory — implementation decisions remain wi
 
 ### Step 7: Update Memory
 
-Update `memory/failsafe-bridge.md` with any new or corrected information discovered during research.
+Update the project's persistent memory file with any new or corrected information discovered during research. If the repository has no dedicated memory file, append a concise "Research Notes" section to `docs/RESEARCH_BRIEF.md` instead of creating a repo-specific artifact.
 
 ### Step 8: Update Ledger
 
@@ -211,7 +211,7 @@ SHA256(content_hash + previous_hash)
 [List any DRIFT items or breaking changes]
 
 ### Memory Updated
-[What was added/changed in failsafe-bridge.md]
+[What was added/changed in the project's persistent memory file, or what Research Notes were added to `docs/RESEARCH_BRIEF.md`]
 
 ---
 
@@ -235,7 +235,7 @@ Research succeeds when:
 - [ ] Recent changes audited for bridge impact
 - [ ] Blueprint cross-referenced for drift
 - [ ] RESEARCH_BRIEF.md created with all findings
-- [ ] memory/failsafe-bridge.md updated
+- [ ] Persistent project memory updated, or Research Notes appended to `docs/RESEARCH_BRIEF.md`
 - [ ] META_LEDGER.md updated with research entry
 - [ ] All findings include file:line citations
 

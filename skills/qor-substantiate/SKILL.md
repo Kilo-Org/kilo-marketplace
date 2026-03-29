@@ -35,7 +35,7 @@ Your role is to prove, not to improve. Verify what was built matches what was pr
 ```
 Read: docs/META_LEDGER.md
 Read: docs/ARCHITECTURE_PLAN.md
-Read: .failsafe/governance/AUDIT_REPORT.md
+Read: .agent/staging/AUDIT_REPORT.md
 ```
 
 **INTERDICTION**: If no PASS verdict exists:
@@ -165,9 +165,9 @@ Template: `references/ql-substantiate-templates.md`.
 
 ### Step 8: Cleanup Staging
 
-Clear: .failsafe/governance/
+Clear: `.agent/staging/`
 
-Preserve only the final AUDIT_REPORT.md (or archive it).
+Preserve `AUDIT_REPORT.md` for traceability, or archive it after sealing if the repository's workflow requires a clean staging area.
 
 ### Step 9: Final Report
 
