@@ -195,7 +195,7 @@ Template: `references/ql-substantiate-templates.md`.
   Files: [file-count]
   ```
 
-REPORT: "Session committed and pushed to [current-branch]"
+REPORT: "Session seal complete. Artifacts staged on [current-branch] and ready for user review."
 
 ### Step 9.6: Merge Options
 
@@ -233,7 +233,7 @@ Substantiation succeeds when:
 - [ ] Section 4 Razor final check passed
 - [ ] SYSTEM_STATE.md synced with actual file tree
 - [ ] Merkle seal calculated and recorded in META_LEDGER
-- [ ] Session committed and pushed
+- [ ] Session artifacts staged for user review
 - [ ] Merge/PR/tag options presented to user
 
 ## Integration with S.H.I.E.L.D.

@@ -21,8 +21,8 @@ allowed-tools: Read, Glob, Grep, Edit, Write, Bash
   <phase>IMPLEMENT / SUBSTANTIATE / GATE</phase>
   <persona>Fixer</persona>
   <dispatch>
-    <phase1>ql-fixer — Rapid root-cause (4-layer analysis on reported symptoms)</phase1>
-    <phase2>ql-fixer — Residual sweep (4-layer analysis on fixed state)</phase2>
+    <phase1>general — Rapid root-cause (4-layer analysis on reported symptoms)</phase1>
+    <phase2>general — Residual sweep (4-layer analysis on fixed state)</phase2>
   </dispatch>
   <output>Two-phase diagnosis: root-cause fix + residual sweep report</output>
 </skill>
@@ -54,15 +54,15 @@ If invoking proactively (no specific failure), state which files or logic paths 
 
 ### Step 2: Two-Phase Agent Dispatch
 
-**Phase 1 — Rapid Root-Cause (ql-fixer)**
+**Phase 1 — Rapid Root-Cause (general agent)**
 
 Launch the `general` agent (use `subagent_type: "general"`) with the problem description. The fixer runs all four layers (Dijkstra, Hamming/Shannon, Turing/Hopper, Zeller) focused on the REPORTED symptoms. It identifies root causes and proposes fixes.
 
 Apply the proposed fixes.
 
-**Phase 2 — Residual Sweep (ql-fixer, resumed)**
+**Phase 2 — Residual Sweep (general agent, resumed)**
 
-After Phase 1 fixes are applied, launch the `ql-fixer` agent again to:
+After Phase 1 fixes are applied, launch the `general` agent again to:
 - Verify the fixes are complete and correct
 - Sweep for residual issues introduced or exposed by the fixes
 - Check for similar patterns elsewhere in the codebase

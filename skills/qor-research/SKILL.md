@@ -16,7 +16,7 @@ metadata:
   <trigger>/ql-research</trigger>
   <phase>RESEARCH</phase>
   <persona>Analyst</persona>
-  <output>.failsafe/governance/RESEARCH_BRIEF.md with findings + META_LEDGER entry</output>
+  <output>docs/RESEARCH_BRIEF.md with findings + docs/META_LEDGER.md entry</output>
 </skill>
 
 ## Purpose
@@ -103,7 +103,7 @@ Map actual runtime dependencies:
 
 ### Step 5: Cross-Reference with Blueprint
 
-Compare every finding against `.failsafe/governance/ARCHITECTURE_PLAN.md`:
+Compare every finding against `docs/ARCHITECTURE_PLAN.md`:
 
 ```markdown
 ## Blueprint Alignment Check
@@ -117,7 +117,7 @@ Compare every finding against `.failsafe/governance/ARCHITECTURE_PLAN.md`:
 
 ### Step 6: Generate Research Brief
 
-Create `.failsafe/governance/RESEARCH_BRIEF.md`:
+Create `docs/RESEARCH_BRIEF.md`:
 
 ```markdown
 # Research Brief
@@ -167,7 +167,7 @@ Update `memory/failsafe-bridge.md` with any new or corrected information discove
 
 ### Step 8: Update Ledger
 
-Edit: `.failsafe/governance/META_LEDGER.md`
+Edit: `docs/META_LEDGER.md`
 
 Add new entry:
 
@@ -205,7 +205,7 @@ SHA256(content_hash + previous_hash)
 
 **Target**: [what was researched]
 **Findings**: [count] verified, [count] drifts detected
-**Brief Location**: .failsafe/governance/RESEARCH_BRIEF.md
+**Brief Location**: docs/RESEARCH_BRIEF.md
 
 ### Critical Findings
 [List any DRIFT items or breaking changes]
