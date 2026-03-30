@@ -1,12 +1,12 @@
-<h1 align="center">Kilo Marketplace</h1>
+<h1 align="center">Pound Marketplace</h1>
 
-A curated collection of **Skills**, **MCP Servers**, and **Modes** for enhancing AI agent capabilities across the Kilo ecosystem—including Kilo Code (VS Code extension), Kilo CLI, and compatible AI agents.
+A curated collection of **Skills**, **MCP Servers**, and **Modes** for enhancing AI agent capabilities across the Pound ecosystem—including Pound Code (VS Code extension), Pound CLI, and compatible AI agents.
 
 ---
 
-## What is the Kilo Marketplace?
+## What is the Pound Marketplace?
 
-The Kilo Marketplace is a community-driven repository of agent tooling prompts and configurations. It provides three types of resources that extend what AI agents can do:
+The Pound Marketplace is a community-driven repository of agent tooling prompts and configurations. It provides three types of resources that extend what AI agents can do:
 
 | Resource | Description |
 |----------|-------------|
@@ -37,7 +37,7 @@ The Kilo Marketplace is a community-driven repository of agent tooling prompts a
 
 Skills are self-contained packages that extend an agent's capabilities with specialized knowledge and repeatable workflows. At their core, a skill is a folder containing a `SKILL.md` file with metadata and instructions that tell an agent how to perform a specific task.
 
-Skills follow the open [Agent Skills specification](https://agentskills.io/), making them interoperable across any compatible AI agent—not just Kilo.
+Skills follow the open [Agent Skills specification](https://agentskills.io/), making them interoperable across any compatible AI agent—not just Pound.
 
 **Key benefits:**
 - **Self-documenting**: Easy to read, audit, and improve
@@ -137,7 +137,7 @@ A mode defines:
 - A "Security Reviewer" mode with read-only access for auditing
 - A "Test Engineer" mode focused on test files
 
-Modes can be shared as YAML configurations and imported into Kilo Code or other compatible tools.
+Modes can be shared as YAML configurations and imported into Pound Code or other compatible tools.
 
 Browse available modes in the [`modes/`](./modes/) directory.
 
