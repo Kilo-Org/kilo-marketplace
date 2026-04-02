@@ -64,7 +64,7 @@ This skill is ideal for:
 ## Example Usage
 
 ```
-When you ask the agent to create a skill called "pdf-analyzer":
+When you ask Kilo Code to create a skill called "pdf-analyzer":
 1. Creates /skill-pdf-analyzer/ with SKILL.md template
 2. Generates structured directories (scripts/, references/, assets/)
 3. Validates the skill structure

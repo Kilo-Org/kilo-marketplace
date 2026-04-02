@@ -54,7 +54,7 @@ This skill transforms your meeting transcripts into actionable insights about yo
 ### Basic Setup
 
 1. Download your meeting transcripts to a folder (e.g., `~/meetings/`)
-2. Navigate to that folder in Kilo
+2. Navigate to that folder in Kilo Code
 3. Ask for the analysis you want
 
 ### Quick Start Examples
@@ -289,7 +289,7 @@ today."
 **From Granola** (free with Lenny's newsletter subscription):
 - Granola auto-transcribes your meetings
 - Export transcripts to a folder: [Instructions on how]
-- Point Kilo to that folder
+- Point Kilo Code to that folder
 
 **From Zoom**:
 - Enable cloud recording with transcription
@@ -299,7 +299,7 @@ today."
 **From Google Meet**:
 - Use Google Docs auto-transcription
 - Save transcript docs to a folder
-- Download as .txt files or give Kilo access
+- Download as .txt files or give Kilo Code access
 
 **From Fireflies.ai, Otter.ai, etc.**:
 - Export transcripts in bulk

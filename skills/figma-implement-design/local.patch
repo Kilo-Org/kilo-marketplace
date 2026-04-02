@@ -1,22 +1,16 @@
 diff -ruN a/figma-implement-design/SKILL.md b/figma-implement-design/SKILL.md
---- a/figma-implement-design/SKILL.md	2026-03-16 12:14:01
-+++ b/figma-implement-design/SKILL.md	2026-03-16 11:26:25
-@@ -36,16 +36,30 @@
+--- a/figma-implement-design/SKILL.md	2026-04-01 17:52:40
++++ b/figma-implement-design/SKILL.md	2026-04-01 17:52:33
+@@ -41,6 +41,33 @@
  
- ### Step 0: Set up Figma MCP (if not already configured)
+ **Follow these steps in order. Do not skip steps.**
  
--If any MCP call fails because Figma MCP is not connected, pause and set it up:
++### Step 0: Set up Figma MCP (if not already configured)
++
 +If any MCP call fails because Figma MCP is not connected, pause and help the user set it up.
- 
--1. Add the Figma MCP:
--   - `codex mcp add figma --url https://mcp.figma.com/mcp`
--2. Enable remote MCP client:
--   - Set `[features].rmcp_client = true` in `config.toml` **or** run `codex --enable rmcp_client`
--3. Log in with OAuth:
--   - `codex mcp login figma`
++
 +The Figma MCP server runs locally via the Figma Desktop app. Ensure the Figma Desktop app is running, then add the Figma Desktop MCP server to your config:
- 
--After successful login, the user will have to restart codex. You should finish your answer and tell them so when they try again they can continue with Step 1.
++
 +```json
 +{
 +  "mcp": {
@@ -37,6 +31,50 @@ diff -ruN a/figma-implement-design/SKILL.md b/figma-implement-design/SKILL.md
 +Project-level configuration takes precedence over global settings.
 +
 +After adding the server, restart Kilo Code so it can connect to the Figma MCP server, then continue with Step 1.
- 
++
  ### Step 1: Get Node ID
  
+ #### Option A: Parse from Figma URL
+diff -ruN a/figma-implement-design/SKILL.md.rej b/figma-implement-design/SKILL.md.rej
+--- a/figma-implement-design/SKILL.md.rej	1970-01-01 01:00:00
++++ b/figma-implement-design/SKILL.md.rej	2026-04-01 17:49:21
+@@ -0,0 +1,39 @@
++@@ -36,16 +36,30 @@
++ 
++ ### Step 0: Set up Figma MCP (if not already configured)
++ 
++-If any MCP call fails because Figma MCP is not connected, pause and set it up:
+++If any MCP call fails because Figma MCP is not connected, pause and help the user set it up.
++ 
++-1. Add the Figma MCP:
++-   - `codex mcp add figma --url https://mcp.figma.com/mcp`
++-2. Enable remote MCP client:
++-   - Set `[features].rmcp_client = true` in `config.toml` **or** run `codex --enable rmcp_client`
++-3. Log in with OAuth:
++-   - `codex mcp login figma`
+++The Figma MCP server runs locally via the Figma Desktop app. Ensure the Figma Desktop app is running, then add the Figma Desktop MCP server to your config:
++ 
++-After successful login, the user will have to restart codex. You should finish your answer and tell them so when they try again they can continue with Step 1.
+++```json
+++{
+++  "mcp": {
+++    "Figma Desktop": {
+++      "type": "remote",
+++      "url": "http://127.0.0.1:3845/mcp"
+++    }
+++  }
+++}
+++```
+++
+++**VS Code Extension:** Open Kilo Code Settings > Agent Behaviour > MCP Servers, then click "Edit Global MCP" (or "Edit Project MCP" for project-specific config) and add the config above.
+++
+++**CLI:** Add the `mcp` block to your `kilo.json` config file. Config locations:
+++- **Global:** `~/.config/kilo/kilo.json`
+++- **Project:** `./kilo.json` or `./.kilo/kilo.json` in your project root
+++
+++Project-level configuration takes precedence over global settings.
+++
+++After adding the server, restart Kilo Code so it can connect to the Figma MCP server, then continue with Step 1.
++ 
++ ### Step 1: Get Node ID
++ 

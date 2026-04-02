@@ -75,7 +75,7 @@ Executable code (Python/Bash/etc.) that can be run directly to perform specific 
 
 **Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
 
-**Note:** Scripts may be executed without loading into context, but can still be read by the agent for patching or environment adjustments.
+**Note:** Scripts may be executed without loading into context, but can still be read for patching or environment adjustments.
 
 ### references/
 Documentation and reference material intended to be loaded into context to inform the agent's process and thinking.
@@ -85,7 +85,7 @@ Documentation and reference material intended to be loaded into context to infor
 - BigQuery: API reference documentation and query examples
 - Finance: Schema documentation, company policies
 
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that the agent should reference while working.
+**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information to reference while working.
 
 ### assets/
 Files not intended to be loaded into context, but rather used within the output the agent produces.
@@ -165,7 +165,7 @@ This placeholder represents where asset files would be stored.
 Replace with actual asset files (templates, images, fonts, etc.) or delete if not needed.
 
 Asset files are NOT intended to be loaded into context, but rather used within
-the output the agent produces.
+the output Claude produces.
 
 Example asset files from other skills:
 - Brand guidelines: logo.png, slides_template.pptx
