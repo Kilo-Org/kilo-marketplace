@@ -1,0 +1,46 @@
+id: kcp-mcp
+name: KCP — Knowledge Context Protocol
+description: |
+  Exposes typed capability manifests (KCP) as MCP resources. Gives agents structured
+  knowledge of CLI tools, APIs, and services — what they do, what flags matter, what
+  output to expect — reducing context window waste by ~33% in CLI-heavy sessions.
+  289 bundled manifests covering git, docker, kubectl, npm, aws, terraform, and more.
+author: totto
+url: https://github.com/Cantara/knowledge-context-protocol
+tags:
+  - knowledge
+  - context
+  - cli-tools
+  - token-efficiency
+  - manifests
+  - kcp
+prerequisites:
+  - Node.js 18+
+content:
+  - name: NPX (with knowledge.yaml path)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "kcp-mcp", "{{KNOWLEDGE_YAML_PATH}}"],
+        "env": {}
+      }
+  - name: Local (with custom kcp-commands directory)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "kcp-mcp", "--commands-dir", "{{COMMANDS_DIR}}"],
+        "env": {}
+      }
+parameters:
+  - name: Knowledge YAML Path
+    key: KNOWLEDGE_YAML_PATH
+    description: Absolute path to your project knowledge.yaml manifest file. The server reads this to expose structured knowledge as MCP resources. MCP clients do not guarantee cwd, so an absolute path is required.
+    placeholder: /absolute/path/to/your/project/knowledge.yaml
+  - name: Custom Commands Directory
+    key: COMMANDS_DIR
+    description: Absolute path to a directory containing kcp-commands YAML manifests (see github.com/Cantara/kcp-commands for the format). Only required when using the "Local (with custom kcp-commands directory)" option.
+    placeholder: ~/.kcp/commands
