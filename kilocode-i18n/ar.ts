@@ -808,7 +808,7 @@ export const dict = {
   "settings.permissions.tool.bash.description": "تشغيل أوامر shell",
   "settings.permissions.tool.task.title": "مهمة",
   "settings.permissions.tool.task.description": "تشغيل الوكلاء الفرعيين",
-  "settings.permissions.tool.skill.title": "مهارة",
+  "settings.permissions.tool.skill.title": "Skill",
   "settings.permissions.tool.skill.description": "تحميل مهارة بالاسم",
   "settings.permissions.tool.lsp.title": "LSP",
   "settings.permissions.tool.lsp.description": "تشغيل استعلامات خادم اللغة",

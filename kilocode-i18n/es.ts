@@ -231,7 +231,7 @@ export const dict = {
   "prompt.popover.emptyCommands": "Sin comandos coincidentes",
   "prompt.dropzone.label": "Suelta imágenes o PDFs aquí",
   "prompt.slash.badge.custom": "personalizado",
-  "prompt.slash.badge.skill": "habilidad",
+  "prompt.slash.badge.skill": "skill",
   "prompt.slash.badge.mcp": "mcp",
   "prompt.context.active": "activo",
   "prompt.context.includeActiveFile": "Incluir archivo activo",

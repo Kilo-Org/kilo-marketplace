@@ -232,7 +232,7 @@ export const dict = {
   "prompt.popover.emptyCommands": "Geen overeenkomende commando's",
   "prompt.dropzone.label": "Sleep hier afbeeldingen of PDF's",
   "prompt.slash.badge.custom": "aangepast",
-  "prompt.slash.badge.skill": "vaardigheid",
+  "prompt.slash.badge.skill": "skill",
   "prompt.slash.badge.mcp": "mcp",
   "prompt.context.active": "actief",
   "prompt.context.includeActiveFile": "Actief bestand opnemen",
@@ -792,7 +792,7 @@ export const dict = {
 
   "settings.permissions.title": "Toestemmingen",
   "settings.permissions.description": "Bepaal welke tools de server standaard mag gebruiken.",
-  "settings.permissions.section.tools": "Hulpmiddelen",
+  "settings.permissions.section.tools": "Tools",
   "settings.permissions.toast.updateFailed.title": "Updaten van toestemmingen is mislukt",
 
   "settings.permissions.action.allow": "Toestaan",
@@ -814,7 +814,7 @@ export const dict = {
   "settings.permissions.tool.bash.description": "Shell-opdrachten uitvoeren",
   "settings.permissions.tool.task.title": "Taak",
   "settings.permissions.tool.task.description": "Sub-agents starten",
-  "settings.permissions.tool.skill.title": "Vaardigheid",
+  "settings.permissions.tool.skill.title": "Skill",
   "settings.permissions.tool.skill.description": "Laad een skill op naam",
   "settings.permissions.tool.lsp.title": "LSP",
   "settings.permissions.tool.lsp.description": "Voer language server queries uit",
@@ -996,8 +996,8 @@ export const dict = {
   "settings.agentBehaviour.subtab.agents": "Agenten",
   "settings.agentBehaviour.subtab.mcpServers": "MCP Servers",
   "settings.agentBehaviour.subtab.rules": "Regels",
-  "settings.agentBehaviour.subtab.workflows": "Werkstromen",
-  "settings.agentBehaviour.subtab.skills": "Vaardigheden",
+  "settings.agentBehaviour.subtab.workflows": "Workflows",
+  "settings.agentBehaviour.subtab.skills": "Skills",
 
   "settings.browser.description":
     "Indien ingeschakeld kan de AI agent interactie hebben met webpagina's — navigeren, klikken, typen en screenshots maken. Er wordt een Chrome-venster geopend zodat je de agent aan het werk kunt zien.",

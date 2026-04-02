@@ -821,7 +821,7 @@ export const dict = {
   "settings.permissions.tool.bash.description": "Выполнение команд оболочки",
   "settings.permissions.tool.task.title": "Задача",
   "settings.permissions.tool.task.description": "Запуск под-агентов",
-  "settings.permissions.tool.skill.title": "Навык",
+  "settings.permissions.tool.skill.title": "Skill",
   "settings.permissions.tool.skill.description": "Загрузить навык по имени",
   "settings.permissions.tool.lsp.title": "LSP",
   "settings.permissions.tool.lsp.description": "Выполнение запросов к языковому серверу",

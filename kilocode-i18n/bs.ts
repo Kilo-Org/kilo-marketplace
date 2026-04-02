@@ -232,7 +232,7 @@ export const dict = {
   "prompt.popover.emptyCommands": "Nema komandi",
   "prompt.dropzone.label": "Spusti slike ili PDF-ove ovdje",
   "prompt.slash.badge.custom": "prilagođeno",
-  "prompt.slash.badge.skill": "vještina",
+  "prompt.slash.badge.skill": "skill",
   "prompt.slash.badge.mcp": "mcp",
   "prompt.context.active": "aktivno",
   "prompt.context.includeActiveFile": "Uključi aktivnu datoteku",

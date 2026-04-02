@@ -235,7 +235,7 @@ export const dict = {
   "prompt.popover.emptyCommands": "Keine passenden Befehle",
   "prompt.dropzone.label": "Bilder oder PDFs hier ablegen",
   "prompt.slash.badge.custom": "benutzerdefiniert",
-  "prompt.slash.badge.skill": "Fertigkeit",
+  "prompt.slash.badge.skill": "skill",
   "prompt.slash.badge.mcp": "mcp",
   "prompt.context.active": "aktiv",
   "prompt.context.includeActiveFile": "Aktive Datei einbeziehen",
@@ -804,7 +804,7 @@ export const dict = {
 
   "settings.permissions.title": "Berechtigungen",
   "settings.permissions.description": "Steuern Sie, welche Tools der Server standardmäßig verwenden darf.",
-  "settings.permissions.section.tools": "Werkzeuge",
+  "settings.permissions.section.tools": "Tools",
   "settings.permissions.toast.updateFailed.title": "Berechtigungen konnten nicht aktualisiert werden",
 
   "settings.permissions.action.allow": "Erlauben",
@@ -1009,7 +1009,7 @@ export const dict = {
   "settings.agentBehaviour.subtab.agents": "Agenten",
   "settings.agentBehaviour.subtab.mcpServers": "MCP-Server",
   "settings.agentBehaviour.subtab.rules": "Regeln",
-  "settings.agentBehaviour.subtab.workflows": "Arbeitsabläufe",
+  "settings.agentBehaviour.subtab.workflows": "Workflows",
   "settings.agentBehaviour.subtab.skills": "Fähigkeiten",
 
   "settings.browser.description":

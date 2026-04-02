@@ -804,7 +804,7 @@ export const dict = {
   "settings.permissions.tool.bash.description": "執行 shell 命令",
   "settings.permissions.tool.task.title": "任務",
   "settings.permissions.tool.task.description": "啟動 sub-agent",
-  "settings.permissions.tool.skill.title": "技能",
+  "settings.permissions.tool.skill.title": "Skill",
   "settings.permissions.tool.skill.description": "按名稱載入技能",
   "settings.permissions.tool.lsp.title": "LSP",
   "settings.permissions.tool.lsp.description": "執行語言伺服器查詢",
@@ -980,7 +980,7 @@ export const dict = {
   "settings.agentBehaviour.subtab.mcpServers": "MCP 伺服器",
   "settings.agentBehaviour.subtab.rules": "規則",
   "settings.agentBehaviour.subtab.workflows": "工作流程",
-  "settings.agentBehaviour.subtab.skills": "技能",
+  "settings.agentBehaviour.subtab.skills": "Skills",
 
   "settings.browser.description":
     "啟用後，AI Agent 可以與網頁互動，可導覽、點選、輸入並擷取螢幕截圖。Chrome 視窗將開啟，方便觀察 Agent 的工作。",
