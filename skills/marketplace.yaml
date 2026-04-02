@@ -222,6 +222,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/changelog-generator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/changelog-generator/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/changelog-generator.tar.gz
+  - id: cicd-expert
+    description: >-
+      Expert in CI/CD workflows and Git hooks. Use when users want to set up continuous integration,
+      create pre-commit or pre-push hooks, generate pipeline configurations, or run local validation
+      before committing or pushing code.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cicd-expert
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cicd-expert/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cicd-expert.tar.gz
   - id: create-pull-request
     description: >-
       Create a GitHub pull request following project conventions. Use when the user asks to create a PR, submit changes
