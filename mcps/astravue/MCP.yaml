@@ -19,6 +19,6 @@ content:
       - Astravue account
     content: >
       {
-        "type": "streamable-http",
+        "type": "remote",
         "url": "https://api.astravue.com/mcp"
       }
