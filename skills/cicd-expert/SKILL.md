@@ -23,7 +23,7 @@ Use this skill when users want to:
 - Run local validation before committing or pushing code
 - Implement automated testing and linting workflows
 
-## What This Skill Does
+## Before Setting Up Tools\n\n> ALWAYS use web search to find the latest version of any tool before specifying it in configurations. Package versions change frequently - check npm, GitHub releases, or official docs for the most current versions unless the user specifies otherwise.\n\n## What This Skill Does
 
 The CI/CD Expert provides the following capabilities:
 
@@ -33,8 +33,8 @@ The CI/CD Expert provides the following capabilities:
 4. **Best Practices** - Provide recommendations for CI/CD workflows and industry best practices
 
 > **Critical Principle: Local/CI Parity**
-> Pre-commit hooks MUST match CI/CD workflows 1:1. Jobs should never pass locally but fail in the cloud. This means:
-> - The same commands run in hooks must run in CI pipelines
+> Pre-commit hooks SHOULD match CI/CD workflows 1:1. Jobs should never pass locally but fail in the cloud. This means:
+> - The same commands run in hooks SHOULD run in CI pipelines
 > - The same tool versions and configurations
 > - The same environment settings
 > - Never skip checks locally that run in CI
@@ -73,7 +73,7 @@ If existing configurations are found, the skill will:
 
 ### Ensure 1:1 Matching
 
-When creating or updating configurations, the skill MUST ensure:
+When creating or updating configurations, the skill SHOULD ensure:
 
 1. **Command Parity**: Pre-commit hooks run the exact same commands as CI jobs
 2. **Config Parity**: Same linter/formatter configs, same eslint config, same rules
@@ -92,7 +92,7 @@ jobs:
       - run: npm run typecheck
       - run: npm test
 
-# .pre-commit-config.yaml (MUST match exactly)
+# .pre-commit-config.yaml (SHOULD match exactly)
 repos:
   - repo: local
     hooks:
@@ -150,7 +150,7 @@ Example `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -158,7 +158,7 @@ repos:
       - id: check-added-large-files
 
   - repo: https://github.com/psf/black
-    rev: 24.10.0
+    rev: 26.3.1
     hooks:
       - id: black
 
@@ -322,7 +322,7 @@ npm run check
 
 ## Tips
 
-1. **Local/CI Parity First** - ALWAYS match pre-commit hooks 1:1 with CI workflows. Never skip checks locally that run in CI
+1. **Local/CI Parity First** - Ideally match pre-commit hooks 1:1 with CI workflows. Never skip checks locally that run in CI
 2. **Start with pre-commit hooks** - They're faster and catch issues early
 3. **Keep hooks fast** - Long-running checks belong in CI pipelines, not pre-commit
 4. **Use caching** - Configure cache in your CI pipelines to speed up builds
@@ -345,3 +345,35 @@ npm run check
 - [GitLab CI/CD Documentation](https://docs.gitlab.com/ee/ci/)
 - [Azure DevOps Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/)
 - [Pre-commit Hooks](https://pre-commit.com/)
+
+## Known Issues and Workarounds
+
+This section documents common issues encountered when setting up CI/CD and how to avoid them.
+
+### ESLint 9 Flat Config
+
+- **Avoid extends strings**: ESLint 9 flat config does not support string references like "plugin:tseslint/react". Use config objects or spread operators instead:
+  - WRONG: extends: ["tseslint/react"]
+  - CORRECT: ...tseslint.configs.recommended
+
+### React Hooks Plugin
+
+- **Optional**: eslint-plugin-react-hooks may have compatibility issues with flat config. If it fails to load, skip it or configure manually if needed.
+
+### Pre-commit Local Hooks
+
+- **Avoid types for local hooks**: Pre-commit does not recognize types: [typescript] for local hooks. Use files patterns instead:
+  - WRONG: types: [typescript]
+  - CORRECT: files: ^.*\.tsx?$
+
+- **Stick to repo hooks**: Prefer hooks from established repositories over custom local hooks when possible.
+
+### check-json Hook
+
+- **JSONC files**: The check-json hook fails on JSONC files (JSON with comments like tsconfig.json). Either skip this check or exclude config files.
+
+### Husky v9+ Setup
+
+- **Deprecated commands**: husky add and husky install are deprecated in v9+. Use manual file creation instead:
+  - WRONG: npx husky add .husky/pre-commit "npm test"
+  - CORRECT: echo "npm test" > .husky/pre-commit && chmod +x .husky/pre-commit
