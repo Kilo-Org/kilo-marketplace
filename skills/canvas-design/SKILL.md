@@ -88,7 +88,7 @@ Visual expression: Grid-based precision, bold photography or stark graphics, dra
 - **VISUAL PHILOSOPHY**: Create an aesthetic worldview to be expressed through design
 - **MINIMAL TEXT**: Always emphasize that text is sparse, essential-only, integrated as visual element - never lengthy
 - **SPATIAL EXPRESSION**: Ideas communicate through space, form, color, composition - not paragraphs
-- **ARTISTIC FREEDOM**: The next iteration interprets the philosophy visually - provide creative room
+- **ARTISTIC FREEDOM**: The next phase interprets the philosophy visually - provide creative room
 - **PURE DESIGN**: This is about making ART OBJECTS, not documents with decoration
 - **EXPERT CRAFTSMANSHIP**: Repeatedly emphasize the final work must look meticulously crafted, labored over with care, the product of countless hours by someone at the top of their field
 

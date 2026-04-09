@@ -98,14 +98,118 @@ Show what the skill produces
 - Use case 3
 ```
 
+## Skills Must Be Hosted Externally
+
+The Kilo Marketplace does **not** host the source code for contributed skills directly. Instead, the marketplace acts as an index that references skills hosted in external repositories. This design allows skill authors to:
+
+- **Maintain ownership** — you control your skill's repository and can update it at any time
+- **Iterate independently** — push fixes and improvements without waiting for marketplace PRs
+- **Keep licensing clear** — your repository is the canonical source with its own license
+
+### How It Works
+
+1. **Create a public GitHub repository** for your skill (or a repository containing multiple skills).
+2. **Add a `SKILL.md`** file with the standard frontmatter (`name`, `description`, etc.).
+3. **Submit a PR to this marketplace** that adds your skill using the `add-remote-skill` tooling (see below). The script automatically pulls in your skill and adds the `metadata.source` reference to the frontmatter.
+
+The marketplace periodically syncs with source repositories to pull in updates, so you don't need to submit a new PR every time you change your skill.
+
+### The `metadata.source` Frontmatter
+
+Every contributed skill in the marketplace must have a `metadata.source` section in its YAML frontmatter. This tells the marketplace where the canonical source lives. **You don't need to add this yourself** — the `add-remote-skill` script (see below) adds it automatically when importing your skill. But for reference, here's what it looks like:
+
+```yaml
+---
+name: my-skill
+description: >-
+  A clear description of what this skill does and when to use it.
+metadata:
+  category: development
+  author: your-github-username
+  source:
+    repository: https://github.com/yourname/your-skill-repo
+    path: path/to/skill
+    license_path: LICENSE
+---
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
+| `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
+| `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
+
+### Real-World Examples
+
+Here are some existing skills in the marketplace and how they reference their source repositories:
+
+**Angular Component** (from [analogjs/angular-skills](https://github.com/analogjs/angular-skills)):
+```yaml
+---
+name: angular-component
+description: Create modern Angular standalone components following v20+ best practices...
+metadata:
+  category: development
+  source:
+    repository: 'https://github.com/analogjs/angular-skills'
+    path: skills/angular-component
+    license_path: LICENSE
+---
+```
+
+**Frontend Design** (from [anthropics/skills](https://github.com/anthropics/skills)):
+```yaml
+---
+name: frontend-design
+description: Create distinctive, production-grade frontend interfaces...
+metadata:
+  category: development
+  source:
+    repository: 'https://github.com/anthropics/skills'
+    path: skills/frontend-design
+    license_path: skills/frontend-design/LICENSE.txt
+---
+```
+
+**Create Pull Request** (from [cline/cline](https://github.com/cline/cline)):
+```yaml
+---
+name: create-pull-request
+description: Create a GitHub pull request following project conventions...
+metadata:
+  category: development
+  source:
+    repository: 'https://github.com/cline/cline'
+    path: .cline/skills/create-pull-request
+---
+```
+
+### Adding Your Skill to the Marketplace
+
+Once your skill is hosted in its own repository, use the `add-remote-skill` script to add it:
+
+```bash
+npx tsx bin/add-remote-skill.ts https://github.com/yourname/your-repo/tree/main/path/to/skill
+```
+
+This script will:
+1. Clone only the skill directory from your repository
+2. Copy it into `skills/<skill-name>/`
+3. Update the SKILL.md frontmatter with the correct `metadata.source` fields
+
+Then submit a PR with the result.
+
+> **Note:** Skills submitted without a valid `metadata.source` referencing an external repository will not be accepted unless they are official Kilo skills.
+
 ## Pull Request Process
 
 1. Fork the repository
 2. Create a branch: `git checkout -b add-skill-name`
-3. Add your skill folder with SKILL.md
-4. Commit your changes: `git commit -m "Add [Skill Name] skill"`
-5. Push to your fork: `git push origin add-skill-name`
-6. Open a Pull Request
+3. Host your skill in your own public GitHub repository (see above)
+4. Run `npx tsx bin/add-remote-skill.ts <github-url-to-your-skill>` to add it
+5. Commit your changes: `git commit -m "Add [Skill Name] skill"`
+6. Push to your fork: `git push origin add-skill-name`
+7. Open a Pull Request
 
 ## Pull Request Guidelines
 

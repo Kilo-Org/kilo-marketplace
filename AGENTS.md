@@ -22,6 +22,10 @@ skill-name/
 
 ## SKILL.md Structure
 
+### Note on Contributed Skills
+
+All contributed skills must reference an external repository in the `metadata.source` section of the SKILL.md frontmatter. The Kilo Marketplace does not host the source code for third-party skills directly. See [CONTRIBUTING.md](CONTRIBUTING.md#skills-must-be-hosted-externally) for details and examples.
+
 ### Frontmatter (Required)
 
 Every `SKILL.md` file must begin with YAML frontmatter containing metadata:

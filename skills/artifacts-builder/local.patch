@@ -1,0 +1,41 @@
+diff -ruN a/artifacts-builder/SKILL.md b/artifacts-builder/SKILL.md
+--- a/artifacts-builder/SKILL.md	2026-04-07 14:51:41
++++ b/artifacts-builder/SKILL.md	2026-04-07 14:50:09
+@@ -1,7 +1,7 @@
+ ---
+ name: artifacts-builder
+ description: >-
+-  Suite of tools for creating elaborate, multi-component claude.ai HTML
++  Suite of tools for creating elaborate, multi-component HTML
+   artifacts using modern frontend web technologies (React, Tailwind CSS,
+   shadcn/ui). Use for complex artifacts requiring state management, routing, or
+   shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+@@ -16,7 +16,7 @@
+ 
+ # Artifacts Builder
+ 
+-To build powerful frontend claude.ai artifacts, follow these steps:
++To build powerful frontend HTML artifacts, follow these steps:
+ 1. Initialize the frontend repo using `scripts/init-artifact.sh`
+ 2. Develop your artifact by editing the generated code
+ 3. Bundle all code into a single HTML file using `scripts/bundle-artifact.sh`
+@@ -59,7 +59,7 @@
+ bash scripts/bundle-artifact.sh
+ ```
+ 
+-This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Claude conversations as an artifact.
++This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Kilo sessions as an artifact.
+ 
+ **Requirements**: Your project must have an `index.html` in the root directory.
+ 
+diff -ruN a/artifacts-builder/scripts/bundle-artifact.sh b/artifacts-builder/scripts/bundle-artifact.sh
+--- a/artifacts-builder/scripts/bundle-artifact.sh	2026-04-07 14:51:41
++++ b/artifacts-builder/scripts/bundle-artifact.sh	2026-04-07 14:50:09
+@@ -50,5 +50,5 @@
+ echo "✅ Bundle complete!"
+ echo "📄 Output: bundle.html ($FILE_SIZE)"
+ echo ""
+-echo "You can now use this single HTML file as an artifact in Claude conversations."
++echo "You can now use this single HTML file as an artifact in Kilo sessions."
+ echo "To test locally: open bundle.html in your browser"
+\ No newline at end of file

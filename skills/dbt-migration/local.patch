@@ -1,0 +1,49 @@
+diff -ruN a/dbt-migration/.claude-plugin/plugin.json b/dbt-migration/.claude-plugin/plugin.json
+--- a/dbt-migration/.claude-plugin/plugin.json	2026-04-08 09:44:30
++++ b/dbt-migration/.claude-plugin/plugin.json	1970-01-01 01:00:00
+@@ -1,12 +0,0 @@
+-{
+-  "name": "dbt-migration",
+-  "description": "Skills for migrating dbt projects — moving from dbt Core to the Fusion engine or across data platforms.",
+-  "version": "1.1.1",
+-  "author": {
+-    "name": "dbt Labs"
+-  },
+-  "license": "Apache-2.0",
+-  "homepage": "https://docs.getdbt.com/",
+-  "repository": "https://github.com/dbt-labs/dbt-agent-skills",
+-  "keywords": ["dbt", "migration", "fusion", "platform-migration"]
+-}
+diff -ruN a/dbt-migration/SKILL.md b/dbt-migration/SKILL.md
+--- a/dbt-migration/SKILL.md	1970-01-01 01:00:00
++++ b/dbt-migration/SKILL.md	2026-04-08 09:44:30
+@@ -0,0 +1,29 @@
++---
++name: dbt-migration
++description: Skills for migrating dbt projects - moving from dbt Core to the Fusion engine or across data platforms. Use when migrating dbt projects between platforms or to dbt Fusion.
++license: Apache-2.0
++metadata:
++  category: development
++  author: dbt-labs
++  source:
++    repository: https://github.com/dbt-labs/dbt-agent-skills
++    path: skills/dbt-migration
++---
++
++# dbt Migration Skills
++
++A collection of skills for migrating dbt projects - moving from dbt Core to the Fusion engine or across data platforms.
++
++## Included Skills
++
++### migrating-dbt-core-to-fusion
++Classifies dbt-core to Fusion migration errors into actionable categories (auto-fixable, guided fixes, needs input, blocked). Use when a user needs help triaging migration errors to understand what they can fix vs what requires Fusion engine updates.
++
++### migrating-dbt-project-across-platforms
++Use when migrating a dbt project from one data platform or data warehouse to another (e.g., Snowflake to Databricks, Databricks to Snowflake) using dbt Fusion's real-time compilation to identify and fix SQL dialect differences.
++
++## Source
++
++- **Repository**: https://github.com/dbt-labs/dbt-agent-skills
++- **License**: Apache-2.0
++- **Author**: dbt Labs

@@ -1,6 +1,6 @@
 # Agent MD Refactor
 
-A Claude Code skill that transforms bloated agent instruction files into clean, organized documentation using progressive disclosure principles.
+A skill that transforms bloated agent instruction files into clean, organized documentation using progressive disclosure principles.
 
 Based on https://x.com/mattpocockuk/status/2012906065856270504 (Matt Pocock's Prompt Idea)
 
@@ -103,7 +103,7 @@ Identifies instructions that should be removed entirely:
 ```
 User: refactor my CLAUDE.md
 
-Claude: I'll analyze your CLAUDE.md file and refactor it using progressive
+Kilo: I'll analyze your CLAUDE.md file and refactor it using progressive
 disclosure principles...
 ```
 
@@ -112,7 +112,7 @@ disclosure principles...
 ```
 User: my AGENTS.md is too long, can you split it up?
 
-Claude: I'll review your AGENTS.md and organize it into focused, linked files...
+Kilo: I'll review your AGENTS.md and organize it into focused, linked files...
 ```
 
 ### After a Project Grows
@@ -120,7 +120,7 @@ Claude: I'll review your AGENTS.md and organize it into focused, linked files...
 ```
 User: organize my agent config - it's gotten out of control
 
-Claude: I'll apply the 5-phase refactoring process to clean up your
+Kilo: I'll apply the 5-phase refactoring process to clean up your
 agent instructions...
 ```
 

@@ -86,15 +86,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/theme-factory
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/theme-factory/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/theme-factory.tar.gz
-  - id: video-downloader
+  - id: youtube-downloader
     description: >-
       Download YouTube videos with customizable quality and format options. Use this skill when the user asks to
       download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p),
       multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.
     category: creative-media
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/video-downloader
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/video-downloader/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/video-downloader.tar.gz
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/youtube-downloader
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/youtube-downloader/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/youtube-downloader.tar.gz
   - id: agent-md-refactor
     description: >-
       Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure
@@ -240,12 +240,28 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/create-pull-request.tar.gz
+  - id: dbt
+    description: >-
+      Skills for analytics engineering with dbt - building models, writing tests, querying the semantic layer,
+      troubleshooting jobs, and more. Use when doing any dbt analytics engineering work.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt.tar.gz
+  - id: dbt-migration
+    description: >-
+      Skills for migrating dbt projects - moving from dbt Core to the Fusion engine or across data platforms. Use when
+      migrating dbt projects between platforms or to dbt Fusion.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-migration
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-migration/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-migration.tar.gz
   - id: figma-implement-design
     description: >-
-      Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow (design
-      context, screenshots, assets, and project-convention translation). Trigger when the user provides Figma URLs or
-      node IDs, or asks to implement designs or components that must match Figma specs. Requires a working Figma MCP
-      server connection.
+      Translates Figma designs into production-ready application code with 1:1 visual fidelity. Use when implementing UI
+      code from Figma files, when user mentions "implement design", "generate code", "implement component", provides
+      Figma URLs, or asks to build components matching Figma specs. For Figma canvas writes via `use_figma`, use
+      `figma-use`.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/figma-implement-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/figma-implement-design/SKILL.md
@@ -281,7 +297,7 @@ items:
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
-      existing skill) that extends the agent's capabilities with specialized knowledge, workflows, or tool integrations.
+      existing skill) that extends Kilo's capabilities with specialized knowledge, workflows, or tool integrations.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-creator/SKILL.md

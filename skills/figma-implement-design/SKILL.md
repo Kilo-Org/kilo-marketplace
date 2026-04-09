@@ -1,11 +1,11 @@
 ---
 name: figma-implement-design
 description: >-
-  Translate Figma nodes into production-ready code with 1:1 visual fidelity
-  using the Figma MCP workflow (design context, screenshots, assets, and
-  project-convention translation). Trigger when the user provides Figma URLs or
-  node IDs, or asks to implement designs or components that must match Figma
-  specs. Requires a working Figma MCP server connection.
+  Translates Figma designs into production-ready application code with 1:1
+  visual fidelity. Use when implementing UI code from Figma files, when user
+  mentions "implement design", "generate code", "implement component", provides
+  Figma URLs, or asks to build components matching Figma specs. For Figma canvas
+  writes via `use_figma`, use `figma-use`.
 metadata:
   category: development
   source:
@@ -14,12 +14,19 @@ metadata:
     license_path: skills/.curated/figma-implement-design/LICENSE.txt
 ---
 
-
 # Implement Design
 
 ## Overview
 
 This skill provides a structured workflow for translating Figma designs into production-ready code with pixel-perfect accuracy. It ensures consistent integration with the Figma MCP server, proper use of design tokens, and 1:1 visual parity with designs.
+
+## Skill Boundaries
+
+- Use this skill when the deliverable is code in the user's repository.
+- If the user asks to create/edit/delete nodes inside Figma itself, switch to [figma-use](../figma-use/SKILL.md).
+- If the user asks to build or update a full-page screen in Figma from code or a description, switch to [figma-generate-design](../figma-generate-design/SKILL.md).
+- If the user asks only for Code Connect mappings, switch to [figma-code-connect-components](../figma-code-connect-components/SKILL.md).
+- If the user asks to author reusable agent rules, switch to [figma-create-design-system-rules](../figma-create-design-system-rules/SKILL.md).
 
 ## Prerequisites
 
@@ -51,7 +58,7 @@ The Figma MCP server runs locally via the Figma Desktop app. Ensure the Figma De
 }
 ```
 
-**VS Code Extension:** Open Kilo Code Settings > Agent Behaviour > MCP Servers, then click "Edit Global MCP" (or "Edit Project MCP" for project-specific config) and add the config above.
+**VS Code Extension:** Open Kilo Settings > Agent Behaviour > MCP Servers, then click "Edit Global MCP" (or "Edit Project MCP" for project-specific config) and add the config above.
 
 **CLI:** Add the `mcp` block to your `kilo.json` config file. Config locations:
 - **Global:** `~/.config/kilo/kilo.json`
@@ -59,7 +66,7 @@ The Figma MCP server runs locally via the Figma Desktop app. Ensure the Figma De
 
 Project-level configuration takes precedence over global settings.
 
-After adding the server, restart Kilo Code so it can connect to the Figma MCP server, then continue with Step 1.
+After adding the server, restart Kilo so it can connect to the Figma MCP server, then continue with Step 1.
 
 ### Step 1: Get Node ID
 

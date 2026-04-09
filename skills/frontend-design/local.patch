@@ -1,0 +1,9 @@
+diff -ruN a/frontend-design/SKILL.md b/frontend-design/SKILL.md
+--- a/frontend-design/SKILL.md	2026-04-07 14:51:46
++++ b/frontend-design/SKILL.md	2026-04-07 14:50:14
+@@ -51,4 +51,4 @@
+ 
+ **IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
+ 
+-Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
++Remember: The agent is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
