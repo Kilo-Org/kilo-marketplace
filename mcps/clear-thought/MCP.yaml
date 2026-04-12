@@ -18,16 +18,6 @@ prerequisites:
   - Node.js 18.x or higher
   - npm 9.x or higher
 content:
-  - name: NPM Package
-    prerequisites:
-      - Node.js
-      - npm
-    content: |
-      {
-        "command": "npm",
-        "args": ["install", "-g", "@waldzellai/clear-thought-onepointfive"],
-        "env": {}
-      }
   - name: NPX
     prerequisites:
       - Node.js
@@ -45,7 +35,7 @@ content:
         "command": "docker",
         "args": [
           "run",
-          "-it",
+          "-i",
           "waldzellai/clear-thought-onepointfive"
         ],
         "env": {}
