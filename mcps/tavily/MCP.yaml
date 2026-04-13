@@ -19,12 +19,8 @@ content:
       - Node.js
     content: |
       {
-        "command": [
-          "npx",
-          "-y",
-          "mcp-remote@latest",
-          "https://mcp.tavily.com/mcp"
-        ]
+        "command": "npx",
+        "args": ["-y", "mcp-remote@latest", "https://mcp.tavily.com/mcp"]
       }
   - name: NPX - Local
     prerequisites:
