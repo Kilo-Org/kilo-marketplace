@@ -267,6 +267,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/frontend-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/frontend-design/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/frontend-design.tar.gz
+  - id: grill-me
+    description: >-
+      Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch
+      of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill
+      me".
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grill-me
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grill-me/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grill-me.tar.gz
   - id: langsmith-fetch
     description: >-
       Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
