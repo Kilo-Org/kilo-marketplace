@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.1",
+    "tsx": "^4.21.0"
+  }
+}
