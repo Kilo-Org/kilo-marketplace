@@ -33,7 +33,7 @@ metadata:
       - skill-marketplace-publishing
       - hermes-agent-skill-authoring
       - github-repo-management
-  category: unknown
+  category: development
   source:
     repository: 'https://github.com/ralyodio/agent-skills'
     path: skills/promote-skill

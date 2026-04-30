@@ -26,7 +26,7 @@ metadata:
     - automation
     - puppeteer
     - easy-apply
-  category: unknown
+  category: business-marketing
   source:
     repository: 'https://github.com/ralyodio/agent-skills'
     path: skills/dice-easy-apply-automation
