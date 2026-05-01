@@ -1,0 +1,34 @@
+id: make
+name: Make
+description: Make MCP server allows AI systems to run scenarios and manage the contents of your Make account. It turns your active and on-demand scenarios into callable tools.
+author: Make
+url: https://developers.make.com/mcp-server
+tags:
+  - make
+  - automation
+  - scenarios
+  - workflow
+  - api-integration
+prerequisites:
+  - Make account with an MCP Token generated in your profile
+content:
+  - name: NPX (Local)
+    prerequisites:
+      - Node.js and npx installed
+    content: >
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "mcp-remote",
+          "https://{{MAKE_ZONE}}/mcp/u/{{MAKE_MCP_TOKEN}}/sse"
+        ],
+        "env": {}
+      }
+parameters:
+  - name: Make Zone
+    key: MAKE_ZONE
+    placeholder: eu2.make.com
+  - name: Make MCP Token
+    key: MAKE_MCP_TOKEN
+    placeholder: your-make-mcp-token
