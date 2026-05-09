@@ -33,6 +33,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lead-research-assistant
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lead-research-assistant/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lead-research-assistant.tar.gz
+  - id: x-twitter-scraper
+    description: >-
+      Use when the user needs X (Twitter) data or confirmation-gated X actions through Xquik: tweet search, user lookup,
+      follower extraction, media download, monitoring, webhooks, MCP, SDKs, posting, likes, DMs, and profile updates.
+      Requires a Xquik API key. Never ask for X login material.
+    category: business-marketing
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/x-twitter-scraper
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/x-twitter-scraper/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/x-twitter-scraper.tar.gz
   - id: content-research-writer
     description: >-
       Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on
