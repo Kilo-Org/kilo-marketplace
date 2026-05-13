@@ -1656,6 +1656,30 @@ items:
             "type": "streamable-http",
             "url": "https://learn.microsoft.com/api/mcp"
           }
+  - id: miro-mcp
+    name: Miro
+    description: Connects AI assistants to Miro boards via Miro's hosted MCP server, enabling board content creation,
+      reading, diagram generation, summarization, and code generation from Miro board context.
+    author: miro
+    url: https://developers.miro.com/docs/miro-mcp
+    tags:
+      - miro
+      - whiteboard
+      - collaboration
+      - diagram
+      - visual-canvas
+      - board-management
+      - design
+      - planning
+    prerequisites:
+      - Miro account
+    content:
+      - name: Streamable HTTP
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.miro.com/"
+          }
   - id: motherduck
     name: MotherDuck
     description: Enables database operations with MotherDuck and local DuckDB, providing tools for connection
