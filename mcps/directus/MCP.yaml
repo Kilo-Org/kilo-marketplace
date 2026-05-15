@@ -16,7 +16,7 @@ prerequisites:
 content: |
   {
     "command": "npx",
-    "args": ["@directus/content-mcp@latest"],
+    "args": ["-y", "@directus/content-mcp@latest"],
     "env": {
       "DIRECTUS_URL": "{{DIRECTUS_URL}}",
       "DIRECTUS_TOKEN": "{{DIRECTUS_TOKEN}}"
