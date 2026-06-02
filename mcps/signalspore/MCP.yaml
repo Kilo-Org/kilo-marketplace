@@ -17,7 +17,7 @@ tags:
 prerequisites:
   - Node.js
   - SignalSpore setup policy and write token from https://www.signalspore.com/setup
-content: >
+content: |
   {
     "command": "npx",
     "args": ["-y", "@yeahdog/signalspore-mcp@0.1.5"],
