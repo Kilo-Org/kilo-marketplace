@@ -2590,6 +2590,54 @@ items:
             "command": "docker",
             "args": ["run", "--rm", "-i", "mcp/sequentialthinking"]
           }
+  - id: signalspore
+    name: SignalSpore
+    description: >
+      Model-aware preflight MCP server for AI coding agents. SignalSpore lets an agent run a local gate, request a
+      task-start preflight card before risky shell, migration, deploy, database, or integration work, and submit one
+      sanitized post-task delta so future runs get sharper.
+    author: yeahdog
+    url: https://github.com/yeahdog/signalspore-mcp
+    tags:
+      - ai-agent
+      - agent-safety
+      - preflight
+      - coding-agents
+      - model-context-protocol
+      - mcp
+      - risk-management
+    prerequisites:
+      - Node.js
+      - SignalSpore setup policy and write token from https://www.signalspore.com/setup
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@yeahdog/signalspore-mcp@0.1.5"],
+        "env": {
+          "SIGNALSPORE_BASE_URL": "https://www.signalspore.com",
+          "SIGNALSPORE_AGENT_POLICY_ID": "{{SIGNALSPORE_AGENT_POLICY_ID}}",
+          "SIGNALSPORE_WRITE_TOKEN": "{{SIGNALSPORE_WRITE_TOKEN}}",
+          "SIGNALSPORE_MODEL_PROVIDER": "{{SIGNALSPORE_MODEL_PROVIDER}}",
+          "SIGNALSPORE_MODEL_NAME": "{{SIGNALSPORE_MODEL_NAME}}",
+          "SIGNALSPORE_MODEL_TIER": "{{SIGNALSPORE_MODEL_TIER}}"
+        }
+      }
+    parameters:
+      - name: SignalSpore Agent Policy ID
+        key: SIGNALSPORE_AGENT_POLICY_ID
+        placeholder: policy_from_signalspore_setup
+      - name: SignalSpore Write Token
+        key: SIGNALSPORE_WRITE_TOKEN
+        placeholder: token_from_signalspore_setup
+      - name: Model Provider
+        key: SIGNALSPORE_MODEL_PROVIDER
+        placeholder: operator-runtime
+      - name: Model Name
+        key: SIGNALSPORE_MODEL_NAME
+        placeholder: external-agent
+      - name: Model Tier
+        key: SIGNALSPORE_MODEL_TIER
+        placeholder: frontier_reasoning
   - id: slack
     name: Slack
     description: Enables AI assistants to interact with Slack workspaces, providing tools for messaging, channel management,
