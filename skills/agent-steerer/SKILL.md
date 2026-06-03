@@ -112,10 +112,3 @@ For any agent building a codebase:
 3. **After each feature:** Run lint, typecheck, tests
 4. **Before merging:** Security review, concurrency review, error handling review
 
-## References
-
-The memory graph contains detailed lessons under:
-- `AMG Project Learning` — specific failures observed in past project
-- `Agent Steering Best Practices` — derived guidelines
-
-To retrieve these: use `memory_search_nodes` with query "agent steering" or "AMG project learning".
