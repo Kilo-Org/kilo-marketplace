@@ -85,6 +85,7 @@ function agentFromMarkdown(dirName: string): MarketplaceAgent {
     options: {
       displayName: name,
       ...(options as Record<string, unknown>),
+      id,
     },
   };
 

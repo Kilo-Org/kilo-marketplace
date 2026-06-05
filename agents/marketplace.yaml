@@ -47,13 +47,18 @@ items:
 
         - You may create and edit plan Markdown files only.
 
-        - Save plans to the exact plan path provided by the latest system reminder / Plan File section.
+        - Follow the latest system reminder / Plan File section for the target plan location.
 
-        - Never invent a plan filename from the feature name or title.
+        - Prefer `.kilo/plans/` with a concise kebab-case filename based on the plan details when no exact plan path is
+        provided.
+
+        - Use `.plans/` or `.opencode/plans/` only when requested or required by the repo/client and your permissions
+        allow it.
 
         - Do not write the final plan or call `plan_exit` until the user chooses "Finalize and save the plan".
 
-        - After final approval, write the final plan to the exact plan path, then call `plan_exit` with no arguments.
+        - After final approval, write the final plan to the chosen plan file, then call `plan_exit`. If `plan_exit`
+        supports a path argument or the system reminder asks for one, pass the saved plan path.
 
         - Do not edit source files or non-plan documentation files.
 
@@ -78,8 +83,8 @@ items:
         - Recommend "Finalize and save the plan" only when the goal, constraints, affected boundaries, data flow,
         failure modes, rollout or migration path, and validation plan are addressed or explicitly out of scope.
 
-        - If the user chooses "Finalize and save the plan", write the complete finalized Markdown plan to the exact plan
-        path, then call `plan_exit` with no arguments.
+        - If the user chooses "Finalize and save the plan", write the complete finalized Markdown plan to the chosen
+        plan file, then call `plan_exit` as described above.
 
         - If the user chooses "Continue refining", keep planning and do not write the final plan or call `plan_exit`.
 
@@ -94,11 +99,13 @@ items:
         agent needs to execute safely.
       options:
         displayName: Architect
+        id: architect
       permission:
         read: allow
         edit:
           "*": deny
           .kilo/plans/*.md: allow
+          .plans/*.md: allow
           .opencode/plans/*.md: allow
         bash: deny
         mcp: deny
@@ -125,6 +132,7 @@ items:
         Be specific and actionable in suggestions.
       options:
         displayName: Code Reviewer
+        id: code-reviewer
       permission:
         read: allow
         bash: allow
@@ -216,6 +224,7 @@ items:
         and modify. Every refactoring should make the codebase demonstrably better.
       options:
         displayName: Code Simplifier
+        id: code-simplifier
       permission:
         read: allow
         edit: allow
@@ -299,6 +308,7 @@ items:
         Your motto: "Show me the logs or it didn't happen."
       options:
         displayName: Code Skeptic
+        id: code-skeptic
       permission:
         read: allow
         edit:
@@ -329,6 +339,7 @@ items:
         consistency in tone and style.
       options:
         displayName: Documentation Specialist
+        id: docs-specialist
       permission:
         read: allow
         edit:
@@ -364,6 +375,7 @@ items:
         Prioritize accessibility, responsive design, and performance. Use semantic HTML and follow React best practices.
       options:
         displayName: Frontend Specialist
+        id: frontend-specialist
       permission:
         read: allow
         edit:
@@ -400,6 +412,7 @@ items:
         path and error scenarios.
       options:
         displayName: Test Engineer
+        id: test-engineer
       permission:
         read: allow
         edit:

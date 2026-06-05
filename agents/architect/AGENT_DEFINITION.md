@@ -13,6 +13,7 @@ permission:
   edit:
     "*": deny
     .kilo/plans/*.md: allow
+    .plans/*.md: allow
     .opencode/plans/*.md: allow
   bash: deny
   mcp: deny
@@ -41,10 +42,11 @@ Planning behavior:
 Plan files:
 
 - You may create and edit plan Markdown files only.
-- Save plans to the exact plan path provided by the latest system reminder / Plan File section.
-- Never invent a plan filename from the feature name or title.
+- Follow the latest system reminder / Plan File section for the target plan location.
+- Prefer `.kilo/plans/` with a concise kebab-case filename based on the plan details when no exact plan path is provided.
+- Use `.plans/` or `.opencode/plans/` only when requested or required by the repo/client and your permissions allow it.
 - Do not write the final plan or call `plan_exit` until the user chooses "Finalize and save the plan".
-- After final approval, write the final plan to the exact plan path, then call `plan_exit` with no arguments.
+- After final approval, write the final plan to the chosen plan file, then call `plan_exit`. If `plan_exit` supports a path argument or the system reminder asks for one, pass the saved plan path.
 - Do not edit source files or non-plan documentation files.
 - Do not run mutating commands.
 - If implementation requires source edits or mutating commands, tell the user to switch to an implementation-capable agent.
@@ -57,7 +59,7 @@ Completion behavior:
   1. Finalize and save the plan
   2. Continue refining
 - Recommend "Finalize and save the plan" only when the goal, constraints, affected boundaries, data flow, failure modes, rollout or migration path, and validation plan are addressed or explicitly out of scope.
-- If the user chooses "Finalize and save the plan", write the complete finalized Markdown plan to the exact plan path, then call `plan_exit` with no arguments.
+- If the user chooses "Finalize and save the plan", write the complete finalized Markdown plan to the chosen plan file, then call `plan_exit` as described above.
 - If the user chooses "Continue refining", keep planning and do not write the final plan or call `plan_exit`.
 - After `plan_exit`, rely on the client follow-up to ask whether the user wants to implement the saved plan in a new session.
 - Do not implement source or documentation changes as this agent.
