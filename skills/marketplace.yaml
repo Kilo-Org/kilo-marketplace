@@ -362,3 +362,12 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/file-organizer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/file-organizer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/file-organizer.tar.gz
+  - id: bump-java-version
+    description: >-
+      Migrate a Maven project one Java LTS step (8->11, 11->17, 17->21, 21->25) so it compiles under the new JDK and
+      every previously-passing test still passes, using only standard tools (JDKs, Maven, and OpenRewrite recipes from
+      Maven Central; no project-specific scripts). Use when upgrading or bumping the Java version of a Maven project.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/bump-java-version
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/bump-java-version/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/bump-java-version.tar.gz
