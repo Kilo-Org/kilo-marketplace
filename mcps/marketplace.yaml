@@ -1683,7 +1683,7 @@ items:
         content: |
           {
             "command": "npx",
-            "args": ["-y", "@mobilenext/mobile-mcp@latest"]
+            "args": ["-y", "@mobilenext/mobile-mcp@0.0.57"]
           }
     parameters:
       - name: Disable Telemetry

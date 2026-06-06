@@ -1,4 +1,4 @@
-id: mobile-mcp
+﻿id: mobile-mcp
 name: Mobile MCP
 description: Enables AI assistants to automate and interact with mobile devices including iOS simulators, Android emulators, and real devices. Supports app management, screen interaction, UI element inspection, and device control through a unified API.
 author: mobile-next
@@ -23,7 +23,7 @@ content:
     content: |
       {
         "command": "npx",
-        "args": ["-y", "@mobilenext/mobile-mcp@latest"]
+        "args": ["-y", "@mobilenext/mobile-mcp@0.0.57"]
       }
 parameters:
   - name: Disable Telemetry
