@@ -1,6 +1,13 @@
 ---
 name: bump-java-version
 description: Migrate a Maven project from one Java LTS to the next (8->11, 11->17, 17->21, 21->25) so it still compiles under the new JDK and previously-passing tests still pass — by hand, using only standard tools (JDKs, Maven, and OpenRewrite recipes from Maven Central; no project-specific scripts). Use when upgrading or bumping the Java version of a Maven project, modernizing to a newer JDK or LTS, or performing the Spring Boot 1->2 / 2->3 and javax->jakarta migration that a Java upgrade requires.
+license: MIT
+metadata:
+  category: development
+  author: vasiliy-mikhailov
+  source:
+    repository: https://github.com/vasiliy-mikhailov/bump-java-version-skill
+    path: skills/bump-java-version/SKILL.md
 ---
 
 # Bumping a Maven project one Java LTS step — by hand
