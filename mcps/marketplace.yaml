@@ -2590,6 +2590,28 @@ items:
             "command": "docker",
             "args": ["run", "--rm", "-i", "mcp/sequentialthinking"]
           }
+  - id: skinknowledgebase
+    name: SkinKnowledgeBase
+    description: Public skincare question-answering and product-comparison reference layer with source-backed context,
+      canonical URLs, cited sources, ingredient and product facts, and read-only retrieval tools for AI assistants.
+    author: fulcrai
+    url: https://github.com/fulcrai/skb-mcp
+    tags:
+      - skincare
+      - question-answering
+      - product-comparison
+      - ingredients
+      - citations
+      - research
+      - read-only
+      - remote
+    content:
+      - name: Remote MCP
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.skinknowledgebase.com/mcp"
+          }
   - id: slack
     name: Slack
     description: Enables AI assistants to interact with Slack workspaces, providing tools for messaging, channel management,
