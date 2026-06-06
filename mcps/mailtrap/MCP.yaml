@@ -1,0 +1,45 @@
+id: mailtrap
+name: Mailtrap
+description: Send transactional emails, test safely in sandbox, manage templates, and inspect delivery logs via Mailtrap
+  Email API. Sandbox testing works out of the box; production sends require a verified sending domain.
+author: mailtrap
+url: https://github.com/mailtrap/mailtrap-mcp
+tags:
+  - email
+  - mailtrap
+  - transactional-email
+  - testing
+  - notifications
+prerequisites:
+  - Mailtrap account
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-mailtrap"],
+        "env": {
+          "MAILTRAP_API_TOKEN": "{{MAILTRAP_API_TOKEN}}",
+          "MAILTRAP_ACCOUNT_ID": "{{MAILTRAP_ACCOUNT_ID}}",
+          "DEFAULT_FROM_EMAIL": "{{DEFAULT_FROM_EMAIL}}",
+          "MAILTRAP_TEST_INBOX_ID": "{{MAILTRAP_TEST_INBOX_ID}}"
+        }
+      }
+parameters:
+  - name: Mailtrap API Token
+    key: MAILTRAP_API_TOKEN
+    placeholder: your_mailtrap_api_token
+  - name: Mailtrap Account ID
+    key: MAILTRAP_ACCOUNT_ID
+    placeholder: your_account_id
+  - name: Default From Email
+    key: DEFAULT_FROM_EMAIL
+    placeholder: sender@yourdomain.com
+    optional: true
+  - name: Test Inbox ID
+    key: MAILTRAP_TEST_INBOX_ID
+    placeholder: your_sandbox_inbox_id
+    optional: true
