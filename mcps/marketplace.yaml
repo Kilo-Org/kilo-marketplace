@@ -1656,6 +1656,40 @@ items:
             "type": "streamable-http",
             "url": "https://learn.microsoft.com/api/mcp"
           }
+  - id: mobile-mcp
+    name: Mobile MCP
+    description: Enables AI assistants to automate and interact with mobile devices including iOS simulators, Android
+      emulators, and real devices. Supports app management, screen interaction, UI element inspection, and device
+      control through a unified API.
+    author: mobile-next
+    url: https://github.com/mobile-next/mobile-mcp
+    tags:
+      - mobile
+      - ios
+      - android
+      - automation
+      - testing
+      - simulator
+      - emulator
+      - mcp
+    prerequisites:
+      - Node.js v22+
+      - Xcode command line tools (for iOS)
+      - Android Platform Tools (for Android)
+    content:
+      - name: NPX
+        prerequisites:
+          - Node.js v22+
+        content: |
+          {
+            "command": "npx",
+            "args": ["-y", "@mobilenext/mobile-mcp@latest"]
+          }
+    parameters:
+      - name: Disable Telemetry
+        key: MOBILEMCP_DISABLE_TELEMETRY
+        placeholder: "1"
+        optional: true
   - id: motherduck
     name: MotherDuck
     description: Enables database operations with MotherDuck and local DuckDB, providing tools for connection
