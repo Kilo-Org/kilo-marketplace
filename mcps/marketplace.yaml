@@ -3030,3 +3030,29 @@ items:
       - name: Prerequisites
         key: PREREQUISITES
         placeholder: Install yt-dlp via Homebrew or WinGet first
+  - id: the-stall
+    name: The STALL
+    description: 207-capability data intelligence MCP with per-call x402 micropayments. Financial markets,
+      crypto, DeFi, options flow, macro, and real-world intelligence for AI agents.
+    author: IntuiTek¹
+    url: https://the-stall.intuitek.ai
+    tags:
+      - financial-data
+      - crypto
+      - defi
+      - market-intelligence
+      - options-flow
+      - macro-economics
+      - real-time-data
+      - x402-payments
+      - agent-tools
+    content:
+      - name: Remote Server
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://the-stall.intuitek.ai/mcp"
+          }
+        description: |
+          Connect to The STALL via MCP. Capabilities are priced individually via x402 micropayments
+          (USDC on Base). Use /health to discover all 207 capabilities and their prices before calling.
