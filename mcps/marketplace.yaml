@@ -2888,6 +2888,38 @@ items:
           - name: Local Timezone
             key: LOCAL_TIMEZONE
             placeholder: America/New_York
+  - id: vee3
+    name: Vee3
+    description: Live agent tools for domains, X, Google Trends, SEO, YouTube, TikTok, and more.
+    author: Vee3
+    url: https://github.com/Vee3io/vee3
+    tags:
+      - mcp
+      - vee3
+      - live-agent
+      - domains
+      - x
+      - google-trends
+      - seo
+      - youtube
+      - tiktok
+      - market-research
+    prerequisites:
+      - Free account at app.vee3.io
+    content:
+      - name: Remote MCP Server
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.vee3.io/mcp",
+            "headers": {
+              "VEE3_API_KEY": "{{VEE3_API_KEY}}"
+            }
+          }
+    parameters:
+      - name: Vee3 API Key
+        key: VEE3_API_KEY
+        placeholder: your_api_key_here
   - id: verodat
     name: Verodat
     description: Enables AI systems to interact with Verodat's data management platform, providing capabilities for dataset
