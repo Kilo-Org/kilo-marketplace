@@ -1410,6 +1410,39 @@ items:
             "command": "uvx",
             "args": ["--from", "git+https://github.com/mrexodia/ida-pro-mcp.git@f0af9fba733fb60fc13365b297b10c82db3771d7", "ida-pro-mcp"]
           }
+  - id: ignav-flights
+    name: Ignav Flights
+    description: Hosted MCP server providing live flight prices, booking links, and airport lookup for AI agents, anonymous
+      testing supported with optional API-key usage.
+    author: gusgordon
+    url: https://github.com/gusgordon/ignav-skill
+    tags:
+      - flights
+      - travel
+      - booking-links
+      - airport-lookup
+      - remote-mcp
+    content:
+      - name: Remote Server
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://ignav.com/mcp"
+          }
+      - name: Remote Server with API Key
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://ignav.com/mcp",
+            "headers": {
+              "X-Api-Key": "{{IGNAV_API_KEY}}"
+            }
+          }
+    parameters:
+      - name: Ignav API Key
+        key: IGNAV_API_KEY
+        placeholder: your_ignav_api_key
+        optional: true
   - id: kagi
     name: Kagi Search
     description: Integrates Kagi's advanced search API to provide AI assistants with up-to-date web search capabilities and
