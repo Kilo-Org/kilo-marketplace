@@ -1,7 +1,7 @@
 id: asaas
 name: Asaas
 description: Official Asaas MCP server for complete integration with billing, Pix, invoices, subscriptions, customers, webhooks, and the entire financial API. Enables AI to create, query, and manage payments intelligently.
-author: pedroinbezerra
+author: Asaas
 url: https://docs.asaas.com/docs/mcp-1
 tags:
   - asaas
@@ -20,9 +20,10 @@ content:
     prerequisites:
       - None (no installation required)
     content: >
-    content:
-      url: https://docs.asaas.com/mcp
-      type: streamable-http
+      {
+        "url": "https://docs.asaas.com/mcp",
+        "type": "streamable-http"
+      }
     parameters:
       - name: Asaas API Key
         key: ASAAS_API_KEY
