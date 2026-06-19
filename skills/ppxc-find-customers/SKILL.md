@@ -4,6 +4,7 @@ metadata:
   source:
     repository: 'https://github.com/yuanjian068yuan/ppxc-find-customers'
     path: skills/ppxc-find-customers
+    license_path: LICENSE
 name: ppxc-find-customers
 description: Use this skill when the user wants to find customer leads from short-video comments, generate customer-discovery keywords, review lead intent, query a customer pool, or prepare outreach scripts with PPXC.
 ---
