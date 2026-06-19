@@ -33,6 +33,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lead-research-assistant
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lead-research-assistant/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lead-research-assistant.tar.gz
+  - id: ppxc-find-customers
+    description: >-
+      Use this skill when the user wants to find customer leads from short-video comments, generate customer-discovery
+      keywords, review lead intent, query a customer pool, or prepare outreach scripts with PPXC.
+    category: business-marketing
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ppxc-find-customers
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ppxc-find-customers/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ppxc-find-customers.tar.gz
   - id: content-research-writer
     description: >-
       Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on
