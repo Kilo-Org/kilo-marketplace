@@ -1,0 +1,23 @@
+id: ppxc-find-customers
+name: PPXC Find Customers
+description: Turns short-video comments into customer leads, customer-discovery keywords, lead intent review, and outreach scripts for Douyin, Xiaohongshu, and Kuaishou workflows.
+author: PPXC
+url: https://github.com/yuanjian068yuan/ppxc-find-customers
+tags:
+  - lead-generation
+  - marketing
+  - social-media
+  - customer-discovery
+  - short-video
+  - outreach
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "ppxc-leads-mcp"]
+      }
