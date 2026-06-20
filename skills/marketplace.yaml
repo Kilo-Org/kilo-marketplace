@@ -35,9 +35,8 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lead-research-assistant.tar.gz
   - id: ppxc-find-customers
     description: >-
-      Trial-first OPC Comment Lead Radar for finding customer leads from public short-video comments. It can scan
-      before OPC login, show the first complete leads, report inspected links and comment counts, then unlock or save
-      the full list through the OPC customer pool.
+      OPC 评论线索雷达：先试用扫描短视频公开评论里的客户线索，展示前几个完整客户，透明汇报看过的链接和评论数，再通过
+      OPC 客户池解锁或保存完整名单。
     category: business-marketing
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ppxc-find-customers
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ppxc-find-customers/SKILL.md

@@ -6,9 +6,9 @@ metadata:
     path: skills/ppxc-find-customers
     license_path: LICENSE
 name: ppxc-find-customers
-description: Use this skill when the user wants to find customer leads from short-video comments, run a trial-first lead scan, analyze public comments, report the search process transparently, query a customer pool, or prepare outreach scripts with OPC 评论线索雷达.
+description: OPC 评论线索雷达：用于先试用扫描短视频公开评论里的客户线索，展示前几个完整客户，透明汇报看过的链接和评论数，再通过 OPC 客户池解锁或保存完整名单。
 ---
-# OPC Comment Lead Radar
+# OPC 评论线索雷达
 
 Use this skill when the user wants to find customers, discover sales leads, analyze short-video comments, generate customer-discovery keywords, review a customer pool, or prepare outreach scripts with OPC 评论线索雷达.
 
