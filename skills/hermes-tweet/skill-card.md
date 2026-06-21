@@ -94,9 +94,11 @@ Before broad enterprise release or any NVIDIA-verified claim:
 4. Sign the exact reviewed skill directory and publish `skill.oms.sig`.
 5. Verify the published directory with the expected certificate chain.
 
-## References
+## Source Documentation
 
-- `SKILL.md`
-- `README.md`
-- `after-install.md`
-- `SECURITY.md`
+- Local marketplace copy: `SKILL.md`
+- Local marketplace copy: `skill-card.md`
+- Source repository: https://github.com/Xquik-dev/hermes-tweet
+- Source README: https://github.com/Xquik-dev/hermes-tweet#readme
+- Source after-install guide: https://github.com/Xquik-dev/hermes-tweet/blob/master/after-install.md
+- Source security policy: https://github.com/Xquik-dev/hermes-tweet/blob/master/SECURITY.md
