@@ -353,6 +353,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: hermes-tweet
+    description: >-
+      Use Xquik from Hermes Agent for X search, posting, replies, likes, retweets, follows, DMs, monitors,
+      extraction jobs, draws, media, and trends through explicit read and action gates.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/hermes-tweet
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/hermes-tweet/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/hermes-tweet.tar.gz
   - id: file-organizer
     description: >-
       Intelligently organizes your files and folders across your computer by understanding context, finding duplicates,
