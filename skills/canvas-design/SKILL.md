@@ -11,6 +11,7 @@ metadata:
     extension:
       - "*.png"
       - "*.pdf"
+      - "*.md"
   category: creative-media
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'

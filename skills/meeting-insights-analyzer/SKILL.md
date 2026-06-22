@@ -18,6 +18,7 @@ metadata:
       - "*.m4a"
       - "*.mp4"
       - "*.webm"
+      - "*.docx"
   category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'

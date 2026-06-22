@@ -26,7 +26,8 @@ function validateSuggestFor(value: unknown, mcpId: string): void {
     extensions.length === 0 ||
     !extensions.every(
       (extension) =>
-        typeof extension === "string" && /^\*\.[A-Za-z0-9]+$/.test(extension),
+        typeof extension === "string" &&
+        /^\*\.[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*$/.test(extension),
     )
   ) {
     throw new Error(

@@ -253,7 +253,10 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
         newFrontmatter.metadata.category =
           skill.frontmatter.metadata.category;
       }
-      if (skill.frontmatter?.metadata?.suggest_for) {
+      if (
+        !newFrontmatter.metadata.suggest_for &&
+        skill.frontmatter?.metadata?.suggest_for
+      ) {
         newFrontmatter.metadata.suggest_for =
           skill.frontmatter.metadata.suggest_for;
       }
