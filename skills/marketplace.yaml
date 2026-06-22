@@ -294,6 +294,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
+  - id: ponytail
+    description: >
+      Forces the laziest solution that actually works: simplest, shortest, and most minimal. Channels a senior dev who
+      has seen everything: questions whether the task needs to exist at all (YAGNI), reaches for the standard library
+      before custom code, native platform features before dependencies, and one line before fifty. Use whenever the user
+      says "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest
+      path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ponytail
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ponytail/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ponytail.tar.gz
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
