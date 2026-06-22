@@ -6,7 +6,7 @@ description: >-
   strategies. Perfect for sales, business development, and marketing
   professionals.
 metadata:
-  category: business-marketing
+  category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: lead-research-assistant
