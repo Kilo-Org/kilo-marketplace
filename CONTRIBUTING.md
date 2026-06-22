@@ -447,6 +447,6 @@ parameters:
 
 ## Questions?
 
-Open an issue if you have questions about contributing or need help structuring your skill, mode, or MCP server.
+Open an issue if you have questions about contributing or need help structuring your skill, agent, or MCP server.
 
 Thank you for contributing to Kilo Marketplace!
