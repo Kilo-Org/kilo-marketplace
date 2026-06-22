@@ -6,10 +6,8 @@ author: needle-ai
 url: https://github.com/needle-ai/needle-mcp
 tags:
   - document-management
-  - search
   - knowledge-base
-  - needle-api
-  - content-organization
+  - search
 content:
   - name: Smithery Installation
     prerequisites:

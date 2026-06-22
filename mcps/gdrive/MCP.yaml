@@ -7,8 +7,6 @@ url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/gdri
 tags:
   - google-drive
   - file-management
-  - document-storage
-  - workspace
   - file-search
 prerequisites:
   - Google account with Drive API access

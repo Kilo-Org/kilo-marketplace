@@ -6,11 +6,8 @@ author: upstash
 url: https://github.com/upstash/context7
 tags:
   - documentation
-  - code-examples
-  - library-docs
-  - up-to-date
-  - api-reference
   - development
+  - information-retrieval
 content:
   - name: NPX
     content: |

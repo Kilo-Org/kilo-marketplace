@@ -5,11 +5,9 @@ description: Enables bi-directional integration with Model Context Protocol, all
 author: firebase
 url: https://github.com/firebase/genkit/tree/HEAD/js/plugins/mcp
 tags:
-  - mcp-integration
-  - client-server
-  - tools-prompts
-  - plugin
-  - genkit
+  - ai-integration
+  - development
+  - api-integration
 prerequisites:
   - Node.js 18+
   - Genkit SDK

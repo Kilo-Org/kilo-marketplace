@@ -5,11 +5,9 @@ description: A semantic memory layer enabling storage and retrieval of vector-ba
 author: qdrant
 url: https://github.com/qdrant/mcp-server-qdrant
 tags:
-  - vector-search
-  - semantic-memory
-  - embeddings
   - storage
-  - retrieval
+  - search
+  - information-retrieval
 content:
   - name: UVX
     prerequisites:

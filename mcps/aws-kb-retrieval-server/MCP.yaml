@@ -5,10 +5,8 @@ description: Retrieves information from AWS Knowledge Base using Bedrock Agent R
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/aws-kb-retrieval-server
 tags:
-  - aws
-  - bedrock
-  - rag
-  - knowledge-retrieval
+  - knowledge-base
+  - information-retrieval
   - search
 content:
   - name: NPX

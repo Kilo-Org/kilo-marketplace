@@ -6,10 +6,8 @@ author: oxylabs
 url: https://github.com/oxylabs/oxylabs-mcp
 tags:
   - web-scraping
-  - content-extraction
-  - javascript-rendering
-  - html-parsing
-  - data-collection
+  - data-extraction
+  - automation
 content:
   - name: UVX
     prerequisites:

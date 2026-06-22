@@ -6,15 +6,9 @@ description: The Firebase MCP server allows AI-powered development tools to work
 author: firebase
 url: https://firebase.google.com/docs/cli/mcp-server
 tags:
-  - firebase
-  - gcp
-  - firestore
-  - authentication
-  - cloud-functions
-  - hosting
+  - database-management
+  - api-integration
   - storage
-  - data-connect
-  - cloud-messaging
 content:
   - name: NPX
     prerequisites:

@@ -6,10 +6,8 @@ author: supabase-community
 url: https://github.com/supabase-community/mcp-supabase/tree/HEAD/packages/mcp-server-postgrest
 tags:
   - postgresql
-  - postgrest
-  - database-api
   - sql
-  - supabase
+  - api-integration
 content:
   - name: NPX
     prerequisites:

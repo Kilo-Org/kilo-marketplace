@@ -6,10 +6,8 @@ author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer
 tags:
   - web-automation
-  - screenshots
-  - browser-control
-  - javascript
   - testing
+  - automation
 content:
   - name: NPX
     prerequisites:

@@ -7,11 +7,8 @@ author: idosal
 url: https://github.com/idosal/git-mcp
 tags:
   - git
-  - github
-  - documentation
-  - code-search
   - repository-management
-  - hallucination-reduction
+  - documentation
 content:
   - name: SSE
     content: |

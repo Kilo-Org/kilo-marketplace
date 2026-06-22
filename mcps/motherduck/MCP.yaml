@@ -5,11 +5,9 @@ description: Enables database operations with MotherDuck and local DuckDB, provi
 author: motherduckdb
 url: https://github.com/motherduckdb/mcp-server-motherduck
 tags:
-  - duckdb
-  - motherduck
   - sql
   - database-management
-  - query-execution
+  - database
 content:
   - name: UVX
     prerequisites:

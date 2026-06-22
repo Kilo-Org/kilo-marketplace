@@ -6,10 +6,8 @@ author: browserbase
 url: https://github.com/browserbase/mcp-server-browserbase
 tags:
   - web-automation
-  - puppeteer
-  - screenshot-capture
   - data-extraction
-  - javascript-execution
+  - automation
 content:
   - name: NPX
     prerequisites:

@@ -6,15 +6,9 @@ description: Official Microsoft MCP server providing browser automation capabili
 author: microsoft
 url: https://github.com/microsoft/playwright-mcp
 tags:
-  - browser-automation
-  - web-testing
-  - playwright
-  - microsoft
-  - accessibility
+  - web-automation
   - web-scraping
-  - ui-automation
-  - headless-browser
-  - official
+  - testing
 content:
   - name: NPX
     prerequisites:

@@ -6,10 +6,8 @@ author: kagisearch
 url: https://github.com/kagisearch/kagimcp
 tags:
   - web-search
-  - information-retrieval
-  - kagi-api
-  - real-time-data
   - search-engine
+  - information-retrieval
 prerequisites:
   - Kagi account
 content:

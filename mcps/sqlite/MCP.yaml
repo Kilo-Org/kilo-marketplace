@@ -6,10 +6,8 @@ author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sqlite
 tags:
   - sql
-  - data-analysis
-  - business-intelligence
   - database-management
-  - sqlite
+  - data-analysis
 content:
   - name: UVX
     prerequisites:

@@ -6,20 +6,9 @@ description: Official Microsoft MCP server for Azure DevOps integration, bringin
 author: microsoft
 url: https://github.com/microsoft/azure-devops-mcp
 tags:
-  - azure-devops
-  - microsoft
-  - devops
-  - work-items
-  - repositories
-  - builds
-  - releases
-  - test-plans
+  - automation
   - project-management
-  - ci-cd
-  - version-control
-  - pull-requests
-  - search
-  - official
+  - repository-management
 prerequisites:
   - Azure DevOps organization
   - Azure CLI authentication

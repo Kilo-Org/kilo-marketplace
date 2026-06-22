@@ -6,10 +6,8 @@ author: codegen-sh
 url: https://github.com/codegen-sh/codegen-sdk/tree/develop/codegen-examples/examples/codegen-mcp-server
 tags:
   - code-generation
-  - codemod
-  - code-parsing
-  - sdk-integration
-  - llm-tools
+  - development
+  - automation
 prerequisites:
   - uv
   - Python 3.12+

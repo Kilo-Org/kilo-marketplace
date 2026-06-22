@@ -5,15 +5,9 @@ description: Official Google Maps Platform MCP for AI-powered code assistance. P
 author: googlemaps
 url: https://github.com/googlemaps/platform-ai
 tags:
-  - google-maps
-  - code-generation
-  - geospatial
   - maps
   - routes
-  - places
-  - api-integration
-  - ai-assistant
-  - official
+  - code-generation
 content:
   - name: NPX
     prerequisites:

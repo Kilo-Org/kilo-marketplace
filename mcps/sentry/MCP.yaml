@@ -7,8 +7,6 @@ url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sent
 tags:
   - error-tracking
   - debugging
-  - stacktraces
-  - issue-monitoring
   - application-monitoring
 content:
   - name: UVX

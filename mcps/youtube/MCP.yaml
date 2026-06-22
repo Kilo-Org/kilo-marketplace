@@ -5,11 +5,9 @@ description: Downloads and extracts YouTube video subtitles using yt-dlp, enabli
 author: anaisbetts
 url: https://github.com/anaisbetts/mcp-youtube
 tags:
-  - youtube
-  - subtitles
-  - video-analysis
-  - content-summarization
-  - yt-dlp
+  - data-extraction
+  - content-discovery
+  - information-retrieval
 prerequisites:
   - yt-dlp (install via Homebrew or WinGet)
 content:

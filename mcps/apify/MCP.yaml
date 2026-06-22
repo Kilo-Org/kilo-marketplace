@@ -8,8 +8,6 @@ tags:
   - web-scraping
   - data-extraction
   - automation
-  - actor-management
-  - apify-platform
 content:
   - name: NPX
     prerequisites:

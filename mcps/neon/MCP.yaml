@@ -7,9 +7,7 @@ url: https://github.com/neondatabase/mcp-server-neon
 tags:
   - postgresql
   - database-management
-  - migrations
   - sql
-  - neon-api
 content:
   - name: Remote MCP
     prerequisites:

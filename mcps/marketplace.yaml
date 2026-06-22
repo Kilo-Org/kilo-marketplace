@@ -9,8 +9,6 @@ items:
       - web-scraping
       - data-extraction
       - automation
-      - actor-management
-      - apify-platform
     content:
       - name: NPX
         prerequisites:
@@ -59,15 +57,9 @@ items:
     author: sooperset
     url: https://github.com/sooperset/mcp-atlassian
     tags:
-      - atlassian
-      - jira
-      - confluence
       - project-management
-      - issue-tracking
       - documentation
       - collaboration
-      - oauth
-      - api-integration
     prerequisites:
       - Docker
       - Atlassian account (Cloud or Server/Data Center)
@@ -150,10 +142,8 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/aws-kb-retrieval-server
     tags:
-      - aws
-      - bedrock
-      - rag
-      - knowledge-retrieval
+      - knowledge-base
+      - information-retrieval
       - search
     content:
       - name: NPX
@@ -199,11 +189,9 @@ items:
     author: axiomhq
     url: https://github.com/axiomhq/mcp-server-axiom
     tags:
-      - data-query
-      - log-analysis
-      - apl
-      - datasets
-      - analytics
+      - database-management
+      - sql
+      - data-analysis
     content:
       - name: Go Binary
         content: |
@@ -260,20 +248,9 @@ items:
     author: microsoft
     url: https://github.com/microsoft/azure-devops-mcp
     tags:
-      - azure-devops
-      - microsoft
-      - devops
-      - work-items
-      - repositories
-      - builds
-      - releases
-      - test-plans
+      - automation
       - project-management
-      - ci-cd
-      - version-control
-      - pull-requests
-      - search
-      - official
+      - repository-management
     prerequisites:
       - Azure DevOps organization
       - Azure CLI authentication
@@ -298,10 +275,8 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search
     tags:
-      - search-engine
-      - local-search
       - web-search
-      - brave-api
+      - search-engine
       - content-discovery
     prerequisites:
       - Brave Search account
@@ -340,10 +315,8 @@ items:
     url: https://github.com/browserbase/mcp-server-browserbase
     tags:
       - web-automation
-      - puppeteer
-      - screenshot-capture
       - data-extraction
-      - javascript-execution
+      - automation
     content:
       - name: NPX
         prerequisites:
@@ -412,16 +385,9 @@ items:
     author: taazkareem
     url: https://github.com/TaazKareem/clickup-mcp-server
     tags:
-      - clickup
       - project-management
-      - task-management
-      - time-tracking
-      - productivity
       - automation
-      - workflow
-      - team-collaboration
-      - workspace
-      - api-integration
+      - collaboration
     prerequisites:
       - ClickUp account
       - ClickUp API key
@@ -457,11 +423,9 @@ items:
     author: cloudflare
     url: https://github.com/cloudflare/mcp-server-cloudflare
     tags:
-      - cloudflare
-      - serverless
-      - edge-computing
-      - cloud-storage
       - database-management
+      - storage
+      - development
     content:
       - name: Remote MCP - Observability
         prerequisites:
@@ -523,10 +487,8 @@ items:
     url: https://github.com/codegen-sh/codegen-sdk/tree/develop/codegen-examples/examples/codegen-mcp-server
     tags:
       - code-generation
-      - codemod
-      - code-parsing
-      - sdk-integration
-      - llm-tools
+      - development
+      - automation
     prerequisites:
       - uv
       - Python 3.12+
@@ -563,16 +525,9 @@ items:
     author: invest-composer
     url: https://github.com/invest-composer/composer-trade-mcp
     tags:
-      - trading
-      - investing
-      - backtesting
-      - portfolio-management
-      - financial-automation
-      - strategy-creation
-      - market-analysis
-      - composer-api
-      - algorithmic-trading
-      - risk-management
+      - automation
+      - data-analysis
+      - workflow
     content: >
       {
         "command": "uvx",
@@ -603,11 +558,8 @@ items:
     url: https://github.com/upstash/context7
     tags:
       - documentation
-      - code-examples
-      - library-docs
-      - up-to-date
-      - api-reference
       - development
+      - information-retrieval
     content:
       - name: NPX
         content: |
@@ -639,14 +591,9 @@ items:
     author: dbt-labs
     url: https://github.com/dbt-labs/dbt-mcp
     tags:
-      - dbt
-      - data-engineering
-      - data-analytics
       - sql
-      - semantic-layer
-      - data-modeling
-      - mcp-server
-      - llm
+      - database-management
+      - code-generation
     prerequisites:
       - Python and uv
     content:
@@ -743,9 +690,7 @@ items:
     tags:
       - code-execution
       - sandbox
-      - javascript
-      - python
-      - claude-integration
+      - security
     content:
       - name: NPX
         prerequisites:
@@ -791,11 +736,9 @@ items:
     author: esignaturescom
     url: https://github.com/esignaturescom/mcp-server-esignatures
     tags:
-      - digital-signatures
-      - contracts
       - document-management
-      - templates
       - collaboration
+      - workflow
     content:
       - name: UVX
         prerequisites:
@@ -843,9 +786,7 @@ items:
     url: https://github.com/exa-labs/exa-mcp-server
     tags:
       - web-search
-      - exa-api
       - real-time-data
-      - content-discovery
       - information-retrieval
     prerequisites:
       - Exa account
@@ -900,12 +841,9 @@ items:
     author: figma
     url: https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server
     tags:
-      - figma
-      - design-to-code
-      - ui-development
-      - design-systems
       - code-generation
-      - dev-mode
+      - development
+      - collaboration
     content:
       - name: Figma Dev Mode
         content: |
@@ -920,11 +858,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem
     tags:
-      - filesystem
       - file-management
-      - directory-operations
       - file-search
-      - file-editing
+      - automation
     content:
       - name: NPX
         prerequisites:
@@ -954,15 +890,9 @@ items:
     author: firebase
     url: https://firebase.google.com/docs/cli/mcp-server
     tags:
-      - firebase
-      - gcp
-      - firestore
-      - authentication
-      - cloud-functions
-      - hosting
+      - database-management
+      - api-integration
       - storage
-      - data-connect
-      - cloud-messaging
     content:
       - name: NPX
         prerequisites:
@@ -996,11 +926,9 @@ items:
     author: fireproof-storage
     url: https://github.com/fireproof-storage/mcp-database-server
     tags:
-      - document-store
-      - json
-      - crud
       - database
       - storage
+      - database-management
     content:
       - name: Node.js
         content: |
@@ -1029,8 +957,6 @@ items:
     tags:
       - google-drive
       - file-management
-      - document-storage
-      - workspace
       - file-search
     prerequisites:
       - Google account with Drive API access
@@ -1065,11 +991,9 @@ items:
     author: firebase
     url: https://github.com/firebase/genkit/tree/HEAD/js/plugins/mcp
     tags:
-      - mcp-integration
-      - client-server
-      - tools-prompts
-      - plugin
-      - genkit
+      - ai-integration
+      - development
+      - api-integration
     prerequisites:
       - Node.js 18+
       - Genkit SDK
@@ -1100,10 +1024,8 @@ items:
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/git
     tags:
       - git
-      - version-control
-      - repository-management
-      - source-control
       - development
+      - repository-management
     content:
       - name: UVX
         prerequisites:
@@ -1150,11 +1072,8 @@ items:
     url: https://github.com/idosal/git-mcp
     tags:
       - git
-      - github
-      - documentation
-      - code-search
       - repository-management
-      - hallucination-reduction
+      - documentation
     content:
       - name: SSE
         content: |
@@ -1191,14 +1110,9 @@ items:
     author: github
     url: https://github.com/github/github-mcp-server
     tags:
-      - github
       - git
       - repository-management
-      - issue-tracking
-      - pull-requests
-      - code-scanning
       - collaboration
-      - api-integration
     prerequisites:
       - Node.js
       - GitHub account
@@ -1222,11 +1136,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab
     tags:
-      - gitlab
       - git
       - repository-management
       - collaboration
-      - ci-cd
     prerequisites:
       - GitLab account
     content:
@@ -1281,10 +1193,8 @@ items:
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps
     tags:
       - maps
-      - geocoding
-      - navigation
-      - places-api
-      - location-data
+      - routes
+      - api-integration
     prerequisites:
       - Google Cloud account with Maps API enabled
     content:
@@ -1332,15 +1242,9 @@ items:
     author: googlemaps
     url: https://github.com/googlemaps/platform-ai
     tags:
-      - google-maps
-      - code-generation
-      - geospatial
       - maps
       - routes
-      - places
-      - api-integration
-      - ai-assistant
-      - official
+      - code-generation
     content:
       - name: NPX
         prerequisites:
@@ -1357,13 +1261,7 @@ items:
     author: taylorwilsdon
     url: https://github.com/taylorwilsdon/google_workspace_mcp
     tags:
-      - google-workspace
-      - g-suite
       - google-drive
-      - google-sheets
-      - google-docs
-      - gmail
-      - google-calendar
       - automation
       - api-integration
     prerequisites:
@@ -1395,11 +1293,9 @@ items:
     author: mrexodia
     url: https://github.com/mrexodia/ida-pro-mcp
     tags:
-      - ida-pro
-      - reverse-engineering
-      - disassembler
       - debugging
       - security
+      - development
     content:
       - name: UVX
         prerequisites:
@@ -1418,10 +1314,8 @@ items:
     url: https://github.com/kagisearch/kagimcp
     tags:
       - web-search
-      - information-retrieval
-      - kagi-api
-      - real-time-data
       - search-engine
+      - information-retrieval
     prerequisites:
       - Kagi account
     content:
@@ -1477,17 +1371,9 @@ items:
     author: laravel
     url: https://github.com/laravel/boost
     tags:
-      - laravel
-      - php
-      - database
-      - artisan
-      - routes
-      - configuration
       - documentation
-      - error-tracking
-      - ai-integration
-      - web-development
-      - official
+      - database
+      - development
     prerequisites:
       - PHP 8.1 or higher
       - Laravel 10.x, 11.x, or 12.x
@@ -1513,10 +1399,8 @@ items:
     url: https://github.com/cline/linear-mcp
     tags:
       - project-management
-      - issue-tracking
-      - team-collaboration
-      - linear-api
       - workflow
+      - collaboration
     content:
       - name: Node.js
         prerequisites:
@@ -1556,11 +1440,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/memory
     tags:
-      - knowledge-graph
-      - persistent-memory
-      - entity-management
-      - graph-database
-      - memory-storage
+      - knowledge-base
+      - storage
+      - information-retrieval
     content:
       - name: NPX
         prerequisites:
@@ -1600,11 +1482,9 @@ items:
     author: metoro-io
     url: https://github.com/metoro-io/metoro-mcp-server
     tags:
-      - kubernetes
-      - observability
-      - ebpf
-      - telemetry
-      - microservices
+      - application-monitoring
+      - debugging
+      - development
     content:
       - name: Go Binary
         content: |
@@ -1643,12 +1523,9 @@ items:
     author: microsoft
     url: https://github.com/microsoftdocs/mcp
     tags:
-      - microsoft
       - documentation
-      - learning
-      - tutorials
-      - azure
-      - official
+      - development
+      - information-retrieval
     content:
       - name: Remote MCP
         content: |
@@ -1663,11 +1540,9 @@ items:
     author: motherduckdb
     url: https://github.com/motherduckdb/mcp-server-motherduck
     tags:
-      - duckdb
-      - motherduck
       - sql
       - database-management
-      - query-execution
+      - database
     content:
       - name: UVX
         prerequisites:
@@ -1728,14 +1603,9 @@ items:
     author: czlonkowski
     url: https://github.com/czlonkowski/n8n-mcp
     tags:
-      - n8n
-      - workflow-automation
-      - devops
-      - nodes
       - automation
-      - ai-tools
-      - no-code
-      - low-code
+      - workflow
+      - documentation
     content:
       - name: NPX (Docs only)
         prerequisites:
@@ -1823,10 +1693,8 @@ items:
     url: https://github.com/needle-ai/needle-mcp
     tags:
       - document-management
-      - search
       - knowledge-base
-      - needle-api
-      - content-organization
+      - search
     content:
       - name: Smithery Installation
         prerequisites:
@@ -1863,9 +1731,7 @@ items:
     tags:
       - postgresql
       - database-management
-      - migrations
       - sql
-      - neon-api
     content:
       - name: Remote MCP
         prerequisites:
@@ -1921,11 +1787,7 @@ items:
     tags:
       - documentation
       - knowledge-base
-      - repository-indexing
-      - semantic-search
-      - research-papers
-      - code-context
-      - ai-research
+      - information-retrieval
     prerequisites:
       - Nia account (https://app.trynia.ai)
     content:
@@ -1950,14 +1812,9 @@ items:
     author: makenotion
     url: https://github.com/makenotion/notion-mcp-server
     tags:
-      - notion
       - productivity
-      - note-taking
-      - database-management
-      - content-management
       - collaboration
-      - workspace
-      - api-integration
+      - document-management
     prerequisites:
       - Notion account with integration access
     content:
@@ -2024,10 +1881,8 @@ items:
     url: https://github.com/oxylabs/oxylabs-mcp
     tags:
       - web-scraping
-      - content-extraction
-      - javascript-rendering
-      - html-parsing
-      - data-collection
+      - data-extraction
+      - automation
     content:
       - name: UVX
         prerequisites:
@@ -2080,15 +1935,9 @@ items:
     author: microsoft
     url: https://github.com/microsoft/playwright-mcp
     tags:
-      - browser-automation
-      - web-testing
-      - playwright
-      - microsoft
-      - accessibility
+      - web-automation
       - web-scraping
-      - ui-automation
-      - headless-browser
-      - official
+      - testing
     content:
       - name: NPX
         prerequisites:
@@ -2140,10 +1989,8 @@ items:
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres
     tags:
       - postgresql
-      - database-queries
-      - schema-inspection
-      - read-only
       - sql
+      - database-management
     content:
       - name: NPX
         prerequisites:
@@ -2173,10 +2020,8 @@ items:
     url: https://github.com/supabase-community/mcp-supabase/tree/HEAD/packages/mcp-server-postgrest
     tags:
       - postgresql
-      - postgrest
-      - database-api
       - sql
-      - supabase
+      - api-integration
     content:
       - name: NPX
         prerequisites:
@@ -2254,10 +2099,8 @@ items:
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer
     tags:
       - web-automation
-      - screenshots
-      - browser-control
-      - javascript
       - testing
+      - automation
     content:
       - name: NPX
         prerequisites:
@@ -2282,11 +2125,9 @@ items:
     author: qdrant
     url: https://github.com/qdrant/mcp-server-qdrant
     tags:
-      - vector-search
-      - semantic-memory
-      - embeddings
       - storage
-      - retrieval
+      - search
+      - information-retrieval
     content:
       - name: UVX
         prerequisites:
@@ -2383,8 +2224,6 @@ items:
     url: https://github.com/MindscapeHQ/mcp-server-raygun
     tags:
       - error-tracking
-      - crash-reporting
-      - performance-monitoring
       - debugging
       - application-monitoring
     content:
@@ -2427,11 +2266,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/redis
     tags:
-      - redis
-      - key-value-store
-      - caching
-      - data-storage
-      - database-operations
+      - database-management
+      - storage
+      - database
     content:
       - name: UVX
         prerequisites:
@@ -2501,8 +2338,6 @@ items:
     tags:
       - code-execution
       - sandbox
-      - code-interpreter
-      - tool-management
       - security
     content:
       - name: NPX
@@ -2529,8 +2364,6 @@ items:
     tags:
       - error-tracking
       - debugging
-      - stacktraces
-      - issue-monitoring
       - application-monitoring
     content:
       - name: UVX
@@ -2568,11 +2401,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking
     tags:
-      - problem-solving
-      - reasoning
-      - analysis
-      - structured-thinking
-      - decision-making
+      - ai-integration
+      - development
+      - productivity
     content:
       - name: NPX
         prerequisites:
@@ -2597,11 +2428,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/slack
     tags:
-      - slack
-      - messaging
-      - team-collaboration
-      - chat
+      - productivity
       - workspace-management
+      - collaboration
     prerequisites:
       - Slack workspace with bot permissions
     content:
@@ -2650,12 +2479,9 @@ items:
     author: smartsheet-platform
     url: https://github.com/smartsheet-platform/smar-mcp
     tags:
-      - smartsheet
       - project-management
       - collaboration
-      - api-integration
       - automation
-      - sheets
     content:
       - name: Local Development
         prerequisites:
@@ -2687,10 +2513,8 @@ items:
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sqlite
     tags:
       - sql
-      - data-analysis
-      - business-intelligence
       - database-management
-      - sqlite
+      - data-analysis
     content:
       - name: UVX
         prerequisites:
@@ -2719,11 +2543,9 @@ items:
     author: stripe
     url: https://github.com/stripe/agent-toolkit
     tags:
-      - payments
-      - billing
-      - invoicing
-      - stripe-api
-      - financial-services
+      - api-integration
+      - automation
+      - workflow
     prerequisites:
       - Stripe account
     content:
@@ -2757,13 +2579,9 @@ items:
     author: supabase
     url: https://supabase.com/docs/guides/mcp
     tags:
-      - supabase
       - database
-      - postgres
-      - authentication
+      - postgresql
       - storage
-      - realtime
-      - official
     prerequisites:
       - Supabase account
     content:
@@ -2788,9 +2606,7 @@ items:
     tags:
       - web-search
       - data-extraction
-      - real-time-information
-      - content-filtering
-      - news-search
+      - information-retrieval
     prerequisites:
       - Tavily account
     content:
@@ -2834,11 +2650,9 @@ items:
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers/tree/main/src/time
     tags:
-      - timezone
-      - time-conversion
-      - datetime
-      - scheduling
       - automation
+      - productivity
+      - real-time-data
     content:
       - name: UVX
         prerequisites:
@@ -2895,10 +2709,8 @@ items:
     author: Verodat
     url: https://github.com/Verodat/verodat-mcp-server
     tags:
-      - data-management
-      - dataset-operations
+      - database-management
       - workspace-management
-      - data-validation
       - ai-integration
     content:
       - name: Smithery Installation
@@ -2957,11 +2769,9 @@ items:
     author: IBM
     url: https://github.com/IBM/wxflows/tree/main/examples/mcp/javascript
     tags:
-      - watsonx
-      - flows-engine
-      - tool-integration
-      - search-tools
-      - ibm-cloud
+      - search
+      - ai-integration
+      - api-integration
     content:
       - name: Node.js
         content: |
@@ -3002,11 +2812,9 @@ items:
     author: anaisbetts
     url: https://github.com/anaisbetts/mcp-youtube
     tags:
-      - youtube
-      - subtitles
-      - video-analysis
-      - content-summarization
-      - yt-dlp
+      - data-extraction
+      - content-discovery
+      - information-retrieval
     prerequisites:
       - yt-dlp (install via Homebrew or WinGet)
     content:

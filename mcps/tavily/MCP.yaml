@@ -7,9 +7,7 @@ url: https://github.com/tavily-ai/tavily-mcp
 tags:
   - web-search
   - data-extraction
-  - real-time-information
-  - content-filtering
-  - news-search
+  - information-retrieval
 prerequisites:
   - Tavily account
 content:

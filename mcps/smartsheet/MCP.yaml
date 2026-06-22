@@ -6,12 +6,9 @@ description: A Model Context Protocol (MCP) server for interacting with the Smar
 author: smartsheet-platform
 url: https://github.com/smartsheet-platform/smar-mcp
 tags:
-  - smartsheet
   - project-management
   - collaboration
-  - api-integration
   - automation
-  - sheets
 content:
   - name: Local Development
     prerequisites:

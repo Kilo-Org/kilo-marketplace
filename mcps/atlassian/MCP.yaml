@@ -5,15 +5,9 @@ description: Comprehensive MCP server for Atlassian tools (Confluence and Jira) 
 author: sooperset
 url: https://github.com/sooperset/mcp-atlassian
 tags:
-  - atlassian
-  - jira
-  - confluence
   - project-management
-  - issue-tracking
   - documentation
   - collaboration
-  - oauth
-  - api-integration
 prerequisites:
   - Docker
   - Atlassian account (Cloud or Server/Data Center)

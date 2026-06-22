@@ -5,11 +5,9 @@ description: Provides time and timezone conversion capabilities using IANA timez
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/time
 tags:
-  - timezone
-  - time-conversion
-  - datetime
-  - scheduling
   - automation
+  - productivity
+  - real-time-data
 content:
   - name: UVX
     prerequisites:

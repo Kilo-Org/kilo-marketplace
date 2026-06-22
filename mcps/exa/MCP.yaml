@@ -6,9 +6,7 @@ author: exa-labs
 url: https://github.com/exa-labs/exa-mcp-server
 tags:
   - web-search
-  - exa-api
   - real-time-data
-  - content-discovery
   - information-retrieval
 prerequisites:
   - Exa account

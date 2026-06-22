@@ -6,10 +6,8 @@ author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres
 tags:
   - postgresql
-  - database-queries
-  - schema-inspection
-  - read-only
   - sql
+  - database-management
 content:
   - name: NPX
     prerequisites:

@@ -5,11 +5,9 @@ description: Enables interaction with Kubernetes clusters through Metoro's obser
 author: metoro-io
 url: https://github.com/metoro-io/metoro-mcp-server
 tags:
-  - kubernetes
-  - observability
-  - ebpf
-  - telemetry
-  - microservices
+  - application-monitoring
+  - debugging
+  - development
 content:
   - name: Go Binary
     content: |

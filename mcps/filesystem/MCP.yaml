@@ -5,11 +5,9 @@ description: Provides comprehensive filesystem operations including reading, wri
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem
 tags:
-  - filesystem
   - file-management
-  - directory-operations
   - file-search
-  - file-editing
+  - automation
 content:
   - name: NPX
     prerequisites:

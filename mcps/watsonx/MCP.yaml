@@ -5,11 +5,9 @@ description: Enables integration with watsonx.ai Flows Engine, providing tools f
 author: IBM
 url: https://github.com/IBM/wxflows/tree/main/examples/mcp/javascript
 tags:
-  - watsonx
-  - flows-engine
-  - tool-integration
-  - search-tools
-  - ibm-cloud
+  - search
+  - ai-integration
+  - api-integration
 content:
   - name: Node.js
     content: |

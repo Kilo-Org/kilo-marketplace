@@ -6,8 +6,6 @@ author: MindscapeHQ
 url: https://github.com/MindscapeHQ/mcp-server-raygun
 tags:
   - error-tracking
-  - crash-reporting
-  - performance-monitoring
   - debugging
   - application-monitoring
 content:

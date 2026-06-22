@@ -6,16 +6,9 @@ description: Comprehensive ClickUp MCP server for project management integration
 author: taazkareem
 url: https://github.com/TaazKareem/clickup-mcp-server
 tags:
-  - clickup
   - project-management
-  - task-management
-  - time-tracking
-  - productivity
   - automation
-  - workflow
-  - team-collaboration
-  - workspace
-  - api-integration
+  - collaboration
 prerequisites:
   - ClickUp account
   - ClickUp API key
