@@ -1481,9 +1481,6 @@ items:
     description: Official Laravel MCP server providing comprehensive AI-powered development tools including database schema
       inspection, query execution, route analysis, artisan command access, configuration management, documentation
       search, error tracking, and extensible skills system for Laravel applications.
-    suggest_for:
-      extension:
-        - "*.blade.php"
     author: laravel
     url: https://github.com/laravel/boost
     tags:
@@ -2696,10 +2693,6 @@ items:
     name: SQLite
     description: Provides database interaction and business intelligence capabilities through SQLite, enabling SQL queries,
       data analysis, and automated business insight generation.
-    suggest_for:
-      extension:
-        - "*.sqlite"
-        - "*.sqlite3"
     author: modelcontextprotocol
     url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sqlite
     tags:

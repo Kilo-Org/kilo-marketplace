@@ -297,7 +297,7 @@ tags:
   - here
 suggest_for:
   extension:
-    - "*.sqlite"
+    - "*.i64"
 prerequisites:
   - Required software or accounts
 content:
@@ -328,7 +328,7 @@ parameters:
 | `author` | Yes | Author or organization name |
 | `url` | Yes | Link to the MCP server repository |
 | `tags` | Yes | Array of relevant tags |
-| `suggest_for.extension` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer distinctive forms such as `"*.blade.php"` and omit broad patterns such as `"*.php"` |
+| `suggest_for.extension` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |
