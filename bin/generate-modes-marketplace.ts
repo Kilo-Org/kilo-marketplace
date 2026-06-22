@@ -24,7 +24,7 @@ function requireString(value: unknown, field: string, file: string): string {
 }
 
 function globToRegex(glob: string): string {
-  let regex = "";
+  let regex = glob.includes("/") ? "^" : "(?:^|/)";
 
   for (let index = 0; index < glob.length; index += 1) {
     const character = glob[index];

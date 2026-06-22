@@ -62,7 +62,7 @@ items:
       groups:
         - read
         - - edit
-          - fileRegex: (?:\.kilo/plans/[^/]*\.md|\.plans/[^/]*\.md|\.opencode/plans/[^/]*\.md)$
+          - fileRegex: (?:^\.kilo/plans/[^/]*\.md|^\.plans/[^/]*\.md|^\.opencode/plans/[^/]*\.md)$
             description: Files allowed by agent edit permissions
   - id: code-reviewer
     name: Code Reviewer
@@ -241,7 +241,7 @@ items:
       groups:
         - read
         - - edit
-          - fileRegex: (?:[^/]*\.md|[^/]*\.mdc|[^/]*\.mdx)$
+          - fileRegex: (?:(?:^|/)[^/]*\.md|(?:^|/)[^/]*\.mdc|(?:^|/)[^/]*\.mdx)$
             description: Files allowed by agent edit permissions
         - command
         - mcp
@@ -267,7 +267,7 @@ items:
       groups:
         - read
         - - edit
-          - fileRegex: (?:[^/]*\.md|[^/]*\.mdx|[^/]*\.txt|[^/]*\.rst|[^/]*\.adoc|README|[^/]*/README|CHANGELOG|[^/]*/CHANGELOG)$
+          - fileRegex: (?:(?:^|/)[^/]*\.md|(?:^|/)[^/]*\.mdx|(?:^|/)[^/]*\.txt|(?:^|/)[^/]*\.rst|(?:^|/)[^/]*\.adoc|(?:^|/)README|^[^/]*/README|(?:^|/)CHANGELOG|^[^/]*/CHANGELOG)$
             description: Files allowed by agent edit permissions
         - command
   - id: frontend-specialist
@@ -294,7 +294,7 @@ items:
       groups:
         - read
         - - edit
-          - fileRegex: (?:[^/]*\.ts|[^/]*\.tsx|[^/]*\.js|[^/]*\.jsx|[^/]*\.css|[^/]*\.scss|[^/]*\.less)$
+          - fileRegex: (?:(?:^|/)[^/]*\.ts|(?:^|/)[^/]*\.tsx|(?:^|/)[^/]*\.js|(?:^|/)[^/]*\.jsx|(?:^|/)[^/]*\.css|(?:^|/)[^/]*\.scss|(?:^|/)[^/]*\.less)$
             description: Files allowed by agent edit permissions
         - command
   - id: test-engineer
@@ -319,6 +319,6 @@ items:
       groups:
         - read
         - - edit
-          - fileRegex: (?:[^/]*\.test\.js|[^/]*\.test\.ts|[^/]*\.test\.jsx|[^/]*\.test\.tsx|[^/]*\.spec\.js|[^/]*\.spec\.ts|[^/]*\.spec\.jsx|[^/]*\.spec\.tsx)$
+          - fileRegex: (?:(?:^|/)[^/]*\.test\.js|(?:^|/)[^/]*\.test\.ts|(?:^|/)[^/]*\.test\.jsx|(?:^|/)[^/]*\.test\.tsx|(?:^|/)[^/]*\.spec\.js|(?:^|/)[^/]*\.spec\.ts|(?:^|/)[^/]*\.spec\.jsx|(?:^|/)[^/]*\.spec\.tsx)$
             description: Files allowed by agent edit permissions
         - command
