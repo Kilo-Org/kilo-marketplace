@@ -98,7 +98,4 @@ Before broad enterprise release or any NVIDIA-verified claim:
 
 - Local marketplace copy: `SKILL.md`
 - Local marketplace copy: `skill-card.md`
-- Source repository: https://github.com/Xquik-dev/hermes-tweet
-- Source README: https://github.com/Xquik-dev/hermes-tweet#readme
-- Source after-install guide: https://github.com/Xquik-dev/hermes-tweet/blob/master/after-install.md
-- Source security policy: https://github.com/Xquik-dev/hermes-tweet/blob/master/SECURITY.md
+- Canonical source repository and docs: https://github.com/Xquik-dev/hermes-tweet
