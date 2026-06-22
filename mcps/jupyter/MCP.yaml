@@ -1,0 +1,22 @@
+id: jupyter
+name: Jupyter AI MCP
+description: Connects Kilo to JupyterLab through the built-in MCP server used by Jupyter AI, an incubating JupyterLab project. Provides tools to inspect, create, edit, and execute notebooks and cells in a running local Jupyter server.
+author: jupyter-ai-contrib
+url: https://github.com/jupyter-ai-contrib/jupyter-server-mcp
+category: data
+prerequisites:
+  - Python 3.10 or later
+  - Jupyter AI 3.0 or later installed in the same environment as JupyterLab
+  - A running local JupyterLab server
+content:
+  - name: Local Streamable HTTP
+    description: Connects to the MCP endpoint exposed on localhost by a running JupyterLab server with Jupyter AI installed.
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{JUPYTER_MCP_URL}}"
+      }
+parameters:
+  - name: Jupyter MCP URL
+    key: JUPYTER_MCP_URL
+    placeholder: http://127.0.0.1:3001/mcp
