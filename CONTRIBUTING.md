@@ -143,6 +143,8 @@ metadata:
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
 | `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
 
+Suggestion patterns are intentionally not exhaustive. A format being supported as input or output is not enough to add it: for example, a generic Markdown or audio file does not imply a writing or meeting-analysis task.
+
 ### Real-World Examples
 
 Here are some existing skills in the marketplace and how they reference their source repositories:
@@ -332,6 +334,8 @@ parameters:
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |
+
+Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only formats that strongly identify that exact MCP, such as `"*.ipynb"` for Jupyter.
 
 ### Transport Types
 
