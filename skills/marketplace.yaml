@@ -225,8 +225,8 @@ items:
   - id: create-pull-request
     description: >-
       Create a GitHub pull request following project conventions. Use when the user asks to create a PR, submit changes
-      for review, or open a pull request. Handles commit analysis, branch management, and PR creation using the gh CLI
-      tool.
+      for review, or open a pull request. Handles commit analysis, branch management, PR template usage, and PR creation
+      using the gh CLI tool.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
@@ -247,6 +247,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-migration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-migration/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-migration.tar.gz
+  - id: deploy-to-vercel
+    description: >-
+      Deploy applications and websites to Vercel. Use when the user requests deployment actions like "deploy my app",
+      "deploy and give me the link", "push this live", or "create a preview deployment".
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/deploy-to-vercel
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/deploy-to-vercel/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/deploy-to-vercel.tar.gz
   - id: figma-implement-design
     description: >-
       Translates Figma designs into production-ready application code with 1:1 visual fidelity. Use when implementing UI
@@ -259,23 +267,20 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/figma-implement-design.tar.gz
   - id: frontend-design
     description: >-
-      Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user
-      asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing
-      pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates
-      creative, polished code and UI design that avoids generic AI aesthetics.
+      Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with
+      aesthetic direction, typography, and making choices that don't read as templated defaults.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/frontend-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/frontend-design/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/frontend-design.tar.gz
-  - id: grill-me
+  - id: grilling
     description: >-
-      Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch
-      of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill
-      me".
+      Interview the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before
+      building, or uses any 'grill' trigger phrases.
     category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grill-me
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grill-me/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grill-me.tar.gz
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grilling
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grilling/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grilling.tar.gz
   - id: langsmith-fetch
     description: >-
       Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
@@ -319,15 +324,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-composition-patterns
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-composition-patterns/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-composition-patterns.tar.gz
-  - id: vercel-deploy
-    description: >-
-      Deploy applications and websites to Vercel. Use this skill when the user requests deployment actions such as
-      "Deploy my app", "Deploy this to production", "Create a preview deployment", "Deploy and give me the link", or
-      "Push this live". No authentication required - returns preview URL and claimable deployment link.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-deploy
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-deploy/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-deploy.tar.gz
   - id: vercel-react-best-practices
     description: >-
       React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when

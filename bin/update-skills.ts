@@ -35,6 +35,10 @@ interface SkillInfo {
   frontmatter: Record<string, any>;
 }
 
+function ensureFinalNewline(content: string): string {
+  return content.replace(/(?:\r?\n)+$/, "") + "\n";
+}
+
 /**
  * Collect all skills that have a metadata.source field.
  * Optionally filter to only the given skill names.
@@ -192,11 +196,17 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
         continue;
       }
 
-      // Save local.patch before we wipe the directory
+      // Save local.patch and local.remove before we wipe the directory
       const patchPath = path.join(skill.dir, "local.patch");
       let savedPatch: string | null = null;
       if (fs.existsSync(patchPath)) {
         savedPatch = fs.readFileSync(patchPath, "utf-8");
+      }
+
+      const removePath = path.join(skill.dir, "local.remove");
+      let savedRemove: string | null = null;
+      if (fs.existsSync(removePath)) {
+        savedRemove = fs.readFileSync(removePath, "utf-8");
       }
 
       // Save any existing local LICENSE file before we wipe the directory,
@@ -251,7 +261,9 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
         ...(skill.source.license_path && { license_path: skill.source.license_path }),
       };
 
-      const updatedContent = matter.stringify(body, newFrontmatter);
+      const updatedContent = ensureFinalNewline(
+        matter.stringify(body, newFrontmatter),
+      );
       fs.writeFileSync(newSkillMdPath, updatedContent);
 
       // Copy LICENSE from the configured license_path (repo-root-relative) if it exists
@@ -276,6 +288,29 @@ function updateFromRepo(repoUrl: string, skills: SkillInfo[]): void {
           path.join(skill.dir, savedLicense.name),
           savedLicense.content,
         );
+      }
+
+      if (savedRemove) {
+        const entries = savedRemove
+          .split(/\r?\n/)
+          .map((entry) => entry.trim())
+          .filter((entry) => entry && !entry.startsWith("#"));
+
+        for (const entry of entries) {
+          const target = path.resolve(skill.dir, entry);
+          const relativeTarget = path.relative(skill.dir, target);
+          if (
+            relativeTarget === "" ||
+            relativeTarget.startsWith("..") ||
+            path.isAbsolute(relativeTarget)
+          ) {
+            throw new Error(`${skill.name}: invalid local.remove path: ${entry}`);
+          }
+          if (fs.existsSync(target)) {
+            fs.rmSync(target, { recursive: true });
+          }
+        }
+        fs.writeFileSync(path.join(skill.dir, "local.remove"), savedRemove);
       }
 
       // Apply local.patch if one was saved
