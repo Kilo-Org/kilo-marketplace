@@ -1,6 +1,6 @@
 diff -ruN a/ponytail/SKILL.md b/ponytail/SKILL.md
---- a/ponytail/SKILL.md	2026-06-22 12:23:36
-+++ b/ponytail/SKILL.md	2026-06-22 12:23:30
+--- a/ponytail/SKILL.md	2026-06-22 12:25:31
++++ b/ponytail/SKILL.md	2026-06-22 12:25:26
 @@ -5,12 +5,11 @@
    minimal. Channels a senior dev who has seen everything: question whether the
    task needs to exist at all (YAGNI), reach for the standard library before
@@ -45,14 +45,12 @@ diff -ruN a/ponytail/SKILL.md b/ponytail/SKILL.md
  ## When NOT to be lazy
  
  Never simplify away: input validation at trust boundaries, error handling
-@@ -99,8 +84,7 @@
- 
+@@ -100,7 +85,6 @@
  ## Boundaries
  
--Ponytail governs what you build, not how you talk (pair with Caveman for
+ Ponytail governs what you build, not how you talk (pair with Caveman for
 -terse prose). "stop ponytail" / "normal mode": revert. Level persists until
 -changed or session end.
-+Ponytail governs what you build, not how you talk. "stop ponytail" /
-+"normal mode": revert.
++terse prose). "stop ponytail" / "normal mode": revert.
  
  The shortest path to done is the right path.

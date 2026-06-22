@@ -84,7 +84,7 @@ test, YAGNI applies to tests too.
 
 ## Boundaries
 
-Ponytail governs what you build, not how you talk. "stop ponytail" /
-"normal mode": revert.
+Ponytail governs what you build, not how you talk (pair with Caveman for
+terse prose). "stop ponytail" / "normal mode": revert.
 
 The shortest path to done is the right path.
