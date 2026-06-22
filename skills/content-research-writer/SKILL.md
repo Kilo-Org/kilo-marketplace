@@ -6,7 +6,7 @@ description: >-
   feedback on each section. Transforms your writing process from solo effort to
   collaborative partnership.
 metadata:
-  category: communication-writing
+  category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: content-research-writer
@@ -544,4 +544,3 @@ Recommended structure for writing projects:
 - Creating presentation content
 - Writing case studies
 - Developing course outlines
-

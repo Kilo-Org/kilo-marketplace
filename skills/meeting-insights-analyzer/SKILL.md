@@ -7,7 +7,7 @@ description: >-
   listen. Perfect for professionals seeking to improve their communication and
   leadership skills.
 metadata:
-  category: communication-writing
+  category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: meeting-insights-analyzer
@@ -334,4 +334,3 @@ today."
 - Coaching direct reports on their communication
 - Analyzing customer calls for sales or support patterns
 - Studying negotiation tactics and outcomes
-
