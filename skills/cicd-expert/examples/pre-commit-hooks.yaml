@@ -1,0 +1,77 @@
+# Pre-commit hooks configuration
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # Check for common issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        # Skip files with JSONC (JSON with comments like tsconfig.json)
+        files: ^((?!\.json$).)*$
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: debug-statements
+
+  # Python formatting
+  - repo: https://github.com/psf/black
+    rev: 26.3.1
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  # Python linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        args: ['--max-line-length=120', '--extend-ignore=E203,W503']
+
+  # JavaScript/TypeScript formatting (using local hook with npx)
+  # Note: Use 'files' pattern, NOT 'types' for Prettier - pre-commit uses its own type system
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: npx prettier --check
+        language: node
+        files: ^.*\.(js|jsx|ts|tsx|json|css|scss|yaml|md)$
+        args: ['--tab-width=2']
+
+  # TypeScript type checking (using local hook with npx)
+  - repo: local
+    hooks:
+      - id: typescript
+        name: TypeScript type check  # Note: This checks ONLY staged TS files for fast feedback. Full project check should run in CI.
+        entry: npx tsc --noEmit
+        language: node
+        pass_filenames: false
+        always_run: true
+        files: ^.*\.tsx?$
+
+  # Markdown linting (using local hook with npx)
+  - repo: local
+    hooks:
+      - id: markdownlint
+        name: markdownlint
+        entry: npx markdownlint
+        language: node
+        files: ^.*\.md$
+
+  # Docker file linting
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.14.0
+    hooks:
+      - id: hadolint
+
+  # Secret scanning
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.94.2
+    hooks:
+      - id: trufflehog
+        args: ['--no-update']
