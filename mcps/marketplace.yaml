@@ -61,6 +61,44 @@ items:
       - name: Apify API Token
         key: APIFY_TOKEN
         placeholder: your_apify_api_token
+  - id: asaas
+    name: Asaas
+    description: Official Asaas MCP server for complete integration with billing, Pix, invoices, subscriptions, customers, webhooks, and the entire financial API. Enables AI to create, query, and manage payments intelligently.
+    author: Asaas
+    url: https://docs.asaas.com/docs/mcp-1
+    tags:
+      - asaas
+      - payments
+      - pix
+      - billing
+      - financial
+      - fintech
+      - brasil
+      - api-integration
+    prerequisites:
+      - Asaas account (sandbox or production)
+      - Asaas API Key
+    content:
+      - name: HTTP (Recommended - Official)
+        prerequisites:
+          - None (no installation required)
+        content: |
+          {
+            "url": "https://docs.asaas.com/mcp",
+            "type": "streamable-http",
+            "env": {
+              "ASAAS_API_KEY": "{{ASAAS_API_KEY}}"
+            }
+          }
+        parameters:
+          - name: Asaas API Key
+            key: ASAAS_API_KEY
+            placeholder: asaas_your_api_key_here
+            description: Paste your Asaas API Key (Sandbox or Production environment)
+    parameters:
+      - name: Asaas API Key
+        key: ASAAS_API_KEY
+        placeholder: asaas_your_api_key_here
   - id: atlassian
     name: Atlassian
     description: Comprehensive MCP server for Atlassian tools (Confluence and Jira) supporting both Cloud and Server/Data
