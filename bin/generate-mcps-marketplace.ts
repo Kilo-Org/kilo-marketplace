@@ -41,7 +41,7 @@ function validateSuggestFor(value: unknown, mcpId: string): void {
     )
   ) {
     throw new Error(
-      `${mcpId}: suggest_for.extension must be a non-empty list of patterns like "*.sql"`,
+      `${mcpId}: suggest_for.extension must be a non-empty list of patterns like "*.ipynb"`,
     );
   }
 }
