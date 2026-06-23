@@ -1584,15 +1584,6 @@ items:
             "command": "uvx",
             "args": ["mcp-server-motherduck", "--db-path", ":memory:"]
           }
-      - name: UVX with Read-Only Mode
-        prerequisites:
-          - Python
-          - uv
-        content: |
-          {
-            "command": "uvx",
-            "args": ["mcp-server-motherduck", "--db-path", "{{DB_PATH}}", "--read-only"]
-          }
       - name: UVX with SaaS Mode
         prerequisites:
           - Python
