@@ -367,3 +367,11 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: startup-metrics-framework
+    description: >-
+      Comprehensive guide to tracking, calculating, and optimizing key performance metrics for different startup
+      business models from seed through Series A.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/startup-metrics-framework
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/startup-metrics-framework/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/startup-metrics-framework.tar.gz
