@@ -26,7 +26,7 @@ const AGENT_CATEGORIES = new Set([
   "web-automation",
 ]);
 const AGENT_CONFIG_KEYS = ["model", "variant", "temperature", "top_p", "permission", "color", "steps", "hidden"];
-const MARKETPLACE_KEYS = ["author", "authorUrl", "prerequisites"];
+const MARKETPLACE_KEYS = ["author", "authorUrl", "tags", "prerequisites"];
 
 type AgentContent = {
   mode: "primary" | "subagent" | "all";
@@ -50,7 +50,7 @@ type MarketplaceAgent = {
   category: string;
   author?: string;
   authorUrl?: string;
-  tags: string[];
+  tags?: string[];
   prerequisites?: string[];
   content: AgentContent;
 };
@@ -75,9 +75,6 @@ function agentFromMarkdown(dirName: string): MarketplaceAgent {
 
   if (!AGENT_CATEGORIES.has(category)) {
     throw new Error(`${file}: invalid category "${category}"`);
-  }
-  if (frontmatter.tags !== undefined) {
-    throw new Error(`${file}: use category instead of tags`);
   }
   if (id !== dirName) {
     throw new Error(`${file}: id must match directory name (${dirName})`);
@@ -116,7 +113,6 @@ function agentFromMarkdown(dirName: string): MarketplaceAgent {
     name,
     description,
     category,
-    tags: [category],
     content: agentContent,
   };
   for (const key of MARKETPLACE_KEYS) {

@@ -4,6 +4,10 @@ name: Architect
 description: Stress-test technical designs and produce implementation-ready plans
 author: "@johnnyeric"
 category: development
+tags:
+  - architecture
+  - planning
+  - design
 mode: primary
 permission:
   read: allow

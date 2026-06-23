@@ -10,8 +10,6 @@ items:
     name: Architect
     description: Stress-test technical designs and produce implementation-ready plans
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: Stress-test technical designs and produce implementation-ready plans
@@ -122,12 +120,14 @@ items:
         question: allow
         plan_exit: allow
     author: "@johnnyeric"
+    tags:
+      - architecture
+      - planning
+      - design
   - id: code-reviewer
     name: Code Reviewer
     description: Senior software engineer conducting thorough code reviews
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: Senior software engineer conducting thorough code reviews
@@ -149,12 +149,13 @@ items:
         mcp: deny
         question: allow
     author: "@olearycrew"
+    tags:
+      - review
+      - quality
   - id: code-simplifier
     name: Code Simplifier
     description: For simplifying/refactoring features of codebase
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: For simplifying/refactoring features of codebase
@@ -241,12 +242,13 @@ items:
         mcp: allow
         question: allow
     author: "@cau1k"
+    tags:
+      - refactor
+      - quality
   - id: code-skeptic
     name: Code Skeptic
     description: For when you need your code criticized like nobody's business
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: For when you need your code criticized like nobody's business
@@ -329,12 +331,13 @@ items:
         mcp: allow
         question: allow
     author: "@cau1k"
+    tags:
+      - review
+      - quality
   - id: docs-specialist
     name: Documentation Specialist
     description: Focus on writing documentation, markdown files, and other text-based files
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: Focus on writing documentation, markdown files, and other text-based files
@@ -366,12 +369,13 @@ items:
         mcp: deny
         question: allow
     author: "@olearycrew"
+    tags:
+      - documentation
+      - quality
   - id: frontend-specialist
     name: Frontend Specialist
     description: Frontend developer expert in React, TypeScript, and modern CSS
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: Frontend developer expert in React, TypeScript, and modern CSS
@@ -400,12 +404,15 @@ items:
         mcp: deny
         question: allow
     author: "@olearycrew"
+    tags:
+      - frontend
+      - quality
+      - performance
+      - accessibility
   - id: test-engineer
     name: Test Engineer
     description: QA engineer and testing specialist
     category: development
-    tags:
-      - development
     content:
       mode: primary
       description: QA engineer and testing specialist
@@ -436,3 +443,6 @@ items:
         mcp: deny
         question: allow
     author: "@olearycrew"
+    tags:
+      - testing
+      - quality

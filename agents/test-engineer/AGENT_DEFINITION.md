@@ -4,6 +4,9 @@ name: Test Engineer
 description: QA engineer and testing specialist
 author: "@olearycrew"
 category: development
+tags:
+  - testing
+  - quality
 mode: primary
 permission:
   read: allow

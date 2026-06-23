@@ -4,6 +4,9 @@ name: Code Reviewer
 description: Senior software engineer conducting thorough code reviews
 author: "@olearycrew"
 category: development
+tags:
+  - review
+  - quality
 mode: primary
 permission:
   read: allow

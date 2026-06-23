@@ -4,6 +4,9 @@ name: Documentation Specialist
 description: Focus on writing documentation, markdown files, and other text-based files
 author: "@olearycrew"
 category: development
+tags:
+  - documentation
+  - quality
 mode: primary
 permission:
   read: allow
