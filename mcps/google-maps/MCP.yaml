@@ -4,12 +4,7 @@ description: Provides comprehensive access to Google Maps services including geo
   distance calculations, and elevation data through the Google Maps API.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps
-tags:
-  - maps
-  - geocoding
-  - navigation
-  - places-api
-  - location-data
+category: search
 prerequisites:
   - Google Cloud account with Maps API enabled
 content:

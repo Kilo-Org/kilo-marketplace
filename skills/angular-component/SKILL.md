@@ -7,6 +7,10 @@ description: >-
   component creation, refactoring class-based inputs to signals, adding host
   bindings, or implementing accessible interactive components.
 metadata:
+  suggest_for:
+    filename:
+      - "*.component.ts"
+      - "*.component.html"
   category: development
   source:
     repository: 'https://github.com/analogjs/angular-skills'

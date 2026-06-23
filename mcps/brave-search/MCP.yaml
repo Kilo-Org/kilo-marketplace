@@ -4,12 +4,7 @@ description: Integrates Brave Search API to provide comprehensive web and local 
   filtering, pagination, and automatic fallbacks.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search
-tags:
-  - search-engine
-  - local-search
-  - web-search
-  - brave-api
-  - content-discovery
+category: search
 prerequisites:
   - Brave Search account
 content:

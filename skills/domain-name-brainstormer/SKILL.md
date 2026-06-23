@@ -5,7 +5,7 @@ description: >-
   across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of
   brainstorming and manual checking.
 metadata:
-  category: business-marketing
+  category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: domain-name-brainstormer
@@ -217,4 +217,3 @@ After picking a domain:
 - Verify social media handles
 - Research trademark availability
 - Plan brand identity colors/fonts
-

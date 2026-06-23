@@ -4,12 +4,7 @@ description: Downloads and extracts YouTube video subtitles using yt-dlp, enabli
   summarize video content through subtitle text.
 author: anaisbetts
 url: https://github.com/anaisbetts/mcp-youtube
-tags:
-  - youtube
-  - subtitles
-  - video-analysis
-  - content-summarization
-  - yt-dlp
+category: web-automation
 prerequisites:
   - yt-dlp (install via Homebrew or WinGet)
 content:

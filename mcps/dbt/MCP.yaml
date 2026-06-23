@@ -5,15 +5,7 @@ description: A MCP server for interacting with dbt, providing AI agents with con
   code generation, and column-level lineage tracing.
 author: dbt-labs
 url: https://github.com/dbt-labs/dbt-mcp
-tags:
-  - dbt
-  - data-engineering
-  - data-analytics
-  - sql
-  - semantic-layer
-  - data-modeling
-  - mcp-server
-  - llm
+category: data
 prerequisites:
   - Python and uv
 content:

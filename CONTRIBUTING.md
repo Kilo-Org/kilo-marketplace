@@ -126,6 +126,9 @@ description: >-
 metadata:
   category: development
   author: your-github-username
+  suggest_for:
+    filename:
+      - "*.component.ts"
   source:
     repository: https://github.com/yourname/your-skill-repo
     path: path/to/skill
@@ -135,9 +138,13 @@ metadata:
 
 | Field | Required | Description |
 |-------|----------|-------------|
+| `metadata.suggest_for.filename` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
+| `metadata.suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this skill is relevant, such as `"ms-toolsai.jupyter"` |
 | `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
 | `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
+
+Suggestion patterns are intentionally not exhaustive. A format being supported as input or output is not enough to add it: for example, a generic Markdown or audio file does not imply a writing or meeting-analysis task. Likewise, only list a VS Code extension when its installation strongly indicates the exact skill is relevant. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Real-World Examples
 
@@ -181,6 +188,7 @@ metadata:
   source:
     repository: 'https://github.com/cline/cline'
     path: .cline/skills/create-pull-request
+    license_path: LICENSE
 ---
 ```
 
@@ -256,134 +264,6 @@ Examples:
 
 ---
 
-## Contributing Custom Modes
-
-Custom modes allow you to tailor Kilo Code's behavior for specific tasks or workflows. You can contribute modes that benefit the community.
-
-### Mode Requirements
-
-All contributed modes must:
-
-1. **Serve a clear purpose** - Optimized for specific tasks like documentation, testing, or security review
-2. **Be well-documented** - Include clear descriptions and use cases
-3. **Define appropriate permissions** - Use tool groups and file restrictions responsibly
-4. **Be tested** - Verify the mode works correctly in Kilo Code
-
-### Mode Structure
-
-Create a new folder with your mode name (use lowercase and hyphens):
-
-```
-modes/
-└── mode-name/
-    └── MODE.yaml
-```
-
-The `MODE.yaml` file should contain:
-
-```yaml
-id: mode-slug
-name: Mode Display Name
-description: Brief description of what this mode does
-author: "@your-github-username"
-tags: [relevant, tags, here]
-content: |
-  slug: mode-slug
-  name: 🎯 Mode Display Name
-  roleDefinition: |
-    You are a specialist in [domain]. Your expertise includes:
-    - Capability 1
-    - Capability 2
-    - Capability 3
-  groups:
-    - read
-    - edit
-    - command
-  customInstructions: |
-    Specific behavioral guidelines for this mode.
-```
-
-### Mode Properties
-
-| Property | Required | Description |
-|----------|----------|-------------|
-| `id` | Yes | Unique identifier (kebab-case) |
-| `name` | Yes | Display name shown in the marketplace |
-| `description` | Yes | Brief description of the mode's purpose |
-| `author` | Yes | Your GitHub username with @ prefix |
-| `tags` | Yes | Array of relevant tags for discovery |
-| `content.slug` | Yes | Internal identifier (must match `id`) |
-| `content.name` | Yes | Display name with optional emoji |
-| `content.roleDefinition` | Yes | Defines the mode's expertise and personality |
-| `content.groups` | Yes | Tool groups the mode can access |
-| `content.customInstructions` | No | Additional behavioral guidelines |
-| `content.whenToUse` | No | Guidance for automated mode selection |
-
-### Available Tool Groups
-
-- `read` - Read files and explore the codebase
-- `edit` - Modify files (can include file restrictions)
-- `command` - Execute terminal commands
-- `browser` - Browser automation capabilities
-- `mcp` - Access MCP server tools
-
-### File Restrictions Example
-
-To restrict which files a mode can edit:
-
-```yaml
-groups:
-  - read
-  - - edit
-    - fileRegex: \.(md|mdx)$
-      description: Markdown files only
-  - command
-```
-
-### Mode Examples
-
-**Documentation Writer** (`modes/docs-writer/MODE.yaml`):
-```yaml
-id: docs-writer
-name: Documentation Writer
-description: Technical documentation expert for clear, comprehensive docs
-author: "@your-username"
-tags: [documentation, markdown, technical-writing]
-content: |
-  slug: docs-writer
-  name: 📝 Documentation Writer
-  roleDefinition: |
-    You are a technical writer specializing in clear documentation.
-  groups:
-    - read
-    - - edit
-      - fileRegex: \.md$
-        description: Markdown files only
-  customInstructions: |
-    Focus on clarity, proper formatting, and comprehensive examples.
-```
-
-**Security Reviewer** (`modes/security-review/MODE.yaml`):
-```yaml
-id: security-review
-name: Security Reviewer
-description: Read-only security analysis and vulnerability assessment
-author: "@your-username"
-tags: [security, audit, code-review]
-content: |
-  slug: security-review
-  name: 🔒 Security Reviewer
-  roleDefinition: |
-    You are a security specialist reviewing code for vulnerabilities.
-  groups:
-    - read
-    - browser
-  customInstructions: |
-    Focus on input validation, authentication flaws, and data exposure risks.
-```
-
----
-
 ## Contributing MCP Servers
 
 MCP (Model Context Protocol) servers extend Kilo Code's capabilities by connecting to external tools and services.
@@ -415,10 +295,10 @@ name: Service Name
 description: Brief description of what this MCP server provides
 author: author-name
 url: https://github.com/org/repo
-tags:
-  - relevant
-  - tags
-  - here
+category: development
+suggest_for:
+  filename:
+    - "*.i64"
 prerequisites:
   - Required software or accounts
 content:
@@ -448,10 +328,26 @@ parameters:
 | `description` | Yes | Clear description of capabilities |
 | `author` | Yes | Author or organization name |
 | `url` | Yes | Link to the MCP server repository |
-| `tags` | Yes | Array of relevant tags |
+| `category` | Yes | Primary category: `business`, `data`, `development`, `observability`, `productivity`, `search`, or `web-automation` |
+| `suggest_for.filename` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
+| `suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this MCP server is relevant, such as `"ms-toolsai.jupyter"` for Jupyter |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |
+
+Choose the single category that best represents how users will discover the MCP. Categories are broad navigation groups, not a list of every capability:
+
+- `business` - Finance, payments, contracts, and other specialized business operations
+- `data` - Databases, storage, data engineering, and persistent knowledge
+- `development` - Code, repositories, developer platforms, and software tooling
+- `observability` - Logs, errors, telemetry, and application or infrastructure monitoring
+- `productivity` - Projects, workflows, collaboration, communication, and office tools
+- `search` - Web, documentation, knowledge, and other information retrieval
+- `web-automation` - Browser control, testing, scraping, and web content extraction
+
+Propose a new category only when several MCPs share a distinct primary purpose that does not fit an existing category.
+
+Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `"ms-toolsai.jupyter"` for Jupyter. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Transport Types
 
@@ -536,10 +432,7 @@ name: Example Service
 description: Enables AI assistants to interact with Example Service API for data retrieval and automation.
 author: example-org
 url: https://github.com/example-org/example-mcp
-tags:
-  - api-integration
-  - automation
-  - data-retrieval
+category: business
 prerequisites:
   - Example Service account
 content:
@@ -575,6 +468,6 @@ parameters:
 
 ## Questions?
 
-Open an issue if you have questions about contributing or need help structuring your skill, mode, or MCP server.
+Open an issue if you have questions about contributing or need help structuring your skill, agent, or MCP server.
 
 Thank you for contributing to Kilo Marketplace!

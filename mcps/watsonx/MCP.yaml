@@ -4,12 +4,7 @@ description: Enables integration with watsonx.ai Flows Engine, providing tools f
   through a TypeScript-based MCP server implementation.
 author: IBM
 url: https://github.com/IBM/wxflows/tree/main/examples/mcp/javascript
-tags:
-  - watsonx
-  - flows-engine
-  - tool-integration
-  - search-tools
-  - ibm-cloud
+category: search
 content:
   - name: Node.js
     content: |

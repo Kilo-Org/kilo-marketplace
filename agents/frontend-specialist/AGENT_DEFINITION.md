@@ -3,11 +3,7 @@ id: frontend-specialist
 name: Frontend Specialist
 description: Frontend developer expert in React, TypeScript, and modern CSS
 author: "@olearycrew"
-tags:
-  - frontend
-  - quality
-  - performance
-  - accessibility
+category: development
 mode: primary
 permission:
   read: allow

@@ -4,12 +4,7 @@ description: Manages digital contract workflows including creation, sending, and
   signatures through the eSignatures platform.
 author: esignaturescom
 url: https://github.com/esignaturescom/mcp-server-esignatures
-tags:
-  - digital-signatures
-  - contracts
-  - document-management
-  - templates
-  - collaboration
+category: business
 content:
   - name: UVX
     prerequisites:

@@ -3,15 +3,24 @@ items:
     description: >-
       Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging,
       problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.
-    category: business-marketing
+    category: business
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/competitive-ads-extractor
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/competitive-ads-extractor/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/competitive-ads-extractor.tar.gz
+  - id: content-research-writer
+    description: >-
+      Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on
+      outlines, and providing real-time feedback on each section. Transforms your writing process from solo effort to
+      collaborative partnership.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/content-research-writer
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/content-research-writer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/content-research-writer.tar.gz
   - id: domain-name-brainstormer
     description: >-
       Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io,
       .dev, .ai, etc.). Saves hours of brainstorming and manual checking.
-    category: business-marketing
+    category: business
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/domain-name-brainstormer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/domain-name-brainstormer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/domain-name-brainstormer.tar.gz
@@ -20,7 +29,7 @@ items:
       A set of resources to help me write all kinds of internal communications, using the formats that my company likes
       to use. The agent should use this skill whenever asked to write some sort of internal communications (status
       reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
-    category: business-marketing
+    category: business
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/internal-comms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/internal-comms/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/internal-comms.tar.gz
@@ -29,25 +38,16 @@ items:
       Identifies high-quality leads for your product or service by analyzing your business, searching for target
       companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing
       professionals.
-    category: business-marketing
+    category: business
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lead-research-assistant
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lead-research-assistant/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lead-research-assistant.tar.gz
-  - id: content-research-writer
-    description: >-
-      Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on
-      outlines, and providing real-time feedback on each section. Transforms your writing process from solo effort to
-      collaborative partnership.
-    category: communication-writing
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/content-research-writer
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/content-research-writer/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/content-research-writer.tar.gz
   - id: meeting-insights-analyzer
     description: >-
       Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable
       feedback. Identifies when you avoid conflict, use filler words, dominate conversations, or miss opportunities to
       listen. Perfect for professionals seeking to improve their communication and leadership skills.
-    category: communication-writing
+    category: business
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
@@ -110,6 +110,10 @@ items:
       Triggers on component creation, refactoring class-based inputs to signals, adding host bindings, or implementing
       accessible interactive components.
     category: development
+    suggest_for:
+      filename:
+        - "*.component.ts"
+        - "*.component.html"
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-component
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-component/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-component.tar.gz
@@ -130,6 +134,9 @@ items:
       composition. Triggers on creating reusable DOM behaviors, extending element functionality, or composing behaviors
       across components. Note - use native @if/@for/@switch for control flow, not custom structural directives.
     category: development
+    suggest_for:
+      filename:
+        - "*.directive.ts"
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-directives
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-directives/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/angular-directives.tar.gz
@@ -225,8 +232,8 @@ items:
   - id: create-pull-request
     description: >-
       Create a GitHub pull request following project conventions. Use when the user asks to create a PR, submit changes
-      for review, or open a pull request. Handles commit analysis, branch management, and PR creation using the gh CLI
-      tool.
+      for review, or open a pull request. Handles commit analysis, branch management, PR template usage, and PR creation
+      using the gh CLI tool.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
@@ -247,6 +254,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-migration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-migration/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-migration.tar.gz
+  - id: deploy-to-vercel
+    description: >-
+      Deploy applications and websites to Vercel. Use when the user requests deployment actions like "deploy my app",
+      "deploy and give me the link", "push this live", or "create a preview deployment".
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/deploy-to-vercel
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/deploy-to-vercel/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/deploy-to-vercel.tar.gz
   - id: figma-implement-design
     description: >-
       Translates Figma designs into production-ready application code with 1:1 visual fidelity. Use when implementing UI
@@ -259,23 +274,20 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/figma-implement-design.tar.gz
   - id: frontend-design
     description: >-
-      Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user
-      asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing
-      pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates
-      creative, polished code and UI design that avoids generic AI aesthetics.
+      Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with
+      aesthetic direction, typography, and making choices that don't read as templated defaults.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/frontend-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/frontend-design/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/frontend-design.tar.gz
-  - id: grill-me
+  - id: grilling
     description: >-
-      Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch
-      of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill
-      me".
+      Interview the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before
+      building, or uses any 'grill' trigger phrases.
     category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grill-me
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grill-me/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grill-me.tar.gz
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grilling
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grilling/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grilling.tar.gz
   - id: langsmith-fetch
     description: >-
       Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent
@@ -294,6 +306,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
+  - id: ponytail
+    description: >
+      Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has
+      seen everything: question whether the task needs to exist at all (YAGNI), reach for the standard library before
+      custom code, native platform features before dependencies, one line before fifty. Use whenever the user says
+      "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest
+      path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ponytail
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ponytail/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ponytail.tar.gz
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
@@ -319,15 +342,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-composition-patterns
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-composition-patterns/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-composition-patterns.tar.gz
-  - id: vercel-deploy
-    description: >-
-      Deploy applications and websites to Vercel. Use this skill when the user requests deployment actions such as
-      "Deploy my app", "Deploy this to production", "Create a preview deployment", "Deploy and give me the link", or
-      "Push this live". No authentication required - returns preview URL and claimable deployment link.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-deploy
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-deploy/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-deploy.tar.gz
   - id: vercel-react-best-practices
     description: >-
       React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when
@@ -353,12 +367,3 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
-  - id: file-organizer
-    description: >-
-      Intelligently organizes your files and folders across your computer by understanding context, finding duplicates,
-      suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your digital
-      workspace tidy without manual effort.
-    category: productivity-organization
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/file-organizer
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/file-organizer/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/file-organizer.tar.gz

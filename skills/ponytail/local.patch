@@ -1,0 +1,56 @@
+diff -ruN a/ponytail/SKILL.md b/ponytail/SKILL.md
+--- a/ponytail/SKILL.md	2026-06-22 12:25:31
++++ b/ponytail/SKILL.md	2026-06-22 12:25:26
+@@ -5,12 +5,11 @@
+   minimal. Channels a senior dev who has seen everything: question whether the
+   task needs to exist at all (YAGNI), reach for the standard library before
+   custom code, native platform features before dependencies, one line before
+-  fifty. Supports intensity levels: lite, full (default), ultra. Use whenever
++  fifty. Use whenever
+   the user says "ponytail", "be lazy", "lazy mode", "simplest solution",
+   "minimal solution", "yagni", "do less", or "shortest path", and whenever they
+   complain about over-engineering, bloat, boilerplate, or unnecessary
+   dependencies.
+-argument-hint: '[lite|full|ultra]'
+ license: MIT
+ metadata:
+   category: development
+@@ -28,8 +27,7 @@
+ ## Persistence
+ 
+ ACTIVE EVERY RESPONSE. No drift back to over-building. Still active if
+-unsure. Off only: "stop ponytail" / "normal mode". Default: **full**.
+-Switch: `/ponytail lite|full|ultra`.
++unsure. Off only: "stop ponytail" / "normal mode".
+ 
+ ## The ladder
+ 
+@@ -66,19 +64,6 @@
+ 
+ Pattern: `[code] → skipped: [X], add when [Y].`
+ 
+-## Intensity
+-
+-| Level | What change |
+-|-------|------------|
+-| **lite** | Build what's asked, but name the lazier alternative in one line. User picks. |
+-| **full** | The ladder enforced. Stdlib and native first. Shortest diff, shortest explanation. Default. |
+-| **ultra** | YAGNI extremist. Deletion before addition. Ship the one-liner and challenge the rest of the requirement in the same breath. |
+-
+-Example: "Add a cache for these API responses."
+-- lite: "Done, cache added. FYI: `functools.lru_cache` covers this in one line if you'd rather not own a cache class."
+-- full: "`@lru_cache(maxsize=1000)` on the fetch function. Skipped custom cache class, add when lru_cache measurably falls short."
+-- ultra: "No cache until a profiler says so. When it does: `@lru_cache`. A hand-rolled TTL cache class is a bug farm with a hit rate."
+-
+ ## When NOT to be lazy
+ 
+ Never simplify away: input validation at trust boundaries, error handling
+@@ -100,7 +85,6 @@
+ ## Boundaries
+ 
+ Ponytail governs what you build, not how you talk (pair with Caveman for
+-terse prose). "stop ponytail" / "normal mode": revert. Level persists until
+-changed or session end.
++terse prose). "stop ponytail" / "normal mode": revert.
+ 
+ The shortest path to done is the right path.
