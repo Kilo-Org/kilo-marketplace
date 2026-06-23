@@ -95,6 +95,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/youtube-downloader
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/youtube-downloader/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/youtube-downloader.tar.gz
+  - id: sql-query-expert
+    description: >-
+      Write optimized SQL queries with joins, CTEs, window functions, and performance tuning. Based on Anthropic's
+      Claude Cookbooks.
+    category: data-engineering
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/sql-query-expert
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/sql-query-expert/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/sql-query-expert.tar.gz
   - id: agent-md-refactor
     description: >-
       Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure
@@ -367,3 +375,115 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: airflow
+    description: >-
+      Queries, manages, and troubleshoots Apache Airflow using the af CLI. Covers listing DAGs, triggering runs, reading
+      task logs, diagnosing failures, debugging DAG import errors, checking connections, variables, pools, and
+      monitoring health. Also routes to sub-skills for writing DAGs, debugging, deploying, and migrating Airflow 2 to 3.
+      Use when user mentions "Airflow", "DAG", "DAG run", "task log", "import error", "parse error", "broken DAG", or
+      asks to "trigger a pipeline", "debug import errors", "check Airflow health", "list connections", "retry a run", or
+      any Airflow operation. Do NOT use for warehouse/SQL analytics on Airflow metadata tables — use analyzing-data
+      instead.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/airflow
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/airflow/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/airflow.tar.gz
+  - id: airflow-dag-patterns
+    description: >-
+      Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when
+      creating data pipelines, orchestrating workflows, or scheduling batch jobs.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/airflow-dag-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/airflow-dag-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/airflow-dag-patterns.tar.gz
+  - id: bigquery-basics
+    description: >-
+      Manages datasets, tables, and jobs in BigQuery. Use when you need to interact with BigQuery, run SQL queries,
+      manage BigQuery resources (datasets, tables, views), or perform basic data ingestion and analysis.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/bigquery-basics
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/bigquery-basics/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/bigquery-basics.tar.gz
+  - id: build-dashboard
+    description: >-
+      Build an interactive HTML dashboard with charts, filters, and tables. Use when creating an executive overview with
+      KPI cards, turning query results into a shareable self-contained report, building a team monitoring snapshot, or
+      needing multiple charts with filters in one browser-openable file.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/build-dashboard
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/build-dashboard/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/build-dashboard.tar.gz
+  - id: data-analysis-jupyter
+    description: >-
+      Expert guidance for data analysis, visualization, and Jupyter Notebook development with pandas, matplotlib,
+      seaborn, and numpy.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-analysis-jupyter
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-analysis-jupyter/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-analysis-jupyter.tar.gz
+  - id: design-postgres-tables
+    description: >
+      Use this skill for general PostgreSQL table design.
+
+
+      **Trigger when user asks to:**
+
+      - Design PostgreSQL tables, schemas, or data models when creating new tables and when modifying existing ones.
+
+      - Choose data types, constraints, or indexes for PostgreSQL
+
+      - Create user tables, order tables, reference tables, or JSONB schemas
+
+      - Understand PostgreSQL best practices for normalization, constraints, or indexing
+
+      - Design update-heavy, upsert-heavy, or OLTP-style tables
+
+
+
+      **Keywords:** PostgreSQL schema, table design, data types, PRIMARY KEY, FOREIGN KEY, indexes, B-tree, GIN, JSONB,
+      constraints, normalization, identity columns, partitioning, row-level security
+
+
+      Comprehensive reference covering data types, indexing strategies, constraints, JSONB patterns, partitioning, and
+      PostgreSQL-specific best practices.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/design-postgres-tables
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/design-postgres-tables/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/design-postgres-tables.tar.gz
+  - id: jupyter-notebook
+    description: >-
+      Use when the user asks to create, scaffold, or edit Jupyter notebooks (`.ipynb`) for experiments, explorations, or
+      tutorials; prefer the bundled templates and run the helper script `new_notebook.py` to generate a clean starting
+      notebook.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/jupyter-notebook
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/jupyter-notebook/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/jupyter-notebook.tar.gz
+  - id: kpi-dashboard-design
+    description: >-
+      Design effective KPI dashboards with metrics selection, visualization best practices, and real-time monitoring
+      patterns. Use this skill when building an executive SaaS metrics dashboard tracking MRR, churn, and LTV/CAC
+      ratios; designing an operations center with live service health and request throughput; creating a cohort
+      retention analysis view for a product team; or debugging a dashboard where metrics contradict each other due to
+      inconsistent calculation methodology.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/kpi-dashboard-design
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/kpi-dashboard-design/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/kpi-dashboard-design.tar.gz
+  - id: sql-optimization-patterns
+    description: >-
+      Master SQL query optimization, indexing strategies, and EXPLAIN analysis to dramatically improve database
+      performance and eliminate slow queries. Use when debugging slow queries, designing database schemas, or optimizing
+      application performance.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/sql-optimization-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/sql-optimization-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/sql-optimization-patterns.tar.gz
+  - id: startup-metrics-framework
+    description: >-
+      Comprehensive guide to tracking, calculating, and optimizing key performance metrics for different startup
+      business models from seed through Series A.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/startup-metrics-framework
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/startup-metrics-framework/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/startup-metrics-framework.tar.gz
