@@ -73,10 +73,10 @@ Verify all of the following:
 - Directory name, frontmatter `name`, marketplace ID, and archive name agree.
 - `metadata.source.repository` and `metadata.source.path` identify the actual
   public canonical source. Attribution and author claims match that source.
-- For contributed skills, require `metadata.source.license_path` as specified by
-  `CONTRIBUTING.md`. Verify that it is repository-root-relative, exists upstream,
-  and covers every copied text, code, image, font, template, and example. Do not
-  require a separate top-level `license` when `license_path` supplies it.
+- Require either top-level `license` or `metadata.source.license_path`, not both,
+  as specified by `AGENTS.md`. Verify the declared license against upstream and
+  ensure it covers every copied text, code, image, font, template, and example.
+  When used, `license_path` must be repository-root-relative and exist upstream.
 - Category is intentional and is not the importer placeholder `unknown`.
 - Every referenced sibling skill or file is shipped and resolves with correct
   case from the installed skill directory.
@@ -124,8 +124,8 @@ Never run updater or patch-generation commands in review. Inspect normalization
 and compare local differences with the control files. Look for evidence that a
 maintainer ran `npx tsx bin/update-skills.ts <skill-name ...>` twice in a
 disposable worktree with a clean idempotence result. For patch changes, require
-evidence of two stable focused generations. Otherwise mark this unverified and
-request the targeted check.
+two stable runs of `npx tsx bin/generate-patches.ts <skill-name ...>`. Otherwise
+mark this unverified and request the targeted check.
 
 Report local edits the next refresh will overwrite. Patch failure, missing source
 or license, and partial replacement must fail clearly. Statically check removal
