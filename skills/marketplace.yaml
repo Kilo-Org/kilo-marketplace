@@ -239,15 +239,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/create-pull-request.tar.gz
-  - id: data-investigation
-    description: >-
-      A workflow for conducting rigorous, reproducible data investigations and ad-hoc analyses. This skill should be
-      used when investigating a business question, explaining a metric anomaly, validating a hypothesis, performing root
-      cause analysis, or preparing a one-off investigation dashboard or memo.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-investigation
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-investigation/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-investigation.tar.gz
   - id: dbt
     description: >-
       Skills for analytics engineering with dbt - building models, writing tests, querying the semantic layer,
