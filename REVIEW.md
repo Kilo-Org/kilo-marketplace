@@ -89,9 +89,9 @@ permissions/prompt/mode; for MCPs check installation JSON, parameters,
 placeholders, secrets, and category; for release workflows inspect packaged
 files.
 
-Use read-only evidence for `skills-ref validate`, repeatable marketplace
-regeneration, updater/patch idempotence, executable-resource tests, structured
-file schema validation, and local/source/license link resolution. CI passing
+Use read-only evidence from the repository's Validate Skills and Generate
+Marketplace workflows, updater/patch idempotence checks, executable-resource
+tests, schema validation, and local/source/license link resolution. CI passing
 alone does not prove examples, formulas, security, licenses, updater behavior,
 or bundled resources correct.
 
