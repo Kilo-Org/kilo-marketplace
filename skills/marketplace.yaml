@@ -367,3 +367,12 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: agentry
+    description: >-
+      Use when the user asks to install, set up, or use Agentry; add analytics, logging, error monitoring, deploy
+      attribution, product telemetry, or production debugging; investigate a production error or case; or answer
+      product/reliability questions from Agentry data.
+    category: observability
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/agentry
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/agentry/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/agentry.tar.gz

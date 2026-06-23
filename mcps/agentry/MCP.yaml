@@ -1,0 +1,17 @@
+id: agentry
+name: Agentry Observability
+description: Gives AI coding agents the canonical Agentry skill handoff for product analytics, error logging, and deploy attribution.
+author: Agentry
+url: https://github.com/fr33dr4g0n/agentry-public
+category: observability
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@agentrysh/mcp"]
+      }
