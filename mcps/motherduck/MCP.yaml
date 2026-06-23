@@ -3,7 +3,7 @@ name: MotherDuck
 description: Enables database operations with MotherDuck and local DuckDB, providing tools for connection
   initialization, schema reading, and query execution.
 suggest_for:
-  extension:
+  filename:
     - "*.duckdb"
 author: motherduckdb
 url: https://github.com/motherduckdb/mcp-server-motherduck

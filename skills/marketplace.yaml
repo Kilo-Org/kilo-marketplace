@@ -111,7 +111,7 @@ items:
       accessible interactive components.
     category: development
     suggest_for:
-      extension:
+      filename:
         - "*.component.ts"
         - "*.component.html"
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-component
@@ -135,7 +135,7 @@ items:
       across components. Note - use native @if/@for/@switch for control flow, not custom structural directives.
     category: development
     suggest_for:
-      extension:
+      filename:
         - "*.directive.ts"
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/angular-directives
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/angular-directives/SKILL.md

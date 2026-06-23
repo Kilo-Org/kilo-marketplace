@@ -883,7 +883,7 @@ items:
       create and manage Firebase projects, manage Authentication users, work with data in Cloud Firestore and Data
       Connect, retrieve schemas, understand security rules, and send messages with Cloud Messaging.
     suggest_for:
-      extension:
+      filename:
         - "*.rules"
     author: firebase
     url: https://firebase.google.com/docs/cli/mcp-server
@@ -1278,7 +1278,7 @@ items:
     name: IDA Pro
     description: An MCP server for interacting with the IDA Pro disassembler.
     suggest_for:
-      extension:
+      filename:
         - "*.idb"
         - "*.i64"
     author: mrexodia
@@ -1302,8 +1302,10 @@ items:
       project. Provides tools to inspect, create, edit, and execute notebooks and cells in a running local Jupyter
       server.
     suggest_for:
-      extension:
+      filename:
         - "*.ipynb"
+      vscode_extension:
+        - ms-toolsai.jupyter
     author: jupyter-ai-contrib
     url: https://github.com/jupyter-ai-contrib/jupyter-server-mcp
     category: data
@@ -1551,7 +1553,7 @@ items:
     description: Enables database operations with MotherDuck and local DuckDB, providing tools for connection
       initialization, schema reading, and query execution.
     suggest_for:
-      extension:
+      filename:
         - "*.duckdb"
     author: motherduckdb
     url: https://github.com/motherduckdb/mcp-server-motherduck

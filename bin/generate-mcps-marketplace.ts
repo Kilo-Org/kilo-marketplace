@@ -30,18 +30,51 @@ function validateSuggestFor(value: unknown, mcpId: string): void {
     throw new Error(`${mcpId}: suggest_for must be an object`);
   }
 
-  const extensions = (value as { extension?: unknown }).extension;
+  const suggestFor = value as Record<string, unknown>;
+  const unknownKey = Object.keys(suggestFor).find(
+    (key) => key !== "filename" && key !== "vscode_extension",
+  );
+  if (unknownKey) {
+    throw new Error(`${mcpId}: suggest_for has unknown property "${unknownKey}"`);
+  }
+
+  const filenames = suggestFor.filename;
+  const vscodeExtensions = suggestFor.vscode_extension;
+  if (filenames === undefined && vscodeExtensions === undefined) {
+    throw new Error(
+      `${mcpId}: suggest_for must contain filename or vscode_extension`,
+    );
+  }
+
   if (
-    !Array.isArray(extensions) ||
-    extensions.length === 0 ||
-    !extensions.every(
-      (extension) =>
-        typeof extension === "string" &&
-        /^\*\.[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*$/.test(extension),
-    )
+    filenames !== undefined &&
+    (!Array.isArray(filenames) ||
+      filenames.length === 0 ||
+      !filenames.every(
+        (filename) =>
+          typeof filename === "string" &&
+          /^\*\.[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*$/.test(filename),
+      ))
   ) {
     throw new Error(
-      `${mcpId}: suggest_for.extension must be a non-empty list of patterns like "*.ipynb"`,
+      `${mcpId}: suggest_for.filename must be a non-empty list of patterns like "*.ipynb"`,
+    );
+  }
+
+  if (
+    vscodeExtensions !== undefined &&
+    (!Array.isArray(vscodeExtensions) ||
+      vscodeExtensions.length === 0 ||
+      !vscodeExtensions.every(
+        (extensionId) =>
+          typeof extensionId === "string" &&
+          /^[A-Za-z0-9][A-Za-z0-9-]*\.[A-Za-z0-9][A-Za-z0-9-]*$/.test(
+            extensionId,
+          ),
+      ))
+  ) {
+    throw new Error(
+      `${mcpId}: suggest_for.vscode_extension must be a non-empty list of extension IDs like "ms-toolsai.jupyter"`,
     );
   }
 }

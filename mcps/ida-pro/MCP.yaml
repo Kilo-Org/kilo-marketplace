@@ -2,7 +2,7 @@ id: ida-pro
 name: IDA Pro
 description: An MCP server for interacting with the IDA Pro disassembler.
 suggest_for:
-  extension:
+  filename:
     - "*.idb"
     - "*.i64"
 author: mrexodia

@@ -4,7 +4,7 @@ description: The Firebase MCP server allows AI-powered development tools to work
   create and manage Firebase projects, manage Authentication users, work with data in Cloud Firestore and Data Connect,
   retrieve schemas, understand security rules, and send messages with Cloud Messaging.
 suggest_for:
-  extension:
+  filename:
     - "*.rules"
 author: firebase
 url: https://firebase.google.com/docs/cli/mcp-server

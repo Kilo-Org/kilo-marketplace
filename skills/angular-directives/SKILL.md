@@ -10,7 +10,7 @@ description: >-
   directives.
 metadata:
   suggest_for:
-    extension:
+    filename:
       - "*.directive.ts"
   category: development
   source:

@@ -2,8 +2,10 @@ id: jupyter
 name: Jupyter AI MCP
 description: Connects Kilo to JupyterLab through the built-in MCP server used by Jupyter AI, an incubating JupyterLab project. Provides tools to inspect, create, edit, and execute notebooks and cells in a running local Jupyter server.
 suggest_for:
-  extension:
+  filename:
     - "*.ipynb"
+  vscode_extension:
+    - ms-toolsai.jupyter
 author: jupyter-ai-contrib
 url: https://github.com/jupyter-ai-contrib/jupyter-server-mcp
 category: data

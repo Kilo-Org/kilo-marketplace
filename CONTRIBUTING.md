@@ -127,7 +127,7 @@ metadata:
   category: development
   author: your-github-username
   suggest_for:
-    extension:
+    filename:
       - "*.component.ts"
   source:
     repository: https://github.com/yourname/your-skill-repo
@@ -138,12 +138,13 @@ metadata:
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `metadata.suggest_for.extension` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
+| `metadata.suggest_for.filename` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
+| `metadata.suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this skill is relevant, such as `"ms-toolsai.jupyter"` |
 | `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
 | `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
 
-Suggestion patterns are intentionally not exhaustive. A format being supported as input or output is not enough to add it: for example, a generic Markdown or audio file does not imply a writing or meeting-analysis task.
+Suggestion patterns are intentionally not exhaustive. A format being supported as input or output is not enough to add it: for example, a generic Markdown or audio file does not imply a writing or meeting-analysis task. Likewise, only list a VS Code extension when its installation strongly indicates the exact skill is relevant. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Real-World Examples
 
@@ -295,7 +296,7 @@ author: author-name
 url: https://github.com/org/repo
 category: development
 suggest_for:
-  extension:
+  filename:
     - "*.i64"
 prerequisites:
   - Required software or accounts
@@ -327,7 +328,8 @@ parameters:
 | `author` | Yes | Author or organization name |
 | `url` | Yes | Link to the MCP server repository |
 | `category` | Yes | Primary category: `business`, `data`, `development`, `observability`, `productivity`, `search`, or `web-automation` |
-| `suggest_for.extension` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
+| `suggest_for.filename` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
+| `suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this MCP server is relevant, such as `"ms-toolsai.jupyter"` for Jupyter |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |
@@ -344,7 +346,7 @@ Choose the single category that best represents how users will discover the MCP.
 
 Propose a new category only when several MCPs share a distinct primary purpose that does not fit an existing category.
 
-Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only formats that strongly identify that exact MCP, such as `"*.ipynb"` for Jupyter.
+Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `"ms-toolsai.jupyter"` for Jupyter. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Transport Types
 

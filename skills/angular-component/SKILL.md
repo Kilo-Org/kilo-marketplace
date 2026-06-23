@@ -8,7 +8,7 @@ description: >-
   bindings, or implementing accessible interactive components.
 metadata:
   suggest_for:
-    extension:
+    filename:
       - "*.component.ts"
       - "*.component.html"
   category: development
