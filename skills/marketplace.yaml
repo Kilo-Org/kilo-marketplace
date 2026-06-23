@@ -231,6 +231,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/create-pull-request
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/create-pull-request/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/create-pull-request.tar.gz
+  - id: data-investigation
+    description: >-
+      A workflow for conducting rigorous, reproducible data investigations and ad-hoc analyses. This skill should be
+      used when investigating a business question, explaining a metric anomaly, validating a hypothesis, performing root
+      cause analysis, or preparing a one-off investigation dashboard or memo.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-investigation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-investigation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-investigation.tar.gz
   - id: dbt
     description: >-
       Skills for analytics engineering with dbt - building models, writing tests, querying the semantic layer,
@@ -247,6 +256,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-migration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-migration/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-migration.tar.gz
+  - id: debugging-snowflake-queries
+    description: >-
+      This skill should be used when a user needs help debugging a Snowflake SQL query, understanding a Snowflake query
+      failure, isolating incorrect results, fixing joins or filters, diagnosing performance problems, or turning a vague
+      warehouse error into a concrete root cause and corrected query. It is a standalone Snowflake query debugging skill
+      for ad hoc SQL work across databases, schemas, and environments.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/debugging-snowflake-queries
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/debugging-snowflake-queries/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/debugging-snowflake-queries.tar.gz
   - id: deploy-to-vercel
     description: >-
       Deploy applications and websites to Vercel. Use when the user requests deployment actions like "deploy my app",
