@@ -1,0 +1,28 @@
+id: augment-context-engine
+name: Augment Context Engine
+description: Bring full codebase context into your AI workflows. The Augment Context Engine delivers deep semantic
+  understanding across large codebases, including architecture, dependencies, and history.
+author: Augmentcode.com
+url: https://www.augmentcode.com/
+tags:
+  - context
+  - indexing
+  - codebase-retrieval
+  - easy-embedding
+  - vector
+  - semantic-search
+  - code-understanding
+  - architecture-analysis
+  - dependency-analysis
+  - codebase-indexing
+  - ai-context
+  - development
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@augmentcode/auggie@latest", "--mcp", "--mcp-auto-workspace"]
+      }
