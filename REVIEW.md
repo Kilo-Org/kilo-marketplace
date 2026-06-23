@@ -73,10 +73,11 @@ Verify all of the following:
 - Directory name, frontmatter `name`, marketplace ID, and archive name agree.
 - `metadata.source.repository` and `metadata.source.path` identify the actual
   public canonical source. Attribution and author claims match that source.
-- Require either top-level `license` or `metadata.source.license_path`, not both,
-  as specified by `AGENTS.md`. Verify the declared license against upstream and
-  ensure it covers every copied text, code, image, font, template, and example.
-  When used, `license_path` must be repository-root-relative and exist upstream.
+- For contributed third-party skills, require `metadata.source.license_path` as
+  specified by `CONTRIBUTING.md`. For other skills, accept top-level `license` as
+  the alternative documented by `AGENTS.md`; never require both. Verify the
+  declared license against upstream and ensure it covers every copied file.
+  `license_path` must be repository-root-relative and exist upstream.
 - Category is intentional and is not the importer placeholder `unknown`.
 - Every referenced sibling skill or file is shipped and resolves with correct
   case from the installed skill directory.
