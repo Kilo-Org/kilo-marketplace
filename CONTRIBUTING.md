@@ -188,6 +188,7 @@ metadata:
   source:
     repository: 'https://github.com/cline/cline'
     path: .cline/skills/create-pull-request
+    license_path: LICENSE
 ---
 ```
 
