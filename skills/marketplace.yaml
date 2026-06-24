@@ -375,3 +375,12 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: sql-optimization-patterns
+    description: >-
+      Master SQL query optimization, indexing strategies, and EXPLAIN analysis to dramatically improve database
+      performance and eliminate slow queries. Use when debugging slow queries, designing database schemas, or optimizing
+      application performance.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/sql-optimization-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/sql-optimization-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/sql-optimization-patterns.tar.gz
