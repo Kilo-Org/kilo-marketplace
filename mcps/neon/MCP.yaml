@@ -4,12 +4,7 @@ description: Enables natural language interaction with Neon PostgreSQL databases
   migrations, SQL queries, and database operations through the Neon API.
 author: neondatabase
 url: https://github.com/neondatabase/mcp-server-neon
-tags:
-  - postgresql
-  - database-management
-  - migrations
-  - sql
-  - neon-api
+category: data
 content:
   - name: Remote MCP
     prerequisites:

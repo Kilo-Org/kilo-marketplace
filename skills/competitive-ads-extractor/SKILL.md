@@ -5,7 +5,7 @@ description: >-
   etc.) to understand what messaging, problems, and creative approaches are
   working. Helps inspire and improve your own ad campaigns.
 metadata:
-  category: business-marketing
+  category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: competitive-ads-extractor
@@ -298,4 +298,3 @@ Which gets more engagement? (if data available)
 - Discovering new use cases for your product
 - Planning product marketing strategy
 - Inspiring social media content
-

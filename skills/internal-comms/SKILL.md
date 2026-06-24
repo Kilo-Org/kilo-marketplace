@@ -8,7 +8,7 @@ description: >-
   project updates, etc.).
 license: Complete terms in LICENSE.txt
 metadata:
-  category: business-marketing
+  category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: internal-comms

@@ -4,15 +4,7 @@ description: Official Notion MCP Server that provides seamless integration with 
   automation and interaction capabilities for managing pages, databases, comments, and content within Notion workspaces.
 author: makenotion
 url: https://github.com/makenotion/notion-mcp-server
-tags:
-  - notion
-  - productivity
-  - note-taking
-  - database-management
-  - content-management
-  - collaboration
-  - workspace
-  - api-integration
+category: productivity
 prerequisites:
   - Notion account with integration access
 content:

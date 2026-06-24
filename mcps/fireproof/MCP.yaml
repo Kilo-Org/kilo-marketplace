@@ -4,12 +4,7 @@ description: A JSON document store server providing CRUD operations and field-ba
   Fireproof database for seamless integration with AI systems.
 author: fireproof-storage
 url: https://github.com/fireproof-storage/mcp-database-server
-tags:
-  - document-store
-  - json
-  - crud
-  - database
-  - storage
+category: data
 content:
   - name: Node.js
     content: |

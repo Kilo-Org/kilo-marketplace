@@ -4,12 +4,7 @@ description: Provides a secure code interpreter for executing LLM-generated code
   managing, and executing code tools in an isolated environment.
 author: riza-io
 url: https://github.com/riza-io/riza-mcp
-tags:
-  - code-execution
-  - sandbox
-  - code-interpreter
-  - tool-management
-  - security
+category: development
 content:
   - name: NPX
     prerequisites:

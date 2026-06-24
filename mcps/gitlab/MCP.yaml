@@ -4,12 +4,7 @@ description: Enables comprehensive GitLab project management including file oper
   and repository management through the GitLab API.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab
-tags:
-  - gitlab
-  - git
-  - repository-management
-  - collaboration
-  - ci-cd
+category: development
 prerequisites:
   - GitLab account
 content:

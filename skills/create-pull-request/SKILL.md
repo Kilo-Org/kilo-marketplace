@@ -3,13 +3,13 @@ name: create-pull-request
 description: >-
   Create a GitHub pull request following project conventions. Use when the user
   asks to create a PR, submit changes for review, or open a pull request.
-  Handles commit analysis, branch management, and PR creation using the gh CLI
-  tool.
+  Handles commit analysis, branch management, PR template usage, and PR creation
+  using the gh CLI tool.
 metadata:
   category: development
   source:
     repository: 'https://github.com/cline/cline'
-    path: .cline/skills/create-pull-request
+    path: .agents/skills/create-pull-request
 ---
 
 # Create Pull Request

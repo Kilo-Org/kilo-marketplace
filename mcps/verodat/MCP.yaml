@@ -4,12 +4,7 @@ description: Enables AI systems to interact with Verodat's data management platf
   creation, querying, and AI-powered analysis across workspaces and accounts.
 author: Verodat
 url: https://github.com/Verodat/verodat-mcp-server
-tags:
-  - data-management
-  - dataset-operations
-  - workspace-management
-  - data-validation
-  - ai-integration
+category: data
 content:
   - name: Smithery Installation
     prerequisites:

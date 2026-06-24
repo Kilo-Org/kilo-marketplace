@@ -4,15 +4,7 @@ description: GitHub's official MCP Server that provides seamless integration wit
   automation and interaction capabilities for developers and tools.
 author: github
 url: https://github.com/github/github-mcp-server
-tags:
-  - github
-  - git
-  - repository-management
-  - issue-tracking
-  - pull-requests
-  - code-scanning
-  - collaboration
-  - api-integration
+category: development
 prerequisites:
   - Node.js
   - GitHub account
