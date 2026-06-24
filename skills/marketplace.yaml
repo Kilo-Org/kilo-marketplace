@@ -375,3 +375,12 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: build-dashboard
+    description: >-
+      Build an interactive HTML dashboard with charts, filters, and tables. Use when creating an executive overview with
+      KPI cards, turning query results into a shareable self-contained report, building a team monitoring snapshot, or
+      needing multiple charts with filters in one browser-openable file.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/build-dashboard
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/build-dashboard/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/build-dashboard.tar.gz
