@@ -375,3 +375,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: kpi-dashboard-design
+    description: >-
+      Design effective KPI dashboards with metrics selection, visualization best practices, and real-time monitoring
+      patterns. Use this skill when building an executive SaaS metrics dashboard tracking MRR, churn, and LTV/CAC
+      ratios; designing an operations center with live service health and request throughput; creating a cohort
+      retention analysis view for a product team; or debugging a dashboard where metrics contradict each other due to
+      inconsistent calculation methodology.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/kpi-dashboard-design
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/kpi-dashboard-design/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/kpi-dashboard-design.tar.gz
