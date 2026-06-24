@@ -375,3 +375,11 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: bigquery-basics
+    description: >-
+      Manages datasets, tables, and jobs in BigQuery. Use when you need to interact with BigQuery, run SQL queries,
+      manage BigQuery resources (datasets, tables, views), or perform basic data ingestion and analysis.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/bigquery-basics
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/bigquery-basics/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/bigquery-basics.tar.gz
