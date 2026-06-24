@@ -95,6 +95,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/youtube-downloader
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/youtube-downloader/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/youtube-downloader.tar.gz
+  - id: sql-query-expert
+    description: >-
+      Write optimized SQL queries with joins, CTEs, window functions, and performance tuning. Based on Anthropic's
+      Claude Cookbooks.
+    category: data-engineering
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/sql-query-expert
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/sql-query-expert/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/sql-query-expert.tar.gz
   - id: agent-md-refactor
     description: >-
       Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure
