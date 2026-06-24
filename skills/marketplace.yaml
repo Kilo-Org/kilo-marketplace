@@ -375,3 +375,11 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: airflow-dag-patterns
+    description: >-
+      Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when
+      creating data pipelines, orchestrating workflows, or scheduling batch jobs.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/airflow-dag-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/airflow-dag-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/airflow-dag-patterns.tar.gz
