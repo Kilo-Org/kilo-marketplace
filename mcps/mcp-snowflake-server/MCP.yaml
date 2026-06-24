@@ -1,0 +1,46 @@
+id: mcp-snowflake-server
+name: Snowflake MCP Server (Community)
+description: Provides read-only Snowflake SQL, schema discovery, and table context through a community server using browser-based Snowflake authentication.
+author: isaacwasserman
+url: https://github.com/isaacwasserman/mcp-snowflake-server
+category: data
+prerequisites:
+  - Python 3.12 or earlier and uv
+  - Snowflake account and role restricted to read-only warehouse and object access
+content:
+  - name: UVX (community, read-only)
+    prerequisites:
+      - Python 3.12 or earlier and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--python=3.12", "--from", "mcp-snowflake-server==0.4.0", "mcp_snowflake_server"],
+        "env": {
+          "SNOWFLAKE_ACCOUNT": "{{SNOWFLAKE_ACCOUNT}}",
+          "SNOWFLAKE_USER": "{{SNOWFLAKE_USER}}",
+          "SNOWFLAKE_AUTHENTICATOR": "externalbrowser",
+          "SNOWFLAKE_ROLE": "{{SNOWFLAKE_ROLE}}",
+          "SNOWFLAKE_DATABASE": "{{SNOWFLAKE_DATABASE}}",
+          "SNOWFLAKE_SCHEMA": "{{SNOWFLAKE_SCHEMA}}",
+          "SNOWFLAKE_WAREHOUSE": "{{SNOWFLAKE_WAREHOUSE}}"
+        }
+      }
+parameters:
+  - name: Snowflake account
+    key: SNOWFLAKE_ACCOUNT
+    placeholder: myorg-myaccount
+  - name: Snowflake user
+    key: SNOWFLAKE_USER
+    placeholder: user@example.com
+  - name: Snowflake role
+    key: SNOWFLAKE_ROLE
+    placeholder: READONLY_ROLE
+  - name: Snowflake database
+    key: SNOWFLAKE_DATABASE
+    placeholder: ANALYTICS
+  - name: Snowflake schema
+    key: SNOWFLAKE_SCHEMA
+    placeholder: PUBLIC
+  - name: Snowflake warehouse
+    key: SNOWFLAKE_WAREHOUSE
+    placeholder: COMPUTE_WH

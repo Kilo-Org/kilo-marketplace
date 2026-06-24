@@ -29,7 +29,7 @@ jobs:
               continue
             fi
             echo "Packaging: $skill"
-            tar -czf "dist/${skill}.tar.gz" -C skills "$skill"
+            tar --exclude="${skill}/evals" -czf "dist/${skill}.tar.gz" -C skills "$skill"
             echo "Created: dist/${skill}.tar.gz"
           done
           ls -la dist/

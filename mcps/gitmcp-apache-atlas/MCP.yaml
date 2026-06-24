@@ -1,0 +1,13 @@
+id: gitmcp-apache-atlas
+name: Apache Atlas GitMCP
+description: Searches the public apache/atlas repository and documentation through GitMCP; this is a source-knowledge server and does not connect to an Atlas deployment.
+author: GitMCP
+url: https://gitmcp.io/apache/atlas
+category: search
+content:
+  - name: GitMCP hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://gitmcp.io/apache/atlas"
+      }

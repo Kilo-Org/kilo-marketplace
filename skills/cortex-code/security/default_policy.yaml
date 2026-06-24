@@ -1,0 +1,45 @@
+# Default security policy for cortex-code skill
+# This file documents the secure defaults - do not modify directly
+# To customize, copy config.yaml.example to config.yaml in the skill directory
+
+security:
+  # Approval mode: "prompt" | "auto" | "envelope_only"
+  # Default: "prompt" (most secure - ask user before execution)
+  approval_mode: "prompt"
+
+  # Tool prediction settings (for "prompt" mode)
+  tool_prediction_confidence_threshold: 0.7
+  allow_tool_expansion: true
+
+  # Audit logging (mandatory when approval_mode: "auto")
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+  audit_log_rotation: "10MB"
+  audit_log_retention: 30
+
+  # Prompt sanitization
+  sanitize_conversation_history: true
+  sanitize_session_files: true
+  max_history_items: 3
+
+  # Cache security
+  cache_dir: "~/.cache/cortex-skill"
+  cache_permissions: "0600"
+
+  # Envelope restrictions
+  allowed_envelopes:
+    - "RO"
+    - "RW"
+    - "RESEARCH"
+  deploy_envelope_confirmation: true
+
+  # Routing security - never route these to Cortex
+  credential_file_allowlist:
+    - "~/.ssh/*"
+    - "~/.snowflake/*"
+    - "**/.env"
+    - "**/.env.*"
+    - "**/credentials.json"
+    - "**/*_key.p8"
+    - "**/*_key.pem"
+    - "~/.aws/credentials"
+    - "~/.kube/config"

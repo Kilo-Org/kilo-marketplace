@@ -1,0 +1,29 @@
+id: snowflake-managed
+name: Snowflake-Managed MCP Server
+description: Exposes governed Cortex Analyst, Cortex Search, Cortex Agents, SQL, and custom tools from a Snowflake-managed MCP server using Snowflake OAuth and the signed-in user's default role.
+author: Snowflake
+url: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp
+category: data
+prerequisites:
+  - Snowflake-managed MCP server and OAuth security integration
+  - MCP client with OAuth support
+content:
+  - name: Snowflake Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://{{SNOWFLAKE_ACCOUNT_URL}}/api/v2/databases/{{SNOWFLAKE_DATABASE}}/schemas/{{SNOWFLAKE_SCHEMA}}/mcp-servers/{{SNOWFLAKE_MCP_SERVER}}"
+      }
+parameters:
+  - name: Snowflake Account URL
+    key: SNOWFLAKE_ACCOUNT_URL
+    placeholder: organization-account.snowflakecomputing.com
+  - name: Snowflake Database
+    key: SNOWFLAKE_DATABASE
+    placeholder: YOUR_DATABASE
+  - name: Snowflake Schema
+    key: SNOWFLAKE_SCHEMA
+    placeholder: YOUR_SCHEMA
+  - name: Snowflake MCP Server Name
+    key: SNOWFLAKE_MCP_SERVER
+    placeholder: YOUR_MCP_SERVER

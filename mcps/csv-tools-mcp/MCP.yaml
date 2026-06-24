@@ -1,0 +1,17 @@
+id: csv-tools-mcp
+name: CSV Tools MCP
+description: Parses and generates CSV safely, including quoted fields, embedded commas, byte-order marks, and ragged rows, without external service credentials.
+author: MukundaKatta
+url: https://github.com/MukundaKatta/mcp-stack/tree/main/packages/csv-tools-mcp
+category: data
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@mukundakatta/csv-tools-mcp@0.1.0"]
+      }

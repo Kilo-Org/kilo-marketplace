@@ -1,0 +1,26 @@
+id: new-relic-ai-mcp
+name: New Relic AI MCP (Official Remote)
+description: Investigates New Relic entities, telemetry, alerts, incidents, logs, and NRQL through New Relic's hosted MCP service using a user API key whose RBAC grants determine data access.
+author: New Relic
+url: https://github.com/newrelic/mcp-server
+category: observability
+prerequisites:
+  - New Relic account with the MCP server enabled
+  - New Relic user API key with an organization-scoped MCP read permission
+content:
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{NEW_RELIC_MCP_URL}}",
+        "headers": {
+          "Api-Key": "{{NEW_RELIC_API_KEY}}"
+        }
+      }
+parameters:
+  - name: New Relic MCP Endpoint
+    key: NEW_RELIC_MCP_URL
+    placeholder: https://mcp.newrelic.com/mcp/
+  - name: New Relic User API Key
+    key: NEW_RELIC_API_KEY
+    placeholder: NRAK-your-user-api-key

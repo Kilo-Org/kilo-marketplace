@@ -1,0 +1,385 @@
+// ============================================================
+// ERROR HANDLING AND LOGGING FRAMEWORK
+// ============================================================
+// Provides subroutines for error detection, logging, connection
+// testing, file existence checks, and graceful degradation.
+//
+// HOW TO ADAPT:
+// 1. Include this file at the start of your reload script:
+//    $(Must_Include=lib://Scripts/error-handling.qvs);
+// 2. Call LogMessage after significant operations.
+// 3. Call CheckError after database loads and critical operations.
+// 4. Call TestConnection before attempting database extracts.
+// 5. Adjust vLogQvdPath to your QVD storage location.
+// ============================================================
+
+// --- Configuration ---
+SET vLogQvdPath = 'lib://QVDs/Diagnostics/ReloadLog.qvd';
+SET vErrorMode = 1;  // 0=ignore failure and continue, 1=default (halt on error; prompts in interactive QlikView, stops batch reload in Qlik Sense/Cloud), 2=immediately trigger "Execution of script failed" with no prompt even in interactive contexts
+
+SET ErrorMode = $(vErrorMode);
+
+// --- Initialize log table ---
+[_ReloadLog]:
+LOAD * INLINE [
+    LogTimestamp, Severity, Phase, Message
+] (delimiter is ',');
+
+// ============================================================
+// SUB LogMessage: Append a message to the reload log
+// Parameters:
+//   vLogSeverity  - INFO, WARNING, ERROR, CRITICAL
+//   vLogPhase     - Script phase (Extract, Transform, Model, etc.)
+//   vLogMsg       - Message text
+// ============================================================
+SUB LogMessage(vLogSeverity, vLogPhase, vLogMsg)
+    LET vLogTimestamp = Timestamp(Now(), 'YYYY-MM-DD hh:mm:ss');
+
+    // Apostrophe-safety mechanism: use INLINE LOAD with square-bracket
+    // enclosure rather than '$(varname)' AS Field AUTOGENERATE.
+    //
+    // WHY: Dollar-sign expansion is performed BEFORE the script statement
+    // is parsed (help.qlik.com: "The replacement is made just before the
+    // script statement or the expression is evaluated"). So '$(vLogMsg)'
+    // where vLogMsg = "Can't open file" expands textually to 'Can't open
+    // file' BEFORE the parser tokenizes the line — the embedded apostrophe
+    // then terminates the string literal early, producing a parse error.
+    // Any Replace()-based escape attempt sitting inside '$(vLogMsg)' never
+    // runs because parsing fails first. This trap defeats the original
+    // SPEC-03-06 escape attempt.
+    //
+    // FIX: Bracket-enclosed INLINE LOAD treats apostrophes in the data
+    // block as literal characters, not string delimiters
+    // (help.qlik.com: "Using inline loads to load data" — apostrophes
+    // appear in inline data as measurement indicators without special
+    // parsing). After dollar expansion, the substituted text containing
+    // apostrophes lands inside the bracketed block as data, not as a
+    // string literal, so the parse succeeds.
+    //
+    // RESIDUAL LIMIT: A close-bracket character ']' in any parameter
+    // value would terminate the bracketed block early. Newlines or the
+    // chosen delimiter character '|' inside a parameter would also split
+    // the row. These edge cases are rare in severity/phase tags (which
+    // are caller-controlled labels) and uncommon in error messages.
+    // Callers passing arbitrary external text (e.g., SQL identifiers
+    // wrapped in brackets) should pre-substitute ']' before the CALL.
+    // NoConcatenate forces _LogMsgRow as a standalone table. Without it,
+    // Qlik silently auto-concatenates into _ReloadLog (identical 4-field
+    // schema), the temp name never registers, and the subsequent DROP
+    // TABLE fails. See qlik-load-script Section 14.
+    [_LogMsgRow]:
+    NoConcatenate
+    LOAD * INLINE [
+    LogTimestamp|Severity|Phase|Message
+    $(vLogTimestamp)|$(vLogSeverity)|$(vLogPhase)|$(vLogMsg)
+    ] (delimiter is '|');
+
+    CONCATENATE([_ReloadLog])
+    LOAD LogTimestamp, Severity, Phase, Message
+    RESIDENT [_LogMsgRow];
+
+    DROP TABLE [_LogMsgRow];
+
+    // TRACE writes to the reload log output and tolerates apostrophes in
+    // the expanded text without breaking parsing, so the raw values are
+    // used here for human readability.
+    TRACE [$(vLogSeverity)] $(vLogPhase): $(vLogMsg);
+END SUB
+
+// ============================================================
+// SUB CheckError: Check ScriptErrorCount after an operation
+// Parameters:
+//   vCheckPhase      - Which phase we're in
+//   vCheckAction     - What we just did (e.g., "Load Orders from DB")
+//   vCheckCritical   - 1=stop on error, 0=warn and continue
+//   vPreErrorCount   - ScriptErrorCount captured BEFORE the operation
+//
+// WHY vPreErrorCount: ScriptErrorCount is cumulative across the
+// entire reload. If an earlier non-critical error incremented it,
+// checking "ScriptErrorCount > 0" would report failure for every
+// subsequent operation even if they all succeeded. Comparing
+// against the pre-operation count isolates this check to the
+// most recent operation only.
+// ============================================================
+SUB CheckError(vCheckPhase, vCheckAction, vCheckCritical, vPreErrorCount)
+    IF ScriptErrorCount > $(vPreErrorCount) THEN
+        // Apostrophe-safety: ScriptError text from databases routinely
+        // contains apostrophes (e.g., "Can't connect to host"). The
+        // previous form
+        //   LET vCheckErrorMsg = 'Failed: ' & '$(vCheckAction)' & ' | Error: ' & ScriptError;
+        // expanded vCheckAction (and, after the LET, ScriptError) into
+        // single-quoted string literals before parsing — an embedded
+        // apostrophe terminated the literal early and broke the LET
+        // inside the very SUB designed to capture errors. See
+        // references/error-handling.md "Dollar-Sign Apostrophe-Expansion
+        // Trap" for the class-level recipe and tier-1 citations.
+        //
+        // FIX: snapshot ScriptError into a variable, then assemble the
+        // message via a bracketed INLINE LOAD where apostrophes are
+        // literal data characters, not string-literal delimiters. Peek
+        // the assembled value back into vCheckErrorMsg. The backtick
+        // delimiter is chosen because it is uncommon in caller labels
+        // and database error text; if a caller label or ScriptError
+        // value contains '`', ']', '|', or a newline, the row split or
+        // bracket close will corrupt the message — pre-substitute those
+        // characters before CALL CheckError if that risk applies.
+        // NoConcatenate forces _CheckErrMsgRow standalone — without it
+        // the parser may auto-concatenate a single-field LOAD with an
+        // earlier table of identical schema. See qlik-load-script
+        // Section 14.
+        LET vCheckScriptErr = ScriptError;
+        [_CheckErrMsgRow]:
+        NoConcatenate
+        LOAD 'Failed: ' & Action & ' | Error: ' & Err AS Msg INLINE [
+        Action`Err
+        $(vCheckAction)`$(vCheckScriptErr)
+        ] (delimiter is '`');
+        LET vCheckErrorMsg = Peek('Msg', 0, '_CheckErrMsgRow');
+        DROP TABLE [_CheckErrMsgRow];
+
+        IF $(vCheckCritical) = 1 THEN
+            // Bare variable names (vCheckPhase, vCheckErrorMsg) instead
+            // of '$(vCheckPhase)', '$(vCheckErrorMsg)' — Qlik CALL passes
+            // the variable's value to the SUB without re-expanding into
+            // a single-quoted literal, so apostrophes in the value reach
+            // LogMessage intact. Per help.qlik.com Sub statement, a
+            // variable name as a CALL parameter passes by value with
+            // copy-out semantics.
+            CALL LogMessage('CRITICAL', vCheckPhase, vCheckErrorMsg);
+            CALL LogMessage('CRITICAL', vCheckPhase, 'Stopping reload due to critical error');
+
+            // Store log before exiting
+            IF NoOfRows('_ReloadLog') > 0 THEN
+                STORE [_ReloadLog] INTO [$(vLogQvdPath)] (qvd);
+            END IF
+
+            EXIT SCRIPT;
+        ELSE
+            CALL LogMessage('WARNING', vCheckPhase, vCheckErrorMsg);
+            CALL LogMessage('WARNING', vCheckPhase, 'Continuing despite error (non-critical)');
+        END IF
+    ELSE
+        // Success path — same bracketed-INLINE-LOAD pattern in case
+        // vCheckAction contains an apostrophe (e.g., "Load Customer's
+        // QVD"). Backtick delimiter caveat as above.
+        [_CheckOkMsgRow]:
+        NoConcatenate
+        LOAD 'Success: ' & Action AS Msg INLINE [
+        Action
+        $(vCheckAction)
+        ] (delimiter is '`');
+        LET vCheckOkMsg = Peek('Msg', 0, '_CheckOkMsgRow');
+        DROP TABLE [_CheckOkMsgRow];
+        CALL LogMessage('INFO', vCheckPhase, vCheckOkMsg);
+    END IF
+END SUB
+
+// ============================================================
+// SUB TestConnection: Test a database connection before use
+// Parameters:
+//   vConnName     - Connection name (e.g., 'lib://MyDB')
+//   vConnLabel    - Friendly name for logging
+// Returns:
+//   Sets vConnectionOK to 1 (success) or 0 (failure)
+// ============================================================
+SUB TestConnection(vConnName, vConnLabel)
+    LET vConnectionOK = 0;
+    LET vPreTestErrors = ScriptErrorCount;
+
+    // LIB CONNECT TO targets subsequent SQL statements at this connection.
+    // Without it, SQL SELECT goes to whatever connection was last active.
+    LIB CONNECT TO [$(vConnName)];
+
+    [_ConnTest]:
+    SQL SELECT 1 AS _test_result;
+
+    IF ScriptErrorCount > $(vPreTestErrors) THEN
+        // Apostrophe-safety: vConnLabel may contain "Customer's DB"; the
+        // previous form '$(vConnLabel)' expanded into a string literal
+        // before parsing, terminating the literal early. Assemble via
+        // bracketed INLINE LOAD + Peek, then pass the bare variable to
+        // CALL LogMessage. See references/error-handling.md "Dollar-Sign
+        // Apostrophe-Expansion Trap".
+        [_TmpConnErrMsg]:
+        NoConcatenate
+        LOAD 'Cannot reach ' & Label & ' via ' & Conn AS Msg INLINE [
+        Label`Conn
+        $(vConnLabel)`$(vConnName)
+        ] (delimiter is '`');
+        LET vTmpConnErrMsg = Peek('Msg', 0, '_TmpConnErrMsg');
+        DROP TABLE [_TmpConnErrMsg];
+        CALL LogMessage('ERROR', 'Connection', vTmpConnErrMsg);
+        LET vConnectionOK = 0;
+    ELSE
+        [_TmpConnOkMsg]:
+        NoConcatenate
+        LOAD Label & ' connection OK' AS Msg INLINE [
+        Label
+        $(vConnLabel)
+        ] (delimiter is '`');
+        LET vTmpConnOkMsg = Peek('Msg', 0, '_TmpConnOkMsg');
+        DROP TABLE [_TmpConnOkMsg];
+        CALL LogMessage('INFO', 'Connection', vTmpConnOkMsg);
+        LET vConnectionOK = 1;
+        DROP TABLE [_ConnTest];
+    END IF
+END SUB
+
+// ============================================================
+// SUB CheckFileExists: Check if a QVD/file exists
+// Parameters:
+//   vFilePath     - Full path including lib:// prefix
+//   vFileLabel    - Friendly name for logging
+// Returns:
+//   Sets vFileExists to 1 (exists) or 0 (does not exist)
+// ============================================================
+// LIMIT (CheckFileExists, GracefulFallback): vFilePath / vFBQvdPath are
+// expanded via '$(...)' inside function arguments (FileTime, IsNull). This
+// is safe in practice because lib:// connection paths are admin-configured
+// and do not contain apostrophes. If your environment uses apostrophe-
+// bearing connection labels or path tokens, route them through the
+// bracketed-INLINE-LOAD pattern documented in
+// references/error-handling.md "Dollar-Sign Apostrophe-Expansion Trap".
+// The vRCTable identifier passed to NoOfRows() in LogRowCount is likewise
+// a conventional table name and assumed apostrophe-free.
+SUB CheckFileExists(vFilePath, vFileLabel)
+    IF NOT IsNull(FileTime('$(vFilePath)')) THEN
+        LET vFileExists = 1;
+        LET vFileTime = Timestamp(FileTime('$(vFilePath)'), 'YYYY-MM-DD hh:mm:ss');
+        // Apostrophe-safety: vFileLabel may contain "Customer's QVD".
+        // Assemble via bracketed INLINE LOAD + Peek, then pass the bare
+        // variable to CALL LogMessage. vFileTime is a Qlik timestamp
+        // string and apostrophe-free, but routed through the same
+        // pattern for uniformity.
+        [_TmpFileExistsMsg]:
+        NoConcatenate
+        LOAD Label & ' exists (last modified: ' & FileTm & ')' AS Msg INLINE [
+        Label`FileTm
+        $(vFileLabel)`$(vFileTime)
+        ] (delimiter is '`');
+        LET vTmpFileExistsMsg = Peek('Msg', 0, '_TmpFileExistsMsg');
+        DROP TABLE [_TmpFileExistsMsg];
+        CALL LogMessage('INFO', 'FileCheck', vTmpFileExistsMsg);
+    ELSE
+        LET vFileExists = 0;
+        [_TmpFileMissingMsg]:
+        NoConcatenate
+        LOAD Label & ' does not exist at ' & Pth AS Msg INLINE [
+        Label`Pth
+        $(vFileLabel)`$(vFilePath)
+        ] (delimiter is '`');
+        LET vTmpFileMissingMsg = Peek('Msg', 0, '_TmpFileMissingMsg');
+        DROP TABLE [_TmpFileMissingMsg];
+        CALL LogMessage('WARNING', 'FileCheck', vTmpFileMissingMsg);
+    END IF
+END SUB
+
+// ============================================================
+// SUB LogRowCount: Log the row count of a table
+// Parameters:
+//   vRCTable      - Table name
+//   vRCPhase      - Phase name for logging
+// ============================================================
+SUB LogRowCount(vRCTable, vRCPhase)
+    LET vRCCount = NoOfRows('$(vRCTable)');
+    // Apostrophe-safety: vRCTable identifiers are conventionally apostrophe-
+    // free, but the message is routed through bracketed INLINE LOAD + Peek
+    // for uniformity with the rest of this framework. The Phase argument
+    // passes as a bare variable per the canonical CALL fix.
+    [_TmpRowCountMsg]:
+    NoConcatenate
+    LOAD Tbl & ': ' & Cnt & ' rows' AS Msg INLINE [
+    Tbl`Cnt
+    $(vRCTable)`$(vRCCount)
+    ] (delimiter is '`');
+    LET vTmpRowCountMsg = Peek('Msg', 0, '_TmpRowCountMsg');
+    DROP TABLE [_TmpRowCountMsg];
+    CALL LogMessage('INFO', vRCPhase, vTmpRowCountMsg);
+END SUB
+
+// ============================================================
+// SUB GracefulFallback: Handle non-critical source unavailability
+// Parameters:
+//   vFBTable      - Expected table name
+//   vFBQvdPath    - Path to cached QVD (fallback)
+//   vFBPhase      - Phase for logging
+// Usage:
+//   Call after a failed non-critical extract. If the QVD exists,
+//   loads it as a fallback. If not, logs a warning and continues.
+// ============================================================
+SUB GracefulFallback(vFBTable, vFBQvdPath, vFBPhase)
+    // LIMITATION: LOAD * assumes the cached QVD schema matches what
+    // downstream scripts expect. If the source schema changed since the
+    // QVD was last written, field mismatches will cause silent errors.
+    // For critical tables, consider validating field presence after load.
+    IF NOT IsNull(FileTime('$(vFBQvdPath)')) THEN
+        // Apostrophe-safety: route the warning text through bracketed
+        // INLINE LOAD + Peek. Phase argument passes as a bare variable.
+        [_TmpFallbackWarnMsg]:
+        NoConcatenate
+        LOAD 'Using cached QVD for ' & Tbl AS Msg INLINE [
+        Tbl
+        $(vFBTable)
+        ] (delimiter is '`');
+        LET vTmpFallbackWarnMsg = Peek('Msg', 0, '_TmpFallbackWarnMsg');
+        DROP TABLE [_TmpFallbackWarnMsg];
+        CALL LogMessage('WARNING', vFBPhase, vTmpFallbackWarnMsg);
+        [$(vFBTable)]:
+        LOAD * FROM [$(vFBQvdPath)] (qvd);
+        // Bare-variable CALL: arguments are entire variables, no concat,
+        // no embedded literals — Qlik passes value to LogRowCount intact.
+        CALL LogRowCount(vFBTable, vFBPhase);
+    ELSE
+        [_TmpFallbackErrMsg]:
+        NoConcatenate
+        LOAD 'No cached QVD available for ' & Tbl & ' -- table will be empty' AS Msg INLINE [
+        Tbl
+        $(vFBTable)
+        ] (delimiter is '`');
+        LET vTmpFallbackErrMsg = Peek('Msg', 0, '_TmpFallbackErrMsg');
+        DROP TABLE [_TmpFallbackErrMsg];
+        CALL LogMessage('ERROR', vFBPhase, vTmpFallbackErrMsg);
+    END IF
+END SUB
+
+// ============================================================
+// SUB FinalizeLog: Store the log and clean up
+// Call this at the very end of the reload script.
+// ============================================================
+SUB FinalizeLog
+    LET vLogRows = NoOfRows('_ReloadLog');
+    IF $(vLogRows) > 0 THEN
+        STORE [_ReloadLog] INTO [$(vLogQvdPath)] (qvd);
+        TRACE Reload log stored: $(vLogRows) entries;
+    END IF
+    DROP TABLE [_ReloadLog];
+END SUB
+
+// ============================================================
+// USAGE EXAMPLE (uncomment and adapt):
+// ============================================================
+// // At script start (after including this file):
+// CALL LogMessage('INFO', 'Init', 'Reload started');
+//
+// // Before database extract:
+// CALL TestConnection('lib://MyDB', 'Source Database');
+// IF $(vConnectionOK) = 1 THEN
+//     LET vPreErrors = ScriptErrorCount;
+//     [Orders]:
+//     SQL SELECT * FROM orders;
+//     CALL CheckError('Extract', 'Load Orders from database', 1, vPreErrors);
+//     CALL LogRowCount('Orders', 'Extract');
+// ELSE
+//     CALL GracefulFallback('Orders', 'lib://QVDs/Orders.qvd', 'Extract');
+// END IF
+//
+// // Before QVD load:
+// CALL CheckFileExists('lib://QVDs/Customers.qvd', 'Customers QVD');
+// IF $(vFileExists) = 1 THEN
+//     [Customers]:
+//     LOAD * FROM [lib://QVDs/Customers.qvd] (qvd);
+// END IF
+//
+// // At script end:
+// CALL LogMessage('INFO', 'Complete', 'Reload finished successfully');
+// CALL FinalizeLog;

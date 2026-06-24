@@ -1,0 +1,29 @@
+id: infoinlet-mongodb
+name: InfoInlet MongoDB MCP
+description: Provides community read-only MongoDB find, aggregate, count, collection, statistics, and health tools while blocking write stages and server-side JavaScript.
+author: InfoInlet
+url: https://www.npmjs.com/package/@infoinlet/mcp-mongodb
+category: data
+prerequisites:
+  - Node.js
+  - MongoDB user restricted to read-only access
+content:
+  - name: NPX (community, read-only)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@infoinlet/mcp-mongodb@0.1.1"],
+        "env": {
+          "MONGODB_URL": "{{MONGODB_URL}}",
+          "MONGODB_DATABASE": "{{MONGODB_DATABASE}}"
+        }
+      }
+parameters:
+  - name: MongoDB connection URL
+    key: MONGODB_URL
+    placeholder: mongodb://readonly-user:password@localhost:27017
+  - name: MongoDB database
+    key: MONGODB_DATABASE
+    placeholder: analytics

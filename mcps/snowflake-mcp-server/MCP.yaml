@@ -1,0 +1,45 @@
+id: snowflake-mcp-server
+name: Snowflake Read-Only MCP (Community)
+description: Discovers Snowflake databases, schemas, and tables and executes validated read-only SQL using browser SSO or an optional key-pair credential file.
+author: ncejda-g2
+url: https://github.com/ncejda-g2/snowflake_mcp_server
+category: data
+prerequisites:
+  - Node.js
+  - Snowflake account and read-only role
+content:
+  - name: NPX (read-only)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "snowflake-readonly-mcp@1.0.0"
+        ],
+        "env": {
+          "SNOWFLAKE_ACCOUNT": "{{SNOWFLAKE_ACCOUNT}}",
+          "SNOWFLAKE_USERNAME": "{{SNOWFLAKE_USERNAME}}",
+          "SNOWFLAKE_WAREHOUSE": "{{SNOWFLAKE_WAREHOUSE}}",
+          "SNOWFLAKE_ROLE": "{{SNOWFLAKE_ROLE}}",
+          "SNOWFLAKE_CREDENTIAL_FILE": "{{SNOWFLAKE_CREDENTIAL_FILE}}"
+        }
+      }
+parameters:
+  - name: Snowflake Account Identifier
+    key: SNOWFLAKE_ACCOUNT
+    placeholder: organization-account
+  - name: Snowflake Username
+    key: SNOWFLAKE_USERNAME
+    placeholder: analyst@example.com
+  - name: Snowflake Warehouse
+    key: SNOWFLAKE_WAREHOUSE
+    placeholder: ANALYTICS_WH
+  - name: Snowflake Read-Only Role
+    key: SNOWFLAKE_ROLE
+    placeholder: ANALYST
+  - name: Snowflake Credential File
+    key: SNOWFLAKE_CREDENTIAL_FILE
+    placeholder: /path/to/credentials.json
+    optional: true

@@ -1,0 +1,31 @@
+id: mlflow-us-all
+name: MLflow MCP by us-all
+description: Provides broad community coverage of MLflow experiments, runs, models, traces, assessments, webhooks, and prompts; all mutating tools are disabled by default.
+author: us-all
+url: https://github.com/us-all/mlflow-mcp-server
+category: data
+prerequisites:
+  - Node.js
+  - MLflow tracking server
+content:
+  - name: NPX (community, broad read-only coverage)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@us-all/mlflow-mcp@1.12.7"],
+        "env": {
+          "MLFLOW_TRACKING_URI": "{{MLFLOW_TRACKING_URI}}",
+          "MLFLOW_TRACKING_TOKEN": "{{MLFLOW_TRACKING_TOKEN}}",
+          "MLFLOW_ALLOW_WRITE": "false"
+        }
+      }
+parameters:
+  - name: MLflow tracking URI
+    key: MLFLOW_TRACKING_URI
+    placeholder: http://localhost:5000
+  - name: MLflow bearer token
+    key: MLFLOW_TRACKING_TOKEN
+    placeholder: your_mlflow_token
+    optional: true

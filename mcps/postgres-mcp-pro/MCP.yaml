@@ -1,0 +1,28 @@
+id: postgres-mcp-pro
+name: Postgres MCP Pro
+description: Analyzes PostgreSQL schemas, query plans, indexes, workloads, and database health while executing SQL in restricted read-only transactions by default.
+author: Crystal DBA
+url: https://github.com/crystaldba/postgres-mcp
+category: data
+prerequisites:
+  - Python 3.12 or newer and uv
+  - PostgreSQL connection with read permissions
+content:
+  - name: UVX (restricted read-only)
+    prerequisites:
+      - Python 3.12 or newer and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "postgres-mcp==0.3.0",
+          "--access-mode=restricted"
+        ],
+        "env": {
+          "DATABASE_URI": "{{DATABASE_URI}}"
+        }
+      }
+parameters:
+  - name: PostgreSQL Connection URI
+    key: DATABASE_URI
+    placeholder: postgresql://readonly_user:password@localhost:5432/database

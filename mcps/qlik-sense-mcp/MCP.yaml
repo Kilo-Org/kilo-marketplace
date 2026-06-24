@@ -1,0 +1,34 @@
+id: qlik-sense-mcp
+name: Qlik Sense Enterprise MCP (Community)
+description: Inspects Qlik Sense Enterprise apps, load scripts, sheets, fields, and hypercubes and manages reload tasks through Repository and Engine APIs using a JWT identity whose Qlik permissions govern access.
+author: bintocher
+url: https://github.com/bintocher/qlik-sense-mcp
+category: business
+prerequisites:
+  - Python 3.12 and uv
+  - Qlik Sense Enterprise JWT virtual proxy
+content:
+  - name: UVX with JWT (stdio)
+    prerequisites:
+      - Python 3.12 and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "qlik-sense-mcp-server==1.5.1",
+          "qlik-sense-mcp-server",
+          "--stdio"
+        ],
+        "env": {
+          "QLIK_SERVER_URL": "{{QLIK_SERVER_URL}}",
+          "QLIK_JWT_TOKEN": "{{QLIK_JWT_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Qlik Sense JWT Virtual Proxy URL
+    key: QLIK_SERVER_URL
+    placeholder: https://qlik.example.com/jwt
+  - name: Qlik JWT Token
+    key: QLIK_JWT_TOKEN
+    placeholder: your_signed_qlik_jwt

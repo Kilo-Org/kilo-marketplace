@@ -1,0 +1,27 @@
+id: adls2-mcp
+name: ADLS2 MCP
+description: Runs a local, read-only Azure Data Lake Storage Gen2 server for listing filesystems and inspecting or downloading files with Azure CLI authentication.
+author: erikhoward
+url: https://github.com/erikhoward/adls-mcp-server
+category: data
+prerequisites:
+  - Python 3.13+ and uv
+  - Azure CLI authenticated to the target storage account
+content:
+  - name: UVX (read-only)
+    prerequisites:
+      - Python 3.13+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["adls2-mcp-server==0.1.4"],
+        "env": {
+          "AZURE_STORAGE_ACCOUNT_NAME": "{{AZURE_STORAGE_ACCOUNT_NAME}}",
+          "READ_ONLY_MODE": "true",
+          "LOG_LEVEL": "INFO"
+        }
+      }
+parameters:
+  - name: Azure Storage account name
+    key: AZURE_STORAGE_ACCOUNT_NAME
+    placeholder: mystorageaccount

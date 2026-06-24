@@ -1,0 +1,31 @@
+id: dagster-mcp
+name: Dagster MCP (Community)
+description: Inspects Dagster assets, runs, schedules, sensors, and backfills through the GraphQL API; launch, terminate, and reload actions stay disabled by default.
+author: fabdendev
+url: https://github.com/fabdendev/dagster-mcp
+category: data
+prerequisites:
+  - Python and uv
+  - Dagster instance or Dagster Cloud deployment
+content:
+  - name: UVX (community, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["dagster-mcp==0.4.2"],
+        "env": {
+          "DAGSTER_URL": "{{DAGSTER_URL}}",
+          "DAGSTER_API_TOKEN": "{{DAGSTER_API_TOKEN}}",
+          "DAGSTER_READ_ONLY": "true"
+        }
+      }
+parameters:
+  - name: Dagster URL
+    key: DAGSTER_URL
+    placeholder: https://myorg.dagster.cloud/prod
+  - name: Dagster Cloud API token
+    key: DAGSTER_API_TOKEN
+    placeholder: your_dagster_token
+    optional: true

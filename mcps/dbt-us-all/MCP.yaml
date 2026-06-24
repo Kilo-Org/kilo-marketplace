@@ -1,0 +1,27 @@
+id: dbt-us-all
+name: dbt Artifact MCP by us-all
+description: Provides read-only inspection of dbt manifests, run results, source freshness, tests, coverage, and lineage from a local dbt project without running dbt commands.
+author: us-all
+url: https://github.com/us-all/dbt-mcp-server
+category: data
+prerequisites:
+  - Node.js
+  - dbt project with compiled artifacts
+content:
+  - name: NPX (community, artifact-only)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@us-all/dbt-mcp@1.0.7"],
+        "env": {
+          "DBT_PROJECT_DIR": "{{DBT_PROJECT_DIR}}",
+          "DBT_TOOLS": "dbt",
+          "DBT_ALLOW_WRITE": "false"
+        }
+      }
+parameters:
+  - name: dbt project directory
+    key: DBT_PROJECT_DIR
+    placeholder: /absolute/path/to/dbt-project

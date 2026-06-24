@@ -1,0 +1,52 @@
+id: tokenlite-mysql-mcp
+name: TokenLite MySQL MCP
+description: Discovers MySQL schemas and executes optimized SQL with AST validation, query limits, full-scan protection, and all write operations disabled by default.
+author: andezdev
+url: https://github.com/andezdev/tokenlite-mysql-mcp
+category: data
+prerequisites:
+  - Node.js 20 or newer
+  - MySQL account with SELECT and SHOW VIEW privileges
+content:
+  - name: NPX (read-only)
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@andezdev/tokenlite-mysql-mcp@4.1.0"
+        ],
+        "env": {
+          "DB_HOST": "{{DB_HOST}}",
+          "DB_PORT": "{{DB_PORT}}",
+          "DB_USER": "{{DB_USER}}",
+          "DB_PASSWORD": "{{DB_PASSWORD}}",
+          "DB_NAME": "{{DB_NAME}}",
+          "ALLOW_INSERT_OPERATION": "false",
+          "ALLOW_UPDATE_OPERATION": "false",
+          "ALLOW_DELETE_OPERATION": "false",
+          "ALLOW_DDL_OPERATION": "false",
+          "MCP_SAFE_QUERY_ENABLE_BLOCKING": "true",
+          "MCP_EXPLAIN_MAX_SCAN_ROWS": "1000",
+          "MCP_QUERY_ROW_LIMIT": "500"
+        }
+      }
+parameters:
+  - name: MySQL Host
+    key: DB_HOST
+    placeholder: localhost
+  - name: MySQL Port
+    key: DB_PORT
+    placeholder: "3306"
+    optional: true
+  - name: MySQL Read-Only User
+    key: DB_USER
+    placeholder: readonly_user
+  - name: MySQL Password
+    key: DB_PASSWORD
+    placeholder: your_password
+  - name: MySQL Database
+    key: DB_NAME
+    placeholder: your_database

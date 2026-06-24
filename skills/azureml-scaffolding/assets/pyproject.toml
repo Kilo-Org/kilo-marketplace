@@ -1,0 +1,19 @@
+[project]
+name = "scaffolding"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = "==3.13.*"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["src/*/tests"]
+addopts = "--import-mode=importlib"
+
+[tool.uv.workspace]
+members = ["src/*"]

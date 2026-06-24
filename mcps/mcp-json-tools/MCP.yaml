@@ -1,0 +1,17 @@
+id: mcp-json-tools
+name: JSON Tools MCP
+description: Provides local JSON parsing, validation, querying, formatting, and data-manipulation tools without external services or credentials.
+author: rog0x
+url: https://github.com/rog0x/mcp-json-tools
+category: data
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@rog0x/mcp-json-tools@1.0.1"]
+      }

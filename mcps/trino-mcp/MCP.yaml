@@ -1,0 +1,62 @@
+id: trino-mcp
+name: Trino MCP Server
+description: Discovers Trino catalogs, schemas, tables, and query plans and executes SQL using the configured Trino identity; use a read-only Trino user and allowed-schema scope for safe analytics.
+author: tuannvm
+url: https://github.com/tuannvm/mcp-trino
+category: data
+prerequisites:
+  - Go
+  - Trino account with least-privilege access
+content:
+  - name: Go module release
+    prerequisites:
+      - Go
+    content: |
+      {
+        "command": "go",
+        "args": [
+          "run",
+          "github.com/tuannvm/mcp-trino@3e0be007e203057318a098c5b846ba881e8f427c"
+        ],
+        "env": {
+          "TRINO_HOST": "{{TRINO_HOST}}",
+          "TRINO_PORT": "{{TRINO_PORT}}",
+          "TRINO_USER": "{{TRINO_USER}}",
+          "TRINO_PASSWORD": "{{TRINO_PASSWORD}}",
+          "TRINO_CATALOG": "{{TRINO_CATALOG}}",
+          "TRINO_SCHEMA": "{{TRINO_SCHEMA}}",
+          "TRINO_SSL": "{{TRINO_SSL}}",
+          "TRINO_ALLOWED_SCHEMAS": "{{TRINO_ALLOWED_SCHEMAS}}"
+        }
+      }
+parameters:
+  - name: Trino Host
+    key: TRINO_HOST
+    placeholder: trino.example.com
+  - name: Trino Port
+    key: TRINO_PORT
+    placeholder: "443"
+    optional: true
+  - name: Trino Read-Only User
+    key: TRINO_USER
+    placeholder: readonly_user
+  - name: Trino Password
+    key: TRINO_PASSWORD
+    placeholder: your_password
+    optional: true
+  - name: Default Trino Catalog
+    key: TRINO_CATALOG
+    placeholder: hive
+    optional: true
+  - name: Default Trino Schema
+    key: TRINO_SCHEMA
+    placeholder: analytics
+    optional: true
+  - name: Enable Trino TLS
+    key: TRINO_SSL
+    placeholder: "true"
+    optional: true
+  - name: Allowed Trino Schemas
+    key: TRINO_ALLOWED_SCHEMAS
+    placeholder: hive.analytics,hive.reporting
+    optional: true

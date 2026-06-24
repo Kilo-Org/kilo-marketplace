@@ -1,0 +1,17 @@
+id: power-bi-remote
+name: Power BI Remote MCP
+description: Queries Power BI semantic-model schemas and data through Microsoft's hosted service, generating and executing DAX under the signed-in user's Entra ID and Power BI permissions.
+author: Microsoft
+url: https://learn.microsoft.com/en-us/power-bi/developer/mcp/remote-mcp-server-get-started
+category: business
+prerequisites:
+  - Power BI account
+  - Tenant administrator approval for the Power BI MCP endpoint
+  - MCP client with Microsoft Entra OAuth support
+content:
+  - name: Microsoft Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.fabric.microsoft.com/v1/mcp/powerbi"
+      }

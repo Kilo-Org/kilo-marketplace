@@ -1,0 +1,45 @@
+id: vault-mcp
+name: HashiCorp Vault MCP Server
+description: Reads and manages Vault KV secrets, mounts, and PKI resources using a Vault token whose policies define the exact accessible paths and operations.
+author: HashiCorp
+url: https://github.com/hashicorp/vault-mcp-server
+category: development
+prerequisites:
+  - Docker
+  - HashiCorp Vault token with least-privilege policies
+content:
+  - name: Docker image 0.2.0
+    prerequisites:
+      - Docker
+    content: |
+      {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "VAULT_ADDR",
+          "-e",
+          "VAULT_TOKEN",
+          "-e",
+          "VAULT_NAMESPACE",
+          "hashicorp/vault-mcp-server@sha256:e4e8df2fb7d27f12c5cb8d1c5b37663a9569ad5ce0047fa0281c56a1769222aa"
+        ],
+        "env": {
+          "VAULT_ADDR": "{{VAULT_ADDR}}",
+          "VAULT_TOKEN": "{{VAULT_TOKEN}}",
+          "VAULT_NAMESPACE": "{{VAULT_NAMESPACE}}"
+        }
+      }
+parameters:
+  - name: Vault Address
+    key: VAULT_ADDR
+    placeholder: https://vault.example.com:8200
+  - name: Vault Token
+    key: VAULT_TOKEN
+    placeholder: your_least_privilege_vault_token
+  - name: Vault Namespace
+    key: VAULT_NAMESPACE
+    placeholder: your_namespace
+    optional: true

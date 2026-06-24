@@ -1,0 +1,47 @@
+id: azure-data-factory-consultant
+name: Azure Data Factory MCP (Community)
+description: Monitors Azure Data Factory pipelines, datasets, linked services, and errors with service-principal authentication; execution and trigger controls are disabled by default.
+author: klemensms
+url: https://github.com/klemensms/mcp-consultant-tools
+category: data
+prerequisites:
+  - Node.js
+  - Microsoft Entra service principal with least-privilege Data Factory access
+content:
+  - name: NPX (community, read-only)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "--package=@mcp-consultant-tools/azure-data-factory@33.0.0", "mcp-adf"],
+        "env": {
+          "AZURE_DATA_FACTORY_SUBSCRIPTION_ID": "{{AZURE_SUBSCRIPTION_ID}}",
+          "AZURE_DATA_FACTORY_RESOURCE_GROUP": "{{AZURE_RESOURCE_GROUP}}",
+          "AZURE_DATA_FACTORY_NAME": "{{AZURE_DATA_FACTORY_NAME}}",
+          "AZURE_TENANT_ID": "{{AZURE_TENANT_ID}}",
+          "AZURE_CLIENT_ID": "{{AZURE_CLIENT_ID}}",
+          "AZURE_CLIENT_SECRET": "{{AZURE_CLIENT_SECRET}}",
+          "AZURE_DATA_FACTORY_ENABLE_WRITE": "false",
+          "AZURE_DATA_FACTORY_ENABLE_TRIGGER_CONTROL": "false"
+        }
+      }
+parameters:
+  - name: Azure subscription ID
+    key: AZURE_SUBSCRIPTION_ID
+    placeholder: 00000000-0000-0000-0000-000000000000
+  - name: Azure resource group
+    key: AZURE_RESOURCE_GROUP
+    placeholder: data-platform-rg
+  - name: Azure Data Factory name
+    key: AZURE_DATA_FACTORY_NAME
+    placeholder: my-data-factory
+  - name: Microsoft Entra tenant ID
+    key: AZURE_TENANT_ID
+    placeholder: 00000000-0000-0000-0000-000000000000
+  - name: Microsoft Entra client ID
+    key: AZURE_CLIENT_ID
+    placeholder: 00000000-0000-0000-0000-000000000000
+  - name: Microsoft Entra client secret
+    key: AZURE_CLIENT_SECRET
+    placeholder: your_client_secret

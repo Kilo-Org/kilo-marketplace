@@ -1,0 +1,26 @@
+id: purview-unified-catalog-mcp
+name: Microsoft Purview Unified Catalog MCP (Community)
+description: Searches Microsoft Purview Unified Catalog assets, owners, lineage, glossary terms, data products, and quality metadata through a separately deployed read-oriented community server authenticated with Microsoft Entra ID.
+author: scardoso-lu
+url: https://github.com/scardoso-lu/purview-mcp-server
+category: data
+prerequisites:
+  - Deployed Purview MCP server with Entra authentication
+  - Entra access token for the deployment
+content:
+  - name: Deployed Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{PURVIEW_MCP_URL}}",
+        "headers": {
+          "Authorization": "Bearer {{PURVIEW_MCP_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Purview MCP Endpoint
+    key: PURVIEW_MCP_URL
+    placeholder: https://your-purview-mcp.example.com/mcp
+  - name: Entra Access Token
+    key: PURVIEW_MCP_TOKEN
+    placeholder: your_entra_access_token

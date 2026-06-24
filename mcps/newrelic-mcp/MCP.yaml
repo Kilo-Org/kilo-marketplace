@@ -1,0 +1,38 @@
+id: newrelic-mcp
+name: New Relic MCP (Community)
+description: Runs the community New Relic integration for NRQL, APM, entity, alert, deployment, and Synthetics operations using a New Relic user API key and its assigned account permissions.
+author: cloudbring
+url: https://github.com/cloudbring/newrelic-mcp
+category: observability
+prerequisites:
+  - Node.js
+  - New Relic account and user API key
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "newrelic-mcp@2.0.0"
+        ],
+        "env": {
+          "NEW_RELIC_API_KEY": "{{NEW_RELIC_API_KEY}}",
+          "NEW_RELIC_ACCOUNT_ID": "{{NEW_RELIC_ACCOUNT_ID}}",
+          "NEW_RELIC_REGION": "{{NEW_RELIC_REGION}}"
+        }
+      }
+parameters:
+  - name: New Relic User API Key
+    key: NEW_RELIC_API_KEY
+    placeholder: NRAK-your-user-api-key
+  - name: New Relic Account ID
+    key: NEW_RELIC_ACCOUNT_ID
+    placeholder: your_account_id
+    optional: true
+  - name: New Relic Region
+    key: NEW_RELIC_REGION
+    placeholder: US
+    optional: true

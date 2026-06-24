@@ -1,0 +1,516 @@
+{
+  "skill_name": "kafka-streams",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Build me a simple Kafka Streams filter that drops invalid events from a topic. I'm running Apache Kafka locally with docker-compose.",
+      "expected_output": "A stateless filter project with Avro schema, docker-compose for local dev, error handling, and minimal config. Uses schema-aware producers in docker-compose README.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Generates a docker-compose.yml with broker and schema-registry services",
+        "Does NOT use kafka-console-producer anywhere — uses schema-aware producers (kafka-avro-console-producer or equivalent)",
+        "Generates simplelogger.properties to suppress Kafka config noise",
+        "TopologyBuilder is in a separate class from App for testability",
+        "TopologyTest uses mock:// URL scheme for Schema Registry",
+        "App.java includes UncaughtExceptionHandler (KIP-671)",
+        "App.java imports StreamsUncaughtExceptionHandler from org.apache.kafka.streams.errors (NOT as a nested class under KafkaStreams — that type does not exist in KS 4.x)",
+        "App.java includes graceful shutdown hook with streams.close()",
+        "application.properties includes ensure.explicit.internal.resource.naming=true",
+        "Avro schemas are in src/main/avro/ (NOT src/main/resources/avro/)"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I need a Kafka Streams app that aggregates customer order totals. The orders come in on a topic and I need a running total per customer. Using Avro, self-managed Confluent Platform 8.2 cluster with SASL_SSL.",
+      "expected_output": "A stateful KTable aggregation project with RocksDB memory guidance, recovery config, standby replicas, CP SASL_SSL config",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Generates a stateful aggregation topology with groupByKey and aggregate",
+        "Includes RocksDB memory estimation comments or guidance",
+        "Sets statestore.cache.max.bytes in application.properties",
+        "Includes recovery config: either (a) num.standby.replicas with classic protocol (no group.protocol=streams), or (b) group.protocol=streams with a note that standbys require classic protocol",
+        "Configures SASL_SSL for Confluent Platform",
+        "TopologyTest uses mock:// URL scheme",
+        "Avro schemas have sensible defaults for schema evolution",
+        "Avro logicalType fields use correct nesting (type object, not flat)",
+        "Asks about deployment sizing (partitions, threads, instances)",
+        "Does NOT ask about subtopologies — infers them from data flow"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to build a Kafka Streams app that counts orders per customer in 5-minute windows. Using Avro and Confluent Cloud. Here are my credentials: bootstrap=pkc-abc.us-east1.gcp.confluent.cloud:9092, cluster key=ABCKEY, cluster secret=ABCsecret123, SR url=https://psrc-xyz.us-east-2.aws.confluent.cloud, SR key=SRKEY1, SR secret=SRsecret456",
+      "expected_output": "A windowed aggregation project with .env file, CC SASL_SSL config, topic provisioning, window retention guidance",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Generates a .env file with the provided CC credentials",
+        "Generates .env.example with placeholder values",
+        "Configures SASL_SSL with sasl.jaas.config using env vars",
+        "Uses TimeWindows.ofSizeWithNoGrace(Duration.ofMinutes(5)) or equivalent",
+        "Includes window retention guidance in comments or config",
+        "Generates create-topics.sh with --cloud support",
+        "Generates teardown.sh for cleanup",
+        "build.gradle auto-loads .env file in the run task",
+        "group.protocol=streams is present but with a comment about CC rollback",
+        "Asks user to verify confluent CLI is installed and logged in"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Build a Kafka Streams app that maintains a product catalog as a KTable and serves lookups via a REST API. Multiple instances, Protobuf schemas, self-managed CP.",
+      "expected_output": "An interactive queries project with Protobuf build, application.server config, multi-instance key routing, REST endpoint",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "build.gradle includes com.google.protobuf plugin with protoc configuration",
+        "build.gradle includes kafka-streams-protobuf-serde dependency",
+        "build.gradle includes protobuf-java dependency",
+        "Proto files are in src/main/proto/ directory",
+        "Proto files include java_package option",
+        "Sets application.server config for interactive queries",
+        "Includes multi-instance key routing logic (queryMetadataForKey or equivalent)",
+        "TopologyTest uses KafkaProtobufSerializer/KafkaProtobufDeserializer",
+        "Does NOT include Avro Gradle plugin (com.github.davidmc24.gradle.plugin.avro)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I need a Kafka Streams app with exactly-once processing for payment transactions, with a queryable balance store. Avro, Confluent Cloud, production deployment.",
+      "expected_output": "An EOS project with interactive queries, production hardening, transaction timeout guidance, idle app warning",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Sets processing.guarantee=exactly_once_v2",
+        "Includes transaction.timeout.ms guidance (default is only 10s)",
+        "Warns about idle app transactional.id expiration on CC (7 days)",
+        "Includes health check endpoint (liveness and readiness probes)",
+        "Includes Dockerfile with appropriate JVM settings",
+        "Uses KIP-1034 DLQ exception handler for production",
+        "Generates logback.xml with JSON encoder (production logging)",
+        "Does NOT include slf4j-simple in production build",
+        "Includes deployment sizing guidance (K8s resource requests)"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I'm building a fraud detection stream processor for production on Confluent Cloud. It needs to aggregate transaction patterns per account in sliding windows and flag suspicious activity. This is going straight to prod. I already have an existing input topic called 'card-transactions' with Avro schema.",
+      "expected_output": "Full production project that retrieves existing schema, uses sliding windows, includes all production hardening",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Asks about or retrieves the existing schema from Schema Registry before generating code",
+        "Does NOT generate a new input schema — uses the existing one from card-transactions topic",
+        "Uses SlidingWindows for the aggregation",
+        "Includes all production hardening: Logback, health checks, Dockerfile, KIP-1034 DLQ",
+        "Generates create-topics.sh with --cloud for output and DLQ topics (not input — it already exists)",
+        "Includes deployment sizing questions/guidance",
+        "Highlights group.protocol=streams with CC rollback caveat",
+        "Generates simplelogger.properties OR logback.xml (not both)"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We have a Kafka Streams app that keeps crashing during rolling deploys because of rebalances. I want to build a new version that handles deploys gracefully. We run 6 instances on K8s with StatefulSets, self-managed CP 8.2.",
+      "expected_output": "Project with static membership, session timeout tuning, graceful shutdown, standby replicas, KIP-1071",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Configures group.instance.id for static membership (e.g., ${HOSTNAME})",
+        "Sets session.timeout.ms appropriate for rolling deploys (>= 60s)",
+        "Sets heartbeat.interval.ms < 1/3 of session.timeout.ms",
+        "Includes num.standby.replicas=1 for faster failover",
+        "Uses classic protocol (NOT group.protocol=streams) because static membership and standbys are not supported with KIP-1071",
+        "Notes KIP-1071 limitations and suggests filing an issue or contacting account rep",
+        "Includes K8s StatefulSet guidance (pod name as group.instance.id)",
+        "Includes graceful shutdown hook",
+        "Includes UncaughtExceptionHandler"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Build a Kafka Streams app using JSON Schema for an event enrichment pipeline. I want to enrich user-action events with user profile data from a KTable. Dev environment with docker-compose, just want to get started quickly.",
+      "expected_output": "JSON Schema project with KStream-KTable join, POJOs, docker-compose, dev-mode config",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "build.gradle does NOT include Avro or Protobuf plugins",
+        "build.gradle includes kafka-streams-json-schema-serde dependency",
+        "build.gradle includes jackson-databind dependency",
+        "Generates POJO classes with no-arg constructor and Jackson annotations",
+        "Sets json.value.type per serde instance (not just globally)",
+        "Uses explicit serdes in Consumed/Produced for different value types",
+        "Explains the multiple-value-type challenge with default.value.serde",
+        "TopologyTest uses KafkaJsonSchemaSerializer/KafkaJsonSchemaDeserializer",
+        "Uses LogAndContinueExceptionHandler (dev mode)",
+        "Does NOT include production hardening (user said dev/quick start)"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I need to process events from Kafka in real-time in my Java microservice. Each event is a user action and I want to sessionize them — group actions by user with a 30-minute inactivity gap and emit a session summary when the session closes. Target is Confluent Cloud.",
+      "expected_output": "Session window project triggered without mentioning Kafka Streams explicitly, suppress with bounded buffer, CC config",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Recognizes this as a Kafka Streams use case (embedded Java processing)",
+        "Uses SessionWindows.ofInactivityGapWithNoGrace(Duration.ofMinutes(30))",
+        "Includes Suppressed.untilWindowCloses() to emit only final session results",
+        "Uses bounded buffer for suppression (not unbounded in production)",
+        "Includes CC SASL_SSL config",
+        "Asks about schema format preference",
+        "Generates create-topics.sh with --cloud"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I want to join two streams — orders and shipments — to create a combined order-status view. The join should match on orderId within a 1-hour window. Avro, Confluent Cloud, production.",
+      "expected_output": "Stream-stream join project with two input schemas, windowed join, production hardening, CC config",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Generates TWO input Avro schemas (orders and shipments)",
+        "Uses stream-stream join with JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofHours(1))",
+        "Uses StreamJoined for naming the join (not Named.as — that doesn't work for stream-stream joins)",
+        "Generates create-topics.sh for both input topics, output topic, and DLQ",
+        "Includes production hardening (Logback, health checks, Dockerfile)",
+        "Handles multiple value types with explicit serdes",
+        "Avro logicalType fields use correct nesting"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "I want to build a simple streaming app on Confluent Cloud that filters events from topic-a and sends matching events to topic-b",
+      "expected_output": "Should suggest Flink as an alternative since this is generic stream processing on CC without mentioning KS, then proceed with user's choice",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Mentions Confluent Cloud Flink as an alternative for this use case",
+        "Does NOT gate or block — offers Flink as a brief suggestion then asks preference",
+        "If user chooses KS, proceeds normally with full project generation",
+        "Does NOT lecture about why Flink is better"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Build me a Kafka Streams aggregation app. I already have topics in my cluster — the input topic is 'user-events' and the output topic is 'user-stats', both with Avro schemas in Schema Registry. I'm on Confluent Platform with docker-compose locally.",
+      "expected_output": "Should retrieve existing schemas from SR, not generate new ones. Topology should match existing schemas exactly.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Asks about or attempts to retrieve existing schemas from Schema Registry",
+        "Does NOT generate new input schema — uses existing schema from user-events",
+        "Does NOT generate new output schema — uses existing schema from user-stats",
+        "Does NOT include user-events or user-stats in create-topics.sh (they already exist)",
+        "Still creates DLQ topic in create-topics.sh",
+        "Uses docker exec or curl for local SR schema retrieval (not confluent CLI)"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "I need a Kafka Streams app using Protobuf that reads purchase events, aggregates total spend per customer, and writes to an output topic. Running on Confluent Cloud. I want sample test data too.",
+      "expected_output": "Complete Protobuf project with correct Gradle plugin, proto files, sample data producer, CC config",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "build.gradle includes com.google.protobuf plugin with protoc artifact",
+        "build.gradle includes protobuf block with protoc configuration",
+        "build.gradle does NOT include Avro Gradle plugin",
+        "Proto files are in src/main/proto/ (not src/main/avro/ or src/main/resources/)",
+        "Proto files use correct proto3 syntax with java_package option",
+        "Generates SampleDataProducer.java",
+        "build.gradle includes a separate 'produce' task for the data producer",
+        "TopologyTest uses KafkaProtobufSerializer and KafkaProtobufDeserializer",
+        "Sets specific.protobuf.value.type for typed deserialization in test",
+        "default.value.serde is set to KafkaProtobufSerde"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Build a Kafka Streams app with JSON Schema that transforms incoming order events into enriched order records. Simple stateless map operation. Apache Kafka open source, local dev.",
+      "expected_output": "JSON Schema stateless project with POJOs, docker-compose, correct serde config, no Avro/Protobuf dependencies",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "build.gradle does NOT include Avro or Protobuf plugins",
+        "build.gradle includes kafka-streams-json-schema-serde dependency",
+        "Generates POJO model classes with no-arg constructors",
+        "POJO classes include @JsonProperty annotations where field names differ from Java convention",
+        "Sets json.value.type in serde configuration",
+        "default.value.serde is set to KafkaJsonSchemaSerde",
+        "TopologyTest uses KafkaJsonSchemaSerializer/KafkaJsonSchemaDeserializer with json.value.type",
+        "Uses Apache Kafka CLI tool names (kafka-topics.sh not kafka-topics) or handles both"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "I'm on Confluent Cloud and I want to build a stream processing app that does windowed aggregation on click events. I don't really have a preference on the framework.",
+      "expected_output": "Should suggest both Flink and Kafka Streams since this is generic stream processing on CC without specifying KS. Brief Flink mention, ask preference.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Suggests Flink as an option since all three conditions are met (no KS mention, generic processing, CC)",
+        "Includes a brief Flink SQL example",
+        "Does NOT block or gate — asks which the user prefers and moves on",
+        "If user chooses KS, generates a complete windowed aggregation project"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "I have two Kafka topics - one with orders keyed by orderId, and another with customer data keyed by customerId. Each order has a customerId field. I need to enrich orders with customer info. What's the best approach?",
+      "expected_output": "Architect mode: Should recommend GlobalKTable or FK join, explain tradeoffs, and help user choose the right pattern before generating code",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Identifies this as an enrichment problem where the join key doesn't match",
+        "Recommends GlobalKTable join as an option (broadcast, no co-partitioning needed)",
+        "Explains the alternative: selectKey to rekey orders by customerId + KTable join (requires repartition)",
+        "Discusses tradeoffs: GlobalKTable memory cost vs repartition network cost",
+        "Does NOT immediately generate code — discusses the design first",
+        "Asks clarifying questions about data size, volume, or environment before recommending"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Should I use a tumbling window or a session window for tracking user activity? Users browse products and I want to know their browsing sessions.",
+      "expected_output": "Architect mode: Should recommend session windows for activity-based grouping, explain the difference",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if proceeding to code generation",
+        "Recommends session windows for this use case (activity-based, variable-length)",
+        "Explains the difference: tumbling = fixed time slices, session = grouped by activity gaps",
+        "Asks about the inactivity gap duration (e.g., 30 minutes)",
+        "Mentions grace period for late-arriving events",
+        "Mentions Suppressed.untilWindowCloses() for emitting only final session results",
+        "Does NOT assume a specific schema format or environment"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "My Kafka Streams app keeps rebalancing every few minutes. It's a stateful aggregation with about 50GB of state across 24 partitions. Running on K8s with 4 pods, each with 2 stream threads. CP 8.1.",
+      "expected_output": "Debug mode: Should diagnose rebalancing loop, check max.poll.interval.ms, suggest standby replicas and static membership",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already specified",
+        "Identifies this as a rebalancing loop problem, likely caused by state restoration exceeding max.poll.interval.ms",
+        "Asks for the current max.poll.interval.ms setting",
+        "Recommends increasing consumer.max.poll.interval.ms for large state",
+        "Recommends num.standby.replicas=1 to avoid full restoration",
+        "Suggests group.instance.id for static membership on K8s",
+        "Notes that CP 8.1 does NOT support group.protocol=streams (needs 8.2+)",
+        "Calculates approximate RocksDB memory needs for 50GB state across 24 partitions"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "I'm getting ClassCastException: java.util.LinkedHashMap cannot be cast to com.example.model.UserEvent in my Kafka Streams app. It's using JSON Schema serdes.",
+      "expected_output": "Debug mode: Should immediately identify missing json.value.type config",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already clear from context",
+        "Identifies the root cause: missing json.value.type configuration on the KafkaJsonSchemaSerde",
+        "Provides the fix: set json.value.type=com.example.model.UserEvent on the serde",
+        "Explains WHY: without json.value.type, Jackson deserializes to LinkedHashMap instead of the POJO",
+        "Shows the correct serde configuration code",
+        "Mentions this affects both explicit serde instances AND the default value serde"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "I need to combine login events from three different mobile apps into a single per-user activity summary. Each app publishes to its own Kafka topic with the same schema. Avro, local dev.",
+      "expected_output": "Should recommend cogrouping pattern for merging multiple input streams into one aggregation",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Recommends the cogroup() API for aggregating across multiple input streams",
+        "Shows the cogroup topology pattern with multiple KGroupedStream inputs",
+        "Uses a shared Aggregator for all three streams (since same schema)",
+        "Does NOT suggest three separate aggregations merged later",
+        "Generates a complete project if the user confirms the design"
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "I want to route events to different output topics based on their category field. Some go to 'priority-events', some to 'standard-events', and everything else to 'other-events'. Using Avro, Confluent Cloud.",
+      "expected_output": "Should use the modern split() API (not deprecated branch()), with Branched.withConsumer for each route",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Uses the modern .split().branch() API with Branched.withConsumer",
+        "Does NOT use the deprecated KStream.branch() method",
+        "Routes to three different output topics based on predicates",
+        "Includes a defaultBranch for the 'other' category",
+        "Generates create-topics.sh for all three output topics plus DLQ",
+        "Configures CC SASL_SSL and .env file"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "We're building a payment processing system and the team wants to use exactly-once semantics. We process about 50k transactions per second with 200ms p99 latency requirements. Is EOS the right choice? We're on Confluent Cloud.",
+      "expected_output": "Architect mode: Should walk through EOS decision tree, quantify the real costs (10-30% throughput hit, 2x write amplification), discuss CC-specific gotchas (7-day transactional ID expiry), and help the user make an informed decision",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already clear from context",
+        "Discusses whether EOS is actually needed — walks through the decision tree",
+        "Quantifies the throughput impact (10-30% lower than at-least-once)",
+        "Mentions the CC 7-day transactional ID expiration risk",
+        "Discusses at-least-once + idempotent consumer as an alternative",
+        "Does NOT blindly enable EOS — helps the user decide",
+        "If EOS is chosen, mentions transaction.timeout.ms tuning (default 10s is too low)"
+      ]
+    },
+    {
+      "id": 22,
+      "prompt": "How should I size my Kafka Streams deployment? I have a stateful aggregation with about 100GB of state across 64 partitions, running on Kubernetes. Avro, Confluent Platform.",
+      "expected_output": "Should provide specific sizing guidance: thread/instance calculation, RocksDB memory formula, disk sizing with 3x multiplier, PVC requirement, container resource recommendations",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already clear from context",
+        "Calculates RocksDB memory per instance using the 98MB-per-store formula",
+        "Recommends persistent volumes (PVCs) for stateful apps on K8s",
+        "Provides disk sizing guidance (3x expected state size or similar multiplier)",
+        "Recommends NOT setting CPU limits on KS containers",
+        "Provides thread/instance calculation based on partition count",
+        "Mentions standby replicas for large state stores"
+      ]
+    },
+    {
+      "id": 23,
+      "prompt": "My Kafka Streams EOS app on Confluent Cloud keeps getting ProducerFencedException and the consumer lag is growing. It's a stateful app with about 50GB of state. The app was working fine until last week.",
+      "expected_output": "Debug mode: Should diagnose EOS transaction timeout cascade or InvalidPidMappingException, recommend increasing transaction.timeout.ms, check if app was idle for 7+ days",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already clear from context",
+        "Asks if the app was idle for 7+ days (InvalidPidMappingException on CC)",
+        "Checks for transaction.timeout.ms being too low (default 10s)",
+        "Explains the transaction timeout cascade pattern (timeout -> fence -> rebalance -> restore -> timeout)",
+        "Recommends increasing transaction.timeout.ms as a fix",
+        "Mentions the emergency fallback: switch to at-least-once to stop the loop",
+        "Asks about state restoration status"
+      ]
+    },
+    {
+      "id": 24,
+      "prompt": "My Kafka Streams app has been running on Confluent Cloud for months but suddenly the containers are getting OOM killed even though JVM heap looks fine. We have 40 partitions with a windowed aggregation using 5-minute tumbling windows. Each instance runs 4 stream threads.",
+      "expected_output": "Debug mode: Should identify RocksDB off-heap memory as the likely cause, calculate windowed store memory (40 partitions x segments x 98MB), recommend BoundedMemoryRocksDBConfig or MaxRAMPercentage=75",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already clear from context",
+        "Identifies RocksDB off-heap memory as the likely cause of OOM",
+        "Calculates or estimates windowed store memory (partitions x segments x 98MB per store)",
+        "Recommends MaxRAMPercentage=75 or similar JVM setting to leave room for RocksDB",
+        "Mentions BoundedMemoryRocksDBConfig as a solution for many stores",
+        "Does NOT just say 'increase memory' — explains the off-heap memory model"
+      ]
+    },
+    {
+      "id": 25,
+      "prompt": "We just deployed our Kafka Streams app on Confluent Cloud and it's getting TopicAuthorizationException on some internal topics. The app reads from 'orders' and writes to 'order-summaries'. What ACLs do we need?",
+      "expected_output": "Debug mode: Should explain the full set of ACLs needed for KS on CC, including prefix ACL for internal topics (changelog, repartition)",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment if not already clear from context",
+        "Lists the required ACLs: READ on source topics, WRITE on output topics, READ/WRITE/CREATE with prefix matching application.id for internal topics",
+        "Explains that internal topics (changelog, repartition) need prefix-based ACLs",
+        "Mentions consumer group READ permission for application.id",
+        "If EOS is relevant, mentions transactional ID WRITE and IDEMPOTENT_WRITE permissions",
+        "Does NOT just say 'add more ACLs' — provides the specific ACL commands or patterns"
+      ]
+    },
+    {
+      "id": 26,
+      "prompt": "I need to enrich order events with customer data. The orders topic has 32 partitions keyed by orderId. The customers topic has 8 partitions keyed by customerId. Each order has a customerId field. The customer data changes infrequently. Confluent Platform, Avro.",
+      "expected_output": "Should recommend GlobalKTable for the customer data since it's a small lookup table and join key (customerId) doesn't match the orders key (orderId). Explain co-partitioning problem.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Recommends GlobalKTable for customers (not KTable) since join key mismatch",
+        "Explains the co-partitioning requirement for KStream-KTable joins and why it doesn't work here",
+        "Uses a KeyValueMapper to extract customerId from the order for the join",
+        "Warns about GlobalKTable memory — full table replicated to every instance",
+        "Generates working topology code with the join"
+      ]
+    },
+    {
+      "id": 27,
+      "prompt": "I need to join orders with order-items. Orders are keyed by orderId, order-items are keyed by itemId but have an orderId field. Both topics have 16 partitions. I want to get each order with all its items. Confluent Cloud, Avro.",
+      "expected_output": "Should recommend a foreign key join (KTable-KTable FK join) since order-items references orders by a non-key field. Explain how FK joins work differently from primary key joins.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Recommends KTable-KTable foreign key join (not a KStream join or GlobalKTable)",
+        "Explains that FK joins don't require co-partitioning on the FK",
+        "Uses the correct FK join API with a foreign key extractor function",
+        "Mentions that FK joins create internal repartition topics",
+        "Configures default serdes since FK joins use them for internal topics"
+      ]
+    },
+    {
+      "id": 28,
+      "prompt": "I need to implement custom processing logic that calls an external REST API for each record and conditionally forwards to different output topics based on the API response. This doesn't fit neatly into map/filter. Kafka Streams on Apache Kafka, Protobuf.",
+      "expected_output": "Should recommend the Processor API (process() or addProcessor()) for complex routing logic that doesn't fit the DSL. Include proper context forwarding and state management.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Uses the Processor API (process() method or Processor/Transformer interface)",
+        "Shows how to use ProcessorContext to forward records to specific child nodes or output topics",
+        "Warns about blocking REST calls in stream threads (latency, max.poll.interval.ms)",
+        "Suggests strategies for external calls (async, batching, or caching)",
+        "Generates Protobuf schemas (not Avro)"
+      ]
+    },
+    {
+      "id": 29,
+      "prompt": "Build me a Kafka Streams aggregation app. Maven, not Gradle. JSON Schema. Confluent Platform. Count orders by customer per hour with tumbling windows.",
+      "expected_output": "Should generate a Maven project (pom.xml not build.gradle) with JSON Schema format, windowed aggregation with tumbling windows.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Generates pom.xml (NOT build.gradle)",
+        "Uses JSON Schema format with KafkaJsonSchemaSerde",
+        "Sets json.value.type property on the serde",
+        "Implements tumbling window aggregation with TimeWindows.ofSizeWithNoGrace() or similar",
+        "Uses Confluent Platform config (not CC SASL_SSL)",
+        "Includes the confluent Maven repository in pom.xml"
+      ]
+    },
+    {
+      "id": 30,
+      "prompt": "Build me a Kafka Streams app that filters and transforms order events. I'm running WarpStream. Avro format.",
+      "expected_output": "A stateless filter/transform project with WarpStream-optimized config: idempotence disabled, large batch sizes, high in-flight requests, large fetch sizes, zone-aware client.id, at-least-once processing guarantee.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Recognizes WarpStream as the target environment and applies WarpStream-specific config overrides",
+        "Sets producer.enable.idempotence=false (or enable.idempotence=false)",
+        "Sets producer.max.in.flight.requests.per.connection to 1000 or higher",
+        "Sets producer.batch.size to 100000 or higher",
+        "Sets producer.linger.ms to 100 (or a value appropriate for WarpStream)",
+        "Sets consumer.fetch.max.bytes to 50242880 or similar large value",
+        "Sets consumer.max.partition.fetch.bytes to 50242880 or similar large value",
+        "Sets consumer.fetch.max.wait.ms to 10000 or similar",
+        "Does NOT set consumer.fetch.min.bytes (unsupported on WarpStream)",
+        "Sets metadata.max.age.ms to 60000",
+        "Includes ws_az= in client.id for zone-aware routing, or mentions zone-aware routing in guidance",
+        "Does NOT use processing.guarantee=exactly_once_v2 (defaults to at_least_once)"
+      ]
+    },
+    {
+      "id": 31,
+      "prompt": "I need a Kafka Streams app with exactly-once processing for payment transactions on WarpStream. Avro, production deployment.",
+      "expected_output": "Should inform the user about the EOS throughput tradeoff on WarpStream before proceeding. If user still wants EOS, generates the project with EOS config plus WarpStream overrides where possible. Should mention at-least-once with downstream deduplication as an alternative.",
+      "files": [],
+      "assertions": [
+        "Asks about or confirms the target environment before generating code",
+        "Informs the user that EOS has a significant throughput cost on WarpStream due to idempotent producer concurrency limits",
+        "Suggests at-least-once with downstream deduplication as an alternative",
+        "Does NOT refuse to use EOS — explains the tradeoff and lets the user decide",
+        "If EOS is chosen: sets processing.guarantee=exactly_once_v2",
+        "Applies other WarpStream-specific overrides that are compatible with EOS (large fetch sizes, metadata.max.age.ms, zone-aware routing)",
+        "Includes production hardening (health checks, Dockerfile, logging)"
+      ]
+    }
+  ]
+}

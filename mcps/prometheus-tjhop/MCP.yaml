@@ -1,0 +1,29 @@
+id: prometheus-tjhop
+name: Prometheus MCP (tjhop)
+description: Provides broad read-only Prometheus API and official-documentation tools for query, metric, target, runtime, and configuration analysis; destructive TSDB admin tools remain disabled by default.
+author: tjhop
+url: https://github.com/tjhop/prometheus-mcp-server
+category: observability
+prerequisites:
+  - Go
+  - Reachable Prometheus-compatible server
+content:
+  - name: Go module release
+    prerequisites:
+      - Go
+    content: |
+      {
+        "command": "go",
+        "args": [
+          "run",
+          "github.com/tjhop/prometheus-mcp-server@v0.18.0"
+        ],
+        "env": {
+          "PROMETHEUS_MCP_SERVER_PROMETHEUS_URL": "{{PROMETHEUS_URL}}",
+          "PROMETHEUS_MCP_SERVER_MCP_TOOLS": "core"
+        }
+      }
+parameters:
+  - name: Prometheus URL
+    key: PROMETHEUS_URL
+    placeholder: http://localhost:9090

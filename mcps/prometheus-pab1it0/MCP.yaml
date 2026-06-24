@@ -1,0 +1,49 @@
+id: prometheus-pab1it0
+name: Prometheus MCP (pab1it0)
+description: Queries Prometheus metrics through PromQL, range queries, target discovery, and metric metadata using optional basic, bearer-token, mTLS, or tenant-header authentication.
+author: pab1it0
+url: https://github.com/pab1it0/prometheus-mcp-server
+category: observability
+prerequisites:
+  - Python and uv
+  - Reachable Prometheus-compatible server
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "prometheus-mcp-server==1.6.1",
+          "prometheus-mcp-server"
+        ],
+        "env": {
+          "PROMETHEUS_URL": "{{PROMETHEUS_URL}}",
+          "PROMETHEUS_USERNAME": "{{PROMETHEUS_USERNAME}}",
+          "PROMETHEUS_PASSWORD": "{{PROMETHEUS_PASSWORD}}",
+          "PROMETHEUS_TOKEN": "{{PROMETHEUS_TOKEN}}",
+          "ORG_ID": "{{PROMETHEUS_ORG_ID}}"
+        }
+      }
+parameters:
+  - name: Prometheus URL
+    key: PROMETHEUS_URL
+    placeholder: http://localhost:9090
+  - name: Prometheus Username
+    key: PROMETHEUS_USERNAME
+    placeholder: your_username
+    optional: true
+  - name: Prometheus Password
+    key: PROMETHEUS_PASSWORD
+    placeholder: your_password
+    optional: true
+  - name: Prometheus Bearer Token
+    key: PROMETHEUS_TOKEN
+    placeholder: your_bearer_token
+    optional: true
+  - name: Prometheus Tenant Organization ID
+    key: PROMETHEUS_ORG_ID
+    placeholder: your_org_id
+    optional: true

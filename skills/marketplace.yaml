@@ -95,6 +95,1370 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/youtube-downloader
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/youtube-downloader/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/youtube-downloader.tar.gz
+  - id: adbc
+    description: >-
+      Connect to and work with databases using Arrow Database Connectivity (ADBC). Use whenever the user needs to use a
+      database.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/adbc
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/adbc/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/adbc.tar.gz
+  - id: adf-master
+    description: >-
+      Azure Data Factory (ADF) CI/CD, deployment, and pipeline development. PROACTIVELY activate for: (1) ADF CI/CD
+      setup (npm validation, ARM template export), (2) ADF ARM template deployment, (3) ADF npm build validation in CI,
+      (4) PrePostDeploymentScript for trigger and resource cleanup, (5) ADF GitHub Actions workflows, (6) ADF Azure
+      DevOps pipelines, (7) ADF Git integration (collaboration vs publish branch), (8) parameterizing linked services
+      and datasets across environments, (9) ADF triggers (schedule, tumbling window, event), (10) deployment slots and
+      blue-green for ADF. Provides: complete CI/CD YAML for GitHub Actions and Azure DevOps, PrePostDeploymentScript
+      reference, parameterization patterns, and trigger management recipes.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/adf-master
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/adf-master/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/adf-master.tar.gz
+  - id: aidp-object-storage
+    description: >-
+      Read and write OCI Object Storage natively from an AIDP notebook using the `oci://` URI scheme. Use when the user
+      mentions OCI Object Storage, "oci://", external volumes, external tables backed by Object Storage,
+      CSV/Parquet/JSON/Delta files in a bucket, or wants to land data in OCI buckets. Auth is implicit via the
+      workspace's IAM identity — no keys in the notebook.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aidp-object-storage
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aidp-object-storage/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aidp-object-storage.tar.gz
+  - id: airbyte-agent
+    description: >-
+      Drive the `airbyte-agent` CLI to manage Airbyte connectors, workspaces, and organizations. Run
+      list/get/search/create/update actions against connector data (HubSpot, Salesforce, Slack, GitHub, etc.), install
+      new connectors via the browser credential flow, list and switch workspaces, list organizations, inspect connector
+      metadata, read skill docs, or print the merged CLI + OpenAPI schema for any operation. Use when the user mentions
+      Airbyte, the `airbyte-agent` CLI, connectors, syncs, workspaces, organizations, or asks to read/write data from a
+      connected SaaS product.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/airbyte-agent
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/airbyte-agent/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/airbyte-agent.tar.gz
+  - id: airflow
+    description: >-
+      Queries, manages, and troubleshoots Apache Airflow using the af CLI. Covers listing DAGs, triggering runs, reading
+      task logs, diagnosing failures, debugging DAG import errors, checking connections, variables, pools, and
+      monitoring health. Routes DAG authoring and deployment to bundled Airflow skills and handles operational debugging
+      inline. Use when user mentions "Airflow", "DAG", "DAG run", "task log", "import error", "parse error", "broken
+      DAG", or asks to "trigger a pipeline", "debug import errors", "check Airflow health", "list connections", "retry a
+      run", or any Airflow operation. Do NOT use for warehouse/SQL analytics on Airflow metadata tables.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/airflow
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/airflow/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/airflow.tar.gz
+  - id: aoti-debug
+    description: >-
+      Debug AOTInductor (AOTI) errors and crashes. Use when encountering AOTI segfaults, device mismatch errors,
+      constant loading failures, or runtime errors from aot_compile, aot_load, aoti_compile_and_package, or
+      aoti_load_package.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aoti-debug
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aoti-debug/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aoti-debug.tar.gz
+  - id: apache-arrow
+    description: >-
+      Expert guidance for Apache Arrow, the cross-language columnar memory format for analytics workloads. Helps
+      developers use Arrow for high-performance data interchange between systems, zero-copy reads, and efficient
+      columnar processing in Python (PyArrow) and JavaScript (Arrow JS).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/apache-arrow
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/apache-arrow/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/apache-arrow.tar.gz
+  - id: apache-hudi-lakehouse
+    description: >-
+      Guides agents through Apache Hudi lakehouse design. Use when managing incremental upserts, record-level mutations,
+      timeline behavior, compaction, and Hudi-based lakehouse tables.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/apache-hudi-lakehouse
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/apache-hudi-lakehouse/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/apache-hudi-lakehouse.tar.gz
+  - id: apollo-graphql
+    description: >-
+      Guidelines for developing GraphQL APIs and React applications using Apollo Client for state management, data
+      fetching, and caching
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/apollo-graphql
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/apollo-graphql/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/apollo-graphql.tar.gz
+  - id: authoring-dags
+    description: >-
+      Workflow and best practices for writing Apache Airflow DAGs. Use when the user wants to create a new DAG, write
+      pipeline code, or asks about DAG patterns and conventions. Includes validation and a minimal test-debug-fix loop
+      using af CLI commands.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/authoring-dags
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/authoring-dags/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/authoring-dags.tar.gz
+  - id: aws-cognito-admin
+    description: >-
+      Cognito user pool administration — look up users, confirm accounts, reset passwords, update custom attributes,
+      disable/enable accounts, and describe pool configuration. Discovers user pools at runtime. Trigger on "look up a
+      user", "Cognito", "reset password", "disable an account", "fix subscription", or /aws-cognito-admin.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aws-cognito-admin
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aws-cognito-admin/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aws-cognito-admin.tar.gz
+  - id: aws-messaging-and-streaming
+    description: >-
+      This skill should be used when selecting or configuring AWS messaging and streaming services such as SQS, SNS,
+      EventBridge, Kinesis, Amazon MQ, or MSK, including service choice, delivery semantics, integration patterns, and
+      production configuration.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aws-messaging-and-streaming
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aws-messaging-and-streaming/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aws-messaging-and-streaming.tar.gz
+  - id: aws-sdk-python-usage
+    description: >-
+      This skill should be used when writing or reviewing Python code that uses boto3 or botocore, including sessions,
+      clients, resources, pagination, retries, credential handling, and AWS service calls.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aws-sdk-python-usage
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aws-sdk-python-usage/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aws-sdk-python-usage.tar.gz
+  - id: azure-compliance
+    description: >-
+      Run Azure compliance and security audits with azqr plus Key Vault expiration checks. Covers best-practice
+      assessment, resource review, policy/compliance validation, and security posture checks. WHEN: compliance scan,
+      security audit, BEFORE running azqr (compliance cli tool), Azure best practices, Key Vault expiration check,
+      expired certificates, expiring secrets, orphaned resources, compliance assessment.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-compliance
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-compliance/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-compliance.tar.gz
+  - id: azure-data-factory
+    description: >-
+      Expert knowledge for Azure Data Factory development including troubleshooting, best practices, decision making,
+      architecture & design patterns, limits & quotas, security, configuration, integrations & coding patterns, and
+      deployment. Use when designing ADF pipelines, data flows, integration runtimes, SAP CDC, CI/CD deployments, or
+      SSIS migrations, and other Azure Data Factory related development tasks. Not for Azure Synapse Analytics (use
+      azure-synapse-analytics), Azure Databricks (use azure-databricks), Azure Stream Analytics (use
+      azure-stream-analytics), Azure Functions (use azure-functions).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-data-factory
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-data-factory/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-data-factory.tar.gz
+  - id: azure-data-share
+    description: >-
+      Expert knowledge for Azure Data Share development including troubleshooting, decision making, security,
+      configuration, and deployment. Use when estimating Data Share costs, managing invitations/RBAC, cross-region
+      deployments, dataset mapping, or automation, and other Azure Data Share related development tasks. Not for Azure
+      Data Box (use azure-data-box-family), Azure Import Export (use azure-import-export), Azure Open Datasets (use
+      azure-open-datasets), Azure Data Explorer (use azure-data-explorer).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-data-share
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-data-share/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-data-share.tar.gz
+  - id: azure-databricks
+    description: >-
+      Expert knowledge for Azure Databricks development including troubleshooting, best practices, decision making,
+      architecture & design patterns, limits & quotas, security, configuration, integrations & coding patterns, and
+      deployment. Use when using Unity Catalog, Lakeflow/Lakebase, SQL warehouses, Model Serving, or Lakehouse
+      Federation, and other Azure Databricks related development tasks. Not for Azure Synapse Analytics (use
+      azure-synapse-analytics), Azure HDInsight (use azure-hdinsight), Azure Machine Learning (use
+      azure-machine-learning), Azure Data Factory (use azure-data-factory).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-databricks
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-databricks/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-databricks.tar.gz
+  - id: azure-event-hubs
+    description: >-
+      Expert knowledge for Azure Event Hubs development including troubleshooting, best practices, decision making,
+      architecture & design patterns, limits & quotas, security, configuration, integrations & coding patterns, and
+      deployment. Use when using Kafka clients/Streams, .NET SDK, Flink/Spark, geo-DR/replication, or Auto Inflate
+      scaling in Event Hubs, and other Azure Event Hubs related development tasks. Not for Azure Service Bus (use
+      azure-service-bus), Azure Event Grid (use azure-event-grid), Azure Notification Hubs (use
+      azure-notification-hubs), Azure Stream Analytics (use azure-stream-analytics).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-event-hubs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-event-hubs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-event-hubs.tar.gz
+  - id: azure-eventhub-py
+    description: >-
+      Azure Event Hubs SDK for Python streaming. Use for high-throughput event ingestion, producers, consumers, and
+      checkpointing. Triggers: "event hubs", "EventHubProducerClient", "EventHubConsumerClient", "streaming",
+      "partitions".
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-eventhub-py
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-eventhub-py/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-eventhub-py.tar.gz
+  - id: azure-key-vault
+    description: >-
+      Guidance for Azure Key Vault — securely storing and managing secrets, keys, and certificates with RBAC, network
+      isolation, managed identity access, soft delete / purge protection, and rotation. Covers when to use standard Key
+      Vault vs Managed HSM (FIPS 140-3 Level 3), one-vault-per-app blast radius principle, and Key Vault references in
+      App Service / Functions. WHEN: Azure Key Vault, store secrets, manage certificates, encryption keys, secret
+      rotation, Key Vault RBAC, purge protection, soft delete, private endpoint Key Vault, managed identity access
+      secrets, Managed HSM, Key Vault references, BYOK CMK. DO NOT USE for certificate authority design (use
+      pki-design), entra app credentials only (use entra-id), or PaaS networking topology (use
+      azure-network-security-design).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-key-vault
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-key-vault/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-key-vault.tar.gz
+  - id: azure-machine-learning
+    description: >-
+      Expert knowledge for Azure Machine Learning development including troubleshooting, best practices, decision
+      making, architecture & design patterns, limits & quotas, security, configuration, integrations & coding patterns,
+      and deployment. Use when using Azure ML workspaces, compute clusters, pipelines, AutoML, online/batch endpoints,
+      or Prompt Flow, and other Azure Machine Learning related development tasks. Not for Azure Databricks (use
+      azure-databricks), Azure Synapse Analytics (use azure-synapse-analytics), Azure HDInsight (use azure-hdinsight),
+      Azure Data Science Virtual Machines (use azure-data-science-vm).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-machine-learning
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-machine-learning/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-machine-learning.tar.gz
+  - id: azure-rbac
+    description: >-
+      Helps users find the right Azure RBAC role for an identity with least privilege access, then generate CLI commands
+      and Bicep code to assign it. Also provides guidance on permissions required to grant roles. WHEN: bicep for role
+      assignment, what role should I assign, least privilege role, RBAC role for, role to read blobs, role for managed
+      identity, custom role definition, assign role to identity, what role do I need to grant access, permissions to
+      assign roles.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-rbac
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-rbac/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-rbac.tar.gz
+  - id: azure-storage
+    description: >-
+      Azure Storage Services including Blob Storage, File Shares, Queue Storage, Table Storage, and Data Lake. Answers
+      questions about storage access tiers (hot, cool, cold, archive), when to use each tier, and tier comparison.
+      Provides object storage, SMB file shares, async messaging, NoSQL key-value, and big data analytics. Includes
+      lifecycle management. USE FOR: blob storage, file shares, queue storage, table storage, data lake, upload files,
+      download blobs, storage accounts, access tiers, storage tiers, hot cool cold archive, storage tier comparison,
+      when to use storage tiers, lifecycle management, Azure Storage concepts. DO NOT USE FOR: SQL databases, Cosmos DB
+      (use azure-prepare), messaging with Event Hubs or Service Bus (use azure-messaging).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-storage
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-storage/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-storage.tar.gz
+  - id: azure-synapse-analytics
+    description: >-
+      Expert knowledge for Azure Synapse Analytics development including troubleshooting, best practices, decision
+      making, architecture & design patterns, limits & quotas, security, configuration, integrations & coding patterns,
+      and deployment. Use when working with Synapse SQL pools, Spark pools, Synapse Link, PolyBase ELT, or Cosmos DB
+      integrations, and other Azure Synapse Analytics related development tasks. Not for Azure Data Factory (use
+      azure-data-factory), Azure Data Explorer (use azure-data-explorer), Azure Databricks (use azure-databricks), Azure
+      HDInsight (use azure-hdinsight).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-synapse-analytics
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-synapse-analytics/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-synapse-analytics.tar.gz
+  - id: azureml-scaffolding
+    description: >-
+      Scaffold, structure, and manage AI/ML projects that run on AzureML. Covers project initialization (uv workspaces,
+      devcontainers, Makefile), Python packaging with explicit dependencies, local and cloud execution, experiment
+      reproducibility, and extensibility patterns (pipelines, datasets, linting). Use this skill whenever the user asks
+      to create, modify, run, test, or deploy an AzureML-based ML project — or when they need guidance on project
+      layout, dependency management, or cloud job submission with Azure Machine Learning.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azureml-scaffolding
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azureml-scaffolding/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azureml-scaffolding.tar.gz
+  - id: beam-concepts
+    description: >-
+      Explains core Apache Beam programming model concepts including PCollections, PTransforms, Pipelines, and Runners.
+      Use when learning Beam fundamentals or explaining pipeline concepts.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/beam-concepts
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/beam-concepts/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/beam-concepts.tar.gz
+  - id: bigquery-ai-ml
+    description: >-
+      This skill should be used when implementing BigQuery AI and ML workflows with SQL functions such as AI.FORECAST,
+      AI.DETECT_ANOMALIES, and AI.GENERATE or when integrating BigQuery with Vertex AI.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/bigquery-ai-ml
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/bigquery-ai-ml/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/bigquery-ai-ml.tar.gz
+  - id: bigquery-basics
+    description: >-
+      This skill should be used for core BigQuery setup and operations, including datasets, tables, SQL queries, bq and
+      gcloud commands, client libraries, and resource management.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/bigquery-basics
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/bigquery-basics/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/bigquery-basics.tar.gz
+  - id: bootstrapping-agent
+    description: >-
+      Wires up an Airbyte connector for use in a PydanticAI or Claude SDK agent. Generates auth config, connector
+      initialization, and tool_utils-decorated tool function. Use when adding a connector to an agent or setting up a
+      new agent with a connector.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/bootstrapping-agent
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/bootstrapping-agent/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/bootstrapping-agent.tar.gz
+  - id: build-connector
+    description: >-
+      Build a new Fivetran connector from a description. Use when the user wants to create, generate, or scaffold a new
+      connector for an API or data source.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/build-connector
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/build-connector/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/build-connector.tar.gz
+  - id: cassandra
+    description: >-
+      Apache Cassandra is a distributed NoSQL database designed for high availability and linear scalability. Learn CQL
+      (Cassandra Query Language), data modeling with partition keys, replication strategies, and integration with
+      Node.js using the DataStax driver.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cassandra
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cassandra/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cassandra.tar.gz
+  - id: cdc-streaming-pipeline
+    description: >-
+      Build a real-time change-data-capture pipeline from a transactional database (Aurora DSQL, Aurora Postgres, RDS)
+      to Redshift Serverless, S3, or any other sink, via Kinesis Data Streams (or MSK). Covers producer setup, consumer
+      Lambda correctness, the append-only event log + reconstruction pattern, schema-drift handling with SUPER +
+      JSON_PARSE, and the operational gotchas (Redshift Data API parameter caps, async statement polling, poison-record
+      handling, retry-and-bisect). Use when the user asks for "CDC to Redshift", "stream change data capture", "Aurora
+      CDC", "DSQL CDC", "Postgres replication to S3", or "build a Lambda consumer for Kinesis CDC". Aurora DSQL
+      public-preview specifics are flagged; the rest is source-agnostic.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cdc-streaming-pipeline
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cdc-streaming-pipeline/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cdc-streaming-pipeline.tar.gz
+  - id: chdb-datastore
+    description: >-
+      Use when the user has tabular data (pandas DataFrame, parquet, csv, Arrow, json) and wants to filter, group,
+      aggregate, join, or speed up slow pandas. Provides chDB DataStore — same pandas API, ClickHouse engine underneath.
+      Also handles reading from S3, MySQL, PostgreSQL, MongoDB, ClickHouse Cloud, Iceberg, Delta Lake as DataFrames and
+      joining across sources. TRIGGER when: user mentions DataFrame, parquet, csv, "fast pandas", "speed up pandas", or
+      cross-source DataFrame joins; user imports `chdb.datastore` or `from datastore import DataStore`. SKIP this skill
+      for raw SQL syntax (use chdb-sql instead), ClickHouse server administration, or non-Python DataStore API work.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/chdb-datastore
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/chdb-datastore/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/chdb-datastore.tar.gz
+  - id: cheerio-parsing
+    description: >-
+      Expert guidance for HTML/XML parsing using Cheerio in Node.js with best practices for DOM traversal, data
+      extraction, and efficient scraping pipelines.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cheerio-parsing
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cheerio-parsing/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cheerio-parsing.tar.gz
+  - id: cognito
+    description: >-
+      AWS Cognito user authentication and authorization service. Use when setting up user pools, configuring identity
+      pools, implementing OAuth flows, managing user attributes, or integrating with social identity providers.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cognito
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cognito/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cognito.tar.gz
+  - id: collibra-chip
+    description: >-
+      This skill should be used when a connected Collibra Chip MCP server can provide domain-specific Collibra workflows
+      and references.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/collibra-chip
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/collibra-chip/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/collibra-chip.tar.gz
+  - id: connecting-to-data-source
+    description: >-
+      This skill should be used when creating or validating an AWS Glue connection to a JDBC database, Redshift,
+      Snowflake, BigQuery, or another external source before ingestion; it does not perform data movement.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/connecting-to-data-source
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/connecting-to-data-source/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/connecting-to-data-source.tar.gz
+  - id: cortex-code
+    description: >-
+      Routes Snowflake-specific operations to the Cortex Code CLI while keeping local and non-Snowflake work in Kilo.
+      Use for Snowflake SQL, warehouses, Snowpark, Cortex AI, dynamic tables, governance, and Snowflake security.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cortex-code
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cortex-code/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cortex-code.tar.gz
+  - id: creating-data-lake-table
+    description: >-
+      This skill should be used when creating Amazon S3 Tables managed Iceberg tables, validating target databases and
+      schemas, or preparing tables for Athena, Glue ETL, or Lake Formation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/creating-data-lake-table
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/creating-data-lake-table/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/creating-data-lake-table.tar.gz
+  - id: creating-secrets-using-best-practices
+    description: >-
+      Creates and manages secrets in AWS Secrets Manager following security best practices. Always use this skill when
+      creating secrets — it sets up dedicated KMS encryption keys, automatic rotation, least-privilege IAM policies,
+      CloudTrail auditing, and lifecycle management that are essential for production-grade secret handling.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/creating-secrets-using-best-practices
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/creating-secrets-using-best-practices/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/creating-secrets-using-best-practices.tar.gz
+  - id: csv-query
+    description: >-
+      Run SQL queries against CSV/TSV/Excel files using Polars SQL engine
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/csv-query
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/csv-query/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/csv-query.tar.gz
+  - id: csv-wrangling
+    description: >-
+      Standard workflow order, tool selection matrix, and composition patterns for qsv CSV data wrangling
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/csv-wrangling
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/csv-wrangling/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/csv-wrangling.tar.gz
+  - id: dagster
+    description: >-
+      Dagster is a data pipeline orchestrator built around the concept of software-defined assets. Learn to define
+      assets, ops, jobs, schedules, sensors, and resources for building maintainable data platforms.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dagster
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dagster/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dagster.tar.gz
+  - id: dagster-expert
+    description: >-
+      This skill should be used for Dagster project work involving assets, components, integrations, or the dg CLI; it
+      requires consulting the bundled command and API references before proposing implementation details.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dagster-expert
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dagster-expert/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dagster-expert.tar.gz
+  - id: dashboarding
+    description: >-
+      This skill should be used when creating, modifying, or organizing Grafana dashboards, including panels, variables,
+      transformations, links, annotations, and dashboard JSON.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dashboarding
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dashboarding/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dashboarding.tar.gz
+  - id: data-catalog-and-discovery
+    description: >-
+      Guides agents through data catalog, discovery, and metadata quality workflows. Use when publishing datasets,
+      improving discoverability, curating lineage metadata, or making data products easier for other teams to find and
+      trust.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-catalog-and-discovery
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-catalog-and-discovery/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-catalog-and-discovery.tar.gz
+  - id: data-distributed-storage
+    description: >-
+      Use this skill when designing distributed storage for HDFS, S3, ADLS, GCS, MinIO, NFS, or any distributed file
+      system for data workloads. This skill enforces: storage backend selection, data durability and replication, file
+      format selection, partitioning and compression, lifecycle policies, storage tiering, and cost optimization. Do NOT
+      use for: database storage engines, local filesystem tuning, or content delivery networks.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-distributed-storage
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-distributed-storage/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-distributed-storage.tar.gz
+  - id: data-quality-frameworks-sickn33
+    description: >-
+      Implement data quality validation with Great Expectations, dbt tests, and data contracts. Use when building data
+      quality pipelines, implementing validation rules, or establishing data contracts.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-quality-frameworks-sickn33
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-quality-frameworks-sickn33/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-quality-frameworks-sickn33.tar.gz
+  - id: database-observability
+    description: >-
+      This skill should be used when setting up or troubleshooting Grafana Cloud Database Observability for MySQL or
+      PostgreSQL, including collectors, pg_stat_statements, query metrics, explain plans, and dashboards.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/database-observability
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/database-observability/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/database-observability.tar.gz
+  - id: database-redshift
+    description: >-
+      This skill should be used when working with Amazon Redshift architecture, performance diagnostics, operations, and
+      best practices.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/database-redshift
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/database-redshift/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/database-redshift.tar.gz
+  - id: databricks-core
+    description: >-
+      Databricks CLI operations and the parent/entry-point skill for all Databricks work: authentication, profile
+      selection, data exploration, bundles, and Genie natural-language data Q&A. Load this first for any Databricks task
+      (CLI, auth, profiles, exploring catalogs/tables), then load the matching product skill. Contains up-to-date
+      guidelines for Databricks-related CLI tasks.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-core
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-core/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-core.tar.gz
+  - id: databricks-dbsql
+    description: >-
+      Databricks SQL (DBSQL) advanced features and SQL warehouse capabilities. This skill MUST be invoked when the user
+      mentions: "DBSQL", "Databricks SQL", "SQL warehouse", "SQL scripting", "stored procedure", "CALL procedure",
+      "materialized view", "CREATE MATERIALIZED VIEW", "pipe syntax", "|>", "geospatial", "H3", "ST_", "spatial SQL",
+      "collation", "COLLATE", "ai_query", "ai_classify", "ai_extract", "ai_gen", "AI function", "http_request",
+      "remote_query", "read_files", "Lakehouse Federation", "recursive CTE", "WITH RECURSIVE", "multi-statement
+      transaction", "temp table", "temporary view", "pipe operator". SHOULD also invoke when the user asks about SQL
+      best practices, data modeling patterns, or advanced SQL features on Databricks.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-dbsql
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-dbsql/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-dbsql.tar.gz
+  - id: databricks-jobs
+    description: >-
+      Develop and deploy Lakeflow Jobs on Databricks via DABs, Python SDK, or the CLI. Use when creating data
+      engineering jobs with notebooks, Python wheels, SQL, dbt, or pipelines. Invoke BEFORE starting implementation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-jobs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-jobs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-jobs.tar.gz
+  - id: databricks-model-serving
+    description: >-
+      Databricks Model Serving endpoint lifecycle and operations. Use for endpoint CRUD, traffic routing, zero-downtime
+      version swaps, OpenAPI schemas, logs, metrics, permissions, AI Gateway rate limits, Foundation Model endpoint
+      discovery, Databricks App integration, and off-platform streaming. Not for model training, MLflow autologging or
+      evaluation, Unity Catalog registration, custom PyFunc authoring, or agent authoring.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-model-serving
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-model-serving/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-model-serving.tar.gz
+  - id: databricks-pipelines
+    description: >-
+      Develop Lakeflow Spark Declarative Pipelines (formerly Delta Live Tables) on Databricks. Use when building batch
+      or streaming data pipelines with Python or SQL. Invoke BEFORE starting implementation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-pipelines
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-pipelines/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-pipelines.tar.gz
+  - id: databricks-spark-structured-streaming
+    description: >-
+      Comprehensive guide to Spark Structured Streaming for production workloads. Use when building streaming pipelines,
+      working with Kafka ingestion, implementing Real-Time Mode (RTM), configuring triggers (processingTime,
+      availableNow), handling stateful operations with watermarks, optimizing checkpoints, performing stream-stream or
+      stream-static joins, writing to multiple sinks, or tuning streaming cost and performance.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-spark-structured-streaming
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-spark-structured-streaming/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-spark-structured-streaming.tar.gz
+  - id: databricks-unity-catalog
+    description: >-
+      Unity Catalog system tables and volumes. Use when querying system tables (audit, lineage, billing) or working with
+      volume file operations (upload, download, list files in /Volumes/).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/databricks-unity-catalog
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/databricks-unity-catalog/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/databricks-unity-catalog.tar.gz
+  - id: dataplex-and-bigquery-governance
+    description: >-
+      Guides agents through GCP-native data governance workflows with Dataplex and BigQuery. Use when designing lakes,
+      zones, policy tags, metadata quality, lineage, discovery, and governed publishing across Cloud Storage, BigQuery,
+      Dataflow, Dataproc, and Google Cloud analytics platforms.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dataplex-and-bigquery-governance
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dataplex-and-bigquery-governance/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dataplex-and-bigquery-governance.tar.gz
+  - id: datarobot-data-preparation
+    description: >-
+      Tools and guidance for data upload, dataset management, data validation, and preparing data for DataRobot
+      projects. Use when uploading datasets, managing data, or validating data for DataRobot.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/datarobot-data-preparation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/datarobot-data-preparation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/datarobot-data-preparation.tar.gz
+  - id: datarobot-feature-engineering
+    description: >-
+      Guidance for feature engineering, feature discovery, feature importance analysis, and understanding DataRobot's
+      automated feature engineering capabilities. Use when working with feature engineering, feature discovery, or
+      analyzing feature importance in DataRobot.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/datarobot-feature-engineering
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/datarobot-feature-engineering/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/datarobot-feature-engineering.tar.gz
+  - id: dataset-evaluation
+    description: >-
+      Validates dataset formatting and quality for SageMaker model fine-tuning (SFT, DPO, or RLVR). Use when the user
+      says "is my dataset okay", "evaluate my data", "check my training data", "I have my own data", or before starting
+      any fine-tuning job. Detects file format, checks schema compliance against the selected model and technique, and
+      reports whether the data is ready for training or evaluation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dataset-evaluation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dataset-evaluation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dataset-evaluation.tar.gz
+  - id: dataset-transformation
+    description: >-
+      Generates code that transforms datasets between ML schemas for model training or evaluation. Use when the user
+      says "transform", "convert", "reformat", "change the format", or when a dataset's schema needs to change to match
+      the target format — always use this skill for format changes rather than writing inline transformation code.
+      Supports OpenAI chat, SageMaker SFT/DPO/RLVR/RLAIF, HuggingFace preference, Bedrock Nova, VERL, and custom JSONL
+      formats from local files or S3.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dataset-transformation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dataset-transformation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dataset-transformation.tar.gz
+  - id: db2-rhel
+    description: >-
+      Use when installing, configuring, or managing IBM DB2 LUW on RHEL 9 (and AlmaLinux/Rocky 9) — instance creation,
+      database administration, buffer pool and tablespace management, backup/restore with HADR, performance tuning
+      (db2advis, db2pd, MON functions), runstats/reorg, SELinux contexts, firewalld rules, and DB2 pureScale. Part of
+      the db2-* skill family.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/db2-rhel
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/db2-rhel/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/db2-rhel.tar.gz
+  - id: dbt-analytics-engineering
+    description: >-
+      Builds and modifies dbt models, writes SQL transformations using ref() and source(), creates tests, and validates
+      results with dbt show. Use when doing any dbt work - building or modifying models, debugging errors, exploring
+      unfamiliar data sources, writing tests, or evaluating impact of changes.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-analytics-engineering
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-analytics-engineering/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-analytics-engineering.tar.gz
+  - id: dbt-testing
+    description: >-
+      This skill should be used when designing dbt tests, configuring dbt_constraints, adding generic or singular tests,
+      enforcing warehouse constraints, or troubleshooting dbt test failures.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-testing
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-testing/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-testing.tar.gz
+  - id: dd-logs
+    description: >-
+      Log management - search, archives, metrics, and cost control.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dd-logs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dd-logs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dd-logs.tar.gz
+  - id: dd-pup
+    description: >-
+      Datadog CLI (Rust). OAuth2 auth with token refresh.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dd-pup
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dd-pup/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dd-pup.tar.gz
+  - id: delta-sharing
+    description: >-
+      Delta Sharing configuration, monitoring, and recipient management for secure cross-organization data sharing.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/delta-sharing
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/delta-sharing/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/delta-sharing.tar.gz
+  - id: deploying-airflow
+    description: >-
+      Deploy Airflow DAGs and projects. Use when the user wants to deploy code, push DAGs, set up CI/CD, deploy to
+      production, or asks about deployment strategies for Airflow.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/deploying-airflow
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/deploying-airflow/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/deploying-airflow.tar.gz
+  - id: dynamic-tables-tutorial
+    description: >-
+      Interactive tutorial that teaches Snowflake Dynamic Tables hands-on. The agent guides users step-by-step through
+      building data pipelines with automatic refresh, incremental processing, and CDC patterns. Use when the user wants
+      to learn dynamic tables, build a DT pipeline, or understand DT vs streams/tasks/materialized views.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dynamic-tables-tutorial
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dynamic-tables-tutorial/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dynamic-tables-tutorial.tar.gz
+  - id: elasticsearch-esql
+    description: >-
+      Execute ES|QL (Elasticsearch Query Language) queries, use when the user wants to query Elasticsearch data, analyze
+      logs, aggregate metrics, explore data, or create charts and dashboards from ES|QL results.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/elasticsearch-esql
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/elasticsearch-esql/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/elasticsearch-esql.tar.gz
+  - id: elasticsearch-file-ingest
+    description: >-
+      Ingest and transform data files (CSV/JSON/Parquet/Arrow IPC) into Elasticsearch with stream processing and custom
+      transforms. Use when loading files or batch importing data — not for reindexing, general ingest pipeline design,
+      or bulk API patterns.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/elasticsearch-file-ingest
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/elasticsearch-file-ingest/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/elasticsearch-file-ingest.tar.gz
+  - id: entra-agent-id
+    description: >-
+      Provision Microsoft Entra Agent Identity Blueprints, BlueprintPrincipals, and per-instance Agent Identities via
+      Microsoft Graph, and configure OAuth 2.0 token exchange (fmi_path, OBO, cross-tenant) including the Microsoft
+      Entra SDK for AgentID sidecar. USE FOR: Agent Identity Blueprint, BlueprintPrincipal, agent OAuth, fmi_path token
+      exchange, agent OBO, Workload Identity Federation for agents, polyglot agent auth,
+      Microsoft.Identity.Web.AgentIdentities. DO NOT USE FOR: standard Entra app registration (use
+      entra-app-registration), Azure RBAC (use azure-rbac), Microsoft Foundry agent authoring (use microsoft-foundry).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/entra-agent-id
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/entra-agent-id/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/entra-agent-id.tar.gz
+  - id: entra-app-registration
+    description: >-
+      Guides Microsoft Entra ID app registration, OAuth 2.0 authentication, and MSAL integration. USE FOR: create app
+      registration, register Azure AD app, configure OAuth, set up authentication, add API permissions, generate service
+      principal, MSAL example, console app auth, Entra ID setup, Azure AD authentication. DO NOT USE FOR: Azure RBAC or
+      role assignments (use azure-rbac), Key Vault secrets (use azure-keyvault-expiration-audit), general Azure resource
+      security guidance.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/entra-app-registration
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/entra-app-registration/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/entra-app-registration.tar.gz
+  - id: etl-integration-nifi
+    description: >-
+      Apache NiFi specialist for flow-based data integration, routing, and provenance tracking. Deep expertise in
+      processors, FlowFiles, connections, process groups, clustering, record-oriented processing, and NiFi 2.x
+      modernization. WHEN: \"Apache NiFi\", \"NiFi\", \"NiFi processor\", \"FlowFile\", \"process group\", \"NiFi
+      provenance\", \"NiFi back pressure\", \"NiFi cluster\", \"NiFi registry\", \"NiFi expression language\",
+      \"MiNiFi\", \"ConsumeKafka NiFi\", \"tMap NiFi\", \"NiFi REST API\", \"NiFi record\", \"RecordReader\", \"NiFi
+      Python processor\", \"NiFi 2.x\", \"NiFi migration\", \"site-to-site\", \"NiFi controller service\", \"NiFi
+      connection queue\".
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/etl-integration-nifi
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/etl-integration-nifi/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/etl-integration-nifi.tar.gz
+  - id: exploring-data-catalog
+    description: >-
+      This skill should be used for read-only inventory and discovery across AWS Glue Data Catalog, S3 Tables,
+      Redshift-federated catalogs, and remote Iceberg catalogs; it maps databases, tables, schemas, and locations
+      without querying production data.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/exploring-data-catalog
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/exploring-data-catalog/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/exploring-data-catalog.tar.gz
+  - id: fastapi-itechmeat
+    description: >-
+      FastAPI Python framework. Covers REST APIs, validation, dependencies, security. Use when building Python web APIs
+      with FastAPI, configuring Pydantic models, implementing dependency injection, or setting up OAuth2/JWT
+      authentication. Keywords: FastAPI, Pydantic, async, OAuth2, JWT, REST API.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/fastapi-itechmeat
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/fastapi-itechmeat/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/fastapi-itechmeat.tar.gz
+  - id: fastapi-martinholovsky
+    description: >-
+      REST API and WebSocket development with FastAPI emphasizing security, performance, and async patterns
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/fastapi-martinholovsky
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/fastapi-martinholovsky/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/fastapi-martinholovsky.tar.gz
+  - id: flink
+    description: >-
+      Apache Flink stream processing expertise for stateful computations over bounded and unbounded streams. Use when
+      the user mentions Flink, Flink SQL, Table API, DataStream API, CDC, Kafka-to-Flink pipelines, checkpoints,
+      savepoints, watermarks, windows, Flink Kubernetes Operator, or Flink integrations with Iceberg, Paimon, or Fluss.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/flink
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/flink/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/flink.tar.gz
+  - id: flink-best-practices
+    description: >-
+      Apache Flink development best practices for DataStream API, state management, checkpointing, event time
+      processing, and deployment
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/flink-best-practices
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/flink-best-practices/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/flink-best-practices.tar.gz
+  - id: gcloud
+    description: >-
+      This skill should be used when constructing or validating Google Cloud CLI commands, authentication,
+      configuration, resource operations, or troubleshooting; it requires checking command help or official
+      documentation rather than guessing flags.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcloud
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcloud/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcloud.tar.gz
+  - id: gcp-event-driven-architecture-review
+    description: >-
+      Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message
+      ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcp-event-driven-architecture-review
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcp-event-driven-architecture-review/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcp-event-driven-architecture-review.tar.gz
+  - id: gcp-iam
+    description: >-
+      Manages identity and access control for Google Cloud resources using IAM policies and roles.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcp-iam
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcp-iam/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcp-iam.tar.gz
+  - id: gcp-secret-manager
+    description: >-
+      Secure secrets in Google Cloud Secret Manager. Configure IAM policies, integrate with GKE, and manage secret
+      versions. Use when managing secrets in GCP environments.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcp-secret-manager
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcp-secret-manager/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcp-secret-manager.tar.gz
+  - id: gcs-lifecycle-policy
+    description: >-
+      This skill should be used when designing, reviewing, or changing Google Cloud Storage lifecycle rules for object
+      deletion, storage-class transitions, version cleanup, or retention-aware cost control. It should not activate for
+      general GCS administration.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcs-lifecycle-policy
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcs-lifecycle-policy/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcs-lifecycle-policy.tar.gz
+  - id: gemini-api
+    description: >-
+      Use when the user asks about using Gemini in an enterprise environment or explicitly mentions Vertex AI, Google
+      Cloud, or Agent Platform. Guides the usage of the Gemini API on Agent Platform with the Google Gen AI SDK. Covers
+      SDK usage (Python, JS/TS, Go, Java, C#), capabilities like multimodal inputs, tools, media generation, caching,
+      batch prediction, and Live API.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gemini-api
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gemini-api/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gemini-api.tar.gz
+  - id: glue-diagnostics
+    description: >-
+      Use this skill to investigate and troubleshoot AWS Glue problems by analyzing ETL jobs, crawlers, connections,
+      Data Catalog, DPU utilization, Spark execution, and job bookmarks following structured runbooks. Activate when:
+      job failures, job timeouts, OOM errors, Spark executor or driver crashes, crawler failures, schema detection
+      issues, partition problems, JDBC connection failures, VPC/subnet connectivity, S3 endpoint access, Data Catalog
+      sync issues, schema evolution conflicts, DPU sizing problems, shuffle bottlenecks, data skew, transformation
+      errors, bookmark issues, data quality failures, IAM permission errors, encryption problems, Glue Studio visual
+      editor errors, job generation failures, or the user says something is wrong with Glue without naming specific
+      symptoms.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/glue-diagnostics
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/glue-diagnostics/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/glue-diagnostics.tar.gz
+  - id: graphql
+    description: >-
+      Expert in GraphQL API development with type-safe patterns and optimization
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/graphql
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/graphql/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/graphql.tar.gz
+  - id: hadoop
+    description: >-
+      Manage Hadoop clusters with HDFS operations, YARN job tuning, and distributed processing diagnostics.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/hadoop
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/hadoop/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/hadoop.tar.gz
+  - id: hbase
+    description: >-
+      Apache HBase wide-column store on Hadoop. Use for big data.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/hbase
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/hbase/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/hbase.tar.gz
+  - id: ingesting-into-data-lake
+    description: >-
+      This skill should be used when moving local files, S3 objects, JDBC data, Snowflake data, or BigQuery data into an
+      AWS data lake table after any required Glue connection exists.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ingesting-into-data-lake
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ingesting-into-data-lake/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ingesting-into-data-lake.tar.gz
+  - id: integrate-anything
+    description: >-
+      This skill should be used only when an external-app action must be executed through the Membrane CLI and an
+      authenticated Membrane connection, such as sending a message, creating a task, or syncing records. It should not
+      be used for general API design, SDK integration, documentation lookup, or direct vendor API calls.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/integrate-anything
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/integrate-anything/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/integrate-anything.tar.gz
+  - id: io-connectors
+    description: >-
+      Guides development and usage of I/O connectors in Apache Beam. Use when working with I/O connectors, creating new
+      connectors, or debugging data source/sink issues.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/io-connectors
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/io-connectors/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/io-connectors.tar.gz
+  - id: jq-json-processing
+    description: >-
+      jq JSON processing: query, filter, transform JSON. Use when parsing JSON files, filtering arrays/objects,
+      transforming structures, or extracting fields from JSON.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/jq-json-processing
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/jq-json-processing/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/jq-json-processing.tar.gz
+  - id: kafka-schema-registry
+    description: >-
+      Scan a project to identify Kafka applications, extract schemas from data models, tag PII fields, generate
+      Terraform for Confluent Schema Registry registration, and produce a migration report with rollout ordering. Use
+      this skill when a user asks to analyze a folder or repo for Kafka usage, extract schemas, audit producer/consumer
+      configurations, or generate Terraform for Schema Registry.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/kafka-schema-registry
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/kafka-schema-registry/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/kafka-schema-registry.tar.gz
+  - id: kafka-streams-programming
+    description: >-
+      Architect, build, and debug Kafka Streams apps (JVM-embedded stream processing). Use when user mentions KStream,
+      KTable, topology, TopologyTestDriver, StreamsBuilder, interactive queries, GlobalKTable,
+      joins/windows/aggregations, or debugging issues (rebalancing, state stores, lag, deserialization errors). Also use
+      when user wants to optimize Kafka Streams for WarpStream or tune Kafka Streams client configuration for
+      WarpStream. Do NOT trigger for Flink, connectors, CDC, or plain producer/consumer.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/kafka-streams-programming
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/kafka-streams-programming/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/kafka-streams-programming.tar.gz
+  - id: knowledge-catalog-discovery
+    description: >-
+      Use these skills when you need to discover and explore data assets in the Knowledge Catalog. It allows you to
+      search for entries, lookup specific metadata, and explore aspect types to understand your data platform's assets.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/knowledge-catalog-discovery
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/knowledge-catalog-discovery/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/knowledge-catalog-discovery.tar.gz
+  - id: lookml-model
+    description: >-
+      Use this skill when you need to create or modify a LookML Model file (.model.lkml). This includes defining
+      connections, includes, and configuring model-level settings.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lookml-model
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lookml-model/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lookml-model.tar.gz
+  - id: lookml-tests
+    description: >-
+      Standards and best practices for writing LookML tests to ensure data integrity, accuracy, and logic validation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lookml-tests
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lookml-tests/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lookml-tests.tar.gz
+  - id: microsoft-code-reference
+    description: >-
+      Find working code samples, verify API signatures, and fix Microsoft SDK errors using official docs. Use whenever
+      the user is writing, debugging, or reviewing code that touches any Microsoft SDK, .NET library, Azure client
+      library, or Microsoft API—even if they don't ask for a "reference." Catches hallucinated methods, wrong
+      signatures, and deprecated patterns. If the task involves producing or fixing Microsoft-related code, this is the
+      right skill.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/microsoft-code-reference
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/microsoft-code-reference/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/microsoft-code-reference.tar.gz
+  - id: microsoft-docs
+    description: >-
+      This skill should be used to retrieve and cite current official Microsoft documentation for Azure, .NET, Microsoft
+      365, Windows, or Power Platform concepts, tutorials, configuration, limits, and quotas. It should defer
+      implementation work to a product-specific skill and code/API examples to microsoft-code-reference.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/microsoft-docs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/microsoft-docs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/microsoft-docs.tar.gz
+  - id: mlflow-onboarding
+    description: >-
+      Onboards users to MLflow by determining their use case (GenAI agents/apps or traditional ML/deep learning) and
+      guiding them through relevant quickstart tutorials and initial integration. If an experiment ID is available, it
+      should be supplied as input to help determine the use case. Use when the user asks to get started with MLflow, set
+      up tracking, add observability, or integrate MLflow into their project. Triggers on "get started with MLflow",
+      "set up MLflow", "onboard to MLflow", "add MLflow to my project", "how do I use MLflow".
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mlflow-onboarding
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mlflow-onboarding/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mlflow-onboarding.tar.gz
+  - id: mongodb-query-optimizer
+    description: >-
+      This skill should be used only when diagnosing slow MongoDB queries, evaluating indexes or explain plans,
+      reviewing Atlas Performance Advisor findings, or recommending query and index optimizations; it should not
+      activate for routine query authoring.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mongodb-query-optimizer
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mongodb-query-optimizer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mongodb-query-optimizer.tar.gz
+  - id: mongodb-schema-design
+    description: >-
+      MongoDB schema design patterns and anti-patterns. Use when designing data models, reviewing schemas, migrating
+      from SQL, or troubleshooting performance issues caused by schema problems. Triggers on "design schema", "embed vs
+      reference", "MongoDB data model", "schema review", "unbounded arrays", "one-to-many", "tree structure", "16MB
+      limit", "schema validation", "JSON Schema", "time series", "schema migration", "polymorphic", "TTL", "data
+      lifecycle", "archive", "index explosion", "unnecessary indexes", "approximation pattern", "document versioning".
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mongodb-schema-design
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mongodb-schema-design/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mongodb-schema-design.tar.gz
+  - id: mysql
+    description: >-
+      Plan and review MySQL/InnoDB schema, indexing, query tuning, transactions, and operations. Use when creating or
+      modifying MySQL tables, indexes, or queries; diagnosing slow/locking behavior; planning migrations; or
+      troubleshooting replication and connection issues. Load when using a MySQL database.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mysql
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mysql/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mysql.tar.gz
+  - id: mysql-patterns
+    description: >-
+      MySQL and MariaDB schema, query, indexing, transaction, replication, and connection-pool patterns for production
+      backends.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mysql-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mysql-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mysql-patterns.tar.gz
+  - id: neon-postgres
+    description: >-
+      Guides and best practices for working with Neon Serverless Postgres. Covers setup, connection methods, branching,
+      autoscaling, scale-to-zero, read replicas, connection pooling, Neon Auth, and the Neon CLI, MCP server, REST API,
+      TypeScript SDK, and Python SDK. Use when users ask about "Neon setup", "connect to Neon", "Neon project",
+      "DATABASE_URL", "serverless Postgres", "Neon CLI", "neonctl", "Neon MCP", "Neon Auth", "@neondatabase/serverless",
+      "@neondatabase/neon-js", "scale to zero", "Neon autoscaling", "Neon read replica", or "Neon connection pooling".
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/neon-postgres
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/neon-postgres/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/neon-postgres.tar.gz
+  - id: newrelic-cli-skills
+    description: >-
+      Monitor, query, and manage New Relic observability data via the newrelic CLI. Covers NRQL queries, APM performance
+      triage, deployment markers, alert policy and condition management, notification channel setup, infrastructure
+      monitoring, and agent diagnostics. Use when user asks about application performance, error rates, slow
+      transactions, deployment tracking, alert configuration, or New Relic setup.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/newrelic-cli-skills
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/newrelic-cli-skills/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/newrelic-cli-skills.tar.gz
+  - id: nifi-flow-layout
+    description: >-
+      Beautify and standardize Apache NiFi flows. Use when a user asks to arrange NiFi processors/process groups, fix
+      crossing connections, add human comments, apply hierarchical numbering like 10/20/30.10, or create a reusable
+      visual layout for any NiFi flow.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/nifi-flow-layout
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/nifi-flow-layout/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/nifi-flow-layout.tar.gz
+  - id: okta-identity-integration-patterns
+    description: >-
+      Integrate Okta for enterprise identity workflows including OIDC login, group claims, and policy-based access
+      controls. Use when implementing workforce or B2B identity scenarios.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/okta-identity-integration-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/okta-identity-integration-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/okta-identity-integration-patterns.tar.gz
+  - id: oleander-iceberg-catalog
+    description: >-
+      Patterns for reading and writing oleander Iceberg catalog tables in Spark jobs, including naming conventions,
+      write modes, and catalog hierarchy.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/oleander-iceberg-catalog
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/oleander-iceberg-catalog/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oleander-iceberg-catalog.tar.gz
+  - id: oracle-database
+    description: >-
+      Oracle Database guidance for SQL, PL/SQL, SQLcl, ORDS, administration, app development, performance, security,
+      migrations, and agent-safe database workflows. Use when the user asks to write, edit, rewrite, review, format,
+      debug, tune, or explain SQL; create or refactor PL/SQL; use SQLcl, Liquibase, ORDS, JDBC, node-oracledb, Python,
+      Java, .NET, or database frameworks; troubleshoot queries, sessions, locks, waits, indexes, optimizer plans, AWR,
+      ASH, migrations, schemas, users, roles, privileges, backup, recovery, Data Guard, RAC, multitenant, containers,
+      monitoring, auditing, encryption, VPD, or safe agent database operations.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/oracle-database
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/oracle-database/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oracle-database.tar.gz
+  - id: oraclecloud-data-handling
+    description: >-
+      This skill should be used when managing Oracle Cloud Infrastructure Object Storage buckets, uploads,
+      pre-authenticated requests, multipart transfers, or object lifecycle rules.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/oraclecloud-data-handling
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/oraclecloud-data-handling/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oraclecloud-data-handling.tar.gz
+  - id: oracledb
+    description: >-
+      Use these skills to manage and monitor Oracle databases by executing SQL statements, exploring schema metadata,
+      analyzing query performance, monitoring active sessions and resource consumption, and managing storage and object
+      health.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/oracledb
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/oracledb/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oracledb.tar.gz
+  - id: powerbi-documentation
+    description: >-
+      Create standardized documentation for Power BI semantic models and reports. Use when the user requests
+      documentation for a Power BI project, semantic model, or report (e.g., "document this model", "create
+      documentation for this Power BI project", "generate documentation"). This skill works with the
+      powerbi-modeling-mcp server to extract model metadata and generate professional Word documents.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/powerbi-documentation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/powerbi-documentation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/powerbi-documentation.tar.gz
+  - id: powerbi-mcp
+    description: >-
+      Safety and governance protocol for Power BI semantic model sessions via MCP. Use when working with DAX, TMDL,
+      tabular models, Analysis Services, or Power BI Desktop. Enforces approval gates, tier-based action classification,
+      and scope boundaries.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/powerbi-mcp
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/powerbi-mcp/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/powerbi-mcp.tar.gz
+  - id: prefect
+    description: >-
+      Prefect is a modern workflow orchestration framework for Python data pipelines. Learn to define flows and tasks
+      with decorators, handle retries and scheduling, create deployments, and monitor via the Prefect UI.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/prefect
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/prefect/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/prefect.tar.gz
+  - id: prometheus-addxai
+    description: >-
+      Query Prometheus monitoring metrics and alert rules. Use when the user needs to check CPU/memory/disk utilization,
+      service health, audit alert rules, analyze capacity trends, or mentions Prometheus, PromQL, metrics monitoring, or
+      targets.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/prometheus-addxai
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/prometheus-addxai/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/prometheus-addxai.tar.gz
+  - id: purview-data-catalog
+    description: >-
+      Guidance for the Microsoft Purview Unified Catalog (data catalog) — business-friendly discovery, governance
+      domains, data products, glossary terms, and data quality on top of the Data Map. Covers governance domains, data
+      products, and curation. WHEN: Purview data catalog, unified catalog, data products, governance domain, business
+      glossary, data quality, data discovery for analysts, curate data assets, data stewardship.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/purview-data-catalog
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/purview-data-catalog/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/purview-data-catalog.tar.gz
+  - id: purview-data-map
+    description: >-
+      Guidance for the Microsoft Purview Data Map - the foundation that scans and maps data sources across multicloud
+      and on-premises estates to power cataloging and governance. Covers source registration, integration runtimes
+      (managed vs self-hosted), scan rule sets, classifications, collections, and cost control. WHEN: Purview Data Map,
+      scan data sources, register data source, data discovery, integration runtime, map enterprise data, multicloud data
+      scanning, classification scan, collections, glossary.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/purview-data-map
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/purview-data-map/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/purview-data-map.tar.gz
+  - id: pytorch-patterns
+    description: >-
+      PyTorch deep learning patterns and best practices for building robust, efficient, and reproducible training
+      pipelines, model architectures, and data loading.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pytorch-patterns
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pytorch-patterns/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/pytorch-patterns.tar.gz
+  - id: qlik-load-script
+    description: >-
+      Script syntax reference, QVD optimization, incremental load patterns (insert-only, insert/update,
+      insert/update/delete, dual-timestamp for SCD2), JOIN/KEEP prefixes, ApplyMap patterns, CROSSTABLE, master calendar
+      generation, variable definitions, error handling, logging patterns, null handling patterns, diagnostic and
+      validation patterns, subroutine integration, and platform gotchas (SET vs LET, dollar-sign expansion timing, SET
+      variable comma limitation). Load when writing, reviewing, or debugging Qlik load scripts, QVD operations,
+      STORE/LOAD syntax, preceding LOAD, NullAsValue, script organization, JOIN, KEEP, ApplyMap, CROSSTABLE, AutoNumber,
+      composite keys, or data quality defensive coding.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qlik-load-script
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qlik-load-script/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qlik-load-script.tar.gz
+  - id: query-tableau-data
+    description: >-
+      A skill to query Tableau data sources, the "last mile" of analytics in an organization. When business users think
+      about company data they often think of a visualization or data set on the BI platform, curated to their needs with
+      useful semantics instead of raw data in a warehouse.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/query-tableau-data
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/query-tableau-data/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/query-tableau-data.tar.gz
+  - id: redis-core
+    description: >-
+      Core Redis modeling guidance — choose the right data structure (String, Hash, List, Set, Sorted Set, JSON, Stream,
+      Vector Set) and use consistent colon-separated key names. Use when designing a Redis data model, caching objects,
+      deciding between Hash and JSON, building counters, leaderboards, membership sets, or session stores, or when
+      reviewing/cleaning up Redis key naming.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redis-core
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redis-core/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redis-core.tar.gz
+  - id: redis-observability
+    description: >-
+      Redis observability guidance — which metrics to monitor (memory, connections, hit ratio, ops/sec, rejected
+      connections), which built-in commands to reach for during incident triage (SLOWLOG, INFO, MEMORY DOCTOR, CLIENT
+      LIST, FT.PROFILE), and when to use the Redis Insight GUI. Use when setting up monitoring or alerts for a Redis
+      instance, diagnosing a performance regression, profiling a slow FT.SEARCH query, or wiring Redis metrics into
+      Prometheus, Datadog, or similar.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redis-observability
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redis-observability/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redis-observability.tar.gz
+  - id: redshift
+    description: >-
+      This skill should be used for read-only Amazon Redshift exploration and business analysis via the AWS Data API.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redshift
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redshift/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redshift.tar.gz
+  - id: scikit-learn
+    description: >-
+      Machine learning in Python with scikit-learn. Use when working with supervised learning (classification,
+      regression), unsupervised learning (clustering, dimensionality reduction), model evaluation, hyperparameter
+      tuning, preprocessing, or building ML pipelines. Provides comprehensive reference documentation for algorithms,
+      preprocessing techniques, pipelines, and best practices.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/scikit-learn
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/scikit-learn/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/scikit-learn.tar.gz
+  - id: scikit-learn-best-practices
+    description: >-
+      Best practices for scikit-learn machine learning, model development, evaluation, and deployment in Python
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/scikit-learn-best-practices
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/scikit-learn-best-practices/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/scikit-learn-best-practices.tar.gz
+  - id: searching-mlflow-docs
+    description: >-
+      Searches and retrieves MLflow documentation from the official docs site. Use when the user asks about MLflow
+      features, APIs, integrations (LangGraph, LangChain, OpenAI, etc.), tracing, tracking, or requests to look up
+      MLflow documentation. Triggers on "how do I use MLflow with X", "find MLflow docs for Y", "MLflow API for Z".
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: secrets-vault-manager
+    description: >-
+      Use when the user asks to set up secret management infrastructure, integrate HashiCorp Vault, configure cloud
+      secret stores (AWS Secrets Manager, Azure Key Vault, GCP Secret Manager), implement secret rotation, or audit
+      secret access patterns.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/secrets-vault-manager
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/secrets-vault-manager/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/secrets-vault-manager.tar.gz
+  - id: securing-s3-buckets
+    description: >-
+      This skill should be used when securing or auditing Amazon S3 buckets, remediating findings, configuring
+      encryption and access controls, or enabling security logging and monitoring.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/securing-s3-buckets
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/securing-s3-buckets/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/securing-s3-buckets.tar.gz
+  - id: senior-data-engineer
+    description: >-
+      This skill should be used for cross-system data engineering architecture and end-to-end pipeline design spanning
+      multiple tools, including ingestion, transformation, orchestration, quality, and operations. It should defer
+      isolated SQL, Spark, Airflow, dbt, Kafka, database, and vendor-specific tasks to narrower skills.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/senior-data-engineer
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/senior-data-engineer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/senior-data-engineer.tar.gz
+  - id: snowflake-expert
+    description: >-
+      Expert-level Snowflake data warehouse platform, virtual warehouses, data sharing, streams, tasks, and SQL
+      optimization
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/snowflake-expert
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/snowflake-expert/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/snowflake-expert.tar.gz
+  - id: snowpipe-bcdr
+    description: >-
+      Use when designing or operating Snowpipe disaster recovery on Azure ADLS Gen2 — choosing between dual-pipe,
+      RA-GRS, active-active, or Failover Group patterns, and running failover/failback/catchup. Triggers: snowpipe BCDR,
+      snowpipe disaster recovery, snowpipe failover, dual pipe, active-active pipe, RA-GRS snowpipe, GZRS snowpipe,
+      snowpipe catchup, pipe failback, snowpipe high availability, failover group snowpipe, snowpipe RPO RTO.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/snowpipe-bcdr
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/snowpipe-bcdr/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/snowpipe-bcdr.tar.gz
+  - id: soda-cli
+    description: >-
+      How to use the Soda CLI for data quality management — authentication, datasources, datasets, contracts, monitors,
+      results, secrets, permissions, and CI/CD integration. Use when working with Soda, data quality, or the sodacli
+      command.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/soda-cli
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/soda-cli/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/soda-cli.tar.gz
+  - id: spark-engineer
+    description: >-
+      Use when writing Spark jobs, debugging performance issues, or configuring cluster settings for Apache Spark
+      applications, distributed data processing pipelines, or big data workloads. Invoke to write DataFrame
+      transformations, optimize Spark SQL queries, implement RDD pipelines, tune shuffle operations, configure executor
+      memory, process .parquet files, handle data partitioning, or build structured streaming analytics.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/spark-engineer
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/spark-engineer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/spark-engineer.tar.gz
+  - id: splunk-ingest-processor-setup
+    description: >-
+      Render Cisco Data Fabric ingest-time routing workflows and Splunk Cloud Platform Ingest Processor setup plans with
+      SPL2 pipelines, source types, destinations, lifecycle handoffs, queue and monitoring searches, metrics, OCSF,
+      decrypt, S3 archive, custom pipeline templates, AI-powered data management readiness, and downstream readiness
+      checks. Use when the user asks to configure Ingest Processor, author Ingest Processor pipelines, route or
+      transform data at ingest time, validate Ingest Processor readiness, or compare Ingest Processor with Edge
+      Processor and Data Manager, including Cisco Data Fabric or telemetry pipeline management requests that involve
+      Splunk Cloud ingest-time routing and transformation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/splunk-ingest-processor-setup
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/splunk-ingest-processor-setup/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/splunk-ingest-processor-setup.tar.gz
+  - id: splunk-spl2-pipeline-kit
+    description: >-
+      Render and lint reusable SPL2 pipeline templates for Cisco Data Fabric, Splunk Ingest Processor, and Edge
+      Processor, including routing, redaction, sampling, lookups, metrics, OCSF, decrypt, stats, custom templates,
+      SPL-to-SPL2 compatibility, and PCRE2 migration checks. Use when the user needs SPL2 pipeline authoring, conversion
+      review, compatibility linting, or shared templates for Ingest Processor or Edge Processor workflows, including
+      Cisco Data Fabric or telemetry pipeline management requests that need reusable SPL2 pipeline logic.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/splunk-spl2-pipeline-kit
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/splunk-spl2-pipeline-kit/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/splunk-spl2-pipeline-kit.tar.gz
+  - id: sql-server-table-reconciliation
+    description: >-
+      Use when: comparing SQL Server tables across instances, data migration validation, ETL verification, row mismatch
+      detection, schema drift, reconciliation report, production vs staging comparison. Uses mssql-python driver with
+      Apache Arrow for fast columnar data transfer and comparison.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/sql-server-table-reconciliation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/sql-server-table-reconciliation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/sql-server-table-reconciliation.tar.gz
+  - id: supabase-postgres-best-practices
+    description: >-
+      Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or
+      optimizing Postgres queries, schema designs, or database configurations.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/supabase-postgres-best-practices
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/supabase-postgres-best-practices/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/supabase-postgres-best-practices.tar.gz
+  - id: tableau-dashboard-creator
+    description: >-
+      Guides data analysts through a multi-step Tableau dashboard creation workflow - brand setup, data exploration,
+      dashboard planning, interactive HTML mock creation, Tableau implementation spec, and experimental TWB workbook
+      generation. Use when the user wants to create a Tableau dashboard, build a dashboard mock, plan KPIs and charts,
+      or generate a Tableau implementation document.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tableau-dashboard-creator
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tableau-dashboard-creator/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tableau-dashboard-creator.tar.gz
+  - id: tensorflow-data-pipelines
+    description: >-
+      Create efficient data pipelines with tf.data
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tensorflow-data-pipelines
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tensorflow-data-pipelines/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tensorflow-data-pipelines.tar.gz
+  - id: tensorflow-model-deployment
+    description: >-
+      Deploy and serve TensorFlow models
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tensorflow-model-deployment
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tensorflow-model-deployment/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tensorflow-model-deployment.tar.gz
+  - id: troubleshoot-cassandra
+    description: >-
+      Use when diagnosing issues with Apache Cassandra: gc death spiral, compaction death spiral, tombstone storm, disk
+      space exhaustion, or hint overflow. Queries Netdata via MCP for node liveness (failure detector), native transport
+      active, client request rate (read/write), client request latency (coordinator), applies the diagnostic tree from
+      the Netdata operator playbook, and recommends remediation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/troubleshoot-cassandra
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/troubleshoot-cassandra/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
+  - id: udf-benchmark
+    description: >-
+      Assists with benchmarking and profiling the performance of an Apache Spark UDF on the GPU. This is step 3 of 3 in
+      the UDF conversion workflow (udf-gen-test -> udf-convert-to-* -> udf-benchmark). Use this skill when you have a
+      CPU UDF and a RapidsUDF or SQL implementation, and need to benchmark the performance of the CPU UDF against the
+      GPU implementation.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/udf-benchmark
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/udf-benchmark/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/udf-benchmark.tar.gz
+  - id: validating-json-data
+    description: >-
+      Validates JSON data against JSON Schema using the z-schema library. Use when the user needs to validate JSON,
+      check data against a schema, handle validation errors, use custom format validators, work with JSON Schema drafts
+      04 through 2020-12, set up z-schema in a project, compile schemas with cross-references, resolve remote $ref,
+      configure validation options, or inspect error details. Covers sync/async modes, safe error handling, schema
+      pre-compilation, remote references, TypeScript types, and browser/UMD usage.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/validating-json-data
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/validating-json-data/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/validating-json-data.tar.gz
+  - id: vault-api
+    description: >-
+      Use when working with HashiCorp Vault REST API — health checks, init/unseal, auth login, KV read/write, policy
+      management, token operations. Covers endpoints, auth methods, curl examples.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vault-api
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vault-api/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vault-api.tar.gz
   - id: agent-md-refactor
     description: >-
       Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure

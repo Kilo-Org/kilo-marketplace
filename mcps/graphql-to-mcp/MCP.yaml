@@ -1,0 +1,33 @@
+id: graphql-to-mcp
+name: GraphQL to MCP
+description: Converts a chosen GraphQL endpoint into MCP tools through schema introspection, with bearer authentication and destructive mutations blocked by default.
+author: Docat0209
+url: https://github.com/Docat0209/mcp-graphql
+category: development
+prerequisites:
+  - Node.js
+  - GraphQL endpoint with introspection enabled
+content:
+  - name: NPX (safe mutation mode)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "graphql-to-mcp@0.2.0",
+          "{{GRAPHQL_ENDPOINT}}",
+          "--bearer",
+          "{{GRAPHQL_BEARER_TOKEN}}",
+          "--mutation-safety",
+          "safe"
+        ]
+      }
+parameters:
+  - name: GraphQL endpoint
+    key: GRAPHQL_ENDPOINT
+    placeholder: https://api.example.com/graphql
+  - name: GraphQL bearer token
+    key: GRAPHQL_BEARER_TOKEN
+    placeholder: your_graphql_bearer_token

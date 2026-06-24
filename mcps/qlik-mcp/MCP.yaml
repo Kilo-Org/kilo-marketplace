@@ -1,0 +1,20 @@
+id: qlik-mcp
+name: Qlik Cloud MCP (Official Remote)
+description: Searches and works with applications, datasets, data products, lineage, and other Qlik Cloud resources through the tenant-hosted MCP service using user OAuth and existing Qlik roles and space permissions.
+author: Qlik
+url: https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Qlik-MCP-server.htm
+category: business
+prerequisites:
+  - Qlik Cloud subscription with MCP enabled by a tenant administrator
+  - OAuth-capable MCP client registered with the Qlik tenant
+content:
+  - name: Tenant Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://{{QLIK_TENANT_HOST}}/api/ai/mcp"
+      }
+parameters:
+  - name: Qlik Cloud Tenant Host
+    key: QLIK_TENANT_HOST
+    placeholder: your-tenant.us.qlikcloud.com

@@ -1,0 +1,20 @@
+id: sylphlab-xml
+name: SylphLab XML MCP
+description: Parses XML strings into structured objects and exposes XML-processing utilities over local stdio without network credentials.
+author: SylphLab
+url: https://www.npmjs.com/package/@sylphlab/mcp-xml
+category: development
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@sylphlab/mcp-xml@0.3.6"
+        ]
+      }

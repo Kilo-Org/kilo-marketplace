@@ -1,0 +1,52 @@
+id: spark-sql-mcp
+name: Spark SQL MCP Server
+description: Discovers databases, tables, and schemas and executes read-only Spark SQL over HiveServer2 or Thrift using NONE, LDAP, Kerberos, CUSTOM, or NOSASL authentication.
+author: Aidan Correll
+url: https://github.com/aidancorrell/spark-sql-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - Reachable HiveServer2-compatible endpoint
+content:
+  - name: UVX (read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "spark-sql-mcp-server==0.1.2"
+        ],
+        "env": {
+          "SPARK_HOST": "{{SPARK_HOST}}",
+          "SPARK_PORT": "{{SPARK_PORT}}",
+          "SPARK_DATABASE": "{{SPARK_DATABASE}}",
+          "SPARK_AUTH": "{{SPARK_AUTH}}",
+          "SPARK_USERNAME": "{{SPARK_USERNAME}}",
+          "SPARK_PASSWORD": "{{SPARK_PASSWORD}}"
+        }
+      }
+parameters:
+  - name: Spark SQL Host
+    key: SPARK_HOST
+    placeholder: localhost
+  - name: Spark SQL Port
+    key: SPARK_PORT
+    placeholder: "10000"
+    optional: true
+  - name: Spark Database
+    key: SPARK_DATABASE
+    placeholder: default
+    optional: true
+  - name: Spark Authentication Mode
+    key: SPARK_AUTH
+    placeholder: NONE
+    optional: true
+  - name: Spark Username
+    key: SPARK_USERNAME
+    placeholder: your_username
+    optional: true
+  - name: Spark Password
+    key: SPARK_PASSWORD
+    placeholder: your_password
+    optional: true

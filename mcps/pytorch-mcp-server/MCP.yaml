@@ -1,0 +1,21 @@
+id: pytorch-mcp-server
+name: PyTorch Operations MCP (Community)
+description: Exposes in-memory PyTorch tensor creation, manipulation, math, neural-network, loss, and autograd operations for experimentation without requiring external service credentials.
+author: axls23
+url: https://github.com/axls23/pytorch-mcp_server
+category: development
+prerequisites:
+  - Python 3.10 or newer and uv
+content:
+  - name: UVX from immutable source
+    prerequisites:
+      - Python 3.10 or newer and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/axls23/pytorch-mcp_server.git@47659e9c69198d538ac129615a88411097fd23dc",
+          "pytorch-mcp"
+        ]
+      }

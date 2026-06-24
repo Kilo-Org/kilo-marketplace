@@ -1,0 +1,32 @@
+id: redis-cloud-mcp
+name: Redis Cloud Administration MCP
+description: Manages Redis Cloud accounts, subscriptions, plans, payment methods, and provisioning tasks through the Redis Cloud API using account API-key credentials; this server does not access database data.
+author: Redis
+url: https://github.com/redis/mcp-redis-cloud
+category: data
+prerequisites:
+  - Node.js 22 or newer
+  - Redis Cloud API key and secret
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "mcp-redis-cloud@1.0.0"
+        ],
+        "env": {
+          "API_KEY": "{{REDIS_CLOUD_API_KEY}}",
+          "SECRET_KEY": "{{REDIS_CLOUD_SECRET_KEY}}"
+        }
+      }
+parameters:
+  - name: Redis Cloud API Key
+    key: REDIS_CLOUD_API_KEY
+    placeholder: your_redis_cloud_api_key
+  - name: Redis Cloud API Secret
+    key: REDIS_CLOUD_SECRET_KEY
+    placeholder: your_redis_cloud_api_secret

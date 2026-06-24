@@ -1,0 +1,33 @@
+id: privilege-cloud-mcp
+name: Idira Privilege Cloud MCP (Community)
+description: Manages Idira Privilege Cloud accounts, safes, platforms, applications, and sessions through the official Ark SDK using a service account whose roles and safe permissions define access.
+author: aaearon
+url: https://github.com/aaearon/mcp-privilege-cloud
+category: business
+prerequisites:
+  - Python and uv
+  - Idira Identity service user with least-privilege roles
+content:
+  - name: UVX from immutable source
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/aaearon/mcp-privilege-cloud.git@319c7fb8d6be55ff39e0de6c0945457162a1cc76",
+          "mcp-privilege-cloud"
+        ],
+        "env": {
+          "CYBERARK_CLIENT_ID": "{{CYBERARK_CLIENT_ID}}",
+          "CYBERARK_CLIENT_SECRET": "{{CYBERARK_CLIENT_SECRET}}"
+        }
+      }
+parameters:
+  - name: Idira Service User
+    key: CYBERARK_CLIENT_ID
+    placeholder: your_service_user_name
+  - name: Idira Service User Password
+    key: CYBERARK_CLIENT_SECRET
+    placeholder: your_service_user_password

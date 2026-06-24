@@ -1,0 +1,26 @@
+id: splunk-mcp-server
+name: Splunk MCP Server (Official)
+description: Searches Splunk data, discovers knowledge objects, and accesses enabled AI-assisted SPL tools through the MCP app installed on a Splunk search head, using an encrypted token and Splunk RBAC.
+author: Splunk
+url: https://splunkbase.splunk.com/app/7931
+category: observability
+prerequisites:
+  - Splunk MCP Server app 1.2.0 installed and configured
+  - Encrypted MCP token with mcp_tool_execute capability
+content:
+  - name: Splunk Instance Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{SPLUNK_MCP_URL}}",
+        "headers": {
+          "Authorization": "Bearer {{SPLUNK_MCP_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Splunk MCP Endpoint
+    key: SPLUNK_MCP_URL
+    placeholder: https://splunk.example.com:8089/services/mcp
+  - name: Splunk Encrypted MCP Token
+    key: SPLUNK_MCP_TOKEN
+    placeholder: your_encrypted_mcp_token

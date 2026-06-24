@@ -1,0 +1,37 @@
+id: sap-bdc-mcp-server
+name: SAP Business Data Cloud MCP (Community)
+description: Provisions and validates SAP Business Data Cloud shares and Delta Sharing data products through Databricks using workspace credentials and the configured BDC recipient.
+author: Mario DeFelipe
+url: https://github.com/MarioDeFelipe/sap-bdc-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - SAP Business Data Cloud and Databricks access
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "sap-bdc-mcp-server==0.5.0",
+          "sap-bdc-mcp"
+        ],
+        "env": {
+          "DATABRICKS_HOST": "{{DATABRICKS_HOST}}",
+          "DATABRICKS_TOKEN": "{{DATABRICKS_TOKEN}}",
+          "DATABRICKS_RECIPIENT_NAME": "{{DATABRICKS_RECIPIENT_NAME}}"
+        }
+      }
+parameters:
+  - name: Databricks Workspace URL
+    key: DATABRICKS_HOST
+    placeholder: https://your-workspace.cloud.databricks.com
+  - name: Databricks Personal Access Token
+    key: DATABRICKS_TOKEN
+    placeholder: your_databricks_token
+  - name: SAP BDC Delta Sharing Recipient
+    key: DATABRICKS_RECIPIENT_NAME
+    placeholder: your_bdc_recipient_name

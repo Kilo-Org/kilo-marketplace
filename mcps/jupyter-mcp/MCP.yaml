@@ -1,0 +1,30 @@
+id: jupyter-mcp
+name: Datalayer Jupyter MCP (Local stdio)
+description: Runs Datalayer's local stdio client to read, edit, and execute Jupyter notebooks and manage kernels; use the separate Jupyter AI entry for its built-in HTTP endpoint.
+author: Datalayer
+url: https://github.com/datalayer/jupyter-mcp-server
+category: productivity
+prerequisites:
+  - Python and uv
+  - JupyterLab with collaboration support and an authentication token
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["jupyter-mcp-server==1.0.2"],
+        "env": {
+          "JUPYTER_URL": "{{JUPYTER_URL}}",
+          "JUPYTER_TOKEN": "{{JUPYTER_TOKEN}}",
+          "ALLOW_IMG_OUTPUT": "true"
+        }
+      }
+parameters:
+  - name: Jupyter server URL
+    key: JUPYTER_URL
+    placeholder: http://localhost:8888
+  - name: Jupyter server token
+    key: JUPYTER_TOKEN
+    placeholder: your_jupyter_token

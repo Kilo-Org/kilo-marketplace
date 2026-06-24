@@ -1,0 +1,40 @@
+id: tableau-mcp
+name: Tableau MCP (Official)
+description: Queries Tableau data and explores workbooks, views, projects, and published data sources using a Personal Access Token limited by the token owner's site permissions.
+author: Tableau
+url: https://github.com/tableau/tableau-mcp
+category: business
+prerequisites:
+  - Node.js 22.7.5 or newer
+  - Tableau Server or Tableau Cloud Personal Access Token
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22.7.5 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@tableau/mcp-server@2.18.0"
+        ],
+        "env": {
+          "SERVER": "{{TABLEAU_SERVER}}",
+          "SITE_NAME": "{{TABLEAU_SITE_NAME}}",
+          "PAT_NAME": "{{TABLEAU_PAT_NAME}}",
+          "PAT_VALUE": "{{TABLEAU_PAT_VALUE}}"
+        }
+      }
+parameters:
+  - name: Tableau Server URL
+    key: TABLEAU_SERVER
+    placeholder: https://my-tableau-server.com
+  - name: Tableau Site Name
+    key: TABLEAU_SITE_NAME
+    placeholder: my_site
+  - name: Tableau Personal Access Token Name
+    key: TABLEAU_PAT_NAME
+    placeholder: my_pat
+  - name: Tableau Personal Access Token Value
+    key: TABLEAU_PAT_VALUE
+    placeholder: your_pat_secret

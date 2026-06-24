@@ -1,0 +1,31 @@
+id: oci-api-mcp
+name: Oracle OCI CLI MCP Server
+description: Discovers and runs OCI CLI commands against the services allowed by the selected local OCI profile; use a least-privilege profile because command execution can change cloud resources.
+author: Oracle
+url: https://github.com/oracle/mcp/tree/main/src/oci-api-mcp-server
+category: development
+prerequisites:
+  - Python and uv
+  - OCI CLI with a configured least-privilege profile
+content:
+  - name: UVX from immutable source
+    prerequisites:
+      - Python and uv
+      - OCI CLI
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/oracle/mcp.git@e8d36d5375fd17872f884cacc395a622812b1b31#subdirectory=src/oci-api-mcp-server",
+          "oracle.oci-api-mcp-server"
+        ],
+        "env": {
+          "OCI_CONFIG_PROFILE": "{{OCI_CONFIG_PROFILE}}"
+        }
+      }
+parameters:
+  - name: OCI CLI Profile
+    key: OCI_CONFIG_PROFILE
+    placeholder: DEFAULT
+    optional: true

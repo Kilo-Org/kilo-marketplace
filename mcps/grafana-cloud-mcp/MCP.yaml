@@ -1,0 +1,15 @@
+id: grafana-cloud-mcp
+name: Grafana Cloud Managed MCP
+description: Queries Grafana Cloud metrics, logs, traces, dashboards, alerts, and incidents through Grafana's hosted OAuth 2.1 server; users can decline write scope during consent.
+author: Grafana Labs
+url: https://grafana.com/docs/grafana-cloud/machine-learning/assistant/configure/cloud-mcp/
+category: observability
+prerequisites:
+  - Grafana Cloud account with the Assistant Cloud MCP User permission
+content:
+  - name: Grafana Cloud OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.grafana.com/mcp"
+      }

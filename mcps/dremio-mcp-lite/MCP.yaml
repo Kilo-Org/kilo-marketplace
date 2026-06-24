@@ -1,0 +1,30 @@
+id: dremio-mcp-lite
+name: Dremio MCP Lite
+description: Offers a lightweight, community read-only Dremio client for catalog browsing, schema inspection, SELECT queries, previews, search, and query plans.
+author: guillaume-galp
+url: https://github.com/guillaume-galp/dremio-mcp-lite
+category: data
+prerequisites:
+  - Node.js
+  - Dremio personal access token with read-only permissions
+content:
+  - name: NPX (community, read-only)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@guillaume-galp/dremio-mcp-lite@0.1.9"],
+        "env": {
+          "DREMIO_URL": "{{DREMIO_URL}}",
+          "DREMIO_PAT": "{{DREMIO_PAT}}",
+          "DREMIO_REJECT_UNAUTHORIZED": "true"
+        }
+      }
+parameters:
+  - name: Dremio URL
+    key: DREMIO_URL
+    placeholder: https://dremio.example.com:9047
+  - name: Dremio personal access token
+    key: DREMIO_PAT
+    placeholder: your_dremio_pat

@@ -1,0 +1,26 @@
+id: oci-database-tools-mcp
+name: OCI Database Tools Managed MCP
+description: Runs approved SQL reports and custom SQL or PL/SQL tools through an OCI Database Tools managed server, authenticated by an OCI OAuth or personal access token and constrained by assigned application roles.
+author: Oracle
+url: https://docs.oracle.com/en-us/iaas/database-tools/doc/overview-mcp-server.html
+category: data
+prerequisites:
+  - Provisioned OCI Database Tools MCP server
+  - OCI identity-domain application role and access token
+content:
+  - name: Managed Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{OCI_DBTOOLS_MCP_URL}}",
+        "headers": {
+          "Authorization": "Bearer {{OCI_DBTOOLS_ACCESS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: OCI Database Tools MCP Endpoint
+    key: OCI_DBTOOLS_MCP_URL
+    placeholder: https://your-mcp-endpoint.example.oraclecloud.com/path/actions/invoke
+  - name: OCI Database Tools Access Token
+    key: OCI_DBTOOLS_ACCESS_TOKEN
+    placeholder: your_oauth_or_personal_access_token

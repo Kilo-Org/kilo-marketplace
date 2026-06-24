@@ -1,0 +1,26 @@
+id: databricks-sql
+name: Databricks SQL Managed MCP
+description: Runs governed read and write Databricks SQL through the workspace-managed MCP endpoint with bearer authentication and the caller's Unity Catalog permissions.
+author: Databricks
+url: https://docs.databricks.com/aws/en/generative-ai/mcp/managed-mcp
+category: data
+prerequisites:
+  - Databricks workspace with managed MCP servers enabled
+  - Databricks token with the SQL OAuth scope and appropriate Unity Catalog permissions
+content:
+  - name: Databricks workspace remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://{{DATABRICKS_WORKSPACE_HOST}}/api/2.0/mcp/sql",
+        "headers": {
+          "Authorization": "Bearer {{DATABRICKS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Databricks workspace hostname
+    key: DATABRICKS_WORKSPACE_HOST
+    placeholder: dbc-12345678-abcd.cloud.databricks.com
+  - name: Databricks access token
+    key: DATABRICKS_TOKEN
+    placeholder: your_databricks_token

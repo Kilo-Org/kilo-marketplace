@@ -1,0 +1,35 @@
+id: oci-cloud-mcp
+name: Oracle OCI Cloud MCP Server
+description: Discovers and invokes OCI Python SDK operations with the permissions of a configured OCI CLI profile, enabling cloud inventory and administration across OCI services.
+author: Oracle
+url: https://github.com/oracle/mcp/tree/main/src/oci-cloud-mcp-server
+category: development
+prerequisites:
+  - Python and uv
+  - OCI configuration with a least-privilege profile
+content:
+  - name: UVX from immutable source
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/oracle/mcp.git@e8d36d5375fd17872f884cacc395a622812b1b31#subdirectory=src/oci-cloud-mcp-server",
+          "oracle.oci-cloud-mcp-server"
+        ],
+        "env": {
+          "OCI_CONFIG_PROFILE": "{{OCI_CONFIG_PROFILE}}",
+          "OCI_REGION": "{{OCI_REGION}}"
+        }
+      }
+parameters:
+  - name: OCI CLI Profile
+    key: OCI_CONFIG_PROFILE
+    placeholder: DEFAULT
+    optional: true
+  - name: OCI Region
+    key: OCI_REGION
+    placeholder: us-ashburn-1
+    optional: true

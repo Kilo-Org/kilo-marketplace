@@ -1,0 +1,47 @@
+# Cortex Code security configuration
+# Copy to config.yaml in this skill directory and pass it with --config config.yaml.
+
+security:
+  # prompt requires user approval; auto and envelope_only require an explicit
+  # organization policy that permits relaxing the default security floor.
+  approval_mode: "prompt"
+  tool_prediction_confidence_threshold: 0.7
+
+  # Keep portable runtime state outside any agent-specific configuration tree.
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+  audit_log_rotation: "10MB"
+  audit_log_retention: 30
+  cache_dir: "~/.cache/cortex-skill"
+  cache_ttl: 86400
+
+  sanitize_conversation_history: true
+
+  credential_file_allowlist:
+    - "~/.ssh/**"
+    - "~/.aws/credentials"
+    - "~/.aws/config"
+    - "~/.gcp/**"
+    - "~/.azure/**"
+    - "~/.snowflake/**"
+    - "**/.env"
+    - "**/.env.*"
+    - "**/credentials.json"
+    - "**/credentials.yaml"
+    - "**/secrets.json"
+    - "**/secrets.yaml"
+    - "**/*.pem"
+    - "**/*.key"
+    - "**/*_key"
+    - "**/*-key"
+    - "**/.npmrc"
+    - "**/.pypirc"
+    - "**/.netrc"
+
+  allowed_envelopes:
+    - "RO"
+    - "RW"
+    - "RESEARCH"
+
+# Pass an organization policy explicitly:
+#   python scripts/security_wrapper.py --org-policy /path/to/policy.yaml ...
+# The policy uses the same `security` mapping and takes precedence over this file.

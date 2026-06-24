@@ -1,11 +1,28 @@
 id: neon
 name: Neon Database
 description: Enables natural language interaction with Neon PostgreSQL databases, supporting project management, schema
-  migrations, SQL queries, and database operations through the Neon API.
-author: neondatabase
+  migrations, SQL queries, database operations, and read-only hosted MCP access through the Neon API.
+author: Neon
 url: https://github.com/neondatabase/mcp-server-neon
 category: data
+prerequisites:
+  - Neon account
 content:
+  - name: Remote OAuth (read-only)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.neon.tech/mcp?readonly=true"
+      }
+  - name: Remote API Key (read-only)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.neon.tech/mcp?readonly=true",
+        "headers": {
+          "Authorization": "Bearer {{NEON_API_KEY}}"
+        }
+      }
   - name: Remote MCP
     prerequisites:
       - Node.js

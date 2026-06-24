@@ -1,0 +1,52 @@
+id: redis-mcp
+name: Redis Data MCP (Official)
+description: Reads, searches, and manages Redis strings, hashes, lists, sets, streams, JSON documents, and vector indexes using a Redis ACL user; configure a read-only ACL user for safe analysis.
+author: Redis
+url: https://github.com/redis/mcp-redis
+category: data
+prerequisites:
+  - Python and uv
+  - Redis deployment and ACL credentials
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "redis-mcp-server==0.5.0",
+          "redis-mcp-server"
+        ],
+        "env": {
+          "REDIS_HOST": "{{REDIS_HOST}}",
+          "REDIS_PORT": "{{REDIS_PORT}}",
+          "REDIS_DB": "{{REDIS_DB}}",
+          "REDIS_USERNAME": "{{REDIS_USERNAME}}",
+          "REDIS_PWD": "{{REDIS_PASSWORD}}",
+          "REDIS_SSL": "{{REDIS_SSL}}"
+        }
+      }
+parameters:
+  - name: Redis Host
+    key: REDIS_HOST
+    placeholder: localhost
+  - name: Redis Port
+    key: REDIS_PORT
+    placeholder: "6379"
+    optional: true
+  - name: Redis Database
+    key: REDIS_DB
+    placeholder: "0"
+    optional: true
+  - name: Redis ACL Username
+    key: REDIS_USERNAME
+    placeholder: readonlyuser
+  - name: Redis ACL Password
+    key: REDIS_PASSWORD
+    placeholder: your_redis_password
+  - name: Enable Redis TLS
+    key: REDIS_SSL
+    placeholder: "false"
+    optional: true

@@ -1,0 +1,22 @@
+id: spark-documentation
+name: Apache Spark Documentation MCP (Community)
+description: Searches and retrieves a pre-indexed copy of Apache Spark documentation with full-text ranking and section filters, without external credentials or service access.
+author: martoc
+url: https://github.com/martoc/mcp-spark-documentation
+category: search
+prerequisites:
+  - Docker
+content:
+  - name: Docker image 0.2.13
+    prerequisites:
+      - Docker
+    content: |
+      {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "martoc/mcp-spark-documentation@sha256:2d7b1c49aa9ba97032e4ae7ca2a3c6ce29a2580f3725e3e51768a911892daf3d"
+        ]
+      }

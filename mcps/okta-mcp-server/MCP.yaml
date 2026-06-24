@@ -1,0 +1,37 @@
+id: okta-mcp-server
+name: Okta MCP Server (Official)
+description: Reads users, groups, applications, policies, and system logs from an Okta organization through device OAuth, exposing only tools covered by the configured least-privilege scopes.
+author: Okta
+url: https://github.com/okta/okta-mcp-server
+category: business
+prerequisites:
+  - Python 3.13 or newer and uv
+  - Okta native OIDC application with Device Authorization enabled
+content:
+  - name: UVX from immutable source (read scopes)
+    prerequisites:
+      - Python 3.13 or newer and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/okta/okta-mcp-server.git@05121c937c92a5990ff563cfc493ce7693dad704",
+          "okta-mcp-server"
+        ],
+        "env": {
+          "OKTA_ORG_URL": "{{OKTA_ORG_URL}}",
+          "OKTA_CLIENT_ID": "{{OKTA_CLIENT_ID}}",
+          "OKTA_SCOPES": "{{OKTA_SCOPES}}"
+        }
+      }
+parameters:
+  - name: Okta Organization URL
+    key: OKTA_ORG_URL
+    placeholder: https://your-org.okta.com
+  - name: Okta OIDC Client ID
+    key: OKTA_CLIENT_ID
+    placeholder: your_native_app_client_id
+  - name: Okta Read Scopes
+    key: OKTA_SCOPES
+    placeholder: okta.users.read okta.groups.read okta.apps.read okta.logs.read

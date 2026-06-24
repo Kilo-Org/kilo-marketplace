@@ -1,0 +1,34 @@
+id: airflow-us-all
+name: Airflow MCP by us-all
+description: Provides read-first access to Airflow 3 DAGs, runs, task instances, and logs over the REST API; trigger and clear operations stay disabled by default.
+author: us-all
+url: https://github.com/us-all/airflow-mcp-server
+category: data
+prerequisites:
+  - Node.js
+  - Airflow 3.x with SimpleAuthManager credentials
+content:
+  - name: NPX (community, read-first)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@us-all/airflow-mcp@1.4.1"],
+        "env": {
+          "AIRFLOW_API_URL": "{{AIRFLOW_API_URL}}",
+          "AIRFLOW_USERNAME": "{{AIRFLOW_USERNAME}}",
+          "AIRFLOW_PASSWORD": "{{AIRFLOW_PASSWORD}}",
+          "AIRFLOW_ALLOW_WRITE": "false"
+        }
+      }
+parameters:
+  - name: Airflow base URL
+    key: AIRFLOW_API_URL
+    placeholder: https://airflow.example.com
+  - name: Airflow username
+    key: AIRFLOW_USERNAME
+    placeholder: airflow-user
+  - name: Airflow password
+    key: AIRFLOW_PASSWORD
+    placeholder: your_airflow_password

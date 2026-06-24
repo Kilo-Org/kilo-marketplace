@@ -1,0 +1,23 @@
+id: power-bi-modeling
+name: Power BI Modeling MCP (Local)
+description: Connects locally to Power BI Desktop, Fabric semantic models, or PBIP/TMDL projects for metadata inspection, DAX validation, and model analysis with write operations disabled.
+author: Microsoft
+url: https://github.com/microsoft/powerbi-modeling-mcp
+category: business
+prerequisites:
+  - Node.js 20 or newer
+  - Power BI Desktop, Fabric access, or a Power BI project
+content:
+  - name: NPX (read-only)
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@microsoft/powerbi-modeling-mcp@0.5.0-beta.10",
+          "--start",
+          "--readonly"
+        ]
+      }
