@@ -306,6 +306,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
+  - id: pdf
+    description: >-
+      Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting
+      text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages,
+      adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and
+      OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use
+      this skill.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pdf
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pdf/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/pdf.tar.gz
   - id: ponytail
     description: >
       Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has
