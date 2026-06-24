@@ -375,3 +375,32 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: design-postgres-tables
+    description: >
+      Use this skill for general PostgreSQL table design.
+
+
+      **Trigger when user asks to:**
+
+      - Design PostgreSQL tables, schemas, or data models when creating new tables and when modifying existing ones.
+
+      - Choose data types, constraints, or indexes for PostgreSQL
+
+      - Create user tables, order tables, reference tables, or JSONB schemas
+
+      - Understand PostgreSQL best practices for normalization, constraints, or indexing
+
+      - Design update-heavy, upsert-heavy, or OLTP-style tables
+
+
+
+      **Keywords:** PostgreSQL schema, table design, data types, PRIMARY KEY, FOREIGN KEY, indexes, B-tree, GIN, JSONB,
+      constraints, normalization, identity columns, partitioning, row-level security
+
+
+      Comprehensive reference covering data types, indexing strategies, constraints, JSONB patterns, partitioning, and
+      PostgreSQL-specific best practices.
+    category: unknown
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/design-postgres-tables
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/design-postgres-tables/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/design-postgres-tables.tar.gz
