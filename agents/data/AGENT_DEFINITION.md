@@ -4,6 +4,11 @@ name: Data
 description: Run notebook-first data analysis by appending and executing cells for each request.
 author: "@imanolmzd-svg"
 category: data
+suggest_for:
+  filename:
+    - "*.ipynb"
+  vscode_extension:
+    - ms-toolsai.jupyter
 mode: primary
 color: "#2563EB"
 prerequisites:

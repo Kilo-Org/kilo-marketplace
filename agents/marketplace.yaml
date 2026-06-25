@@ -336,6 +336,11 @@ items:
     category: data
     tags:
       - data
+    suggest_for:
+      filename:
+        - "*.ipynb"
+      vscode_extension:
+        - ms-toolsai.jupyter
     content:
       mode: primary
       description: Run notebook-first data analysis by appending and executing cells for each request.
