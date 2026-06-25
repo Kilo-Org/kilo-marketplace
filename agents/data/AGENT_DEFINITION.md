@@ -9,6 +9,11 @@ suggest_for:
     - "*.ipynb"
   vscode_extension:
     - ms-toolsai.jupyter
+requirements:
+  skills:
+    - data-investigation
+  vscode_extensions:
+    - ms-toolsai.jupyter
 mode: primary
 color: "#2563EB"
 prerequisites:

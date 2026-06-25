@@ -141,6 +141,7 @@ metadata:
 |-------|----------|-------------|
 | `metadata.suggest_for.filename` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
 | `metadata.suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this skill is relevant, such as `"ms-toolsai.jupyter"` |
+| `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
 | `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
@@ -266,6 +267,30 @@ Examples:
 
 ---
 
+## Marketplace Requirements
+
+Agent, skill, and MCP definitions may declare machine-readable dependencies with an optional top-level `requirements` field:
+
+```yaml
+requirements:
+  skills:
+    - jupyter-notebook
+  vscode_extensions:
+    - ms-toolsai.jupyter
+  mcps:
+    - jupyter
+```
+
+The supported subgroups are exactly `skills`, `vscode_extensions`, and `mcps`. Each subgroup that is present must be a non-empty list of non-empty strings, and every listed item is a direct required dependency; alternative or OR groups are not supported. Omit `requirements` entirely when the resource has no machine-readable dependencies.
+
+Skill values must be exact marketplace skill IDs, and MCP values must match the `id` in the resource's `MCP.yaml`. Both are checked during marketplace generation. A skill cannot require itself, and an MCP cannot require itself. Dependencies between multiple resources are not expanded or checked for cycles. VS Code extension values may be any non-empty strings. Authored values and list ordering are preserved without normalization, sorting, or deduplication.
+
+Declare requirements at the top level of `agents/<id>/AGENT_DEFINITION.md`, `skills/<id>/SKILL.md`, or `mcps/<id>/MCP.yaml`. Generated agent requirements are emitted as `items[].content.requirements` so installation retains them. Generated skill and MCP requirements remain at `items[].requirements`, because skill content is a download URL and MCP content is runtime configuration.
+
+Keep setup instructions that cannot be resolved to marketplace skills, MCPs, or VS Code extensions in `prerequisites`.
+
+---
+
 ## Contributing MCP Servers
 
 MCP (Model Context Protocol) servers extend Kilo Code's capabilities by connecting to external tools and services.
@@ -333,6 +358,7 @@ parameters:
 | `category` | Yes | Primary category: `business`, `data`, `development`, `observability`, `productivity`, `search`, or `web-automation` |
 | `suggest_for.filename` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
 | `suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this MCP server is relevant, such as `"ms-toolsai.jupyter"` for Jupyter |
+| `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |

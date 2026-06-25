@@ -12,12 +12,18 @@ import {
   AGENT_CATEGORIES,
   buildCategorySummary,
   generateMarketplace,
+  listVisibleDirectories,
+  loadMcpIds,
+  type MarketplaceRequirements,
   repoPathFromBin,
   requireString,
+  validateRequirements,
   validateSuggestFor,
 } from "./marketplace-generator-utils.ts";
 
 const agentsDir = repoPathFromBin("agents");
+const skillsDir = repoPathFromBin("skills");
+const mcpsDir = repoPathFromBin("mcps");
 
 const AGENT_MODES = new Set(["primary", "subagent", "all"]);
 const AGENT_CONFIG_KEYS = ["model", "variant", "temperature", "top_p", "permission", "color", "steps", "hidden"];
@@ -28,6 +34,7 @@ type AgentContent = {
   description: string;
   prompt: string;
   options: Record<string, unknown>;
+  requirements?: MarketplaceRequirements;
   model?: string;
   variant?: string;
   temperature?: number;
@@ -50,6 +57,9 @@ type MarketplaceAgent = {
   prerequisites?: string[];
   content: AgentContent;
 };
+
+const skillIds = new Set(listVisibleDirectories(skillsDir));
+const mcpIds = loadMcpIds(mcpsDir);
 
 function agentFromMarkdown(dirName: string): MarketplaceAgent {
   const file = path.join(agentsDir, dirName, "AGENT_DEFINITION.md");
@@ -84,6 +94,12 @@ function agentFromMarkdown(dirName: string): MarketplaceAgent {
   if (!options || typeof options !== "object" || Array.isArray(options)) {
     throw new Error(`${file}: options must be an object`);
   }
+  const requirements = validateRequirements(
+    frontmatter.requirements,
+    id,
+    skillIds,
+    mcpIds,
+  );
 
   const agentContent: Record<string, unknown> = {
     mode,
@@ -95,6 +111,7 @@ function agentFromMarkdown(dirName: string): MarketplaceAgent {
       id,
     },
   };
+  if (requirements !== undefined) agentContent.requirements = requirements;
 
   for (const key of AGENT_CONFIG_KEYS) {
     if (frontmatter[key] !== undefined) agentContent[key] = frontmatter[key];

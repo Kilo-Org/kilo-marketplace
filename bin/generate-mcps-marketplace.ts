@@ -11,12 +11,18 @@ import * as yaml from "yaml";
 import {
   buildCategorySummary,
   generateMarketplace,
+  listVisibleDirectories,
+  loadMcpIds,
   MARKETPLACE_CATEGORIES,
   repoPathFromBin,
+  validateRequirements,
   validateSuggestFor,
 } from "./marketplace-generator-utils.ts";
 
 const mcpsDir = repoPathFromBin("mcps");
+const skillsDir = repoPathFromBin("skills");
+const skillIds = new Set(listVisibleDirectories(skillsDir));
+const mcpIds = loadMcpIds(mcpsDir);
 
 generateMarketplace({
   rootDir: mcpsDir,
@@ -30,10 +36,17 @@ generateMarketplace({
     if (mcp.tags !== undefined) {
       throw new Error(`${dirName}/MCP.yaml: use category instead of tags`);
     }
-    validateSuggestFor(mcp.suggest_for, mcp.id || dirName, {
+    validateSuggestFor(mcp.suggest_for, mcp.id, {
       fieldName: "suggest_for",
       filenameExample: "*.ipynb",
     });
+    validateRequirements(
+      mcp.requirements,
+      mcp.id,
+      skillIds,
+      mcpIds,
+      { subgroup: "mcps", id: mcp.id },
+    );
 
     const marketplaceMcp = {} as typeof mcp;
     for (const [key, value] of Object.entries(mcp)) {

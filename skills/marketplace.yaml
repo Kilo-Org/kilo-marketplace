@@ -447,6 +447,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-distributed-storage
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-distributed-storage/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-distributed-storage.tar.gz
+  - id: data-investigation
+    description: >-
+      A workflow for conducting rigorous, reproducible data investigations and ad-hoc analyses. This skill should be
+      used when investigating a business question, explaining a metric anomaly, validating a hypothesis, performing root
+      cause analysis, or preparing a one-off investigation dashboard or memo.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-investigation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-investigation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-investigation.tar.gz
   - id: data-quality-frameworks-sickn33
     description: >-
       Implement data quality validation with Great Expectations, dbt tests, and data contracts. Use when building data

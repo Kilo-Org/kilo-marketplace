@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
-import { Document, Scalar } from "yaml";
+import { Document, parse, Scalar } from "yaml";
 
 const BIN_DIR = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,6 +12,17 @@ type CategoryItem = {
 type SuggestForOptions = {
   fieldName: string;
   filenameExample: string;
+};
+
+export type MarketplaceRequirements = {
+  skills?: string[];
+  vscode_extensions?: string[];
+  mcps?: string[];
+};
+
+type SelfRequirement = {
+  subgroup: "skills" | "mcps";
+  id: string;
 };
 
 type GenerateMarketplaceOptions<T> = {
@@ -47,6 +58,29 @@ export function listVisibleDirectories(rootDir: string): string[] {
     .readdirSync(rootDir, { withFileTypes: true })
     .filter((d) => d.isDirectory() && !d.name.startsWith("."))
     .map((dir) => dir.name);
+}
+
+export function loadMcpIds(mcpsDir: string): Set<string> {
+  const sourceById = new Map<string, string>();
+
+  for (const dirName of listVisibleDirectories(mcpsDir)) {
+    const file = path.join(mcpsDir, dirName, "MCP.yaml");
+    const parsed = parse(fs.readFileSync(file, "utf-8")) as unknown;
+    const id = requireString(
+      parsed && typeof parsed === "object" && !Array.isArray(parsed)
+        ? (parsed as Record<string, unknown>).id
+        : undefined,
+      "id",
+      file,
+    );
+    const existingFile = sourceById.get(id);
+    if (existingFile) {
+      throw new Error(`${file}: duplicate MCP id "${id}" also declared in ${existingFile}`);
+    }
+    sourceById.set(id, file);
+  }
+
+  return new Set(sourceById.keys());
 }
 
 export function writeMarketplaceYaml(
@@ -118,6 +152,65 @@ export function foldedScalar(value: string): Scalar {
   scalar.type = Scalar.BLOCK_FOLDED;
   scalar.blockChomping = "strip";
   return scalar;
+}
+
+export function validateRequirements(
+  value: unknown,
+  itemId: string,
+  skillIds: ReadonlySet<string>,
+  mcpIds: ReadonlySet<string>,
+  selfRequirement?: SelfRequirement,
+): MarketplaceRequirements | undefined {
+  if (value === undefined) return undefined;
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`${itemId}: requirements must be an object`);
+  }
+
+  const requirements = value as Record<string, unknown>;
+  const supportedSubgroups = ["skills", "vscode_extensions", "mcps"] as const;
+  const unknownKey = Object.keys(requirements).find(
+    (key) => !supportedSubgroups.includes(key as (typeof supportedSubgroups)[number]),
+  );
+  if (unknownKey) {
+    throw new Error(`${itemId}: requirements has unknown property "${unknownKey}"`);
+  }
+  if (Object.keys(requirements).length === 0) {
+    throw new Error(`${itemId}: requirements must contain at least one supported subgroup`);
+  }
+
+  for (const subgroup of supportedSubgroups) {
+    if (!Object.prototype.hasOwnProperty.call(requirements, subgroup)) continue;
+    const entries = requirements[subgroup];
+    if (
+      !Array.isArray(entries) ||
+      entries.length === 0 ||
+      !entries.every((entry) => typeof entry === "string" && entry.trim().length > 0)
+    ) {
+      throw new Error(
+        `${itemId}: requirements.${subgroup} must be a non-empty list of non-empty strings`,
+      );
+    }
+
+    if (
+      selfRequirement?.subgroup === subgroup &&
+      entries.some((entry) => entry === selfRequirement.id)
+    ) {
+      throw new Error(`${itemId}: requirements.${subgroup} must not reference itself`);
+    }
+
+    const availableIds = subgroup === "skills" ? skillIds : subgroup === "mcps" ? mcpIds : undefined;
+    if (availableIds) {
+      const unknownId = entries.find((entry) => !availableIds.has(entry));
+      if (unknownId) {
+        const resource = subgroup === "skills" ? "skill" : "MCP";
+        throw new Error(
+          `${itemId}: requirements.${subgroup} references unknown ${resource} ID "${unknownId}"`,
+        );
+      }
+    }
+  }
+
+  return value as MarketplaceRequirements;
 }
 
 export function validateSuggestFor(

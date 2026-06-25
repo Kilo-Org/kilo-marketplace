@@ -368,6 +368,11 @@ items:
       options:
         displayName: Data
         id: data
+      requirements:
+        skills:
+          - data-investigation
+        vscode_extensions:
+          - ms-toolsai.jupyter
       color: "#2563EB"
     author: "@imanolmzd-svg"
     prerequisites:
