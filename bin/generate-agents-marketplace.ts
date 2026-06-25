@@ -14,6 +14,7 @@ import {
   generateMarketplace,
   repoPathFromBin,
   requireString,
+  validateSuggestFor,
 } from "./marketplace-generator-utils.ts";
 
 const agentsDir = repoPathFromBin("agents");
@@ -45,6 +46,7 @@ type MarketplaceAgent = {
   author?: string;
   authorUrl?: string;
   tags: string[];
+  suggest_for?: unknown;
   prerequisites?: string[];
   content: AgentContent;
 };
@@ -104,6 +106,10 @@ function agentFromMarkdown(dirName: string): MarketplaceAgent {
     description,
     category,
     tags: [category],
+    suggest_for: validateSuggestFor(frontmatter.suggest_for, id, {
+      fieldName: "suggest_for",
+      filenameExample: "*.ipynb",
+    }),
     content: agentContent,
   };
   for (const key of MARKETPLACE_KEYS) {
