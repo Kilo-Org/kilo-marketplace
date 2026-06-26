@@ -13,7 +13,8 @@ requirements:
   skills:
     - data-investigation
   vscode_extensions:
-    - ms-toolsai.jupyter
+    - name: Jupyter
+      id: ms-toolsai.jupyter
 mode: primary
 color: "#2563EB"
 ---

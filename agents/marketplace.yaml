@@ -378,7 +378,8 @@ items:
         skills:
           - data-investigation
         vscode_extensions:
-          - ms-toolsai.jupyter
+          - name: Jupyter
+            id: ms-toolsai.jupyter
       color: "#2563EB"
     author: "@imanolmzd-svg"
   - id: docs-specialist
