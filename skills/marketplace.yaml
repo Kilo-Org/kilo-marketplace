@@ -1536,7 +1536,8 @@ items:
       filename:
         - "*.ipynb"
       vscode_extension:
-        - ms-toolsai.jupyter
+        - name: Jupyter
+          id: ms-toolsai.jupyter
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/jupyter-notebook
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/jupyter-notebook/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/jupyter-notebook.tar.gz

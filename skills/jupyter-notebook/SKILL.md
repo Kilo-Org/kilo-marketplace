@@ -12,7 +12,8 @@ metadata:
     filename:
       - '*.ipynb'
     vscode_extension:
-      - ms-toolsai.jupyter
+      - name: Jupyter
+        id: ms-toolsai.jupyter
   source:
     repository: 'https://github.com/Kilo-Org/skills'
     path: skills/jupyter-notebook

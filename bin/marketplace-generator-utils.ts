@@ -270,19 +270,28 @@ export function validateSuggestFor(
     );
   }
 
-  if (
-    vscodeExtensions !== undefined &&
-    (!Array.isArray(vscodeExtensions) ||
-      vscodeExtensions.length === 0 ||
-      !vscodeExtensions.every(
-        (extensionId) =>
-          typeof extensionId === "string" &&
-          /^[A-Za-z0-9][A-Za-z0-9-]*\.[A-Za-z0-9][A-Za-z0-9-]*$/.test(extensionId),
-      ))
-  ) {
-    throw new Error(
-      `${itemId}: ${options.fieldName}.vscode_extension must be a non-empty list of extension IDs like "ms-toolsai.jupyter"`,
-    );
+  if (vscodeExtensions !== undefined) {
+    if (!Array.isArray(vscodeExtensions) || vscodeExtensions.length === 0) {
+      throw new Error(
+        `${itemId}: ${options.fieldName}.vscode_extension must be a non-empty list`,
+      );
+    }
+    const valid = vscodeExtensions.every((entry) => {
+      if (!entry || typeof entry !== "object" || Array.isArray(entry)) return false;
+      const extension = entry as Record<string, unknown>;
+      return (
+        Object.keys(extension).every((key) => key === "name" || key === "id") &&
+        typeof extension.name === "string" &&
+        extension.name.trim().length > 0 &&
+        typeof extension.id === "string" &&
+        /^[A-Za-z0-9][A-Za-z0-9-]*\.[A-Za-z0-9][A-Za-z0-9-]*$/.test(extension.id)
+      );
+    });
+    if (!valid) {
+      throw new Error(
+        `${itemId}: ${options.fieldName}.vscode_extension entries must contain a non-empty name and a valid extension ID like "ms-toolsai.jupyter"`,
+      );
+    }
   }
 
   return value;

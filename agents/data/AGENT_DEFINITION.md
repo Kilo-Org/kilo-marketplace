@@ -8,7 +8,8 @@ suggest_for:
   filename:
     - "*.ipynb"
   vscode_extension:
-    - ms-toolsai.jupyter
+    - name: Jupyter
+      id: ms-toolsai.jupyter
 requirements:
   skills:
     - data-investigation

@@ -2039,7 +2039,8 @@ items:
       filename:
         - "*.ipynb"
       vscode_extension:
-        - ms-toolsai.jupyter
+        - name: Jupyter
+          id: ms-toolsai.jupyter
     author: jupyter-ai-contrib
     url: https://github.com/jupyter-ai-contrib/jupyter-server-mcp
     category: data

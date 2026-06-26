@@ -140,7 +140,7 @@ metadata:
 | Field | Required | Description |
 |-------|----------|-------------|
 | `metadata.suggest_for.filename` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
-| `metadata.suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this skill is relevant, such as `"ms-toolsai.jupyter"` |
+| `metadata.suggest_for.vscode_extension` | No | Non-empty list of VS Code extension objects (`name` + `id`) that strongly indicate this skill is relevant, such as `{ name: "Jupyter", id: "ms-toolsai.jupyter" }` |
 | `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
@@ -358,7 +358,7 @@ parameters:
 | `url` | Yes | Link to the MCP server repository |
 | `category` | Yes | Primary category: `business`, `data`, `development`, `observability`, `productivity`, `search`, or `web-automation` |
 | `suggest_for.filename` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
-| `suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this MCP server is relevant, such as `"ms-toolsai.jupyter"` for Jupyter |
+| `suggest_for.vscode_extension` | No | Non-empty list of VS Code extension objects (`name` + `id`) that strongly indicate this MCP server is relevant, such as `{ name: "Jupyter", id: "ms-toolsai.jupyter" }` |
 | `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
@@ -376,7 +376,7 @@ Choose the single category that best represents how users will discover the MCP.
 
 Propose a new category only when several MCPs share a distinct primary purpose that does not fit an existing category.
 
-Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `"ms-toolsai.jupyter"` for Jupyter. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
+Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `{ name: "Jupyter", id: "ms-toolsai.jupyter" }`. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Transport Types
 
