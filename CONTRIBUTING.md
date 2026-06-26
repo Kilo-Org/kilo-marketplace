@@ -276,14 +276,15 @@ requirements:
   skills:
     - jupyter-notebook
   vscode_extensions:
-    - ms-toolsai.jupyter
+    - name: Jupyter
+      id: ms-toolsai.jupyter
   mcps:
     - jupyter
 ```
 
-The supported subgroups are exactly `skills`, `vscode_extensions`, and `mcps`. Each subgroup that is present must be a non-empty list of non-empty strings, and every listed item is a direct required dependency; alternative or OR groups are not supported. Omit `requirements` entirely when the resource has no machine-readable dependencies.
+The supported subgroups are exactly `skills`, `vscode_extensions`, and `mcps`. Each subgroup that is present must be a non-empty list, and every listed item is a direct required dependency; alternative or OR groups are not supported. Omit `requirements` entirely when the resource has no machine-readable dependencies.
 
-Skill values must be exact marketplace skill IDs, and MCP values must match the `id` in the resource's `MCP.yaml`. Both are checked during marketplace generation. A skill cannot require itself, and an MCP cannot require itself. Dependencies between multiple resources are not expanded or checked for cycles. VS Code extension values may be any non-empty strings. Authored values and list ordering are preserved without normalization, sorting, or deduplication.
+Skill values must be exact marketplace skill IDs, and MCP values must match the `id` in the resource's `MCP.yaml`. Both are checked during marketplace generation. A skill cannot require itself, and an MCP cannot require itself. Dependencies between multiple resources are not expanded or checked for cycles. Each VS Code extension requires a human-readable `name` and a non-empty extension identifier in `id`. Authored values and list ordering are preserved without normalization, sorting, or deduplication.
 
 Declare requirements at the top level of `agents/<id>/AGENT_DEFINITION.md`, `skills/<id>/SKILL.md`, or `mcps/<id>/MCP.yaml`. Generated agent requirements are emitted as `items[].content.requirements` so installation retains them. Generated skill and MCP requirements remain at `items[].requirements`, because skill content is a download URL and MCP content is runtime configuration.
 

@@ -16,7 +16,7 @@ type SuggestForOptions = {
 
 export type MarketplaceRequirements = {
   skills?: string[];
-  vscode_extensions?: string[];
+  vscode_extensions?: Array<{ name: string; id: string }>;
   mcps?: string[];
 };
 
@@ -181,11 +181,31 @@ export function validateRequirements(
   for (const subgroup of supportedSubgroups) {
     if (!Object.prototype.hasOwnProperty.call(requirements, subgroup)) continue;
     const entries = requirements[subgroup];
-    if (
-      !Array.isArray(entries) ||
-      entries.length === 0 ||
-      !entries.every((entry) => typeof entry === "string" && entry.trim().length > 0)
-    ) {
+    if (!Array.isArray(entries) || entries.length === 0) {
+      throw new Error(`${itemId}: requirements.${subgroup} must be a non-empty list`);
+    }
+
+    if (subgroup === "vscode_extensions") {
+      const valid = entries.every((entry) => {
+        if (!entry || typeof entry !== "object" || Array.isArray(entry)) return false;
+        const extension = entry as Record<string, unknown>;
+        return (
+          Object.keys(extension).every((key) => key === "name" || key === "id") &&
+          typeof extension.name === "string" &&
+          extension.name.trim().length > 0 &&
+          typeof extension.id === "string" &&
+          extension.id.trim().length > 0
+        );
+      });
+      if (!valid) {
+        throw new Error(
+          `${itemId}: requirements.vscode_extensions entries must contain a non-empty name and ID`,
+        );
+      }
+      continue;
+    }
+
+    if (!entries.every((entry) => typeof entry === "string" && entry.trim().length > 0)) {
       throw new Error(
         `${itemId}: requirements.${subgroup} must be a non-empty list of non-empty strings`,
       );
@@ -198,15 +218,13 @@ export function validateRequirements(
       throw new Error(`${itemId}: requirements.${subgroup} must not reference itself`);
     }
 
-    const availableIds = subgroup === "skills" ? skillIds : subgroup === "mcps" ? mcpIds : undefined;
-    if (availableIds) {
-      const unknownId = entries.find((entry) => !availableIds.has(entry));
-      if (unknownId) {
-        const resource = subgroup === "skills" ? "skill" : "MCP";
-        throw new Error(
-          `${itemId}: requirements.${subgroup} references unknown ${resource} ID "${unknownId}"`,
-        );
-      }
+    const availableIds = subgroup === "skills" ? skillIds : mcpIds;
+    const unknownId = entries.find((entry) => !availableIds.has(entry));
+    if (unknownId) {
+      const resource = subgroup === "skills" ? "skill" : "MCP";
+      throw new Error(
+        `${itemId}: requirements.${subgroup} references unknown ${resource} ID "${unknownId}"`,
+      );
     }
   }
 
