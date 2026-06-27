@@ -1,0 +1,28 @@
+diff -rN -U0 --ignore-trailing-space a/scikit-learn/references/model_evaluation.md b/scikit-learn/references/model_evaluation.md
+--- a/scikit-learn/references/model_evaluation.md	2000-01-01 00:00:00.000000000 +0000
++++ b/scikit-learn/references/model_evaluation.md	2000-01-01 00:00:00.000000000 +0000
+@@ -493,0 +494,4 @@
++Only deserialize `joblib` or pickle artifacts from trusted, verified sources.
++Both formats can execute code during loading; prefer `skops.io` or ONNX for
++safer model sharing and deployment across trust boundaries.
++
+@@ -502 +506 @@
+-# Load model
++# Load only a trusted local artifact
+@@ -509 +513 @@
+-### Using pickle
++### Using pickle for trusted local artifacts only
+@@ -518 +522 @@
+-# Load
++# Load only a trusted local artifact
+diff -rN -U0 --ignore-trailing-space a/scikit-learn/references/quick_reference.md b/scikit-learn/references/quick_reference.md
+--- a/scikit-learn/references/quick_reference.md	2000-01-01 00:00:00.000000000 +0000
++++ b/scikit-learn/references/quick_reference.md	2000-01-01 00:00:00.000000000 +0000
+@@ -288,0 +289,4 @@
++Only load `joblib` or pickle artifacts from trusted, verified sources. These
++formats can execute code during deserialization; use `skops.io` or ONNX for
++sharing models across trust boundaries.
++
+@@ -295 +299 @@
+-# Load model
++# Load only a trusted local artifact

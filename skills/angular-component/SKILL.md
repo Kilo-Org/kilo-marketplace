@@ -7,15 +7,16 @@ description: >-
   component creation, refactoring class-based inputs to signals, adding host
   bindings, or implementing accessible interactive components.
 metadata:
+  category: development
   suggest_for:
     filename:
-      - "*.component.ts"
-      - "*.component.html"
-  category: development
+      - '*.component.ts'
+      - '*.component.html'
   source:
     repository: 'https://github.com/analogjs/angular-skills'
     path: skills/angular-component
     license_path: LICENSE
+    commit: 610c90eb9490194bcff703f343f97fa0e00bdb2f
 ---
 
 # Angular Component
@@ -50,20 +51,20 @@ import { Component, ChangeDetectionStrategy, input, output, computed } from '@an
 export class UserCard {
   // Required input
   name = input.required<string>();
-  
+
   // Optional input with default
   email = input<string>('');
   showEmail = input(false);
-  
+
   // Input with transform
   isActive = input(false, { transform: booleanAttribute });
-  
+
   // Computed from inputs
   avatarUrl = computed(() => `https://api.example.com/avatar/${this.name()}`);
-  
+
   // Output
   selected = output<string>();
-  
+
   handleClick() {
     this.selected.emit(this.name());
   }
@@ -121,18 +122,18 @@ Use the `host` object in `@Component`—do NOT use `@HostBinding` or `@HostListe
   host: {
     // Static attributes
     'role': 'button',
-    
+
     // Dynamic class bindings
     '[class.primary]': 'variant() === "primary"',
     '[class.disabled]': 'disabled()',
-    
+
     // Dynamic style bindings
     '[style.--btn-color]': 'color()',
-    
+
     // Attribute bindings
     '[attr.aria-disabled]': 'disabled()',
     '[attr.tabindex]': 'disabled() ? -1 : 0',
-    
+
     // Event listeners
     '(click)': 'onClick($event)',
     '(keydown.enter)': 'onClick($event)',
@@ -144,9 +145,9 @@ export class Button {
   variant = input<'primary' | 'secondary'>('primary');
   disabled = input(false, { transform: booleanAttribute });
   color = input('#007bff');
-  
+
   clicked = output<void>();
-  
+
   onClick(event: Event) {
     if (!this.disabled()) {
       this.clicked.emit();
@@ -231,7 +232,7 @@ export class Toggle {
   label = input.required<string>();
   checked = input(false, { transform: booleanAttribute });
   checkedChange = output<boolean>();
-  
+
   toggle() {
     this.checkedChange.emit(!this.checked());
   }

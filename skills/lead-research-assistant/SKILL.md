@@ -10,6 +10,8 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: lead-research-assistant
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
+license: NOASSERTION
 ---
 
 # Lead Research Assistant
@@ -44,7 +46,7 @@ This skill helps you identify and qualify potential leads for your business by a
 Simply describe your product/service and what you're looking for:
 
 ```
-I'm building [product description]. Find me 10 companies in [location/industry] 
+I'm building [product description]. Find me 10 companies in [location/industry]
 that would be good leads for this.
 ```
 
@@ -53,7 +55,7 @@ that would be good leads for this.
 For even better results, run this from your product's source code directory:
 
 ```
-Look at what I'm building in this repository and identify the top 10 companies 
+Look at what I'm building in this repository and identify the top 10 companies
 in [location/industry] that would benefit from this product.
 ```
 
@@ -107,7 +109,7 @@ When a user requests lead research:
      - Timing indicators
 
 5. **Provide Actionable Output**
-   
+
    For each lead, provide:
    - **Company Name** and website
    - **Why They're a Good Fit**: Specific reasons based on their business
@@ -124,40 +126,40 @@ When a user requests lead research:
 
    ```markdown
    # Lead Research Results
-   
+
    ## Summary
    - Total leads found: [X]
    - High priority (8-10): [X]
    - Medium priority (5-7): [X]
    - Average fit score: [X]
-   
+
    ---
-   
+
    ## Lead 1: [Company Name]
-   
+
    **Website**: [URL]
    **Priority Score**: [X/10]
    **Industry**: [Industry]
    **Size**: [Employee count/revenue range]
-   
+
    **Why They're a Good Fit**:
    [2-3 specific reasons based on their business]
-   
+
    **Target Decision Maker**: [Role/Title]
    **LinkedIn**: [URL if available]
-   
+
    **Value Proposition for Them**:
    [Specific benefit for this company]
-   
+
    **Outreach Strategy**:
    [Personalized approach - mention specific pain points, recent company news, or relevant context]
-   
+
    **Conversation Starters**:
    - [Specific point 1]
    - [Specific point 2]
-   
+
    ---
-   
+
    [Repeat for each lead]
    ```
 

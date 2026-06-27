@@ -1,0 +1,15 @@
+id: membrane-cloud-mcp
+name: Membrane Cloud MCP
+description: Exposes Membrane connections, actions, and data queries through Membrane's hosted OAuth MCP endpoint with permissions inherited from the signed-in account.
+author: Membrane
+url: https://docs.getmembrane.com/docs/ways-to-use-membrane/mcp
+category: productivity
+prerequisites:
+  - Membrane account
+content:
+  - name: Membrane hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.getmembrane.com/mcp/integrate-anything"
+      }

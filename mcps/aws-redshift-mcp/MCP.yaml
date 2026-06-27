@@ -1,0 +1,30 @@
+id: aws-redshift-mcp
+name: Amazon Redshift MCP
+description: Discovers Redshift clusters and workgroups, inspects schemas, and runs read-only SQL using AWS credentials and the official AWS Labs server.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/redshift-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - AWS credentials with Redshift read and query permissions
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["awslabs.redshift-mcp-server==0.0.25"],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}",
+          "FASTMCP_LOG_LEVEL": "ERROR"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS region
+    key: AWS_REGION
+    placeholder: us-east-1

@@ -1,0 +1,53 @@
+---
+description: Route Snowflake queries to the cortex-code skill for specialized Snowflake expertise via Cortex Code CLI
+globs:
+alwaysApply: true
+---
+
+# Snowflake Query Routing
+
+When the user asks about Snowflake, databases, warehouses, Cortex, or SQL queries, invoke the cortex-code skill with conversation context.
+
+/cortex-code [user's question with relevant context]
+
+## Detection Keywords
+
+Invoke `/cortex-code` when user mentions:
+- Snowflake, warehouse, database, schema, table, view
+- SQL, query, SELECT, data quality, data analysis
+- Cortex Search, Cortex Analyst, Cortex AI
+- Snowpark, dynamic tables, streams, tasks
+- "how many databases", "show me", "query", "check data"
+
+## How to Invoke
+
+1. **Detect Snowflake query**
+2. **Include context**: If there were previous Snowflake-related exchanges in this conversation, include that context
+3. **Invoke skill**: Call `/cortex-code` with enriched query
+4. **Display results**: Show output from Cortex Code agent
+
+## Examples
+
+**Standalone query:**
+User: "How many databases do I have in Snowflake?"
+You: /cortex-code How many databases do I have in Snowflake?
+
+**Query with context:**
+User: "Which databases have stock data?" → [answered: DB_STOCK, FINANCE__ECONOMICS]
+User: "Show me the schema for the main table"
+You: /cortex-code User previously identified databases with stock data: DB_STOCK, FINANCE__ECONOMICS. Show me the schema for the main table in DB_STOCK.
+
+## Important
+
+- Do NOT answer Snowflake questions yourself
+- ALWAYS invoke `/cortex-code` skill
+- Include prior conversation context when relevant
+- The skill handles: Cortex routing, SQL execution, formatting
+
+## Non-Snowflake Queries
+
+Handle normally without skill:
+- General programming questions
+- Local file operations
+- Git operations
+- Non-Snowflake databases (PostgreSQL, MySQL, etc.)

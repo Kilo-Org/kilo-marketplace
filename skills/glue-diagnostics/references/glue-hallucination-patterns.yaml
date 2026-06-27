@@ -1,0 +1,129 @@
+# =============================================================================
+# AWS Glue "Looks Real but Wrong" Hallucination Patterns
+# =============================================================================
+
+patterns:
+
+  - id: P1-oom-always-add-workers
+    trigger_words: ["OOM", "out of memory", "heap space", "java.lang.OutOfMemoryError"]
+    hallucination_risk: CRITICAL
+    why_llms_get_this_wrong: >
+      LLMs default to "add more workers" for any OOM error. Executor OOM
+      and driver OOM have fundamentally different causes and fixes.
+      Adding workers does not help driver OOM at all.
+    actual_behavior: >
+      Executor OOM means data partitions exceed worker memory. Fix by
+      repartitioning or upgrading worker type (G.1X to G.2X). Driver OOM
+      means too much data collected to the driver via collect(), countByKey(),
+      or large broadcast joins. Fix by eliminating driver-side aggregations.
+    common_false_claim: "Increase the number of workers to fix OOM errors."
+    correct_action: "Identify whether OOM is on executor or driver from the error stack trace. Apply the appropriate fix for each type."
+
+  - id: P2-bookmarks-automatic
+    trigger_words: ["job bookmark", "incremental processing", "reprocess data"]
+    hallucination_risk: CRITICAL
+    why_llms_get_this_wrong: >
+      LLMs assume job bookmarks work automatically once enabled in the
+      job configuration. Bookmarks require explicit code integration.
+    actual_behavior: >
+      Job bookmarks require job.init() at script start and job.commit()
+      at script end. Without these calls, the bookmark is never updated
+      even if enabled in the job settings. Bookmarks only work with S3
+      and JDBC sources, not DynamoDB or Kinesis.
+    common_false_claim: "Enable job bookmarks in the job settings and Glue will automatically track processed data."
+    correct_action: "Verify job.init() and job.commit() are in the script. Check bookmark state with get-job-bookmark. Ensure source type is S3 or JDBC."
+
+  - id: P3-crawler-auto-schema-update
+    trigger_words: ["crawler schema", "schema change", "column type change"]
+    hallucination_risk: HIGH
+    why_llms_get_this_wrong: >
+      LLMs assume crawlers automatically detect and apply schema changes
+      correctly. Crawler behavior depends entirely on the SchemaChangePolicy.
+    actual_behavior: >
+      With UpdateBehavior=LOG, crawlers log schema changes but do not
+      modify the table. With UpdateBehavior=UPDATE_IN_DATABASE, crawlers
+      overwrite the schema which can break downstream jobs if column types
+      change. Type changes (string to int) are particularly problematic.
+    common_false_claim: "Run the crawler again and it will fix the schema automatically."
+    correct_action: "Check SchemaChangePolicy. Review crawler logs for detected changes. Manually update schema if type changes are involved."
+
+  - id: P4-glue-connections-just-jdbc
+    trigger_words: ["JDBC connection", "database connection", "RDS connection"]
+    hallucination_risk: HIGH
+    why_llms_get_this_wrong: >
+      LLMs provide JDBC connection strings without mentioning the required
+      VPC networking infrastructure. Glue connections need full VPC setup.
+    actual_behavior: >
+      Glue JDBC connections require a VPC, subnet, security group, and
+      either a NAT gateway or VPC endpoints. The security group must allow
+      self-referencing inbound rules for Glue ENIs to communicate. Without
+      proper networking, connection tests fail with timeout errors.
+    common_false_claim: "Create a Glue connection with the JDBC URL and credentials."
+    correct_action: "Verify VPC, subnet, security group, NAT/VPC endpoints, and self-referencing security group rules before testing the connection."
+
+  - id: P5-default-timeout-reasonable
+    trigger_words: ["job timeout", "job running long", "job hung"]
+    hallucination_risk: HIGH
+    why_llms_get_this_wrong: >
+      LLMs do not flag the 48-hour default timeout as a risk. A stuck
+      job can run for two full days consuming DPUs before timing out.
+    actual_behavior: >
+      The default Glue job timeout is 2880 minutes (48 hours). A job
+      with 10 G.2X workers stuck for 48 hours consumes 960 DPU-hours.
+      At $0.44 per DPU-hour, that is over $400 for a single stuck job.
+    common_false_claim: "Glue jobs have reasonable default timeouts."
+    correct_action: "Always set an explicit timeout. Recommend 2-3x the expected job duration as the timeout value."
+
+  - id: P6-glue-version-interchangeable
+    trigger_words: ["Glue version", "upgrade Glue", "Glue 4.0", "Glue 3.0"]
+    hallucination_risk: HIGH
+    why_llms_get_this_wrong: >
+      LLMs suggest upgrading Glue versions as a simple fix without
+      noting breaking changes between Spark versions.
+    actual_behavior: >
+      Glue 2.0 (Spark 2.4), 3.0 (Spark 3.1), and 4.0 (Spark 3.3) have
+      different Spark APIs, Python versions, and library availability.
+      Upgrading can break jobs that use deprecated APIs, version-specific
+      libraries, or Python 2 syntax (Glue 0.9/1.0 to 2.0+).
+    common_false_claim: "Upgrade to Glue 4.0 for better performance."
+    correct_action: "Review Spark migration guides for the specific version jump. Test in a non-production environment. Check for deprecated API usage."
+
+  - id: P7-catalog-reflects-s3
+    trigger_words: ["Data Catalog", "table metadata", "partition not found"]
+    hallucination_risk: MEDIUM
+    why_llms_get_this_wrong: >
+      LLMs assume the Glue Data Catalog is always in sync with S3.
+      The Catalog is a metadata store that must be explicitly updated.
+    actual_behavior: >
+      New S3 partitions are not visible in the Data Catalog until a
+      crawler runs, MSCK REPAIR TABLE is executed, or batch-create-partition
+      is called. Jobs reading from Catalog tables will not see new
+      partitions until the Catalog is updated.
+    common_false_claim: "The Data Catalog automatically detects new partitions in S3."
+    correct_action: "Run a crawler, use MSCK REPAIR TABLE in Athena, or call batch-create-partition via API to register new partitions."
+
+  - id: P8-studio-supports-all-transforms
+    trigger_words: ["Glue Studio", "visual editor", "visual ETL"]
+    hallucination_risk: MEDIUM
+    why_llms_get_this_wrong: >
+      LLMs suggest using Glue Studio visual editor for complex
+      transformations that are not supported in the visual interface.
+    actual_behavior: >
+      Glue Studio supports common transforms (ApplyMapping, Filter,
+      Join, SelectFields, DropFields, RenameField, Spigot, Union) but
+      does not support window functions, custom UDFs, complex aggregations,
+      or multi-step conditional logic as visual nodes. These require
+      custom code transform nodes or script-only jobs.
+    common_false_claim: "Use Glue Studio to build the entire ETL pipeline visually."
+    correct_action: "Use visual nodes for supported transforms. Add custom code transform nodes for complex logic. Consider script-only jobs for highly complex ETL."
+
+remediation_hallucinations:
+  - id: R1-overly-broad-fix
+    trigger: "access denied or permission error"
+    dangerous_suggestion: "Grant overly broad permissions (Action: *, Resource: *) to resolve the error"
+    correct_approach: "Identify the specific denied action from error details or CloudTrail and grant only that action on the specific resource"
+
+  - id: R2-disable-security-control
+    trigger: "blocked by security control or policy"
+    dangerous_suggestion: "Disable the security control to unblock the operation"
+    correct_approach: "Add a specific exception for the legitimate use case while keeping the control active"

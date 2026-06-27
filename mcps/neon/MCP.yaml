@@ -1,50 +1,27 @@
 id: neon
 name: Neon Database
-description: Enables natural language interaction with Neon PostgreSQL databases, supporting project management, schema
-  migrations, SQL queries, and database operations through the Neon API.
-author: neondatabase
+description: Enables read-only natural language interaction with Neon PostgreSQL databases through Neon's official hosted
+  MCP endpoint.
+author: Neon
 url: https://github.com/neondatabase/mcp-server-neon
 category: data
+prerequisites:
+  - Neon account
 content:
-  - name: Remote MCP
-    prerequisites:
-      - Node.js
+  - name: Remote OAuth (read-only)
     content: |
       {
-        "command": "npx",
-        "args": ["-y", "mcp-remote", "https://mcp.neon.tech/sse"]
+        "type": "streamable-http",
+        "url": "https://mcp.neon.tech/mcp?readonly=true"
       }
-  - name: NPX with API Key
-    prerequisites:
-      - Node.js
+  - name: Remote API Key (read-only)
     content: |
       {
-        "command": "npx",
-        "args": ["-y", "@neondatabase/mcp-server-neon", "start", "{{NEON_API_KEY}}"]
-      }
-  - name: Smithery Installation
-    prerequisites:
-      - Node.js
-    content: |
-      {
-        "command": "npx",
-        "args": ["-y", "@smithery/cli", "install", "neon", "--client", "claude"]
-      }
-  - name: Windows CMD
-    prerequisites:
-      - Node.js
-    content: |
-      {
-        "command": "cmd",
-        "args": ["/c", "npx", "-y", "@neondatabase/mcp-server-neon", "start", "{{NEON_API_KEY}}"]
-      }
-  - name: Windows WSL
-    prerequisites:
-      - Node.js
-    content: |
-      {
-        "command": "wsl",
-        "args": ["npx", "-y", "@neondatabase/mcp-server-neon", "start", "{{NEON_API_KEY}}"]
+        "type": "streamable-http",
+        "url": "https://mcp.neon.tech/mcp?readonly=true",
+        "headers": {
+          "Authorization": "Bearer {{NEON_API_KEY}}"
+        }
       }
 parameters:
   - name: Neon API Key

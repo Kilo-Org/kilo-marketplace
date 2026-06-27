@@ -1,0 +1,55 @@
+diff -rN -U0 --ignore-trailing-space a/mysql/references/isolation-levels.md b/mysql/references/isolation-levels.md
+--- a/mysql/references/isolation-levels.md	2000-01-01 00:00:00.000000000 +0000
++++ b/mysql/references/isolation-levels.md	2000-01-01 00:00:00.000000000 +0000
+@@ -42 +41,0 @@
+-
+diff -rN -U0 --ignore-trailing-space a/mysql/references/json-column-patterns.md b/mysql/references/json-column-patterns.md
+--- a/mysql/references/json-column-patterns.md	2000-01-01 00:00:00.000000000 +0000
++++ b/mysql/references/json-column-patterns.md	2000-01-01 00:00:00.000000000 +0000
+@@ -70 +69,0 @@
+-
+diff -rN -U0 --ignore-trailing-space a/mysql/SKILL.md b/mysql/SKILL.md
+--- a/mysql/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/mysql/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -37,4 +37,4 @@
+-- [primary-keys](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/primary-keys.md)
+-- [data-types](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/data-types.md)
+-- [character-sets](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/character-sets.md)
+-- [json-column-patterns](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/json-column-patterns.md)
++- [primary-keys](references/primary-keys.md)
++- [data-types](references/data-types.md)
++- [character-sets](references/character-sets.md)
++- [json-column-patterns](references/json-column-patterns.md)
+@@ -49,4 +49,4 @@
+-- [composite-indexes](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/composite-indexes.md)
+-- [covering-indexes](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/covering-indexes.md)
+-- [fulltext-indexes](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/fulltext-indexes.md)
+-- [index-maintenance](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/index-maintenance.md)
++- [composite-indexes](references/composite-indexes.md)
++- [covering-indexes](references/covering-indexes.md)
++- [fulltext-indexes](references/fulltext-indexes.md)
++- [index-maintenance](references/index-maintenance.md)
+@@ -59 +59 @@
+-- [partitioning](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/partitioning.md)
++- [partitioning](references/partitioning.md)
+@@ -67,3 +67,3 @@
+-- [explain-analysis](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/explain-analysis.md)
+-- [query-optimization-pitfalls](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/query-optimization-pitfalls.md)
+-- [n-plus-one](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/n-plus-one.md)
++- [explain-analysis](references/explain-analysis.md)
++- [query-optimization-pitfalls](references/query-optimization-pitfalls.md)
++- [n-plus-one](references/n-plus-one.md)
+@@ -77,3 +77,3 @@
+-- [isolation-levels](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/isolation-levels.md)
+-- [deadlocks](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/deadlocks.md)
+-- [row-locking-gotchas](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/row-locking-gotchas.md)
++- [isolation-levels](references/isolation-levels.md)
++- [deadlocks](references/deadlocks.md)
++- [row-locking-gotchas](references/row-locking-gotchas.md)
+@@ -87,3 +87,3 @@
+-- [online-ddl](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/online-ddl.md)
+-- [connection-management](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/connection-management.md)
+-- [replication-lag](https://raw.githubusercontent.com/planetscale/database-skills/main/skills/mysql/references/replication-lag.md)
++- [online-ddl](references/online-ddl.md)
++- [connection-management](references/connection-management.md)
++- [replication-lag](references/replication-lag.md)

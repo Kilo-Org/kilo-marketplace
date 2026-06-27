@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:2e409192ef9a44af2975e98604961c8ac2f1cdd690ce9e5f490ec799575933e3",
+  "scoredAt": "2026-05-13T16:17:13.536Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for asset execution and resource usage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "credentials",
+        "detail": "Hardcoded database credentials in DatabaseResource connection_string expose sensitive information."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 5.5,
+    "baselineAvg": 0,
+    "treatmentAvg": 55,
+    "scenarios": [
+      {
+        "name": "define-analytics-asset-with-resource",
+        "baseline": 0,
+        "treatment": 30,
+        "rationale": "Response B partially meets the rubric but fails to name the asset correctly and omit logging, whereas Response A does not meet any of the rubric requirements."
+      },
+      {
+        "name": "create-daily-schedule-and-sensor",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A covers the required schedule and sensor structure but omits logging the number of new files, while Response B does not meet the Dagster-specific requirements at all."
+      }
+    ]
+  }
+}

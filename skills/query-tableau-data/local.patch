@@ -1,0 +1,84 @@
+diff -rN -U0 --ignore-trailing-space a/query-tableau-data/docs/api/AUTH.md b/query-tableau-data/docs/api/AUTH.md
+--- a/query-tableau-data/docs/api/AUTH.md	2000-01-01 00:00:00.000000000 +0000
++++ b/query-tableau-data/docs/api/AUTH.md	2000-01-01 00:00:00.000000000 +0000
+@@ -103 +103 @@
+-curl "https://{my-server}/api/{api-version}/sites/{site-id}/{method}" -X GET -H "X-Tableau-Auth:12ab34cd56ef78ab90cd12ef34ab56cd"
++curl "https://{my-server}/api/{api-version}/sites/{site-id}/{method}" -X GET -H "X-Tableau-Auth: ${TABLEAU_CREDENTIALS_TOKEN:?required}"
+diff -rN -U0 --ignore-trailing-space a/query-tableau-data/README.md b/query-tableau-data/README.md
+--- a/query-tableau-data/README.md	2000-01-01 00:00:00.000000000 +0000
++++ b/query-tableau-data/README.md	2000-01-01 00:00:00.000000000 +0000
+@@ -27,10 +26,0 @@
+-## Installation
+-
+-```bash
+-npx skills add Action-Co/skills
+-```
+-
+-From the installer, select the Tableau skills you want to add to your agent.
+-
+----
+-
+diff -rN -U0 --ignore-trailing-space a/query-tableau-data/SKILL.md b/query-tableau-data/SKILL.md
+--- a/query-tableau-data/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/query-tableau-data/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -9,12 +8,0 @@
+-  authors: stephen@action.co
+-  versions: 0.0.1
+-  tags:
+-    - tableau
+-    - datasource
+-    - query
+-    - vizql data service
+-    - analytics
+-    - VDS
+-    - data
+-    - BI
+-    - business intelligence
+diff -rN -U0 --ignore-trailing-space a/query-tableau-data/src/query_tableau_data_py/config.py b/query-tableau-data/src/query_tableau_data_py/config.py
+--- a/query-tableau-data/src/query_tableau_data_py/config.py	2000-01-01 00:00:00.000000000 +0000
++++ b/query-tableau-data/src/query_tableau_data_py/config.py	2000-01-01 00:00:00.000000000 +0000
+@@ -14 +14 @@
+-    """Environment-first configuration. Loads from ``.env`` files and environment variables.
++    """Environment-first configuration with optional explicit env-file loading.
+@@ -25 +24,0 @@
+-        env_file=".env",
+@@ -62,29 +60,0 @@
+-    @classmethod
+-    def _find_env_file(cls) -> str | None:
+-        """Search for ``.env`` in a two-level fallback.
+-
+-        1. Current working directory.
+-        2. Skill root (nearest ancestor of this source file containing ``pyproject.toml``).
+-
+-        Users should place their ``.env`` in the skill root directory, next to
+-        ``.env.template`` and ``pyproject.toml``. This makes the skill portable
+-        regardless of where it is installed in a user's project.
+-
+-        Returns the first existing path, or ``None`` if none found.
+-        """
+-        # 1. cwd
+-        cwd_env = Path.cwd() / ".env"
+-        if cwd_env.exists():
+-            return str(cwd_env)
+-
+-        # 2. skill root — nearest ancestor of this source file with pyproject.toml
+-        this_file = Path(__file__).resolve()
+-        for parent in this_file.parents:
+-            if (parent / "pyproject.toml").exists():
+-                candidate = parent / ".env"
+-                if candidate.exists():
+-                    return str(candidate)
+-                break
+-
+-        return None
+-
+@@ -93,3 +63,6 @@
+-            env_path = self._find_env_file()
+-            if env_path:
+-                kwargs["_env_file"] = env_path
++            env_file = os.environ.get("TABLEAU_ENV_FILE")
++            if env_file:
++                env_path = Path(env_file).expanduser().resolve()
++                if not env_path.is_file():
++                    raise ValueError(f"TABLEAU_ENV_FILE is not a file: {env_path}")
++                kwargs["_env_file"] = str(env_path)

@@ -1,0 +1,30 @@
+id: aws-data-processing
+name: AWS Data Processing MCP
+description: Inspects AWS Glue, EMR, and Athena catalogs, jobs, clusters, and query metadata through the official AWS Labs server with writes and sensitive result access disabled.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/aws-dataprocessing-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - AWS credentials with least-privilege Glue, EMR, and Athena read permissions
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["awslabs.aws-dataprocessing-mcp-server==0.1.31"],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}",
+          "FASTMCP_LOG_LEVEL": "ERROR"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS region
+    key: AWS_REGION
+    placeholder: us-east-1

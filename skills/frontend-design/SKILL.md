@@ -4,13 +4,13 @@ description: >-
   Guidance for distinctive, intentional visual design when building new UI or
   reshaping an existing one. Helps with aesthetic direction, typography, and
   making choices that don't read as templated defaults.
-license: Complete terms in LICENSE.txt
 metadata:
   category: development
   source:
     repository: 'https://github.com/anthropics/skills'
     path: skills/frontend-design
     license_path: skills/frontend-design/LICENSE.txt
+    commit: 57546260929473d4e0d1c1bb75297be2fdfa1949
 ---
 
 # Frontend Design

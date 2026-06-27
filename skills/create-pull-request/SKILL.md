@@ -10,6 +10,8 @@ metadata:
   source:
     repository: 'https://github.com/cline/cline'
     path: .agents/skills/create-pull-request
+    license_path: LICENSE
+    commit: 14a28b0559fbc783d45befe962c71811b5804065
 ---
 
 # Create Pull Request

@@ -1,0 +1,32 @@
+id: aws-api-mcp
+name: AWS API MCP
+description: Executes validated AWS CLI read operations across AWS services, with local file access disabled and authentication inherited from a named AWS profile.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/aws-api-mcp-server
+category: development
+prerequisites:
+  - Python and uv
+  - AWS credentials restricted by IAM to the intended account and resources
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["awslabs.aws-api-mcp-server==1.3.45"],
+        "env": {
+          "AWS_API_MCP_PROFILE_NAME": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}",
+          "READ_OPERATIONS_ONLY": "true",
+          "AWS_API_MCP_ALLOW_UNRESTRICTED_LOCAL_FILE_ACCESS": "no-access",
+          "AWS_API_MCP_TELEMETRY": "false"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS region
+    key: AWS_REGION
+    placeholder: us-east-1

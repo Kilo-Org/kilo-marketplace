@@ -1,0 +1,194 @@
+// ============================================================
+// MASTER CALENDAR TEMPLATE
+// ============================================================
+// Generates a continuous date dimension with standard and
+// fiscal calendar fields. Derives date range from loaded data.
+//
+// DO NOT hard-code date ranges. Always derive from data.
+//
+// HOW TO ADAPT:
+// 1. Set vCalendarDateField to the date field in your fact table
+//    that should link to this calendar.
+// 2. Set vCalendarSourceTable to the table containing that field.
+// 3. Set vFiscalYearStartMonth if your fiscal year does not start
+//    in January (e.g., 7 for July fiscal year start).
+// 4. Rename output fields to match your naming conventions
+//    (default uses Calendar. prefix).
+// 5. Add custom date flags or periods as needed.
+//
+// PREREQUISITES:
+// - At least one table must already be loaded containing the
+//   date field referenced by vCalendarDateField.
+// - The date field must contain valid Qlik date serial numbers
+//   (use Date() or Num() during extraction if source is text).
+//
+// MULTIPLE DATE FIELDS:
+// If your model has multiple date fields (Order.Date, Ship.Date,
+// Invoice.Date), each must associate to the calendar. Two approaches:
+// A. Single calendar with one link field: Pick the primary date
+//    (e.g., Order.Date) as the calendar key. Other dates can only
+//    filter via set analysis: Sum({<[Ship.Date]={">=$(=Min(Calendar.Date))"}>} Amount)
+// B. Multiple calendars: Create separate calendar tables, each with
+//    its own prefixed fields (OrderCal.Year, ShipCal.Year). This
+//    enables direct filtering on any date but increases the data model.
+// Choose based on how users need to slice the data.
+// ============================================================
+
+// --- Configuration ---
+SET vCalendarDateField = 'Order.Date';          // The date field to link to
+SET vCalendarSourceTable = 'Orders';            // The table containing the date field
+SET vFiscalYearStartMonth = 1;                  // 1=Jan, 4=Apr, 7=Jul, 10=Oct
+
+// --- Snapshot Today() once for the entire script ---
+// Today() is volatile: each call re-reads the system clock. Calling it
+// per-row inside the LOAD wastes cycles AND -- if the script runs across
+// midnight -- can yield inconsistent "current" flags (some rows see
+// yesterday, others see today). Snapshot once here and reference $(vToday)
+// inside the LOAD so every row uses the same reference date.
+LET vToday = Today();
+
+// --- Derive date range from data ---
+// Uses RESIDENT against the source table to scope correctly.
+// FieldValue() operates across the entire symbol space (all tables
+// containing that field), which can return dates from unrelated tables.
+// RESIDENT Min/Max scopes to the specified table only.
+[_CalRange]:
+LOAD
+    Min([$(vCalendarDateField)]) AS MinDate,
+    Max([$(vCalendarDateField)]) AS MaxDate
+RESIDENT [$(vCalendarSourceTable)];
+
+LET vMinDate = Peek('MinDate', 0, '_CalRange');
+LET vMaxDate = Peek('MaxDate', 0, '_CalRange');
+DROP TABLE [_CalRange];
+
+// Validate date range
+IF IsNull($(vMinDate)) OR IsNull($(vMaxDate)) THEN
+    TRACE [ERROR] Cannot determine date range -- no dates loaded in $(vCalendarSourceTable).$(vCalendarDateField);
+    // Exit or skip calendar generation
+ELSE
+    TRACE Calendar date range: $(=Date($(vMinDate))) to $(=Date($(vMaxDate)));
+
+    // --- Generate calendar ---
+    [_TempCalendar]:
+    LOAD
+        Date($(vMinDate) + IterNo() - 1) AS _TempDate
+    AUTOGENERATE 1
+    WHILE $(vMinDate) + IterNo() - 1 <= $(vMaxDate);
+
+    // --- Build final calendar with all derived fields ---
+    [Calendar]:
+    LOAD
+        _TempDate                                                    AS [$(vCalendarDateField)],
+
+        // --- Standard calendar fields ---
+        Year(_TempDate)                                              AS [Calendar.Year],
+        Month(_TempDate)                                             AS [Calendar.MonthNum],
+        // Month() already returns a Dual (text = "Jan"/"Feb"..., num = 1-12)
+        // per help.qlik.com -- no wrapper needed. Sorts numerically, displays as text.
+        Month(_TempDate)                                             AS [Calendar.Month],
+        // Quarter, YearQuarter, YearMonth are derived TEXT labels (string concat
+        // or Date() format) with no underlying numeric -- Dual() supplies the sort key.
+        Dual('Q' & Ceil(Month(_TempDate) / 3),
+             Ceil(Month(_TempDate) / 3))                             AS [Calendar.Quarter],
+        Dual(Year(_TempDate) & '-Q' & Ceil(Month(_TempDate) / 3),
+             Year(_TempDate) * 10 + Ceil(Month(_TempDate) / 3))      AS [Calendar.YearQuarter],
+        Dual(Date(MonthStart(_TempDate), 'YYYY-MM'),
+             Year(_TempDate) * 100 + Month(_TempDate))               AS [Calendar.YearMonth],
+        // Week() and WeekYear() depend on three SET variables: FirstWeekDay,
+        // BrokenWeeks, and ReferenceDay. North American defaults (BrokenWeeks=1,
+        // FirstWeekDay=6) produce non-ISO week numbers that always reset Jan 1;
+        // ISO 8601 weeks (BrokenWeeks=0, FirstWeekDay=0, ReferenceDay=4) can put
+        // Dec 29-31 in week 1 of the NEXT year (and Jan 1-3 in the last week of
+        // the prior year). Set these SET variables at the top of your script,
+        // OR pass the optional arguments explicitly: Week(date, first_week_day,
+        // broken_weeks, reference_day). See help.qlik.com -- Week function.
+        // YearWeek uses WeekYear() (not Year()) so the year matches the week:
+        // under ISO, WeekYear(2025-12-31) returns 2026, correctly yielding
+        // "2026-W01" instead of the wrong "2025-W01" that Year() would produce.
+        Week(_TempDate)                                              AS [Calendar.Week],
+        Dual(WeekYear(_TempDate) & '-W' & Num(Week(_TempDate), '00'),
+             WeekYear(_TempDate) * 100 + Week(_TempDate))            AS [Calendar.YearWeek],
+        Day(_TempDate)                                               AS [Calendar.DayOfMonth],
+        // WeekDay() already returns a Dual (text = day name, num = 0-6)
+        // per help.qlik.com -- no wrapper needed.
+        WeekDay(_TempDate)                                           AS [Calendar.DayOfWeek],
+        DayNumberOfYear(_TempDate)                                   AS [Calendar.DayOfYear],
+
+        // --- Fiscal calendar fields ---
+        // Fiscal year: when FYStart > 1, months >= FYStart belong to next FY.
+        // Convention: FY2026 runs Jul 2025 - Jun 2026 when start=7.
+        // When FYStart=1, fiscal year = calendar year (the +1 offset is zero).
+        Year(_TempDate) + IF(Month(_TempDate) >= $(vFiscalYearStartMonth)
+                             AND $(vFiscalYearStartMonth) > 1, 1, 0)
+                                                                     AS [Calendar.FiscalYear],
+
+        Ceil((Month(_TempDate) - $(vFiscalYearStartMonth) + 1
+              + IF(Month(_TempDate) < $(vFiscalYearStartMonth), 12, 0)) / 3)
+                                                                     AS [Calendar.FiscalQuarter],
+
+        // Combined fiscal year-quarter (e.g., "FY2026-Q1").
+        // Derived text label -- wrap in Dual() so it sorts chronologically.
+        Dual(
+            'FY' & (Year(_TempDate) + IF(Month(_TempDate) >= $(vFiscalYearStartMonth)
+                                          AND $(vFiscalYearStartMonth) > 1, 1, 0))
+            & '-Q' & Ceil((Month(_TempDate) - $(vFiscalYearStartMonth) + 1
+                            + IF(Month(_TempDate) < $(vFiscalYearStartMonth), 12, 0)) / 3),
+            (Year(_TempDate) + IF(Month(_TempDate) >= $(vFiscalYearStartMonth)
+                                   AND $(vFiscalYearStartMonth) > 1, 1, 0)) * 10
+            + Ceil((Month(_TempDate) - $(vFiscalYearStartMonth) + 1
+                     + IF(Month(_TempDate) < $(vFiscalYearStartMonth), 12, 0)) / 3)
+        )                                                            AS [Calendar.FiscalYearQuarter],
+
+        // --- Relative date flags ---
+        // All "current" flags reference $(vToday), the script-start snapshot
+        // of Today(). This is intentional: it avoids per-row volatility and
+        // keeps the calendar internally consistent if the reload spans midnight.
+        IF(MonthStart(_TempDate) = MonthStart($(vToday)), 1, 0)     AS [Calendar.IsCurrentMonth],
+        IF(QuarterStart(_TempDate) = QuarterStart($(vToday)), 1, 0) AS [Calendar.IsCurrentQuarter],
+        IF(Year(_TempDate) = Year($(vToday)), 1, 0)                 AS [Calendar.IsCurrentYear],
+        IF(Year(_TempDate) = Year($(vToday)) - 1, 1, 0)             AS [Calendar.IsPriorYear],
+
+        // YTD: same year, day of year <= today's day of year
+        IF(Year(_TempDate) = Year($(vToday))
+           AND DayNumberOfYear(_TempDate) <= DayNumberOfYear($(vToday)), 1, 0)
+                                                                     AS [Calendar.IsYTD],
+
+        // Prior year YTD (for comparison)
+        IF(Year(_TempDate) = Year($(vToday)) - 1
+           AND DayNumberOfYear(_TempDate) <= DayNumberOfYear($(vToday)), 1, 0)
+                                                                     AS [Calendar.IsPriorYTD],
+
+        // Today flag (useful for visual highlighting)
+        IF(_TempDate = $(vToday), 1, 0)                             AS [Calendar.IsToday],
+
+        // Rolling 12 months: trailing 12 COMPLETE months, excluding current partial month.
+        // Change < MonthStart($(vToday)) to <= $(vToday) to include the current partial month.
+        IF(_TempDate >= AddMonths(MonthStart($(vToday)), -12)
+           AND _TempDate < MonthStart($(vToday)), 1, 0)             AS [Calendar.IsRolling12],
+
+        // Rolling 12 months prior (for YoY comparison)
+        IF(_TempDate >= AddMonths(MonthStart($(vToday)), -24)
+           AND _TempDate < AddMonths(MonthStart($(vToday)), -12), 1, 0)
+                                                                     AS [Calendar.IsPriorRolling12]
+
+    RESIDENT [_TempCalendar];
+
+    DROP TABLE [_TempCalendar];
+
+    LET vCalendarRows = NoOfRows('Calendar');
+    TRACE Master calendar generated: $(vCalendarRows) rows;
+
+END IF
+
+// --- Cleanup configuration variables ---
+// Clear scratch values. Use SET (not LET) for variable clearing:
+// LET evaluates the RHS as an expression -- an empty RHS produces
+// undefined/null behavior. SET preserves the RHS as literal text,
+// so SET vVar = ; correctly assigns the empty string.
+// Per help.qlik.com -- SET statement / LET statement.
+SET vMinDate = ;
+SET vMaxDate = ;
+SET vCalendarRows = ;
+// Keep vCalendarDateField, vCalendarSourceTable, vFiscalYearStartMonth
+// for documentation purposes

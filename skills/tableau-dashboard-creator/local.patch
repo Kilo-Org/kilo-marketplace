@@ -1,0 +1,430 @@
+diff -rN -U0 --ignore-trailing-space a/tableau-dashboard-creator/examples/top-level-workbook-example.twb b/tableau-dashboard-creator/examples/top-level-workbook-example.twb
+--- a/tableau-dashboard-creator/examples/top-level-workbook-example.twb	2000-01-01 00:00:00.000000000 +0000
++++ b/tableau-dashboard-creator/examples/top-level-workbook-example.twb	2000-01-01 00:00:00.000000000 +0000
+@@ -4 +4 @@
+-<workbook original-version='18.1' source-build='2026.1.0 (20261.26.0226.1314)' version='18.1' xml:base='https://dub01.online.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
++<workbook original-version='18.1' source-build='2026.1.0 (20261.26.0226.1314)' version='18.1' xml:base='https://tableau.example.invalid' xmlns:user='http://www.tableausoftware.com/xml/user'>
+@@ -34 +34 @@
+-  <repository-location derived-from='https://dub01.online.tableau.com/t/gstat/workbooks/RapaportSubscriptionsWaterfall?rev=2.1' id='RapaportSubscriptionsWaterfall' path='/t/gstat/workbooks' revision='2.2' site='gstat' />
++  <repository-location derived-from='https://tableau.example.invalid/t/example-site/workbooks/SampleSubscriptionsWaterfall?rev=2.1' id='SampleSubscriptionsWaterfall' path='/t/example-site/workbooks' revision='2.2' site='example-site' />
+@@ -56,2 +56,2 @@
+-          <named-connection caption='tableau-prod1.cluster-cmj5ruislc3c.us-east-1.rds.amazonaws.com' name='postgres.0h1ljdq0zmqqwy18bzvjh11mz5bg'>
+-            <connection authentication='username-password' class='postgres' dbname='kinneret' one-time-sql='' port='5432' server='tableau-prod1.cluster-cmj5ruislc3c.us-east-1.rds.amazonaws.com' server-oauth='' username='lavid' workgroup-auth-mode='prompt' />
++          <named-connection caption='analytics-db.example.invalid' name='postgres.0h1ljdq0zmqqwy18bzvjh11mz5bg'>
++            <connection authentication='username-password' class='postgres' dbname='example_analytics' one-time-sql='' port='5432' server='analytics-db.example.invalid' server-oauth='' username='tableau_reader' workgroup-auth-mode='prompt' />
+@@ -61 +61 @@
+-accounts_junk AS (
++excluded_sample_accounts AS (
+@@ -65 +65 @@
+-kinneret.dim_accounts da
++example_analytics.sample_accounts da
+@@ -67,2 +67,2 @@
+-"name" ILIKE '%apaport%' OR
+-("name" ILIKE '%test%' and "name" not ILIKE '%hitestone%')or ("name" ILIKE '%rap%' and "name" ILIKE '%qa%')
++"name" ILIKE '%exampleco%' OR
++("name" ILIKE '%test%' and "name" not ILIKE '%sample-customer%')or ("name" ILIKE '%example%' and "name" ILIKE '%qa%')
+@@ -70,2 +70,2 @@
+-da.ofc_account_number IN (
+-83922, 83923, 89559, 75416, 70053, 75416, 55858, 55859, 62146, 62147, 62148, 79012, 79013, 80267, 80339, 80934, 80935, 125753
++da.external_account_id IN (
++10001, 10002, 10003, 10004, 10005, 10006
+@@ -81,2 +81,2 @@
+-kinneret.sc_subscriptions_plans ssp
+-INNER JOIN kinneret.dim_opportunities t ON
++example_analytics.sample_subscription_plans ssp
++INNER JOIN example_analytics.sample_opportunities t ON
+@@ -84 +84 @@
+-INNER JOIN kinneret.dim_subscriptions_contracts dsc ON
++INNER JOIN example_analytics.sample_contracts dsc ON
+@@ -98 +98 @@
+-kinneret.sc_subscriptions_plans ssp
++example_analytics.sample_subscription_plans ssp
+@@ -100 +100 @@
+-ssp.start_date >>= '2024-01-01'
++ssp.start_date >= '2024-01-01'
+@@ -106 +106 @@
+-WHEN (dsp.id IN (7, 13, 3)) THEN dsp."name"
++WHEN (dsp.id IN (101, 102, 103)) THEN dsp."name"
+@@ -110 +110 @@
+-WHEN (dc.id IN (248, 247, 245, 246, 81, 251, 45, 250, 14, 244, 215)) THEN dc."name"
++WHEN (dc.id IN (201, 202, 203, 204, 205)) THEN dc."name"
+@@ -143,5 +143,5 @@
+-kinneret.dim_norm_dates dnd
+-INNER JOIN kinneret.dim_subscriptions_contracts sc ON
+-sc.start_date <<= dnd.norm_date
+-AND dnd.norm_date <<= sc.end_date
+-LEFT JOIN accounts_junk aj ON
++example_analytics.sample_calendar_dates dnd
++INNER JOIN example_analytics.sample_contracts sc ON
++sc.start_date <= dnd.norm_date
++AND dnd.norm_date <= sc.end_date
++LEFT JOIN excluded_sample_accounts aj ON
+@@ -152 +152 @@
+-LEFT JOIN kinneret.dim_opportunities o ON
++LEFT JOIN example_analytics.sample_opportunities o ON
+@@ -154,2 +154,2 @@
+-AND o.created_date::date <<= sc.start_date
+-AND o.created_date >>= sc.start_date - INTERVAL '1 month'
++AND o.created_date::date <= sc.start_date
++AND o.created_date >= sc.start_date - INTERVAL '1 month'
+@@ -160 +160 @@
+-LEFT JOIN kinneret.dim_subscriptions_packages dsp ON
++LEFT JOIN example_analytics.sample_packages dsp ON
+@@ -162,3 +162,3 @@
+-LEFT JOIN kinneret.dim_subscriptions_packages_groups pg ON
+-pg.id = dsp.dim_subscriptions_packages_groups_id
+-LEFT JOIN kinneret.dim_accounts da ON
++LEFT JOIN example_analytics.sample_package_groups pg ON
++pg.id = dsp.sample_package_groups_id
++LEFT JOIN example_analytics.sample_accounts da ON
+@@ -166 +166 @@
+-LEFT JOIN kinneret.dim_countries dc ON
++LEFT JOIN example_analytics.sample_countries dc ON
+@@ -168 +168 @@
+-LEFT JOIN kinneret.dim_users du ON
++LEFT JOIN example_analytics.sample_users du ON
+@@ -172,2 +172,2 @@
+-AND dnd.norm_date >>= '2025-01-01'
+-AND dnd.norm_date <<= CURRENT_DATE
++AND dnd.norm_date >= '2025-01-01'
++AND dnd.norm_date <= CURRENT_DATE
+@@ -178 +178 @@
+-1 ASC -- 5868132 18177]]></relation>
++1 ASC -- synthetic example]]></relation>
+@@ -1049 +1049 @@
+-accounts_junk AS (
++excluded_sample_accounts AS (
+@@ -1053 +1053 @@
+-kinneret.dim_accounts da
++example_analytics.sample_accounts da
+@@ -1055,2 +1055,2 @@
+-"name" ILIKE '%apaport%' OR
+-("name" ILIKE '%test%' and "name" not ILIKE '%hitestone%')or ("name" ILIKE '%rap%' and "name" ILIKE '%qa%')
++"name" ILIKE '%exampleco%' OR
++("name" ILIKE '%test%' and "name" not ILIKE '%sample-customer%')or ("name" ILIKE '%example%' and "name" ILIKE '%qa%')
+@@ -1058,2 +1058,2 @@
+-da.ofc_account_number IN (
+-83922, 83923, 89559, 75416, 70053, 75416, 55858, 55859, 62146, 62147, 62148, 79012, 79013, 80267, 80339, 80934, 80935, 125753
++da.external_account_id IN (
++10001, 10002, 10003, 10004, 10005, 10006
+@@ -1069,2 +1069,2 @@
+-kinneret.sc_subscriptions_plans ssp
+-INNER JOIN kinneret.dim_opportunities t ON
++example_analytics.sample_subscription_plans ssp
++INNER JOIN example_analytics.sample_opportunities t ON
+@@ -1072 +1072 @@
+-INNER JOIN kinneret.dim_subscriptions_contracts dsc ON
++INNER JOIN example_analytics.sample_contracts dsc ON
+@@ -1086 +1086 @@
+-kinneret.sc_subscriptions_plans ssp
++example_analytics.sample_subscription_plans ssp
+@@ -1088 +1088 @@
+-ssp.start_date >>= '2024-01-01'
++ssp.start_date >= '2024-01-01'
+@@ -1094 +1094 @@
+-WHEN (dsp.id IN (7, 13, 3)) THEN dsp."name"
++WHEN (dsp.id IN (101, 102, 103)) THEN dsp."name"
+@@ -1098 +1098 @@
+-WHEN (dc.id IN (248, 247, 245, 246, 81, 251, 45, 250, 14, 244, 215)) THEN dc."name"
++WHEN (dc.id IN (201, 202, 203, 204, 205)) THEN dc."name"
+@@ -1131,5 +1131,5 @@
+-kinneret.dim_norm_dates dnd
+-INNER JOIN kinneret.dim_subscriptions_contracts sc ON
+-sc.start_date <<= dnd.norm_date
+-AND dnd.norm_date <<= sc.end_date
+-LEFT JOIN accounts_junk aj ON
++example_analytics.sample_calendar_dates dnd
++INNER JOIN example_analytics.sample_contracts sc ON
++sc.start_date <= dnd.norm_date
++AND dnd.norm_date <= sc.end_date
++LEFT JOIN excluded_sample_accounts aj ON
+@@ -1140 +1140 @@
+-LEFT JOIN kinneret.dim_opportunities o ON
++LEFT JOIN example_analytics.sample_opportunities o ON
+@@ -1142,2 +1142,2 @@
+-AND o.created_date::date <<= sc.start_date
+-AND o.created_date >>= sc.start_date - INTERVAL '1 month'
++AND o.created_date::date <= sc.start_date
++AND o.created_date >= sc.start_date - INTERVAL '1 month'
+@@ -1148 +1148 @@
+-LEFT JOIN kinneret.dim_subscriptions_packages dsp ON
++LEFT JOIN example_analytics.sample_packages dsp ON
+@@ -1150,3 +1150,3 @@
+-LEFT JOIN kinneret.dim_subscriptions_packages_groups pg ON
+-pg.id = dsp.dim_subscriptions_packages_groups_id
+-LEFT JOIN kinneret.dim_accounts da ON
++LEFT JOIN example_analytics.sample_package_groups pg ON
++pg.id = dsp.sample_package_groups_id
++LEFT JOIN example_analytics.sample_accounts da ON
+@@ -1154 +1154 @@
+-LEFT JOIN kinneret.dim_countries dc ON
++LEFT JOIN example_analytics.sample_countries dc ON
+@@ -1156 +1156 @@
+-LEFT JOIN kinneret.dim_users du ON
++LEFT JOIN example_analytics.sample_users du ON
+@@ -1160,2 +1160,2 @@
+-AND dnd.norm_date >>= '2025-01-01'
+-AND dnd.norm_date <<= CURRENT_DATE
++AND dnd.norm_date >= '2025-01-01'
++AND dnd.norm_date <= CURRENT_DATE
+@@ -1166 +1166 @@
+-1 ASC -- 5868132 18177]]></relation>
++1 ASC -- synthetic example]]></relation>
+@@ -4855 +4855 @@
+-      <repository-location derived-from='https://dub01.online.tableau.com/t/gstat/workbooks/RapaportSubscriptionsWaterfall/SubscriptionsLifecycle?rev=' id='SubscriptionsLifecycle' path='/t/gstat/workbooks/RapaportSubscriptionsWaterfall' revision='' site='gstat' />
++      <repository-location derived-from='https://tableau.example.invalid/t/example-site/workbooks/SampleSubscriptionsWaterfall/SubscriptionsLifecycle?rev=' id='SubscriptionsLifecycle' path='/t/example-site/workbooks/SampleSubscriptionsWaterfall' revision='' site='example-site' />
+@@ -4900 +4900 @@
+-              <zone fixed-size='192' h='4910' id='28' is-fixed='true' is-scaled='1' param='Image/Rapaport_logo_white.svg' type-v2='bitmap' w='13201' x='6336' y='1786'>
++              <zone fixed-size='192' h='4910' id='28' is-fixed='true' is-scaled='1' param='Image/ExampleCo_logo_white.svg' type-v2='bitmap' w='13201' x='6336' y='1786'>
+@@ -5545 +5545 @@
+-                <zone fixed-size='32' h='4910' id='28' is-fixed='true' is-scaled='1' param='Image/Rapaport_logo_white.svg' type-v2='bitmap' w='13201' x='6336' y='1786'>
++                <zone fixed-size='32' h='4910' id='28' is-fixed='true' is-scaled='1' param='Image/ExampleCo_logo_white.svg' type-v2='bitmap' w='13201' x='6336' y='1786'>
+@@ -6036 +6036 @@
+-      <repository-location derived-from='https://dub01.online.tableau.com/t/gstat/workbooks/RapaportSubscriptionsWaterfall/SubscriptionsLifecycleCountryDetail?rev=' id='SubscriptionsLifecycleCountryDetail' path='/t/gstat/workbooks/RapaportSubscriptionsWaterfall' revision='' site='gstat' />
++      <repository-location derived-from='https://tableau.example.invalid/t/example-site/workbooks/SampleSubscriptionsWaterfall/SubscriptionsLifecycleCountryDetail?rev=' id='SubscriptionsLifecycleCountryDetail' path='/t/example-site/workbooks/SampleSubscriptionsWaterfall' revision='' site='example-site' />
+@@ -6064 +6064 @@
+-              <zone fixed-size='192' h='4910' id='13' is-fixed='true' is-scaled='1' param='Image/Rapaport_logo_white.svg' type-v2='bitmap' w='13201' x='3432' y='1786'>
++              <zone fixed-size='192' h='4910' id='13' is-fixed='true' is-scaled='1' param='Image/ExampleCo_logo_white.svg' type-v2='bitmap' w='13201' x='3432' y='1786'>
+@@ -6292 +6292 @@
+-                <zone fixed-size='32' h='4910' id='13' is-fixed='true' is-scaled='1' param='Image/Rapaport_logo_white.svg' type-v2='bitmap' w='13201' x='3432' y='1786'>
++                <zone fixed-size='32' h='4910' id='13' is-fixed='true' is-scaled='1' param='Image/ExampleCo_logo_white.svg' type-v2='bitmap' w='13201' x='3432' y='1786'>
+diff -rN -U0 --ignore-trailing-space a/tableau-dashboard-creator/references/step-a-data-exploration.md b/tableau-dashboard-creator/references/step-a-data-exploration.md
+--- a/tableau-dashboard-creator/references/step-a-data-exploration.md	2000-01-01 00:00:00.000000000 +0000
++++ b/tableau-dashboard-creator/references/step-a-data-exploration.md	2000-01-01 00:00:00.000000000 +0000
+@@ -47 +47 @@
+-All scripts enforce LIMIT 500 automatically. If the user's query already has a LIMIT, it is preserved.
++The PostgreSQL helper accepts one read-only `SELECT`, `WITH`, or plain `EXPLAIN` query, uses a read-only database session, and enforces a hard 500-row outer limit even when the query already contains a larger or nested `LIMIT`. It rejects multi-statement SQL, DDL/DML, `COPY`, `CALL`, `DO`, `EXPLAIN ANALYZE`, `SELECT INTO`, and row-locking clauses.
+diff -rN -U0 --ignore-trailing-space a/tableau-dashboard-creator/scripts/query_postgresql.py b/tableau-dashboard-creator/scripts/query_postgresql.py
+--- a/tableau-dashboard-creator/scripts/query_postgresql.py	2000-01-01 00:00:00.000000000 +0000
++++ b/tableau-dashboard-creator/scripts/query_postgresql.py	2000-01-01 00:00:00.000000000 +0000
+@@ -1 +1 @@
+-"""Execute PostgreSQL queries with LIMIT 500 enforcement.
++"""Execute read-only PostgreSQL queries with a hard 500-row cap.
+@@ -7,5 +7,2 @@
+-Requires .env with: PG_HOST, PG_PORT (optional, default 5432),
+-                    PG_DATABASE, PG_USER, PG_PASSWORD
+-
+-The .env file does not need to live inside the project directory — load_dotenv()
+-walks upward from the current working directory and picks the closest .env it finds.
++Requires exported PG_HOST, PG_PORT (optional, default 5432), PG_DATABASE,
++PG_USER, and PG_PASSWORD. Pass --env-file explicitly when loading them from a file.
+@@ -24,0 +22,122 @@
++FORBIDDEN_KEYWORDS = re.compile(
++    r"\b(INSERT|UPDATE|DELETE|MERGE|UPSERT|CREATE|ALTER|DROP|TRUNCATE|"
++    r"REINDEX|GRANT|REVOKE|COPY|CALL|DO|EXECUTE|PREPARE|DEALLOCATE|"
++    r"VACUUM|ANALYZE|CLUSTER|REFRESH|COMMENT|SECURITY|LOCK|SET|RESET|"
++    r"COMMIT|ROLLBACK|SAVEPOINT|RELEASE|BEGIN|START)\b",
++    re.IGNORECASE,
++)
++
++
++def sanitize_sql(query: str) -> str:
++    """Replace comments, quoted identifiers, and literals while preserving SQL shape."""
++    output = []
++    index = 0
++    while index < len(query):
++        char = query[index]
++        next_char = query[index + 1] if index + 1 < len(query) else ""
++
++        if char == "-" and next_char == "-":
++            output.extend((" ", " "))
++            index += 2
++            while index < len(query) and query[index] != "\n":
++                output.append(" ")
++                index += 1
++            continue
++
++        if char == "/" and next_char == "*":
++            output.extend((" ", " "))
++            index += 2
++            depth = 1
++            while index < len(query) and depth:
++                if query[index:index + 2] == "/*":
++                    output.extend((" ", " "))
++                    index += 2
++                    depth += 1
++                elif query[index:index + 2] == "*/":
++                    output.extend((" ", " "))
++                    index += 2
++                    depth -= 1
++                else:
++                    output.append("\n" if query[index] == "\n" else " ")
++                    index += 1
++            if depth:
++                raise ValueError("Unterminated SQL block comment")
++            continue
++
++        if char == "$":
++            tag_match = re.match(r"\$[A-Za-z_][A-Za-z0-9_]*\$|\$\$", query[index:])
++            if tag_match:
++                tag = tag_match.group(0)
++                end = query.find(tag, index + len(tag))
++                if end < 0:
++                    raise ValueError("Unterminated PostgreSQL dollar-quoted string")
++                segment = query[index:end + len(tag)]
++                output.extend("\n" if value == "\n" else " " for value in segment)
++                index = end + len(tag)
++                continue
++
++        if char in ("'", '"'):
++            quote = char
++            output.append(" ")
++            index += 1
++            closed = False
++            while index < len(query):
++                if query[index] == quote:
++                    if index + 1 < len(query) and query[index + 1] == quote:
++                        output.extend((" ", " "))
++                        index += 2
++                        continue
++                    output.append(" ")
++                    index += 1
++                    closed = True
++                    break
++                output.append("\n" if query[index] == "\n" else " ")
++                index += 1
++            if not closed:
++                raise ValueError("Unterminated SQL quoted value")
++            continue
++
++        output.append(char)
++        index += 1
++
++    return "".join(output)
++
++
++def validate_read_only_query(query: str) -> str:
++    """Validate that query is one non-locking SELECT/WITH/plain EXPLAIN statement."""
++    if not isinstance(query, str) or not query.strip():
++        raise ValueError("Query must be a non-empty string")
++
++    sanitized = sanitize_sql(query)
++    semicolons = [index for index, char in enumerate(sanitized) if char == ";"]
++    if len(semicolons) > 1:
++        raise ValueError("Exactly one SQL statement is allowed")
++    if semicolons:
++        semicolon = semicolons[0]
++        if not sanitized[:semicolon].strip() or sanitized[semicolon + 1:].strip():
++            raise ValueError("Exactly one SQL statement is allowed; a semicolon is permitted only at the end")
++        statement = sanitized[:semicolon].strip()
++    else:
++        statement = sanitized.strip()
++    first_match = re.match(r"([A-Za-z]+)", statement)
++    first_keyword = first_match.group(1).upper() if first_match else ""
++    if first_keyword not in {"SELECT", "WITH", "EXPLAIN"}:
++        raise ValueError("Only SELECT, WITH, or plain EXPLAIN queries are allowed")
++
++    forbidden = FORBIDDEN_KEYWORDS.search(statement)
++    if forbidden:
++        raise ValueError(f"Read-only mode rejects SQL keyword {forbidden.group(1).upper()}")
++    if re.search(r"\bSELECT\b[\s\S]*?\bINTO\b", statement, re.IGNORECASE):
++        raise ValueError("SELECT INTO is not allowed")
++    if re.search(
++        r"\bFOR\s+(UPDATE|NO\s+KEY\s+UPDATE|SHARE|KEY\s+SHARE)\b",
++        statement,
++        re.IGNORECASE,
++    ):
++        raise ValueError("Row-locking SELECT queries are not allowed")
++    if first_keyword == "EXPLAIN" and not re.search(r"\b(SELECT|WITH)\b", statement, re.IGNORECASE):
++        raise ValueError("EXPLAIN must describe a SELECT or WITH query")
++
++    if semicolons:
++        return query[:semicolons[0]].strip()
++    return query.strip()
+@@ -28,11 +147,6 @@
+-    """Append LIMIT clause if not already present.
+-
+-    Args:
+-        query: SQL query string
+-        limit: Maximum number of rows to return
+-
+-    Returns:
+-        Query string with LIMIT clause enforced
+-    """
+-    stripped = query.rstrip().rstrip(";")
+-    if re.search(r"\bLIMIT\s+\d+", stripped, re.IGNORECASE):
++    """Wrap a validated query so existing or nested LIMIT clauses cannot exceed the cap."""
++    if not isinstance(limit, int) or limit <= 0:
++        raise ValueError("Limit must be a positive integer")
++    stripped = validate_read_only_query(query)
++    first_keyword = re.match(r"([A-Za-z]+)", sanitize_sql(stripped).lstrip()).group(1).upper()
++    if first_keyword == "EXPLAIN":
+@@ -40 +154 @@
+-    return f"{stripped}\nLIMIT {limit}"
++    return f"SELECT * FROM (\n{stripped}\n) AS _tableau_read_only_query\nLIMIT {limit}"
+@@ -44,9 +158 @@
+-    """Create a PostgreSQL connection from .env credentials.
+-
+-    Returns:
+-        Active psycopg2 connection
+-
+-    Raises:
+-        EnvironmentError: If required env vars are missing
+-    """
+-    load_dotenv()
++    """Create a PostgreSQL connection from exported credentials."""
+@@ -68 +174 @@
+-    return psycopg2.connect(
++    connection = psycopg2.connect(
+@@ -74,0 +181,2 @@
++    connection.set_session(readonly=True, autocommit=True)
++    return connection
+@@ -78,8 +186 @@
+-    """Execute a query and return results as a DataFrame.
+-
+-    Args:
+-        query: SQL query string
+-
+-    Returns:
+-        DataFrame with query results
+-    """
++    """Execute one validated query and return at most MAX_ROWS rows."""
+@@ -90,0 +192,2 @@
++        if cursor.description is None:
++            raise ValueError("Query did not return a result set")
+@@ -92 +195 @@
+-        rows = cursor.fetchall()
++        rows = cursor.fetchmany(MAX_ROWS + 1)[:MAX_ROWS]
+@@ -99,2 +202,4 @@
+-    """CLI entrypoint for PostgreSQL query execution."""
+-    parser = argparse.ArgumentParser(description="Run PostgreSQL query with LIMIT 500")
++    """CLI entrypoint for read-only PostgreSQL query execution."""
++    parser = argparse.ArgumentParser(
++        description="Run one read-only PostgreSQL SELECT/WITH/EXPLAIN query with a 500-row cap"
++    )
+@@ -103 +208 @@
+-    group.add_argument("--file", "-f", help="Path to .sql file")
++    group.add_argument("--file", "-f", help="Path to one .sql query file")
+@@ -104,0 +210 @@
++    parser.add_argument("--env-file", help="Explicit path to a dotenv file")
+@@ -106,0 +213,6 @@
++    if args.env_file:
++        env_path = os.path.abspath(os.path.expanduser(args.env_file))
++        if not os.path.isfile(env_path):
++            parser.error(f"--env-file is not a file: {env_path}")
++        load_dotenv(dotenv_path=env_path, override=False)
++
+@@ -109,2 +221,7 @@
+-        with open(args.file, "r") as f:
+-            query = f.read()
++        with open(args.file, "r", encoding="utf-8") as query_file:
++            query = query_file.read()
++
++    try:
++        validate_read_only_query(query)
++    except ValueError as exc:
++        parser.error(str(exc))
+@@ -114 +231 @@
+-    print(f"Executing query (LIMIT {MAX_ROWS} enforced)...")
++    print(f"Executing read-only query (maximum {MAX_ROWS} rows)...")
+diff -rN -U0 --ignore-trailing-space a/tableau-dashboard-creator/SKILL.md b/tableau-dashboard-creator/SKILL.md
+--- a/tableau-dashboard-creator/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/tableau-dashboard-creator/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11,2 +10,0 @@
+-  upstream:
+-    disable-model-invocation: true
+@@ -134,2 +132,2 @@
+-   - PostgreSQL: run the installed skill's `scripts/query_postgresql.py`
+-   - Other databases: add a `query_<dbtype>.py` script following the PostgreSQL pattern
++   - PostgreSQL: run the installed skill's `scripts/query_postgresql.py`; it permits one read-only `SELECT`, `WITH`, or plain `EXPLAIN` query and enforces a hard 500-row cap
++   - Other databases: add a `query_<dbtype>.py` script following the same read-only-by-default pattern

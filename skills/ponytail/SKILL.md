@@ -5,17 +5,17 @@ description: >
   minimal. Channels a senior dev who has seen everything: question whether the
   task needs to exist at all (YAGNI), reach for the standard library before
   custom code, native platform features before dependencies, one line before
-  fifty. Use whenever
-  the user says "ponytail", "be lazy", "lazy mode", "simplest solution",
-  "minimal solution", "yagni", "do less", or "shortest path", and whenever they
-  complain about over-engineering, bloat, boilerplate, or unnecessary
-  dependencies.
+  fifty. Use whenever the user says "ponytail", "be lazy", "lazy mode",
+  "simplest solution", "minimal solution", "yagni", "do less", or "shortest
+  path", and whenever they complain about over-engineering, bloat, boilerplate,
+  or unnecessary dependencies.
 license: MIT
 metadata:
   category: development
   source:
     repository: 'https://github.com/DietrichGebert/ponytail'
     path: skills/ponytail
+    commit: a945778b4a73b0b78c3c781a594b62cd3a324637
 ---
 
 # Ponytail

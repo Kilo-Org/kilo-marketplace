@@ -133,16 +133,19 @@ metadata:
     repository: https://github.com/yourname/your-skill-repo
     path: path/to/skill
     license_path: LICENSE
+    commit: 0123456789abcdef0123456789abcdef01234567
 ---
 ```
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `metadata.suggest_for.filename` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
-| `metadata.suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this skill is relevant, such as `"ms-toolsai.jupyter"` |
+| `metadata.suggest_for.vscode_extension` | No | Non-empty list of VS Code extension objects (`name` + `id`) that strongly indicate this skill is relevant, such as `{ name: "Jupyter", id: "ms-toolsai.jupyter" }` |
+| `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
 | `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
+| `metadata.source.commit` | **Yes** (for new imports and updates) | Full 40-character Git SHA of the imported upstream revision; managed by marketplace tooling |
 
 Suggestion patterns are intentionally not exhaustive. A format being supported as input or output is not enough to add it: for example, a generic Markdown or audio file does not imply a writing or meeting-analysis task. Likewise, only list a VS Code extension when its installation strongly indicates the exact skill is relevant. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
@@ -264,6 +267,31 @@ Examples:
 
 ---
 
+## Marketplace Requirements
+
+Agent, skill, and MCP definitions may declare machine-readable dependencies with an optional top-level `requirements` field:
+
+```yaml
+requirements:
+  skills:
+    - jupyter-notebook
+  vscode_extensions:
+    - name: Jupyter
+      id: ms-toolsai.jupyter
+  mcps:
+    - jupyter
+```
+
+The supported subgroups are exactly `skills`, `vscode_extensions`, and `mcps`. Each subgroup that is present must be a non-empty list, and every listed item is a direct required dependency; alternative or OR groups are not supported. Omit `requirements` entirely when the resource has no machine-readable dependencies.
+
+Skill values must be exact marketplace skill IDs, and MCP values must match the `id` in the resource's `MCP.yaml`. Both are checked during marketplace generation. A skill cannot require itself, and an MCP cannot require itself. Dependencies between multiple resources are not expanded or checked for cycles. Each VS Code extension requires a human-readable `name` and a non-empty extension identifier in `id`. Authored values and list ordering are preserved without normalization, sorting, or deduplication.
+
+Declare requirements at the top level of `agents/<id>/AGENT_DEFINITION.md`, `skills/<id>/SKILL.md`, or `mcps/<id>/MCP.yaml`. Generated agent requirements are emitted as `items[].content.requirements` so installation retains them. Generated skill and MCP requirements remain at `items[].requirements`, because skill content is a download URL and MCP content is runtime configuration.
+
+Keep setup instructions that cannot be resolved to marketplace skills, MCPs, or VS Code extensions in `prerequisites`.
+
+---
+
 ## Contributing MCP Servers
 
 MCP (Model Context Protocol) servers extend Kilo Code's capabilities by connecting to external tools and services.
@@ -330,7 +358,8 @@ parameters:
 | `url` | Yes | Link to the MCP server repository |
 | `category` | Yes | Primary category: `business`, `data`, `development`, `observability`, `productivity`, `search`, or `web-automation` |
 | `suggest_for.filename` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
-| `suggest_for.vscode_extension` | No | Non-empty list of exact VS Code extension IDs that strongly indicate this MCP server is relevant, such as `"ms-toolsai.jupyter"` for Jupyter |
+| `suggest_for.vscode_extension` | No | Non-empty list of VS Code extension objects (`name` + `id`) that strongly indicate this MCP server is relevant, such as `{ name: "Jupyter", id: "ms-toolsai.jupyter" }` |
+| `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |
@@ -347,7 +376,7 @@ Choose the single category that best represents how users will discover the MCP.
 
 Propose a new category only when several MCPs share a distinct primary purpose that does not fit an existing category.
 
-Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `"ms-toolsai.jupyter"` for Jupyter. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
+Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `{ name: "Jupyter", id: "ms-toolsai.jupyter" }`. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Transport Types
 

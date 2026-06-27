@@ -17,39 +17,111 @@
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import matter from "gray-matter";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillsDir = path.join(__dirname, "..", "skills");
 
+function ensureFinalNewline(content: string): string {
+  return content.replace(/(?:\r?\n)+$/, "") + "\n";
+}
+
 function parseGitHubUrl(url: string): {
   owner: string;
   repo: string;
+  ref: string;
   skillPath: string;
 } {
-  // Handle GitHub URL with path: https://github.com/owner/repo/tree/branch/path/to/skill
-  const treePattern =
-    /github\.com\/([^\/]+)\/([^\/]+)\/tree\/[^\/]+\/(.+?)(?:\/)?$/;
-  const treeMatch = url.match(treePattern);
-  if (treeMatch) {
-    return { owner: treeMatch[1], repo: treeMatch[2], skillPath: treeMatch[3] };
+  const parsed = new URL(url);
+  if (parsed.hostname !== "github.com") {
+    throw new Error(`Invalid GitHub URL host: ${parsed.hostname}`);
   }
 
-  // Handle GitHub URL with blob (file): https://github.com/owner/repo/blob/branch/path/to/file
-  const blobPattern =
-    /github\.com\/([^\/]+)\/([^\/]+)\/blob\/[^\/]+\/(.+?)(?:\/)?$/;
-  const blobMatch = url.match(blobPattern);
-  if (blobMatch) {
-    // Get the directory containing the file
-    const filePath = blobMatch[3];
-    const dirPath = path.dirname(filePath);
-    return { owner: blobMatch[1], repo: blobMatch[2], skillPath: dirPath };
+  const parts = parsed.pathname.replace(/^\/|\/$/g, "").split("/");
+  const [owner, repo, kind, ...refAndPath] = parts;
+  if (!owner || !repo || !["tree", "blob"].includes(kind) || refAndPath.length < 2) {
+    throw new Error(
+      `Invalid GitHub URL: ${url}\n\nExpected format: https://github.com/owner/repo/tree/branch/path/to/skill`,
+    );
+  }
+
+  const resolved = resolveRefAndPath(owner, repo, refAndPath);
+  const skillPath =
+    kind === "blob" ? path.dirname(resolved.path) : resolved.path;
+
+  validateSourcePath(skillPath);
+
+  return {
+    owner,
+    repo,
+    ref: resolved.ref,
+    skillPath,
+  };
+}
+
+function resolveRefAndPath(
+  owner: string,
+  repo: string,
+  refAndPath: string[],
+): { ref: string; path: string } {
+  const repository = `https://github.com/${owner}/${repo}.git`;
+  const refs = listRemoteRefs(repository);
+
+  for (let i = refAndPath.length - 1; i >= 1; i -= 1) {
+    const candidate = refAndPath.slice(0, i).join("/");
+    if (refs.has(candidate)) {
+      return {
+        ref: candidate,
+        path: refAndPath.slice(i).join("/"),
+      };
+    }
+  }
+
+  if (/^[0-9a-f]{40}$/i.test(refAndPath[0])) {
+    return {
+      ref: refAndPath[0],
+      path: refAndPath.slice(1).join("/"),
+    };
   }
 
   throw new Error(
-    `Invalid GitHub URL: ${url}\n\nExpected format: https://github.com/owner/repo/tree/branch/path/to/skill`,
+    `Could not resolve GitHub ref from ${repository}: ${refAndPath.join("/")}`,
   );
+}
+
+function listRemoteRefs(repository: string): Set<string> {
+  const output = execFileSync("git", ["ls-remote", "--heads", "--tags", repository], {
+    encoding: "utf-8",
+  });
+  const refs = new Set<string>();
+  for (const line of output.split(/\r?\n/)) {
+    const [, refName] = line.split(/\s+/);
+    if (!refName || refName.endsWith("^{}")) continue;
+    refs.add(refName.replace(/^refs\/(heads|tags)\//, ""));
+  }
+  return refs;
+}
+
+function validateSourcePath(sourcePath: string): void {
+  if (
+    path.isAbsolute(sourcePath) ||
+    sourcePath.split(/[\\/]/).some((part) => part === "..") ||
+    /[\r\n]/.test(sourcePath)
+  ) {
+    throw new Error(`Invalid source path: ${sourcePath}`);
+  }
+}
+
+function copySkillSource(sourceDir: string, destinationDir: string, checkoutDir: string): void {
+  const gitDir = path.resolve(checkoutDir, ".git");
+  fs.cpSync(sourceDir, destinationDir, {
+    recursive: true,
+    filter: (source) => {
+      const resolved = path.resolve(source);
+      return resolved !== gitDir && !resolved.startsWith(`${gitDir}${path.sep}`);
+    },
+  });
 }
 
 function getSkillName(skillPath: string): string {
@@ -75,7 +147,7 @@ async function main() {
 
   const [fullUrl] = args;
 
-  const { owner, repo, skillPath } = parseGitHubUrl(fullUrl);
+  const { owner, repo, ref, skillPath } = parseGitHubUrl(fullUrl);
   const skillName = getSkillName(skillPath);
   const targetDir = path.join(skillsDir, skillName);
 
@@ -96,12 +168,13 @@ async function main() {
     console.log("\nCloning repository (sparse checkout)...");
 
     // Initialize a sparse checkout
-    execSync(`git init`, { cwd: tempDir, stdio: "pipe" });
-    execSync(`git remote add origin https://github.com/${owner}/${repo}.git`, {
-      cwd: tempDir,
-      stdio: "pipe",
-    });
-    execSync(`git config core.sparseCheckout true`, {
+    execFileSync("git", ["init"], { cwd: tempDir, stdio: "pipe" });
+    execFileSync(
+      "git",
+      ["remote", "add", "origin", `https://github.com/${owner}/${repo}.git`],
+      { cwd: tempDir, stdio: "pipe" },
+    );
+    execFileSync("git", ["config", "core.sparseCheckout", "true"], {
       cwd: tempDir,
       stdio: "pipe",
     });
@@ -112,9 +185,20 @@ async function main() {
       skillPath + "\n",
     );
 
-    // Fetch and checkout
-    execSync(`git fetch --depth 1 origin HEAD`, { cwd: tempDir, stdio: "pipe" });
-    execSync(`git checkout FETCH_HEAD`, { cwd: tempDir, stdio: "pipe" });
+    // Fetch and checkout the URL's requested ref
+    execFileSync("git", ["fetch", "--depth", "1", "origin", ref], {
+      cwd: tempDir,
+      stdio: "pipe",
+    });
+    execFileSync("git", ["checkout", "FETCH_HEAD"], {
+      cwd: tempDir,
+      stdio: "pipe",
+    });
+    const sourceCommit = execFileSync(
+      "git",
+      ["rev-parse", "FETCH_HEAD"],
+      { cwd: tempDir, encoding: "utf-8" },
+    ).trim();
 
     const sourceDir = path.join(tempDir, skillPath);
 
@@ -124,7 +208,7 @@ async function main() {
 
     // Copy the skill directory
     console.log(`Copying skill to ${targetDir}...`);
-    fs.cpSync(sourceDir, targetDir, { recursive: true });
+    copySkillSource(sourceDir, targetDir, tempDir);
 
     // Update the SKILL.md frontmatter
     const skillMdPath = path.join(targetDir, "SKILL.md");
@@ -151,13 +235,17 @@ async function main() {
     frontmatter.metadata.source = {
       repository: `https://github.com/${owner}/${repo}`,
       path: skillPath,
+      ref,
+      commit: sourceCommit,
     };
     console.log(`  Added source: https://github.com/${owner}/${repo}`);
     console.log(`  Added path: ${skillPath}`);
+    console.log(`  Added ref: ${ref}`);
+    console.log(`  Added commit: ${sourceCommit}`);
 
     // Write back the updated SKILL.md
     const updatedContent = matter.stringify(body, frontmatter);
-    fs.writeFileSync(skillMdPath, updatedContent);
+    fs.writeFileSync(skillMdPath, ensureFinalNewline(updatedContent));
 
     console.log(`\n✓ Successfully added skill: ${skillName}`);
     console.log(`  Location: ${targetDir}`);

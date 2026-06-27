@@ -1,0 +1,13 @@
+{
+  "name": "redis-core",
+  "version": "1.0.0",
+  "description": "Core Redis modeling — data structures, key naming, memory and TTL, atomic primitives, JSON vs Hash, Streams vs Pub/Sub.",
+  "author": {
+    "name": "Redis",
+    "email": "support@redis.com"
+  },
+  "homepage": "https://redis.io",
+  "repository": "https://github.com/redis/agent-skills",
+  "license": "MIT",
+  "keywords": ["redis", "database", "data-modeling", "data-structures", "key-naming"]
+}

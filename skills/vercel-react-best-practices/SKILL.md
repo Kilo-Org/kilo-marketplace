@@ -14,6 +14,7 @@ metadata:
   source:
     repository: 'https://github.com/vercel-labs/agent-skills'
     path: skills/react-best-practices
+    commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
 ---
 
 # Vercel React Best Practices

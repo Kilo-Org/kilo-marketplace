@@ -9,6 +9,8 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: competitive-ads-extractor
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
+license: NOASSERTION
 ---
 
 # Competitive Ads Extractor
@@ -49,21 +51,21 @@ Scrape ads from [Company] and analyze their messaging
 ### Specific Analysis
 
 ```
-Get all ads from [Competitor] focusing on their messaging 
+Get all ads from [Competitor] focusing on their messaging
 about [specific problem]. What pain points are they highlighting?
 ```
 
 ### Competitive Set
 
 ```
-Extract ads from these 5 competitors: [list]. 
+Extract ads from these 5 competitors: [list].
 Compare their approaches and tell me what's working.
 ```
 
 ### Specific Platform
 
 ```
-Get LinkedIn ads from [Competitor] and analyze their 
+Get LinkedIn ads from [Competitor] and analyze their
 B2B positioning strategy
 ```
 
@@ -95,7 +97,7 @@ Analyzing messaging...
 
 ## Overview
 - Total Ads: 23 active
-- Primary Themes: Productivity (35%), Collaboration (30%), 
+- Primary Themes: Productivity (35%), Collaboration (30%),
   Templates (20%), AI Features (15%)
 - Ad Formats: Static images (60%), Video (40%)
 - CTA Patterns: "Try for free", "Get started"
@@ -136,10 +138,10 @@ Analyzing messaging...
 Best Headlines:
 1. "Your team's knowledge, finally in one place"
    → Benefit-focused, addresses pain directly
-   
+
 2. "The all-in-one workspace"
    → Clear positioning, broad appeal
-   
+
 3. "AI that actually helps you work"
    → Addresses AI skepticism, practical angle
 
@@ -227,25 +229,25 @@ Based on ad variations:
 
 ### Trend Tracking
 ```
-Compare [Competitor]'s ads from Q1 vs Q2. 
+Compare [Competitor]'s ads from Q1 vs Q2.
 What messaging has changed?
 ```
 
 ### Multi-Competitor Analysis
 ```
-Extract ads from [Company A], [Company B], [Company C]. 
+Extract ads from [Company A], [Company B], [Company C].
 What are the common patterns? Where do they differ?
 ```
 
 ### Industry Benchmarks
 ```
-Show me ad patterns across the top 10 project management 
+Show me ad patterns across the top 10 project management
 tools. What problems do they all focus on?
 ```
 
 ### Format Analysis
 ```
-Analyze video ads vs static image ads from [Competitor]. 
+Analyze video ads vs static image ads from [Competitor].
 Which gets more engagement? (if data available)
 ```
 

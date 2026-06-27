@@ -1,0 +1,33 @@
+id: looker-toolbox
+name: Looker MCP Toolbox
+description: Runs Google's local MCP Toolbox prebuilt for Looker, providing query, content, and LookML context with Looker API client credentials.
+author: Google Cloud
+url: https://github.com/googleapis/mcp-toolbox
+category: data
+prerequisites:
+  - Node.js
+  - Looker API credentials restricted to the intended models and content
+content:
+  - name: NPX (official prebuilt)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@toolbox-sdk/server@1.5.0", "--prebuilt", "looker", "--stdio"],
+        "env": {
+          "LOOKER_BASE_URL": "{{LOOKER_BASE_URL}}",
+          "LOOKER_CLIENT_ID": "{{LOOKER_CLIENT_ID}}",
+          "LOOKER_CLIENT_SECRET": "{{LOOKER_CLIENT_SECRET}}"
+        }
+      }
+parameters:
+  - name: Looker base URL
+    key: LOOKER_BASE_URL
+    placeholder: https://looker.example.com
+  - name: Looker API client ID
+    key: LOOKER_CLIENT_ID
+    placeholder: your_looker_client_id
+  - name: Looker API client secret
+    key: LOOKER_CLIENT_SECRET
+    placeholder: your_looker_client_secret
