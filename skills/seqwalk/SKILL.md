@@ -11,12 +11,12 @@ license: MIT
 metadata:
   category: development
   author: reason211
-  version: 0.1.2
+  version: 0.1.3
   source:
     repository: 'https://github.com/reason211/seqwalk'
     path: skills/seqwalk
     ref: main
-    commit: 191ea17698156c263d707986d7435c275c1e54f5
+    commit: bdb187d830d8de39c77cc19f3f0ba232e5ddd67f
 ---
 
 # SeqWalk
@@ -36,7 +36,18 @@ Use the bundled scaffold at `assets/strict-sequence-viewer-template.html` when s
 7. Compute message `left` and `width` from real DOM lifeline centers after layout, resize, filtering, or data changes.
 8. Track the current visible step while scrolling and highlight related participants, lifelines, message lines, and cards.
 9. Keep hover, focus, and click relationships first-degree only.
-10. Validate the rendered page in a browser before claiming completion.
+10. Include the fixed top controls from the bundled template: section navigation, store/cache highlight, and clear-lock.
+11. Validate the rendered page in a browser before claiming completion.
+
+## Fixed Controls
+
+Keep these controls in generated diagrams unless the user explicitly requests a custom shell:
+
+- **Section navigation**: render buttons from `.sequence-section[data-nav-label]` so users can jump to major phases without hiding content.
+- **Store/cache highlight**: keep a store emphasis toggle that highlights store-like actors, lifelines, related cards, and related flows.
+- **Clear lock**: keep a clear-lock button that resets clicked card locks, participant locks, hover state, and store/cache emphasis.
+
+Section navigation is for fast positioning, not filtering. It should scroll to the target section and keep the full sequence available for progressive reading.
 
 ## Highlighting Model
 

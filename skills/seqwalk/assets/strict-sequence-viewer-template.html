@@ -111,11 +111,27 @@
 
     .tools {
       display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 8px;
       align-items: center;
+      max-width: 760px;
     }
 
-    .tool-button {
+    .section-nav {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+      padding: 4px;
+      border: 1px solid rgba(138,166,196,0.28);
+      border-radius: 18px;
+      background: rgba(246,250,254,0.64);
+      box-shadow: var(--inner);
+    }
+
+    .tool-button,
+    .section-button {
       height: 34px;
       border: 0;
       border-radius: 14px;
@@ -128,10 +144,20 @@
     }
 
     .tool-button:hover,
-    .tool-button.active {
+    .tool-button.active,
+    .section-button:hover,
+    .section-button.active {
       color: #0f5bd4;
       background: rgba(255,255,255,0.96);
       box-shadow: 0 8px 22px rgba(47,125,246,0.14), var(--inner);
+    }
+
+    .tool-button:disabled {
+      cursor: default;
+      opacity: 0.54;
+      color: #6f7c8c;
+      background: rgba(237,243,249,0.72);
+      box-shadow: var(--inner);
     }
 
     .participant-rail {
@@ -590,6 +616,11 @@
       }
       .topbar {
         top: 8px;
+        grid-template-columns: 1fr;
+      }
+      .tools {
+        justify-content: flex-start;
+        max-width: none;
       }
     }
   </style>
@@ -602,7 +633,9 @@
         <p>Sticky participants, measured lifelines, complete labels, first-degree hover/click highlighting.</p>
       </div>
       <div class="tools">
+        <nav class="section-nav" id="sectionNav" data-all-label="全部" aria-label="时序段落"></nav>
         <button class="tool-button" id="storeToggle" type="button" aria-pressed="false">高亮 Store</button>
+        <button class="tool-button" id="clearLockButton" type="button" disabled>清除锁定</button>
       </div>
     </header>
 
@@ -613,7 +646,7 @@
     <section class="timeline-wrap" id="diagram" aria-label="Sequence diagram">
       <div class="lifeline-layer" id="lifelineLayer" aria-hidden="true"></div>
 
-      <section class="sequence-section" id="section-live" data-section="live">
+      <section class="sequence-section" id="section-live" data-section="live" data-nav-label="实时链路">
         <div class="section-title">
           <h2>A 实时链路</h2>
           <p>流式输入先进入内存/缓存，再由 UI 按需读取。</p>
@@ -643,7 +676,7 @@
         </div>
       </section>
 
-      <section class="sequence-section" id="section-job" data-section="job">
+      <section class="sequence-section" id="section-job" data-section="job" data-nav-label="作业链路">
         <div class="section-title">
           <h2>B 作业链路</h2>
           <p>Dashboard 入队，Worker 消费，结果落盘后页面读取。</p>
@@ -693,6 +726,11 @@
     const actorRail = document.getElementById("actorRail");
     const lifelineLayer = document.getElementById("lifelineLayer");
     const storeToggle = document.getElementById("storeToggle");
+    const clearLockButton = document.getElementById("clearLockButton");
+    const sectionNav = document.getElementById("sectionNav");
+    const diagram = document.getElementById("diagram");
+    const topbar = document.querySelector(".topbar");
+    const participantRail = document.querySelector(".participant-rail");
 
     document.documentElement.style.setProperty("--lane-count", actors.length);
     actorRail.innerHTML = actors.map((actor) => `
@@ -707,17 +745,94 @@
       </div>
     `).join("");
 
+    const sections = [...document.querySelectorAll(".sequence-section")];
     const steps = [...document.querySelectorAll(".step")];
     const cards = [...document.querySelectorAll(".event-card")];
     const cardsById = new Map(cards.map((card) => [card.dataset.cardId, card]));
     const actorsById = new Map([...document.querySelectorAll(".actor")].map((el) => [el.dataset.actor, el]));
     const lifelinesById = new Map([...document.querySelectorAll(".lifeline")].map((el) => [el.dataset.actor, el]));
     const actorsMetaById = new Map(actors.map((actor) => [actor.id, actor]));
+    const sectionButtons = new Map();
     let viewportStep = steps[0];
     let hoverCardId = null;
     let hoverActorId = null;
     let selectedCardId = null;
     let selectedActorId = null;
+
+    function sectionLabel(section) {
+      return section.dataset.navLabel ||
+        section.querySelector(".tag")?.textContent?.trim() ||
+        section.querySelector("h2")?.textContent?.trim() ||
+        section.dataset.section ||
+        "Section";
+    }
+
+    function buildSectionNav() {
+      if (!sectionNav) return;
+      sectionNav.innerHTML = "";
+      sectionButtons.clear();
+
+      const allButton = document.createElement("button");
+      allButton.className = "section-button active";
+      allButton.type = "button";
+      allButton.dataset.targetSection = "all";
+      allButton.textContent = sectionNav.dataset.allLabel || "全部";
+      allButton.addEventListener("click", () => scrollToSection("all"));
+      sectionNav.appendChild(allButton);
+      sectionButtons.set("all", allButton);
+
+      sections.forEach((section) => {
+        const button = document.createElement("button");
+        button.className = "section-button";
+        button.type = "button";
+        button.dataset.targetSection = section.id;
+        button.textContent = sectionLabel(section);
+        button.addEventListener("click", () => scrollToSection(section.id));
+        sectionNav.appendChild(button);
+        sectionButtons.set(section.id, button);
+      });
+    }
+
+    function scrollToSection(sectionId) {
+      const target = sectionId === "all" ? diagram : document.getElementById(sectionId);
+      if (!target) return;
+      const stickyOffset = (topbar?.offsetHeight || 72) + (participantRail?.offsetHeight || 0) + 36;
+      const top = target.getBoundingClientRect().top + window.scrollY - stickyOffset;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    }
+
+    function updateStickyOffsets() {
+      const nextTop = (topbar?.offsetHeight || 64) + 28;
+      document.documentElement.style.setProperty("--rail-top", `${nextTop}px`);
+    }
+
+    function updateSectionNav() {
+      if (!sectionButtons.size) return;
+      const markerY = (participantRail?.getBoundingClientRect().bottom || 210) + 16;
+      const section = sections
+        .map((item) => {
+          const rect = item.getBoundingClientRect();
+          return { item, rect };
+        })
+        .filter(({ rect }) => rect.bottom > markerY && rect.top < window.innerHeight)
+        .sort((a, b) => {
+          const aPassed = a.rect.top <= markerY ? 0 : 1;
+          const bPassed = b.rect.top <= markerY ? 0 : 1;
+          return aPassed - bPassed || Math.abs(a.rect.top - markerY) - Math.abs(b.rect.top - markerY);
+        })[0]?.item;
+      const activeId = section?.id || "all";
+      sectionButtons.forEach((button, id) => {
+        const active = id === activeId || (id === "all" && !section);
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-current", active ? "true" : "false");
+      });
+    }
+
+    function updateClearLockButton() {
+      if (!clearLockButton) return;
+      const hasLock = Boolean(selectedCardId || selectedActorId || app.classList.contains("focus-store"));
+      clearLockButton.disabled = !hasLock;
+    }
 
     function stepActorIds(step) {
       const explicit = (step.dataset.actors || "").split(/\s+/).filter(Boolean);
@@ -939,6 +1054,8 @@
       if (app.classList.contains("focus-store")) {
         applyStoreFocus("locked");
       }
+      updateSectionNav();
+      updateClearLockButton();
     }
 
     function setHoverCard(cardId) {
@@ -1017,6 +1134,7 @@
     }
 
     function syncLayout() {
+      updateStickyOffsets();
       alignFlows();
       updateActiveFromViewport();
     }
@@ -1040,6 +1158,19 @@
       renderHighlights();
     });
 
+    clearLockButton.addEventListener("click", () => {
+      selectedCardId = null;
+      selectedActorId = null;
+      hoverCardId = null;
+      hoverActorId = null;
+      storeToggle.classList.remove("active");
+      storeToggle.setAttribute("aria-pressed", "false");
+      app.classList.remove("focus-store");
+      renderHighlights();
+    });
+
+    buildSectionNav();
+    updateStickyOffsets();
     markStoreRelated();
     alignFlows();
     bindInteractions();
