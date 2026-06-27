@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Sequence Diagram</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232f7df6'/%3E%3Cpath d='M9 11h14M9 16h14M9 21h9' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #edf4fb;
+      --ink: #142033;
+      --muted: #657386;
+      --line: rgba(88, 118, 150, 0.22);
+      --glass: rgba(255, 255, 255, 0.72);
+      --glass-strong: rgba(255, 255, 255, 0.9);
+      --blue: #2f7df6;
+      --cyan: #16a4c4;
+      --green: #18a36c;
+      --orange: #df8f32;
+      --red: #d95f5f;
+      --violet: #7d6bd6;
+      --shadow: 0 18px 50px rgba(43, 72, 105, 0.15);
+      --inner: inset 0 1px 0 rgba(255,255,255,0.86), inset 0 -1px 0 rgba(84,116,145,0.12);
+      --lane-count: 8;
+      --rail-top: 84px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 1040px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(115deg, rgba(47,125,246,0.12), transparent 34%),
+        linear-gradient(245deg, rgba(22,164,196,0.13), transparent 40%),
+        linear-gradient(180deg, #f8fbff 0%, #ebf4fb 48%, #edf7f3 100%);
+      overflow-x: auto;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(47,125,246,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47,125,246,0.045) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1320px, calc(100vw - 32px));
+      min-width: 1000px;
+      margin: 16px auto 56px;
+      padding: 16px;
+      border: 1px solid rgba(138,166,196,0.28);
+      border-radius: 30px;
+      background: rgba(255,255,255,0.34);
+      box-shadow: 0 24px 76px rgba(30,66,101,0.17);
+      backdrop-filter: blur(26px) saturate(1.45);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 24;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid rgba(138,166,196,0.3);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.76);
+      box-shadow: var(--shadow), var(--inner);
+      backdrop-filter: blur(24px) saturate(1.7);
+    }
+
+    .brand {
+      min-width: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .tools {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tool-button {
+      height: 34px;
+      border: 0;
+      border-radius: 14px;
+      padding: 0 12px;
+      color: #314055;
+      background: rgba(246,250,254,0.78);
+      box-shadow: var(--inner);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .tool-button:hover,
+    .tool-button.active {
+      color: #0f5bd4;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 8px 22px rgba(47,125,246,0.14), var(--inner);
+    }
+
+    .participant-rail {
+      position: sticky;
+      top: var(--rail-top);
+      z-index: 20;
+      margin-top: 14px;
+      padding: 10px;
+      border: 1px solid rgba(138,166,196,0.32);
+      border-radius: 26px;
+      background: rgba(255,255,255,0.76);
+      box-shadow: 0 16px 46px rgba(43,72,105,0.13), var(--inner);
+      backdrop-filter: blur(28px) saturate(1.85);
+    }
+
+    .rail-grid,
+    .lifeline-layer,
+    .step {
+      display: grid;
+      grid-template-columns: repeat(var(--lane-count), minmax(90px, 1fr));
+      gap: 8px;
+    }
+
+    .actor {
+      position: relative;
+      min-height: 82px;
+      padding: 10px 8px 13px;
+      border: 1px solid rgba(138,166,196,0.28);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.62);
+      box-shadow: var(--inner);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, opacity 180ms ease, filter 180ms ease;
+      overflow: hidden;
+      cursor: pointer;
+      --actor-color: var(--blue);
+    }
+
+    .actor::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 7px;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--actor-color);
+      opacity: 0.5;
+      transform: scaleX(0.22);
+      transform-origin: left center;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .actor small,
+    .actor strong {
+      display: block;
+      white-space: normal;
+      overflow: visible;
+      overflow-wrap: anywhere;
+      text-overflow: clip;
+    }
+
+    .actor small {
+      min-height: 22px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.18;
+    }
+
+    .actor strong {
+      margin-top: 4px;
+      color: #1c2c40;
+      font-size: 12px;
+      line-height: 1.18;
+      font-weight: 750;
+    }
+
+    .actor.active,
+    .actor.related,
+    .actor.locked {
+      border-color: color-mix(in srgb, var(--actor-color) 72%, white);
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 14px 30px color-mix(in srgb, var(--actor-color) 16%, transparent), var(--inner);
+      transform: translateY(-2px);
+    }
+
+    .actor.locked {
+      border-color: color-mix(in srgb, var(--actor-color) 88%, white);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--actor-color) 18%, transparent), 0 16px 34px color-mix(in srgb, var(--actor-color) 20%, transparent), var(--inner);
+      transform: translateY(-3px);
+    }
+
+    .actor.active::after,
+    .actor.related::after,
+    .actor.locked::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .has-click-highlight .actor:not(.locked) {
+      opacity: 0.24;
+      filter: saturate(0.55) contrast(0.88);
+      transform: none;
+    }
+
+    .timeline-wrap {
+      position: relative;
+      margin-top: 14px;
+      border: 1px solid rgba(138,166,196,0.28);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.42);
+      box-shadow: var(--shadow), var(--inner);
+      overflow: hidden;
+      backdrop-filter: blur(22px) saturate(1.5);
+    }
+
+    .lifeline-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      padding: 0 10px;
+    }
+
+    .lifeline {
+      position: relative;
+      min-width: 0;
+    }
+
+    .lifeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      border-left: 1.5px dashed rgba(74,103,134,0.24);
+      transform: translateX(-50%);
+      transition: border-color 180ms ease, filter 180ms ease, opacity 180ms ease, border-width 180ms ease;
+    }
+
+    .lifeline-line::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--line-color, var(--blue));
+      opacity: 0.28;
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--line-color) 12%, transparent);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .lifeline.active .lifeline-line,
+    .lifeline.related .lifeline-line,
+    .lifeline.locked .lifeline-line,
+    .focus-store .lifeline[data-kind="store"] .lifeline-line,
+    .focus-store .lifeline.store-related .lifeline-line {
+      border-left-color: var(--line-color, var(--blue));
+      border-left-width: 3px;
+      filter: drop-shadow(0 0 10px color-mix(in srgb, var(--line-color) 48%, transparent));
+    }
+
+    .lifeline.active .lifeline-line::before,
+    .lifeline.related .lifeline-line::before,
+    .lifeline.locked .lifeline-line::before,
+    .focus-store .lifeline[data-kind="store"] .lifeline-line::before,
+    .focus-store .lifeline.store-related .lifeline-line::before {
+      opacity: 1;
+      transform: scale(1.35);
+    }
+
+    .has-click-highlight .lifeline:not(.locked) .lifeline-line {
+      opacity: 0.18;
+      filter: saturate(0.5);
+    }
+
+    .sequence-section {
+      position: relative;
+      z-index: 1;
+      scroll-margin-top: 220px;
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(138,166,196,0.2);
+      background: rgba(247,251,255,0.78);
+      backdrop-filter: blur(18px) saturate(1.6);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .tag {
+      border: 1px solid rgba(138,166,196,0.28);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #314055;
+      background: rgba(255,255,255,0.72);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .steps {
+      padding: 18px 10px;
+    }
+
+    .step {
+      position: relative;
+      min-height: 208px;
+      padding: 18px 0 22px;
+      border-bottom: 1px solid rgba(138,166,196,0.16);
+      scroll-margin-top: 190px;
+      isolation: isolate;
+    }
+
+    .step:last-child {
+      border-bottom: 0;
+    }
+
+    .time-mark {
+      position: absolute;
+      left: 0;
+      top: 30px;
+      width: 64px;
+      color: #6b7b8e;
+      font-size: 12px;
+      text-align: right;
+      transform: translateX(-4px);
+    }
+
+    .flow {
+      position: absolute;
+      left: var(--flow-left, 0);
+      top: var(--flow-y, 42px);
+      z-index: 2;
+      width: var(--flow-width, 80px);
+      min-width: 26px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--flow-color), color-mix(in srgb, var(--flow-color) 48%, transparent));
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.45);
+      opacity: 0.72;
+      transform: translateY(-50%);
+      transition: opacity 180ms ease, height 180ms ease, filter 180ms ease, background 180ms ease;
+    }
+
+    .flow.reverse {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--flow-color) 48%, transparent), var(--flow-color));
+    }
+
+    .flow::before,
+    .flow::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--flow-color);
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--flow-color) 15%, transparent);
+    }
+
+    .flow::before {
+      left: -1px;
+    }
+
+    .flow::after {
+      right: -1px;
+    }
+
+    .flow-label {
+      position: absolute;
+      left: var(--label-left, 50%);
+      top: var(--label-top, -28px);
+      z-index: 7;
+      min-width: max-content;
+      max-width: none;
+      padding: 4px 8px;
+      border: 1px solid color-mix(in srgb, var(--flow-color) 28%, rgba(138,166,196,0.22));
+      border-radius: 999px;
+      color: #3f5064;
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 8px 18px rgba(43,72,105,0.1), var(--inner);
+      font-size: 11px;
+      line-height: 1.15;
+      text-align: center;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: clip;
+      pointer-events: none;
+      transform: translateX(-50%);
+      backdrop-filter: blur(10px);
+    }
+
+    .step.in-view > .flow,
+    .flow.related,
+    .flow.locked,
+    .focus-store .step.store-related > .flow {
+      height: 3px;
+      opacity: 1;
+      filter: drop-shadow(0 0 8px color-mix(in srgb, var(--flow-color) 42%, transparent));
+    }
+
+    .flow.related,
+    .flow.locked {
+      height: 4px;
+      filter: drop-shadow(0 0 10px color-mix(in srgb, var(--flow-color) 52%, transparent));
+    }
+
+    .has-click-highlight .flow:not(.locked) {
+      opacity: 0.16;
+      filter: saturate(0.45);
+    }
+
+    .event-card {
+      grid-column: var(--at) / span var(--span, 2);
+      position: relative;
+      align-self: start;
+      z-index: 3;
+      left: var(--card-x, 0px);
+      width: var(--card-width, auto);
+      margin-top: var(--card-y, 78px);
+      min-height: 86px;
+      padding: 13px 13px 12px;
+      border: 1px solid color-mix(in srgb, var(--flow-color) 38%, rgba(138,166,196,0.25));
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      box-shadow: 0 14px 36px rgba(43,72,105,0.14), var(--inner);
+      backdrop-filter: blur(18px) saturate(1.4);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, opacity 180ms ease, filter 180ms ease;
+      cursor: pointer;
+    }
+
+    .event-card:hover,
+    .event-card.related,
+    .event-card.locked,
+    .step.in-view .event-card {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 18px 42px rgba(43,72,105,0.18), var(--inner);
+    }
+
+    .event-card.locked {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--flow-color) 18%, transparent), 0 20px 46px rgba(43,72,105,0.2), var(--inner);
+    }
+
+    .has-click-highlight .event-card:not(.locked) {
+      opacity: 0.28;
+      filter: saturate(0.55) contrast(0.9);
+      transform: none;
+      box-shadow: 0 8px 18px rgba(43,72,105,0.08), var(--inner);
+    }
+
+    .event-card h3 {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      margin: 0;
+      color: #18283c;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 780;
+    }
+
+    .card-index {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      color: var(--flow-color, var(--blue));
+      background: color-mix(in srgb, var(--flow-color, var(--blue)) 12%, white);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--flow-color, var(--blue)) 24%, transparent);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .event-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .event-card code {
+      padding: 1px 5px;
+      border-radius: 6px;
+      color: #0d5ecd;
+      background: rgba(47,125,246,0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      overflow-wrap: anywhere;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 0 8px;
+      border: 1px solid rgba(138,166,196,0.24);
+      border-radius: 999px;
+      color: #405063;
+      background: rgba(247,251,255,0.74);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .focus-store .actor:not([data-kind="store"]):not(.active):not(.related):not(.locked),
+    .focus-store .lifeline:not([data-kind="store"]):not(.active):not(.related):not(.locked) .lifeline-line,
+    .focus-store .step:not(.store-related) .event-card,
+    .focus-store .step:not(.store-related) > .flow {
+      opacity: 0.26;
+      filter: saturate(0.55);
+    }
+
+    .focus-store .actor[data-kind="store"],
+    .focus-store .actor.store-related,
+    .focus-store .step.store-related .event-card {
+      border-color: color-mix(in srgb, var(--green) 70%, white);
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 34px rgba(24,163,108,0.16), var(--inner);
+    }
+
+    @media (max-width: 1180px) {
+      .shell {
+        width: calc(100vw - 20px);
+        min-width: 1000px;
+      }
+      .topbar {
+        top: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1>Interactive Sequence Diagram</h1>
+        <p>Sticky participants, measured lifelines, complete labels, first-degree hover/click highlighting.</p>
+      </div>
+      <div class="tools">
+        <button class="tool-button" id="storeToggle" type="button" aria-pressed="false">高亮 Store</button>
+      </div>
+    </header>
+
+    <section class="participant-rail" aria-label="Participants">
+      <div class="rail-grid" id="actorRail"></div>
+    </section>
+
+    <section class="timeline-wrap" id="diagram" aria-label="Sequence diagram">
+      <div class="lifeline-layer" id="lifelineLayer" aria-hidden="true"></div>
+
+      <section class="sequence-section" id="section-live" data-section="live">
+        <div class="section-title">
+          <h2>A 实时链路</h2>
+          <p>流式输入先进入内存/缓存，再由 UI 按需读取。</p>
+          <span class="tag">Example</span>
+        </div>
+        <div class="steps">
+          <article class="step" id="a1" data-actors="source hub" style="--flow-color: var(--cyan)">
+            <span class="time-mark">A 01</span>
+            <div class="flow" data-from="source" data-to="hub" data-label="websocket tick + initial seed"></div>
+            <div class="event-card" data-card-id="A1" data-actors="source hub" style="--at: 3; --span: 3; --card-y: 18px">
+              <h3><span class="card-index">A1</span><span>流式输入</span></h3>
+              <p><code>source</code> 推秒级事件；卡片 hover/click 只突出本卡片和直接消息。</p>
+              <div class="chips"><span class="chip">1-level</span><span class="chip">direct flow</span></div>
+            </div>
+          </article>
+
+          <article class="step" id="a2" data-actors="hub cache database" style="--flow-color: var(--green)">
+            <span class="time-mark">A 02</span>
+            <div class="flow" data-from="hub" data-to="cache" data-label="read-through cache"></div>
+            <div class="flow" data-from="cache" data-to="database" data-label="persist complete result file" style="--flow-y: 84px"></div>
+            <div class="event-card" data-card-id="A2" data-actors="hub cache" style="--at: 4; --span: 2; --card-y: 76px">
+              <h3><span class="card-index">A2</span><span>Cache 聚合</span></h3>
+              <p>标签必须完整显示；标签位置可以移动，但虚线端点不能偏离 lifeline。</p>
+              <div class="chips"><span class="chip">cache</span><span class="chip">no ellipsis</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="sequence-section" id="section-job" data-section="job">
+        <div class="section-title">
+          <h2>B 作业链路</h2>
+          <p>Dashboard 入队，Worker 消费，结果落盘后页面读取。</p>
+          <span class="tag">Template</span>
+        </div>
+        <div class="steps">
+          <article class="step" id="b1" data-actors="panel api queue" style="--flow-color: var(--blue)">
+            <span class="time-mark">B 01</span>
+            <div class="flow" data-from="panel" data-to="api" data-label="submit job request"></div>
+            <div class="flow" data-from="api" data-to="queue" data-label="enqueue json job" style="--flow-y: 88px"></div>
+            <div class="event-card" data-card-id="B1" data-actors="panel api queue" style="--at: 5; --span: 3; --card-y: 70px">
+              <h3><span class="card-index">B1</span><span>Dashboard 提交 job</span></h3>
+              <p>点击后固定 hover 风格，并淡化没有直接关系的实体、卡片和线。</p>
+              <div class="chips"><span class="chip">click lock</span><span class="chip">dim unrelated</span></div>
+            </div>
+          </article>
+
+          <article class="step" id="b2" data-actors="queue worker database panel" style="--flow-color: var(--orange)">
+            <span class="time-mark">B 02</span>
+            <div class="flow" data-from="queue" data-to="worker" data-label="claim queued job"></div>
+            <div class="flow" data-from="worker" data-to="database" data-label="save result artifact" style="--flow-y: 88px"></div>
+            <div class="flow reverse" data-from="database" data-to="panel" data-label="read result snapshot" style="--flow-y: 134px"></div>
+            <div class="event-card" data-card-id="B2" data-actors="worker database" style="--at: 2; --span: 2; --card-y: 70px">
+              <h3><span class="card-index">B2</span><span>Worker 结果落盘</span></h3>
+              <p>Store 高亮是最高优先级，覆盖滚动窗口和点击态。</p>
+              <div class="chips"><span class="chip">store</span><span class="chip">highest priority</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const actors = [
+      { id: "source", label: "External Source", sub: "WebSocket / REST", color: "#16a4c4", kind: "source" },
+      { id: "hub", label: "Realtime Hub", sub: "snapshot / fanout", color: "#7d6bd6", kind: "memory" },
+      { id: "cache", label: "Cache", sub: "in-memory / parquet", color: "#18a36c", kind: "store" },
+      { id: "database", label: "Results Store", sub: "database / files", color: "#18a36c", kind: "store" },
+      { id: "api", label: "API", sub: "FastAPI", color: "#2f7df6", kind: "api" },
+      { id: "queue", label: "Job Queue", sub: "json jobs", color: "#18a36c", kind: "store" },
+      { id: "worker", label: "Worker", sub: "backtest / tuning", color: "#df8f32", kind: "compute" },
+      { id: "panel", label: "Dashboard", sub: "readonly UI", color: "#d95f5f", kind: "ui" }
+    ];
+
+    const app = document.getElementById("app");
+    const actorRail = document.getElementById("actorRail");
+    const lifelineLayer = document.getElementById("lifelineLayer");
+    const storeToggle = document.getElementById("storeToggle");
+
+    document.documentElement.style.setProperty("--lane-count", actors.length);
+    actorRail.innerHTML = actors.map((actor) => `
+      <div class="actor" data-actor="${actor.id}" data-kind="${actor.kind}" style="--actor-color:${actor.color}" role="button" tabindex="0" aria-pressed="false">
+        <small>${actor.sub}</small>
+        <strong>${actor.label}</strong>
+      </div>
+    `).join("");
+    lifelineLayer.innerHTML = actors.map((actor) => `
+      <div class="lifeline" data-actor="${actor.id}" data-kind="${actor.kind}" style="--line-color:${actor.color}">
+        <span class="lifeline-line"></span>
+      </div>
+    `).join("");
+
+    const steps = [...document.querySelectorAll(".step")];
+    const cards = [...document.querySelectorAll(".event-card")];
+    const cardsById = new Map(cards.map((card) => [card.dataset.cardId, card]));
+    const actorsById = new Map([...document.querySelectorAll(".actor")].map((el) => [el.dataset.actor, el]));
+    const lifelinesById = new Map([...document.querySelectorAll(".lifeline")].map((el) => [el.dataset.actor, el]));
+    const actorsMetaById = new Map(actors.map((actor) => [actor.id, actor]));
+    let viewportStep = steps[0];
+    let hoverCardId = null;
+    let hoverActorId = null;
+    let selectedCardId = null;
+    let selectedActorId = null;
+
+    function stepActorIds(step) {
+      const explicit = (step.dataset.actors || "").split(/\s+/).filter(Boolean);
+      const flowActors = [...step.querySelectorAll(".flow")]
+        .flatMap((flow) => [flow.dataset.from, flow.dataset.to])
+        .filter(Boolean);
+      return [...new Set([...explicit, ...flowActors])];
+    }
+
+    function cardActorIds(card) {
+      const explicit = (card?.dataset.actors || "").split(/\s+/).filter(Boolean);
+      return explicit.length ? explicit : stepActorIds(card.closest(".step"));
+    }
+
+    function cardsInStep(step) {
+      return [...step.querySelectorAll(".event-card")];
+    }
+
+    function visibleSteps() {
+      return steps.filter((step) => step.offsetParent !== null);
+    }
+
+    function visibleFlows(scopeStep = null) {
+      const scope = scopeStep ? [scopeStep] : visibleSteps();
+      return scope.flatMap((step) => [...step.querySelectorAll(".flow")]);
+    }
+
+    function flowTouches(flow, actorIds) {
+      return actorIds.includes(flow.dataset.from) || actorIds.includes(flow.dataset.to);
+    }
+
+    function cardTouches(card, actorIds) {
+      return cardActorIds(card).some((id) => actorIds.includes(id));
+    }
+
+    function directFlowsForActors(actorIds, scopeStep = null) {
+      const ids = [...new Set(actorIds.filter(Boolean))];
+      return visibleFlows(scopeStep).filter((flow) => flowTouches(flow, ids));
+    }
+
+    function directCardsForActors(actorIds) {
+      const ids = [...new Set(actorIds.filter(Boolean))];
+      return cards.filter((card) => card.offsetParent !== null && cardTouches(card, ids));
+    }
+
+    function flowEndpointIds(flows) {
+      return [...new Set(flows.flatMap((flow) => [flow.dataset.from, flow.dataset.to]).filter(Boolean))];
+    }
+
+    function overlaps(a, b, pad = 0) {
+      return !(a.right <= b.left + pad || a.left >= b.right - pad || a.bottom <= b.top + pad || a.top >= b.bottom - pad);
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function actorCenterInStep(actorId, step) {
+      const lifeline = lifelinesById.get(actorId);
+      if (!lifeline) return null;
+      const lineRect = lifeline.querySelector(".lifeline-line").getBoundingClientRect();
+      const stepRect = step.getBoundingClientRect();
+      return lineRect.left + lineRect.width / 2 - stepRect.left;
+    }
+
+    function markStoreRelated() {
+      steps.forEach((step) => {
+        const related = step.dataset.kind === "store" ||
+          stepActorIds(step).some((id) => actorsMetaById.get(id)?.kind === "store");
+        step.classList.toggle("store-related", related);
+      });
+      actors.forEach((actor) => {
+        const related = actor.kind === "store";
+        actorsById.get(actor.id)?.classList.toggle("store-related", related);
+        lifelinesById.get(actor.id)?.classList.toggle("store-related", related);
+      });
+    }
+
+    function alignFlows() {
+      const placedByStep = new Map();
+      document.querySelectorAll(".flow").forEach((flow) => {
+        if (flow.dataset.label && !flow.querySelector(".flow-label")) {
+          const label = document.createElement("span");
+          label.className = "flow-label";
+          label.textContent = flow.dataset.label;
+          flow.appendChild(label);
+        }
+        const step = flow.closest(".step");
+        const from = actorCenterInStep(flow.dataset.from, step);
+        const to = actorCenterInStep(flow.dataset.to, step);
+        if (from === null || to === null) return;
+        const left = Math.min(from, to);
+        const width = Math.max(28, Math.abs(to - from));
+        flow.style.setProperty("--flow-left", `${left}px`);
+        flow.style.setProperty("--flow-width", `${width}px`);
+        placeFlowLabel(flow, step, left, width, placedByStep.get(step) || []);
+        const labelRect = flow.querySelector(".flow-label")?.getBoundingClientRect();
+        if (labelRect) {
+          placedByStep.set(step, [...(placedByStep.get(step) || []), labelRect]);
+        }
+      });
+    }
+
+    function placeFlowLabel(flow, step, left, width, placedRects) {
+      const label = flow.querySelector(".flow-label");
+      if (!label) return;
+      label.style.setProperty("--label-left", "50%");
+      label.style.setProperty("--label-top", "-28px");
+      const stepRect = step.getBoundingClientRect();
+      const flowRect = flow.getBoundingClientRect();
+      const labelRect = label.getBoundingClientRect();
+      const labelWidth = labelRect.width;
+      const labelHeight = labelRect.height;
+      const safe = 8;
+      const preferredCenter = left + width / 2;
+      const maxCenter = Math.max(labelWidth / 2 + safe, step.clientWidth - labelWidth / 2 - safe);
+      const center = clamp(preferredCenter, labelWidth / 2 + safe, maxCenter);
+      const cardRects = cardsInStep(step).map((card) => card.getBoundingClientRect());
+      const endpointRects = [
+        { left: flowRect.left - 8, right: flowRect.left + 10, top: flowRect.top - 8, bottom: flowRect.bottom + 8 },
+        { left: flowRect.right - 10, right: flowRect.right + 8, top: flowRect.top - 8, bottom: flowRect.bottom + 8 }
+      ];
+      const slots = [-32, 18, -54, 42, -76, 64];
+      const chosenTop = slots.find((top) => {
+        const candidate = {
+          left: stepRect.left + center - labelWidth / 2,
+          right: stepRect.left + center + labelWidth / 2,
+          top: flowRect.top + top,
+          bottom: flowRect.top + top + labelHeight
+        };
+        return !cardRects.some((rect) => overlaps(rect, candidate, 4)) &&
+          !endpointRects.some((rect) => overlaps(rect, candidate, 4)) &&
+          !placedRects.some((rect) => overlaps(rect, candidate, 6));
+      }) ?? -54;
+      flow.style.setProperty("--label-left", `${center - left}px`);
+      flow.style.setProperty("--label-top", `${chosenTop}px`);
+    }
+
+    function resetHighlightClasses() {
+      actorsById.forEach((el) => el.classList.remove("active", "related", "locked"));
+      lifelinesById.forEach((el) => el.classList.remove("active", "related", "locked"));
+      steps.forEach((step) => step.classList.remove("in-view", "related", "locked"));
+      document.querySelectorAll(".flow").forEach((flow) => flow.classList.remove("related", "locked"));
+      cards.forEach((card) => card.classList.remove("related", "locked"));
+    }
+
+    function applyActorClasses(actorIds, level) {
+      actorIds.forEach((id) => {
+        actorsById.get(id)?.classList.add(level);
+        lifelinesById.get(id)?.classList.add(level);
+      });
+    }
+
+    function applyFlowClasses(flows, level) {
+      flows.forEach((flow) => {
+        flow.classList.add(level);
+        flow.closest(".step")?.classList.add(level);
+      });
+    }
+
+    function applyCardFocus(card, level = "related") {
+      if (!card) return;
+      const baseActorIds = cardActorIds(card);
+      const directFlows = directFlowsForActors(baseActorIds, card.closest(".step"));
+      const actorIds = [...new Set([...baseActorIds, ...flowEndpointIds(directFlows)])];
+      card.closest(".step")?.classList.add(level);
+      applyActorClasses(actorIds, level);
+      applyFlowClasses(directFlows, level);
+      card.classList.add(level);
+    }
+
+    function applyActorFocus(actorId, level = "related") {
+      if (!actorId) return;
+      const directFlows = directFlowsForActors([actorId]);
+      const directCards = directCardsForActors([actorId]);
+      const actorIds = [...new Set([actorId, ...flowEndpointIds(directFlows)])];
+      applyActorClasses(actorIds, level);
+      applyFlowClasses(directFlows, level);
+      directCards.forEach((card) => {
+        card.classList.add(level);
+        card.closest(".step")?.classList.add(level);
+      });
+    }
+
+    function applyStoreFocus(level = "locked") {
+      const storeIds = actors.filter((actor) => actor.kind === "store").map((actor) => actor.id);
+      const directFlows = directFlowsForActors(storeIds);
+      const directCards = directCardsForActors(storeIds);
+      const actorIds = [...new Set([...storeIds, ...flowEndpointIds(directFlows)])];
+      applyActorClasses(actorIds, level);
+      applyFlowClasses(directFlows, level);
+      directCards.forEach((card) => {
+        card.classList.add(level);
+        card.closest(".step")?.classList.add(level);
+      });
+    }
+
+    function renderHighlights() {
+      resetHighlightClasses();
+      app.classList.toggle("has-click-highlight", Boolean(selectedCardId || selectedActorId));
+      cards.forEach((card) => card.setAttribute("aria-pressed", String(card.dataset.cardId === selectedCardId)));
+      actorsById.forEach((el, id) => el.setAttribute("aria-pressed", String(id === selectedActorId)));
+
+      if (viewportStep && viewportStep.offsetParent !== null) {
+        viewportStep.classList.add("in-view");
+        stepActorIds(viewportStep).forEach((id) => {
+          actorsById.get(id)?.classList.add("active");
+          lifelinesById.get(id)?.classList.add("active");
+        });
+      }
+
+      if (hoverCardId) applyCardFocus(cardsById.get(hoverCardId), "related");
+      if (hoverActorId) applyActorFocus(hoverActorId, "related");
+
+      const selectedCard = selectedCardId ? cardsById.get(selectedCardId) : null;
+      if (selectedCard) applyCardFocus(selectedCard, "locked");
+      if (selectedActorId) applyActorFocus(selectedActorId, "locked");
+
+      if (app.classList.contains("focus-store")) {
+        applyStoreFocus("locked");
+      }
+    }
+
+    function setHoverCard(cardId) {
+      hoverCardId = cardId;
+      renderHighlights();
+    }
+
+    function setHoverActor(actorId) {
+      hoverActorId = actorId;
+      renderHighlights();
+    }
+
+    function clearHover() {
+      hoverCardId = null;
+      hoverActorId = null;
+      renderHighlights();
+    }
+
+    function toggleSelectedCard(card) {
+      const id = card?.dataset.cardId;
+      selectedCardId = selectedCardId === id ? null : id;
+      renderHighlights();
+    }
+
+    function toggleSelectedActor(actorId) {
+      selectedActorId = selectedActorId === actorId ? null : actorId;
+      renderHighlights();
+    }
+
+    function bindInteractions() {
+      cards.forEach((card) => {
+        card.tabIndex = 0;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-pressed", "false");
+        card.addEventListener("mouseenter", () => setHoverCard(card.dataset.cardId));
+        card.addEventListener("focus", () => setHoverCard(card.dataset.cardId));
+        card.addEventListener("mouseleave", clearHover);
+        card.addEventListener("blur", clearHover);
+        card.addEventListener("click", () => toggleSelectedCard(card));
+        card.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") return;
+          event.preventDefault();
+          toggleSelectedCard(card);
+        });
+      });
+
+      actorsById.forEach((actorEl, actorId) => {
+        actorEl.addEventListener("mouseenter", () => setHoverActor(actorId));
+        actorEl.addEventListener("focus", () => setHoverActor(actorId));
+        actorEl.addEventListener("mouseleave", clearHover);
+        actorEl.addEventListener("blur", clearHover);
+        actorEl.addEventListener("click", () => toggleSelectedActor(actorId));
+        actorEl.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") return;
+          event.preventDefault();
+          toggleSelectedActor(actorId);
+        });
+      });
+    }
+
+    function updateActiveFromViewport() {
+      const targetY = 238;
+      const candidates = visibleSteps()
+        .map((step) => {
+          const rect = step.getBoundingClientRect();
+          return {
+            step,
+            visible: rect.bottom > 170 && rect.top < window.innerHeight - 60,
+            distance: Math.abs(rect.top + rect.height * 0.5 - targetY)
+          };
+        })
+        .filter((item) => item.visible)
+        .sort((a, b) => a.distance - b.distance);
+      viewportStep = candidates[0]?.step || visibleSteps()[0];
+      renderHighlights();
+    }
+
+    function syncLayout() {
+      alignFlows();
+      updateActiveFromViewport();
+    }
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateActiveFromViewport();
+        ticking = false;
+      });
+    }, { passive: true });
+
+    window.addEventListener("resize", syncLayout);
+
+    storeToggle.addEventListener("click", () => {
+      storeToggle.classList.toggle("active");
+      storeToggle.setAttribute("aria-pressed", String(storeToggle.classList.contains("active")));
+      app.classList.toggle("focus-store", storeToggle.classList.contains("active"));
+      renderHighlights();
+    });
+
+    markStoreRelated();
+    alignFlows();
+    bindInteractions();
+    updateActiveFromViewport();
+  </script>
+</body>
+</html>
