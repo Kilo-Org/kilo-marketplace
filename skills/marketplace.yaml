@@ -306,16 +306,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
-  - id: pdf
-    description: >-
-      Read, extract, and manipulate PDF files via a bundled Python script. Supports text extraction, table
-      extraction (to markdown/JSON/CSV), metadata/info, PDF-to-image conversion, merge, split, rotate, extract
-      embedded images, and password decrypt. Use whenever the user asks to read, inspect, extract, convert,
-      merge, split, or manipulate a PDF file.
-    category: development
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pdf
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pdf/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/pdf.tar.gz
   - id: ponytail
     description: >
       Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has
@@ -377,3 +367,13 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: pdf
+    description: >-
+      Read, extract, and manipulate PDF files via a bundled Python script. Supports text extraction, table
+      extraction (to markdown/JSON/CSV), metadata/info, PDF-to-image conversion, merge, split, rotate, extract
+      embedded images, and password decrypt. Use whenever the user asks to read, inspect, extract, convert,
+      merge, split, or manipulate a PDF file.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pdf
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pdf/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/pdf.tar.gz
