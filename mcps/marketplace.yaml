@@ -4242,7 +4242,7 @@ items:
       fetch URLs as clean markdown (including PDFs and documents), extract specific data from a page with a prompt, and
       run multi-source deep research that returns a cited report.
     author: Sofya
-    url: https://sofya.co
+    url: https://sofya.co/docs
     category: search
     tags:
       - search

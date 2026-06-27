@@ -4,7 +4,7 @@ description: Web tools for AI agents through Sofya's API. Search the web and get
   fetch URLs as clean markdown (including PDFs and documents), extract specific data from a page with a prompt, and run
   multi-source deep research that returns a cited report.
 author: Sofya
-url: https://sofya.co
+url: https://sofya.co/docs
 category: search
 prerequisites:
   - Sofya account (https://sofya.co)
