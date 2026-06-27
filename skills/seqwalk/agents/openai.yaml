@@ -4,4 +4,4 @@ interface:
   default_prompt: "Use $seqwalk to diagram this code execution flow for review."
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

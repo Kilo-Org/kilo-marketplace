@@ -15,6 +15,7 @@ metadata:
   source:
     repository: 'https://github.com/reason211/seqwalk'
     path: skills/seqwalk
+    license_path: LICENSE
     ref: main
     commit: bdb187d830d8de39c77cc19f3f0ba232e5ddd67f
 ---
