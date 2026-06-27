@@ -732,18 +732,46 @@
     const topbar = document.querySelector(".topbar");
     const participantRail = document.querySelector(".participant-rail");
 
+    function safeColor(value) {
+      const color = String(value || "").trim();
+      return /^(#[0-9a-f]{3,8}|var\(--[a-z0-9_-]+\))$/i.test(color) ? color : "#8aa6c4";
+    }
+
+    function renderActors() {
+      actorRail.replaceChildren();
+      lifelineLayer.replaceChildren();
+
+      actors.forEach((actor) => {
+        const actorEl = document.createElement("div");
+        actorEl.className = "actor";
+        actorEl.dataset.actor = actor.id;
+        actorEl.dataset.kind = actor.kind || "";
+        actorEl.style.setProperty("--actor-color", safeColor(actor.color));
+        actorEl.setAttribute("role", "button");
+        actorEl.tabIndex = 0;
+        actorEl.setAttribute("aria-pressed", "false");
+
+        const sub = document.createElement("small");
+        sub.textContent = actor.sub || "";
+        const label = document.createElement("strong");
+        label.textContent = actor.label || actor.id;
+        actorEl.append(sub, label);
+        actorRail.appendChild(actorEl);
+
+        const lifeline = document.createElement("div");
+        lifeline.className = "lifeline";
+        lifeline.dataset.actor = actor.id;
+        lifeline.dataset.kind = actor.kind || "";
+        lifeline.style.setProperty("--line-color", safeColor(actor.color));
+        const line = document.createElement("span");
+        line.className = "lifeline-line";
+        lifeline.appendChild(line);
+        lifelineLayer.appendChild(lifeline);
+      });
+    }
+
     document.documentElement.style.setProperty("--lane-count", actors.length);
-    actorRail.innerHTML = actors.map((actor) => `
-      <div class="actor" data-actor="${actor.id}" data-kind="${actor.kind}" style="--actor-color:${actor.color}" role="button" tabindex="0" aria-pressed="false">
-        <small>${actor.sub}</small>
-        <strong>${actor.label}</strong>
-      </div>
-    `).join("");
-    lifelineLayer.innerHTML = actors.map((actor) => `
-      <div class="lifeline" data-actor="${actor.id}" data-kind="${actor.kind}" style="--line-color:${actor.color}">
-        <span class="lifeline-line"></span>
-      </div>
-    `).join("");
+    renderActors();
 
     const sections = [...document.querySelectorAll(".sequence-section")];
     const steps = [...document.querySelectorAll(".step")];

@@ -11,13 +11,13 @@ license: MIT
 metadata:
   category: development
   author: reason211
-  version: 0.1.3
+  version: 0.1.4
   source:
     repository: 'https://github.com/reason211/seqwalk'
     path: skills/seqwalk
     license_path: LICENSE
     ref: main
-    commit: bdb187d830d8de39c77cc19f3f0ba232e5ddd67f
+    commit: 85ec82cf8abfa842aa9ba7dc0ac9e1c866f12dab
 ---
 
 # SeqWalk
