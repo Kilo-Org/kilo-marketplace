@@ -42,6 +42,7 @@ metadata:
     repository: https://github.com/org/repo
     path: path/to/skill/in/repo
     license_path: path/to/LICENSE # Path to LICENSE in source repo (alternative to license)
+    commit: 0123456789abcdef0123456789abcdef01234567 # Imported revision
 ---
 ```
 
@@ -60,6 +61,7 @@ metadata:
 | `metadata.source.repository` | No       | URL to the source repository                                          |
 | `metadata.source.path`       | No       | Path within the repository                                            |
 | `metadata.source.license_path` | Yes*  | Path to LICENSE in source repo (alternative to `license`)             |
+| `metadata.source.commit`    | New      | Full 40-character Git SHA for new imports and updates                  |
 
 ### Markdown Body (Required)
 

@@ -11,6 +11,8 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: meeting-insights-analyzer
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
+license: NOASSERTION
 ---
 
 # Meeting Insights Analyzer
@@ -93,42 +95,42 @@ When a user requests meeting analysis:
    - Identify the user's name/identifier in transcripts
 
 2. **Clarify Analysis Goals**
-   
+
    If not specified, ask what they want to learn:
    - Specific behaviors (conflict avoidance, interruptions, filler words)
    - Communication effectiveness (clarity, directness, listening)
    - Meeting facilitation skills
    - Speaking patterns and ratios
    - Growth areas for improvement
-   
+
 3. **Analyze Patterns**
 
    For each requested insight:
-   
+
    **Conflict Avoidance**:
    - Look for hedging language ("maybe", "kind of", "I think")
    - Indirect phrasing instead of direct requests
    - Changing subject when tension arises
    - Agreeing without commitment ("yeah, but...")
    - Not addressing obvious problems
-   
+
    **Speaking Ratios**:
    - Calculate percentage of meeting spent speaking
    - Count interruptions (by and of the user)
    - Measure average speaking turn length
    - Track question vs. statement ratios
-   
+
    **Filler Words**:
    - Count "um", "uh", "like", "you know", "actually", etc.
    - Note frequency per minute or per speaking turn
    - Identify situations where they increase (nervous, uncertain)
-   
+
    **Active Listening**:
    - Questions that reference others' previous points
    - Paraphrasing or summarizing others' ideas
    - Building on others' contributions
    - Asking clarifying questions
-   
+
    **Leadership & Facilitation**:
    - Decision-making approach (directive vs. collaborative)
    - How disagreements are handled
@@ -139,72 +141,72 @@ When a user requests meeting analysis:
 4. **Provide Specific Examples**
 
    For each pattern found, include:
-   
+
    ```markdown
    ### [Pattern Name]
-   
+
    **Finding**: [One-sentence summary of the pattern]
-   
+
    **Frequency**: [X times across Y meetings]
-   
+
    **Examples**:
-   
+
    1. **[Meeting Name/Date]** - [Timestamp]
-      
+
       **What Happened**:
       > [Actual quote from transcript]
-      
+
       **Why This Matters**:
       [Explanation of the impact or missed opportunity]
-      
+
       **Better Approach**:
       [Specific alternative phrasing or behavior]
-   
+
    [Repeat for 2-3 strongest examples]
    ```
 
 5. **Synthesize Insights**
 
    After analyzing all patterns, provide:
-   
+
    ```markdown
    # Meeting Insights Summary
-   
+
    **Analysis Period**: [Date range]
    **Meetings Analyzed**: [X meetings]
    **Total Duration**: [X hours]
-   
+
    ## Key Patterns Identified
-   
+
    ### 1. [Primary Pattern]
    - **Observed**: [What you saw]
    - **Impact**: [Why it matters]
    - **Recommendation**: [How to improve]
-   
+
    ### 2. [Second Pattern]
    [Same structure]
-   
+
    ## Communication Strengths
-   
+
    1. [Strength 1 with example]
    2. [Strength 2 with example]
    3. [Strength 3 with example]
-   
+
    ## Growth Opportunities
-   
+
    1. **[Area 1]**: [Specific, actionable advice]
    2. **[Area 2]**: [Specific, actionable advice]
    3. **[Area 3]**: [Specific, actionable advice]
-   
+
    ## Speaking Statistics
-   
+
    - Average speaking time: [X% of meeting]
    - Questions asked: [X per meeting average]
    - Filler words: [X per minute]
    - Interruptions: [X given / Y received per meeting]
-   
+
    ## Next Steps
-   
+
    [3-5 concrete actions to improve communication]
    ```
 
@@ -221,11 +223,11 @@ When a user requests meeting analysis:
 
 **User**: "I download all of my meeting recordings and put them in a folder. Tell me all the times I've subtly avoided conflict."
 
-**Output**: 
+**Output**:
 ```markdown
 # Conflict Avoidance Patterns
 
-Found 23 instances across 15 meetings where you used indirect 
+Found 23 instances across 15 meetings where you used indirect
 communication or avoided addressing tensions directly.
 
 ## Pattern: Hedging on Critical Feedback
@@ -235,19 +237,19 @@ communication or avoided addressing tensions directly.
 **Example 1: 1:1 with Sarah** - 00:14:32
 
 **What Happened**:
-> "So, I was thinking... maybe we could, like, potentially 
-> consider looking at the timeline again? I mean, if you 
+> "So, I was thinking... maybe we could, like, potentially
+> consider looking at the timeline again? I mean, if you
 > think that makes sense. But whatever you think is best!"
 
 **Why This Matters**:
-You needed to address that Sarah's project was behind schedule, 
-but the hedging language ("maybe", "potentially", "if you think") 
-and the deflection at the end ("whatever you think") made it easy 
+You needed to address that Sarah's project was behind schedule,
+but the hedging language ("maybe", "potentially", "if you think")
+and the deflection at the end ("whatever you think") made it easy
 for her to miss the urgency.
 
 **Better Approach**:
-"Sarah, the project is two weeks behind schedule. We need to 
-discuss what's blocking progress and create a new timeline 
+"Sarah, the project is two weeks behind schedule. We need to
+discuss what's blocking progress and create a new timeline
 today."
 
 [Additional examples...]

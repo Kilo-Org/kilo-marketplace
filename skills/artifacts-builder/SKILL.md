@@ -1,17 +1,17 @@
 ---
 name: artifacts-builder
 description: >-
-  Suite of tools for creating elaborate, multi-component HTML
-  artifacts using modern frontend web technologies (React, Tailwind CSS,
-  shadcn/ui). Use for complex artifacts requiring state management, routing, or
-  shadcn/ui components - not for simple single-file HTML/JSX artifacts.
-license: Complete terms in LICENSE.txt
+  Suite of tools for creating elaborate, multi-component HTML artifacts using
+  modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for
+  complex artifacts requiring state management, routing, or shadcn/ui components
+  - not for simple single-file HTML/JSX artifacts.
 metadata:
   category: development
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: artifacts-builder
     license_path: artifacts-builder/LICENSE.txt
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 # Artifacts Builder

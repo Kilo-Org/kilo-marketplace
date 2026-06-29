@@ -40,7 +40,7 @@ The official MCP Python SDK provides FastMCP, a high-level framework for buildin
 - Decorator-based tool registration with `@mcp.tool`
 
 **For complete SDK documentation, use WebFetch to load:**
-`https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+`https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/a5271423128ac76cbd171adad40e225d1c755522/README.md`
 
 ## Server Naming Convention
 

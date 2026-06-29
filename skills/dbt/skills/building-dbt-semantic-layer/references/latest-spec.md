@@ -143,7 +143,7 @@ models:
 Use the `derived_semantics` block for dimensions or entities that are not a direct 1:1 mapping to a physical column. The `expr` field is required.
 
 ```yaml
-models: 
+models:
   - name: orders
     [...]
     derived_semantics:
@@ -164,7 +164,7 @@ models:
 Simple metrics support these additional properties:
 
 ```yaml
-models: 
+models:
   - name: orders
     [...]
     metrics:
@@ -182,7 +182,7 @@ models:
 For percentile aggregation:
 
 ```yaml
-models: 
+models:
   - name: orders
     [...]
     metrics:
@@ -204,7 +204,7 @@ Simple metrics defined within a model serve as building blocks. Advanced metrics
 Combine multiple metrics using an expression.
 
 ```yaml
-models: 
+models:
   - name: orders
     [...]
     metrics:
@@ -223,7 +223,7 @@ models:
 With offset window (period-over-period):
 
 ```yaml
-models: 
+models:
   - name: orders
     [...]
     metrics:
@@ -242,7 +242,7 @@ models:
 With filter on input metric:
 
 ```yaml
-models: 
+models:
   - name: orders
     [...]
     metrics:

@@ -11,6 +11,7 @@ metadata:
     repository: 'https://github.com/analogjs/angular-skills'
     path: skills/angular-ssr
     license_path: LICENSE
+    commit: 610c90eb9490194bcff703f343f97fa0e00bdb2f
 ---
 
 # Angular SSR
@@ -135,17 +136,17 @@ Defer hydration of specific components:
     } @placeholder {
       <div class="comments-placeholder">Loading comments...</div>
     }
-    
+
     <!-- Hydrate on interaction -->
     @defer (hydrate on interaction) {
       <app-interactive-chart [data]="chartData" />
     }
-    
+
     <!-- Hydrate on idle -->
     @defer (hydrate on idle) {
       <app-recommendations />
     }
-    
+
     <!-- Never hydrate (static only) -->
     @defer (hydrate never) {
       <app-static-footer />
@@ -195,7 +196,7 @@ import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 @Component({...})
 export class My {
   private platformId = inject(PLATFORM_ID);
-  
+
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       // Browser-only code
@@ -219,13 +220,13 @@ export class Chart {
     afterNextRender(() => {
       this.initChart();
     });
-    
+
     // Runs after every render (browser only)
     afterRender(() => {
       this.updateChart();
     });
   }
-  
+
   private initChart() {
     // Safe to use DOM APIs here
     const canvas = document.getElementById('chart');
@@ -261,11 +262,11 @@ export const LOCAL_STORAGE = new InjectionToken<Storage | null>('LocalStorage', 
 @Injectable({ providedIn: 'root' })
 export class Storage {
   private storage = inject(LOCAL_STORAGE);
-  
+
   get(key: string): string | null {
     return this.storage?.getItem(key) ?? null;
   }
-  
+
   set(key: string, value: string): void {
     this.storage?.setItem(key, value);
   }
@@ -358,7 +359,7 @@ export class Product {
   private http = inject(HttpClient);
   private transferState = inject(TransferState);
   private platformId = inject(PLATFORM_ID);
-  
+
   getProducts(): Observable<Product[]> {
     // Check if data was transferred from server
     if (this.transferState.hasKey(PRODUCTS_KEY)) {
@@ -366,7 +367,7 @@ export class Product {
       this.transferState.remove(PRODUCTS_KEY);
       return of(products);
     }
-    
+
     return this.http.get<Product[]>('/api/products').pipe(
       tap(products => {
         // Store for transfer on server

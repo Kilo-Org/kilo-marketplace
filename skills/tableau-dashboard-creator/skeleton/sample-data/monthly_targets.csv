@@ -1,0 +1,13 @@
+month,region,revenue_target,orders_target,new_customers_target
+2025-01,North America,8000,10,2
+2025-01,Europe,9000,12,3
+2025-01,Asia Pacific,7000,8,1
+2025-02,North America,8500,11,2
+2025-02,Europe,9500,13,2
+2025-02,Asia Pacific,7500,9,2
+2025-03,North America,9000,12,3
+2025-03,Europe,10000,14,2
+2025-03,Asia Pacific,8000,10,2
+2025-04,North America,9500,13,2
+2025-04,Europe,10500,15,3
+2025-04,Asia Pacific,8500,11,1

@@ -4,12 +4,7 @@ description: Facilitates project management with the Linear API, enabling issue 
   management through comprehensive tools for creating, updating, and managing work items.
 author: cline
 url: https://github.com/cline/linear-mcp
-tags:
-  - project-management
-  - issue-tracking
-  - team-collaboration
-  - linear-api
-  - workflow
+category: productivity
 content:
   - name: Node.js
     prerequisites:

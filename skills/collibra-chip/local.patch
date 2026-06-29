@@ -1,0 +1,100 @@
+diff -rN -U0 --ignore-trailing-space a/collibra-chip/SKILL.md b/collibra-chip/SKILL.md
+--- a/collibra-chip/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/collibra-chip/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -1,0 +2 @@
++name: collibra-chip
+@@ -3,2 +4,2 @@
+-  Navigator for chip's Collibra skills. Start here when unsure which skill
+-  applies.
++  This skill should be used when a connected Collibra Chip MCP server can
++  provide domain-specific Collibra workflows and references.
+@@ -6,4 +6,0 @@
+-  upstream:
+-    related: >-
+-      collibra/discovery, collibra/lineage, collibra/asset-create,
+-      collibra/asset-edit, collibra/data-product-create
+@@ -16 +12,0 @@
+-name: collibra-chip
+@@ -19 +15,32 @@
+-# Collibra skills — navigator
++# Collibra Chip MCP Skill Discovery
++
++Collibra Chip serves its detailed guides at runtime through MCP. This package is a Kilo-facing routing guide; it does not contain an upstream source tree or embedded copies of the Collibra guides.
++
++## Required Tools
++
++Use the connected Chip MCP server's advertised tools. The expected capabilities are:
++
++- `list_collibra_skills`: discover available guides and descriptions
++- `load_collibra_skill`: load a guide body, metadata, or one of its bundled references
++
++Tool names can be namespaced by the MCP client. Match by the advertised tool name and schema rather than hard-coding a namespace.
++
++## Workflow
++
++1. Confirm that the Collibra Chip MCP server is connected.
++2. Call `list_collibra_skills`, requesting descriptions when the schema supports that option.
++3. If the task is ambiguous, select the catalog/index guide first. Otherwise choose the narrowest matching guide.
++4. Call `load_collibra_skill` for that guide's body.
++5. Load a bundled reference only when the guide identifies it as necessary.
++6. Follow the loaded guide and the live MCP tool schemas. Do not infer operation names, UUID formats, or mutation payloads from this router.
++
++## Common Routing Topics
++
++Depending on the server version, the catalog may include guides for discovery, technical lineage, asset creation, and asset editing. Treat this list as orientation only; the result of `list_collibra_skills` is authoritative.
++
++- Discovery: semantic versus keyword search and resolving names to UUIDs
++- Lineage: technical lineage and identifier bridging
++- Asset creation: duplicate checks, required fields, and rich-text handling
++- Asset editing: supported operation types and safe update sequencing
++
++## Safety
+@@ -21,43 +48,5 @@
+-This MCP server is a bridge to Collibra Data Governance Center. Skills under
+-`collibra/*` document the non-trivial workflows: when tools must be chained, when one ID space
+-must be bridged to another, and which permissions are required.
+-
+-## When to load which skill
+-
+-| Task | Skill |
+-|---|---|
+-| Find data about a topic by meaning (semantic) vs by exact name (keyword) | `collibra/discovery` |
+-| Trace upstream sources, downstream consumers, or impact of a change | `collibra/lineage` |
+-| Create any new asset (Business Term, Table, Column, KPI, …) | `collibra/asset-create` |
+-| Modify an existing asset's attributes, relations, tags, status, or owners | `collibra/asset-edit` |
+-| Register a table (and its dimension tables) as a Collibra Data Product with ports | `collibra/data-product-create` |
+-
+-If a task is a single tool call with no chaining (e.g. `get_asset_details` by UUID,
+-`list_asset_types`, `pull_data_contract_manifest`), no skill is needed — the tool's own
+-description is sufficient.
+-
+-## Hard rules that apply across skills
+-
+-1. **Lineage entity IDs are not DGC asset UUIDs.** Never pass a DGC UUID directly to
+-   `get_lineage_upstream` or `get_lineage_downstream`. Bridge via `search_lineage_entities`
+-   first. See `collibra/lineage` for the full rule.
+-
+-2. **UUIDs are required for most read tools.** When the user gives you a name, resolve it
+-   first — `search_asset_keyword` for exact/filterable lookup, `discover_data_assets` or
+-   `discover_business_glossary` for natural-language search. See `collibra/discovery`.
+-
+-3. **RICH_TEXT attributes accept Markdown.** `create_asset` and `edit_asset` convert Markdown to
+-   HTML server-side for RICH_TEXT attributes (e.g. `Definition`). Write Markdown naturally;
+-   never pre-render to HTML. See `collibra/asset-create`.
+-
+-4. **Surface permission errors verbatim.** When a tool fails with a missing-scope error
+-   (`dgc.ai-copilot`, `dgc.classify`, `dgc.catalog`, `dgc.data-classes-read`,
+-   `dgc.data-classes-edit`, `dgc.data-contract`), tell the user which scope is missing rather
+-   than retrying or working around it.
+-
+-## Pagination
+-
+-- `search_asset_keyword`, `list_asset_types`, `search_data_class`,
+-  `search_data_classification_match` — `limit` / `offset`.
+-- `list_data_contract`, `get_asset_details` (relations), and all lineage tools — cursor based.
+-  Carry the cursor from the previous response.
++- Resolve human-readable names to identifiers before mutations.
++- Read the target asset before editing it.
++- Ask for confirmation before destructive or broad updates.
++- Preserve the exact rich-text and operation formats specified by the loaded guide.
++- If the MCP server is unavailable or a listed guide cannot be loaded, state that the workflow is unavailable; do not substitute nonexistent local files.

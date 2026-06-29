@@ -1,0 +1,29 @@
+id: mcp-grafana
+name: Grafana MCP (Local)
+description: Runs Grafana's open-source local server for dashboards, alerts, metrics, logs, and traces against Grafana Cloud or self-hosted Grafana with write tools disabled.
+author: Grafana Labs
+url: https://github.com/grafana/mcp-grafana
+category: observability
+prerequisites:
+  - Python and uv
+  - Grafana service account token with viewer-level access to the intended resources
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["mcp-grafana==0.17.0", "--disable-write"],
+        "env": {
+          "GRAFANA_URL": "{{GRAFANA_URL}}",
+          "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{{GRAFANA_SERVICE_ACCOUNT_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Grafana URL
+    key: GRAFANA_URL
+    placeholder: https://my-stack.grafana.net
+  - name: Grafana service account token
+    key: GRAFANA_SERVICE_ACCOUNT_TOKEN
+    placeholder: your_grafana_service_account_token

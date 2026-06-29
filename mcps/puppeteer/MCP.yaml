@@ -4,12 +4,7 @@ description: Provides browser automation capabilities using Puppeteer, enabling 
   JavaScript execution in a real browser environment.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer
-tags:
-  - web-automation
-  - screenshots
-  - browser-control
-  - javascript
-  - testing
+category: web-automation
 content:
   - name: NPX
     prerequisites:

@@ -1,0 +1,215 @@
+// ============================================================
+// DUAL-TIMESTAMP SCD TYPE 2 INCREMENTAL LOAD TEMPLATE
+// ============================================================
+// For Slowly Changing Dimension Type 2 tables with effective_from
+// and effective_to date columns.
+//
+// CRITICAL: This pattern must capture BOTH:
+//   1. Newly created records (effective_from >= last load)
+//   2. Newly closed records (effective_to changed since last load)
+// Missing condition #2 causes SILENT DATA LOSS: old versions of
+// updated entities retain effective_to = NULL in the QVD, appearing
+// as "current" alongside the new version.
+//
+// HOW TO ADAPT:
+// 1. Set the configuration variables below to match your source.
+// 2. The template uses SELECT * for reusability -- it works for
+//    any SCD2 table without modifying field lists. In production,
+//    consider replacing * with an explicit field list to control
+//    which columns are extracted from the source.
+// 3. The WHERE clause logic should NOT be changed unless your
+//    source uses a different SCD2 implementation.
+// 4. Verify that vSurrogateKey is truly unique per row (not the
+//    business key, which has multiple rows in SCD2).
+//
+// PREREQUISITES:
+// - Source table must have effective_from and effective_to columns.
+// - A surrogate key (unique per row) must exist. If the source
+//   only has a business key, concatenate business_key & effective_from
+//   to create a synthetic surrogate.
+// - The error-handling.qvs framework should be included before
+//   this script for logging and error detection.
+// ============================================================
+
+// --- Configuration ---
+// Adjust these variables to match your environment and source table.
+
+SET vSCD2_QvdPath       = 'lib://QVDs/MyDimension_SCD2.qvd';  // Output QVD path
+SET vSCD2_Connection    = 'lib://SourceDB';                    // Database connection
+SET vSCD2_SourceTable   = 'my_dimension_table';                // Source table name
+SET vSCD2_SurrogateKey  = 'surrogate_key';                     // Unique per row (NOT business key)
+SET vSCD2_BusinessKey   = 'business_key';                      // Entity identifier (multiple rows per entity)
+SET vSCD2_EffFrom       = 'effective_from';                    // Version start date column
+SET vSCD2_EffTo         = 'effective_to';                      // Version end date column (NULL = current)
+SET vSCD2_TableLabel    = '_SCD2_MyDimension';                 // In-memory table name during load
+SET vSCD2_StatePath     = 'lib://QVDs/ReloadState_MyDimension.qvd'; // Per-table state file
+
+// --- State management ---
+// Load previous execution time from per-table state QVD (or set to epoch for first load).
+// Each table gets its own state file to avoid overwrite conflicts when
+// multiple tables reload on different schedules or in different apps.
+LET vThisExecTime = Now();
+
+IF NOT IsNull(FileTime('$(vSCD2_StatePath)')) THEN
+    [_SCD2State]:
+    LOAD LastExecTime
+    FROM [$(vSCD2_StatePath)] (qvd);
+    LET vLastExecTime = Peek('LastExecTime', 0, '_SCD2State');
+    DROP TABLE [_SCD2State];
+ELSE
+    LET vLastExecTime = '1900-01-01 00:00:00';
+END IF
+
+TRACE SCD2 Load: last exec = $(vLastExecTime), this exec = $(vThisExecTime);
+
+// ============================================================
+// MAIN LOGIC
+// ============================================================
+
+IF NOT IsNull(FileTime('$(vSCD2_QvdPath)')) THEN
+    // ===========================================================
+    // CHECK FOR PERIODIC FULL-REFRESH
+    // ===========================================================
+    // Incremental logic can silently drift. Force a full extract
+    // periodically as a safety net. Uncomment and configure:
+    //
+    // LET vQvdAge = Now() - FileTime('$(vSCD2_QvdPath)');
+    // IF vQvdAge > 7 THEN  // 7 days since last full refresh
+    //     TRACE SCD2 periodic full-refresh triggered (QVD age: $(=Num(vQvdAge, '#.0')) days);
+    //     // Fall through to ELSE branch (first load = full extract)
+    //     DROP TABLE ... if needed;
+    //     // Re-enter as first load
+    // END IF
+
+    // ===========================================================
+    // INCREMENTAL LOAD
+    // ===========================================================
+
+    // Step 1: Load ALL changed records using the dual-timestamp condition.
+    //
+    // Condition 1 (effective_from >= last load):
+    //   Captures newly created entity records and new versions of
+    //   changed entities (the "after" version of a change).
+    //
+    // Condition 2 (effective_to changed since last load):
+    //   Captures the "before" version of a change. When an entity
+    //   is updated, the old version's effective_to gets set to the
+    //   change date. Without this condition, the QVD retains the
+    //   old version with effective_to = NULL, making it appear
+    //   "current" alongside the new version.
+    //
+    // DO NOT MODIFY THE BOOLEAN LOGIC of this WHERE clause (the two
+    // conditions joined by OR) unless your SCD2 implementation uses
+    // different column semantics. The timestamp LITERAL FORMATTING
+    // around $(vLastExecTime) and $(vThisExecTime), however, is
+    // database-dialect-specific and you MAY need to adjust it:
+    //
+    //   PostgreSQL / MySQL / MariaDB:
+    //     Bare quoted string works: WHERE col >= '2026-01-15 00:00:00'
+    //   Microsoft SQL Server (with strict ANSI date settings):
+    //     May require explicit cast:
+    //       WHERE col >= CAST('$(vLastExecTime)' AS DATETIME2)
+    //       WHERE col >= CONVERT(DATETIME, '$(vLastExecTime)', 120)
+    //   BigQuery:
+    //     Requires TIMESTAMP keyword: WHERE col >= TIMESTAMP '$(vLastExecTime)'
+    //   Snowflake:
+    //     Bare string usually coerces, but TIMESTAMP '...' is most explicit.
+    //   Oracle:
+    //     Use TO_TIMESTAMP: WHERE col >= TO_TIMESTAMP('$(vLastExecTime)', 'YYYY-MM-DD HH24:MI:SS')
+    //
+    // vLastExecTime is a Qlik timestamp string ('YYYY-MM-DD HH:MM:SS' by
+    // default per SET TimestampFormat). If your source database needs a
+    // different literal format, also confirm vLastExecTime's serialized
+    // format matches what the cast/convert expects.
+
+    [$(vSCD2_TableLabel)]:
+    SQL SELECT *
+    FROM $(vSCD2_SourceTable)
+    WHERE $(vSCD2_EffFrom) >= '$(vLastExecTime)'
+       OR ($(vSCD2_EffTo) IS NOT NULL
+           AND $(vSCD2_EffTo) >= '$(vLastExecTime)'
+           AND $(vSCD2_EffTo) < '$(vThisExecTime)');
+
+    LET vChangedRows = NoOfRows('$(vSCD2_TableLabel)');
+    TRACE SCD2 changed records from source: $(vChangedRows);
+
+    // Step 2: Load existing QVD records that were NOT changed.
+    //
+    // CRITICAL: Use the SURROGATE KEY for EXISTS, not the business key.
+    // The business key has multiple rows in an SCD2 table (one per version).
+    // Using business key in EXISTS would drop all but the first version
+    // of every entity.
+
+    CONCATENATE([$(vSCD2_TableLabel)])
+    LOAD *
+    FROM [$(vSCD2_QvdPath)] (qvd)
+    WHERE NOT EXISTS($(vSCD2_SurrogateKey));
+
+    LET vTotalRows = NoOfRows('$(vSCD2_TableLabel)');
+    TRACE SCD2 total records after merge: $(vTotalRows);
+
+    // Step 3: Store merged result (only if no errors during entire reload).
+    // Uses = 0 intentionally as a conservative guard: if ANY error occurred
+    // (even in a prior phase), don't overwrite the QVD. For per-operation
+    // error checking, use CheckError from error-handling.qvs.
+    IF ScriptErrorCount = 0 THEN
+        STORE [$(vSCD2_TableLabel)] INTO [$(vSCD2_QvdPath)] (qvd);
+        TRACE SCD2 QVD stored successfully;
+
+        // Update state
+        [_SCD2State]:
+        LOAD '$(vThisExecTime)' AS LastExecTime AUTOGENERATE 1;
+        STORE [_SCD2State] INTO [$(vSCD2_StatePath)] (qvd);
+        DROP TABLE [_SCD2State];
+    ELSE
+        TRACE [CRITICAL] SCD2 load encountered errors -- QVD NOT updated;
+    END IF
+
+    DROP TABLE [$(vSCD2_TableLabel)];
+
+ELSE
+    // ===========================================================
+    // FIRST LOAD (full extract)
+    // ===========================================================
+    TRACE SCD2 first load -- performing full extract from source;
+
+    [$(vSCD2_TableLabel)]:
+    SQL SELECT * FROM $(vSCD2_SourceTable);
+
+    LET vTotalRows = NoOfRows('$(vSCD2_TableLabel)');
+    TRACE SCD2 full extract: $(vTotalRows) records;
+
+    IF ScriptErrorCount = 0 THEN
+        STORE [$(vSCD2_TableLabel)] INTO [$(vSCD2_QvdPath)] (qvd);
+
+        // Initialize state
+        [_SCD2State]:
+        LOAD '$(vThisExecTime)' AS LastExecTime AUTOGENERATE 1;
+        STORE [_SCD2State] INTO [$(vSCD2_StatePath)] (qvd);
+        DROP TABLE [_SCD2State];
+    END IF
+
+    DROP TABLE [$(vSCD2_TableLabel)];
+END IF
+
+// --- Cleanup ---
+// Clear scratch counters. Use SET (not LET) for variable clearing:
+// LET evaluates the RHS as an expression -- an empty RHS produces
+// undefined/null behavior. SET preserves the RHS as literal text,
+// so SET vVar = ; correctly assigns the empty string.
+// Per help.qlik.com -- SET statement / LET statement.
+SET vChangedRows = ;
+SET vTotalRows = ;
+
+// ============================================================
+// VERIFICATION CHECKLIST (for developer during execution gate):
+//
+// After running this script, verify:
+// 1. Row count matches expected total from source profile
+// 2. No duplicate surrogate keys: GROUP BY surrogate_key HAVING COUNT > 1
+// 3. Each business_key with is_current=1 appears exactly once
+// 4. No business_key has TWO records with effective_to = NULL
+//    (indicates the closure condition is not working)
+// 5. TRACE output shows changed record counts that make sense
+//    (not 0 on subsequent loads when source data has changed)
+// ============================================================

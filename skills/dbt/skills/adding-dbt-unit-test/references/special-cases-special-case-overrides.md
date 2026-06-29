@@ -32,7 +32,7 @@ When configuring your unit test, you can override the output of macros, project 
 
 ## Macros
 
-You can override the output of any macro in your unit test defition. 
+You can override the output of any macro in your unit test defition.
 
 If the model you're unit testing uses these macros, you must override them:
   - `is_incremental`: If you're unit testing an incremental model, you must explicity set `is_incremental` to `true` or `false`.
@@ -47,7 +47,7 @@ If the model you're unit testing uses these macros, you must override them:
       overrides:
         macros:
           # unit test this model in "full refresh" mode
-          is_incremental: false 
+          is_incremental: false
       ...
 
   ```
@@ -64,7 +64,7 @@ If the model you're unit testing uses these macros, you must override them:
       overrides:
         macros:
           # explicity set star to relevant list of columns
-          dbt_utils.star: col_a,col_b,col_c 
+          dbt_utils.star: col_a,col_b,col_c
       ...
 
-  ``` 
+  ```

@@ -1,0 +1,45 @@
+id: spark-history
+name: Kubeflow Spark History Server MCP
+description: Investigates Spark application, job, stage, executor, SQL, configuration, and bottleneck data from a Spark History Server using optional basic or bearer-token authentication.
+author: Kubeflow
+url: https://github.com/kubeflow/mcp-apache-spark-history-server
+category: observability
+prerequisites:
+  - Python 3.12 or newer and uv
+  - Reachable Spark History Server
+content:
+  - name: UVX (stdio)
+    prerequisites:
+      - Python 3.12 or newer and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "mcp-apache-spark-history-server==1.0.0",
+          "spark-mcp"
+        ],
+        "env": {
+          "SHS_MCP__TRANSPORT": "stdio",
+          "SHS_SERVERS__LOCAL__URL": "{{SPARK_HISTORY_URL}}",
+          "SHS_SERVERS__LOCAL__AUTH__USERNAME": "{{SPARK_HISTORY_USERNAME}}",
+          "SHS_SERVERS__LOCAL__AUTH__PASSWORD": "{{SPARK_HISTORY_PASSWORD}}",
+          "SHS_SERVERS__LOCAL__AUTH__TOKEN": "{{SPARK_HISTORY_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Spark History Server URL
+    key: SPARK_HISTORY_URL
+    placeholder: http://localhost:18080
+  - name: Spark History Username
+    key: SPARK_HISTORY_USERNAME
+    placeholder: your_username
+    optional: true
+  - name: Spark History Password
+    key: SPARK_HISTORY_PASSWORD
+    placeholder: your_password
+    optional: true
+  - name: Spark History Bearer Token
+    key: SPARK_HISTORY_TOKEN
+    placeholder: your_bearer_token
+    optional: true

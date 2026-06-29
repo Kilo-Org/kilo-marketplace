@@ -4,12 +4,7 @@ description: Provides database interaction and business intelligence capabilitie
   data analysis, and automated business insight generation.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sqlite
-tags:
-  - sql
-  - data-analysis
-  - business-intelligence
-  - database-management
-  - sqlite
+category: data
 content:
   - name: UVX
     prerequisites:

@@ -1,0 +1,33 @@
+diff -rN -U0 --ignore-trailing-space a/integrate-anything/SKILL.md b/integrate-anything/SKILL.md
+--- a/integrate-anything/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/integrate-anything/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -4,4 +4,5 @@
+-  Connect to any external app and perform actions on it. Use when the user wants
+-  to interact with external services like Slack, Linear, HubSpot, Salesforce,
+-  Jira, GitHub, Google Sheets, or any other app — send messages, create tasks,
+-  sync data, manage contacts, or perform any API operation.
++  This skill should be used only when an external-app action must be executed
++  through the Membrane CLI and an authenticated Membrane connection, such as
++  sending a message, creating a task, or syncing records. It should not be used
++  for general API design, SDK integration, documentation lookup, or direct
++  vendor API calls.
+@@ -9,3 +9,0 @@
+-  author: Membrane Inc
+-  version: 2.0.0
+-  homepage: 'https://getmembrane.com'
+@@ -22 +20 @@
+-Connect to any external app and perform actions on it. Uses the [Membrane](https://getmembrane.com) CLI.
++Connect to external apps through the [Membrane](https://getmembrane.com) CLI.
+@@ -24 +22,8 @@
+-**Always route through Membrane.** Don't hit vendor APIs directly. Membrane proxies every request through an authenticated connection and injects the right auth headers — including transparent credential refresh.
++## Activation and Composition
++
++- Activate only when the task requires executing an external SaaS action and Membrane is available or explicitly requested.
++- Defer explanation-only, SDK, direct API, and product-specific implementation work to a narrower vendor or integration skill.
++- When composing with a vendor skill, use that skill to determine domain semantics or payload shape, but keep authentication and execution in Membrane.
++- Before an ambiguous, destructive, or irreversible action, summarize the selected connection, target, and operation and obtain confirmation.
++
++**Always route execution through Membrane.** Don't hit vendor APIs directly. Membrane proxies every request through an authenticated connection and injects the right auth headers — including transparent credential refresh.
+@@ -52 +57 @@
+-If `npx` is awkward, install globally: `npm i -g @membranehq/cli@latest` and use plain `membrane …`. Add `--json` to any command for machine-readable output.
++If `npx` is awkward, install globally: `npm i -g @membranehq/cli@1.18.1` and use plain `membrane …`. Add `--json` to any command for machine-readable output.

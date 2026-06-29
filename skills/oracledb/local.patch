@@ -1,0 +1,821 @@
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/execute_sql.js b/oracledb/scripts/execute_sql.js
+--- a/oracledb/scripts/execute_sql.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/execute_sql.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -31,29 +29,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,7 +40,17 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
++    }
++
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
++
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
+@@ -71 +58,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +60,3 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
+@@ -78,0 +64,2 @@
++    return { env, userAgent };
++}
+@@ -80 +67,146 @@
+-	return { env, userAgent };
++function sanitizeSql(sql) {
++    let output = '';
++    let i = 0;
++    while (i < sql.length) {
++        const char = sql[i];
++        const next = sql[i + 1];
++        if (char === '-' && next === '-') {
++            output += '  ';
++            i += 2;
++            while (i < sql.length && sql[i] !== '\n') {
++                output += ' ';
++                i += 1;
++            }
++            continue;
++        }
++        if (char === '/' && next === '*') {
++            output += '  ';
++            i += 2;
++            let closed = false;
++            while (i < sql.length) {
++                if (sql[i] === '*' && sql[i + 1] === '/') {
++                    output += '  ';
++                    i += 2;
++                    closed = true;
++                    break;
++                }
++                output += sql[i] === '\n' ? '\n' : ' ';
++                i += 1;
++            }
++            if (!closed) throw new Error('Unterminated SQL block comment');
++            continue;
++        }
++        if ((char === 'q' || char === 'Q') && next === "'" && i + 2 < sql.length) {
++            const opener = sql[i + 2];
++            const pairs = { '[': ']', '{': '}', '(': ')', '<': '>' };
++            const closer = pairs[opener] || opener;
++            output += '   ';
++            i += 3;
++            let closed = false;
++            while (i < sql.length) {
++                if (sql[i] === closer && sql[i + 1] === "'") {
++                    output += '  ';
++                    i += 2;
++                    closed = true;
++                    break;
++                }
++                output += sql[i] === '\n' ? '\n' : ' ';
++                i += 1;
++            }
++            if (!closed) throw new Error('Unterminated Oracle alternative-quoted string');
++            continue;
++        }
++        if (char === "'" || char === '"') {
++            const quote = char;
++            output += ' ';
++            i += 1;
++            let closed = false;
++            while (i < sql.length) {
++                if (sql[i] === quote) {
++                    if (sql[i + 1] === quote) {
++                        output += '  ';
++                        i += 2;
++                        continue;
++                    }
++                    output += ' ';
++                    i += 1;
++                    closed = true;
++                    break;
++                }
++                output += sql[i] === '\n' ? '\n' : ' ';
++                i += 1;
++            }
++            if (!closed) throw new Error('Unterminated SQL quoted value');
++            continue;
++        }
++        output += char;
++        i += 1;
++    }
++    return output;
++}
++
++function assertReadOnlySql(sql) {
++    if (typeof sql !== 'string' || !sql.trim()) {
++        throw new Error('The sql parameter must be a non-empty string');
++    }
++    const sanitized = sanitizeSql(sql);
++    const semicolons = [...sanitized.matchAll(/;/g)].map(match => match.index);
++    if (semicolons.length > 1) {
++        throw new Error('Only one SQL statement is allowed in read-only mode');
++    }
++    let statement;
++    if (semicolons.length === 1) {
++        const semicolon = semicolons[0];
++        if (!sanitized.slice(0, semicolon).trim() || sanitized.slice(semicolon + 1).trim()) {
++            throw new Error('A semicolon is permitted only at the end of one read-only statement');
++        }
++        statement = sanitized.slice(0, semicolon).trim();
++    } else {
++        statement = sanitized.trim();
++    }
++    const firstKeyword = (statement.match(/^([A-Za-z]+)/) || [])[1];
++    if (!firstKeyword || !['SELECT', 'WITH'].includes(firstKeyword.toUpperCase())) {
++        throw new Error('Read-only mode accepts only SELECT or WITH queries');
++    }
++    const forbidden = /\b(INSERT|UPDATE|DELETE|MERGE|UPSERT|CREATE|ALTER|DROP|TRUNCATE|RENAME|GRANT|REVOKE|CALL|EXECUTE|BEGIN|DECLARE|COMMIT|ROLLBACK|SAVEPOINT|LOCK|COPY|DO|FUNCTION|PROCEDURE)\b/i;
++    const match = statement.match(forbidden);
++    if (match) {
++        throw new Error(`Read-only mode rejects SQL keyword ${match[1].toUpperCase()}`);
++    }
++    if (/\bFOR\s+(UPDATE|SHARE)\b/i.test(statement) || /\bSELECT\s+.*\bINTO\b/is.test(statement)) {
++        throw new Error('Read-only mode rejects SELECT INTO and row-locking queries');
++    }
++}
++
++function parseInvocationArgs(rawArgs) {
++    let dangerous = false;
++    let confirmed = false;
++    const args = [];
++    for (const arg of rawArgs) {
++        if (arg === '--dangerous') {
++            dangerous = true;
++        } else if (arg === '--confirm-dangerous-sql=EXECUTE') {
++            confirmed = true;
++        } else {
++            args.push(arg);
++        }
++    }
++    if (dangerous !== confirmed) {
++        throw new Error('Non-read SQL requires both --dangerous and --confirm-dangerous-sql=EXECUTE');
++    }
++    if (args.length !== 1) {
++        throw new Error('Expected exactly one JSON argument containing the sql parameter');
++    }
++    let payload;
++    try {
++        payload = JSON.parse(args[0]);
++    } catch (error) {
++        throw new Error(`Invalid JSON argument: ${error.message}`);
++    }
++    if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
++        throw new Error('The invocation argument must be a JSON object');
++    }
++    if (!dangerous) {
++        assertReadOnlySql(payload.sql);
++    }
++    return args;
+@@ -85 +217,7 @@
+-    const args = process.argv.slice(2);
++    let args;
++    try {
++        args = parseInvocationArgs(process.argv.slice(2));
++    } catch (error) {
++        console.error(`Refusing SQL execution: ${error.message}`);
++        process.exit(2);
++    }
+@@ -104 +242,5 @@
+-main();
++if (require.main === module) {
++    main();
++}
++
++module.exports = { assertReadOnlySql };
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/get_query_plan.js b/oracledb/scripts/get_query_plan.js
+--- a/oracledb/scripts/get_query_plan.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/get_query_plan.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -20,0 +19 @@
++const { assertReadOnlySql } = require('./execute_sql');
+@@ -31,29 +30,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,8 +41,3 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
+-        userAgent = "skills-codex";
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
+@@ -71 +44,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +46,5 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
+@@ -78,0 +52,8 @@
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
++        userAgent = "skills-codex";
++    }
+@@ -80 +61,5 @@
+-	return { env, userAgent };
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
++
++    return { env, userAgent };
+@@ -85 +70,19 @@
+-    const args = process.argv.slice(2);
++    const rawArgs = process.argv.slice(2);
++    const dangerous = rawArgs.includes('--dangerous');
++    const confirmed = rawArgs.includes('--confirm-dangerous-sql=EXECUTE');
++    const args = rawArgs.filter(arg => arg !== '--dangerous' && arg !== '--confirm-dangerous-sql=EXECUTE');
++    try {
++        if (dangerous !== confirmed) {
++            throw new Error('Non-read SQL requires both --dangerous and --confirm-dangerous-sql=EXECUTE');
++        }
++        if (args.length !== 1) {
++            throw new Error('Expected exactly one JSON argument containing the query parameter');
++        }
++        const payload = JSON.parse(args[0]);
++        if (!dangerous) {
++            assertReadOnlySql(payload.query);
++        }
++    } catch (error) {
++        console.error(`Refusing query plan request: ${error.message}`);
++        process.exit(2);
++    }
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/list_active_sessions.js b/oracledb/scripts/list_active_sessions.js
+--- a/oracledb/scripts/list_active_sessions.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/list_active_sessions.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -31,29 +29,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,8 +40,3 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
+-        userAgent = "skills-codex";
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
+@@ -71 +43,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +45,14 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
++
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
++        userAgent = "skills-codex";
++    }
+@@ -78,0 +60,3 @@
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
+@@ -80 +64 @@
+-	return { env, userAgent };
++    return { env, userAgent };
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/list_invalid_objects.js b/oracledb/scripts/list_invalid_objects.js
+--- a/oracledb/scripts/list_invalid_objects.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/list_invalid_objects.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -31,29 +29,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,8 +40,3 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
+-        userAgent = "skills-codex";
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
+@@ -71 +43,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +45,14 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
++
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
++        userAgent = "skills-codex";
++    }
+@@ -78,0 +60,3 @@
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
+@@ -80 +64 @@
+-	return { env, userAgent };
++    return { env, userAgent };
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/list_tables.js b/oracledb/scripts/list_tables.js
+--- a/oracledb/scripts/list_tables.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/list_tables.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -31,29 +29,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,8 +40,3 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
+-        userAgent = "skills-codex";
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
+@@ -71 +43,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +45,14 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
++
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
++        userAgent = "skills-codex";
++    }
+@@ -78,0 +60,3 @@
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
+@@ -80 +64 @@
+-	return { env, userAgent };
++    return { env, userAgent };
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/list_tablespace_usage.js b/oracledb/scripts/list_tablespace_usage.js
+--- a/oracledb/scripts/list_tablespace_usage.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/list_tablespace_usage.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -31,29 +29,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,8 +40,3 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
+-        userAgent = "skills-codex";
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
+@@ -71 +43,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +45,14 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
++
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
++        userAgent = "skills-codex";
++    }
+@@ -78,0 +60,3 @@
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
+@@ -80 +64 @@
+-	return { env, userAgent };
++    return { env, userAgent };
+diff -rN -U0 --ignore-trailing-space a/oracledb/scripts/list_top_sql_by_resource.js b/oracledb/scripts/list_top_sql_by_resource.js
+--- a/oracledb/scripts/list_top_sql_by_resource.js	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/scripts/list_top_sql_by_resource.js	2000-01-01 00:00:00.000000000 +0000
+@@ -17,3 +17 @@
+-const { spawn, execSync } = require('child_process');
+-const path = require('path');
+-const fs = require('fs');
++const { spawn } = require('child_process');
+@@ -31,29 +29,9 @@
+-function mergeEnvVars(env) {
+-	if (process.env.GEMINI_CLI === '1') {
+-		const envPath = path.resolve(__dirname, '../../../.env');
+-		if (fs.existsSync(envPath)) {
+-			const envContent = fs.readFileSync(envPath, 'utf-8');
+-			envContent.split('\n').forEach(line => {
+-				const trimmed = line.trim();
+-				if (trimmed && !trimmed.startsWith('#')) {
+-					const splitIdx = trimmed.indexOf('=');
+-					if (splitIdx !== -1) {
+-						const key = trimmed.slice(0, splitIdx).trim();
+-						let value = trimmed.slice(splitIdx + 1).trim();
+-						value = value.replace(/(^['"]|['"]$)/g, '');
+-						if (env[key] === undefined) {
+-							env[key] = value;
+-						}
+-					}
+-				}
+-			});
+-		}
+-	} else if (process.env.CLAUDECODE === '1') {
+-		const prefix = 'CLAUDE_PLUGIN_OPTION_';
+-		for (const key in process.env) {
+-			if (key.startsWith(prefix)) {
+-				env[key.substring(prefix.length)] = process.env[key];
+-			}
+-		}
+-	}
+-}
++const PROCESS_ENV_VARS = [
++    'PATH', 'HOME', 'USER', 'TMPDIR', 'TEMP', 'TMP', 'SystemRoot', 'COMSPEC',
++    'PATHEXT', 'NODE_EXTRA_CA_CERTS', 'HTTP_PROXY', 'HTTPS_PROXY', 'NO_PROXY',
++    'NPM_CONFIG_CACHE',
++];
++const ORACLE_ENV_VARS = [
++    'ORACLE_CONNECTION_STRING', 'ORACLE_USERNAME', 'ORACLE_PASSWORD',
++    'ORACLE_WALLET', 'ORACLE_USE_OCI',
++];
+@@ -62,8 +40,3 @@
+-	let env = { ...process.env };
+-	let userAgent = "skills";
+-	if (process.env.GEMINI_CLI === '1') {
+-		userAgent = "skills-geminicli";
+-	} else if (process.env.CLAUDECODE === '1') {
+-		userAgent = "skills-claudecode";
+-	} else if (process.env.CODEX_CI === '1') {
+-        userAgent = "skills-codex";
++    const env = {};
++    for (const key of [...PROCESS_ENV_VARS, ...ORACLE_ENV_VARS]) {
++        if (process.env[key] !== undefined) env[key] = process.env[key];
+@@ -71 +43,0 @@
+-	mergeEnvVars(env);
+@@ -73,5 +45,14 @@
+-	OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
+-		if (env[varName] === '') {
+-			delete env[varName];
+-		}
+-	});
++    const prefix = 'CLAUDE_PLUGIN_OPTION_';
++    for (const key of ORACLE_ENV_VARS) {
++        const optionValue = process.env[`${prefix}${key}`];
++        if (env[key] === undefined && optionValue !== undefined) env[key] = optionValue;
++    }
++
++    let userAgent = "skills";
++    if (process.env.GEMINI_CLI === '1') {
++        userAgent = "skills-geminicli";
++    } else if (process.env.CLAUDECODE === '1') {
++        userAgent = "skills-claudecode";
++    } else if (process.env.CODEX_CI === '1') {
++        userAgent = "skills-codex";
++    }
+@@ -78,0 +60,3 @@
++    OPTIONAL_VARS_TO_OMIT_IF_EMPTY.forEach(varName => {
++        if (env[varName] === '') delete env[varName];
++    });
+@@ -80 +64 @@
+-	return { env, userAgent };
++    return { env, userAgent };
+diff -rN -U0 --ignore-trailing-space a/oracledb/SKILL.md b/oracledb/SKILL.md
+--- a/oracledb/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracledb/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -35 +35 @@
+-Executes any SQL statement.
++Executes one read-only `SELECT` or `WITH` query by default. The wrapper rejects multiple statements, DDL, DML, transaction control, PL/SQL, `CALL`, `COPY`, `DO`, `SELECT INTO`, and row-locking queries before starting the database tool.
+@@ -41 +41,9 @@
+-| sql | string | The SQL to execute. | Yes |  |
++| sql | string | One read-only SQL query to execute. | Yes |  |
++
++A non-read statement requires both explicit CLI acknowledgements and should be used only after the user confirms the exact SQL:
++
++```bash
++node <skill_dir>/scripts/execute_sql.js \
++  --dangerous --confirm-dangerous-sql=EXECUTE \
++  '{"sql":"<confirmed non-read SQL>"}'
++```
+@@ -48 +56 @@
+-Generate a full execution plan for a single SQL statement using EXPLAIN PLAN. This can be used to analyze query performance without execution. Requires the SQL statement as input as a parameter.
++Generate a full execution plan for one `SELECT` or `WITH` query using EXPLAIN PLAN. The wrapper applies the same read-only statement validation and the same two-flag dangerous override as `execute_sql` before invoking the tool.

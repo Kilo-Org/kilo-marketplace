@@ -1,0 +1,29 @@
+diff -rN -U0 --ignore-trailing-space a/chdb-datastore/README.md b/chdb-datastore/README.md
+--- a/chdb-datastore/README.md	2000-01-01 00:00:00.000000000 +0000
++++ b/chdb-datastore/README.md	2000-01-01 00:00:00.000000000 +0000
+@@ -5,6 +4,0 @@
+-## Installation
+-
+-```bash
+-npx skills add clickhouse/agent-skills
+-```
+-
+diff -rN -U0 --ignore-trailing-space a/chdb-datastore/SKILL.md b/chdb-datastore/SKILL.md
+--- a/chdb-datastore/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/chdb-datastore/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -13 +12,0 @@
+-compatibility: 'Requires Python 3.9+, macOS or Linux. pip install chdb.'
+@@ -15,3 +13,0 @@
+-  author: chdb-io
+-  version: '4.1'
+-  homepage: 'https://clickhouse.com/docs/chdb'
+@@ -41 +37 @@
+-pip install chdb
++pip install chdb==4.1.9
+@@ -132 +128 @@
+-| `ImportError: No module named 'chdb'` | `pip install chdb` |
++| `ImportError: No module named 'chdb'` | `pip install chdb==4.1.9` |
+@@ -148,2 +144 @@
+-> For raw SQL queries, use the `chdb-sql` skill.
+-> For contributing to chdb source code, see CLAUDE.md in the project root.
++> For raw SQL queries, use the `chdb-sql` skill. Source-contribution workflows are outside this package.

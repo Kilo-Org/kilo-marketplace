@@ -1,0 +1,30 @@
+id: amazon-keyspaces-mcp
+name: Amazon Keyspaces MCP
+description: Queries Amazon Keyspaces or Cassandra catalogs and rows through a local AWS Labs server that only exposes read-only SELECT operations.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/amazon-keyspaces-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - AWS credentials with read-only Keyspaces permissions
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["awslabs.amazon-keyspaces-mcp-server==0.0.14"],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}",
+          "FASTMCP_LOG_LEVEL": "ERROR"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS region
+    key: AWS_REGION
+    placeholder: us-east-1

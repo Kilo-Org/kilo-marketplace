@@ -2,17 +2,17 @@
 name: internal-comms
 description: >-
   A set of resources to help me write all kinds of internal communications,
-  using the formats that my company likes to use. The agent should use this skill
-  whenever asked to write some sort of internal communications (status reports,
-  leadership updates, 3P updates, company newsletters, FAQs, incident reports,
-  project updates, etc.).
-license: Complete terms in LICENSE.txt
+  using the formats that my company likes to use. The agent should use this
+  skill whenever asked to write some sort of internal communications (status
+  reports, leadership updates, 3P updates, company newsletters, FAQs, incident
+  reports, project updates, etc.).
 metadata:
   category: business
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: internal-comms
     license_path: internal-comms/LICENSE.txt
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 ## When to use this skill

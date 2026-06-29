@@ -1,11 +1,11 @@
-diff -ruN a/dbt-migration/.claude-plugin/plugin.json b/dbt-migration/.claude-plugin/plugin.json
---- a/dbt-migration/.claude-plugin/plugin.json	2026-04-08 09:44:30
-+++ b/dbt-migration/.claude-plugin/plugin.json	1970-01-01 01:00:00
+diff -rN -U0 --ignore-trailing-space a/dbt-migration/.claude-plugin/plugin.json b/dbt-migration/.claude-plugin/plugin.json
+--- a/dbt-migration/.claude-plugin/plugin.json	2000-01-01 00:00:00.000000000 +0000
++++ b/dbt-migration/.claude-plugin/plugin.json	1970-01-01 00:00:00.000000000 +0000
 @@ -1,12 +0,0 @@
 -{
 -  "name": "dbt-migration",
 -  "description": "Skills for migrating dbt projects — moving from dbt Core to the Fusion engine or across data platforms.",
--  "version": "1.1.1",
+-  "version": "1.2.0",
 -  "author": {
 -    "name": "dbt Labs"
 -  },
@@ -14,20 +14,24 @@ diff -ruN a/dbt-migration/.claude-plugin/plugin.json b/dbt-migration/.claude-plu
 -  "repository": "https://github.com/dbt-labs/dbt-agent-skills",
 -  "keywords": ["dbt", "migration", "fusion", "platform-migration"]
 -}
-diff -ruN a/dbt-migration/SKILL.md b/dbt-migration/SKILL.md
---- a/dbt-migration/SKILL.md	1970-01-01 01:00:00
-+++ b/dbt-migration/SKILL.md	2026-04-08 09:44:30
-@@ -0,0 +1,29 @@
+diff -rN -U0 --ignore-trailing-space a/dbt-migration/SKILL.md b/dbt-migration/SKILL.md
+--- a/dbt-migration/SKILL.md	1970-01-01 00:00:00.000000000 +0000
++++ b/dbt-migration/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,33 @@
 +---
 +name: dbt-migration
-+description: Skills for migrating dbt projects - moving from dbt Core to the Fusion engine or across data platforms. Use when migrating dbt projects between platforms or to dbt Fusion.
++description: >-
++  Skills for migrating dbt projects - moving from dbt Core to the Fusion engine
++  or across data platforms. Use when migrating dbt projects between platforms or
++  to dbt Fusion.
 +license: Apache-2.0
 +metadata:
 +  category: development
 +  author: dbt-labs
 +  source:
-+    repository: https://github.com/dbt-labs/dbt-agent-skills
++    repository: 'https://github.com/dbt-labs/dbt-agent-skills'
 +    path: skills/dbt-migration
++    commit: f30da77590f0ec1a4c78ff03599c3c715077f1c1
 +---
 +
 +# dbt Migration Skills
@@ -47,3 +51,44 @@ diff -ruN a/dbt-migration/SKILL.md b/dbt-migration/SKILL.md
 +- **Repository**: https://github.com/dbt-labs/dbt-agent-skills
 +- **License**: Apache-2.0
 +- **Author**: dbt Labs
+diff -rN -U0 --ignore-trailing-space a/dbt-migration/skills/migrating-dbt-core-to-fusion/SKILL.md b/dbt-migration/skills/migrating-dbt-core-to-fusion/SKILL.md
+--- a/dbt-migration/skills/migrating-dbt-core-to-fusion/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/dbt-migration/skills/migrating-dbt-core-to-fusion/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-description: Use when a user needs help triaging dbt-core to Fusion migration errors. Runs dbt-autofix first, then classifies remaining errors into actionable categories (auto-fixable, guided fixes, needs input, blocked).
++description: Classifies dbt-core to Fusion migration errors into actionable categories (auto-fixable, guided fixes, needs input, blocked). Use when a user needs help triaging migration errors to understand what they can fix vs what requires Fusion engine updates.
+@@ -16,17 +15,0 @@
+-## Mandatory execution order
+-
+-This skill is a strict procedure, not general guidance.
+-
+-The assistant must follow this order:
+-1. Step 0: Ask whether to run `dbt debug`
+-2. Step 1: Run or confirm `dbt-autofix`, then review its changes
+-3. Step 2: Classify remaining issues
+-4. Only after Steps 0–2 may the assistant propose or apply manual fixes
+-
+-Hard rules:
+-- Do not inspect project files before Step 0 is completed or explicitly skipped
+-- Do not classify issues before Step 1 is complete
+-- Do not edit files before presenting the autofix review and classification summary
+-- If these rules are violated, acknowledge the violation, state which step was missed, and execute that step now before continuing
+-- **Focus on errors**: For `dbt1065` package version compatibility warnings specifically (e.g. `Package '<package_name>' requires dbt version [>=1.2.0, <2.0.0]`) — ignore these. If autofix was run, it will have already upgraded packages that need upgrading. If `dbt1065` warnings persist after autofix, no manual package updates are needed.
+-
+@@ -108 +90,0 @@
+-   - Were any package versions updated? (autofix upgrades packages that require it)
+@@ -131 +112,0 @@
+-- Static analysis errors in `analyses/` files (dbt0209, dbt0404, or other codes < 1000) — analyses are optional query files, not production models. The correct fix is to add `{{ config(static_analysis='off') }}` at the top of the analysis SQL file. Do **not** rewrite the SQL or remove content — just disable static analysis for that file.
+@@ -142 +123 @@
+-- Package version issues (dbt8999) — update versions, use exact pins. `dbt1065` package compatibility warnings (e.g. `Package '<package_name>' requires dbt version [>=1.2.0, <2.0.0]`) are not errors — autofix handles package upgrades. If `dbt1065` warnings persist after autofix, no manual action is needed.
++- Package version issues (dbt1005, dbt8999) — update versions, use exact pins
+@@ -167 +148 @@
+-- Known GitHub issues — **always search proactively**: use `WebFetch` with URL `https://api.github.com/search/issues?q=repo:dbt-labs/dbt-fusion+<error_code>+<keywords>&type=issues` to find existing issues. Don't tell the user to search manually — do it yourself.
++- Known GitHub issues — check `github.com/dbt-labs/dbt-fusion/issues`
+@@ -272 +252,0 @@
+-- **Focus on errors**: For `dbt1065` package version compatibility warnings specifically (e.g. `Package '<package_name>' requires dbt version [>=1.2.0, <2.0.0]`) — ignore these. Autofix upgrades packages that need it; if `dbt1065` warnings remain after autofix, no manual package updates are needed.
+diff -rN -U0 --ignore-trailing-space a/dbt-migration/skills/migrating-dbt-project-across-platforms/SKILL.md b/dbt-migration/skills/migrating-dbt-project-across-platforms/SKILL.md
+--- a/dbt-migration/skills/migrating-dbt-project-across-platforms/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/dbt-migration/skills/migrating-dbt-project-across-platforms/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -4 +3,0 @@
+-user-invocable: false

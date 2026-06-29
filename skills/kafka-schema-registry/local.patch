@@ -1,0 +1,10 @@
+diff -rN -U0 --ignore-trailing-space a/kafka-schema-registry/references/code-migration.md b/kafka-schema-registry/references/code-migration.md
+--- a/kafka-schema-registry/references/code-migration.md	2000-01-01 00:00:00.000000000 +0000
++++ b/kafka-schema-registry/references/code-migration.md	2000-01-01 00:00:00.000000000 +0000
+@@ -307,3 +307,3 @@
+-    "@confluentinc/kafka-javascript": "latest",
+-    "@confluentinc/schemaregistry": "latest",
+-    "protobufjs": "latest"
++    "@confluentinc/kafka-javascript": "1.9.1",
++    "@confluentinc/schemaregistry": "1.9.1",
++    "protobufjs": "8.6.5"
