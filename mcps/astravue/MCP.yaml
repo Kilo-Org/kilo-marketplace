@@ -1,0 +1,24 @@
+id: astravue
+name: Astravue
+description: Project management MCP server for Astravue. Manage spaces, projects, tasks, subtasks, checklists, comments, time tracking, custom fields, dependencies, and team collaboration through natural language.
+author: Astravue
+url: https://github.com/AstravueOrg/astravue-mcp-server
+tags:
+  - project-management
+  - tasks
+  - time-tracking
+  - collaboration
+  - productivity
+  - sprints
+  - oauth
+prerequisites:
+  - Astravue account (app.astravue.com)
+content:
+  - name: Streamable HTTP (Remote)
+    prerequisites:
+      - Astravue account
+    content: >
+      {
+        "type": "remote",
+        "url": "https://api.astravue.com/mcp"
+      }
