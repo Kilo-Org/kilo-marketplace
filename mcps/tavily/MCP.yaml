@@ -1,6 +1,7 @@
 id: tavily
 name: Tavily
-description: Enables real-time web search and data extraction capabilities through Tavily's API, providing AI assistants
+description:
+  Enables real-time web search and data extraction capabilities through Tavily's API, providing AI assistants
   with filtered search results and intelligent content extraction from web pages.
 author: tavily-ai
 url: https://github.com/tavily-ai/tavily-mcp
@@ -8,13 +9,21 @@ category: search
 prerequisites:
   - Tavily account
 content:
-  - name: NPX
+  - name: NPX - Remote
     prerequisites:
       - Node.js
     content: |
       {
         "command": "npx",
-        "args": ["-y", "tavily-mcp@0.2.3"],
+        "args": ["-y", "mcp-remote@latest", "https://mcp.tavily.com/mcp"]
+      }
+  - name: NPX - Local
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "tavily-mcp@latest"],
         "env": {
           "TAVILY_API_KEY": "{{TAVILY_API_KEY}}"
         }
