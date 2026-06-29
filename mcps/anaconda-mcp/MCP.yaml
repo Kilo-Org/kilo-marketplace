@@ -1,0 +1,33 @@
+id: anaconda-mcp
+name: Anaconda MCP
+description: Connects Kilo to local conda environments and Anaconda resources so agents can inspect packages and channels and create, modify, or delete environments and packages. This public beta must not be used for production or mission-critical workloads.
+author: Anaconda, Inc.
+url: https://github.com/anaconda/anaconda-mcp
+category: development
+requirements:
+  skills:
+    - anaconda-mcp
+prerequisites:
+  - A supported conda installation with approved access to Anaconda's package channel
+  - A current supported platform; reviewed builds cover Linux x86-64/aarch64, Apple Silicon macOS, and Windows x86-64, but not Intel macOS
+  - A dedicated environment created with `conda create --name anaconda-mcp -c anaconda anaconda-mcp`
+  - An Anaconda account authenticated by running `anaconda login` from that environment
+  - Review the Anaconda MCP Beta Agreement at https://www.anaconda.com/legal/terms/mcpbeta
+  - Personally accept the agreement by running `anaconda mcp terms accept`; this command persists acceptance immediately without a confirmation prompt
+  - The absolute Python executable path from `conda run --name anaconda-mcp python -c "import sys; print(sys.executable)"`
+  - Approval for authenticated usage telemetry; Anaconda states that prompt and query content is not collected
+content:
+  - name: Dedicated conda environment
+    description: Runs the server using the dedicated environment's Python executable, avoiding shell activation and GUI PATH differences. This server can make destructive package and environment changes; configure Kilo permissions separately if desired.
+    content: |
+      {
+        "command": "{{ANACONDA_MCP_PYTHON}}",
+        "args": ["-m", "anaconda_mcp", "serve"],
+        "env": {},
+        "enabled": true,
+        "timeout": 600000
+      }
+parameters:
+  - name: Anaconda MCP Python executable
+    key: ANACONDA_MCP_PYTHON
+    placeholder: /absolute/path/to/envs/anaconda-mcp/bin/python or C:\absolute\path\to\envs\anaconda-mcp\python.exe
