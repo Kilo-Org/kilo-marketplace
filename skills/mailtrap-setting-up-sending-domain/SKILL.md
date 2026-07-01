@@ -26,3 +26,16 @@ This skill covers verifying a sending domain in Mailtrap for production email de
 Mailtrap requires three DNS records to verify your domain:
 
 **SPF** — Authorizes Mailtrap to send on your behalf:
+**DKIM** — Signs outgoing emails cryptographically:
+**DMARC** — Sets policy for failed authentication:
+
+## Verification Steps
+
+1. Add your domain in Mailtrap → Sending → Domains
+2. Add the DNS records shown in the Mailtrap dashboard to your DNS provider
+3. DNS propagation typically takes 24-48 hours
+4. Click "Verify" in Mailtrap once records are in place
+
+## Related Skills
+
+`mailtrap-sending-emails`, `mailtrap-authorizing-api-requests`
