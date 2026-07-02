@@ -1,0 +1,3098 @@
+# Kilo Stack Catalog — source of truth for technology → resource associations.
+#
+# This file is Kilo-curated. The generator (bin/generate-stack-catalog.ts) validates
+# all resource IDs against the mcps/ and skills/ inventories, enforces the trust policy,
+# auto-fills association metadata (trust/maturity/source/warnings/rationale) from the
+# resources registry, stamps curated:true, and writes stack/marketplace.json.
+#
+# Each technology association only requires:
+#   - ref:     qualified resource ref (skill:id or mcp:id)
+#   - default: true if enabled by default, false otherwise
+#   - rationale: (optional) custom override — auto-generated if omitted
+#
+# Revision format: YYYY-MM-DD.N where N starts at 1 and increments each same-day update.
+
+revision: "2026-06-25.2"
+
+verticals:
+  - id: data
+    name: Data Engineering
+    technologies:
+
+      # ── Orchestration ─────────────────────────────────────────────────────────
+      - id: apache-airflow
+        name: Apache Airflow
+        resources:
+          - ref: "skill:airflow"
+            default: true
+          - ref: "skill:authoring-dags"
+            default: true
+
+      - id: dagster
+        name: Dagster
+        resources:
+          - ref: "skill:dagster-expert"
+            default: true
+          - ref: "skill:dagster"
+            default: false
+
+      - id: azure-data-factory
+        name: Azure Data Factory
+        resources:
+          - ref: "skill:azure-data-factory"
+            default: true
+          - ref: "skill:adf-master"
+            default: false
+
+      - id: aws-glue
+        name: AWS Glue
+        resources:
+          - ref: "skill:ingesting-into-data-lake"
+            default: true
+          - ref: "skill:exploring-data-catalog"
+            default: true
+          - ref: "mcp:aws-data-processing"
+            default: true
+
+      - id: prefect
+        name: Prefect
+        resources:
+          - ref: "skill:prefect"
+            default: false
+          - ref: "mcp:prefect-mcp-server"
+            default: true
+
+      - id: dbt
+        name: dbt
+        resources:
+          - ref: "skill:dbt-analytics-engineering"
+            default: true
+          - ref: "mcp:dbt"
+            default: true
+
+      - id: astronomer
+        name: Astronomer
+        resources:
+          - ref: "skill:airflow"
+            default: true
+          - ref: "skill:deploying-airflow"
+            default: true
+          - ref: "mcp:astronomer-docs-mcp"
+            default: true
+
+      - id: apache-spark
+        name: Apache Spark
+        resources:
+          - ref: "skill:spark-engineer"
+            default: false
+          - ref: "skill:udf-benchmark"
+            default: false
+          - ref: "mcp:spark-history"
+            default: true
+
+      - id: stitch
+        name: Stitch
+        resources: []
+
+      - id: apache-nifi
+        name: Apache NiFi
+        resources:
+          - ref: "skill:etl-integration-nifi"
+            default: false
+          - ref: "skill:nifi-flow-layout"
+            default: false
+          - ref: "mcp:nifi-mcp-server"
+            default: true
+
+      - id: fivetran
+        name: Fivetran
+        resources:
+          - ref: "skill:build-connector"
+            default: true
+          - ref: "mcp:fivetran-mcp-server"
+            default: true
+
+      - id: airbyte
+        name: Airbyte
+        resources:
+          - ref: "skill:airbyte-agent"
+            default: false
+          - ref: "skill:bootstrapping-agent"
+            default: true
+          - ref: "mcp:airbyte-agent-mcp"
+            default: true
+          - ref: "mcp:airbyte-knowledge-mcp"
+            default: true
+
+      - id: matillion
+        name: Matillion
+        resources: []
+
+      # ── Streaming ────────────────────────────────────────────────────────────
+      - id: azure-event-hub
+        name: Azure Event Hub
+        resources:
+          - ref: "skill:azure-event-hubs"
+            default: true
+          - ref: "skill:azure-eventhub-py"
+            default: false
+          - ref: "mcp:azure"
+            default: true
+          - ref: "mcp:microsoft-learn"
+            default: true
+
+      - id: aws-kinesis
+        name: AWS Kinesis
+        resources:
+          - ref: "skill:aws-messaging-and-streaming"
+            default: true
+          - ref: "skill:cdc-streaming-pipeline"
+            default: false
+          - ref: "mcp:aws-serverless-mcp"
+            default: true
+
+      - id: gcp-pubsub
+        name: GCP PubSub
+        resources:
+          - ref: "skill:gcp-event-driven-architecture-review"
+            default: false
+          - ref: "mcp:gcp-pubsub"
+            default: true
+
+      - id: spark-streaming
+        name: Spark Streaming
+        resources:
+          - ref: "skill:databricks-spark-structured-streaming"
+            default: false
+          - ref: "skill:databricks-pipelines"
+            default: true
+          - ref: "mcp:spark-history"
+            default: true
+
+      - id: apache-kafka
+        name: Apache Kafka
+        resources:
+          - ref: "skill:kafka-streams-programming"
+            default: false
+          - ref: "skill:kafka-schema-registry"
+            default: false
+          - ref: "mcp:confluent"
+            default: true
+
+      - id: apache-flink
+        name: Apache Flink
+        resources:
+          - ref: "skill:flink"
+            default: false
+          - ref: "skill:flink-best-practices"
+            default: false
+          - ref: "mcp:confluent"
+            default: true
+
+      - id: apache-beam
+        name: Apache Beam
+        resources:
+          - ref: "skill:beam-concepts"
+            default: true
+          - ref: "skill:io-connectors"
+            default: true
+          - ref: "mcp:bigquery-mcp"
+            default: true
+
+      # ── Data Warehousing ──────────────────────────────────────────────────────
+      - id: databricks
+        name: Databricks
+        resources:
+          - ref: "skill:databricks-pipelines"
+            default: true
+          - ref: "skill:databricks-jobs"
+            default: true
+          - ref: "mcp:databricks-sql"
+            default: true
+          - ref: "mcp:unity-catalog-functions"
+            default: true
+
+      - id: snowflake
+        name: Snowflake
+        resources:
+          - ref: "skill:dynamic-tables-tutorial"
+            default: false
+          - ref: "skill:snowpipe-bcdr"
+            default: false
+          - ref: "mcp:snowflake-managed"
+            default: true
+
+      - id: azure-synapse
+        name: Azure Synapse
+        resources:
+          - ref: "skill:azure-synapse-analytics"
+            default: true
+          - ref: "mcp:microsoft-learn"
+            default: true
+
+      - id: aws-redshift
+        name: AWS Redshift
+        resources:
+          - ref: "skill:redshift"
+            default: false
+          - ref: "skill:database-redshift"
+            default: false
+          - ref: "mcp:aws-redshift-mcp"
+            default: true
+
+      - id: gcp-bigquery
+        name: GCP BigQuery
+        resources:
+          - ref: "skill:bigquery-basics"
+            default: true
+          - ref: "skill:bigquery-ai-ml"
+            default: true
+          - ref: "mcp:bigquery-mcp"
+            default: true
+
+      # ── Object Storage ────────────────────────────────────────────────────────
+      - id: azure-adls2
+        name: Azure ADLS2
+        resources:
+          - ref: "skill:azure-storage"
+            default: true
+          - ref: "skill:azure-rbac"
+            default: true
+          - ref: "mcp:azure"
+            default: true
+
+      - id: aws-s3
+        name: AWS S3
+        resources:
+          - ref: "skill:creating-data-lake-table"
+            default: true
+          - ref: "skill:securing-s3-buckets"
+            default: true
+          - ref: "mcp:aws"
+            default: true
+          - ref: "mcp:s3-tables-mcp"
+            default: true
+
+      - id: gcp-storage
+        name: GCP Storage
+        resources:
+          - ref: "skill:gcs-lifecycle-policy"
+            default: false
+
+      - id: hdfs
+        name: HDFS
+        resources:
+          - ref: "skill:hadoop"
+            default: false
+          - ref: "skill:data-distributed-storage"
+            default: false
+
+      - id: oracle-cloud-storage
+        name: Oracle Cloud Storage
+        resources:
+          - ref: "skill:oraclecloud-data-handling"
+            default: false
+          - ref: "skill:aidp-object-storage"
+            default: false
+          - ref: "mcp:oci-cloud-mcp"
+            default: true
+          - ref: "mcp:oci-api-mcp"
+            default: true
+
+      # ── File Formats ──────────────────────────────────────────────────────────
+      - id: apache-parquet
+        name: Apache Parquet
+        resources: []
+
+      - id: databricks-delta
+        name: Databricks Delta
+        resources:
+          - ref: "skill:databricks-pipelines"
+            default: true
+          - ref: "skill:databricks-core"
+            default: true
+          - ref: "mcp:databricks-sql"
+            default: true
+          - ref: "mcp:unity-catalog-functions"
+            default: true
+
+      - id: apache-iceberg
+        name: Apache Iceberg
+        resources:
+          - ref: "skill:oleander-iceberg-catalog"
+            default: false
+
+      - id: apache-orc
+        name: Apache ORC
+        resources: []
+
+      - id: apache-avro
+        name: Apache Avro
+        resources:
+          - ref: "skill:chdb-datastore"
+            default: false
+
+      - id: json
+        name: JSON
+        resources:
+          - ref: "skill:jq-json-processing"
+            default: false
+          - ref: "skill:validating-json-data"
+            default: false
+
+      - id: apache-hudi
+        name: Apache Hudi
+        resources:
+          - ref: "skill:apache-hudi-lakehouse"
+            default: false
+          - ref: "mcp:aws-data-processing"
+            default: true
+
+      - id: apache-arrow
+        name: Apache Arrow
+        resources:
+          - ref: "skill:apache-arrow"
+            default: false
+          - ref: "skill:adbc"
+            default: false
+
+      - id: csv
+        name: CSV
+        resources:
+          - ref: "skill:csv-wrangling"
+            default: false
+          - ref: "skill:csv-query"
+            default: false
+
+      - id: xml
+        name: XML
+        resources:
+          - ref: "skill:cheerio-parsing"
+            default: false
+
+      # ── Databases ─────────────────────────────────────────────────────────────
+      - id: microsoft-sql-server
+        name: Microsoft SQL Server
+        resources:
+          - ref: "skill:sql-server-table-reconciliation"
+            default: false
+          - ref: "mcp:microsoft-data-api-builder"
+            default: true
+          - ref: "mcp:dbhub"
+            default: true
+
+      - id: mysql
+        name: MySQL
+        resources:
+          - ref: "skill:mysql"
+            default: false
+          - ref: "skill:mysql-patterns"
+            default: false
+
+      - id: oracle
+        name: Oracle
+        resources:
+          - ref: "skill:oracle-database"
+            default: true
+          - ref: "skill:oracledb"
+            default: false
+          - ref: "mcp:oci-database-tools-mcp"
+            default: true
+
+      - id: apache-hbase
+        name: Apache HBase
+        resources:
+          - ref: "skill:hbase"
+            default: false
+
+      - id: postgresql
+        name: PostgreSQL
+        resources:
+          - ref: "skill:supabase-postgres-best-practices"
+            default: false
+          - ref: "skill:neon-postgres"
+            default: false
+          - ref: "mcp:neon"
+            default: true
+          - ref: "mcp:postgres-mcp-pro"
+            default: true
+
+      - id: cassandra
+        name: Cassandra
+        resources:
+          - ref: "skill:troubleshoot-cassandra"
+            default: false
+          - ref: "skill:cassandra"
+            default: false
+          - ref: "mcp:amazon-keyspaces-mcp"
+            default: true
+
+      - id: mongodb
+        name: MongoDB
+        resources:
+          - ref: "skill:mongodb-schema-design"
+            default: true
+          - ref: "skill:mongodb-query-optimizer"
+            default: true
+          - ref: "mcp:mongodb-mcp-server"
+            default: true
+
+      - id: elasticsearch
+        name: Elasticsearch
+        resources:
+          - ref: "skill:elasticsearch-file-ingest"
+            default: false
+          - ref: "skill:elasticsearch-esql"
+            default: false
+
+      - id: redis
+        name: Redis
+        resources:
+          - ref: "skill:redis-core"
+            default: true
+          - ref: "skill:redis-observability"
+            default: true
+          - ref: "mcp:redis-mcp"
+            default: true
+          - ref: "mcp:redis-cloud-mcp"
+            default: true
+
+      - id: ibm-db2
+        name: IBM DB2
+        resources:
+          - ref: "skill:db2-rhel"
+            default: false
+
+      # ── Dashboards ────────────────────────────────────────────────────────────
+      - id: tableau
+        name: Tableau
+        resources:
+          - ref: "skill:query-tableau-data"
+            default: false
+          - ref: "skill:tableau-dashboard-creator"
+            default: false
+          - ref: "mcp:tableau-mcp"
+            default: true
+
+      - id: power-bi
+        name: Power BI
+        resources:
+          - ref: "skill:powerbi-mcp"
+            default: false
+          - ref: "skill:powerbi-documentation"
+            default: false
+          - ref: "mcp:power-bi-modeling"
+            default: true
+          - ref: "mcp:power-bi-remote"
+            default: true
+
+      - id: qlik-sense
+        name: Qlik Sense
+        resources:
+          - ref: "skill:qlik-load-script"
+            default: false
+          - ref: "mcp:qlik-mcp"
+            default: true
+
+      - id: google-looker
+        name: Google Looker
+        resources:
+          - ref: "skill:lookml-model"
+            default: false
+          - ref: "skill:lookml-tests"
+            default: false
+          - ref: "mcp:looker-toolbox"
+            default: true
+
+      # ── APIs & Data Sharing ───────────────────────────────────────────────────
+      - id: graphql
+        name: GraphQL
+        resources:
+          - ref: "skill:graphql"
+            default: false
+          - ref: "skill:apollo-graphql"
+            default: false
+
+      - id: fastapi
+        name: FastAPI
+        resources:
+          - ref: "skill:fastapi-itechmeat"
+            default: false
+          - ref: "skill:fastapi-martinholovsky"
+            default: false
+          - ref: "mcp:context7"
+            default: true
+          - ref: "mcp:openapi-mcp"
+            default: true
+
+      - id: azure-data-share
+        name: Azure Data Share
+        resources:
+          - ref: "skill:azure-data-share"
+            default: true
+          - ref: "mcp:microsoft-learn"
+            default: true
+          - ref: "mcp:azure"
+            default: true
+
+      - id: aws-data-exchange
+        name: AWS Data Exchange
+        resources:
+          - ref: "skill:aws-sdk-python-usage"
+            default: true
+          - ref: "mcp:aws"
+            default: true
+          - ref: "mcp:aws-api-mcp"
+            default: true
+
+      - id: delta-sharing
+        name: Delta Sharing
+        resources:
+          - ref: "skill:delta-sharing"
+            default: false
+          - ref: "skill:azure-databricks"
+            default: true
+
+      - id: snowflake-data-sharing
+        name: Snowflake Data Sharing
+        resources:
+          - ref: "skill:snowflake-expert"
+            default: false
+          - ref: "skill:cortex-code"
+            default: false
+          - ref: "mcp:snowflake-managed"
+            default: true
+
+      # ── AI & Machine Learning ─────────────────────────────────────────────────
+      - id: aws-sagemaker
+        name: AWS SageMaker
+        resources:
+          - ref: "skill:dataset-transformation"
+            default: true
+          - ref: "skill:dataset-evaluation"
+            default: true
+          - ref: "mcp:sagemaker-spark-troubleshooting-mcp"
+            default: true
+          - ref: "mcp:aws-data-processing"
+            default: true
+
+      - id: gcp-vertex-ai
+        name: GCP Vertex AI
+        resources:
+          - ref: "skill:gemini-api"
+            default: true
+          - ref: "skill:bigquery-ai-ml"
+            default: true
+          - ref: "mcp:agent-platform-mcp"
+            default: true
+          - ref: "mcp:bigquery-mcp"
+            default: true
+
+      - id: azure-ml
+        name: Azure ML
+        resources:
+          - ref: "skill:azure-machine-learning"
+            default: true
+          - ref: "skill:azureml-scaffolding"
+            default: false
+          - ref: "mcp:microsoft-learn"
+            default: true
+
+      - id: databricks-ml
+        name: Databricks ML
+        resources:
+          - ref: "skill:databricks-model-serving"
+            default: true
+          - ref: "skill:databricks-pipelines"
+            default: true
+          - ref: "mcp:databricks-sql"
+            default: true
+
+      - id: tensorflow
+        name: TensorFlow
+        resources:
+          - ref: "skill:tensorflow-data-pipelines"
+            default: false
+          - ref: "skill:tensorflow-model-deployment"
+            default: false
+          - ref: "mcp:context7"
+            default: true
+          - ref: "mcp:github"
+            default: true
+
+      - id: pytorch
+        name: PyTorch
+        resources:
+          - ref: "skill:pytorch-patterns"
+            default: false
+          - ref: "skill:aoti-debug"
+            default: true
+          - ref: "mcp:context7"
+            default: true
+
+      - id: h2o-ai
+        name: H2O.ai
+        resources:
+          - ref: "mcp:jupyter-mcp"
+            default: true
+
+      - id: mlflow
+        name: MLflow
+        resources:
+          - ref: "skill:mlflow-onboarding"
+            default: true
+          - ref: "skill:searching-mlflow-docs"
+            default: true
+          - ref: "mcp:mlflow-mcp"
+            default: true
+
+      - id: scikit-learn
+        name: Scikit-learn
+        resources:
+          - ref: "skill:scikit-learn"
+            default: false
+          - ref: "skill:scikit-learn-best-practices"
+            default: false
+
+      - id: datarobot
+        name: DataRobot
+        resources:
+          - ref: "skill:datarobot-data-preparation"
+            default: false
+          - ref: "skill:datarobot-feature-engineering"
+            default: false
+          - ref: "mcp:datarobot-global-mcp"
+            default: true
+
+      # ── IAM ───────────────────────────────────────────────────────────────────
+      - id: azure-ad
+        name: Azure AD
+        resources:
+          - ref: "skill:entra-app-registration"
+            default: true
+          - ref: "skill:entra-agent-id"
+            default: true
+
+      - id: aws-cognito
+        name: AWS Cognito
+        resources:
+          - ref: "skill:cognito"
+            default: false
+          - ref: "skill:aws-cognito-admin"
+            default: false
+          - ref: "mcp:aws"
+            default: true
+
+      - id: gcp-identity
+        name: GCP Identity
+        resources:
+          - ref: "skill:gcloud"
+            default: true
+          - ref: "skill:gcp-iam"
+            default: false
+
+      - id: okta
+        name: Okta
+        resources:
+          - ref: "skill:okta-identity-integration-patterns"
+            default: false
+          - ref: "mcp:okta-mcp-server"
+            default: true
+
+      - id: cyberark
+        name: CyberArk
+        resources: []
+
+      # ── Data Governance ───────────────────────────────────────────────────────
+      - id: collibra
+        name: Collibra
+        resources:
+          - ref: "skill:collibra-chip"
+            default: false
+
+      - id: apache-atlas
+        name: Apache Atlas
+        resources: []
+
+      - id: azure-purview
+        name: Azure Purview
+        resources:
+          - ref: "skill:microsoft-docs"
+            default: true
+          - ref: "skill:microsoft-code-reference"
+            default: true
+          - ref: "mcp:microsoft-learn"
+            default: true
+          - ref: "mcp:azure"
+            default: true
+
+      - id: aws-glue-data-catalog
+        name: AWS Glue Data Catalog
+        resources:
+          - ref: "skill:glue-diagnostics"
+            default: false
+          - ref: "mcp:aws-data-processing"
+            default: true
+          - ref: "mcp:aws-api-mcp"
+            default: true
+
+      - id: gcp-bigquery-dg
+        name: GCP BigQuery DG
+        resources:
+          - ref: "skill:knowledge-catalog-discovery"
+            default: false
+          - ref: "skill:dataplex-and-bigquery-governance"
+            default: false
+          - ref: "mcp:knowledge-catalog-mcp"
+            default: true
+          - ref: "mcp:data-lineage-mcp"
+            default: true
+
+      - id: privacera
+        name: Privacera
+        resources:
+          - ref: "skill:integrate-anything"
+            default: false
+          - ref: "mcp:membrane-cloud-mcp"
+            default: true
+
+      # ── Metastores ────────────────────────────────────────────────────────────
+      - id: unity-catalog
+        name: Unity Catalog
+        resources:
+          - ref: "skill:databricks-unity-catalog"
+            default: false
+          - ref: "skill:databricks-dbsql"
+            default: false
+          - ref: "mcp:unity-catalog-functions"
+            default: true
+          - ref: "mcp:databricks-sql"
+            default: true
+
+      - id: hive-metastore
+        name: Hive Metastore
+        resources:
+          - ref: "skill:data-catalog-and-discovery"
+            default: false
+          - ref: "mcp:datahub-mcp"
+            default: true
+
+      - id: dremio
+        name: Dremio
+        resources: []
+
+      # ── Observability ─────────────────────────────────────────────────────────
+      - id: prometheus
+        name: Prometheus
+        resources:
+          - ref: "skill:prometheus-addxai"
+            default: false
+
+      - id: grafana
+        name: Grafana
+        resources:
+          - ref: "skill:dashboarding"
+            default: true
+          - ref: "skill:database-observability"
+            default: true
+          - ref: "mcp:mcp-grafana"
+            default: true
+          - ref: "mcp:grafana-cloud-mcp"
+            default: true
+
+      - id: splunk
+        name: Splunk
+        resources:
+          - ref: "skill:splunk-spl2-pipeline-kit"
+            default: false
+          - ref: "skill:splunk-ingest-processor-setup"
+            default: false
+          - ref: "mcp:splunk-mcp-server"
+            default: true
+
+      - id: new-relic
+        name: New Relic
+        resources:
+          - ref: "skill:newrelic-cli-skills"
+            default: false
+          - ref: "mcp:new-relic-ai-mcp"
+            default: true
+
+      - id: datadog
+        name: Datadog
+        resources:
+          - ref: "skill:dd-pup"
+            default: true
+          - ref: "skill:dd-logs"
+            default: true
+          - ref: "mcp:datadog-mcp-datadoghq"
+            default: true
+
+      # ── Key Vaults ────────────────────────────────────────────────────────────
+      - id: azure-key-vault
+        name: Azure Key Vault
+        resources:
+          - ref: "skill:azure-compliance"
+            default: true
+          - ref: "skill:azure-key-vault"
+            default: false
+          - ref: "mcp:azure"
+            default: true
+
+      - id: aws-secrets-manager
+        name: AWS Secrets Manager
+        resources:
+          - ref: "skill:creating-secrets-using-best-practices"
+            default: true
+          - ref: "skill:connecting-to-data-source"
+            default: true
+          - ref: "mcp:aws"
+            default: true
+          - ref: "mcp:aws-api-mcp"
+            default: true
+
+      - id: gcp-secret-manager
+        name: GCP Secret Manager
+        resources:
+          - ref: "skill:gcp-secret-manager"
+            default: false
+
+      - id: hashicorp-vault
+        name: HashiCorp Vault
+        resources:
+          - ref: "skill:vault-api"
+            default: false
+          - ref: "skill:secrets-vault-manager"
+            default: false
+          - ref: "mcp:vault-mcp"
+            default: true
+          - ref: "mcp:vault-radar-mcp"
+            default: true
+
+      - id: cyberark-conjur
+        name: CyberArk Conjur
+        resources: []
+
+      # ── Data Quality ──────────────────────────────────────────────────────────
+      - id: great-expectations
+        name: Great Expectations
+        resources:
+          - ref: "skill:data-quality-frameworks-sickn33"
+            default: false
+          - ref: "skill:senior-data-engineer"
+            default: false
+          - ref: "mcp:context7"
+            default: true
+          - ref: "mcp:github"
+            default: true
+
+      - id: dbt-data-tests
+        name: dbt Data Tests
+        resources:
+          - ref: "skill:dbt-testing"
+            default: false
+          - ref: "mcp:dbt"
+            default: true
+
+      - id: openmetadata
+        name: OpenMetadata
+        resources:
+          - ref: "mcp:openmetadata-mcp"
+            default: true
+          - ref: "mcp:openmetadata-us-all"
+            default: true
+
+      - id: soda-core-cl
+        name: Soda Core/CL
+        resources:
+          - ref: "skill:soda-cli"
+            default: false
+
+      - id: azure-purview-dq
+        name: Azure Purview DQ
+        resources:
+          - ref: "skill:purview-data-catalog"
+            default: false
+          - ref: "skill:purview-data-map"
+            default: false
+
+      - id: aws-glue-dq
+        name: AWS Glue DQ
+        resources:
+          - ref: "skill:ingesting-into-data-lake"
+            default: true
+          - ref: "skill:exploring-data-catalog"
+            default: true
+          - ref: "mcp:aws"
+            default: true
+          - ref: "mcp:aws-data-processing"
+            default: true
+
+    categories:
+      - id: orchestration
+        name: Orchestration
+        technologies:
+          - technology: apache-airflow
+          - technology: dagster
+          - technology: azure-data-factory
+          - technology: aws-glue
+          - technology: prefect
+          - technology: dbt
+          - technology: astronomer
+        categories: []
+
+      - id: data-ingestion-integration
+        name: Data Ingestion & Integration
+        technologies: []
+        categories:
+          - id: data-integration-etl
+            name: Data Integration & ETL
+            technologies:
+              - technology: azure-data-factory
+              - technology: aws-glue
+              - technology: apache-spark
+              - technology: stitch
+              - technology: apache-nifi
+              - technology: fivetran
+              - technology: airbyte
+              - technology: matillion
+            categories: []
+
+          - id: streaming
+            name: Streaming
+            technologies:
+              - technology: azure-event-hub
+              - technology: aws-kinesis
+              - technology: gcp-pubsub
+              - technology: spark-streaming
+              - technology: apache-kafka
+              - technology: apache-flink
+              - technology: apache-beam
+            categories: []
+
+      - id: data-warehousing
+        name: Data Warehousing
+        technologies:
+          - technology: databricks
+          - technology: snowflake
+          - technology: azure-synapse
+          - technology: aws-redshift
+          - technology: gcp-bigquery
+        categories: []
+
+      - id: data-storage
+        name: Data Storage
+        technologies: []
+        categories:
+          - id: object-storage
+            name: Object Storage
+            technologies:
+              - technology: azure-adls2
+              - technology: aws-s3
+              - technology: gcp-storage
+              - technology: hdfs
+              - technology: oracle-cloud-storage
+            categories: []
+
+          - id: file-formats
+            name: File Formats
+            technologies:
+              - technology: apache-parquet
+              - technology: databricks-delta
+              - technology: apache-iceberg
+              - technology: apache-orc
+              - technology: apache-avro
+              - technology: json
+              - technology: apache-hudi
+              - technology: apache-arrow
+              - technology: csv
+              - technology: xml
+            categories: []
+
+          - id: databases
+            name: Databases
+            technologies:
+              - technology: microsoft-sql-server
+              - technology: mysql
+              - technology: oracle
+              - technology: apache-hbase
+              - technology: postgresql
+              - technology: cassandra
+              - technology: mongodb
+              - technology: elasticsearch
+              - technology: redis
+              - technology: ibm-db2
+            categories: []
+
+      - id: data-consumption
+        name: Data Consumption
+        technologies: []
+        categories:
+          - id: dashboards
+            name: Dashboards
+            technologies:
+              - technology: tableau
+              - technology: power-bi
+              - technology: qlik-sense
+              - technology: google-looker
+            categories: []
+
+          - id: apis-data-sharing
+            name: APIs & Data Sharing
+            technologies:
+              - technology: graphql
+              - technology: fastapi
+              - technology: azure-data-share
+              - technology: aws-data-exchange
+              - technology: delta-sharing
+              - technology: snowflake-data-sharing
+            categories: []
+
+          - id: ai-machine-learning
+            name: AI & Machine Learning
+            technologies:
+              - technology: aws-sagemaker
+              - technology: gcp-vertex-ai
+              - technology: azure-ml
+              - technology: databricks-ml
+              - technology: tensorflow
+              - technology: pytorch
+              - technology: h2o-ai
+              - technology: mlflow
+              - technology: scikit-learn
+              - technology: datarobot
+            categories: []
+
+      - id: platform-management
+        name: Platform Management
+        technologies: []
+        categories:
+          - id: iam
+            name: IAM
+            technologies:
+              - technology: azure-ad
+              - technology: aws-cognito
+              - technology: gcp-identity
+              - technology: okta
+              - technology: cyberark
+            categories: []
+
+          - id: data-governance
+            name: Data Governance
+            technologies:
+              - technology: collibra
+              - technology: apache-atlas
+              - technology: azure-purview
+              - technology: aws-glue-data-catalog
+              - technology: gcp-bigquery-dg
+              - technology: privacera
+            categories: []
+
+          - id: metastores
+            name: Metastores
+            technologies:
+              - technology: unity-catalog
+              - technology: hive-metastore
+              - technology: apache-hudi
+              - technology: dremio
+            categories: []
+
+          - id: observability
+            name: Observability
+            technologies:
+              - technology: prometheus
+              - technology: grafana
+              - technology: splunk
+              - technology: new-relic
+              - technology: datadog
+            categories: []
+
+          - id: key-vaults
+            name: Key Vaults
+            technologies:
+              - technology: azure-key-vault
+              - technology: aws-secrets-manager
+              - technology: gcp-secret-manager
+              - technology: hashicorp-vault
+              - technology: cyberark-conjur
+            categories: []
+
+          - id: data-quality
+            name: Data Quality
+            technologies:
+              - technology: great-expectations
+              - technology: dbt-data-tests
+              - technology: openmetadata
+              - technology: soda-core-cl
+              - technology: azure-purview-dq
+              - technology: aws-glue-dq
+            categories: []
+
+resources:
+  # ── MCP Servers (60) ─────────────────────────────────────────────────────────
+  - ref: "mcp:agent-platform-mcp"
+    id: agent-platform-mcp
+    kind: mcp
+    name: Agent Platform MCP
+    trust: official
+    maturity: stable
+    source: https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/use-agent-platform-mcp
+    warnings: []
+
+  - ref: "mcp:airbyte-agent-mcp"
+    id: airbyte-agent-mcp
+    kind: mcp
+    name: Airbyte Agent MCP
+    trust: official
+    maturity: stable
+    source: https://mcp.airbyte.ai/mcp
+    warnings: []
+
+  - ref: "mcp:airbyte-knowledge-mcp"
+    id: airbyte-knowledge-mcp
+    kind: mcp
+    name: Airbyte Knowledge MCP
+    trust: official
+    maturity: stable
+    source: https://airbyte.mcp.kapa.ai
+    warnings: []
+
+  - ref: "mcp:amazon-keyspaces-mcp"
+    id: amazon-keyspaces-mcp
+    kind: mcp
+    name: Amazon Keyspaces MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/awslabs/mcp/tree/main/src/amazon-keyspaces-mcp-server
+    warnings: []
+
+  - ref: "mcp:astronomer-docs-mcp"
+    id: astronomer-docs-mcp
+    kind: mcp
+    name: Astronomer Docs MCP
+    trust: official
+    maturity: stable
+    source: https://www.astronomer.io/docs/_mcp/server
+    warnings: []
+
+  - ref: "mcp:aws"
+    id: aws
+    kind: mcp
+    name: AWS MCP Server
+    trust: official
+    maturity: stable
+    source: https://docs.aws.amazon.com/agent-toolkit/latest/userguide/getting-started-aws-mcp-server.html
+    warnings: []
+
+  - ref: "mcp:aws-api-mcp"
+    id: aws-api-mcp
+    kind: mcp
+    name: AWS API MCP
+    trust: official
+    maturity: experimental
+    source: https://github.com/awslabs/mcp/tree/main/src/aws-api-mcp-server
+    warnings:
+      - "This resource is experimental and may change or lack production support."
+
+  - ref: "mcp:aws-data-processing"
+    id: aws-data-processing
+    kind: mcp
+    name: AWS Data Processing MCP
+    trust: official
+    maturity: stable
+    source: https://awslabs.github.io/mcp/servers/aws-dataprocessing-mcp-server
+    warnings: []
+
+  - ref: "mcp:aws-redshift-mcp"
+    id: aws-redshift-mcp
+    kind: mcp
+    name: AWS Redshift MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/awslabs/mcp/tree/main/src/redshift-mcp-server
+    warnings: []
+
+  - ref: "mcp:aws-serverless-mcp"
+    id: aws-serverless-mcp
+    kind: mcp
+    name: AWS Serverless MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/awslabs/mcp/tree/main/src/aws-serverless-mcp-server
+    warnings: []
+
+  - ref: "mcp:azure"
+    id: azure
+    kind: mcp
+    name: Azure MCP Server
+    trust: official
+    maturity: stable
+    source: https://github.com/microsoft/mcp/tree/main/servers/Azure.Mcp.Server
+    warnings: []
+
+  - ref: "mcp:bigquery-mcp"
+    id: bigquery-mcp
+    kind: mcp
+    name: BigQuery MCP
+    trust: official
+    maturity: stable
+    source: https://docs.cloud.google.com/bigquery/docs/use-bigquery-mcp
+    warnings: []
+
+  - ref: "mcp:confluent"
+    id: confluent
+    kind: mcp
+    name: Confluent MCP Server
+    trust: provider
+    maturity: stable
+    source: https://github.com/confluentinc/mcp-confluent
+    warnings: []
+
+  - ref: "mcp:context7"
+    id: context7
+    kind: mcp
+    name: Context7
+    trust: community
+    maturity: stable
+    source: https://github.com/upstash/context7
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:data-lineage-mcp"
+    id: data-lineage-mcp
+    kind: mcp
+    name: Data Lineage MCP
+    trust: official
+    maturity: preview
+    source: https://docs.cloud.google.com/dataplex/docs/use-lineage-mcp
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:databricks-sql"
+    id: databricks-sql
+    kind: mcp
+    name: Databricks SQL MCP
+    trust: official
+    maturity: preview
+    source: https://docs.databricks.com/aws/en/generative-ai/mcp/managed-mcp
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:datadog-mcp-datadoghq"
+    id: datadog-mcp-datadoghq
+    kind: mcp
+    name: Datadog MCP
+    trust: official
+    maturity: stable
+    source: https://www.datadoghq.com/product/ai/mcp-server/
+    warnings: []
+
+  - ref: "mcp:datahub-mcp"
+    id: datahub-mcp
+    kind: mcp
+    name: DataHub MCP
+    trust: provider
+    maturity: stable
+    source: https://docs.datahub.com/docs/features/feature-guides/mcp
+    warnings: []
+
+  - ref: "mcp:datarobot-global-mcp"
+    id: datarobot-global-mcp
+    kind: mcp
+    name: DataRobot Global MCP
+    trust: official
+    maturity: stable
+    source: https://docs.datarobot.com/en/docs/agentic-ai/agentic-mcp/agentic-mcp-clients.html#using-the-datarobot-global-mcp
+    warnings: []
+
+  - ref: "mcp:dbhub"
+    id: dbhub
+    kind: mcp
+    name: DBHub
+    trust: community
+    maturity: stable
+    source: https://github.com/bytebase/dbhub
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:dbt"
+    id: dbt
+    kind: mcp
+    name: dbt MCP Server
+    trust: official
+    maturity: stable
+    source: https://github.com/dbt-labs/dbt-mcp
+    warnings: []
+
+  - ref: "mcp:fivetran-mcp-server"
+    id: fivetran-mcp-server
+    kind: mcp
+    name: Fivetran MCP Server
+    trust: official
+    maturity: stable
+    source: https://github.com/fivetran/fivetran-mcp
+    warnings: []
+
+  - ref: "mcp:gcp-pubsub"
+    id: gcp-pubsub
+    kind: mcp
+    name: Pub/Sub remote MCP
+    trust: official
+    maturity: stable
+    source: https://docs.cloud.google.com/pubsub/docs/use-pubsub-mcp
+    warnings: []
+
+  - ref: "mcp:github"
+    id: github
+    kind: mcp
+    name: GitHub MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/github/github-mcp-server
+    warnings: []
+
+  - ref: "mcp:grafana-cloud-mcp"
+    id: grafana-cloud-mcp
+    kind: mcp
+    name: Grafana Cloud MCP
+    trust: official
+    maturity: preview
+    source: https://grafana.com/docs/grafana-cloud/machine-learning/assistant/configure/cloud-mcp/
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:jupyter-mcp"
+    id: jupyter-mcp
+    kind: mcp
+    name: Jupyter MCP
+    trust: community
+    maturity: stable
+    source: https://github.com/datalayer/jupyter-mcp-server
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:knowledge-catalog-mcp"
+    id: knowledge-catalog-mcp
+    kind: mcp
+    name: Knowledge Catalog MCP
+    trust: official
+    maturity: preview
+    source: https://docs.cloud.google.com/dataplex/docs/use-remote-mcp
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:looker-toolbox"
+    id: looker-toolbox
+    kind: mcp
+    name: Looker MCP / MCP Toolbox
+    trust: official
+    maturity: stable
+    source: https://mcp-toolbox.dev/documentation/connect-to/ides/looker_mcp/
+    warnings: []
+
+  - ref: "mcp:mcp-grafana"
+    id: mcp-grafana
+    kind: mcp
+    name: mcp-grafana
+    trust: official
+    maturity: stable
+    source: https://github.com/grafana/mcp-grafana
+    warnings: []
+
+  - ref: "mcp:membrane-cloud-mcp"
+    id: membrane-cloud-mcp
+    kind: mcp
+    name: Membrane Cloud MCP
+    trust: community
+    maturity: stable
+    source: https://docs.getmembrane.com/docs/ways-to-use-membrane/mcp
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:microsoft-data-api-builder"
+    id: microsoft-data-api-builder
+    kind: mcp
+    name: SQL MCP Server / Data API builder
+    trust: official
+    maturity: stable
+    source: https://learn.microsoft.com/en-us/azure/data-api-builder/mcp/overview
+    warnings: []
+
+  - ref: "mcp:microsoft-learn"
+    id: microsoft-learn
+    kind: mcp
+    name: Microsoft Learn MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/mcp
+    warnings: []
+
+  - ref: "mcp:mlflow-mcp"
+    id: mlflow-mcp
+    kind: mcp
+    name: MLflow MCP
+    trust: official
+    maturity: experimental
+    source: https://github.com/mlflow/mlflow/tree/master/mlflow/mcp
+    warnings:
+      - "This resource is experimental and may change or lack production support."
+
+  - ref: "mcp:mongodb-mcp-server"
+    id: mongodb-mcp-server
+    kind: mcp
+    name: MongoDB MCP Server
+    trust: official
+    maturity: stable
+    source: https://github.com/mongodb-js/mongodb-mcp-server
+    warnings: []
+
+  - ref: "mcp:neon"
+    id: neon
+    kind: mcp
+    name: Neon MCP
+    trust: provider
+    maturity: stable
+    source: https://github.com/neondatabase/mcp-server-neon
+    warnings: []
+
+  - ref: "mcp:new-relic-ai-mcp"
+    id: new-relic-ai-mcp
+    kind: mcp
+    name: New Relic AI MCP
+    trust: official
+    maturity: preview
+    source: https://github.com/newrelic/mcp-server
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:nifi-mcp-server"
+    id: nifi-mcp-server
+    kind: mcp
+    name: NiFi MCP Server
+    trust: provider
+    maturity: stable
+    source: https://github.com/cloudera/NiFi-MCP-Server
+    warnings: []
+
+  - ref: "mcp:oci-api-mcp"
+    id: oci-api-mcp
+    kind: mcp
+    name: OCI API MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/oracle/mcp/tree/main/src/oci-api-mcp-server
+    warnings: []
+
+  - ref: "mcp:oci-cloud-mcp"
+    id: oci-cloud-mcp
+    kind: mcp
+    name: OCI Cloud MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/oracle/mcp/tree/main/src/oci-cloud-mcp-server
+    warnings: []
+
+  - ref: "mcp:oci-database-tools-mcp"
+    id: oci-database-tools-mcp
+    kind: mcp
+    name: OCI Database Tools MCP
+    trust: official
+    maturity: stable
+    source: https://docs.oracle.com/en-us/iaas/database-tools/doc/working-database-tools-mcp-server.html
+    warnings: []
+
+  - ref: "mcp:okta-mcp-server"
+    id: okta-mcp-server
+    kind: mcp
+    name: Okta MCP Server
+    trust: official
+    maturity: stable
+    source: https://github.com/okta/okta-mcp-server
+    warnings: []
+
+  - ref: "mcp:openapi-mcp"
+    id: openapi-mcp
+    kind: mcp
+    name: OpenAPI MCP
+    trust: community
+    maturity: stable
+    source: https://github.com/ivo-toby/mcp-openapi-server
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:openmetadata-mcp"
+    id: openmetadata-mcp
+    kind: mcp
+    name: OpenMetadata MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-mcp
+    warnings: []
+
+  - ref: "mcp:openmetadata-us-all"
+    id: openmetadata-us-all
+    kind: mcp
+    name: "@us-all/openmetadata-mcp"
+    trust: community
+    maturity: stable
+    source: https://github.com/us-all/openmetadata-mcp-server
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:postgres-mcp-pro"
+    id: postgres-mcp-pro
+    kind: mcp
+    name: Postgres MCP Pro
+    trust: community
+    maturity: stable
+    source: https://github.com/crystaldba/postgres-mcp
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:power-bi-modeling"
+    id: power-bi-modeling
+    kind: mcp
+    name: Power BI Modeling MCP
+    trust: official
+    maturity: preview
+    source: https://github.com/microsoft/powerbi-modeling-mcp
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:power-bi-remote"
+    id: power-bi-remote
+    kind: mcp
+    name: Power BI Remote MCP
+    trust: official
+    maturity: preview
+    source: https://learn.microsoft.com/en-us/power-bi/developer/mcp/remote-mcp-server-get-started
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:prefect-mcp-server"
+    id: prefect-mcp-server
+    kind: mcp
+    name: prefect-mcp-server
+    trust: official
+    maturity: experimental
+    source: https://github.com/PrefectHQ/prefect-mcp-server
+    warnings:
+      - "This resource is experimental and may change or lack production support."
+
+  - ref: "mcp:qlik-mcp"
+    id: qlik-mcp
+    kind: mcp
+    name: Qlik MCP
+    trust: official
+    maturity: stable
+    source: https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/QlikMCP/Qlik-MCP-server.htm
+    warnings: []
+
+  - ref: "mcp:redis-cloud-mcp"
+    id: redis-cloud-mcp
+    kind: mcp
+    name: Redis Cloud MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/redis/mcp-redis-cloud
+    warnings: []
+
+  - ref: "mcp:redis-mcp"
+    id: redis-mcp
+    kind: mcp
+    name: Redis MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/redis/mcp-redis
+    warnings: []
+
+  - ref: "mcp:s3-tables-mcp"
+    id: s3-tables-mcp
+    kind: mcp
+    name: S3 Tables MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/awslabs/mcp/tree/main/src/s3-tables-mcp-server
+    warnings: []
+
+  - ref: "mcp:sagemaker-spark-troubleshooting-mcp"
+    id: sagemaker-spark-troubleshooting-mcp
+    kind: mcp
+    name: SageMaker Spark Troubleshooting MCP
+    trust: community
+    maturity: stable
+    source: https://awslabs.github.io/mcp/servers/sagemaker-unified-studio-spark-troubleshooting-mcp-server
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "mcp:snowflake-managed"
+    id: snowflake-managed
+    kind: mcp
+    name: Snowflake-managed MCP
+    trust: official
+    maturity: stable
+    source: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp
+    warnings: []
+
+  - ref: "mcp:spark-history"
+    id: spark-history
+    kind: mcp
+    name: Spark History Server MCP
+    trust: provider
+    maturity: stable
+    source: https://github.com/kubeflow/mcp-apache-spark-history-server
+    warnings: []
+
+  - ref: "mcp:splunk-mcp-server"
+    id: splunk-mcp-server
+    kind: mcp
+    name: Splunk MCP Server
+    trust: official
+    maturity: beta
+    source: https://splunkbase.splunk.com/app/7931
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  - ref: "mcp:tableau-mcp"
+    id: tableau-mcp
+    kind: mcp
+    name: Tableau MCP
+    trust: official
+    maturity: stable
+    source: https://github.com/tableau/tableau-mcp
+    warnings: []
+
+  - ref: "mcp:unity-catalog-functions"
+    id: unity-catalog-functions
+    kind: mcp
+    name: Unity Catalog Functions MCP
+    trust: official
+    maturity: preview
+    source: https://docs.databricks.com/aws/en/generative-ai/mcp/managed-mcp
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "mcp:vault-mcp"
+    id: vault-mcp
+    kind: mcp
+    name: Vault MCP
+    trust: official
+    maturity: beta
+    source: https://github.com/hashicorp/vault-mcp-server
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  - ref: "mcp:vault-radar-mcp"
+    id: vault-radar-mcp
+    kind: mcp
+    name: Vault Radar MCP
+    trust: official
+    maturity: beta
+    source: https://hub.docker.com/r/hashicorp/vault-radar-mcp-server
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  # ── Skills (147) ─────────────────────────────────────────────────────────────
+  - ref: "skill:adbc"
+    id: adbc
+    kind: skill
+    name: adbc
+    trust: community
+    maturity: stable
+    source: https://github.com/columnar-tech/skills/tree/main/skills/adbc
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:adf-master"
+    id: adf-master
+    kind: skill
+    name: adf-master
+    trust: community
+    maturity: stable
+    source: https://github.com/JosiahSiegel/claude-plugin-marketplace/blob/main/plugins/adf-master/skills/adf-master/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:aidp-object-storage"
+    id: aidp-object-storage
+    kind: skill
+    name: aidp-object-storage
+    trust: provider
+    maturity: stable
+    source: https://github.com/oracle-samples/oracle-aidp-samples/blob/main/ai/claude-code-plugins/oracle-ai-data-platform-workbench-spark-connectors/skills/aidp-object-storage/SKILL.md
+    warnings: []
+
+  - ref: "skill:airbyte-agent"
+    id: airbyte-agent
+    kind: skill
+    name: airbyte-agent
+    trust: official
+    maturity: beta
+    source: https://github.com/airbytehq/airbyte-agent-cli/blob/main/skills/airbyte-agent/SKILL.md
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  - ref: "skill:airflow"
+    id: airflow
+    kind: skill
+    name: airflow
+    trust: official
+    maturity: stable
+    source: https://github.com/astronomer/agents/blob/main/skills/airflow/SKILL.md
+    warnings: []
+
+  - ref: "skill:aoti-debug"
+    id: aoti-debug
+    kind: skill
+    name: aoti-debug
+    trust: official
+    maturity: stable
+    source: https://github.com/pytorch/pytorch/blob/main/.claude/skills/aoti-debug/SKILL.md
+    warnings: []
+
+  - ref: "skill:apache-arrow"
+    id: apache-arrow
+    kind: skill
+    name: apache-arrow
+    trust: community
+    maturity: stable
+    source: https://github.com/TerminalSkills/skills/tree/main/skills/apache-arrow
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:apache-hudi-lakehouse"
+    id: apache-hudi-lakehouse
+    kind: skill
+    name: apache-hudi-lakehouse
+    trust: community
+    maturity: stable
+    source: https://github.com/vaquarkhan/data-engineering-agent-skills/tree/main/skills/apache-hudi-lakehouse
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:apollo-graphql"
+    id: apollo-graphql
+    kind: skill
+    name: apollo-graphql
+    trust: community
+    maturity: stable
+    source: https://github.com/Mindrally/skills/blob/main/apollo-graphql/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:authoring-dags"
+    id: authoring-dags
+    kind: skill
+    name: authoring-dags
+    trust: official
+    maturity: stable
+    source: https://github.com/astronomer/agents/blob/main/skills/authoring-dags/SKILL.md
+    warnings: []
+
+  - ref: "skill:aws-cognito-admin"
+    id: aws-cognito-admin
+    kind: skill
+    name: aws-cognito-admin
+    trust: community
+    maturity: stable
+    source: https://github.com/monahand1023/claude-code-skills/tree/main/aws-cognito-admin
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:aws-messaging-and-streaming"
+    id: aws-messaging-and-streaming
+    kind: skill
+    name: aws-messaging-and-streaming
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/blob/main/plugins/aws-core/skills/aws-messaging-and-streaming/SKILL.md
+    warnings: []
+
+  - ref: "skill:aws-sdk-python-usage"
+    id: aws-sdk-python-usage
+    kind: skill
+    name: aws-sdk-python-usage
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/blob/main/skills/core-skills/aws-sdk-python-usage/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-compliance"
+    id: azure-compliance
+    kind: skill
+    name: azure-compliance
+    trust: official
+    maturity: stable
+    source: https://github.com/microsoft/azure-skills/blob/main/skills/azure-compliance/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-data-factory"
+    id: azure-data-factory
+    kind: skill
+    name: azure-data-factory
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/Agent-Skills/blob/main/skills/azure-data-factory/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-data-share"
+    id: azure-data-share
+    kind: skill
+    name: azure-data-share
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/Agent-Skills/blob/main/skills/azure-data-share/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-databricks"
+    id: azure-databricks
+    kind: skill
+    name: azure-databricks
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/Agent-Skills/blob/main/skills/azure-databricks/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-event-hubs"
+    id: azure-event-hubs
+    kind: skill
+    name: azure-event-hubs
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/Agent-Skills/blob/main/skills/azure-event-hubs/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-eventhub-py"
+    id: azure-eventhub-py
+    kind: skill
+    name: azure-eventhub-py
+    trust: official
+    maturity: experimental
+    source: https://github.com/microsoft/skills/blob/main/.github/plugins/azure-sdk-python/skills/azure-eventhub-py/SKILL.md
+    warnings:
+      - "This resource is experimental and may change or lack production support."
+
+  - ref: "skill:azure-key-vault"
+    id: azure-key-vault
+    kind: skill
+    name: azure-key-vault
+    trust: community
+    maturity: stable
+    source: https://github.com/vinayaklatthe/microsoft-security-skills/blob/main/skills/azure-key-vault/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:azure-machine-learning"
+    id: azure-machine-learning
+    kind: skill
+    name: azure-machine-learning
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/Agent-Skills/blob/main/skills/azure-machine-learning/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-rbac"
+    id: azure-rbac
+    kind: skill
+    name: azure-rbac
+    trust: official
+    maturity: stable
+    source: https://github.com/microsoft/azure-skills/blob/main/skills/azure-rbac/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-storage"
+    id: azure-storage
+    kind: skill
+    name: azure-storage
+    trust: official
+    maturity: stable
+    source: https://github.com/microsoft/azure-skills/blob/main/skills/azure-storage/SKILL.md
+    warnings: []
+
+  - ref: "skill:azure-synapse-analytics"
+    id: azure-synapse-analytics
+    kind: skill
+    name: azure-synapse-analytics
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/Agent-Skills/tree/main/skills/azure-synapse-analytics
+    warnings: []
+
+  - ref: "skill:azureml-scaffolding"
+    id: azureml-scaffolding
+    kind: skill
+    name: azureml-scaffolding
+    trust: community
+    maturity: stable
+    source: https://github.com/bepuca/azureml-scaffolding/tree/main/azureml-scaffolding
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:beam-concepts"
+    id: beam-concepts
+    kind: skill
+    name: beam-concepts
+    trust: official
+    maturity: stable
+    source: https://github.com/apache/beam/blob/master/.agent/skills/beam-concepts/SKILL.md
+    warnings: []
+
+  - ref: "skill:bigquery-ai-ml"
+    id: bigquery-ai-ml
+    kind: skill
+    name: bigquery-ai-ml
+    trust: official
+    maturity: stable
+    source: https://github.com/google/skills/blob/main/skills/cloud/bigquery-ai-ml/SKILL.md
+    warnings: []
+
+  - ref: "skill:bigquery-basics"
+    id: bigquery-basics
+    kind: skill
+    name: bigquery-basics
+    trust: official
+    maturity: stable
+    source: https://github.com/google/skills/blob/main/skills/cloud/bigquery-basics/SKILL.md
+    warnings: []
+
+  - ref: "skill:bootstrapping-agent"
+    id: bootstrapping-agent
+    kind: skill
+    name: bootstrapping-agent
+    trust: official
+    maturity: stable
+    source: https://github.com/airbytehq/airbyte-agent-sdk/blob/main/.codex/skills/bootstrapping-agent/SKILL.md
+    warnings: []
+
+  - ref: "skill:build-connector"
+    id: build-connector
+    kind: skill
+    name: build-connector
+    trust: official
+    maturity: stable
+    source: https://github.com/fivetran/connector_sdk_tools/blob/main/canonical/skills/build-connector/SKILL.md
+    warnings: []
+
+  - ref: "skill:cassandra"
+    id: cassandra
+    kind: skill
+    name: cassandra
+    trust: community
+    maturity: stable
+    source: https://github.com/TerminalSkills/skills/blob/main/skills/cassandra/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:cdc-streaming-pipeline"
+    id: cdc-streaming-pipeline
+    kind: skill
+    name: cdc-streaming-pipeline
+    trust: community
+    maturity: stable
+    source: https://github.com/jaingxyz/aws-data-skills/blob/main/skills/cdc-streaming-pipeline/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:chdb-datastore"
+    id: chdb-datastore
+    kind: skill
+    name: chdb-datastore
+    trust: provider
+    maturity: stable
+    source: https://github.com/ClickHouse/agent-skills/blob/main/skills/chdb-datastore/SKILL.md
+    warnings: []
+
+  - ref: "skill:cheerio-parsing"
+    id: cheerio-parsing
+    kind: skill
+    name: cheerio-parsing
+    trust: community
+    maturity: stable
+    source: https://github.com/Mindrally/skills/tree/main/cheerio-parsing
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:cognito"
+    id: cognito
+    kind: skill
+    name: cognito
+    trust: community
+    maturity: stable
+    source: https://github.com/itsmostafa/aws-agent-skills/tree/main/skills/cognito
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:collibra-chip"
+    id: collibra-chip
+    kind: skill
+    name: "collibra/chip"
+    trust: official
+    maturity: unsupported
+    source: https://github.com/collibra/chip/blob/main/SKILLS.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:connecting-to-data-source"
+    id: connecting-to-data-source
+    kind: skill
+    name: connecting-to-data-source
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/blob/main/plugins/aws-data-analytics/skills/connecting-to-data-source/SKILL.md
+    warnings: []
+
+  - ref: "skill:cortex-code"
+    id: cortex-code
+    kind: skill
+    name: cortex-code
+    trust: provider
+    maturity: stable
+    source: https://github.com/snowflake-labs/subagent-cortex-code/blob/main/skills/cortex-code/SKILL.md
+    warnings: []
+
+  - ref: "skill:creating-data-lake-table"
+    id: creating-data-lake-table
+    kind: skill
+    name: creating-data-lake-table
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/storage-skills/creating-data-lake-table
+    warnings: []
+
+  - ref: "skill:creating-secrets-using-best-practices"
+    id: creating-secrets-using-best-practices
+    kind: skill
+    name: creating-secrets-using-best-practices
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/blob/main/skills/specialized-skills/security-and-identity-skills/creating-secrets-using-best-practices/SKILL.md
+    warnings: []
+
+  - ref: "skill:csv-query"
+    id: csv-query
+    kind: skill
+    name: csv-query
+    trust: provider
+    maturity: stable
+    source: https://github.com/dathere/qsv/tree/master/.claude/skills/skills/csv-query
+    warnings: []
+
+  - ref: "skill:csv-wrangling"
+    id: csv-wrangling
+    kind: skill
+    name: csv-wrangling
+    trust: provider
+    maturity: stable
+    source: https://github.com/dathere/qsv/tree/master/.claude/skills/skills/csv-wrangling
+    warnings: []
+
+  - ref: "skill:dagster"
+    id: dagster
+    kind: skill
+    name: dagster
+    trust: community
+    maturity: stable
+    source: https://github.com/TerminalSkills/skills/tree/main/skills/dagster
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:dagster-expert"
+    id: dagster-expert
+    kind: skill
+    name: dagster-expert
+    trust: official
+    maturity: stable
+    source: https://github.com/dagster-io/skills/tree/master/skills/dagster-expert/skills/dagster-expert
+    warnings: []
+
+  - ref: "skill:dashboarding"
+    id: dashboarding
+    kind: skill
+    name: dashboarding
+    trust: official
+    maturity: stable
+    source: https://github.com/grafana/skills/blob/main/skills/grafana-core/dashboarding/SKILL.md
+    warnings: []
+
+  - ref: "skill:data-catalog-and-discovery"
+    id: data-catalog-and-discovery
+    kind: skill
+    name: data-catalog-and-discovery
+    trust: community
+    maturity: stable
+    source: https://github.com/vaquarkhan/data-engineering-agent-skills/blob/main/skills/data-catalog-and-discovery/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:data-distributed-storage"
+    id: data-distributed-storage
+    kind: skill
+    name: data-distributed-storage
+    trust: community
+    maturity: stable
+    source: https://github.com/j4flmao/agent-skills/tree/main/skills/data/distributed-storage
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:data-quality-frameworks-sickn33"
+    id: data-quality-frameworks-sickn33
+    kind: skill
+    name: data-quality-frameworks
+    trust: community
+    maturity: stable
+    source: https://github.com/sickn33/antigravity-awesome-skills/blob/main/skills/data-quality-frameworks/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:database-observability"
+    id: database-observability
+    kind: skill
+    name: database-observability
+    trust: official
+    maturity: stable
+    source: https://github.com/grafana/skills/blob/main/skills/grafana-cloud/database-observability/SKILL.md
+    warnings: []
+
+  - ref: "skill:database-redshift"
+    id: database-redshift
+    kind: skill
+    name: database-redshift
+    trust: community
+    maturity: stable
+    source: https://skills.sh/chrishuffman5/domain-expert/database-redshift
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:databricks-core"
+    id: databricks-core
+    kind: skill
+    name: databricks-core
+    trust: official
+    maturity: stable
+    source: https://github.com/databricks/databricks-agent-skills/blob/main/skills/databricks-core/SKILL.md
+    warnings: []
+
+  - ref: "skill:databricks-dbsql"
+    id: databricks-dbsql
+    kind: skill
+    name: databricks-dbsql
+    trust: provider
+    maturity: unsupported
+    source: https://github.com/databricks-solutions/ai-dev-kit/blob/main/databricks-skills/databricks-dbsql/SKILL.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:databricks-jobs"
+    id: databricks-jobs
+    kind: skill
+    name: databricks-jobs
+    trust: official
+    maturity: stable
+    source: https://github.com/databricks/databricks-agent-skills/blob/main/skills/databricks-jobs/SKILL.md
+    warnings: []
+
+  - ref: "skill:databricks-model-serving"
+    id: databricks-model-serving
+    kind: skill
+    name: databricks-model-serving
+    trust: official
+    maturity: stable
+    source: https://github.com/databricks/databricks-agent-skills/blob/main/skills/databricks-model-serving/SKILL.md
+    warnings: []
+
+  - ref: "skill:databricks-pipelines"
+    id: databricks-pipelines
+    kind: skill
+    name: databricks-pipelines
+    trust: official
+    maturity: stable
+    source: https://github.com/databricks/databricks-agent-skills/blob/main/skills/databricks-pipelines/SKILL.md
+    warnings: []
+
+  - ref: "skill:databricks-spark-structured-streaming"
+    id: databricks-spark-structured-streaming
+    kind: skill
+    name: databricks-spark-structured-streaming
+    trust: official
+    maturity: experimental
+    source: https://github.com/databricks/databricks-agent-skills/blob/main/experimental/databricks-spark-structured-streaming/SKILL.md
+    warnings:
+      - "This resource is experimental and may change or lack production support."
+
+  - ref: "skill:databricks-unity-catalog"
+    id: databricks-unity-catalog
+    kind: skill
+    name: databricks-unity-catalog
+    trust: provider
+    maturity: unsupported
+    source: https://github.com/databricks-solutions/ai-dev-kit/blob/main/databricks-skills/databricks-unity-catalog/SKILL.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:dataplex-and-bigquery-governance"
+    id: dataplex-and-bigquery-governance
+    kind: skill
+    name: dataplex-and-bigquery-governance
+    trust: community
+    maturity: stable
+    source: https://github.com/vaquarkhan/data-engineering-agent-skills/blob/main/skills/dataplex-and-bigquery-governance/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:datarobot-data-preparation"
+    id: datarobot-data-preparation
+    kind: skill
+    name: datarobot-data-preparation
+    trust: official
+    maturity: unsupported
+    source: https://github.com/datarobot-oss/datarobot-agent-skills/blob/main/skills/datarobot-data-preparation/SKILL.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:datarobot-feature-engineering"
+    id: datarobot-feature-engineering
+    kind: skill
+    name: datarobot-feature-engineering
+    trust: official
+    maturity: unsupported
+    source: https://github.com/datarobot-oss/datarobot-agent-skills/blob/main/skills/datarobot-feature-engineering/SKILL.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:dataset-evaluation"
+    id: dataset-evaluation
+    kind: skill
+    name: dataset-evaluation
+    trust: official
+    maturity: stable
+    source: https://github.com/awslabs/agent-plugins/blob/main/plugins/sagemaker-ai/skills/dataset-evaluation/SKILL.md
+    warnings: []
+
+  - ref: "skill:dataset-transformation"
+    id: dataset-transformation
+    kind: skill
+    name: dataset-transformation
+    trust: official
+    maturity: stable
+    source: https://github.com/awslabs/agent-plugins/blob/main/plugins/sagemaker-ai/skills/dataset-transformation/SKILL.md
+    warnings: []
+
+  - ref: "skill:db2-rhel"
+    id: db2-rhel
+    kind: skill
+    name: db2-rhel
+    trust: community
+    maturity: stable
+    source: https://github.com/joogy06/agent-foundry/blob/main/skills/db2-rhel/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:dbt-analytics-engineering"
+    id: dbt-analytics-engineering
+    kind: skill
+    name: using-dbt-for-analytics-engineering
+    trust: official
+    maturity: stable
+    source: https://github.com/dbt-labs/dbt-agent-skills/blob/main/skills/dbt/skills/using-dbt-for-analytics-engineering/SKILL.md
+    warnings: []
+
+  - ref: "skill:dbt-testing"
+    id: dbt-testing
+    kind: skill
+    name: dbt-testing
+    trust: community
+    maturity: stable
+    source: https://github.com/sfc-gh-dflippo/snowflake-dbt-demo/blob/main/.claude/skills/dbt-testing/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:dd-logs"
+    id: dd-logs
+    kind: skill
+    name: dd-logs
+    trust: official
+    maturity: stable
+    source: https://github.com/datadog-labs/agent-skills/blob/main/dd-logs/SKILL.md
+    warnings: []
+
+  - ref: "skill:dd-pup"
+    id: dd-pup
+    kind: skill
+    name: dd-pup
+    trust: official
+    maturity: stable
+    source: https://github.com/datadog-labs/agent-skills/blob/main/dd-pup/SKILL.md
+    warnings: []
+
+  - ref: "skill:delta-sharing"
+    id: delta-sharing
+    kind: skill
+    name: delta-sharing
+    trust: community
+    maturity: stable
+    source: https://github.com/vivekgana/databricks-platform-marketplace/blob/main/plugins/databricks-engineering/skills/delta-sharing/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:deploying-airflow"
+    id: deploying-airflow
+    kind: skill
+    name: deploying-airflow
+    trust: official
+    maturity: stable
+    source: https://github.com/astronomer/agents/tree/main/skills/deploying-airflow
+    warnings: []
+
+  - ref: "skill:dynamic-tables-tutorial"
+    id: dynamic-tables-tutorial
+    kind: skill
+    name: dynamic-tables-tutorial
+    trust: provider
+    maturity: stable
+    source: https://github.com/Snowflake-Labs/sfguides/tree/main/dynamic-tables-tutorial
+    warnings: []
+
+  - ref: "skill:elasticsearch-esql"
+    id: elasticsearch-esql
+    kind: skill
+    name: elasticsearch-esql
+    trust: official
+    maturity: preview
+    source: https://github.com/elastic/agent-skills/blob/main/skills/elasticsearch/elasticsearch-esql/SKILL.md
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "skill:elasticsearch-file-ingest"
+    id: elasticsearch-file-ingest
+    kind: skill
+    name: elasticsearch-file-ingest
+    trust: official
+    maturity: preview
+    source: https://github.com/elastic/agent-skills/blob/main/skills/elasticsearch/elasticsearch-file-ingest/SKILL.md
+    warnings:
+      - "This resource is preview and may change or lack production support."
+
+  - ref: "skill:entra-agent-id"
+    id: entra-agent-id
+    kind: skill
+    name: entra-agent-id
+    trust: official
+    maturity: stable
+    source: https://github.com/microsoft/azure-skills/blob/main/skills/entra-agent-id/SKILL.md
+    warnings: []
+
+  - ref: "skill:entra-app-registration"
+    id: entra-app-registration
+    kind: skill
+    name: entra-app-registration
+    trust: official
+    maturity: stable
+    source: https://github.com/microsoft/azure-skills/blob/main/skills/entra-app-registration/SKILL.md
+    warnings: []
+
+  - ref: "skill:etl-integration-nifi"
+    id: etl-integration-nifi
+    kind: skill
+    name: etl-integration-nifi
+    trust: community
+    maturity: stable
+    source: https://github.com/chrishuffman5/domain-expert/tree/main/skills/etl/integration/nifi
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:exploring-data-catalog"
+    id: exploring-data-catalog
+    kind: skill
+    name: exploring-data-catalog
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/blob/main/plugins/aws-data-analytics/skills/exploring-data-catalog/SKILL.md
+    warnings: []
+
+  - ref: "skill:fastapi-itechmeat"
+    id: fastapi-itechmeat
+    kind: skill
+    name: fastapi
+    trust: community
+    maturity: stable
+    source: https://github.com/itechmeat/llm-code/tree/master/skills/fastapi
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:fastapi-martinholovsky"
+    id: fastapi-martinholovsky
+    kind: skill
+    name: fastapi
+    trust: community
+    maturity: stable
+    source: https://github.com/martinholovsky/claude-skills-generator/tree/main/skills/fastapi
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:flink"
+    id: flink
+    kind: skill
+    name: flink
+    trust: community
+    maturity: stable
+    source: https://github.com/gordonmurray/data-engineering-skills/blob/main/flink/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:flink-best-practices"
+    id: flink-best-practices
+    kind: skill
+    name: flink-best-practices
+    trust: community
+    maturity: stable
+    source: https://github.com/BigDataBoutique/skills/blob/main/flink-best-practices/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:gcloud"
+    id: gcloud
+    kind: skill
+    name: gcloud
+    trust: official
+    maturity: stable
+    source: https://github.com/google/skills/blob/main/skills/cloud/gcloud/SKILL.md
+    warnings: []
+
+  - ref: "skill:gcp-event-driven-architecture-review"
+    id: gcp-event-driven-architecture-review
+    kind: skill
+    name: gcp-event-driven-architecture-review
+    trust: community
+    maturity: stable
+    source: https://github.com/Raishin/vanguard-frontier-agentic/blob/HEAD/skills/gcp/gcp-event-driven-architecture-review/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:gcp-iam"
+    id: gcp-iam
+    kind: skill
+    name: gcp-iam
+    trust: community
+    maturity: alpha
+    source: https://github.com/alphaonedev/openclaw-graph/blob/main/skills/cloud-gcp/gcp-iam/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+      - "This resource is alpha and may change or lack production support."
+
+  - ref: "skill:gcp-secret-manager"
+    id: gcp-secret-manager
+    kind: skill
+    name: gcp-secret-manager
+    trust: community
+    maturity: stable
+    source: https://github.com/BagelHole/DevOps-Security-Agent-Skills/blob/main/security/secrets/gcp-secret-manager/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:gcs-lifecycle-policy"
+    id: gcs-lifecycle-policy
+    kind: skill
+    name: gcs-lifecycle-policy
+    trust: community
+    maturity: stable
+    source: https://github.com/jeremylongshore/claude-code-plugins-plus-skills/blob/main/skills/14-gcp-skills/gcs-lifecycle-policy/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:gemini-api"
+    id: gemini-api
+    kind: skill
+    name: gemini-api
+    trust: official
+    maturity: stable
+    source: https://github.com/google/skills/blob/main/skills/cloud/gemini-api/SKILL.md
+    warnings: []
+
+  - ref: "skill:glue-diagnostics"
+    id: glue-diagnostics
+    kind: skill
+    name: glue-diagnostics
+    trust: provider
+    maturity: stable
+    source: https://github.com/aws-samples/sample-ai-agent-skills/blob/main/glue-troubleshooting/SKILL.md
+    warnings: []
+
+  - ref: "skill:graphql"
+    id: graphql
+    kind: skill
+    name: graphql
+    trust: community
+    maturity: stable
+    source: https://github.com/Mindrally/skills/blob/main/graphql/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:hadoop"
+    id: hadoop
+    kind: skill
+    name: hadoop
+    trust: community
+    maturity: stable
+    source: https://github.com/clawic/skills/tree/main/skills/hadoop
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:hbase"
+    id: hbase
+    kind: skill
+    name: hbase
+    trust: community
+    maturity: stable
+    source: https://github.com/G1Joshi/Agent-Skills/blob/2c0eacc6ce39edc2d69a1f55e64984f385bc14f8/skills/databases/hbase/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:ingesting-into-data-lake"
+    id: ingesting-into-data-lake
+    kind: skill
+    name: ingesting-into-data-lake
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/blob/main/plugins/aws-data-analytics/skills/ingesting-into-data-lake/SKILL.md
+    warnings: []
+
+  - ref: "skill:integrate-anything"
+    id: integrate-anything
+    kind: skill
+    name: integrate-anything
+    trust: community
+    maturity: stable
+    source: https://github.com/membranehq/agent-skills/blob/main/skills/integrate-anything/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:io-connectors"
+    id: io-connectors
+    kind: skill
+    name: io-connectors
+    trust: official
+    maturity: stable
+    source: https://github.com/apache/beam/blob/master/.agent/skills/io-connectors/SKILL.md
+    warnings: []
+
+  - ref: "skill:jq-json-processing"
+    id: jq-json-processing
+    kind: skill
+    name: jq-json-processing
+    trust: community
+    maturity: stable
+    source: https://skills.sh/laurigates/claude-plugins/jq-json-processing
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:kafka-schema-registry"
+    id: kafka-schema-registry
+    kind: skill
+    name: kafka-schema-registry
+    trust: provider
+    maturity: stable
+    source: https://github.com/confluentinc/agent-skills/blob/main/skills/kafka-schema-registry/SKILL.md
+    warnings: []
+
+  - ref: "skill:kafka-streams-programming"
+    id: kafka-streams-programming
+    kind: skill
+    name: kafka-streams-programming
+    trust: provider
+    maturity: stable
+    source: https://github.com/confluentinc/agent-skills/blob/main/skills/kafka-streams-programming/SKILL.md
+    warnings: []
+
+  - ref: "skill:knowledge-catalog-discovery"
+    id: knowledge-catalog-discovery
+    kind: skill
+    name: knowledge-catalog-discovery
+    trust: official
+    maturity: beta
+    source: https://github.com/gemini-cli-extensions/knowledge-catalog/blob/main/skills/knowledge-catalog-discovery/SKILL.md
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  - ref: "skill:lookml-model"
+    id: lookml-model
+    kind: skill
+    name: lookml-model
+    trust: official
+    maturity: unsupported
+    source: https://github.com/looker-open-source/looker-skills/blob/main/skills/lookml-model/SKILL.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:lookml-tests"
+    id: lookml-tests
+    kind: skill
+    name: lookml-tests
+    trust: official
+    maturity: unsupported
+    source: https://github.com/looker-open-source/looker-skills/blob/main/skills/lookml-tests/SKILL.md
+    warnings:
+      - "This resource is unsupported and may change or lack production support."
+
+  - ref: "skill:microsoft-code-reference"
+    id: microsoft-code-reference
+    kind: skill
+    name: microsoft-code-reference
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/mcp/blob/main/skills/microsoft-code-reference/SKILL.md
+    warnings: []
+
+  - ref: "skill:microsoft-docs"
+    id: microsoft-docs
+    kind: skill
+    name: microsoft-docs
+    trust: official
+    maturity: stable
+    source: https://github.com/MicrosoftDocs/mcp/blob/main/skills/microsoft-docs/SKILL.md
+    warnings: []
+
+  - ref: "skill:mlflow-onboarding"
+    id: mlflow-onboarding
+    kind: skill
+    name: mlflow-onboarding
+    trust: official
+    maturity: stable
+    source: https://github.com/mlflow/skills/blob/main/mlflow-onboarding/SKILL.md
+    warnings: []
+
+  - ref: "skill:mongodb-query-optimizer"
+    id: mongodb-query-optimizer
+    kind: skill
+    name: mongodb-query-optimizer
+    trust: official
+    maturity: stable
+    source: https://github.com/mongodb/agent-skills/blob/main/skills/mongodb-query-optimizer/SKILL.md
+    warnings: []
+
+  - ref: "skill:mongodb-schema-design"
+    id: mongodb-schema-design
+    kind: skill
+    name: mongodb-schema-design
+    trust: official
+    maturity: stable
+    source: https://github.com/mongodb/agent-skills/blob/main/skills/mongodb-schema-design/SKILL.md
+    warnings: []
+
+  - ref: "skill:mysql"
+    id: mysql
+    kind: skill
+    name: mysql
+    trust: provider
+    maturity: stable
+    source: https://github.com/planetscale/database-skills/blob/main/skills/mysql/SKILL.md
+    warnings: []
+
+  - ref: "skill:mysql-patterns"
+    id: mysql-patterns
+    kind: skill
+    name: mysql-patterns
+    trust: community
+    maturity: stable
+    source: https://github.com/affaan-m/ECC/blob/main/skills/mysql-patterns/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:neon-postgres"
+    id: neon-postgres
+    kind: skill
+    name: neon-postgres
+    trust: provider
+    maturity: stable
+    source: https://github.com/neondatabase/agent-skills/blob/main/skills/neon-postgres/SKILL.md
+    warnings: []
+
+  - ref: "skill:newrelic-cli-skills"
+    id: newrelic-cli-skills
+    kind: skill
+    name: newrelic-cli-skills
+    trust: community
+    maturity: stable
+    source: https://github.com/vince-winkintel/newrelic-cli-skills/blob/main/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:nifi-flow-layout"
+    id: nifi-flow-layout
+    kind: skill
+    name: nifi-flow-layout
+    trust: community
+    maturity: stable
+    source: https://github.com/AlekseiSeleznev/nifi-mcp-universal/tree/main/skills/nifi-flow-layout
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:okta-identity-integration-patterns"
+    id: okta-identity-integration-patterns
+    kind: skill
+    name: okta-identity-integration-patterns
+    trust: community
+    maturity: stable
+    source: https://github.com/vaquarkhan/Fullstack-development-agent-skills/blob/main/skills/okta-identity-integration-patterns/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:oleander-iceberg-catalog"
+    id: oleander-iceberg-catalog
+    kind: skill
+    name: oleander-iceberg-catalog
+    trust: community
+    maturity: stable
+    source: https://skills.sh/oleanderhq/skills/oleander-iceberg-catalog
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:oracle-database"
+    id: oracle-database
+    kind: skill
+    name: Oracle Database Skills
+    trust: official
+    maturity: stable
+    source: https://github.com/oracle/skills/blob/main/db/SKILL.md
+    warnings: []
+
+  - ref: "skill:oraclecloud-data-handling"
+    id: oraclecloud-data-handling
+    kind: skill
+    name: oraclecloud-data-handling
+    trust: community
+    maturity: stable
+    source: https://github.com/jeremylongshore/claude-code-plugins-plus-skills/blob/main/plugins/saas-packs/oraclecloud-pack/skills/oraclecloud-data-handling/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:oracledb"
+    id: oracledb
+    kind: skill
+    name: oracledb
+    trust: provider
+    maturity: beta
+    source: https://github.com/gemini-cli-extensions/oracledb/blob/main/skills/oracledb/SKILL.md
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  - ref: "skill:powerbi-documentation"
+    id: powerbi-documentation
+    kind: skill
+    name: powerbi-documentation
+    trust: community
+    maturity: stable
+    source: https://github.com/MaartenKesters/powerbi-mcp-documentation/blob/main/powerbi-mcp-documentation/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:powerbi-mcp"
+    id: powerbi-mcp
+    kind: skill
+    name: powerbi-mcp
+    trust: community
+    maturity: stable
+    source: https://github.com/devsaikan/powerbi-mcp-skill/blob/main/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:prefect"
+    id: prefect
+    kind: skill
+    name: prefect
+    trust: community
+    maturity: stable
+    source: https://github.com/TerminalSkills/skills/tree/main/skills/prefect
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:prometheus-addxai"
+    id: prometheus-addxai
+    kind: skill
+    name: prometheus
+    trust: community
+    maturity: stable
+    source: https://github.com/addxai/enterprise-harness-engineering/blob/main/skills/prometheus/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:purview-data-catalog"
+    id: purview-data-catalog
+    kind: skill
+    name: purview-data-catalog
+    trust: community
+    maturity: stable
+    source: https://github.com/vinayaklatthe/microsoft-security-skills/blob/main/skills/purview-data-catalog/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:purview-data-map"
+    id: purview-data-map
+    kind: skill
+    name: purview-data-map
+    trust: community
+    maturity: stable
+    source: https://github.com/vinayaklatthe/microsoft-security-skills/blob/main/skills/purview-data-map/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:pytorch-patterns"
+    id: pytorch-patterns
+    kind: skill
+    name: pytorch-patterns
+    trust: community
+    maturity: stable
+    source: https://github.com/affaan-m/ECC/blob/main/skills/pytorch-patterns/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:qlik-load-script"
+    id: qlik-load-script
+    kind: skill
+    name: qlik-load-script
+    trust: community
+    maturity: stable
+    source: https://github.com/Pupfish-LLC/qlik-toolkit/blob/main/skills/qlik-load-script/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:query-tableau-data"
+    id: query-tableau-data
+    kind: skill
+    name: query-tableau-data
+    trust: community
+    maturity: stable
+    source: https://github.com/Action-Co/skills/blob/main/skills/tableau/query-tableau-data/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:redis-core"
+    id: redis-core
+    kind: skill
+    name: redis-core
+    trust: official
+    maturity: stable
+    source: https://github.com/redis/agent-skills/blob/main/skills/redis-core/SKILL.md
+    warnings: []
+
+  - ref: "skill:redis-observability"
+    id: redis-observability
+    kind: skill
+    name: redis-observability
+    trust: official
+    maturity: stable
+    source: https://github.com/redis/agent-skills/blob/main/skills/redis-observability/SKILL.md
+    warnings: []
+
+  - ref: "skill:redshift"
+    id: redshift
+    kind: skill
+    name: redshift
+    trust: community
+    maturity: stable
+    source: https://skills.sh/onsen-ai/redshift-skill/redshift
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:scikit-learn"
+    id: scikit-learn
+    kind: skill
+    name: scikit-learn
+    trust: community
+    maturity: stable
+    source: https://skills.sh/k-dense-ai/scientific-agent-skills/scikit-learn
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:scikit-learn-best-practices"
+    id: scikit-learn-best-practices
+    kind: skill
+    name: scikit-learn-best-practices
+    trust: community
+    maturity: stable
+    source: https://skills.sh/mindrally/skills/scikit-learn-best-practices
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:searching-mlflow-docs"
+    id: searching-mlflow-docs
+    kind: skill
+    name: searching-mlflow-docs
+    trust: official
+    maturity: stable
+    source: https://github.com/mlflow/skills/blob/main/searching-mlflow-docs/SKILL.md
+    warnings: []
+
+  - ref: "skill:secrets-vault-manager"
+    id: secrets-vault-manager
+    kind: skill
+    name: secrets-vault-manager
+    trust: community
+    maturity: stable
+    source: https://github.com/alirezarezvani/claude-skills/blob/main/engineering/skills/secrets-vault-manager/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:securing-s3-buckets"
+    id: securing-s3-buckets
+    kind: skill
+    name: securing-s3-buckets
+    trust: official
+    maturity: stable
+    source: https://github.com/aws/agent-toolkit-for-aws/tree/main/skills/specialized-skills/storage-skills/securing-s3-buckets
+    warnings: []
+
+  - ref: "skill:senior-data-engineer"
+    id: senior-data-engineer
+    kind: skill
+    name: senior-data-engineer
+    trust: community
+    maturity: stable
+    source: https://github.com/alirezarezvani/claude-skills/blob/main/engineering-team/skills/senior-data-engineer/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:snowflake-expert"
+    id: snowflake-expert
+    kind: skill
+    name: snowflake-expert
+    trust: community
+    maturity: stable
+    source: https://github.com/personamanagmentlayer/pcl/blob/main/stdlib/data/snowflake-expert/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:snowpipe-bcdr"
+    id: snowpipe-bcdr
+    kind: skill
+    name: snowpipe-bcdr
+    trust: provider
+    maturity: stable
+    source: https://github.com/Snowflake-Labs/coco-skills/tree/main/skills/snowpipe-bcdr
+    warnings: []
+
+  - ref: "skill:soda-cli"
+    id: soda-cli
+    kind: skill
+    name: soda-cli
+    trust: official
+    maturity: beta
+    source: https://github.com/sodadata/soda-cli/blob/main/skills/soda-cli/SKILL.md
+    warnings:
+      - "This resource is beta and may change or lack production support."
+
+  - ref: "skill:spark-engineer"
+    id: spark-engineer
+    kind: skill
+    name: spark-engineer
+    trust: community
+    maturity: stable
+    source: https://github.com/Jeffallan/claude-skills/blob/main/skills/spark-engineer/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:splunk-ingest-processor-setup"
+    id: splunk-ingest-processor-setup
+    kind: skill
+    name: splunk-ingest-processor-setup
+    trust: community
+    maturity: stable
+    source: https://github.com/chambear2809/splunk-cisco-skills/blob/main/skills/splunk-ingest-processor-setup/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:splunk-spl2-pipeline-kit"
+    id: splunk-spl2-pipeline-kit
+    kind: skill
+    name: splunk-spl2-pipeline-kit
+    trust: community
+    maturity: stable
+    source: https://github.com/chambear2809/splunk-cisco-skills/blob/main/skills/splunk-spl2-pipeline-kit/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:sql-server-table-reconciliation"
+    id: sql-server-table-reconciliation
+    kind: skill
+    name: sql-server-table-reconciliation
+    trust: community
+    maturity: stable
+    source: https://github.com/github/awesome-copilot/tree/main/skills/sql-server-table-reconciliation
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:supabase-postgres-best-practices"
+    id: supabase-postgres-best-practices
+    kind: skill
+    name: supabase-postgres-best-practices
+    trust: provider
+    maturity: stable
+    source: https://github.com/supabase/agent-skills/blob/main/skills/supabase-postgres-best-practices/SKILL.md
+    warnings: []
+
+  - ref: "skill:tableau-dashboard-creator"
+    id: tableau-dashboard-creator
+    kind: skill
+    name: tableau-dashboard-creator
+    trust: community
+    maturity: stable
+    source: https://github.com/laviDrori0702/tableau-dashboard-creator-skill/blob/main/skill/tableau-dashboard-creator/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:tensorflow-data-pipelines"
+    id: tensorflow-data-pipelines
+    kind: skill
+    name: tensorflow-data-pipelines
+    trust: community
+    maturity: stable
+    source: https://github.com/thebushidocollective/han/blob/main/plugins/specialized/tensorflow/skills/tensorflow-data-pipelines/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:tensorflow-model-deployment"
+    id: tensorflow-model-deployment
+    kind: skill
+    name: tensorflow-model-deployment
+    trust: community
+    maturity: stable
+    source: https://github.com/thebushidocollective/han/blob/main/plugins/specialized/tensorflow/skills/tensorflow-model-deployment/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:troubleshoot-cassandra"
+    id: troubleshoot-cassandra
+    kind: skill
+    name: troubleshoot-cassandra
+    trust: provider
+    maturity: stable
+    source: https://github.com/netdata/skills/blob/master/skills/troubleshoot-cassandra/SKILL.md
+    warnings: []
+
+  - ref: "skill:udf-benchmark"
+    id: udf-benchmark
+    kind: skill
+    name: udf-benchmark
+    trust: provider
+    maturity: stable
+    source: https://github.com/NVIDIA/cudf-spark/blob/main/skills/udf-benchmark/SKILL.md
+    warnings: []
+
+  - ref: "skill:validating-json-data"
+    id: validating-json-data
+    kind: skill
+    name: validating-json-data
+    trust: community
+    maturity: stable
+    source: https://skills.sh/zaggino/z-schema/validating-json-data
+    warnings:
+      - "Audit this community resource before installation."
+
+  - ref: "skill:vault-api"
+    id: vault-api
+    kind: skill
+    name: vault-api
+    trust: community
+    maturity: stable
+    source: https://github.com/Aidas-dev/k8s-agent-skills/blob/main/skills/vault-api/SKILL.md
+    warnings:
+      - "Audit this community resource before installation."
