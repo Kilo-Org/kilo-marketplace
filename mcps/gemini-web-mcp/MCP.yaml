@@ -1,0 +1,51 @@
+id: gemini-web-mcp
+name: Gemini Web MCP
+description: Layered FastMCP server and Codex skill for Gemini Web workflows, with profile-based tool surfaces for model calls, chat history, account inventory, scheduled actions, media, files, and research.
+author: Luckycat133
+url: https://github.com/Luckycat133/gemini-web-mcp
+category: productivity
+tags:
+  - productivity
+  - web-automation
+prerequisites:
+  - Python 3.10+
+  - Gemini Web account cookies for authenticated workflows
+content:
+  - name: Python package from GitHub
+    prerequisites:
+      - Python 3.10+
+    content: |
+      {
+        "command": "python",
+        "args": ["-m", "src.server"],
+        "env": {
+          "GEMINI_TOOLS": "core"
+        }
+      }
+  - name: Model-only profile
+    prerequisites:
+      - Python 3.10+
+    content: |
+      {
+        "command": "python",
+        "args": ["-m", "src.server"],
+        "env": {
+          "GEMINI_TOOLS": "model"
+        }
+      }
+  - name: History-only profile
+    prerequisites:
+      - Python 3.10+
+      - Gemini Web account cookies
+    content: |
+      {
+        "command": "python",
+        "args": ["-m", "src.server"],
+        "env": {
+          "GEMINI_TOOLS": "history"
+        }
+      }
+parameters:
+  - name: Tool profile
+    key: GEMINI_TOOLS
+    placeholder: core
