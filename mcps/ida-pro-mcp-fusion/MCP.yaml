@@ -1,0 +1,32 @@
+id: ida-pro-mcp-fusion
+name: IDA Pro MCP Fusion
+description: Local stdio MCP server for IDA Pro reverse engineering. Provides 76 tools for binary discovery,
+  decompilation, disassembly, xrefs, type editing, persistent SQLite cache queries, and multi-binary headless
+  IDA analysis sessions.
+author: rison1337
+url: https://github.com/rison1337/ida-pro-mcp-fusion
+category: development
+suggest_for:
+  filename:
+    - "*.i64"
+    - "*.idb"
+prerequisites:
+  - IDA Pro 8.3+ or newer; IDA Free is not supported
+  - Python 3.11+
+  - uv/uvx
+content:
+  - name: UVX
+    prerequisites:
+      - IDA Pro 8.3+ or newer
+      - Python 3.11+
+      - uv/uvx
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/rison1337/ida-pro-mcp-fusion",
+          "idalib-mcp",
+          "--stdio"
+        ]
+      }
