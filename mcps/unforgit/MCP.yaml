@@ -1,0 +1,27 @@
+id: unforgit
+name: Unforgit
+description: Git-backed repository memory for AI coding agents, providing durable recall and storage for project decisions, conventions, gotchas, and playbooks.
+author: MiguelMedeiros
+url: https://github.com/MiguelMedeiros/unforgit
+category: development
+prerequisites:
+  - Node.js 20+
+  - A project or Git repository initialized with `unforgit init`
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "-p", "unforgit", "unforgit-mcp"]
+      }
+  - name: Global install
+    prerequisites:
+      - Node.js 20+
+      - Run `npm install -g unforgit`
+    content: |
+      {
+        "command": "unforgit-mcp",
+        "args": []
+      }
