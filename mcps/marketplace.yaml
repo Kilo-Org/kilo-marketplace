@@ -2883,8 +2883,7 @@ items:
         placeholder: your_knox_bearer_token
   - id: nora
     name: Nora
-    description: Operate a self-hosted Nora AI-agent fleet from Kilo, including deployment, lifecycle control, fleet health,
-      metrics, events, and cost visibility.
+    description: Inspect a self-hosted Nora AI-agent fleet from Kilo, with optional write-scoped deployment and lifecycle control.
     author: Nora
     url: https://github.com/solomon2773/nora
     category: development
@@ -2892,11 +2891,15 @@ items:
       - development
     prerequisites:
       - Node.js 20 or later
-      - A reachable Nora control plane and workspace API key with the scopes needed for the intended operations
+      - A reachable Nora control plane
+      - A read-only workspace API key scoped to agents:read and monitoring:read by default; add agents:write only when
+        you intentionally want lifecycle actions
     content:
-      - name: NPX
+      - name: NPX (read-only key recommended)
         prerequisites:
           - Node.js 20 or later
+          - Use a key without agents:write unless you intentionally want Kilo to deploy, start, stop, restart, or
+            redeploy agents
         content: |
           {
             "command": "npx",
@@ -2911,7 +2914,7 @@ items:
       - name: Nora API URL
         key: NORA_API_URL
         placeholder: https://nora.example.com
-      - name: Nora API Key
+      - name: Nora API Key (read-only recommended)
         key: NORA_API_KEY
         placeholder: nora_...
   - id: notion
