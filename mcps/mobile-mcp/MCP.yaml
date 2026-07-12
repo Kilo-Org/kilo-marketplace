@@ -6,7 +6,7 @@ description: Mobile automation for iOS and Android — drive real devices, simul
   model required), with screenshot/coordinate fallback.
 author: mobile-next
 url: https://github.com/mobile-next/mobile-mcp
-category: web-automation
+category: development
 content:
   - name: NPX
     prerequisites:
