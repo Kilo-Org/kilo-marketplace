@@ -10,7 +10,10 @@ category: development
 content:
   - name: NPX
     prerequisites:
-      - Node.js
+      - Node.js 20+
+      - "Android targets: Android SDK / Platform Tools (adb on PATH) plus a running emulator or connected device"
+      - "iOS targets (macOS): Xcode command line tools plus a booted simulator or connected device"
+      - "iOS real devices additionally need go-ios, WebDriverAgent, and a device tunnel (see the mobile-mcp wiki)"
     content: |
       {
         "command": "npx",
