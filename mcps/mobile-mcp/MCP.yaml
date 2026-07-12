@@ -1,5 +1,5 @@
 id: mobile-mcp
-name: Mobile Next
+name: Mobile MCP
 description: Mobile automation for iOS and Android — drive real devices, simulators, and emulators
   over a single MCP interface. Taps, swipes, and gestures; app install/launch/terminate; screenshots;
   structured UI element extraction; screen recording; and crash reports. Accessibility-first (no vision
