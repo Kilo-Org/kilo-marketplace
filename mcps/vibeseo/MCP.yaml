@@ -1,0 +1,14 @@
+id: vibeseo
+name: VibeSEO
+description: SEO research, keyword discovery, domain analysis, site audits, Google Search Console,
+  backlinks, and content workflow — all from your AI assistant. Remote OAuth 2.1 MCP server.
+author: VibeSEO
+url: https://github.com/sultanlive/vibeseo-mcp
+category: search
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.vibeseo.dev/mcp"
+      }
