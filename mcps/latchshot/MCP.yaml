@@ -1,0 +1,22 @@
+id: latchshot
+name: Latchshot
+description: Captures guarded screenshots and PDFs of public web pages through hosted Chromium, returning inline artifacts without requiring a local browser.
+author: BaiqingL
+url: https://github.com/BaiqingL/latchshot-mcp
+category: web-automation
+prerequisites:
+  - Latchshot API key (100 recurring free successful renders per UTC calendar month at https://latchshot.fly.dev/?intent=kilo#trial)
+content:
+  - name: Hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://latchshot.fly.dev/mcp",
+        "headers": {
+          "Authorization": "Bearer {{LATCHSHOT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Latchshot API Key
+    key: LATCHSHOT_API_KEY
+    placeholder: ls_live_replace_me
