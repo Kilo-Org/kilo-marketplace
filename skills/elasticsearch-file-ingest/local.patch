@@ -1,0 +1,32 @@
+diff -rN -U0 --ignore-trailing-space a/elasticsearch-file-ingest/scripts/ingest.js b/elasticsearch-file-ingest/scripts/ingest.js
+--- a/elasticsearch-file-ingest/scripts/ingest.js	2000-01-01 00:00:00.000000000 +0000
++++ b/elasticsearch-file-ingest/scripts/ingest.js	2000-01-01 00:00:00.000000000 +0000
+@@ -23 +23 @@
+-  console.log("  ELASTICSEARCH_CLOUD_ID, ELASTICSEARCH_URL, ELASTICSEARCH_INSECURE");
++  console.log("  ELASTICSEARCH_CLOUD_ID, ELASTICSEARCH_URL, NODE_EXTRA_CA_CERTS");
+@@ -63 +62,0 @@
+-  const insecure = process.env.ELASTICSEARCH_INSECURE === "true";
+@@ -81,3 +79,0 @@
+-  if (insecure) {
+-    config.tls = { rejectUnauthorized: false };
+-  }
+@@ -306 +302 @@
+-  console.error("For self-signed certs: set ELASTICSEARCH_INSECURE=true");
++  console.error("For private CAs: set NODE_EXTRA_CA_CERTS=/path/to/private-ca-bundle.pem");
+diff -rN -U0 --ignore-trailing-space a/elasticsearch-file-ingest/SKILL.md b/elasticsearch-file-ingest/SKILL.md
+--- a/elasticsearch-file-ingest/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/elasticsearch-file-ingest/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-description: >
++description: >-
+@@ -9,2 +8,0 @@
+-  author: elastic
+-  version: 0.2.0
+@@ -83 +81,3 @@
+-#### Optional: Skip TLS verification (development only)
++#### Private CA certificates
++
++Keep TLS verification enabled. For a development cluster signed by a private CA, point Node.js at the reviewed CA bundle:
+@@ -86 +86 @@
+-export ELASTICSEARCH_INSECURE="true"
++export NODE_EXTRA_CA_CERTS="/path/to/private-ca-bundle.pem"

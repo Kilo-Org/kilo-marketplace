@@ -3,18 +3,7 @@ name: Laravel Boost
 description: Official Laravel MCP server providing comprehensive AI-powered development tools including database schema inspection, query execution, route analysis, artisan command access, configuration management, documentation search, error tracking, and extensible skills system for Laravel applications.
 author: laravel
 url: https://github.com/laravel/boost
-tags:
-  - laravel
-  - php
-  - database
-  - artisan
-  - routes
-  - configuration
-  - documentation
-  - error-tracking
-  - ai-integration
-  - web-development
-  - official
+category: development
 prerequisites:
   - PHP 8.1 or higher
   - Laravel 10.x, 11.x, or 12.x

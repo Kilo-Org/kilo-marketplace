@@ -1,0 +1,193 @@
+diff -rN -U0 --ignore-trailing-space a/databricks-core/databricks-cli-auth.md b/databricks-core/databricks-cli-auth.md
+--- a/databricks-core/databricks-cli-auth.md	2000-01-01 00:00:00.000000000 +0000
++++ b/databricks-core/databricks-cli-auth.md	2000-01-01 00:00:00.000000000 +0000
+@@ -16 +16 @@
+-## Claude Code Specific Behavior
++## Agent Shell Behavior
+@@ -18 +18 @@
+-**CRITICAL**: When working in Claude Code, each Bash command executes in a **separate shell session**. This has important implications for profile management:
++**CRITICAL**: When the agent runs Bash commands in separate tool calls, each command may execute in a **separate shell session**. This has important implications for profile management:
+@@ -37 +37 @@
+-### Quick Reference for Claude Code
++### Quick Reference for Isolated Agent Shells
+@@ -71 +71 @@
+-   - **In Claude Code, always use the `--profile` flag** rather than setting environment variables
++   - **For agent-run commands, always use the `--profile` flag** rather than relying on persistent environment variables
+@@ -180 +180 @@
+-**IMPORTANT FOR CLAUDE CODE USERS**: In Claude Code, each Bash command runs in a **separate shell session**. This means environment variables set with `export` in one command do NOT persist to the next command. See the Claude Code-specific guidance below.
++**IMPORTANT FOR AGENT RUNS**: Commands may execute in separate shell sessions, so an export in one command may not persist to the next. See the agent-shell guidance below.
+@@ -184 +184 @@
+-#### 1. CLI Flag (Highest Priority) - RECOMMENDED FOR CLAUDE CODE
++#### 1. CLI Flag (Highest Priority) - RECOMMENDED FOR AGENT RUNS
+@@ -194 +194 @@
+-**In Claude Code, this is the most reliable method** because it doesn't depend on persistent environment variables.
++**For agent-run commands, this is the most reliable method** because it doesn't depend on persistent environment variables.
+@@ -212 +212 @@
+-**CRITICAL - Claude Code Users:**
++**CRITICAL - Isolated Agent Shells:**
+@@ -214 +214 @@
+-Since each Bash command in Claude Code runs in a separate shell, you **CANNOT** do this:
++When each Bash command runs in a separate shell, you **CANNOT** do this:
+@@ -217 +217 @@
+-# ❌ DOES NOT WORK in Claude Code
++# ❌ DOES NOT WORK across separate agent commands
+@@ -226 +226 @@
+-# ✅ WORKS in Claude Code
++# ✅ WORKS in isolated agent shells
+@@ -233 +233 @@
+-# ✅ WORKS in Claude Code - export and command run in same shell
++# ✅ WORKS in isolated agent shells - export and command run in same shell
+@@ -241 +241 @@
+-# DO NOT use this pattern in Claude Code
++# DO NOT use this pattern across separate agent commands
+@@ -321 +321 @@
+-**In Claude Code, use --profile flag with each command (RECOMMENDED):**
++**For agent-run commands, use --profile with each command (RECOMMENDED):**
+@@ -329 +329 @@
+-**Alternatively in Claude Code, chain commands with &&:**
++**Alternatively, in an agent-run command, chain commands with &&:**
+@@ -339 +339 @@
+-**Traditional Terminal Session (for reference only - NOT for Claude Code):**
++**Traditional Terminal Session (for reference only - NOT for isolated agent shells):**
+@@ -341 +341 @@
+-# This pattern works in regular terminals but NOT in Claude Code
++# This pattern works in regular terminals but NOT across separate agent commands
+@@ -376 +376 @@
+-**Claude Code version** (with chained commands):
++**Agent-shell version** (with chained commands):
+diff -rN -U0 --ignore-trailing-space a/databricks-core/databricks-cli-install.md b/databricks-core/databricks-cli-install.md
+--- a/databricks-core/databricks-cli-install.md	2000-01-01 00:00:00.000000000 +0000
++++ b/databricks-core/databricks-cli-install.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-Install or update the Databricks CLI on macOS, Windows, or Linux using doc-validated methods (Homebrew, WinGet, curl install script, manual download, or user directory install for non-sudo environments). Includes verification and common failure recovery.
++Install or update the Databricks CLI on macOS, Windows, or Linux using verified package-manager or versioned release artifacts. Includes checksum verification, user-directory installation for non-sudo environments, and common failure recovery.
+@@ -5 +5 @@
+-## Sandboxed / IDE environments (Cursor, containers)
++## Sandboxed agent / container environments
+@@ -11 +11 @@
+-For Linux/macOS containers or Cursor: prefer the **Linux manual install to user directory** method (`~/.local/bin`) — it requires no sudo and no writes outside the workspace.
++For Linux/macOS containers or sandboxed agent environments: prefer the **Linux manual install to user directory** method (`~/.local/bin`) — it requires no sudo and no writes outside the workspace.
+@@ -34,3 +34 @@
+-#### macOS fallback: curl installer
+-Run:
+-- `curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh`
++#### macOS fallback: verified release artifact
+@@ -38,3 +36 @@
+-Notes:
+-- If `/usr/local/bin` is not writable, re-run with `sudo`.
+-- Installs to `/usr/local/bin/databricks`.
++Download the versioned macOS archive from the [official releases](https://github.com/databricks/cli/releases), verify its published checksum before extraction, inspect the archive contents, and obtain explicit user approval before placing the binary on `PATH`. Prefer a user-owned directory such as `~/.local/bin`; do not run remote installer responses directly in a shell.
+@@ -53,3 +49 @@
+-#### Linux fallback: curl installer
+-Run:
+-- `curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh`
++#### Linux fallback: verified release artifact
+@@ -57,3 +51 @@
+-Notes:
+-- If `/usr/local/bin` is not writable, re-run with `sudo`.
+-- Installs to `/usr/local/bin/databricks`.
++Use the manual user-directory installation below. Select an explicit version from the [official releases](https://github.com/databricks/cli/releases), verify its published checksum, inspect the archive contents, and obtain explicit user approval before installing the binary. Never pipe a remote response directly into a shell.
+@@ -68,3 +60,4 @@
+-1. Detect architecture:
+-   - `uname -m` (e.g., `x86_64`, `aarch64`)
+-2. Get the latest download URL using GitHub API:
++1. Detect architecture with `uname -m` (`x86_64` maps to `amd64`; `aarch64` maps to `arm64`).
++2. Select an explicit version from the [official releases](https://github.com/databricks/cli/releases). Do not resolve an unreviewed moving `latest` URL.
++3. Download the matching archive and its published checksum/signature to a temporary directory. Verify it before extraction; if the release provides no verifiable integrity metadata, use Homebrew instead.
++4. Inspect the archive, then install after explicit approval:
+@@ -72 +65,5 @@
+-   curl -s https://api.github.com/repos/databricks/cli/releases/latest | grep "browser_download_url.*linux.*$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')" | head -1 | cut -d '"' -f 4
++   sha256sum -c databricks.sha256
++   tar -tzf "databricks_cli_<version>_linux_<arch>.tar.gz"
++   mkdir -p "$HOME/.local/bin"
++   tar -xzf "databricks_cli_<version>_linux_<arch>.tar.gz" -C "$HOME/.local/bin" databricks
++   chmod 0755 "$HOME/.local/bin/databricks"
+@@ -74,10 +71 @@
+-3. Download and install to `~/.local/bin`:
+-   ```bash
+-   mkdir -p ~/.local/bin
+-   cd ~/.local/bin
+-   curl -L "<download-url>" -o databricks.tar.gz
+-   tar -xzf databricks.tar.gz
+-   rm databricks.tar.gz
+-   chmod +x databricks
+-   ```
+-4. Add to PATH (add to `~/.bashrc` or `~/.zshrc` for persistence):
++5. Add to PATH (add to `~/.bashrc` or `~/.zshrc` for persistence):
+@@ -87 +75 @@
+-5. Verify:
++6. Verify:
+@@ -93 +81 @@
+-- This method works in containerized environments and sandboxed IDEs (e.g. Cursor) without sudo access
++- This method works in containerized and sandboxed agent environments without sudo access
+@@ -110,5 +98 @@
+-#### Windows fallback: curl installer (recommended via WSL)
+-Databricks recommends WSL for the curl-based install path.
+-Requirements:
+-- WSL available
+-- `unzip` installed in the environment where you run the installer
++#### Windows fallback: verified release artifact
+@@ -116,2 +100 @@
+-Run (in WSL bash):
+-- `curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh`
++Download an explicit Windows release archive from the [official releases](https://github.com/databricks/cli/releases), verify its published checksum in PowerShell, inspect the archive, and obtain explicit approval before extracting the binary to a user-owned directory on `PATH`. Do not execute downloaded installer scripts or run unverified artifacts as Administrator.
+@@ -119 +102 @@
+-Verify (in same environment):
++Verify in the same environment:
+@@ -122,3 +104,0 @@
+-If you must run curl install outside WSL, run as Administrator.
+-Installs to `C:\Windows\databricks.exe`.
+-
+@@ -129,4 +109,2 @@
+-1. Get the latest release download URL:
+-   - Visit https://github.com/databricks/cli/releases/latest
+-   - OR use GitHub API: `curl -s https://api.github.com/repos/databricks/cli/releases/latest | grep browser_download_url`
+-2. Download the appropriate file for your OS and architecture:
++1. Select an explicit reviewed version from https://github.com/databricks/cli/releases and record that version before downloading anything. Do not resolve a moving `latest` URL.
++2. Download the appropriate versioned file for your OS and architecture:
+@@ -151,8 +129,5 @@
+-### curl update (all OSes)
+-1. Delete existing binary:
+-   - macOS/Linux: `/usr/local/bin/databricks`
+-   - Windows: `C:\Windows\databricks.exe`
+-2. Re-run:
+-   - `curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh`
+-3. Verify:
+-   - `databricks -v`
++### Manual release update (all OSes)
++1. Resolve the currently installed binary with `which databricks` or `where databricks`; do not delete anything until the replacement is verified.
++2. Select an explicit newer version from the official release page, download the matching artifact, and verify its published checksum/signature.
++3. Inspect and extract the replacement to a temporary location, run `<temporary-path>/databricks -v`, then obtain explicit approval before atomically replacing the existing binary.
++4. Verify the binary resolved from `PATH` with `databricks -v`; retain the prior binary until verification succeeds.
+@@ -162 +137 @@
+-  - Delete the existing binary at the install target, then rerun.
++  - Verify the new binary in a temporary location, obtain explicit replacement approval, then rename the existing binary to a backup before installing the new one.
+@@ -164,2 +139 @@
+-  - Re-run curl installer with `sudo` (macOS/Linux).
+-  - If sudo requires interactive password, use manual install to `~/.local/bin` instead.
++  - Use the manual install to `~/.local/bin` instead of elevating an installer.
+diff -rN -U0 --ignore-trailing-space a/databricks-core/data-exploration.md b/databricks-core/data-exploration.md
+--- a/databricks-core/data-exploration.md	2000-01-01 00:00:00.000000000 +0000
++++ b/databricks-core/data-exploration.md	2000-01-01 00:00:00.000000000 +0000
+@@ -264 +264 @@
+-## Claude Code-Specific Tips
++## Agent Shell Tips
+@@ -266 +266 @@
+-Remember that each Bash command in Claude Code runs in a separate shell:
++Bash commands issued in separate agent tool calls may run in separate shells:
+@@ -376 +376 @@
+-5. **Profile usage** - Always specify `--profile` in Claude Code to avoid authentication issues
++5. **Profile usage** - Always specify `--profile` when commands run in separate shells to avoid authentication issues
+diff -rN -U0 --ignore-trailing-space a/databricks-core/SKILL.md b/databricks-core/SKILL.md
+--- a/databricks-core/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/databricks-core/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -9 +8,0 @@
+-compatibility: Requires databricks CLI (>= v0.292.0)
+@@ -11 +9,0 @@
+-  version: 0.1.0
+@@ -38 +36 @@
+-   - Note: In sandboxed environments (Cursor IDE, containers), install commands write outside the workspace and may be blocked. Present the install command to the user and ask them to run it in their own terminal.
++   - Note: In sandboxed or containerized environments, install commands write outside the workspace and may be blocked. Present the install command to the user and ask them to run it in their own terminal.
+@@ -53 +51 @@
+-## Claude Code - IMPORTANT
++## Agent Shell Behavior

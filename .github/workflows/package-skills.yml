@@ -29,7 +29,11 @@ jobs:
               continue
             fi
             echo "Packaging: $skill"
-            tar -czf "dist/${skill}.tar.gz" -C skills "$skill"
+            tar \
+              --exclude="${skill}/evals" \
+              --exclude="${skill}/local.patch" \
+              --exclude="${skill}/local.remove" \
+              -czf "dist/${skill}.tar.gz" -C skills "$skill"
             echo "Created: dist/${skill}.tar.gz"
           done
           ls -la dist/
@@ -37,9 +41,11 @@ jobs:
       - name: Get version info
         id: version
         run: |
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-          echo "date=$(date -u +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+          {
+            echo "sha_short=$(git rev-parse --short HEAD)"
+            echo "sha=$(git rev-parse HEAD)"
+            echo "date=$(date -u +%Y%m%d%H%M%S)"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create release
         uses: softprops/action-gh-release@v2

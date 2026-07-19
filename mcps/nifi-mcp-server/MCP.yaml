@@ -1,0 +1,36 @@
+id: nifi-mcp-server
+name: Cloudera NiFi MCP Server
+description: Inspects and troubleshoots Apache NiFi 1.x or 2.x flows through Apache Knox, with processor, connection, bulletin, and health tools and read-only mode enabled by default.
+author: Cloudera
+url: https://github.com/cloudera/NiFi-MCP-Server
+category: data
+prerequisites:
+  - Python and uv
+  - Apache NiFi reachable through Apache Knox
+content:
+  - name: UVX from immutable source (read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/cloudera/NiFi-MCP-Server.git@9af7ce2930814e974d9c8b26330f7b2cb7431324",
+          "run-server"
+        ],
+        "env": {
+          "MCP_TRANSPORT": "stdio",
+          "NIFI_API_BASE": "{{NIFI_API_BASE}}",
+          "KNOX_TOKEN": "{{KNOX_TOKEN}}",
+          "NIFI_READONLY": "true",
+          "KNOX_VERIFY_SSL": "true"
+        }
+      }
+parameters:
+  - name: NiFi API Base URL
+    key: NIFI_API_BASE
+    placeholder: https://nifi.example.com/nifi-2-dh/cdp-proxy/nifi-app/nifi-api
+  - name: Knox Bearer Token
+    key: KNOX_TOKEN
+    placeholder: your_knox_bearer_token

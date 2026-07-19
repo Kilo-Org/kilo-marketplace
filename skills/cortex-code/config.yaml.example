@@ -1,0 +1,305 @@
+# Cortex Code Skill Configuration Example
+#
+# Copy this file to config.yaml in the skill's install directory and customize as needed.
+# Install directory varies by agent. Copy this file to your agent client's
+# configured skills directory for cortex-code.
+#
+# For detailed documentation, see:
+# - SECURITY.md - Security features and policies
+# - SECURITY_GUIDE.md - Deployment best practices
+# - README.md - General usage guide
+
+# ==============================================================================
+# SECURITY CONFIGURATION
+# ==============================================================================
+
+security:
+  # ----------------------------------------------------------------------------
+  # APPROVAL MODE (MOST IMPORTANT SETTING)
+  # ----------------------------------------------------------------------------
+  # Controls how tool execution is approved before running Cortex Code.
+  #
+  # Options:
+  #   "prompt"         - Show approval prompt before execution (DEFAULT, MOST SECURE)
+  #                      User must review and approve predicted tools.
+  #                      Best for: Interactive use, security-sensitive environments
+  #
+#   "auto"           - Auto-approve all operations
+#                      Requires mandatory audit logging.
+#                      Best for: Trusted environments, automated workflows
+  #
+  #   "envelope_only"  - No tool prediction, rely on envelope blocklist only
+  #                      Faster than "auto", still requires audit logging.
+  #                      Best for: Trust Cortex Code's envelope enforcement
+  #
+  # SECURITY: Default is "prompt" for maximum security.
+  #
+  approval_mode: "prompt"
+
+  # ----------------------------------------------------------------------------
+  # TOOL PREDICTION (for "prompt" mode)
+  # ----------------------------------------------------------------------------
+  # Confidence threshold for tool prediction (0.0 to 1.0)
+  # If prediction confidence is below this threshold, a warning is shown.
+  #
+  # Default: 0.7 (70% confidence)
+  # Lower values = more lenient, fewer warnings
+  # Higher values = stricter, more warnings
+  #
+  tool_prediction_confidence_threshold: 0.7
+
+  # ----------------------------------------------------------------------------
+  # AUDIT LOGGING (mandatory for "auto" and "envelope_only" modes)
+  # ----------------------------------------------------------------------------
+  # Structured JSONL logging of all executions.
+  # Format: One JSON object per line (machine-readable)
+  #
+  # Log location (supports ~/ and environment variables)
+  # audit_log defaults to audit.log in the skill install directory (set automatically)
+  # Override: audit_log_path: "~/.your-agent/skills/cortex-code/audit.log"
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+
+  # Log rotation size (e.g., "10MB", "50MB", "100MB")
+  # When log exceeds this size, it's rotated to audit.log.1, audit.log.2, etc.
+  audit_log_rotation: "10MB"
+
+  # Log retention in days
+  # Logs older than this are deleted during rotation
+  audit_log_retention: 30
+
+  # ----------------------------------------------------------------------------
+  # PROMPT SANITIZATION
+  # ----------------------------------------------------------------------------
+  # Remove PII (emails, phone numbers, SSN, credit cards) and detect injection
+  # attempts before processing prompts.
+  #
+  # SECURITY: Enabled by default. Disable only if you trust all input sources.
+  #
+  sanitize_conversation_history: true
+
+  # ----------------------------------------------------------------------------
+  # SECURE CACHING
+  # ----------------------------------------------------------------------------
+  # Cache directory for Cortex capabilities and other temporary data.
+  # Uses SHA256 fingerprint validation for integrity.
+  #
+  # Default: ~/.cache/cortex-skill
+  #
+  cache_dir: "~/.cache/cortex-skill"
+
+  # Cache TTL (time-to-live) in seconds
+  # Default: 86400 (24 hours)
+  cache_ttl: 86400
+
+  # ----------------------------------------------------------------------------
+  # CREDENTIAL FILE PROTECTION
+  # ----------------------------------------------------------------------------
+  # Blocks routing when prompts contain paths matching these patterns.
+  # Prevents accidental exposure of sensitive credential files.
+  #
+  # Pattern syntax:
+  #   - ~/ = user home directory
+  #   - ** = any subdirectories
+  #   - * = any characters
+  #
+  # SECURITY: Add patterns for your organization's credential files.
+  #
+  credential_file_allowlist:
+    # SSH keys
+    - "~/.ssh/**"
+
+    # Cloud provider credentials
+    - "~/.aws/credentials"
+    - "~/.aws/config"
+    - "~/.gcp/**"
+    - "~/.azure/**"
+
+    # Snowflake credentials
+    - "~/.snowflake/**"
+
+    # Environment files
+    - "**/.env"
+    - "**/.env.*"
+
+    # Generic credential files
+    - "**/credentials.json"
+    - "**/credentials.yaml"
+    - "**/secrets.json"
+    - "**/secrets.yaml"
+
+    # Private keys
+    - "**/*.pem"
+    - "**/*.key"
+    - "**/*_key"
+    - "**/*-key"
+
+    # Language-specific
+    - "**/.npmrc"
+    - "**/.pypirc"
+    - "**/.netrc"
+
+  # ----------------------------------------------------------------------------
+  # SECURITY ENVELOPES
+  # ----------------------------------------------------------------------------
+  # Which security envelopes are allowed for execution.
+  # Envelopes control which tools Cortex Code can use.
+  #
+  # Options:
+  #   "RO"       - Read-only operations (queries, reads)
+  #   "RW"       - Read-write operations (queries, writes, creates)
+  #   "RESEARCH" - Exploratory work with web access
+  #   "DEPLOY"   - Deployment operations; destructive shell commands remain blocked
+  #
+  # SECURITY: Limit envelopes to your operational needs.
+  # ENTERPRISE: Consider allowing only RO/RW, require approval for DEPLOY.
+  #
+  allowed_envelopes:
+    - "RO"
+    - "RW"
+    - "RESEARCH"
+    - "DEPLOY"
+
+# ==============================================================================
+# EXAMPLE CONFIGURATIONS BY DEPLOYMENT TYPE
+# ==============================================================================
+
+# Uncomment the section below that matches your deployment model
+
+# ------------------------------------------------------------------------------
+# PERSONAL USE (Individual Developer)
+# ------------------------------------------------------------------------------
+# Recommended: Secure mode with optional audit logging
+#
+# security:
+#   approval_mode: "prompt"
+#   sanitize_conversation_history: true
+#   # audit_log defaults to audit.log in the skill install directory (set automatically)
+  # Override: audit_log_path: "~/.your-agent/skills/cortex-code/audit.log"
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+#   credential_file_allowlist:
+#     - "~/.ssh/**"
+#     - "~/.aws/credentials"
+#     - "~/.snowflake/**"
+#     - "**/.env"
+
+# ------------------------------------------------------------------------------
+# TEAM DEPLOYMENT (5-50 developers)
+# ------------------------------------------------------------------------------
+# Recommended: Secure mode with mandatory audit logging
+# NOTE: Use organization policy file for team-wide enforcement
+#
+# security:
+#   approval_mode: "prompt"
+#   # audit_log defaults to audit.log in the skill install directory (set automatically)
+  # Override: audit_log_path: "~/.your-agent/skills/cortex-code/audit.log"
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+#   audit_log_retention: 90  # 90 days for team audit
+#   sanitize_conversation_history: true
+#   allowed_envelopes:
+#     - "RO"
+#     - "RW"
+#     # RESEARCH and DEPLOY disabled for team safety
+
+# ------------------------------------------------------------------------------
+# ENTERPRISE DEPLOYMENT (50+ developers)
+# ------------------------------------------------------------------------------
+# Recommended: Use organization policy file instead of user config
+# Location: ~/.snowflake/cortex/agent-skill-policy.yaml
+#
+# Organization policy overrides user configuration.
+# See SECURITY_GUIDE.md for enterprise deployment details.
+#
+# security:
+#   approval_mode: "prompt"  # Enforced, no exceptions
+#   audit_log_path: "/var/log/cortex-skill/audit.log"
+#   audit_log_retention: 365  # 1 year for compliance
+#   sanitize_conversation_history: true
+#   tool_prediction_confidence_threshold: 0.8  # Stricter for enterprise
+#   allowed_envelopes:
+#     - "RO"  # Only read-only by default
+
+# ------------------------------------------------------------------------------
+# AUTO-APPROVAL MODE
+# ------------------------------------------------------------------------------
+# Use this for auto-approval behavior with audit logging.
+#
+# security:
+#   approval_mode: "auto"
+#   # audit_log defaults to audit.log in the skill install directory (set automatically)
+  # Override: audit_log_path: "~/.your-agent/skills/cortex-code/audit.log"
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+#   audit_log_rotation: "10MB"
+#   audit_log_retention: 30
+#   sanitize_conversation_history: true
+
+# ==============================================================================
+# ENVIRONMENT VARIABLE OVERRIDES
+# ==============================================================================
+#
+# You can override configuration via environment variables:
+#
+#   CORTEX_SKILL_CONFIG=/path/to/config.yaml
+#     Override default config path
+#
+#
+# Example:
+#   export CORTEX_SKILL_CONFIG=~/.config/cortex-skill/config.yaml
+
+# ==============================================================================
+# ORGANIZATION POLICY (for teams/enterprises)
+# ==============================================================================
+#
+# Create organization policy file at:
+#   ~/.snowflake/cortex/agent-skill-policy.yaml
+#
+# Organization policy overrides user configuration.
+# Deploy via configuration management (Ansible, Puppet, Chef).
+#
+# Example organization policy:
+#
+# security:
+#   approval_mode: "prompt"  # Enforced for all users
+#   # audit_log defaults to audit.log in the skill install directory (set automatically)
+  # Override: audit_log_path: "~/.your-agent/skills/cortex-code/audit.log"
+  audit_log_path: "~/.cache/cortex-skill/audit.log"
+#   sanitize_conversation_history: true
+#   credential_file_allowlist:
+#     - "~/.ssh/**"
+#     - "~/.aws/**"
+#     - "~/.snowflake/**"
+#     - "**/.env*"
+#   allowed_envelopes:
+#     - "RO"
+#     - "RW"
+
+# ==============================================================================
+# TROUBLESHOOTING
+# ==============================================================================
+#
+# Issue: Approval prompts not appearing
+# Solution: Check approval_mode is "prompt" and org policy isn't overriding
+#
+# Issue: Audit logs not created
+# Solution: Ensure log directory exists and has correct permissions (0700)
+#
+# Issue: All prompts blocked
+# Solution: Review credential_file_allowlist patterns, may be too broad
+#
+# Issue: Cache errors
+# Solution: Clear cache directory: rm -rf ~/.cache/cortex-skill/*
+#
+# For more troubleshooting, see:
+# - SECURITY_GUIDE.md - Security configuration help
+
+# ==============================================================================
+# ADDITIONAL RESOURCES
+# ==============================================================================
+#
+# Documentation:
+# - README.md - General usage and features
+# - SECURITY.md - Security policy and threat model
+# - SECURITY_GUIDE.md - Deployment best practices
+#
+# Support:
+# - GitHub Issues: https://github.com/Snowflake-Labs/subagent-cortex-code/issues
+# - Security: security@snowflake.com

@@ -157,7 +157,7 @@ Example request:
    mcp__dbt_parse()                              # Check for parsing errors
    mcp__dbt_list_models()                        # With selectos and `+` for finding models dependencies
    mcp__dbt_compile(models="failing_model")      # Check compilation
-   
+
    # LSP tools
    mcp__dbt_get_column_lineage()                 # Check column lineage
    ```

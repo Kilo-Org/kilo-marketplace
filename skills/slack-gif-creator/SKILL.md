@@ -5,13 +5,13 @@ description: >-
   size constraints and composable animation primitives. This skill applies when
   users request animated GIFs or emoji animations for Slack from descriptions
   like "make me a GIF for Slack of X doing Y".
-license: Complete terms in LICENSE.txt
 metadata:
   category: creative-media
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: slack-gif-creator
     license_path: slack-gif-creator/LICENSE.txt
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 # Slack GIF Creator - Flexible Toolkit

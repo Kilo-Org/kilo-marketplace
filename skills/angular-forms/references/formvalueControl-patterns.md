@@ -5,7 +5,7 @@
 
 ## Signal Forms FormValueControl
 
-``` typescript 
+``` typescript
 
 interface  Rating {
     rating : number
@@ -58,7 +58,7 @@ export class Rating implements FormValueControl<number> {
   );
 
   getStarIcon(index: number): string {
-    const floorRating = Math.floor(this.value()); 
+    const floorRating = Math.floor(this.value());
     if (index <= floorRating) {
       return 'star'; // Full star
     }  else {
@@ -94,7 +94,7 @@ import { FormField } from '@angular/forms/signals';
 export class SignalForms {
   readonly ratingModel = signal<Rating>({
     rating: 0,
-  }); 
+  });
 
   readonly ratingForm = form(this.ratingModel)
 
@@ -107,4 +107,3 @@ export class SignalForms {
 
 
 ```
-

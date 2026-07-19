@@ -1,0 +1,19 @@
+id: datadog-mcp-datadoghq
+name: Datadog Managed MCP
+description: Queries Datadog logs, metrics, traces, monitors, dashboards, and incidents through Datadog's official hosted OAuth server for the selected Datadog site.
+author: Datadog
+url: https://github.com/datadog-labs/mcp-server
+category: observability
+prerequisites:
+  - Datadog account on a supported site
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://{{DATADOG_MCP_HOST}}/v1/mcp"
+      }
+parameters:
+  - name: Datadog MCP hostname
+    key: DATADOG_MCP_HOST
+    placeholder: mcp.datadoghq.com

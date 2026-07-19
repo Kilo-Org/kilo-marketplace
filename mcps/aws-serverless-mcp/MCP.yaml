@@ -1,0 +1,29 @@
+id: aws-serverless-mcp
+name: AWS Serverless MCP
+description: Inspects Lambda, API Gateway, event-source, and serverless deployment resources through AWS Labs; mutating and sensitive-data tools remain disabled by default.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/aws-serverless-mcp-server
+category: development
+prerequisites:
+  - Python and uv
+  - AWS credentials with least-privilege read permissions
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["awslabs.aws-serverless-mcp-server==0.1.19"],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS region
+    key: AWS_REGION
+    placeholder: us-east-1

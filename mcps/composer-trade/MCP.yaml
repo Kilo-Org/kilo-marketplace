@@ -4,17 +4,7 @@ description: Official Composer MCP server that enables creation of automated inv
   discovery, portfolio monitoring, and live trading through the Composer platform.
 author: invest-composer
 url: https://github.com/invest-composer/composer-trade-mcp
-tags:
-  - trading
-  - investing
-  - backtesting
-  - portfolio-management
-  - financial-automation
-  - strategy-creation
-  - market-analysis
-  - composer-api
-  - algorithmic-trading
-  - risk-management
+category: business
 content: >
   {
     "command": "uvx",

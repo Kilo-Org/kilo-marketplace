@@ -4,12 +4,7 @@ description: Enables AI assistants to interact with Slack workspaces, providing 
   reactions, user profiles, and thread management.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/slack
-tags:
-  - slack
-  - messaging
-  - team-collaboration
-  - chat
-  - workspace-management
+category: productivity
 prerequisites:
   - Slack workspace with bot permissions
 content:

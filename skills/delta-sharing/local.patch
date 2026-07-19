@@ -1,0 +1,50 @@
+diff -rN -U0 --ignore-trailing-space a/delta-sharing/examples/external_data_sharing.py b/delta-sharing/examples/external_data_sharing.py
+--- a/delta-sharing/examples/external_data_sharing.py	2000-01-01 00:00:00.000000000 +0000
++++ b/delta-sharing/examples/external_data_sharing.py	2000-01-01 00:00:00.000000000 +0000
+@@ -4,0 +5,2 @@
++from pathlib import Path
++
+@@ -45,0 +48,5 @@
++    activation_file = Path.home() / ".delta-sharing" / "partner_company.activation-url"
++    activation_file.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
++    activation_file.write_text(recipient.activation_url, encoding="utf-8")
++    activation_file.chmod(0o600)
++
+@@ -47 +54 @@
+-    print(f"Recipient token: {recipient.activation_url}")
++    print(f"Activation URL stored at: {activation_file}")
+diff -rN -U0 --ignore-trailing-space a/delta-sharing/SKILL.md b/delta-sharing/SKILL.md
+--- a/delta-sharing/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/delta-sharing/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -7,8 +6,0 @@
+-  upstream:
+-    triggers:
+-      - delta sharing
+-      - data sharing
+-      - external sharing
+-      - recipient management
+-      - share configuration
+-    category: collaboration
+@@ -97,3 +89,7 @@
+-# Get activation URL for recipient
+-activation_url = recipient.activation_url
+-print(f"Share this URL with recipient: {activation_url}")
++# Store the activation URL without printing it to logs or chat
++from pathlib import Path
++activation_file = Path.home() / ".delta-sharing" / "acme_corp.activation-url"
++activation_file.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
++activation_file.write_text(recipient.activation_url, encoding="utf-8")
++activation_file.chmod(0o600)
++print(f"Activation URL stored at: {activation_file}")
+@@ -179,0 +176,2 @@
++from pathlib import Path
++
+@@ -230,0 +229,5 @@
++        activation_file = Path.home() / ".delta-sharing" / f"{tenant_name}.activation-url"
++        activation_file.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
++        activation_file.write_text(recipient.activation_url, encoding="utf-8")
++        activation_file.chmod(0o600)
++
+@@ -234 +237 @@
+-            "activation_url": recipient.activation_url,
++            "activation_file": str(activation_file),

@@ -1,0 +1,16 @@
+id: data-lineage-mcp
+name: Google Cloud Data Lineage MCP
+description: Searches Dataplex Data Lineage metadata through Google's hosted endpoint using Google OAuth credentials and project-scoped IAM permissions.
+author: Google Cloud
+url: https://docs.cloud.google.com/dataplex/docs/use-lineage-mcp
+category: data
+prerequisites:
+  - Google Cloud project with the Data Lineage API enabled
+  - Google identity with Data Lineage IAM access
+content:
+  - name: Google hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://datalineage.googleapis.com/mcp"
+      }

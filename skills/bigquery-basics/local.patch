@@ -1,0 +1,14 @@
+diff -rN -U0 --ignore-trailing-space a/bigquery-basics/references/mcp-usage.md b/bigquery-basics/references/mcp-usage.md
+--- a/bigquery-basics/references/mcp-usage.md	2000-01-01 00:00:00.000000000 +0000
++++ b/bigquery-basics/references/mcp-usage.md	2000-01-01 00:00:00.000000000 +0000
+@@ -43,3 +43 @@
+-install the
+-[BigQuery Data Analytics extension](https://github.com/gemini-cli-extensions/bigquery-data-analytics)
+-for the Gemini CLI or plugin for Claude Code and Codex.
++use supported BigQuery data analytics integrations for your MCP client.
+diff -rN -U0 --ignore-trailing-space a/bigquery-basics/SKILL.md b/bigquery-basics/SKILL.md
+--- a/bigquery-basics/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/bigquery-basics/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -83 +83 @@
+-  Gemini CLI extension.
++  related client integrations.

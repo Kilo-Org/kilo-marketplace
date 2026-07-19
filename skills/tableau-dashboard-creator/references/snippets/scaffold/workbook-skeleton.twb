@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook original-version='18.1' source-build='2025.1.10 (20251.25.1121.1650)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneFriendlyName />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='sales_orders' inline='true' name='federated.1hckotw0bte0i51b8k3sd1ffpnqc' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='sales_orders' name='textscan.16xkalt18d1a7p1cjzge51xf66r6'>
+            <connection class='textscan' directory='C:/Users/lavid/PyCharmMiscProject/tableau-skills/tableau-dashboard-creator-skill/demo/input/sample-data' filename='sales_orders.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.16xkalt18d1a7p1cjzge51xf66r6' name='sales_orders.csv' table='[sales_orders#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='order_id' ordinal='0' />
+            <column datatype='date' name='order_date' ordinal='1' />
+            <column datatype='string' name='customer_name' ordinal='2' />
+            <column datatype='string' name='region' ordinal='3' />
+            <column datatype='string' name='country' ordinal='4' />
+            <column datatype='string' name='product_category' ordinal='5' />
+            <column datatype='string' name='product_name' ordinal='6' />
+            <column datatype='integer' name='quantity' ordinal='7' />
+            <column datatype='real' name='unit_price' ordinal='8' />
+            <column datatype='real' name='discount' ordinal='9' />
+            <column datatype='real' name='revenue' ordinal='10' />
+            <column datatype='real' name='cost' ordinal='11' />
+            <column datatype='real' name='profit' ordinal='12' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[order_id]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>order_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>order_date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[order_date]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>order_date</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_name]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>customer_name</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>region</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[region]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>region</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>country</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[country]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>country</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_category]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>product_category</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_name]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>product_name</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>quantity</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[quantity]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>quantity</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>unit_price</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[unit_price]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>unit_price</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>discount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[discount]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>discount</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>revenue</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[revenue]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>revenue</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cost</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[cost]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>cost</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>profit</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[profit]</local-name>
+            <parent-name>[sales_orders.csv]</parent-name>
+            <remote-alias>profit</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='sales_orders.csv' datatype='table' name='[__tableau_internal_object_id__].[sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0]' role='measure' type='quantitative' />
+      <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
+      <column caption='Country' datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column caption='Customer Name' datatype='string' name='[customer_name]' role='dimension' type='nominal' />
+      <column caption='Discount' datatype='real' name='[discount]' role='measure' type='quantitative' />
+      <column caption='Order Date' datatype='date' name='[order_date]' role='dimension' type='ordinal' />
+      <column caption='Order Id' datatype='string' name='[order_id]' role='dimension' type='nominal' />
+      <column caption='Product Category' datatype='string' name='[product_category]' role='dimension' type='nominal' />
+      <column caption='Product Name' datatype='string' name='[product_name]' role='dimension' type='nominal' />
+      <column caption='Profit' datatype='real' name='[profit]' role='measure' type='quantitative' />
+      <column caption='Quantity' datatype='integer' name='[quantity]' role='measure' type='quantitative' />
+      <column caption='Region' datatype='string' name='[region]' role='dimension' type='nominal' />
+      <column caption='Revenue' datatype='real' name='[revenue]' role='measure' type='quantitative' />
+      <column caption='Unit Price' datatype='real' name='[unit_price]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Israel&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='sales_orders.csv' id='sales_orders.csv_09EB5EA8C4E1488681646EA8C7C1C3B0'>
+            <properties context=''>
+              <relation connection='textscan.16xkalt18d1a7p1cjzge51xf66r6' name='sales_orders.csv' table='[sales_orders#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='order_id' ordinal='0' />
+                  <column datatype='date' name='order_date' ordinal='1' />
+                  <column datatype='string' name='customer_name' ordinal='2' />
+                  <column datatype='string' name='region' ordinal='3' />
+                  <column datatype='string' name='country' ordinal='4' />
+                  <column datatype='string' name='product_category' ordinal='5' />
+                  <column datatype='string' name='product_name' ordinal='6' />
+                  <column datatype='integer' name='quantity' ordinal='7' />
+                  <column datatype='real' name='unit_price' ordinal='8' />
+                  <column datatype='real' name='discount' ordinal='9' />
+                  <column datatype='real' name='revenue' ordinal='10' />
+                  <column datatype='real' name='cost' ordinal='11' />
+                  <column datatype='real' name='profit' ordinal='12' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{8ED4AD55-A43F-4C33-B8C1-A6484D0F1985}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='3' name='Sheet 1' w='98400' x='800' y='1000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='6' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='5' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Sheet 1' w='98400' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{0CB252DB-8C32-4E23-87BF-F5520667C3F4}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{5072827F-AB68-407A-8A5C-209EC187C960}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='Sheet 1' />
+      </viewpoints>
+      <active id='3' />
+      <simple-id uuid='{3FC88B5F-B055-44CF-B059-FB779136E3D0}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Dashboard 1' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQD
+      kGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBp
+      BiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA
+      0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDN
+      AKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxA
+      mgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKR9Y+0F
+      fBUOM1sAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQD
+      kGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBp
+      BiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA
+      0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDN
+      AKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxA
+      mgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKR9Y+0F
+      fBUOM1sAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

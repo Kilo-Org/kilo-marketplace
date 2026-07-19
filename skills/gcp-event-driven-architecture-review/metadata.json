@@ -1,0 +1,29 @@
+{
+  "id": "gcp-event-driven-architecture-review",
+  "name": "GCP Event-Driven Architecture Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/pubsub/docs/dead-letter-topics",
+    "https://cloud.google.com/pubsub/docs/ordering",
+    "https://cloud.google.com/eventarc/docs/overview",
+    "https://cloud.google.com/tasks/docs/creating-queues",
+    "https://cloud.google.com/scheduler/docs/overview",
+    "https://cloud.google.com/workflows/docs/overview"
+  ],
+  "security_notes": "Pub/Sub topics with allUsers subscriber binding expose all messages publicly — always verify subscription IAM. Eventarc service account must follow least privilege — avoid binding roles/editor. Cloud Tasks payloads may contain sensitive data — use CMEK-encrypted queues for regulated workloads.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-event-driven-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

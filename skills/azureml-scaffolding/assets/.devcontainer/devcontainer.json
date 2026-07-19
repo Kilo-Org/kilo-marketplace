@@ -1,0 +1,30 @@
+{
+  "name": "scaffolding",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "hostRequirements": {
+    "gpu": "optional" // Ensure access to GPU if host has some
+  },
+  "runArgs": [
+    "--ipc",
+    "host" // Needed for heavy torch training, harmless otherwise
+  ],
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "features": {
+    // required to submit jobs to AzureML
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "extensions": "ml"
+    }
+  }
+}

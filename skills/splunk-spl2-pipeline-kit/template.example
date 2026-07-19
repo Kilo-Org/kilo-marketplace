@@ -1,0 +1,20 @@
+{
+  "profile": "ingestProcessor",
+  "pipelines": [
+    {
+      "name": "redact_auth",
+      "template": "redact",
+      "destination": "splunk_indexer"
+    },
+    {
+      "name": "http_metrics",
+      "template": "metrics",
+      "destination": "metrics_index"
+    }
+  ],
+  "lint": {
+    "strict": false,
+    "pcre2_review": true,
+    "spl_to_spl2_review": true
+  }
+}

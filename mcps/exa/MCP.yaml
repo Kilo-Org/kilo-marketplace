@@ -4,12 +4,7 @@ description: Enables AI assistants to perform real-time web searches using Exa's
   results with titles, URLs, and content snippets.
 author: exa-labs
 url: https://github.com/exa-labs/exa-mcp-server
-tags:
-  - web-search
-  - exa-api
-  - real-time-data
-  - content-discovery
-  - information-retrieval
+category: search
 prerequisites:
   - Exa account
 content:

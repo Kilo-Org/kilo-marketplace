@@ -1,5 +1,8 @@
 {
   "type": "module",
+  "scripts": {
+    "test": "tsx --test marketplace-generator-utils.test.ts"
+  },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "tsx": "^4.19.2",

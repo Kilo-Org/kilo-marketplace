@@ -1,0 +1,207 @@
+diff -rN -U0 --ignore-trailing-space a/kafka-streams-programming/evals/evals.json b/kafka-streams-programming/evals/evals.json
+--- a/kafka-streams-programming/evals/evals.json	2000-01-01 00:00:00.000000000 +0000
++++ b/kafka-streams-programming/evals/evals.json	2000-01-01 00:00:00.000000000 +0000
+@@ -44 +44 @@
+-      "prompt": "I need to build a Kafka Streams app that counts orders per customer in 5-minute windows. Using Avro and Confluent Cloud. Here are my credentials: bootstrap=pkc-abc.us-east1.gcp.confluent.cloud:9092, cluster key=ABCKEY, cluster secret=ABCsecret123, SR url=https://psrc-xyz.us-east-2.aws.confluent.cloud, SR key=SRKEY1, SR secret=SRsecret456",
++      "prompt": "I need to build a Kafka Streams app that counts orders per customer in 5-minute windows using Avro and Confluent Cloud. Read the bootstrap server, cluster key/secret, Schema Registry URL, and Schema Registry key/secret from environment variables; do not request or print them.",
+@@ -49 +49 @@
+-        "Generates a .env file with the provided CC credentials",
++        "Uses environment-variable placeholders and does not write credentials to a tracked file",
+diff -rN -U0 --ignore-trailing-space a/kafka-streams-programming/scripts/create-topics.sh b/kafka-streams-programming/scripts/create-topics.sh
+--- a/kafka-streams-programming/scripts/create-topics.sh	2000-01-01 00:00:00.000000000 +0000
++++ b/kafka-streams-programming/scripts/create-topics.sh	2000-01-01 00:00:00.000000000 +0000
+@@ -27,6 +27,46 @@
+-if [[ "${1:-}" == "--cloud" ]]; then
+-    USE_CLOUD=true
+-    # Load credentials from .env if available
+-    if [[ -f .env ]]; then
+-        # shellcheck disable=SC1091
+-        source .env
++for arg in "$@"; do
++    case "$arg" in
++        --cloud)
++            USE_CLOUD=true
++            ;;
++        --help|-h)
++            echo "Usage: $0 [--cloud]"
++            exit 0
++            ;;
++        *)
++            echo "Error: unknown argument: $arg" >&2
++            exit 2
++            ;;
++    esac
++done
++
++load_bootstrap_servers_from_env() {
++    local env_file="$1"
++    local line value quote
++
++    [[ -f "$env_file" ]] || return 0
++    while IFS= read -r line || [[ -n "$line" ]]; do
++        line="${line%$'\r'}"
++        if [[ "$line" =~ ^[[:space:]]*(export[[:space:]]+)?BOOTSTRAP_SERVERS[[:space:]]*=(.*)$ ]]; then
++            value="${BASH_REMATCH[2]}"
++            value="${value#"${value%%[![:space:]]*}"}"
++            value="${value%"${value##*[![:space:]]}"}"
++            if [[ ${#value} -ge 2 ]]; then
++                quote="${value:0:1}"
++                if [[ ( "$quote" == '"' || "$quote" == "'" ) && "${value: -1}" == "$quote" ]]; then
++                    value="${value:1:${#value}-2}"
++                fi
++            fi
++            if [[ -z "$value" || "$value" == *$'\n'* || "$value" == *$'\r'* ]]; then
++                echo "Error: invalid BOOTSTRAP_SERVERS value in $env_file" >&2
++                exit 1
++            fi
++            BOOTSTRAP_SERVERS="$value"
++            return 0
++        fi
++    done < "$env_file"
++}
++
++if $USE_CLOUD; then
++    if [[ -z "${BOOTSTRAP_SERVERS:-}" ]]; then
++        load_bootstrap_servers_from_env ".env"
+@@ -36 +76 @@
+-        echo "Error: BOOTSTRAP_SERVERS not set. Create a .env file or export the variable."
++        echo "Error: BOOTSTRAP_SERVERS not set. Add it to .env or export the variable."
+@@ -41,0 +82 @@
++KAFKA_TOPICS_CMD=()
+@@ -44 +85 @@
+-        echo "kafka-topics"
++        KAFKA_TOPICS_CMD=(kafka-topics)
+@@ -46 +87 @@
+-        echo "kafka-topics.sh"
++        KAFKA_TOPICS_CMD=(kafka-topics.sh)
+@@ -48 +89 @@
+-        echo "docker exec broker kafka-topics"
++        KAFKA_TOPICS_CMD=(docker exec broker kafka-topics)
+@@ -68,2 +109,5 @@
+-    local kafka_topics_cmd
+-    kafka_topics_cmd=$(detect_kafka_topics_cmd)
++    local -a cmd
++
++    if ((${#KAFKA_TOPICS_CMD[@]} == 0)); then
++        detect_kafka_topics_cmd
++    fi
+@@ -71 +115,9 @@
+-    local cmd="$kafka_topics_cmd --create --topic $topic --partitions $PARTITIONS --replication-factor 1 --bootstrap-server $BOOTSTRAP_SERVER --if-not-exists"
++    cmd=(
++        "${KAFKA_TOPICS_CMD[@]}"
++        --create
++        --topic "$topic"
++        --partitions "$PARTITIONS"
++        --replication-factor 1
++        --bootstrap-server "$BOOTSTRAP_SERVER"
++        --if-not-exists
++    )
+@@ -73 +125 @@
+-        cmd="$cmd --config $extra_config"
++        cmd+=(--config "$extra_config")
+@@ -75 +127 @@
+-    eval "$cmd"
++    "${cmd[@]}"
+@@ -80,0 +133,3 @@
++    local output
++    local -a cmd=(confluent kafka topic create "$topic" --partitions "$PARTITIONS")
++
+@@ -82 +136,0 @@
+-    local cmd="confluent kafka topic create $topic --partitions $PARTITIONS"
+@@ -84 +138 @@
+-        cmd="$cmd --config $extra_config"
++        cmd+=(--config "$extra_config")
+@@ -86,2 +140 @@
+-    local output
+-    if output=$(eval "$cmd" 2>&1); then
++    if output=$("${cmd[@]}" 2>&1); then
+@@ -89 +142 @@
+-    elif echo "$output" | grep -q "already exists"; then
++    elif [[ "$output" == *"already exists"* ]]; then
+diff -rN -U0 --ignore-trailing-space a/kafka-streams-programming/scripts/teardown.sh b/kafka-streams-programming/scripts/teardown.sh
+--- a/kafka-streams-programming/scripts/teardown.sh	2000-01-01 00:00:00.000000000 +0000
++++ b/kafka-streams-programming/scripts/teardown.sh	2000-01-01 00:00:00.000000000 +0000
+@@ -21,0 +22,14 @@
++if [[ -z "$APP_ID" || "$APP_ID" == -* || "$APP_ID" == *$'\n'* ]]; then
++    echo "APP_ID must be non-empty and must not start with '-' or contain newlines." >&2
++    exit 1
++fi
++
++STATE_DIR_ABS="$(realpath -m -- "$STATE_DIR")"
++STATE_PATH="$(realpath -m -- "${STATE_DIR_ABS}/${APP_ID}")"
++if [[ "$STATE_DIR_ABS" == "/" || "$STATE_DIR_ABS" == "$HOME" ||
++      "$STATE_PATH" == "/" || "$STATE_PATH" == "$HOME" ||
++      "$STATE_PATH" != "${STATE_DIR_ABS}/"* ]]; then
++    echo "Refusing unsafe state path: ${STATE_PATH}" >&2
++    exit 1
++fi
++
+@@ -27,0 +42,26 @@
++# ── Discover exact internal topics ───────────────────────────────────────────
++INTERNAL_TOPICS=()
++if $USE_CLOUD; then
++    while IFS= read -r topic; do
++        INTERNAL_TOPICS+=("$topic")
++    done < <(
++        confluent kafka topic list --output json 2>/dev/null |
++        jq -r '.[].name // empty' 2>/dev/null |
++        grep -F -- "${APP_ID}-" || true
++    )
++else
++    while IFS= read -r topic; do
++        INTERNAL_TOPICS+=("$topic")
++    done < <(
++        kafka-topics --list --bootstrap-server "$BOOTSTRAP_SERVER" 2>/dev/null |
++        grep -F -- "${APP_ID}-" || true
++    )
++fi
++
++for topic in "${INTERNAL_TOPICS[@]}"; do
++    [[ "$topic" == "${APP_ID}-"* ]] || {
++        echo "Refusing unexpected internal topic: $topic" >&2
++        exit 1
++    }
++done
++
+@@ -29 +69 @@
+-echo "This will delete ALL topics and state for application: ${APP_ID}"
++echo "This will delete ALL listed topics and local state for application: ${APP_ID}"
+@@ -38 +78,4 @@
+-echo "  - Internal topics matching: ${APP_ID}-*"
++for topic in "${INTERNAL_TOPICS[@]}"; do
++    echo "  - $topic"
++done
++echo "Local state to delete: ${STATE_PATH}"
+@@ -40,2 +83,2 @@
+-read -p "Continue? (y/N) " confirm
+-[[ "$confirm" == "y" ]] || exit 0
++read -r -p "Type DELETE ${APP_ID} to continue: " confirm
++[[ "$confirm" == "DELETE ${APP_ID}" ]] || exit 0
+@@ -67,7 +110,2 @@
+-if $USE_CLOUD; then
+-    confluent kafka topic list --output json 2>/dev/null | \
+-      jq -r '.[].name // empty' 2>/dev/null | \
+-      grep "^${APP_ID}-" | \
+-      while read -r topic; do
+-        delete_topic "$topic"
+-      done || echo "  No internal topics found."
++if [[ ${#INTERNAL_TOPICS[@]} -eq 0 ]]; then
++    echo "  No internal topics found."
+@@ -75,3 +113 @@
+-    kafka-topics --list --bootstrap-server "$BOOTSTRAP_SERVER" 2>/dev/null | \
+-      grep "^${APP_ID}-" | \
+-      while read -r topic; do
++    for topic in "${INTERNAL_TOPICS[@]}"; do
+@@ -79 +115 @@
+-      done || echo "  No internal topics found."
++    done
+@@ -84,3 +120,3 @@
+-if [[ -d "${STATE_DIR}/${APP_ID}" ]]; then
+-    rm -rf "${STATE_DIR}/${APP_ID}"
+-    echo "  Deleted: ${STATE_DIR}/${APP_ID}"
++if [[ -d "$STATE_PATH" ]]; then
++    rm -rf -- "$STATE_PATH"
++    echo "  Deleted: $STATE_PATH"
+@@ -88 +124 @@
+-    echo "  No local state found at ${STATE_DIR}/${APP_ID}"
++    echo "  No local state found at $STATE_PATH"

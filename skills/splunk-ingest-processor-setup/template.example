@@ -1,0 +1,16 @@
+{
+  "api_version": "splunk-ingest-processor-setup/v1",
+  "tenant_name": "example-prod",
+  "stack_url": "https://example-prod.scs.splunk.com",
+  "subscription_tier": "premier",
+  "source_types": ["aws:cloudtrail", "crowdstrike:fdr", "json_app"],
+  "destinations": [
+    {"name": "splunk_indexer", "type": "splunk_cloud", "default": true},
+    {"name": "metrics", "type": "metrics_index", "index": "metrics"},
+    {"name": "s3_archive", "type": "s3", "format": "parquet", "bucket": "example-bucket"}
+  ],
+  "pipelines": [
+    {"name": "redact_auth", "template": "redact", "destination": "splunk_indexer"},
+    {"name": "http_metrics", "template": "metrics", "destination": "metrics"}
+  ]
+}

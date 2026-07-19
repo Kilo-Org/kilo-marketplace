@@ -16,13 +16,13 @@ unit_tests:
         format: dict | csv | sql  # If not configured, defaults to `dict`
         # either define `rows` inline or name of the `fixture`
         rows: {dictionary} | <string>
-        fixture: <fixture-name>  # available option for `sql` or `csv` formats 
+        fixture: <fixture-name>  # available option for `sql` or `csv` formats
       - input: ... # declare additional inputs
     expect:  # required
       format: dict | csv | sql  # If not configured, defaults to `dict`
       # either define `rows` inline or name of the `fixture`
       rows: {dictionary} | <string>
-      fixture: <fixture-name>  # available option for `sql` or `csv` formats 
+      fixture: <fixture-name>  # available option for `sql` or `csv` formats
     config:  # optional
       meta: {dictionary}  # optional
       tags: <string> | [<string>]  # optional
@@ -30,7 +30,7 @@ unit_tests:
     overrides:  # optional: configuration for the dbt execution environment
       macros:
         is_incremental: true | false
-        dbt_utils.current_timestamp: <string>  # example macro name that your model depends upon 
+        dbt_utils.current_timestamp: <string>  # example macro name that your model depends upon
         # ... any other Jinja function
         # ... any other context property
       vars: {dictionary}

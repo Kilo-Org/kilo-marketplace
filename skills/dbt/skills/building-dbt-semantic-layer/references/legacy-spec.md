@@ -92,7 +92,7 @@ semantic_models:
 Computed dimensions use `expr`:
 
 ```yaml
-semantic_models: 
+semantic_models:
   - name: orders
     [...]
     dimensions:
@@ -197,7 +197,7 @@ semantic_models:
 ### Percentile Measures
 
 ```yaml
-semantic_models: 
+semantic_models:
   - name: orders
     [...]
     measures:
@@ -215,7 +215,7 @@ semantic_models:
 For measures like account balances or MRR that shouldn't be summed across time:
 
 ```yaml
-semantic_models: 
+semantic_models:
   - name: orders
     [...]
     measures:

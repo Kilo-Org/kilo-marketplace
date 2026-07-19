@@ -1,0 +1,40 @@
+diff -rN -U0 --ignore-trailing-space a/etl-integration-nifi/references/diagnostics.md b/etl-integration-nifi/references/diagnostics.md
+--- a/etl-integration-nifi/references/diagnostics.md	2000-01-01 00:00:00.000000000 +0000
++++ b/etl-integration-nifi/references/diagnostics.md	2000-01-01 00:00:00.000000000 +0000
+@@ -212 +212 @@
+-curl -k https://localhost:8443/nifi-api/system-diagnostics
++curl --cacert "$NIFI_CA_CERT" https://localhost:8443/nifi-api/system-diagnostics
+@@ -215 +215 @@
+-curl -k https://localhost:8443/nifi-api/controller/cluster
++curl --cacert "$NIFI_CA_CERT" https://localhost:8443/nifi-api/controller/cluster
+@@ -218 +218 @@
+-curl -k https://localhost:8443/nifi-api/flow/process-groups/root/status?recursive=true
++curl --cacert "$NIFI_CA_CERT" https://localhost:8443/nifi-api/flow/process-groups/root/status?recursive=true
+diff -rN -U0 --ignore-trailing-space a/etl-integration-nifi/SKILL.md b/etl-integration-nifi/SKILL.md
+--- a/etl-integration-nifi/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/etl-integration-nifi/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -7,6 +7,6 @@
+-  modernization. WHEN: "Apache NiFi", "NiFi", "NiFi processor", "FlowFile",
+-  "process group", "NiFi provenance", "NiFi back pressure", "NiFi cluster",
+-  "NiFi registry", "NiFi expression language", "MiNiFi", "ConsumeKafka NiFi",
+-  "tMap NiFi", "NiFi REST API", "NiFi record", "RecordReader", "NiFi Python
+-  processor", "NiFi 2.x", "NiFi migration", "site-to-site", "NiFi controller
+-  service", "NiFi connection queue".
++  modernization. WHEN: \"Apache NiFi\", \"NiFi\", \"NiFi processor\",
++  \"FlowFile\", \"process group\", \"NiFi provenance\", \"NiFi back pressure\",
++  \"NiFi cluster\", \"NiFi registry\", \"NiFi expression language\", \"MiNiFi\",
++  \"ConsumeKafka NiFi\", \"tMap NiFi\", \"NiFi REST API\", \"NiFi record\",
++  \"RecordReader\", \"NiFi Python processor\", \"NiFi 2.x\", \"NiFi migration\",
++  \"site-to-site\", \"NiFi controller service\", \"NiFi connection queue\".
+@@ -14,2 +13,0 @@
+-  version: 1.0.0
+-  author: christopher huffman
+@@ -47 +45 @@
+-   - **Cross-tool comparison** -- Route to parent `../SKILL.md` for NiFi vs ADF, Fivetran, Glue, etc.
++   - **Cross-tool comparison** -- Use the comparison in this file, then load a relevant marketplace skill such as [`adf-master`](../adf-master/SKILL.md) or [`ingesting-into-data-lake`](../ingesting-into-data-lake/SKILL.md) for product-specific details.
+@@ -211,2 +209,3 @@
+-- `../SKILL.md` -- Parent integration router for NiFi vs ADF, Fivetran, Glue comparisons
+-- `../../SKILL.md` -- Parent ETL domain agent for cross-tool comparisons and paradigm routing
++- [`nifi-flow-layout`](../nifi-flow-layout/SKILL.md) -- layout and organization of NiFi flows
++- [`adf-master`](../adf-master/SKILL.md) -- Azure Data Factory implementation guidance
++- [`ingesting-into-data-lake`](../ingesting-into-data-lake/SKILL.md) -- AWS Glue implementation guidance

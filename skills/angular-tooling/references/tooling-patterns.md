@@ -36,7 +36,7 @@ export function myComponent(options: { name: string; path: string }): Rule {
       }),
       move(options.path),
     ]);
-    
+
     return mergeWith(templateSource)(tree, context);
   };
 }
@@ -218,28 +218,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Lint
         run: npm run lint
-      
+
       - name: Test
         run: npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
-      
+
       - name: Build
         run: npm run build -- -c production
-      
+
       - name: Upload coverage
         uses: codecov/codecov-action@v3
         with:

@@ -4,12 +4,7 @@ description: Enables AI assistants to interact with Apify's web scraping and aut
   tools for data extraction, web searching, social media analysis, and more.
 author: apify
 url: https://github.com/apify/actors-mcp-server
-tags:
-  - web-scraping
-  - data-extraction
-  - automation
-  - actor-management
-  - apify-platform
+category: web-automation
 content:
   - name: NPX
     prerequisites:

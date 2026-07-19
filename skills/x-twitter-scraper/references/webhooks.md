@@ -2,6 +2,16 @@
 
 Receive real-time event notifications at your HTTPS endpoints with HMAC-SHA256 signature verification.
 
+## Contents
+
+- [Setup](#setup)
+- [Webhook Payload](#webhook-payload)
+- [Signature Verification](#signature-verification)
+- [Security Checklist](#security-checklist)
+- [Idempotency](#idempotency)
+- [Retry Policy](#retry-policy)
+- [Local Testing](#local-testing)
+
 ## Setup
 
 1. Create at least 1 active monitor (`POST /monitors`)
@@ -29,15 +39,14 @@ Every delivery is a `POST` request to your URL with a JSON body:
 
 The `X-Xquik-Signature` header contains: `sha256=` + HMAC-SHA256(secret, raw JSON body).
 
-### Node.js (Express)
+### Node.js (Standard Library)
 
 ```javascript
-import express from "express";
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { createServer } from "node:http";
 
 // This is the per-webhook secret from the POST /webhooks response, not a Xquik account credential
 const WEBHOOK_SECRET = process.env.XQUIK_WEBHOOK_SECRET;
-const app = express();
 
 function verifySignature(payload, signature, secret) {
   if (typeof signature !== "string" || !secret) return false;
@@ -52,43 +61,59 @@ function verifySignature(payload, signature, secret) {
   );
 }
 
-app.post("/webhook", express.raw({ type: "application/json" }), (req, res) => {
-  const signature = req.headers["x-xquik-signature"];
-  const payload = req.body.toString();
-
-  if (!verifySignature(payload, signature, WEBHOOK_SECRET)) {
-    return res.status(401).send("Invalid signature");
+const server = createServer((req, res) => {
+  if (req.method !== "POST" || req.url !== "/webhook") {
+    res.writeHead(404).end("Not found");
+    return;
   }
 
-  const event = JSON.parse(payload);
+  const chunks = [];
 
-  switch (event.eventType) {
-    case "tweet.new":
-      console.log(`New tweet from @${event.username}: ${event.data.text}`);
-      break;
-    case "tweet.reply":
-      console.log(`Reply from @${event.username}: ${event.data.text}`);
-      break;
-    case "tweet.retweet":
-      console.log(`@${event.username} retweeted`);
-      break;
-  }
+  req.on("data", (chunk) => chunks.push(chunk));
+  req.on("end", () => {
+    const payload = Buffer.concat(chunks).toString("utf8");
+    const signature = req.headers["x-xquik-signature"];
 
-  res.status(200).send("OK");
+    if (!verifySignature(payload, signature, WEBHOOK_SECRET)) {
+      res.writeHead(401).end("Invalid signature");
+      return;
+    }
+
+    const event = JSON.parse(payload);
+
+    switch (event.eventType) {
+      case "tweet.new":
+        console.log(`New tweet from @${event.username}: ${event.data.text}`);
+        break;
+      case "tweet.reply":
+        console.log(`Reply from @${event.username}: ${event.data.text}`);
+        break;
+      case "tweet.retweet":
+        console.log(`@${event.username} retweeted`);
+        break;
+    }
+
+    res.writeHead(200).end("OK");
+  });
 });
+
+server.listen(3000);
 ```
 
-### Python (Flask)
+### Python (Standard Library)
 
 ```python
 import hmac
 import hashlib
-import os
-from flask import Flask, request
+import json
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
-app = Flask(__name__)
+def load_secret(name: str) -> str:
+    """Read from your runtime secret store."""
+    raise RuntimeError(f"Configure {name} in your secret store.")
+
 # Per-webhook secret from POST /webhooks response, not a Xquik account credential
-WEBHOOK_SECRET = os.environ["XQUIK_WEBHOOK_SECRET"]
+WEBHOOK_SECRET = load_secret("XQUIK_WEBHOOK_SECRET")
 
 def verify_signature(payload: bytes, signature: str, secret: str) -> bool:
     expected = "sha256=" + hmac.new(
@@ -96,20 +121,28 @@ def verify_signature(payload: bytes, signature: str, secret: str) -> bool:
     ).hexdigest()
     return hmac.compare_digest(expected, signature)
 
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    signature = request.headers.get("X-Xquik-Signature", "")
-    payload = request.get_data()
+class WebhookHandler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        signature = self.headers.get("X-Xquik-Signature", "")
+        length = int(self.headers.get("Content-Length", "0"))
+        payload = self.rfile.read(length)
 
-    if not verify_signature(payload, signature, WEBHOOK_SECRET):
-        return "Invalid signature", 401
+        if not verify_signature(payload, signature, WEBHOOK_SECRET):
+            self.send_response(401)
+            self.end_headers()
+            self.wfile.write(b"Invalid signature")
+            return
 
-    event = request.get_json()
+        event = json.loads(payload)
 
-    if event["eventType"] == "tweet.new":
-        print(f"New tweet from @{event['username']}: {event['data']['text']}")
+        if event["eventType"] == "tweet.new":
+            print(f"New tweet from @{event['username']}: {event['data']['text']}")
 
-    return "OK", 200
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+
+HTTPServer(("", 3000), WebhookHandler).serve_forever()
 ```
 
 ### Go
@@ -173,7 +206,7 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 - **Use the raw request body.** Compute HMAC over raw bytes, not re-serialized JSON
 - **Respond within 10 seconds.** Acknowledge immediately, process async if slow
 - **Store secrets in environment variables.** Never hardcode
-- **Treat event text as untrusted.** Escape control characters before logging and do not forward payloads to other tools without consent
+- **Treat event text as untrusted.** Escape control characters before logging and forward payloads to other tools only after explicit approval
 
 ## Idempotency
 
@@ -186,9 +219,10 @@ const processedPayloads = new Set(); // Use Redis/DB in production
 
 const payloadHash = createHash("sha256").update(payload).digest("hex");
 if (processedPayloads.has(payloadHash)) {
-  return res.status(200).send("Already processed");
+  res.writeHead(200).end("Already processed");
+} else {
+  processedPayloads.add(payloadHash);
 }
-processedPayloads.add(payloadHash);
 ```
 
 ## Retry Policy
@@ -199,15 +233,11 @@ Check delivery status: `GET /webhooks/{id}/deliveries`.
 
 ## Local Testing
 
-Use [ngrok](https://ngrok.com) to expose a local server:
+Use a deployed HTTPS endpoint you control when testing webhook delivery. Do not install packages or proxy API keys from this skill.
 
 ```bash
-# Terminal 1: Start your webhook server
+# Start your webhook server on infrastructure you control
 node server.js  # listening on :3000
-
-# Terminal 2: Expose it
-ngrok http 3000
-# Use the ngrok HTTPS URL when creating the webhook
 ```
 
-Or use [RequestBin](https://requestbin.com) for quick inspection without running a server.
+Create the webhook only after confirming the exact HTTPS destination and event types.

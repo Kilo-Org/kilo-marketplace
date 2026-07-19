@@ -12,6 +12,7 @@ metadata:
     repository: 'https://github.com/analogjs/angular-skills'
     path: skills/angular-http
     license_path: LICENSE
+    commit: 610c90eb9490194bcff703f343f97fa0e00bdb2f
 ---
 
 # Angular HTTP & Data Fetching
@@ -48,7 +49,7 @@ interface User {
 })
 export class UserProfile {
   userId = signal('123');
-  
+
   // Reactive HTTP resource - refetches when userId changes
   userResource = httpResource<User>(() => `/api/users/${this.userId()}`);
 }
@@ -106,15 +107,15 @@ import { resource, signal } from '@angular/core';
 @Component({...})
 export class Search {
   query = signal('');
-  
+
   searchResource = resource({
     // Reactive params - triggers reload when changed
     params: () => ({ q: this.query() }),
-    
+
     // Async loader function
     loader: async ({ params, abortSignal }) => {
       if (!params.q) return [];
-      
+
       const response = await fetch(`/api/search?q=${params.q}`, {
         signal: abortSignal,
       });
@@ -169,13 +170,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Component({...})
 export class Users {
   private http = inject(HttpClient);
-  
+
   // Convert Observable to Signal
   users = toSignal(
     this.http.get<User[]>('/api/users'),
     { initialValue: [] }
   );
-  
+
   // Or use Observable directly
   users$ = this.http.get<User[]>('/api/users');
 }
@@ -242,13 +243,13 @@ import { inject } from '@angular/core';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(Auth);
   const token = authService.token();
-  
+
   if (token) {
     req = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` },
     });
   }
-  
+
   return next(req);
 };
 
@@ -312,7 +313,7 @@ export const appConfig: ApplicationConfig = {
 })
 export class UserCmpt {
   userResource = httpResource<User>(() => `/api/users/${this.userId()}`);
-  
+
   getErrorMessage(error: unknown): string {
     if (error instanceof HttpErrorResponse) {
       return error.error?.message || `Error ${error.status}: ${error.statusText}`;
@@ -358,9 +359,9 @@ getUser(id: string) {
         <app-data [data]="dataResource.value()" />
       }
       @case ('error') {
-        <app-error 
-          [error]="dataResource.error()" 
-          (retry)="dataResource.reload()" 
+        <app-error
+          [error]="dataResource.error()"
+          (retry)="dataResource.reload()"
         />
       }
     }
@@ -368,7 +369,7 @@ getUser(id: string) {
 })
 export class Data {
   query = signal('');
-  dataResource = httpResource<Data[]>(() => 
+  dataResource = httpResource<Data[]>(() =>
     this.query() ? `/api/search?q=${this.query()}` : undefined
   );
 }

@@ -1,0 +1,49 @@
+id: firecrawl
+name: Firecrawl
+description: Adds web scraping, crawling, mapping, search, and structured extraction to AI assistants, turning any URL or
+  query into clean, agent-ready data from the live web.
+author: firecrawl
+url: https://github.com/firecrawl/firecrawl-mcp-server
+category: web-automation
+prerequisites:
+  - Firecrawl account
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "firecrawl-mcp"],
+        "env": {
+          "FIRECRAWL_API_KEY": "{{FIRECRAWL_API_KEY}}"
+        }
+      }
+  - name: Remote MCP
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://mcp.firecrawl.dev/{{FIRECRAWL_API_KEY}}/v2/mcp"]
+      }
+  - name: Self-Hosted
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "firecrawl-mcp"],
+        "env": {
+          "FIRECRAWL_API_URL": "{{FIRECRAWL_API_URL}}",
+          "FIRECRAWL_API_KEY": "{{FIRECRAWL_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Firecrawl API URL
+        key: FIRECRAWL_API_URL
+        placeholder: https://firecrawl.your-domain.com
+parameters:
+  - name: Firecrawl API Key
+    key: FIRECRAWL_API_KEY
+    placeholder: fc-your-api-key-here

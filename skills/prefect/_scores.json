@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:53a7a39f724b13b65bc0761ce06dd2e03208b37f4d9960f5f4acd99211ed6b5d",
+  "scoredAt": "2026-05-13T09:56:45.406Z",
+  "backend": "subagent",
+  "model": "claude-sonnet-4-6",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 43,
+    "treatmentAvg": 95,
+    "multiplier": 2.21,
+    "scenarios": [
+      {
+        "name": "Scheduled ETL flow with retries on 30-minute cron",
+        "baseline": 50,
+        "treatment": 95,
+        "rationale": "Baseline reaches for @task/@flow and serve(cron=) but hand-rolls retry logic and omits get_run_logger; treatment uses @task(retries=, retry_delay_seconds=), get_run_logger(), and the documented prefect deploy --cron plus prefect worker start --pool workflow."
+      },
+      {
+        "name": "Concurrent batch processing with exponential backoff and caching",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "Baseline falls back to ThreadPoolExecutor and gets no Prefect-native concurrency, caching, or exponential backoff; treatment uses .submit()/.result() concurrency along with retry_delay_seconds=[10,60], cache_key_fn=task_input_hash, and timeout_seconds=300 from the skill."
+      }
+    ]
+  }
+}

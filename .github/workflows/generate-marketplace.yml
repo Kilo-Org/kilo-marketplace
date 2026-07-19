@@ -33,12 +33,16 @@ jobs:
         run: pnpm install
         working-directory: bin
 
+      - name: Test marketplace generator
+        run: pnpm test
+        working-directory: bin
+
       - name: Generate skills marketplace.yaml
         run: pnpm exec tsx generate-skill-marketplace.ts
         working-directory: bin
 
-      - name: Generate modes marketplace.yaml
-        run: pnpm exec tsx generate-modes-marketplace.ts
+      - name: Generate agents marketplace.yaml
+        run: pnpm exec tsx generate-agents-marketplace.ts
         working-directory: bin
 
       - name: Generate mcps marketplace.yaml
@@ -48,10 +52,10 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet skills/marketplace.yaml modes/marketplace.yaml mcps/marketplace.yaml; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+          if git diff --quiet skills/marketplace.yaml agents/marketplace.yaml mcps/marketplace.yaml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit and push changes
@@ -59,6 +63,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add skills/marketplace.yaml modes/marketplace.yaml mcps/marketplace.yaml
+          git add skills/marketplace.yaml agents/marketplace.yaml mcps/marketplace.yaml
           git commit -m "chore: regenerate marketplace.yaml"
           git push
