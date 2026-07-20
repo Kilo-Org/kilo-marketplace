@@ -1,0 +1,24 @@
+id: sofya
+name: Sofya
+description: Web tools for AI agents through Sofya's API. Search the web and get full page content instead of snippets,
+  fetch URLs as clean markdown (including PDFs and documents), extract specific data from a page with a prompt, and run
+  multi-source deep research that returns a cited report.
+author: Sofya
+url: https://github.com/sofya-co/sofya-mcp
+category: search
+prerequisites:
+  - Sofya account (https://sofya.co)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.sofya.co/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SOFYA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Sofya API Key
+    key: SOFYA_API_KEY
+    placeholder: your_sofya_api_key_here
