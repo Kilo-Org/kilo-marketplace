@@ -1,0 +1,87 @@
+id: runwhen-platform-mcp
+name: RunWhen Platform
+description: Gives Kilo Code agents direct access to the RunWhen AI SRE platform for enterprise infrastructure
+  investigation, operational task automation, workspace chat, SLX execution, run sessions, knowledge base access, and
+  Tool Builder authoring.
+author: RunWhen
+url: https://github.com/runwhen-contrib/runwhen-platform-mcp
+category: productivity
+prerequisites:
+  - RunWhen account
+  - RunWhen API token (JWT or Personal Access Token from Profile → Personal Tokens)
+content:
+  - name: RunWhen Hosted (beta)
+    prerequisites:
+      - RunWhen beta account
+      - MCP client with remote streamable HTTP support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.beta.runwhen.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{RUNWHEN_TOKEN}}"
+        }
+      }
+  - name: UVX
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["runwhen-platform-mcp"],
+        "env": {
+          "RW_API_URL": "{{RW_API_URL}}",
+          "RUNWHEN_TOKEN": "{{RUNWHEN_TOKEN}}",
+          "DEFAULT_WORKSPACE": "{{DEFAULT_WORKSPACE}}"
+        }
+      }
+  - name: Pip
+    prerequisites:
+      - Python 3.10+
+      - pip install runwhen-platform-mcp
+    content: |
+      {
+        "command": "runwhen-platform-mcp",
+        "env": {
+          "RW_API_URL": "{{RW_API_URL}}",
+          "RUNWHEN_TOKEN": "{{RUNWHEN_TOKEN}}",
+          "DEFAULT_WORKSPACE": "{{DEFAULT_WORKSPACE}}"
+        }
+      }
+  - name: Docker
+    prerequisites:
+      - Docker
+    content: |
+      {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "MCP_TRANSPORT=stdio",
+          "-e",
+          "RW_API_URL",
+          "-e",
+          "RUNWHEN_TOKEN",
+          "-e",
+          "DEFAULT_WORKSPACE",
+          "ghcr.io/runwhen-contrib/runwhen-platform-mcp:latest"
+        ],
+        "env": {
+          "RW_API_URL": "{{RW_API_URL}}",
+          "RUNWHEN_TOKEN": "{{RUNWHEN_TOKEN}}",
+          "DEFAULT_WORKSPACE": "{{DEFAULT_WORKSPACE}}"
+        }
+      }
+parameters:
+  - name: RunWhen API Token
+    key: RUNWHEN_TOKEN
+    placeholder: your-runwhen-jwt-or-personal-access-token
+  - name: RunWhen API URL
+    key: RW_API_URL
+    placeholder: https://papi.beta.runwhen.com
+  - name: Default Workspace
+    key: DEFAULT_WORKSPACE
+    placeholder: your-workspace-name
+    optional: true
