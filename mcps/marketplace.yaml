@@ -2238,6 +2238,25 @@ items:
         key: LINEAR_PATH
         placeholder: /path/to/linear-mcp
         optional: true
+  - id: llm-pulse
+    name: LLM Pulse
+    description: Provides AI visibility analytics for brand mentions, citations, sentiment, share of voice, tracked prompts,
+      recommendations, and AI-referred traffic.
+    author: LLM Pulse
+    url: https://github.com/LLM-Pulse/llmpulse-mcp
+    category: data
+    tags:
+      - data
+    prerequisites:
+      - LLM Pulse account
+      - MCP client with OAuth support
+    content:
+      - name: Hosted Remote
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://api.llmpulse.ai/api/v1/mcp"
+          }
   - id: looker-toolbox
     name: Looker MCP Toolbox
     description: Runs Google's local MCP Toolbox prebuilt for Looker, providing query, content, and LookML context with
