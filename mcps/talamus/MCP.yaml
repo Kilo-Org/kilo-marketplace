@@ -1,0 +1,30 @@
+id: talamus
+name: Talamus
+description: Provides local-first, source-grounded memory for coding agents through cited Markdown notes, provenance,
+  bitemporal history, and review-gated corrections.
+author: Ampres
+url: https://github.com/ampres-ai/talamus
+category: data
+prerequisites:
+  - A Talamus brain initialized in the selected project directory
+content:
+  - name: UVX
+    prerequisites:
+      - Python 3.11 or newer and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--with", "mcp>=1.0", "talamus==1.0.3", "mcp", "serve", "--root", "{{TALAMUS_ROOT}}"]
+      }
+  - name: Docker
+    prerequisites:
+      - Docker
+    content: |
+      {
+        "command": "docker",
+        "args": ["run", "--rm", "-i", "-v", "{{TALAMUS_ROOT}}:/data", "ghcr.io/ampres-ai/talamus:1.0.3"]
+      }
+parameters:
+  - name: Talamus project root
+    key: TALAMUS_ROOT
+    placeholder: /absolute/path/to/project
