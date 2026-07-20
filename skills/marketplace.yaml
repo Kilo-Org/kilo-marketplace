@@ -1624,6 +1624,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/validating-json-data
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/validating-json-data/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/validating-json-data.tar.gz
+  - id: varalign
+    description: >-
+      Track every variable an AI agent writes across sessions and flag duplicate or drifted variables (e.g. MAX_RETRIES
+      vs RETRY_LIMIT, a connection string re-typed under a new name) before they pile up in a codebase.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/varalign
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/varalign/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/varalign.tar.gz
   - id: vault-api
     description: >-
       Use when working with HashiCorp Vault REST API — health checks, init/unseal, auth login, KV read/write, policy
