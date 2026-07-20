@@ -45,10 +45,15 @@ jobs:
         run: pnpm exec tsx generate-mcps-marketplace.ts
         working-directory: bin
 
+      - name: Generate stack catalog artifact
+        run: pnpm exec tsx generate-stack-catalog.ts
+        working-directory: bin
+
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet skills/marketplace.yaml agents/marketplace.yaml mcps/marketplace.yaml; then
+          git add skills/marketplace.yaml agents/marketplace.yaml mcps/marketplace.yaml stack/marketplace.json
+          if git diff --cached --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -59,6 +64,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add skills/marketplace.yaml agents/marketplace.yaml mcps/marketplace.yaml
-          git commit -m "chore: regenerate marketplace.yaml"
+          git add skills/marketplace.yaml agents/marketplace.yaml mcps/marketplace.yaml stack/marketplace.json
+          git commit -m "chore: regenerate marketplace artifacts"
           git push
