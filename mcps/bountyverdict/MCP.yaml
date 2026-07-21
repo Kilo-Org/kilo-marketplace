@@ -1,0 +1,17 @@
+id: bountyverdict
+name: BountyVerdict Agent Decision Tools
+description: Six read-only x402 tools for GitHub bounty eligibility and ranking, coding-agent repository instructions, GitHub Actions failure diagnosis, retry-once versus fix decisions, and MCP tool-catalog drift. A valid first unsigned call cannot charge and returns a structured selection preview plus the exact quote.
+author: Mimir's Lab
+url: https://github.com/Mimirs402/bountyverdict
+category: development
+prerequisites:
+  - An x402-aware MCP client can inspect tool schemas and receive a structured, non-charging unsigned selection preview directly from the server
+  - Completing a paid call requires a separately configured and explicitly authorized x402-compatible wallet funded with Base USDC; installing this MCP in Kilo does not provide or authorize a wallet
+  - The BountyVerdict server itself requires no account, API key, or secret
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://bountyverdict-agent-production.mimirslab.workers.dev/mcp?source=kilo-marketplace"
+      }
