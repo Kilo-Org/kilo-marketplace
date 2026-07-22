@@ -14,7 +14,7 @@ content:
     content: |
       {
         "command": "uvx",
-        "args": ["--with", "mcp>=1.0", "talamus==1.0.3", "mcp", "serve", "--root", "{{TALAMUS_ROOT}}"]
+        "args": ["--with", "mcp>=1.0", "talamus==1.1.0", "mcp", "serve", "--root", "{{TALAMUS_ROOT}}"]
       }
   - name: Docker
     prerequisites:
@@ -22,7 +22,7 @@ content:
     content: |
       {
         "command": "docker",
-        "args": ["run", "--rm", "-i", "-v", "{{TALAMUS_ROOT}}:/data", "ghcr.io/ampres-ai/talamus:1.0.3"]
+        "args": ["run", "--rm", "-i", "-v", "{{TALAMUS_ROOT}}:/data", "ghcr.io/ampres-ai/talamus:1.1.0"]
       }
 parameters:
   - name: Talamus project root
