@@ -1,0 +1,23 @@
+id: yolfi-payments
+name: Yolfi Payments
+description: Enables AI agents to add crypto checkout, create payment links, manage webhooks, and check payment status through Yolfi.
+author: Yolfi
+url: https://github.com/yolfinance/yolfi-agent
+category: business
+prerequisites:
+  - Yolfi account, or an email address to register through the local MCP server
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.yolfi.com/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@yolfi/agent", "mcp"]
+      }
