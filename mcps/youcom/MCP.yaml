@@ -1,0 +1,28 @@
+id: youcom
+name: You.com
+description: Web and news search with LLM-ready results via You.com's hosted remote MCP server. Works without an API
+  key using the free profile (web search only, rate limited per IP). Adding a You.com API key unlocks page content
+  extraction (you-contents) and cited multi-source research (you-research).
+author: youdotcom
+url: https://you.com/docs/build-with-agents/mcp-server
+category: search
+content:
+  - name: Remote Server (no API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.you.com/mcp?profile=free"
+      }
+  - name: Remote Server (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.you.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{YDC_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: You.com API Key
+        key: YDC_API_KEY
+        placeholder: your_youcom_api_key_here
