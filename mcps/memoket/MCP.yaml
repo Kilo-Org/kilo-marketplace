@@ -1,0 +1,16 @@
+id: memoket
+name: Memoket
+description: Connects your Memoket account (the AI voice recorder) over MCP, letting the agent search your recordings and
+  pull transcripts, summaries, and briefs of your meetings and conversations.
+author: Memoket
+url: https://github.com/memoket/memoket-plugin-cursor
+category: productivity
+prerequisites:
+  - Memoket account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.memoket.ai/mcp"
+      }
