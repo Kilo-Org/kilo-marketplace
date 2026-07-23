@@ -916,6 +916,18 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/oracledb
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/oracledb/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oracledb.tar.gz
+  - id: pixeltable
+    description: >
+      Build multimodal AI applications with Pixeltable — declarative tables replace LangChain + pandas + vector DB with
+      one system. Automates chunking, embedding, retrieval, tool-calling agents, and 25+ AI provider integrations
+      (OpenAI, Anthropic, Gemini, etc.) via computed columns that run on insert. Use when building RAG pipelines,
+      processing images/video/audio/documents, orchestrating LLM inference, or deploying agents with persistent memory.
+      Covers incremental computation, version control, similarity search, the `pxt` CLI (inspect, debug, serve, deploy),
+      FastAPI serving, and production patterns. Do NOT use for general Python or direct PostgreSQL administration.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pixeltable
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pixeltable/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/pixeltable.tar.gz
   - id: powerbi-documentation
     description: >-
       Create standardized documentation for Power BI semantic models and reports. Use when the user requests
