@@ -1,0 +1,22 @@
+id: uizze
+name: UIZZE
+description: Gives coding agents visual search across 800,000+ real web and iOS screens, design context, screenshot critique, and finish-gate audits so generated UI stops looking generic.
+author: UIZZE
+url: https://github.com/uizze/uizze-mcp
+category: development
+prerequisites:
+  - UIZZE account and access token from https://uizze.com
+content:
+  - name: UIZZE hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://uizze.com/mcp/registry",
+        "headers": {
+          "Authorization": "Bearer {{UIZZE_ACCESS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: UIZZE access token
+    key: UIZZE_ACCESS_TOKEN
+    placeholder: your_uizze_access_token
