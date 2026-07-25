@@ -4447,8 +4447,7 @@ items:
         placeholder: your_pat_secret
   - id: taisly
     name: Taisly Social Media Posting
-    description: Publishes and schedules short-form videos across connected TikTok, Instagram, YouTube, X, and Facebook
-      accounts.
+    description: Publishes and schedules short-form videos across connected TikTok, Instagram, YouTube, X, and Facebook accounts.
     author: Taisly
     url: https://github.com/taisly/agent
     category: productivity
