@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KiloClaw Marketplace — Coming Soon</title>
+  <meta name="description" content="Coming Soon — a new way to supercharge your KiloClaw. Pay with Kilo Credits, access coding plans from partners, and get special deals on popular apps." />
+  <meta property="og:title" content="KiloClaw Marketplace — Coming Soon" />
+  <meta property="og:description" content="Coming Soon — a new way to supercharge your KiloClaw. Pay with Kilo Credits, access coding plans from partners, and get special deals on popular apps." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kilo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KiloClaw Marketplace — Coming Soon" />
+  <meta name="twitter:description" content="Coming Soon — a new way to supercharge your KiloClaw. Pay with Kilo Credits, access coding plans from partners, and get special deals on popular apps." />
+
+  <!-- Fonts: JetBrains Mono (primary on kilo.ai) + Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --card: #111113;
+      --border: #27272a;
+      --foreground: #fafafa;
+      --muted: #a1a1aa;
+      --brand: #4ecdc4;
+      --brand-dim: rgba(78, 205, 196, 0.15);
+      --brand-border: rgba(78, 205, 196, 0.3);
+      --brand-glow: rgba(78, 205, 196, 0.08);
+      --green: #22c55e;
+      --green-dim: rgba(34, 197, 94, 0.15);
+      --green-border: rgba(34, 197, 94, 0.3);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245, 158, 11, 0.15);
+      --amber-border: rgba(245, 158, 11, 0.3);
+      --blue: #3b82f6;
+      --blue-dim: rgba(59, 130, 246, 0.15);
+      --blue-border: rgba(59, 130, 246, 0.3);
+      --radius: 0.75rem;
+      --radius-lg: 1.5rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'JetBrains Mono', 'Inter', ui-monospace, monospace;
+      background: var(--bg);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ─── Layout Shell ──────────────────────────────────────────────── */
+    .page-wrapper {
+      max-width: 1536px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    @media (min-width: 1024px) {
+      .page-wrapper { padding: 0 2.5rem; }
+    }
+
+    /* ─── Header ────────────────────────────────────────────────────── */
+    .site-header {
+      padding: 1.5rem 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--foreground);
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding-right: 0.75rem;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      backdrop-filter: blur(16px);
+      transition: all 0.15s ease;
+    }
+
+    .logo-link:hover {
+      color: var(--brand);
+      border-color: rgba(78, 205, 196, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .logo-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .header-nav {
+      display: none;
+      gap: 0;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      backdrop-filter: blur(16px);
+    }
+
+    @media (min-width: 1024px) {
+      .header-nav { display: flex; }
+    }
+
+    .header-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      border: 2px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--brand);
+      border-color: var(--brand);
+    }
+
+    .header-actions {
+      display: none;
+      gap: 0;
+    }
+
+    @media (min-width: 1024px) {
+      .header-actions { display: flex; }
+    }
+
+    .btn-signin,
+    .btn-signup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+      min-height: 2.5rem;
+      font-weight: 700;
+      font-size: 0.875rem;
+      white-space: nowrap;
+      text-decoration: none;
+      border: 2px solid var(--border);
+      transition: all 0.15s ease;
+    }
+
+    .btn-signin {
+      background: var(--card);
+      color: var(--foreground);
+    }
+
+    .btn-signin:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      border-color: var(--brand);
+    }
+
+    .btn-signup {
+      background: var(--foreground);
+      color: var(--bg);
+      border-color: rgba(255,255,255,0.1);
+      margin-left: -2px;
+    }
+
+    .btn-signup:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ─── Main Content ──────────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      padding-bottom: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      main { padding: 0 6rem 4rem; }
+    }
+
+    /* ─── Hero Section ──────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--brand-border);
+      background: linear-gradient(135deg, var(--brand-glow), var(--card), var(--card));
+      padding: 2.5rem 1.5rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero { padding: 3.5rem 2.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero { padding: 4.5rem 3rem; }
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -5rem;
+      right: -5rem;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(78, 205, 196, 0.2), transparent 70%);
+      filter: blur(48px);
+      pointer-events: none;
+    }
+
+    .hero-glow-bottom {
+      position: absolute;
+      bottom: -5rem;
+      left: -5rem;
+      width: 16rem;
+      height: 16rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(78, 205, 196, 0.1), transparent 70%);
+      filter: blur(48px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--brand-border);
+      background: var(--brand-dim);
+      color: var(--brand);
+      padding: 0.375rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .pulse-dot {
+      position: relative;
+      display: flex;
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+
+    .pulse-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--brand);
+      animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+      opacity: 0.75;
+    }
+
+    .pulse-dot::after {
+      content: '';
+      position: relative;
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    @keyframes ping {
+      75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    .hero-icon-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-icon-box {
+      display: none;
+      width: 5rem;
+      height: 5rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1rem;
+      border: 1px solid var(--brand-border);
+      background: var(--brand-dim);
+    }
+
+    @media (min-width: 1024px) {
+      .hero-icon-box { display: flex; }
+    }
+
+    .hero-icon-box svg {
+      width: 3rem;
+      height: 3rem;
+      color: var(--brand);
+    }
+
+    .hero-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 3.75rem; }
+    }
+
+    .hero-subtitle {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    @media (min-width: 768px) {
+      .hero-subtitle { font-size: 1.25rem; }
+    }
+
+    .hero-description {
+      max-width: 42rem;
+      font-size: 1.125rem;
+      color: #d4d4d8;
+      text-wrap: balance;
+    }
+
+    .hero-description strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .hero-cta-row { flex-direction: row; }
+    }
+
+    /* ─── Section Shared ────────────────────────────────────────────── */
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .section-heading {
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    @media (min-width: 768px) {
+      .section-heading h2 { font-size: 2rem; }
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #71717a;
+    }
+
+    /* ─── Pay with Kilo Credits ─────────────────────────────────────── */
+    .credits-section {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--green-border);
+      background: linear-gradient(135deg, var(--green-dim), var(--card) 40%, var(--card));
+      padding: 2.5rem 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .credits-section { padding: 3rem 2.5rem; }
+    }
+
+    .credits-section .section-glow {
+      position: absolute;
+      top: -4rem;
+      right: -4rem;
+      width: 14rem;
+      height: 14rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.15), transparent 70%);
+      filter: blur(48px);
+      pointer-events: none;
+    }
+
+    .credits-inner {
+      position: relative;
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .credits-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    .credits-text h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .credits-text h2 { font-size: 2rem; }
+    }
+
+    .credits-text p {
+      color: #d4d4d8;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    .credits-text p strong {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .credits-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--green-border);
+      background: var(--green-dim);
+      color: var(--green);
+      padding: 0.375rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .credits-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .credits-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      background: rgba(34, 197, 94, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .credits-feature-item:hover {
+      border-color: var(--green-border);
+      background: rgba(34, 197, 94, 0.08);
+    }
+
+    .credits-feature-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      flex-shrink: 0;
+    }
+
+    .credits-feature-icon svg {
+      width: 1.125rem;
+      height: 1.125rem;
+      color: var(--green);
+    }
+
+    .credits-feature-text h4 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 0.125rem;
+    }
+
+    .credits-feature-text p {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── Partner Plans Section ──────────────────────────────────────── */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      max-width: 72rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .plans-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .plan-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 1.75rem;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand), transparent);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .plan-card:hover {
+      border-color: var(--brand-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .plan-card:hover::before {
+      opacity: 1;
+    }
+
+    .plan-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .plan-card-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 0.75rem;
+      background: var(--brand-dim);
+      border: 1px solid var(--brand-border);
+      flex-shrink: 0;
+    }
+
+    .plan-card-logo svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--brand);
+    }
+
+    .plan-card-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 0.375rem;
+      border: 1px solid #3f3f46;
+      background: rgba(39, 39, 42, 0.5);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .plan-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .plan-card p {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .plan-card-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .plan-card-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: #d4d4d8;
+    }
+
+    .plan-card-feature svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    .plan-card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .plan-card-price .amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--brand);
+    }
+
+    .plan-card-price .period {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .plan-card-price .credits-label {
+      margin-left: auto;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+    }
+
+    /* ─── Deals Section ─────────────────────────────────────────────── */
+    .deals-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      max-width: 72rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .deals-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .deal-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--card), rgba(17, 17, 19, 0.8));
+      padding: 1.5rem;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .deal-card:hover {
+      border-color: var(--amber-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .deal-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .deal-card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.625rem;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+
+    .deal-card-icon.todoist {
+      background: rgba(220, 78, 65, 0.15);
+      border: 1px solid rgba(220, 78, 65, 0.3);
+      color: #dc4e41;
+    }
+
+    .deal-card-icon.linear {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #6366f1;
+    }
+
+    .deal-card-icon.exa {
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      color: #0ea5e9;
+    }
+
+    .deal-card-title-group {
+      flex: 1;
+    }
+
+    .deal-card-title-group h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .deal-card-title-group .deal-tagline {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.125rem;
+    }
+
+    .deal-discount {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 0.375rem;
+      padding: 0.25rem 0.625rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+
+    .deal-card p {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .deal-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .deal-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      border-radius: 0.375rem;
+      border: 1px solid #3f3f46;
+      background: rgba(39, 39, 42, 0.5);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.6875rem;
+      color: var(--muted);
+    }
+
+    /* ─── How It Works ──────────────────────────────────────────────── */
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      max-width: 72rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .how-it-works-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .step-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .step-card:hover {
+      border-color: var(--brand-border);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: var(--brand-dim);
+      border: 1px solid var(--brand-border);
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .step-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .step-card p {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── CTA Section ───────────────────────────────────────────────── */
+    .cta-section {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--brand-border);
+      background: linear-gradient(135deg, var(--brand-glow), var(--card), var(--card));
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .cta-section { padding: 3.5rem 2.5rem; }
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .cta-section h2 { font-size: 2rem; }
+    }
+
+    .cta-section > p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      max-width: 36rem;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    @media (min-width: 640px) {
+      .cta-buttons { flex-direction: row; justify-content: center; }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      min-height: 2.75rem;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--bg);
+      background: var(--brand);
+      border: 2px solid rgba(78, 205, 196, 0.5);
+      cursor: not-allowed;
+      opacity: 0.7;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      min-height: 2.75rem;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--foreground);
+      background: var(--card);
+      border: 2px solid var(--border);
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--brand);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      color: var(--brand);
+    }
+
+    .cta-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.25rem;
+    }
+
+    .cta-links a {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .cta-links a:hover {
+      color: var(--brand);
+    }
+
+    .cta-links a svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      display: inline;
+      vertical-align: -0.125em;
+      margin-left: 0.25rem;
+    }
+
+    /* ─── Ticker ────────────────────────────────────────────────────── */
+    .ticker-section {
+      margin-top: 0.5rem;
+    }
+
+    .ticker-section h2 {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .ticker-track {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .ticker-inner {
+      display: flex;
+      gap: 0.75rem;
+      animation: ticker 30s linear infinite;
+      width: max-content;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: var(--card);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .ticker-item:hover {
+      color: var(--brand);
+      border-color: var(--brand-border);
+    }
+
+    .ticker-item svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .site-footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .site-footer a:hover {
+      color: var(--brand);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+
+    /* ─── Animations ────────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(1.5rem);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .fade-up-delay-1 { animation-delay: 0.1s; }
+    .fade-up-delay-2 { animation-delay: 0.2s; }
+    .fade-up-delay-3 { animation-delay: 0.3s; }
+    .fade-up-delay-4 { animation-delay: 0.4s; }
+    .fade-up-delay-5 { animation-delay: 0.5s; }
+    .fade-up-delay-6 { animation-delay: 0.6s; }
+    .fade-up-delay-7 { animation-delay: 0.7s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ─── Utilities ─────────────────────────────────────────────────── */
+    .ext-icon {
+      width: 0.875rem;
+      height: 0.875rem;
+      display: inline;
+      vertical-align: -0.125em;
+      margin-left: 0.25rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ─── Header ─────────────────────────────────────────────────── -->
+    <header class="site-header">
+      <a href="https://kilo.ai" class="logo-link">
+        <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M0,0v100h100V0H0ZM92.59,92.59H7.41V7.41h85.18v85.18ZM61.11,71.91h9.26v7.41h-11.64l-5.03-5.03v-11.64h7.41v9.26ZM77.78,71.91h-7.41v-9.26h-9.26v-7.41h11.64l5.03,5.03v11.64ZM46.3,61.11h-7.41v-7.41h7.41v7.41ZM22.22,53.7h7.41v16.67h16.67v7.41h-19.05l-5.03-5.03v-19.05ZM77.78,38.89v7.41h-24.07v-7.41h8.28v-9.26h-8.28v-7.41h10.66l5.03,5.03v11.64h8.39ZM29.63,30.56h9.26l7.41,7.41v8.33h-7.41v-8.33h-9.26v8.33h-7.41v-24.07h7.41v8.33ZM46.3,30.56h-7.41v-8.33h7.41v8.33Z"/>
+        </svg>
+        <span>Kilo</span>
+      </a>
+
+      <nav class="header-nav">
+        <a href="https://kilo.ai/pricing">Pricing</a>
+        <a href="https://kilo.ai/support">Support</a>
+        <a href="https://kilo.ai/docs">Docs
+          <svg class="ext-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+        <a href="https://blog.kilo.ai/">Blog
+          <svg class="ext-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://app.kilo.ai/users/sign_in" class="btn-signin">Sign in</a>
+        <a href="https://app.kilo.ai/users/sign_in" class="btn-signup">Sign up</a>
+      </div>
+    </header>
+
+    <!-- ─── Main ───────────────────────────────────────────────────── -->
+    <main>
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 1: Hero
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="hero fade-up">
+        <div class="hero-glow"></div>
+        <div class="hero-glow-bottom"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            Coming Soon
+          </div>
+
+          <div class="hero-icon-row">
+            <div class="hero-icon-box">
+              <svg role="img" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33">
+                <title>KiloClaw</title>
+                <path d="M13.66,14.7h4.65c2.61,0,4.73,2.12,4.73,4.73v.77c0,3.12-2.54,5.66-5.66,5.66h-2.79c-3.12,0-5.66-2.54-5.66-5.66v-.77c0-2.61,2.12-4.73,4.73-4.73Z"/>
+                <circle cx="11.42" cy="11.39" r="1.22"/>
+                <path d="M11.42,12.61s-.13,1.7.85,2.29"/>
+                <g><path d="M9.87,23.3c-1.91.34-3.59,2.17-3.59,4.22"/><path d="M8.9,19.95h0c-2.65,0-4.85,1.98-5.7,4.8"/><path d="M12.6,25.49c-1.27,0-2.29,1.09-2.29,2.35v.17"/></g>
+                <g><path d="M22.06,23.3c1.91.34,3.59,2.17,3.59,4.22"/><path d="M23.03,19.95h0c2.65,0,4.85,1.98,5.7,4.8"/><path d="M19.33,25.49c1.27,0,2.29,1.09,2.29,2.35v.17"/></g>
+                <g><path d="M30.73,6.82v1.47c0,1.57-1.27,2.84-2.83,2.84h-.39c-1.45,0-2.62-1.17-2.62-2.62h2.62V3.99h.39c1.56,0,2.83,1.27,2.83,2.83Z"/><path d="M27.51,11.13c0,2.83-.13,3.53-2.53,4.8l-2.47,1.36"/></g>
+                <g><path d="M1.18,6.82v1.47c0,1.57,1.27,2.84,2.83,2.84h.39c1.45,0,2.62-1.17,2.62-2.62h-2.62V3.99s-.39,0-.39,0c-1.56,0-2.83,1.27-2.83,2.83Z"/><path d="M4.41,11.13c0,2.83.13,3.53,2.53,4.8l2.47,1.36"/></g>
+                <circle cx="20.56" cy="11.39" r="1.22"/>
+                <path d="M20.56,12.61s.13,1.7-.85,2.29"/>
+                <path d="M19.1,17.56l-.85.9c-.54.57-.83,1.33-.83,2.11v2.72"/>
+                <path d="M12.87,17.56l.85.9c.54.57.83,1.33.83,2.11v2.72"/>
+              </svg>
+            </div>
+
+            <div class="hero-titles">
+              <h1 class="hero-title">KiloClaw Marketplace</h1>
+              <p class="hero-subtitle">A new way to supercharge your KiloClaw</p>
+            </div>
+          </div>
+
+          <p class="hero-description">
+            Discover partner integrations, coding plans, and exclusive deals &mdash; all accessible with the <strong>Kilo Credits</strong> you already have. One marketplace, endless possibilities.
+          </p>
+
+          <div class="hero-cta-row">
+            <button class="btn-primary" disabled aria-label="Notify Me — coming soon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+              Notify Me
+            </button>
+            <a href="https://kilo.ai/kiloclaw/bytes" class="btn-secondary">
+              Explore ClawBytes
+              <svg class="ext-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 2: Pay with Kilo Credits
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="credits-section fade-up fade-up-delay-1">
+        <div class="section-glow"></div>
+        <div class="credits-inner">
+          <div class="credits-text">
+            <div class="credits-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+              Your Credits, Your Way
+            </div>
+            <h2>Pay with Kilo Credits</h2>
+            <p>
+              Use the <strong>Kilo Credits</strong> you already have. No extra payment methods, no friction &mdash; your existing balance works across the entire marketplace. Purchase plans, activate deals, and unlock integrations in one click.
+            </p>
+          </div>
+          <div class="credits-features">
+            <div class="credits-feature-item">
+              <div class="credits-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+              </div>
+              <div class="credits-feature-text">
+                <h4>Unified Balance</h4>
+                <p>One credit balance powers everything &mdash; coding, automations, and marketplace purchases.</p>
+              </div>
+            </div>
+            <div class="credits-feature-item">
+              <div class="credits-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-2 2.5h3L12 7"/><path d="M10 14v-3"/><path d="M14 14v-3"/><path d="M11 19c-1.7 0-3-1.3-3-3v-2h8v2c0 1.7-1.3 3-3 3h-2Z"/><path d="M6 22v-3c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v3"/></svg>
+              </div>
+              <div class="credits-feature-text">
+                <h4>Instant Activation</h4>
+                <p>Purchased plans and deals activate immediately. Zero setup, zero delay.</p>
+              </div>
+            </div>
+            <div class="credits-feature-item">
+              <div class="credits-feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+              </div>
+              <div class="credits-feature-text">
+                <h4>Transparent Spending</h4>
+                <p>Track every marketplace purchase in your credit dashboard. Full visibility, no surprises.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 3: Coding Plans from Partners
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="section fade-up fade-up-delay-2">
+        <div class="section-heading">
+          <p class="section-label">Partner Integrations</p>
+          <h2>Coding Plans from Partners</h2>
+          <p>Expand your KiloClaw's capabilities with curated coding plans from leading AI and developer tool partners.</p>
+        </div>
+
+        <div class="plans-grid">
+          <!-- Z AI -->
+          <div class="plan-card">
+            <div class="plan-card-header">
+              <div class="plan-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h20"/><path d="M20 4 4 20"/><path d="M2 20h20"/></svg>
+              </div>
+              <span class="plan-card-badge">AI Partner</span>
+            </div>
+            <h3>Z AI</h3>
+            <p>Advanced AI-powered code generation and intelligent completions. Boost your coding speed with context-aware suggestions trained on the latest models.</p>
+            <div class="plan-card-features">
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Context-aware completions
+              </div>
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Multi-language support
+              </div>
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Real-time code analysis
+              </div>
+            </div>
+            <div class="plan-card-price">
+              <span class="amount">TBD</span>
+              <span class="period">/mo</span>
+              <span class="credits-label">Kilo Credits</span>
+            </div>
+          </div>
+
+          <!-- MiniMax -->
+          <div class="plan-card">
+            <div class="plan-card-header">
+              <div class="plan-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h.01"/><path d="M17 7h.01"/><path d="M7 17h.01"/><path d="M17 17h.01"/></svg>
+              </div>
+              <span class="plan-card-badge">AI Partner</span>
+            </div>
+            <h3>MiniMax</h3>
+            <p>Multimodal AI models for coding, content generation, and automation workflows. Unlock powerful capabilities directly inside KiloClaw.</p>
+            <div class="plan-card-features">
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Multimodal generation
+              </div>
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Workflow automation
+              </div>
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Content & code gen
+              </div>
+            </div>
+            <div class="plan-card-price">
+              <span class="amount">TBD</span>
+              <span class="period">/mo</span>
+              <span class="credits-label">Kilo Credits</span>
+            </div>
+          </div>
+
+          <!-- BytePlus -->
+          <div class="plan-card">
+            <div class="plan-card-header">
+              <div class="plan-card-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              </div>
+              <span class="plan-card-badge">AI Partner</span>
+            </div>
+            <h3>BytePlus</h3>
+            <p>Enterprise-grade AI infrastructure and developer tools. Scale your coding projects with BytePlus's powerful cloud platform and APIs.</p>
+            <div class="plan-card-features">
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Enterprise-scale APIs
+              </div>
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Cloud infrastructure
+              </div>
+              <div class="plan-card-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Developer tooling
+              </div>
+            </div>
+            <div class="plan-card-price">
+              <span class="amount">TBD</span>
+              <span class="period">/mo</span>
+              <span class="credits-label">Kilo Credits</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 4: Special Deals on Popular Apps
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="section fade-up fade-up-delay-3">
+        <div class="section-heading">
+          <p class="section-label">Exclusive Offers</p>
+          <h2>Special Deals on Popular Apps</h2>
+          <p>Power your KiloClaw with discounted access to the tools developers love. Pay with Kilo Credits and save.</p>
+        </div>
+
+        <div class="deals-grid">
+          <!-- Todoist -->
+          <div class="deal-card">
+            <div class="deal-card-header">
+              <div class="deal-card-icon todoist">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <div class="deal-card-title-group">
+                <h3>Todoist</h3>
+                <span class="deal-tagline">Task management, redefined</span>
+              </div>
+              <span class="deal-discount">Deal</span>
+            </div>
+            <p>Stay organized with powerful task management. Capture ideas, plan projects, and track progress &mdash; integrated directly with your KiloClaw workflows.</p>
+            <div class="deal-card-tags">
+              <span class="deal-tag">Productivity</span>
+              <span class="deal-tag">Task Management</span>
+              <span class="deal-tag">Integrations</span>
+            </div>
+          </div>
+
+          <!-- Linear -->
+          <div class="deal-card">
+            <div class="deal-card-header">
+              <div class="deal-card-icon linear">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+              </div>
+              <div class="deal-card-title-group">
+                <h3>Linear</h3>
+                <span class="deal-tagline">Streamlined issue tracking</span>
+              </div>
+              <span class="deal-discount">Deal</span>
+            </div>
+            <p>Streamline your software development with Linear's fast, beautiful issue tracker. Plan sprints, track bugs, and ship features without the friction.</p>
+            <div class="deal-card-tags">
+              <span class="deal-tag">Issue Tracking</span>
+              <span class="deal-tag">Project Management</span>
+              <span class="deal-tag">Dev Workflow</span>
+            </div>
+          </div>
+
+          <!-- Exa -->
+          <div class="deal-card">
+            <div class="deal-card-header">
+              <div class="deal-card-icon exa">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </div>
+              <div class="deal-card-title-group">
+                <h3>Exa</h3>
+                <span class="deal-tagline">AI-powered web search</span>
+              </div>
+              <span class="deal-discount">Deal</span>
+            </div>
+            <p>Supercharge your research with Exa's AI-native search API. Find code examples, documentation, and answers faster than ever to power your KiloClaw automations.</p>
+            <div class="deal-card-tags">
+              <span class="deal-tag">Search API</span>
+              <span class="deal-tag">Research</span>
+              <span class="deal-tag">AI-Powered</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 5: How It Works
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="section fade-up fade-up-delay-4">
+        <div class="section-heading">
+          <h2>How It Works</h2>
+          <p>Three simple steps to unlock the marketplace</p>
+        </div>
+
+        <div class="how-it-works-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Browse the Marketplace</h3>
+            <p>Explore partner coding plans, app integrations, and exclusive deals from within KiloClaw.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Pay with Your Balance</h3>
+            <p>Use your existing Kilo Credits &mdash; no extra payment setup, no friction.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Activate Instantly</h3>
+            <p>Purchased plans and deals activate immediately. Start using them right away.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 6: CTA / Be the First to Know
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="cta-section fade-up fade-up-delay-5">
+        <div class="hero-glow"></div>
+        <h2>Be the First to Know</h2>
+        <p>The KiloClaw Marketplace is launching soon. Get notified when it goes live and be among the first to explore partner integrations and exclusive deals.</p>
+        <div class="cta-buttons">
+          <button class="btn-primary" disabled aria-label="Notify Me — coming soon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            Notify Me
+          </button>
+          <a href="https://kilo.ai/kiloclaw/bytes" class="btn-secondary">
+            Explore ClawBytes
+            <svg class="ext-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+        <div class="cta-links">
+          <a href="https://kilo.ai/kiloclaw/bytes">
+            ClawBytes &mdash; The Automation Cookbook
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+          <a href="https://kilo.ai/features/kilo-pass">
+            Kilo Pass &mdash; Maximize Your Credits
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           Section 7: Use Kilo Everywhere Ticker
+           ═══════════════════════════════════════════════════════════ -->
+      <section class="ticker-section fade-up fade-up-delay-6">
+        <h2>Use Kilo Everywhere</h2>
+        <div class="ticker-track">
+          <div class="ticker-inner">
+            <span class="ticker-item">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33"><path d="M13.66,14.7h4.65c2.61,0,4.73,2.12,4.73,4.73v.77c0,3.12-2.54,5.66-5.66,5.66h-2.79c-3.12,0-5.66-2.54-5.66-5.66v-.77c0-2.61,2.12-4.73,4.73-4.73Z"/><circle cx="11.42" cy="11.39" r="1.22"/><circle cx="20.56" cy="11.39" r="1.22"/></svg>
+              KiloClaw
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              VS Code
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m10 8 4 4-4 4"/></svg>
+              JetBrains
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+              CLI
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+              Cloud Agents
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+              App Builder
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Slack
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Code Reviewer
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+              Gateway
+            </span>
+            <!-- Duplicate set for seamless loop -->
+            <span class="ticker-item">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33"><path d="M13.66,14.7h4.65c2.61,0,4.73,2.12,4.73,4.73v.77c0,3.12-2.54,5.66-5.66,5.66h-2.79c-3.12,0-5.66-2.54-5.66-5.66v-.77c0-2.61,2.12-4.73,4.73-4.73Z"/><circle cx="11.42" cy="11.39" r="1.22"/><circle cx="20.56" cy="11.39" r="1.22"/></svg>
+              KiloClaw
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+              VS Code
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m10 8 4 4-4 4"/></svg>
+              JetBrains
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+              CLI
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+              Cloud Agents
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+              App Builder
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Slack
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Code Reviewer
+            </span>
+            <span class="ticker-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+              Gateway
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ─── Footer ─────────────────────────────────────────────────── -->
+    <footer class="site-footer">
+      <p>&copy; 2026 Kilo Code, Inc. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://kilo.ai/terms">Terms</a>
+        <a href="https://kilo.ai/privacy">Privacy</a>
+        <a href="https://kilo.ai/support">Support</a>
+        <a href="https://kilo.ai/docs">Docs</a>
+        <a href="https://github.com/Kilo-Org/kilocode">GitHub</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
