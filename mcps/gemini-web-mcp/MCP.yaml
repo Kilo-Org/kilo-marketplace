@@ -1,0 +1,60 @@
+id: gemini-web-mcp
+name: Gemini Web MCP
+description: Layered FastMCP server and Codex skill for Gemini Web workflows, with profile-based tool surfaces for model calls, chat history, account inventory, scheduled actions, media, files, and research.
+author: Luckycat133
+url: https://github.com/Luckycat133/gemini-web-mcp
+category: productivity
+prerequisites:
+  - Python 3.10+ and uv
+  - Gemini Web account cookies for authenticated workflows
+content:
+  - name: UVX from GitHub Release
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "https://github.com/Luckycat133/gemini-web-mcp/releases/download/v2.1.2/gemini_mcp_server-2.1.2-py3-none-any.whl",
+          "gemini-mcp-server"
+        ],
+        "env": {
+          "GEMINI_TOOLS": "core"
+        }
+      }
+  - name: Model-only profile
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "https://github.com/Luckycat133/gemini-web-mcp/releases/download/v2.1.2/gemini_mcp_server-2.1.2-py3-none-any.whl",
+          "gemini-mcp-server"
+        ],
+        "env": {
+          "GEMINI_TOOLS": "model"
+        }
+      }
+  - name: History-only profile
+    prerequisites:
+      - Python 3.10+ and uv
+      - Gemini Web account cookies
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "https://github.com/Luckycat133/gemini-web-mcp/releases/download/v2.1.2/gemini_mcp_server-2.1.2-py3-none-any.whl",
+          "gemini-mcp-server"
+        ],
+        "env": {
+          "GEMINI_TOOLS": "history"
+        }
+      }
+parameters:
+  - name: Tool profile
+    key: GEMINI_TOOLS
+    placeholder: core
