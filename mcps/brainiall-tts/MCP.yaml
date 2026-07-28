@@ -1,0 +1,22 @@
+id: brainiall-tts
+name: Brainiall TTS
+description: Converts text into WAV speech through a hosted MCP server with Brazilian Portuguese and multilingual voices.
+author: BRAINIALL
+url: https://github.com/fasuizu-br/brainiall-tts-mcp
+category: productivity
+prerequisites:
+  - Brainiall account and API key
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.brainiall.com/mcp/tts/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BRAINIAL_KEY}}"
+        }
+      }
+parameters:
+  - name: Brainiall API Key
+    key: BRAINIAL_KEY
+    placeholder: your_brainiall_api_key
