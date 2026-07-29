@@ -4,7 +4,7 @@ This reference matches DealMachine CLI and hosted MCP 0.3.0.
 
 ## Hosted MCP Tools
 
-Use these exact Tool IDs. Do not pluralize `property` or `company`.
+Use these exact Tool IDs. Do not pluralize `property`.
 
 ### Discovery and account
 
@@ -31,16 +31,6 @@ Use these exact Tool IDs. Do not pluralize `property` or `company`.
 - `dealmachine_people_get_many`
 
 People export is available through the CLI.
-
-### Company intelligence
-
-- `dealmachine_company_count`
-- `dealmachine_company_search`
-- `dealmachine_company_get`
-- `dealmachine_company_get_many`
-- `dealmachine_company_export`
-
-Company intelligence is available through the hosted MCP server. DealMachine CLI 0.3.0 does not have a `dm companies` command group.
 
 ### Enrichment
 
