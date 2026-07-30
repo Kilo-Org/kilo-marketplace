@@ -41,11 +41,9 @@ jobs:
       - name: Get version info
         id: version
         run: |
-          {
-            echo "sha_short=$(git rev-parse --short HEAD)"
-            echo "sha=$(git rev-parse HEAD)"
-            echo "date=$(date -u +%Y%m%d%H%M%S)"
-          } >> "$GITHUB_OUTPUT"
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "date=$(date -u +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
 
       - name: Create release
         uses: softprops/action-gh-release@v2
