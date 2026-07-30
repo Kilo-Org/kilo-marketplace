@@ -51,6 +51,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
+  - id: x-twitter-scraper
+    description: >-
+      Use Xquik for X/Twitter REST, MCP, SDKs, search, exports, monitoring & approved publishing. Not affiliated with X
+      Corp. Trigger for tweet search, user lookup, timelines, follower exports, media, webhooks, bulk extraction,
+      giveaways, or MCP setup. Read-only by default. Require explicit approval for writes, private reads, monitors,
+      webhooks & metered bulk jobs.
+    category: business-marketing
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/x-twitter-scraper
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/x-twitter-scraper/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/x-twitter-scraper.tar.gz
   - id: canvas-design
     description: >-
       Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the

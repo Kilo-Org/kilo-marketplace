@@ -162,6 +162,15 @@ export function isValidVscodeExtension(entry: unknown): boolean {
   );
 }
 
+function duplicateValue(values: readonly string[]): string | undefined {
+  const seen = new Set<string>();
+  for (const value of values) {
+    if (seen.has(value)) return value;
+    seen.add(value);
+  }
+  return undefined;
+}
+
 export function foldedScalar(value: string): Scalar {
   const scalar = new Scalar(value);
   scalar.type = Scalar.BLOCK_FOLDED;
@@ -206,12 +215,27 @@ export function validateRequirements(
           `${itemId}: requirements.vscode_extensions entries must contain a non-empty name and a valid extension ID like "ms-toolsai.jupyter"`,
         );
       }
+      const duplicateId = duplicateValue(
+        entries.map((entry) => (entry as { id: string }).id.toLowerCase()),
+      );
+      if (duplicateId) {
+        throw new Error(
+          `${itemId}: requirements.vscode_extensions contains duplicate extension ID "${duplicateId}"`,
+        );
+      }
       continue;
     }
 
     if (!entries.every((entry) => typeof entry === "string" && entry.trim().length > 0)) {
       throw new Error(
         `${itemId}: requirements.${subgroup} must be a non-empty list of non-empty strings`,
+      );
+    }
+
+    const duplicateId = duplicateValue(entries);
+    if (duplicateId) {
+      throw new Error(
+        `${itemId}: requirements.${subgroup} contains duplicate ID "${duplicateId}"`,
       );
     }
 
