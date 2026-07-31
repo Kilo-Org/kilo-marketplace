@@ -1,0 +1,22 @@
+id: slidesfly
+name: Slidesfly
+description: Publish existing HTML presentations and manage deck lists, versions, restores, claims, and auth status through the hosted Slidesfly MCP server.
+author: Slidesfly
+url: https://slidesfly.com/docs/mcp
+category: productivity
+prerequisites:
+  - Slidesfly account and API key from https://slidesfly.com/dashboard/account
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://slidesfly.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SLIDESFLY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Slidesfly API Key
+    key: SLIDESFLY_API_KEY
+    placeholder: your_slidesfly_api_key
