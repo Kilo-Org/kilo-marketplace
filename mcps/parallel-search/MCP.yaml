@@ -1,0 +1,14 @@
+id: parallel-search
+name: Parallel Search
+description: Connects AI assistants to live web search and URL fetching through Parallel's hosted Search MCP, without
+  requiring an account, API key, or local installation.
+author: parallel-web
+url: https://github.com/parallel-web/search-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://search.parallel.ai/mcp"
+      }
