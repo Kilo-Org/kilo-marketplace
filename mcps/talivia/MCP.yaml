@@ -1,0 +1,24 @@
+id: talivia
+name: Talivia Revenue Analytics
+description: Installs and verifies revenue-first website analytics, then connects traffic and customer journeys to payment attribution.
+author: Talivia
+url: https://github.com/talivia-group/agent
+category: data
+prerequisites:
+  - Talivia account
+  - A website you can update
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://talivia.com/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@talivia/agent", "mcp"]
+      }
