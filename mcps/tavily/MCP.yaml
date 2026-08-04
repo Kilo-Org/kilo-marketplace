@@ -4,12 +4,7 @@ description: Enables real-time web search and data extraction capabilities throu
   with filtered search results and intelligent content extraction from web pages.
 author: tavily-ai
 url: https://github.com/tavily-ai/tavily-mcp
-tags:
-  - web-search
-  - data-extraction
-  - real-time-information
-  - content-filtering
-  - news-search
+category: search
 prerequisites:
   - Tavily account
 content:

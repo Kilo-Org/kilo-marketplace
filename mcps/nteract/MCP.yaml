@@ -1,0 +1,45 @@
+id: nteract
+name: nteract MCP
+description: Connects Kilo to nteract, a local-first desktop Jupyter notebook app, so agents can create, edit, execute, save, and open interactive notebooks through the nteract daemon.
+author: nteract
+url: https://github.com/nteract/nteract
+category: data
+suggest_for:
+  filename:
+    - "*.ipynb"
+prerequisites:
+  - nteract desktop app installed from https://www.nteract.io/ or the nteract GitHub releases page
+  - runt available on PATH, or the full path to the runt executable
+content:
+  - name: PATH
+    description: Runs nteract's MCP server through the runt CLI from PATH.
+    prerequisites:
+      - runt is available on PATH
+    content: |
+      {
+        "command": "runt",
+        "args": ["mcp"],
+        "env": {
+          "NTERACT_CHANNEL": "stable"
+        },
+        "enabled": true,
+        "timeout": 30000
+      }
+  - name: Absolute Path
+    description: Runs nteract's MCP server through an absolute runt executable path for shells where PATH is not inherited by Kilo.
+    prerequisites:
+      - You know the full path to the runt executable
+    content: |
+      {
+        "command": "{{RUNT_PATH}}",
+        "args": ["mcp"],
+        "env": {
+          "NTERACT_CHANNEL": "stable"
+        },
+        "enabled": true,
+        "timeout": 30000
+      }
+parameters:
+  - name: runt absolute path
+    key: RUNT_PATH
+    placeholder: /absolute/path/to/runt or C:\path\to\runt.exe

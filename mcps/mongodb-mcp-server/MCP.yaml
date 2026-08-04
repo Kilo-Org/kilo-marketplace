@@ -1,0 +1,41 @@
+id: mongodb-mcp-server
+name: MongoDB MCP Server
+description: Queries MongoDB databases and Atlas metadata with connection-string or Atlas service-account authentication, with read-only tools enabled by default for safe schema and data analysis.
+author: MongoDB
+url: https://github.com/mongodb-js/mongodb-mcp-server
+category: data
+prerequisites:
+  - Node.js
+  - MongoDB deployment or MongoDB Atlas account
+content:
+  - name: NPX (read-only)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "mongodb-mcp-server@1.13.0",
+          "--readOnly"
+        ],
+        "env": {
+          "MDB_MCP_CONNECTION_STRING": "{{MDB_MCP_CONNECTION_STRING}}",
+          "MDB_MCP_API_CLIENT_ID": "{{MDB_MCP_API_CLIENT_ID}}",
+          "MDB_MCP_API_CLIENT_SECRET": "{{MDB_MCP_API_CLIENT_SECRET}}",
+          "MDB_MCP_READ_ONLY": "true"
+        }
+      }
+parameters:
+  - name: MongoDB Connection String
+    key: MDB_MCP_CONNECTION_STRING
+    placeholder: mongodb+srv://username:password@cluster.example.net/database
+    optional: true
+  - name: Atlas Service Account Client ID
+    key: MDB_MCP_API_CLIENT_ID
+    placeholder: your_atlas_service_account_client_id
+    optional: true
+  - name: Atlas Service Account Client Secret
+    key: MDB_MCP_API_CLIENT_SECRET
+    placeholder: your_atlas_service_account_client_secret
+    optional: true

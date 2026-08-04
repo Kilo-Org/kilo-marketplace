@@ -1,0 +1,41 @@
+order_id,order_date,customer_name,region,country,product_category,product_name,quantity,unit_price,discount,revenue,cost,profit
+ORD-001,2025-01-03,Acme Corp,North America,United States,Electronics,Wireless Headphones,12,89.99,0.10,971.89,480.00,491.89
+ORD-002,2025-01-05,GlobalTech Ltd,Europe,Germany,Software,Cloud License Annual,5,299.99,0.00,1499.95,750.00,749.95
+ORD-003,2025-01-07,Sakura Inc,Asia Pacific,Japan,Electronics,USB-C Hub,30,45.00,0.15,1147.50,600.00,547.50
+ORD-004,2025-01-10,Nordic Solutions,Europe,Sweden,Furniture,Standing Desk,3,549.99,0.05,1567.47,1050.00,517.47
+ORD-005,2025-01-12,Maple Systems,North America,Canada,Electronics,4K Monitor,8,399.99,0.10,2879.93,1760.00,1119.93
+ORD-006,2025-01-15,Acme Corp,North America,United States,Software,Security Suite,15,149.99,0.20,1799.88,900.00,899.88
+ORD-007,2025-01-18,Outback Digital,Asia Pacific,Australia,Furniture,Ergonomic Chair,6,329.99,0.00,1979.94,1080.00,899.94
+ORD-008,2025-01-20,Thames Analytics,Europe,United Kingdom,Electronics,Mechanical Keyboard,25,129.99,0.10,2924.78,1250.00,1674.78
+ORD-009,2025-01-22,GlobalTech Ltd,Europe,Germany,Electronics,Wireless Mouse,40,59.99,0.05,2279.62,800.00,1479.62
+ORD-010,2025-01-25,Sakura Inc,Asia Pacific,Japan,Software,Data Analytics Platform,2,999.99,0.00,1999.98,800.00,1199.98
+ORD-011,2025-02-01,Acme Corp,North America,United States,Furniture,Conference Table,1,1299.99,0.00,1299.99,780.00,519.99
+ORD-012,2025-02-03,Nordic Solutions,Europe,Sweden,Electronics,Webcam Pro,10,179.99,0.10,1619.91,700.00,919.91
+ORD-013,2025-02-06,Maple Systems,North America,Canada,Software,Cloud License Annual,8,299.99,0.15,2039.93,1200.00,839.93
+ORD-014,2025-02-08,Thames Analytics,Europe,United Kingdom,Furniture,Monitor Arm,15,89.99,0.00,1349.85,525.00,824.85
+ORD-015,2025-02-10,Outback Digital,Asia Pacific,Australia,Electronics,Wireless Headphones,20,89.99,0.05,1709.81,800.00,909.81
+ORD-016,2025-02-13,GlobalTech Ltd,Europe,Germany,Furniture,Standing Desk,4,549.99,0.10,1979.96,1400.00,579.96
+ORD-017,2025-02-15,Acme Corp,North America,United States,Electronics,4K Monitor,6,399.99,0.00,2399.94,1320.00,1079.94
+ORD-018,2025-02-18,Sakura Inc,Asia Pacific,Japan,Furniture,Ergonomic Chair,8,329.99,0.05,2507.92,1440.00,1067.92
+ORD-019,2025-02-20,Nordic Solutions,Europe,Sweden,Software,Security Suite,12,149.99,0.10,1619.89,720.00,899.89
+ORD-020,2025-02-22,Maple Systems,North America,Canada,Electronics,Mechanical Keyboard,18,129.99,0.00,2339.82,900.00,1439.82
+ORD-021,2025-03-01,Thames Analytics,Europe,United Kingdom,Software,Data Analytics Platform,3,999.99,0.05,2849.97,1200.00,1649.97
+ORD-022,2025-03-04,Outback Digital,Asia Pacific,Australia,Software,Cloud License Annual,6,299.99,0.10,1619.95,900.00,719.95
+ORD-023,2025-03-06,Acme Corp,North America,United States,Electronics,USB-C Hub,50,45.00,0.15,1912.50,1000.00,912.50
+ORD-024,2025-03-08,GlobalTech Ltd,Europe,Germany,Electronics,Webcam Pro,15,179.99,0.00,2699.85,1050.00,1649.85
+ORD-025,2025-03-10,Sakura Inc,Asia Pacific,Japan,Electronics,Wireless Mouse,35,59.99,0.05,1994.67,700.00,1294.67
+ORD-026,2025-03-13,Nordic Solutions,Europe,Sweden,Furniture,Conference Table,2,1299.99,0.00,2599.98,1560.00,1039.98
+ORD-027,2025-03-15,Maple Systems,North America,Canada,Furniture,Monitor Arm,20,89.99,0.10,1619.82,700.00,919.82
+ORD-028,2025-03-18,Thames Analytics,Europe,United Kingdom,Electronics,4K Monitor,10,399.99,0.05,3799.91,2200.00,1599.91
+ORD-029,2025-03-20,Outback Digital,Asia Pacific,Australia,Furniture,Standing Desk,5,549.99,0.00,2749.95,1750.00,999.95
+ORD-030,2025-03-22,Acme Corp,North America,United States,Software,Data Analytics Platform,4,999.99,0.10,3599.96,1600.00,1999.96
+ORD-031,2025-04-01,GlobalTech Ltd,Europe,Germany,Electronics,Wireless Headphones,22,89.99,0.05,1880.79,880.00,1000.79
+ORD-032,2025-04-03,Sakura Inc,Asia Pacific,Japan,Software,Security Suite,10,149.99,0.00,1499.90,600.00,899.90
+ORD-033,2025-04-06,Nordic Solutions,Europe,Sweden,Electronics,Mechanical Keyboard,14,129.99,0.10,1637.87,700.00,937.87
+ORD-034,2025-04-08,Maple Systems,North America,Canada,Furniture,Ergonomic Chair,7,329.99,0.00,2309.93,1260.00,1049.93
+ORD-035,2025-04-10,Thames Analytics,Europe,United Kingdom,Software,Cloud License Annual,9,299.99,0.15,2294.92,1350.00,944.92
+ORD-036,2025-04-13,Outback Digital,Asia Pacific,Australia,Electronics,USB-C Hub,45,45.00,0.10,1822.50,900.00,922.50
+ORD-037,2025-04-15,Acme Corp,North America,United States,Furniture,Standing Desk,3,549.99,0.00,1649.97,1050.00,599.97
+ORD-038,2025-04-18,GlobalTech Ltd,Europe,Germany,Software,Data Analytics Platform,2,999.99,0.05,1899.98,800.00,1099.98
+ORD-039,2025-04-20,Sakura Inc,Asia Pacific,Japan,Electronics,4K Monitor,9,399.99,0.10,3239.92,1980.00,1259.92
+ORD-040,2025-04-22,Nordic Solutions,Europe,Sweden,Furniture,Monitor Arm,18,89.99,0.00,1619.82,630.00,989.82

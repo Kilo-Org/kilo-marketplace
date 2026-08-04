@@ -4,16 +4,7 @@ description: Control Gmail, Google Calendar, Docs, Sheets, Slides, Chat, Forms, 
   feature-complete Google Workspace / G Suite MCP server.
 author: taylorwilsdon
 url: https://github.com/taylorwilsdon/google_workspace_mcp
-tags:
-  - google-workspace
-  - g-suite
-  - google-drive
-  - google-sheets
-  - google-docs
-  - gmail
-  - google-calendar
-  - automation
-  - api-integration
+category: productivity
 prerequisites:
   - Google Cloud Project with OAuth 2.0 credentials
 content:

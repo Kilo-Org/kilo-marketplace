@@ -1,0 +1,35 @@
+id: matillion
+name: Matillion MCP Server
+description: Monitors Matillion pipelines, executions, lineage, agents, and credit consumption with OAuth client credentials; all mutating tools are disabled by default.
+author: Matillion
+url: https://docs.maia.ai/docs/api-reference/mcp-server
+category: data
+prerequisites:
+  - Node.js 24+
+  - Matillion API client credentials
+content:
+  - name: NPX (official, read-only)
+    prerequisites:
+      - Node.js 24+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@matillion/mcp-server@1.20.0"],
+        "env": {
+          "MATILLION_CLIENT_ID": "{{MATILLION_CLIENT_ID}}",
+          "MATILLION_CLIENT_SECRET": "{{MATILLION_CLIENT_SECRET}}",
+          "MATILLION_REGION": "{{MATILLION_REGION}}",
+          "READ_ONLY_TOOLS": "true",
+          "DEBUG": ""
+        }
+      }
+parameters:
+  - name: Matillion client ID
+    key: MATILLION_CLIENT_ID
+    placeholder: your_matillion_client_id
+  - name: Matillion client secret
+    key: MATILLION_CLIENT_SECRET
+    placeholder: your_matillion_client_secret
+  - name: Matillion region
+    key: MATILLION_REGION
+    placeholder: eu

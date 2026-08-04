@@ -147,7 +147,7 @@ dbt test --select test_is_valid_email_address
 
 dbt Labs strongly recommends only running unit tests in development or CI environments. Since the inputs of the unit tests are static, there's no need to use additional compute cycles running them in production. Use them when doing development for a test-driven approach and CI to ensure changes don't break them.
 
-Use the `--resource-type` flag `--exclude-resource-type` or the `DBT_EXCLUDE_RESOURCE_TYPES` environment variable to exclude unit tests from your production builds and save compute. 
+Use the `--resource-type` flag `--exclude-resource-type` or the `DBT_EXCLUDE_RESOURCE_TYPES` environment variable to exclude unit tests from your production builds and save compute.
 
 ## More realistic example
 
@@ -313,13 +313,13 @@ By default, all specified unit tests are enabled and will be included according 
 
 To disable a unit test from being executed, set:
 ```yaml
-    config: 
+    config:
       enabled: false
 ```
 
 This is helpful if a unit test is incorrectly failing and it needs to be disabled until it is fixed.
 
-### When a unit test fails 
+### When a unit test fails
 
 When a unit test fails, there will be a log message of "actual differs from expected", and it will show a "data diff" between the two:
 
@@ -342,7 +342,7 @@ It takes expert judgement to determine one from the other.
 
 The direct parents of the model that you’re unit testing need to exist in the warehouse before you can execute the unit test. The `run` and `build` commands supports the `--empty` flag for building schema-only dry runs. The `--empty` flag limits the `ref`s and `sources` to zero rows. dbt will still execute the model SQL against the target data warehouse but will avoid expensive reads of input data. This validates dependencies and ensures your models will build properly.
 
-Use the `--empty` flag to build an empty version of the models to save warehouse spend. 
+Use the `--empty` flag to build an empty version of the models to save warehouse spend.
 
 ```bash
 
@@ -359,4 +359,3 @@ dbt run --select "stg_customers top_level_email_domains" --empty
 | Using `sql` format when `dict` works | Prefer `dict` (most readable), fall back to `csv` or `sql` only when needed |
 | Missing `input` for a `ref` or `source` | Include all model dependencies to avoid "node not found" errors |
 | Testing Python models or snapshots | Unit tests only support SQL models |
-

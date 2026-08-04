@@ -25,7 +25,7 @@ items:
       groups:
         - read
         - - edit
-          - fileRegex: (^|/)(\.kilo|\.opencode)/plans/.*\.md$
+          - fileRegex: (^|/)((\.kilo|\.opencode)/plans|\.plans)/.*\.md$
             description: Plan markdown files only
 
       customInstructions: |
@@ -45,7 +45,7 @@ items:
         Plan files:
 
         - You may create and edit plan Markdown files only.
-        - Save plans under `.kilo/plans/` unless the user asks for another allowed plan-file location.
+        - Save plans under `.kilo/plans/` by default, or under `.plans/` / `.opencode/plans/` when requested or required by the repo/client.
         - Do not edit source files or non-plan documentation files.
         - Do not run mutating commands.
         - If implementation requires source edits or mutating commands, tell the user to switch to an implementation-capable mode.

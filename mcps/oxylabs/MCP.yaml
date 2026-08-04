@@ -4,12 +4,7 @@ description: Advanced web scraping tool using Oxylabs Web Scraper API, supportin
   and content transformation with flexible parsing options.
 author: oxylabs
 url: https://github.com/oxylabs/oxylabs-mcp
-tags:
-  - web-scraping
-  - content-extraction
-  - javascript-rendering
-  - html-parsing
-  - data-collection
+category: web-automation
 content:
   - name: UVX
     prerequisites:

@@ -7,27 +7,65 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { fileURLToPath } from "url";
 import * as yaml from "yaml";
-import { Document } from "yaml";
+import {
+  buildCategorySummary,
+  generateMarketplace,
+  listVisibleDirectories,
+  loadMcpIds,
+  MARKETPLACE_CATEGORIES,
+  repoPathFromBin,
+  validateRequirements,
+  validateSuggestFor,
+} from "./marketplace-generator-utils.ts";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const mcpsDir = path.join(__dirname, "..", "mcps");
+const mcpsDir = repoPathFromBin("mcps");
+const skillsDir = repoPathFromBin("skills");
+const skillIds = new Set(listVisibleDirectories(skillsDir));
+const mcpIds = loadMcpIds(mcpsDir);
 
-const items = fs
-  .readdirSync(mcpsDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory() && !d.name.startsWith("."))
-  .map((dir) => {
-    const content = fs.readFileSync(path.join(mcpsDir, dir.name, "MCP.yaml"), "utf-8");
+generateMarketplace({
+  rootDir: mcpsDir,
+  parseItem: (dirName) => {
+    const content = fs.readFileSync(path.join(mcpsDir, dirName, "MCP.yaml"), "utf-8");
     const mcp = yaml.parse(content);
+
+    if (!MARKETPLACE_CATEGORIES.has(mcp.category)) {
+      throw new Error(`${dirName}/MCP.yaml: invalid category "${mcp.category}"`);
+    }
+    if (mcp.tags !== undefined) {
+      throw new Error(`${dirName}/MCP.yaml: use category instead of tags`);
+    }
+    validateSuggestFor(mcp.suggest_for, mcp.id, {
+      fieldName: "suggest_for",
+      filenameExample: "*.ipynb",
+    });
+    validateRequirements(
+      mcp.requirements,
+      mcp.id,
+      skillIds,
+      mcpIds,
+      { subgroup: "mcps", id: mcp.id },
+    );
+
+    const marketplaceMcp = {} as typeof mcp;
+    for (const [key, value] of Object.entries(mcp)) {
+      marketplaceMcp[key] = value;
+      if (key === "category") {
+        marketplaceMcp.tags = [value];
+      }
+    }
+
     console.log(`Added: ${mcp.name}`);
-    return mcp;
-  })
-  .sort((a, b) => a.id.localeCompare(b.id));
-
-const doc = new Document({ items });
-const output = doc.toString({ lineWidth: 120 });
-
-fs.writeFileSync(path.join(mcpsDir, "marketplace.yaml"), output);
-
-console.log(`\nGenerated marketplace.yaml with ${items.length} MCPs`);
+    return marketplaceMcp;
+  },
+  sortItems: (a, b) => a.id.localeCompare(b.id),
+  header: (items) =>
+    buildCategorySummary(items, {
+      title: "MCP category usage",
+      resourceNameSingular: "MCP",
+      resourceNamePlural: "MCPs",
+      scriptName: "bin/generate-mcps-marketplace.ts",
+    }),
+  finalMessage: (count) => `\nGenerated marketplace.yaml with ${count} MCPs`,
+});

@@ -11,22 +11,22 @@ unit_tests:
   - name: test_is_valid_email_address
     model: my_model
     ...
-            
+
 # my test_is_valid_email_address unit test will run on ONLY version 2 of my_model
 unit_tests:
-  - name: test_is_valid_email_address 
-    model: my_model 
+  - name: test_is_valid_email_address
+    model: my_model
     versions:
-      include: 
+      include:
         - 2
     ...
-            
+
 # my test_is_valid_email_address unit test will run on all versions EXCEPT 1 of my_model
 unit_tests:
   - name: test_is_valid_email_address
-    model: my_model 
+    model: my_model
     versions:
-      exclude: 
+      exclude:
         - 1
     ...
 

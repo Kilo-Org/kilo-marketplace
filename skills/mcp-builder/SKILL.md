@@ -5,13 +5,13 @@ description: >-
   enable LLMs to interact with external services through well-designed tools.
   Use when building MCP servers to integrate external APIs or services, whether
   in Python (FastMCP) or Node/TypeScript (MCP SDK).
-license: Complete terms in LICENSE.txt
 metadata:
   category: development
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: mcp-builder
     license_path: mcp-builder/LICENSE.txt
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 # MCP Server Development Guide
@@ -78,11 +78,11 @@ This comprehensive document contains the complete MCP specification and guidelin
 - **MCP Best Practices**: [📋 View Best Practices](./reference/mcp_best_practices.md) - Core guidelines for all MCP servers
 
 **For Python implementations, also load:**
-- **Python SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+- **Python SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/a5271423128ac76cbd171adad40e225d1c755522/README.md`
 - [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Python-specific best practices and examples
 
 **For Node/TypeScript implementations, also load:**
-- **TypeScript SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- **TypeScript SDK Documentation**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/c59dc3aa1a633d27fbbe873f1a430483cf7440f8/README.md`
 - [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Node/TypeScript-specific best practices and examples
 
 #### 1.5 Exhaustively Study API Documentation
@@ -311,8 +311,8 @@ Load these resources as needed during development:
   - Security and error handling standards
 
 ### SDK Documentation (Load During Phase 1/2)
-- **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/a5271423128ac76cbd171adad40e225d1c755522/README.md`
+- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/c59dc3aa1a633d27fbbe873f1a430483cf7440f8/README.md`
 
 ### Language-Specific Implementation Guides (Load During Phase 2)
 - [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Complete Python/FastMCP guide with:

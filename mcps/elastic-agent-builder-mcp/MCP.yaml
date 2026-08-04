@@ -1,0 +1,26 @@
+id: elastic-agent-builder-mcp
+name: Elastic Agent Builder MCP
+description: Exposes Elastic Agent Builder tools from an account-specific Kibana endpoint using a least-privilege Elastic API key scoped to the intended indices and Kibana space.
+author: Elastic
+url: https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server
+category: observability
+prerequisites:
+  - Elastic deployment with Agent Builder enabled
+  - API key with feature_agentBuilder.read and only the required index privileges
+content:
+  - name: Kibana remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{KIBANA_URL}}/api/agent_builder/mcp",
+        "headers": {
+          "Authorization": "ApiKey {{ELASTIC_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Kibana base URL
+    key: KIBANA_URL
+    placeholder: https://my-deployment.kb.example.com
+  - name: Elastic API key
+    key: ELASTIC_API_KEY
+    placeholder: your_elastic_api_key

@@ -1,0 +1,27 @@
+diff -rN -U0 --ignore-trailing-space a/dagster-expert/references/components/creating-components.md b/dagster-expert/references/components/creating-components.md
+--- a/dagster-expert/references/components/creating-components.md	2000-01-01 00:00:00.000000000 +0000
++++ b/dagster-expert/references/components/creating-components.md	2000-01-01 00:00:00.000000000 +0000
+@@ -104 +104 @@
+-- [`dg list components`](../cli/list/components.md)
++- [`dg list components`](../cli/list-components.md)
+diff -rN -U0 --ignore-trailing-space a/dagster-expert/references/deployment/config-files.md b/dagster-expert/references/deployment/config-files.md
+--- a/dagster-expert/references/deployment/config-files.md	2000-01-01 00:00:00.000000000 +0000
++++ b/dagster-expert/references/deployment/config-files.md	2000-01-01 00:00:00.000000000 +0000
+@@ -56 +56 @@
+-image = "my-registry/my-image:latest"   # pre-built image (skips build)
++image = "my-registry/my-image@sha256:<reviewed-digest>"  # immutable pre-built image
+diff -rN -U0 --ignore-trailing-space a/dagster-expert/SKILL.md b/dagster-expert/SKILL.md
+--- a/dagster-expert/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/dagster-expert/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -4,8 +4,3 @@
+-  Expert guidance for working with Dagster and the dg CLI. ALWAYS use before
+-  doing any task that requires knowledge specific to Dagster, or that references
+-  assets, materialization, components, data tools or data pipelines. Common
+-  tasks may include creating a new project, adding new definitions,
+-  understanding the current project structure, answering general questions about
+-  the codebase (finding asset, schedule, sensor, component or job definitions),
+-  debugging issues, or providing deep information about a specific Dagster
+-  concept.
++  This skill should be used for Dagster project work involving assets,
++  components, integrations, or the dg CLI; it requires consulting the bundled
++  command and API references before proposing implementation details.

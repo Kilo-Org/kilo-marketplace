@@ -1,0 +1,16 @@
+id: gcp-pubsub
+name: Google Cloud Pub/Sub Remote MCP
+description: Inspects Pub/Sub topics and subscriptions through Google's hosted MCP endpoint using a dedicated Google identity whose IAM roles deny mutations.
+author: Google Cloud
+url: https://docs.cloud.google.com/pubsub/docs/use-pubsub-mcp
+category: data
+prerequisites:
+  - Google Cloud project with the Pub/Sub API enabled
+  - Dedicated Google identity limited to the Pub/Sub Viewer role
+content:
+  - name: Google hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://pubsub.googleapis.com/mcp"
+      }

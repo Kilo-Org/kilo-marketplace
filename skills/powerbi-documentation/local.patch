@@ -1,0 +1,12 @@
+diff -rN -U0 --ignore-trailing-space a/powerbi-documentation/SKILL.md b/powerbi-documentation/SKILL.md
+--- a/powerbi-documentation/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/powerbi-documentation/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -31 +31 @@
+-**CRITICAL:** This skill uses a conversational approach. Claude MUST ask questions one at a time and wait for user responses before proceeding. Do NOT generate the document until all questions are answered. All questions use numbered options (1/2/3/...) for consistency — never use Yes/No style answers.
++**CRITICAL:** This skill uses a conversational approach. The assistant MUST ask questions one at a time and wait for user responses before proceeding. Do NOT generate the document until all questions are answered. All questions use numbered options (1/2/3/...) for consistency — never use Yes/No style answers.
+@@ -35 +35 @@
+-Before asking any questions, Claude should:
++Before asking any questions, the assistant should:
+@@ -320 +320 @@
+-Once all questions are answered, Claude should:
++Once all questions are answered, the assistant should:

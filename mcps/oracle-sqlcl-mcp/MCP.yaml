@@ -1,0 +1,33 @@
+id: oracle-sqlcl-mcp
+name: Oracle SQLcl MCP Server
+description: Uses saved SQLcl connections to inspect schemas and run SQL, PL/SQL, and SQLcl operations against Oracle Database, starting at SQLcl's most restrictive command level and relying on database-role permissions for data access.
+author: Oracle
+url: https://docs.oracle.com/en/database/oracle/sql-developer-command-line/26.1/sqcug/using-oracle-sqlcl-mcp-server.html
+category: data
+prerequisites:
+  - Oracle SQLcl 25.3 or newer
+  - Saved SQLcl database connection with least-privilege credentials
+content:
+  - name: Local SQLcl (restrict level 4)
+    prerequisites:
+      - Oracle SQLcl
+    content: |
+      {
+        "command": "{{SQLCL_PATH}}",
+        "args": [
+          "-R",
+          "4",
+          "-mcp"
+        ],
+        "env": {
+          "TNS_ADMIN": "{{TNS_ADMIN}}"
+        }
+      }
+parameters:
+  - name: SQLcl Executable Path
+    key: SQLCL_PATH
+    placeholder: /opt/sqlcl/bin/sql
+  - name: Oracle Network Configuration Directory
+    key: TNS_ADMIN
+    placeholder: /path/to/network/admin
+    optional: true

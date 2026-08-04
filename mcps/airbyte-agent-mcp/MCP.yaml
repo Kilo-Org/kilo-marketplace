@@ -1,0 +1,15 @@
+id: airbyte-agent-mcp
+name: Airbyte Agent MCP
+description: Connects agents to Airbyte's hosted MCP service for inspecting data connections and operating sync workflows with account-scoped authentication.
+author: Airbyte
+url: https://mcp.airbyte.ai/mcp
+category: data
+prerequisites:
+  - Airbyte account
+content:
+  - name: Airbyte hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.airbyte.ai/mcp"
+      }

@@ -3,9 +3,7 @@ id: test-engineer
 name: Test Engineer
 description: QA engineer and testing specialist
 author: "@olearycrew"
-tags:
-  - testing
-  - quality
+category: development
 mode: primary
 permission:
   read: allow

@@ -33,7 +33,7 @@ def get_video_info(url):
 def download_video(url, output_path="/mnt/user-data/outputs", quality="best", format_type="mp4", audio_only=False):
     """
     Download a YouTube video.
-    
+
     Args:
         url: YouTube video URL
         output_path: Directory to save the video
@@ -42,10 +42,10 @@ def download_video(url, output_path="/mnt/user-data/outputs", quality="best", fo
         audio_only: Download only audio (mp3)
     """
     check_yt_dlp()
-    
+
     # Build command
     cmd = ["yt-dlp"]
-    
+
     if audio_only:
         cmd.extend([
             "-x",  # Extract audio
@@ -62,32 +62,32 @@ def download_video(url, output_path="/mnt/user-data/outputs", quality="best", fo
             # Specific resolution (e.g., 1080p, 720p)
             height = quality.replace("p", "")
             format_string = f"bestvideo[height<={height}]+bestaudio/best[height<={height}]"
-        
+
         cmd.extend([
             "-f", format_string,
             "--merge-output-format", format_type,
         ])
-    
+
     # Output template
     cmd.extend([
         "-o", f"{output_path}/%(title)s.%(ext)s",
         "--no-playlist",  # Don't download playlists by default
     ])
-    
+
     cmd.append(url)
-    
+
     print(f"Downloading from: {url}")
     print(f"Quality: {quality}")
     print(f"Format: {'mp3 (audio only)' if audio_only else format_type}")
     print(f"Output: {output_path}\n")
-    
+
     try:
         # Get video info first
         info = get_video_info(url)
         print(f"Title: {info.get('title', 'Unknown')}")
         print(f"Duration: {info.get('duration', 0) // 60}:{info.get('duration', 0) % 60:02d}")
         print(f"Uploader: {info.get('uploader', 'Unknown')}\n")
-        
+
         # Download the video
         subprocess.run(cmd, check=True)
         print(f"\n✅ Download complete!")
@@ -127,9 +127,9 @@ def main():
         action="store_true",
         help="Download only audio as MP3"
     )
-    
+
     args = parser.parse_args()
-    
+
     success = download_video(
         url=args.url,
         output_path=args.output,
@@ -137,7 +137,7 @@ def main():
         format_type=args.format,
         audio_only=args.audio_only
     )
-    
+
     sys.exit(0 if success else 1)
 
 

@@ -12,6 +12,7 @@ metadata:
     repository: 'https://github.com/openai/skills'
     path: skills/.curated/figma-implement-design
     license_path: skills/.curated/figma-implement-design/LICENSE.txt
+    commit: 49f948faa9258a0c61caceaf225e179651397431
 ---
 
 # Implement Design

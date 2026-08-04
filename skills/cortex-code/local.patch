@@ -1,0 +1,127 @@
+diff -rN -U0 --ignore-trailing-space a/cortex-code/config.yaml.example b/cortex-code/config.yaml.example
+--- a/cortex-code/config.yaml.example	2000-01-01 00:00:00.000000000 +0000
++++ b/cortex-code/config.yaml.example	2000-01-01 00:00:00.000000000 +0000
+@@ -4,5 +4,2 @@
+-# Install directory varies by agent:
+-#   Claude Code: ~/.claude/skills/cortex-code/config.yaml
+-#   Cursor:      ~/.cursor/skills/cortex-code/config.yaml
+-#   Windsurf:    ~/.windsurf/skills/cortex-code/config.yaml
+-#   VSCode:      see agent docs for skills directory location
++# Install directory varies by agent. Copy this file to your agent client's
++# configured skills directory for cortex-code.
+@@ -210 +207 @@
+-# Location: ~/.snowflake/cortex/claude-skill-policy.yaml
++# Location: ~/.snowflake/cortex/agent-skill-policy.yaml
+@@ -256 +253 @@
+-#   ~/.snowflake/cortex/claude-skill-policy.yaml
++#   ~/.snowflake/cortex/agent-skill-policy.yaml
+diff -rN -U0 --ignore-trailing-space a/cortex-code/scripts/route_request.py b/cortex-code/scripts/route_request.py
+--- a/cortex-code/scripts/route_request.py	2000-01-01 00:00:00.000000000 +0000
++++ b/cortex-code/scripts/route_request.py	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-LLM-based routing logic to determine if request should go to Cortex Code or Codex.
++LLM-based routing logic to determine if request should go to Cortex Code or the host coding agent.
+@@ -30 +30 @@
+-# Non-Snowflake indicators (route to Codex)
++# Non-Snowflake indicators (route to the host coding agent)
+@@ -35 +35 @@
+-CLAUDE_CODE_INDICATORS = [
++CODING_AGENT_INDICATORS = [
+@@ -43,3 +42,0 @@
+-# Backwards-compatible name used by shared tests and copied integrations.
+-CODING_AGENT_INDICATORS = CLAUDE_CODE_INDICATORS
+-
+@@ -80 +77 @@
+-    claude_score = 0
++    coding_agent_score = 0
+@@ -94 +91 @@
+-    for indicator in CLAUDE_CODE_INDICATORS:
++    for indicator in CODING_AGENT_INDICATORS:
+@@ -96 +93 @@
+-            claude_score += 2
++            coding_agent_score += 2
+@@ -114 +111 @@
+-            claude_score += 1
++            coding_agent_score += 1
+@@ -126 +123 @@
+-    total_score = snowflake_score + claude_score
++    total_score = snowflake_score + coding_agent_score
+@@ -129 +126 @@
+-        # Install scripts replace this placeholder with claude/codex/cursor.
++        # Install scripts replace this placeholder with the host coding agent.
+@@ -132 +129 @@
+-    confidence = max(snowflake_score, claude_score) / total_score
++    confidence = max(snowflake_score, coding_agent_score) / total_score
+@@ -134 +131 @@
+-    if snowflake_score > claude_score:
++    if snowflake_score > coding_agent_score:
+@@ -149 +146 @@
+-    credential files, regardless of whether they would be routed to Cortex or Codex.
++    credential files, regardless of whether they would be routed to Cortex or the host coding agent.
+@@ -211 +208 @@
+-    parser = argparse.ArgumentParser(description="Route request to Cortex or Codex")
++    parser = argparse.ArgumentParser(description="Route request to Cortex or the host coding agent")
+diff -rN -U0 --ignore-trailing-space a/cortex-code/scripts/security_wrapper.py b/cortex-code/scripts/security_wrapper.py
+--- a/cortex-code/scripts/security_wrapper.py	2000-01-01 00:00:00.000000000 +0000
++++ b/cortex-code/scripts/security_wrapper.py	2000-01-01 00:00:00.000000000 +0000
+@@ -169 +169 @@
+-    # Step 5: Determine routing (cortex vs claude) on sanitized prompt
++    # Step 5: Determine routing (Cortex vs host coding agent) on sanitized prompt
+diff -rN -U0 --ignore-trailing-space a/cortex-code/security/default_policy.yaml b/cortex-code/security/default_policy.yaml
+--- a/cortex-code/security/default_policy.yaml	2000-01-01 00:00:00.000000000 +0000
++++ b/cortex-code/security/default_policy.yaml	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-# To customize, create ~/.claude/skills/cortex-code/config.yaml
++# To customize, create config.yaml in the configured cortex-code skill directory
+@@ -15 +15 @@
+-  audit_log_path: "~/.claude/skills/cortex-code/audit.log"
++  audit_log_path: "~/.cache/cortex-skill/audit.log"
+diff -rN -U0 --ignore-trailing-space a/cortex-code/security/policies/default_policy.yaml b/cortex-code/security/policies/default_policy.yaml
+--- a/cortex-code/security/policies/default_policy.yaml	2000-01-01 00:00:00.000000000 +0000
++++ b/cortex-code/security/policies/default_policy.yaml	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-# To customize, create ~/.claude/skills/cortex-code/config.yaml
++# To customize, create config.yaml in the configured cortex-code skill directory
+@@ -15 +15 @@
+-  audit_log_path: "~/.claude/skills/cortex-code/audit.log"
++  audit_log_path: "~/.cache/cortex-skill/audit.log"
+diff -rN -U0 --ignore-trailing-space a/cortex-code/SKILL.md b/cortex-code/SKILL.md
+--- a/cortex-code/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/cortex-code/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -25 +25 @@
+-## Install
++## Prerequisite
+@@ -27,3 +27 @@
+-```bash
+-# Install via npm skills ecosystem (works with Claude Code, Cursor, Codex, and 40+ agents)
+-npx skills add snowflake-labs/subagent-cortex-code --copy
++This marketplace skill is already installed; do not install or replace skill instructions dynamically. Cortex Code CLI must be installed and configured from the official Snowflake documentation. Verify the reviewed installation with:
+@@ -31,3 +29,2 @@
+-# Prerequisite: Cortex Code CLI must be installed and configured
+-# See: https://docs.snowflake.com/en/user-guide/cortex-code
+-which cortex  # verify installation
++```bash
++which cortex
+@@ -84 +81 @@
+-- **Organization Policy**: Enterprise override via `~/.snowflake/cortex/claude-skill-policy.yaml`
++- **Organization Policy**: Enterprise override via `~/.snowflake/cortex/agent-skill-policy.yaml`
+@@ -219,2 +216,2 @@
+-**Claude Conversation Context**:
+-- Last 2-3 relevant exchanges from current Claude session
++**Current Agent Conversation Context**:
++- Last 2-3 relevant exchanges from the current agent session
+@@ -314 +311 @@
+-**Claude Action**: Uses Read tool directly, no Cortex involvement.
++**Agent Action**: Uses Read tool directly, no Cortex involvement.
+@@ -389 +386 @@
+-# Check approval mode (path varies by agent: ~/.claude/, ~/.cursor/, ~/.codex/, etc.)
++# Check approval mode in the agent-specific skill directory.
+@@ -394 +391 @@
+-cat ~/.snowflake/cortex/claude-skill-policy.yaml 2>/dev/null
++cat ~/.snowflake/cortex/agent-skill-policy.yaml 2>/dev/null
+@@ -434 +431 @@
+-# Path is agent-specific: ~/.claude/skills/cortex-code/, ~/.cursor/skills/cortex-code/, etc.
++# Path is agent-specific; use the configured cortex-code skill directory.
+@@ -482 +479 @@
+-FORCE_CLAUDE_PATTERNS = [
++FORCE_CODING_AGENT_PATTERNS = [

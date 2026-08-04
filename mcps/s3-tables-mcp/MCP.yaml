@@ -1,0 +1,32 @@
+id: s3-tables-mcp
+name: AWS S3 Tables MCP Server
+description: Lists and queries S3 table buckets, namespaces, tables, schemas, policies, and metadata using the selected AWS profile, with create and append tools disabled by default.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/s3-tables-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - AWS profile with least-privilege S3 Tables access
+content:
+  - name: UVX (read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "awslabs.s3-tables-mcp-server==0.0.25"
+        ],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}"
+        }
+      }
+parameters:
+  - name: AWS Profile
+    key: AWS_PROFILE
+    placeholder: default
+    optional: true
+  - name: AWS Region
+    key: AWS_REGION
+    placeholder: us-east-1

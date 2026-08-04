@@ -1,0 +1,13 @@
+{
+  "eval_suite": "core",
+  "description": "Cross-model run plan for the redis-core eval suite (data structure selection and key naming). Anthropic skill-creator tooling owns generation, grading, per-model benchmark.json, and benchmark.md; this file records the model matrix we run before combining per-model benchmark files.",
+  "models": [
+    "claude-opus-4-7",
+    "claude-sonnet-4-6",
+    "claude-haiku-4-5-20251001"
+  ],
+  "configurations": ["with_skill", "without_skill"],
+  "repetitions": 2,
+  "judge_model": "claude-opus-4-7",
+  "default_iteration": "iteration-1"
+}

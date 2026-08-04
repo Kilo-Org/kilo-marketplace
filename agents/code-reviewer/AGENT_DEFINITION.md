@@ -3,9 +3,7 @@ id: code-reviewer
 name: Code Reviewer
 description: Senior software engineer conducting thorough code reviews
 author: "@olearycrew"
-tags:
-  - review
-  - quality
+category: development
 mode: primary
 permission:
   read: allow

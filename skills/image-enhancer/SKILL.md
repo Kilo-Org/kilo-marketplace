@@ -9,6 +9,8 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: image-enhancer
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
+license: NOASSERTION
 ---
 
 # Image Enhancer
@@ -104,4 +106,3 @@ Original preserved as: screenshot-2024-original.png
 - **Social Media**: Optimize images for Twitter, LinkedIn, Instagram
 - **Presentations**: Upscale images for large screens
 - **Print Materials**: Increase resolution for physical media
-

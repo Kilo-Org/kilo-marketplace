@@ -1,0 +1,164 @@
+// ============================================================
+// NULL-CLEANING VARIABLE FUNCTIONS
+// ============================================================
+// Reusable SET variable functions for cleaning nulls, creating
+// boolean Dual fields, and guarding date arithmetic.
+//
+// HOW TO USE:
+// 1. Include this file early in your reload script:
+//    $(Must_Include=lib://Scripts/clean-null-function.qvs);
+// 2. Use in LOAD statements:
+//    $(vCleanNull(field_name)) AS [Output.Field]
+//    $(vCleanDate(date_field)) AS [Output.Date]
+//    $(vDualBool(flag_field, Yes Label, No Label)) AS [Output.Flag]
+//
+// LIMITATION:
+// These variable functions CANNOT wrap expressions containing
+// commas. Inside $(), commas separate parameters. If the field
+// expression contains ApplyMap, PurgeChar, IF, or any function
+// with commas, write the null check inline instead.
+//
+// Example of what BREAKS:
+//   $(vCleanNull(PurgeChar(field, '[]')))
+//   The engine sees: $1=PurgeChar(field, $2='[]')
+//
+// Example of the INLINE workaround:
+//   // Cannot use vCleanNull (comma in PurgeChar args)
+//   IF(IsNull(PurgeChar(field, '[]')) OR Len(Trim(PurgeChar(field, '[]'))) = 0,
+//      Null(), Trim(PurgeChar(field, '[]'))) AS [Output.Field]
+// ============================================================
+
+// ============================================================
+// vCleanNull: Clean string-encoded nulls to actual Qlik NULL
+// ============================================================
+// Handles: SQL NULL, empty string, and common string representations
+// of null from ETL pipelines, JSON ingestion, and data lakes.
+//
+// String values caught: 'null', 'nan', 'none', 'n/a', '[null]',
+// '(null)', '\n' (PostgreSQL COPY / Redshift UNLOAD sentinel),
+// 'na' (R / pandas), '#n/a' (Excel), '-' (some financial systems)
+// (case-insensitive, with leading/trailing whitespace trimmed)
+//
+// NOTE on '-': single-dash is a legitimate value in some domains
+// (negative-balance shorthand, separators in product codes, etc).
+// If your source uses '-' as a real value rather than a null
+// sentinel, remove '-' from the Match() list below.
+//
+// Usage: $(vCleanNull(field_name)) AS [Output.Field]
+// Input: simple field name or literal (NO commas in argument)
+// Output: Null() if null-like, otherwise Trim($1)
+// ============================================================
+SET vCleanNull = IF(IsNull($1) OR Len(Trim($1)) = 0
+    OR Match(Lower(Trim($1)), 'null', 'nan', 'none', 'n/a', '[null]', '(null)', '\n', 'na', '#n/a', '-'),
+    Null(), Trim($1));
+
+// ============================================================
+// vCleanDate: Parse string date fields, returning Null() for
+// null-like string values
+// ============================================================
+// Returns Null() when the input is genuinely NULL, blank, or a
+// string-encoded null ("null", "nan", "n/a", etc). Otherwise
+// parses the string into a Qlik date serial.
+//
+// NOTE on date arithmetic: Qlik's NULL propagates correctly
+// through arithmetic (Today() - NULL = NULL, Floor(NULL/365.25)
+// = NULL), so a genuinely NULL date does not by itself produce
+// a nonsense age. The real risk is non-NULL SENTINEL dates
+// (1900-01-01, 1901-01-01, epoch zero) that upstream systems
+// substitute for missing values. Guard date math against both
+// NULL and out-of-range sentinels -- see references/null-handling.md
+// Section 5 "Null Guards on Date Arithmetic" for the full pattern.
+//
+// Usage: $(vCleanDate(date_field)) AS [Output.Date]
+//
+// DATE FORMAT DEPENDENCY: Date#(Trim($1)) without a format string
+// relies on the app's DateFormat setting (SET DateFormat='YYYY-MM-DD';).
+// If your source dates use a different format than the app default,
+// you cannot use this variable function -- write Date#(field, 'format')
+// inline instead (the comma in Date#() breaks variable expansion anyway).
+//
+// NUMERIC SERIAL DATES: If the source field is already a Qlik date
+// serial number (numeric), Date#() is unnecessary -- Qlik already
+// treats it as a date. This function is for STRING date fields only.
+//
+// For date ARITHMETIC (tenure, duration, aging), wrap the entire calculation
+// with NULL + sentinel range guards:
+//   IF(IsNull($(vCleanDate(registration_date)))
+//       OR $(vCleanDate(registration_date)) < MakeDate(1901, 1, 2)
+//       OR $(vCleanDate(registration_date)) > Today(),
+//      Null(),
+//      Floor((Today() - $(vCleanDate(registration_date))) / 365.25))
+//   AS [Customer.TenureYears]
+// ============================================================
+SET vCleanDate = IF(IsNull($1) OR Len(Trim($1)) = 0
+    OR Match(Lower(Trim($1)), 'null', 'nan', 'none', 'n/a', '[null]'),
+    Null(), Date#(Trim($1)));
+
+// ============================================================
+// vDualBool: Convert a field to a boolean Dual value
+// ============================================================
+// Creates a Dual() field with text display AND numeric value:
+//   True match  -> Dual('$2', 1)   e.g., Dual('Active', 1)
+//   False       -> Dual('$3', 0)   e.g., Dual('Inactive', 0)
+//   NULL        -> Dual('Unknown', -1)  (distinct sort position)
+//
+// Usage: $(vDualBool(field_name, True Label, False Label))
+// Example: $(vDualBool(is_active, Active, Inactive)) AS [Customer.IsActive]
+//
+// Benefits:
+// - Text display in filter panes: "Active", "Inactive", "Unknown"
+// - Numeric aggregation: Sum([Customer.IsActive]) = count of active
+// - Correct sort order: Active(1) > Inactive(0) > Unknown(-1)
+//
+// NOTE: This function uses SET (not LET) because it contains
+// Dual() and quotes that must be preserved as a template.
+//
+// DOMAIN-SPECIFIC VALUES: The Match() only catches generic boolean
+// strings ('true', 'yes', 'y', '1', 'active', 'enabled'). If your
+// domain uses values like 'approved', 'confirmed', 'open', or
+// 'complete' as true indicators, write a custom IF instead of
+// using this variable function.
+// ============================================================
+SET vDualBool = IF(IsNull($1) OR Len(Trim($1)) = 0
+    OR Match(Lower(Trim($1)), 'null', 'nan', 'none', 'n/a', '[null]'),
+    Dual('Unknown', -1),
+    IF(Match(Lower(Trim($1)), 'true', 'yes', 'y', '1', 'active', 'enabled') > 0,
+        Dual('$2', 1),
+        Dual('$3', 0)));
+
+// ============================================================
+// vCleanNumeric: Clean null-like values in numeric fields
+// ============================================================
+// For numeric fields that may contain string-encoded nulls.
+// Returns Null() for null-like values, otherwise returns the
+// numeric interpretation of the field.
+//
+// WARNING: Num#() silently converts non-numeric strings to NULL.
+// If a field expected to be numeric contains text values like
+// "PENDING", "TBD", or "ERROR", this function will mask that
+// signal. Prefer using vCleanNumeric only AFTER you have confirmed
+// that the field contains only numeric values and null-like strings.
+// For fields with unknown content, inspect distinct values first
+// before applying this function.
+//
+// LOCALE FORMAT DEPENDENCY: Num#(Trim($1)) without a format string
+// relies on the app's SET DecimalSep and SET ThousandSep (per
+// help.qlik.com Number-interpretation functions reference). Note:
+// MoneyFormat does NOT apply to Num#() -- MoneyFormat governs only
+// Money() / Money#(). If the source field uses a different numeric
+// format than the app default, Num#() returns NULL with no error --
+// silently coercing valid numeric content to null. Examples:
+//   - US-defaults app, source value "1.234,56" (European format) -> NULL
+//   - European-defaults app, source value "1,234.56" (US format) -> NULL
+// Only use vCleanNumeric when the source field's numeric format matches
+// the app's SET DecimalSep and SET ThousandSep. If the formats may
+// differ, write Num#(field, 'format-string') inline instead -- the
+// comma in Num#() breaks variable expansion anyway. See help.qlik.com
+// Number-interpretation functions reference for the full format-string
+// syntax.
+//
+// Usage: $(vCleanNumeric(field_name)) AS [Output.Amount]
+// ============================================================
+SET vCleanNumeric = IF(IsNull($1) OR Len(Trim($1)) = 0
+    OR Match(Lower(Trim($1)), 'null', 'nan', 'none', 'n/a', '[null]'),
+    Null(), Num#(Trim($1)));

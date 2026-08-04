@@ -1,0 +1,26 @@
+id: openmetadata-mcp
+name: OpenMetadata MCP (Embedded)
+description: Connects to the MCP service embedded in OpenMetadata 1.12+ for catalog search, entity details, lineage, glossary, and data-quality workflows using OAuth or a PAT with the user's OpenMetadata RBAC permissions.
+author: OpenMetadata
+url: https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-mcp
+category: data
+prerequisites:
+  - OpenMetadata 1.12+ instance with the MCP application installed
+  - OpenMetadata personal access token or OAuth-capable MCP client
+content:
+  - name: Remote PAT
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{OPENMETADATA_URL}}/mcp",
+        "headers": {
+          "Authorization": "Bearer {{OPENMETADATA_TOKEN}}"
+        }
+      }
+parameters:
+  - name: OpenMetadata Base URL
+    key: OPENMETADATA_URL
+    placeholder: https://openmetadata.example.com
+  - name: OpenMetadata Personal Access Token
+    key: OPENMETADATA_TOKEN
+    placeholder: your_least_privilege_personal_access_token

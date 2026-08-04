@@ -1,0 +1,22 @@
+id: azure
+name: Azure MCP Server
+description: Provides read-only discovery and diagnostics across Azure services through Microsoft's official server, authenticated with the Azure Identity credential chain.
+author: Microsoft
+url: https://github.com/microsoft/mcp/tree/main/servers/Azure.Mcp.Server
+category: development
+prerequisites:
+  - Node.js 20+
+  - Azure CLI or another Azure Identity credential authenticated to the intended tenant
+content:
+  - name: NPX (official, read-only)
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@azure/mcp@3.0.0-beta.21", "server", "start", "--read-only"],
+        "env": {
+          "AZURE_MCP_COLLECT_TELEMETRY": "false",
+          "AZURE_MCP_COLLECT_TELEMETRY_MICROSOFT": "false"
+        }
+      }

@@ -1,0 +1,63 @@
+{
+  "skill_name": "redis-core",
+  "eval_suite": "core",
+  "description": "Core evals for the redis-core skill: data structure selection and key naming.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "object-profile-cache",
+      "prompt": "I'm caching user profile data in Redis. Each user has id, name, email, plan, and lastLogin. The email and plan fields change independently. I was going to store the whole profile as a JSON string at User_1001_Profile. What Redis data structure and key naming pattern should I use?",
+      "expected_output": "Recommends a Redis Hash for the flat user profile, explains why field-level updates are useful, and proposes short colon-separated keys such as user:1001:profile.",
+      "covered_rules": ["data-choose-structure", "data-key-naming"],
+      "expectations": [
+        "The output recommends a Redis Hash as the primary structure for the flat user profile fields.",
+        "The output explains that a Hash supports independent or field-level updates without rewriting the entire object.",
+        "The output discourages storing this flat profile as a JSON string or opaque string blob.",
+        "The output includes at least one concise colon-separated key example for the user profile, such as user:1001:profile.",
+        "The output keeps JSON as optional only for nested or hierarchical data, not as the main recommendation for this prompt."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "unique-membership",
+      "prompt": "For an article page, I need to track the unique user IDs that liked the article, quickly check if a user already liked it, and show the total like count. What Redis type and key names would you suggest?",
+      "expected_output": "Recommends a Redis Set for unique membership, mentions membership/count operations, and uses readable keys such as article:987:likes.",
+      "covered_rules": ["data-choose-structure", "data-key-naming"],
+      "expectations": [
+        "The output recommends a Redis Set as the primary structure for unique user IDs.",
+        "The output mentions membership and count operations, such as SADD, SISMEMBER, and SCARD, or clearly equivalent Redis operations.",
+        "The output includes at least one concise colon-separated key example for article likes, such as article:987:likes.",
+        "The output avoids recommending a List as the primary structure for this uniqueness and membership-check use case.",
+        "The output is concise and does not introduce unnecessary schemas, indexes, or unrelated Redis features."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "leaderboard-ranking",
+      "prompt": "I'm building a game leaderboard in Redis. I need to update player scores, fetch the top 10 players, and find a player's rank. What data structure and key pattern should I use?",
+      "expected_output": "Recommends a Redis Sorted Set for score-based ranking, mentions score/rank operations, and proposes a key such as game:space-invaders:leaderboard.",
+      "covered_rules": ["data-choose-structure", "data-key-naming"],
+      "expectations": [
+        "The output recommends a Redis Sorted Set as the primary structure for the leaderboard.",
+        "The output explains that Sorted Sets order members by score.",
+        "The output mentions score, top-N, or rank operations, such as ZADD, ZREVRANGE, ZRANGE, ZRANK, or ZREVRANK.",
+        "The output includes at least one concise colon-separated key example for the leaderboard.",
+        "The output avoids recommending a Hash, List, or Set as the primary structure for score-based ranking."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "key-naming-cleanup",
+      "prompt": "Can you clean up these Redis key names and explain the convention? User_1001_Profile, my key with spaces, http://www.example.com/store/products/product.html?id=8361, orderItemsFor2024, tenant42User7Cart",
+      "expected_output": "Converts the examples to short, readable, colon-separated Redis keys and explains why spaces, inconsistent casing, and very long URL keys are poor choices.",
+      "covered_rules": ["data-key-naming"],
+      "expectations": [
+        "The output uses colon-separated key names with a consistent hierarchy.",
+        "The output avoids spaces, inconsistent casing, and very long full-URL keys in the proposed replacements.",
+        "The output proposes extracting a short identifier or using a digest for the long URL key.",
+        "The output includes concrete replacements for all five provided key names.",
+        "The output explains that shorter readable keys help maintainability, debugging, or memory usage."
+      ]
+    }
+  ]
+}

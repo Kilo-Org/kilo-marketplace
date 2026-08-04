@@ -1,0 +1,6 @@
+diff -rN -U0 --ignore-trailing-space a/flink-best-practices/SKILL.md b/flink-best-practices/SKILL.md
+--- a/flink-best-practices/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/flink-best-practices/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -500 +500 @@
+-  image: my-registry/my-flink-job:latest
++  image: ${FLINK_IMAGE_REF:?Set FLINK_IMAGE_REF to my-registry/my-flink-job@sha256:<reviewed-digest>}

@@ -3,9 +3,7 @@ id: code-skeptic
 name: Code Skeptic
 description: For when you need your code criticized like nobody's business
 author: "@cau1k"
-tags:
-  - review
-  - quality
+category: development
 mode: primary
 permission:
   read: allow

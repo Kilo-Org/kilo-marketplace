@@ -1,0 +1,6 @@
+diff -rN -U0 --ignore-trailing-space a/deploying-airflow/SKILL.md b/deploying-airflow/SKILL.md
+--- a/deploying-airflow/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/deploying-airflow/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -138 +138 @@
+-  image: apache/airflow:3  # Use the latest Airflow 3.x release
++  image: ${AIRFLOW_IMAGE_REF:?Set AIRFLOW_IMAGE_REF to apache/airflow@sha256:<reviewed-digest>}

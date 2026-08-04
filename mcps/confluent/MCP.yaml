@@ -1,0 +1,32 @@
+id: confluent
+name: Confluent MCP Server
+description: Connects to Confluent Cloud, Confluent Platform, or Kafka for read-focused topic, schema, connector, Flink, metrics, and documentation inspection from a user-supplied config.
+author: Confluent
+url: https://github.com/confluentinc/mcp-confluent
+category: data
+prerequisites:
+  - Node.js 22+
+  - Confluent MCP YAML configuration containing least-privilege credentials
+content:
+  - name: NPX (official, read-focused allowlist)
+    prerequisites:
+      - Node.js 22+
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@confluentinc/mcp-confluent@1.4.0",
+          "--config",
+          "{{CONFLUENT_CONFIG_PATH}}",
+          "--allow-tools",
+          "search-product-docs,get-product-doc-page,explain-disabled-tools,list-topics,list-consumer-groups,describe-consumer-group,get-consumer-group-lag,get-topic-config,consume-messages,list-schemas,list-organizations,list-environments,read-environment,list-clusters,list-flink-statements,read-flink-statement,get-flink-statement-exceptions,list-flink-catalogs,list-flink-databases,list-flink-tables,describe-flink-table,get-flink-table-info,check-flink-statement-health,detect-flink-statement-issues,get-flink-statement-profile,list-connectors,get-connector-config,get-connector-offsets,get-connector-status,get-connector-tasks,get-connector-error-summary,get-connector-error-recommendations,get-connector-logs,search-topics-by-tag,search-topics-by-name,list-tags,list-tableflow-topics,read-tableflow-topic,list-tableflow-regions,list-tableflow-catalog-integrations,list-available-metrics,query-metrics,list-billing-costs"
+        ],
+        "env": {
+          "DO_NOT_TRACK": "true"
+        }
+      }
+parameters:
+  - name: Confluent MCP config path
+    key: CONFLUENT_CONFIG_PATH
+    placeholder: /absolute/path/to/config.yaml

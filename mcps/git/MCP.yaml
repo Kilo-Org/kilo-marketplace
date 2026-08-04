@@ -4,12 +4,7 @@ description: Provides Git repository interaction and automation tools for readin
   repositories through commands like status, diff, commit, branch management, and more.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/git
-tags:
-  - git
-  - version-control
-  - repository-management
-  - source-control
-  - development
+category: development
 content:
   - name: UVX
     prerequisites:

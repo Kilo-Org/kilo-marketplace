@@ -4,12 +4,7 @@ description: Retrieves and analyzes error reports, stacktraces, and debugging in
   assistants to inspect and understand application issues.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sentry
-tags:
-  - error-tracking
-  - debugging
-  - stacktraces
-  - issue-monitoring
-  - application-monitoring
+category: observability
 content:
   - name: UVX
     prerequisites:

@@ -1,0 +1,33 @@
+id: aws
+name: AWS Managed MCP Server
+description: Connects to AWS's managed MCP service through the official SigV4 proxy, using local AWS credentials and an explicitly selected operation region.
+author: Amazon Web Services
+url: https://github.com/aws/mcp-proxy-for-aws
+category: development
+prerequisites:
+  - Python and uv
+  - AWS CLI 2.32.0+ with authenticated credentials
+content:
+  - name: UVX SigV4 proxy (official)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "mcp-proxy-for-aws==1.6.2",
+          "https://aws-mcp.us-east-1.api.aws/mcp",
+          "--metadata",
+          "AWS_REGION={{AWS_REGION}}"
+        ],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS operation region
+    key: AWS_REGION
+    placeholder: us-east-1

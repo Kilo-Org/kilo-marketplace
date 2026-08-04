@@ -1,13 +1,17 @@
 ---
 name: dbt
-description: Skills for analytics engineering with dbt - building models, writing tests, querying the semantic layer, troubleshooting jobs, and more. Use when doing any dbt analytics engineering work.
+description: >-
+  Skills for analytics engineering with dbt - building models, writing tests,
+  querying the semantic layer, troubleshooting jobs, and more. Use when doing
+  any dbt analytics engineering work.
 license: Apache-2.0
 metadata:
   category: development
   author: dbt-labs
   source:
-    repository: https://github.com/dbt-labs/dbt-agent-skills
+    repository: 'https://github.com/dbt-labs/dbt-agent-skills'
     path: skills/dbt
+    commit: f30da77590f0ec1a4c78ff03599c3c715077f1c1
 ---
 
 # dbt Analytics Engineering Skills
@@ -32,7 +36,7 @@ Writes and executes SQL queries against the data warehouse using dbt's Semantic 
 Diagnoses dbt Cloud/platform job failures by analyzing run logs, querying the Admin API, reviewing git history, and investigating data issues. Use when a dbt Cloud/platform job fails and you need to diagnose the root cause.
 
 ### configuring-dbt-mcp-server
-Generates MCP server configuration JSON, resolves authentication setup, and validates server connectivity for dbt. Use when setting up, configuring, or troubleshooting the dbt MCP server for AI tools.
+Generates MCP server configuration JSON, resolves authentication setup, and validates server connectivity for dbt. Use when setting up, configuring, or troubleshooting the dbt MCP server for compatible MCP clients.
 
 ### fetching-dbt-docs
 Retrieves and searches dbt documentation pages in LLM-friendly markdown format. Use when fetching dbt documentation, looking up dbt features, or answering questions about dbt Cloud, dbt Core, or the dbt Semantic Layer.

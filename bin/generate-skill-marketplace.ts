@@ -7,12 +7,19 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { fileURLToPath } from "url";
 import matter from "gray-matter";
-import { Document, Scalar } from "yaml";
+import {
+  foldedScalar,
+  generateMarketplace,
+  listVisibleDirectories,
+  loadMcpIds,
+  repoPathFromBin,
+  validateRequirements,
+  validateSuggestFor,
+} from "./marketplace-generator-utils.ts";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const skillsDir = path.join(__dirname, "..", "skills");
+const skillsDir = repoPathFromBin("skills");
+const mcpsDir = repoPathFromBin("mcps");
 
 const GITHUB_BASE_URL =
   "https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills";
@@ -21,39 +28,49 @@ const RAW_BASE_URL =
 const CONTENT_BASE_URL =
   "https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest";
 
-// Create a folded block scalar with strip chomping (>-)
-function foldedScalar(value: string): Scalar {
-  const scalar = new Scalar(value);
-  scalar.type = Scalar.BLOCK_FOLDED;
-  scalar.blockChomping = "strip";
-  return scalar;
-}
-
-const items = fs
-  .readdirSync(skillsDir, { withFileTypes: true })
-  .filter((d) => d.isDirectory() && !d.name.startsWith("."))
-  .map((dir) => {
+const skillIds = new Set(listVisibleDirectories(skillsDir));
+const mcpIds = loadMcpIds(mcpsDir);
+const declaredNames = new Set<string>();
+generateMarketplace({
+  rootDir: skillsDir,
+  parseItem: (dirName) => {
     const { data } = matter(
-      fs.readFileSync(path.join(skillsDir, dir.name, "SKILL.md"), "utf-8"),
+      fs.readFileSync(path.join(skillsDir, dirName, "SKILL.md"), "utf-8"),
+    );
+    if (data.name !== dirName) {
+      throw new Error(
+        `${dirName}/SKILL.md: name must match directory (found "${data.name ?? "missing"}")`,
+      );
+    }
+    if (declaredNames.has(data.name)) {
+      throw new Error(`Duplicate skill name: ${data.name}`);
+    }
+    declaredNames.add(data.name);
+    const requirements = validateRequirements(
+      data.requirements,
+      dirName,
+      skillIds,
+      mcpIds,
+      { subgroup: "skills", id: dirName },
     );
     console.log(`Added: ${data.name}`);
     return {
-      id: dir.name,
+      id: dirName,
       description: foldedScalar(data.description),
       category: data.metadata?.category || undefined,
-      githubUrl: `${GITHUB_BASE_URL}/${dir.name}`,
-      rawUrl: `${RAW_BASE_URL}/${dir.name}/SKILL.md`,
-      content: `${CONTENT_BASE_URL}/${dir.name}.tar.gz`,
+      suggest_for: validateSuggestFor(data.metadata?.suggest_for, dirName, {
+        fieldName: "metadata.suggest_for",
+        filenameExample: "*.rb",
+      }),
+      requirements,
+      githubUrl: `${GITHUB_BASE_URL}/${dirName}`,
+      rawUrl: `${RAW_BASE_URL}/${dirName}/SKILL.md`,
+      content: `${CONTENT_BASE_URL}/${dirName}.tar.gz`,
     };
-  })
-  .sort((a, b) => {
+  },
+  sortItems: (a, b) => {
     const catCmp = (a.category || "zzz").localeCompare(b.category || "zzz");
     return catCmp !== 0 ? catCmp : a.id.localeCompare(b.id);
-  });
-
-const doc = new Document({ items });
-const output = doc.toString({ lineWidth: 120 });
-
-fs.writeFileSync(path.join(skillsDir, "marketplace.yaml"), output);
-
-console.log(`\nGenerated marketplace.yaml with ${items.length} skills`);
+  },
+  finalMessage: (count) => `\nGenerated marketplace.yaml with ${count} skills`,
+});

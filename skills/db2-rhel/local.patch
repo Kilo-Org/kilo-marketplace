@@ -1,0 +1,10 @@
+diff -rN -U0 --ignore-trailing-space a/db2-rhel/install-admin.md b/db2-rhel/install-admin.md
+--- a/db2-rhel/install-admin.md	2000-01-01 00:00:00.000000000 +0000
++++ b/db2-rhel/install-admin.md	2000-01-01 00:00:00.000000000 +0000
+@@ -395 +394,0 @@
+-
+diff -rN -U0 --ignore-trailing-space a/db2-rhel/security-backup-recovery.md b/db2-rhel/security-backup-recovery.md
+--- a/db2-rhel/security-backup-recovery.md	2000-01-01 00:00:00.000000000 +0000
++++ b/db2-rhel/security-backup-recovery.md	2000-01-01 00:00:00.000000000 +0000
+@@ -401 +400,0 @@
+-

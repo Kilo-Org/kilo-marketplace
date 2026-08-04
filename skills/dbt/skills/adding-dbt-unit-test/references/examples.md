@@ -1,6 +1,6 @@
 ## Another example of unit testing a model
 
-This example creates a new `dim_customers` model with a field `is_valid_email_address` that calculates whether or not the customer’s email is valid: 
+This example creates a new `dim_customers` model with a field `is_valid_email_address` that calculates whether or not the customer’s email is valid:
 
 `dim_customers.sql`
 
@@ -16,7 +16,7 @@ accepted_email_domains as (
     select * from {{ ref('top_level_email_domains') }}
 
 ),
-	
+
 check_valid_emails as (
 
     select
@@ -123,7 +123,7 @@ unit_tests:
 
 ### Fixture `csv` example
 
-Or, you can provide the name of a CSV file in the `test-paths` location (`tests/fixtures` by default): 
+Or, you can provide the name of a CSV file in the `test-paths` location (`tests/fixtures` by default):
 
 `models/schema.yml`
 
@@ -173,7 +173,7 @@ unit_tests:
 
 ### Fixture `sql` example
 
-Or, you can provide the name of a SQL file in the `test-paths` location (`tests/fixtures` by default): 
+Or, you can provide the name of a SQL file in the `test-paths` location (`tests/fixtures` by default):
 
 `models/schema.yml`
 

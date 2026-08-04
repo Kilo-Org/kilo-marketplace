@@ -4,12 +4,7 @@ description: A persistent memory system using a local knowledge graph that enabl
   about users across conversations through entities, relations, and observations.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/memory
-tags:
-  - knowledge-graph
-  - persistent-memory
-  - entity-management
-  - graph-database
-  - memory-storage
+category: data
 content:
   - name: NPX
     prerequisites:

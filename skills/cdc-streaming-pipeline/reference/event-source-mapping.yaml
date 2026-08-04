@@ -1,0 +1,99 @@
+# Reference: Kinesis -> Lambda EventSourceMapping for a CDC consumer.
+#
+# Targets Redshift Serverless via the Redshift Data API. Every parameter
+# below has a reason; comments call out what each one prevents.
+#
+# Drop this into the Resources section of a CloudFormation template that
+# also defines the Kinesis stream (CdcStream), the Lambda function
+# (CdcProcessorFunction), and the Lambda execution role.
+
+Resources:
+
+  CdcProcessorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${ProjectName}-processor"
+      Runtime: python3.11
+      Handler: cdc_processor.lambda_handler
+      Role: !GetAtt LambdaExecRole.Arn
+      # Headroom for synchronous Redshift describe-statement polling.
+      # Worst case: ceil(BatchSize / ROWS_PER_CHUNK) * STATEMENT_POLL_TIMEOUT_S
+      # plus boto3 RTT overhead. With BatchSize=100, ROWS_PER_CHUNK=40,
+      # STATEMENT_POLL_TIMEOUT_S=20, that is 3 * 20 = 60s + overhead.
+      Timeout: 120
+      MemorySize: 256
+      Environment:
+        Variables:
+          REDSHIFT_WORKGROUP: !Ref RedshiftWorkgroup
+          REDSHIFT_DATABASE: dev
+          # 200-param Data API cap / 5 params per row = 40 rows max.
+          ROWS_PER_CHUNK: "40"
+          STATEMENT_POLL_TIMEOUT_S: "20"
+      Code:
+        ZipFile: |
+          # PLACEHOLDER. Real code is deployed by a follow-up script.
+          # Raise (not return). If Kinesis ever invokes this placeholder,
+          # returning 200 would silently advance the iterator past CDC
+          # events that never made it to Redshift. Raising forces the
+          # EventSourceMapping to retry and surfaces the misconfiguration
+          # in CloudWatch.
+          def lambda_handler(event, context):
+              raise RuntimeError(
+                  "Placeholder Lambda code is running. "
+                  "Deploy the real handler before enabling the event source."
+              )
+
+  CdcEventSource:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !GetAtt CdcStream.Arn
+      FunctionName: !Ref CdcProcessorFunction
+
+      # LATEST: start at tail. Use TRIM_HORIZON for backfill-from-stream
+      # scenarios. AT_TIMESTAMP if you need a specific resume point.
+      StartingPosition: LATEST
+
+      # BatchSize: max records delivered per invocation. The Lambda chunks
+      # internally to stay within Redshift Data API's 200-parameter limit
+      # (40 records * 5 params each). Values up to ~400 work but increase
+      # tail latency on partial batches.
+      BatchSize: 100
+      MaximumBatchingWindowInSeconds: 5
+
+      # Operational resilience. Bound retries on poison records so they
+      # don't block shard processing forever (default would retry until
+      # the record expires from the stream after up to 24h).
+      MaximumRetryAttempts: 5
+
+      # Cap how long a record can be retried before it is moved to the
+      # DLQ (or dropped, if no DLQ). Without this, a record that keeps
+      # failing for transient reasons (Redshift unavailability, etc.)
+      # can hold up shard progress for the full Kinesis retention window
+      # (up to 24h on a Standard stream). 6h is generous for a CDC
+      # pipeline; tighten if you have stricter freshness SLAs.
+      MaximumRecordAgeInSeconds: 21600
+
+      # On error, retry with each half of the batch separately. Isolates
+      # poison records quickly without re-processing the whole batch.
+      BisectBatchOnFunctionError: true
+
+      # Send permanently-failed batches to an SQS DLQ. Each DLQ message
+      # is a *pointer* (stream ARN + shard ID + sequence numbers), not
+      # the original records. Replay requires reading the stream again
+      # at the recorded position. The Lambda execution role does not
+      # need any DLQ permission; the Lambda service writes to the DLQ.
+      DestinationConfig:
+        OnFailure:
+          Destination: !GetAtt CdcDlq.Arn
+
+      Enabled: true
+
+  # SQS DLQ for permanently-failed batches. SQS is the simplest target
+  # for OnFailure; SNS is also supported if you want fan-out alerting.
+  # Long retention so an operator can investigate at their own pace.
+  CdcDlq:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub "${ProjectName}-cdc-dlq"
+      MessageRetentionPeriod: 1209600  # 14 days, the SQS max
+      VisibilityTimeout: 60

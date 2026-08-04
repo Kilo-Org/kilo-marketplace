@@ -4,12 +4,7 @@ description: Provides comprehensive access to Raygun's error tracking, crash rep
   features through API integration, enabling management of applications, errors, deployments, and performance metrics.
 author: MindscapeHQ
 url: https://github.com/MindscapeHQ/mcp-server-raygun
-tags:
-  - error-tracking
-  - crash-reporting
-  - performance-monitoring
-  - debugging
-  - application-monitoring
+category: observability
 content:
   - name: NPX
     prerequisites:

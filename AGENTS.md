@@ -36,12 +36,13 @@ name: skill-name
 description: A clear description of what the skill does and when it should be used. Use third-person (e.g., "This skill should be used when...").
 license: MIT # Either license or license_path is required, not both
 metadata:
-  category: development # or business-marketing, etc.
+  category: development # or business, etc.
   author: author-name # Optional - who created the skill
   source: # Optional - for skills from external sources
     repository: https://github.com/org/repo
     path: path/to/skill/in/repo
     license_path: path/to/LICENSE # Path to LICENSE in source repo (alternative to license)
+    commit: 0123456789abcdef0123456789abcdef01234567 # Imported revision
 ---
 ```
 
@@ -53,13 +54,14 @@ metadata:
 | `description`                | Yes      | Clear description of what the skill does and when to use it           |
 | `license`                    | Yes*     | SPDX license identifier. Either `license` or `metadata.source.license_path` is required, not both |
 | `metadata`                   | No       | Container for additional metadata                                     |
-| `metadata.category`          | No       | Category for organization (e.g., `development`, `business-marketing`) |
+| `metadata.category`          | No       | Category for organization (e.g., `development`, `business`) |
 | `metadata.author`            | No       | Author or organization name                                           |
 | `metadata.version`           | No       | Semantic version string                                               |
 | `metadata.source`            | No       | Source information for external skills                                |
 | `metadata.source.repository` | No       | URL to the source repository                                          |
 | `metadata.source.path`       | No       | Path within the repository                                            |
 | `metadata.source.license_path` | Yes*  | Path to LICENSE in source repo (alternative to `license`)             |
+| `metadata.source.commit`    | New      | Full 40-character Git SHA for new imports and updates                  |
 
 ### Markdown Body (Required)
 
