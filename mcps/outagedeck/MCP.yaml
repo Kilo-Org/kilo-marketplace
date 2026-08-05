@@ -1,0 +1,14 @@
+id: outagedeck
+name: OutageDeck
+description: Provides keyless live status, active incidents, incident timelines, and uptime history for 172 cloud and SaaS
+  vendors from their official feeds through a hosted remote MCP server.
+author: OutageDeck
+url: https://github.com/outagedeck/mcp
+category: observability
+content:
+  - name: Hosted remote server (keyless public tools)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://outagedeck.com/api/mcp"
+      }
