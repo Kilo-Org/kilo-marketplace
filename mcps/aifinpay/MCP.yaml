@@ -1,0 +1,25 @@
+id: aifinpay
+name: AiFinPay
+description: Gives AI agents non-custodial payment tools for wallet addresses, quotes, paid provider calls, HTTP 402 settlement, receipts, account linking, and direct split payments.
+author: AiFinPay
+url: https://github.com/AiFinPay/sdk/tree/main/mcp
+category: business
+prerequisites:
+  - Node.js 18 or newer
+  - A funded agent wallet is required only when executing real payments
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@aifinpay/mcp"],
+        "env": {
+          "AIFINPAY_MAX_USD": "{{AIFINPAY_MAX_USD}}"
+        }
+      }
+parameters:
+  - name: Maximum USD Per Payment
+    key: AIFINPAY_MAX_USD
+    placeholder: "0.50"

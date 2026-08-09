@@ -1,4 +1,21 @@
 items:
+  - id: aifinpay-sdk
+    description: >-
+      Integrate non-custodial payments into AI agents with the AiFinPay Node SDK. Use for x402 or AIFP-1 paid API calls,
+      provider payments, agent wallets, spend limits, receipts, and pay-per-call workflows.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aifinpay-sdk
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aifinpay-sdk/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aifinpay-sdk.tar.gz
+  - id: aifp-1-monetization
+    description: >-
+      Implement AIFP-1 monetization for AI traffic on websites, APIs, MCP servers, content, and digital services. Use
+      for HTTP 402 payment challenges, configurable free quotas, fixed action pricing, receipt verification, and
+      merchant-side agent payment flows.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aifp-1-monetization
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aifp-1-monetization/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aifp-1-monetization.tar.gz
   - id: competitive-ads-extractor
     description: >-
       Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging,
