@@ -1,0 +1,26 @@
+{
+  "legal_business_name": "Example Corp LLC",
+  "business_registration_number": "IL-12345678",
+  "business_type": "PRIVATE_PROFIT",
+  "industry_category": "RETAIL",
+  "ein": "123-456789",
+  "business_address": "123 Main St, Springfield, IL 62701, US",
+  "business_phone": "2175550101",
+  "contact_email": "compliance-at-example.com",
+  "website": "https://example.com",
+  "opt_in_mechanism_url": "https://example.com/signup",
+  "opt_keywords": {
+    "stop": [],
+    "start": ["START"],
+    "help": ["HELP"]
+  },
+  "use_cases": [
+    {
+      "selection": "Transactional",
+      "description": "Shipping and delivery updates.",
+      "sample_messages": [
+        "Order shipped!"
+      ]
+    }
+  ]
+}

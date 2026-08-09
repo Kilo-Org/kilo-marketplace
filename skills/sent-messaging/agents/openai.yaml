@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sent Messaging"
+  short_description: "Send and inspect Sent message lifecycles"
+  default_prompt: "Use $sent-messaging to preview and send a templated message safely."

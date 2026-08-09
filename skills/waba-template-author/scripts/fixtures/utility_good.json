@@ -1,0 +1,27 @@
+{
+  "name": "shipping_update_v2",
+  "language": "en_US",
+  "category": "UTILITY",
+  "components": [
+    {
+      "type": "BODY",
+      "text": "Hi {{1}}, package #{{2}} is out for delivery and should arrive by {{3}}.",
+      "example": { "body_text": [["Jordan", "A1029", "6 PM today"]] }
+    },
+    {
+      "type": "FOOTER",
+      "text": "Reply STOP to opt out."
+    },
+    {
+      "type": "BUTTONS",
+      "buttons": [
+        {
+          "type": "URL",
+          "text": "Track package",
+          "url": "https://example.com/track/{{1}}",
+          "example": ["https://example.com/track/A1029"]
+        }
+      ]
+    }
+  ]
+}

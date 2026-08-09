@@ -1,0 +1,35 @@
+{
+  "legal_business_name": "Example Corp LLC",
+  "business_registration_number": "IL-12345678",
+  "business_type": "PRIVATE_PROFIT",
+  "industry_category": "RETAIL",
+  "ein": "12-3456789",
+  "business_address": "123 Main St, Springfield, IL 62701, US",
+  "business_phone": "+12175550101",
+  "contact_email": "compliance@example.com",
+  "website": "https://example.com",
+  "privacy_policy_url": "https://example.com/privacy",
+  "opt_in_mechanism_url": "https://example.com/signup?sms=consent",
+  "opt_keywords": {
+    "stop": ["STOP", "UNSUBSCRIBE", "CANCEL"],
+    "start": ["START", "UNSTOP"],
+    "help": ["HELP", "INFO"]
+  },
+  "use_cases": [
+    {
+      "selection": "Notifications",
+      "description": "Shipping and delivery updates for orders placed on example.com.",
+      "sample_messages": [
+        "Example: Your order #1029 has shipped. Track: https://example.com/track/1029. Reply STOP to opt out.",
+        "Example: Order #1042 is out for delivery today. Reply STOP to opt out."
+      ]
+    },
+    {
+      "selection": "Authentication",
+      "description": "One-time login codes for example.com account holders.",
+      "sample_messages": [
+        "Example: Your verification code is 482910. It expires in 10 minutes."
+      ]
+    }
+  ]
+}
