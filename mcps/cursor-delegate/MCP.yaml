@@ -1,0 +1,20 @@
+id: cursor-delegate
+name: Cursor Delegate
+description: Delegates coding work to Cursor's CLI agent (Composer 2.5) and returns one structured result — final answer,
+  changed files, session id, and the plan. Keeps the calling model on briefing and reviewing the diff while the
+  multi-file editing runs on Cursor's own usage allowance. Supports plan-first and read-only ask modes, and resuming a
+  session to answer the agent's clarifying questions.
+author: andreilungeanu
+url: https://github.com/andreilungeanu/cursor-delegate-mcp
+category: development
+prerequisites:
+  - Cursor account with the Cursor CLI installed and signed in via `cursor-agent login`
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "cursor-delegate-mcp"]
+      }
