@@ -1,0 +1,16 @@
+id: sent
+name: Sent
+description: Sends and monitors customer messages across SMS, WhatsApp, and RCS; manages contacts and templates; and reports account readiness and delivery analytics.
+author: Sent
+url: https://github.com/sentdm/sent-plugin
+category: development
+prerequisites:
+  - Sent account
+  - Access to a Sent organization and Sender Profile
+content:
+  - name: Sent Hosted MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.sent.dm/mcp"
+      }
