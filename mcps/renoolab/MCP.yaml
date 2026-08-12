@@ -1,0 +1,18 @@
+id: renoolab
+name: RenooLab
+description: >-
+  Finds real building tradespeople in France with rechercher_artisans, submits a moderated contact request after explicit
+  confirmation with contacter_artisan, and, after explicit professional confirmation, creates an inactive free professional
+  profile with an activation email through creer_profil_artisan.
+author: RenooLab
+url: https://github.com/mehdimicra/renoolab-mcp
+category: search
+prerequisites:
+  - Browser access to complete RenooLab OAuth consent; no RenooLab account or API key is required
+content:
+  - name: RenooLab hosted OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.renoolab.fr/mcp"
+      }

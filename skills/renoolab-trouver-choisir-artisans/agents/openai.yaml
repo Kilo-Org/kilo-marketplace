@@ -1,0 +1,15 @@
+interface:
+  display_name: "Trouver des artisans"
+  short_description: "Rechercher et comparer des professionnels locaux"
+  default_prompt: "Utilise $renoolab-trouver-choisir-artisans pour trouver les professionnels adaptés à mon projet."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "renoolab"
+      description: "Recherche et actions RenooLab pour les travaux"
+      transport: "streamable_http"
+      url: "https://mcp.renoolab.fr/mcp"
+
+policy:
+  allow_implicit_invocation: true
