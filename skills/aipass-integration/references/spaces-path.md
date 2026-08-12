@@ -2,9 +2,9 @@
 
 AI Pass Spaces is an optional hosted-app path for a self-contained HTML result. It is not required to integrate AI Pass, and an existing application should remain on its current host unless the user asks to move it.
 
-Read the canonical standalone manual for the Space app format and publication calls:
+Read the bundled standalone manual for the Space app format and publication calls:
 
-https://aipass.one/skills/aipass-spaces/SKILL.md
+[AI Pass Spaces manual](aipass-spaces.md)
 
 The standard integration grant already contains the displayed Space scopes and one project app slug. If it is still usable, reuse it with the standalone manual's REST calls; never start a second device request. If no grant exists yet, the manual creates the same one-month project-bound authorization. Never ask for a generic API key, password, browser cookie, session token, device code, or setup grant. Never call the human approval endpoint on the user's behalf.
 
