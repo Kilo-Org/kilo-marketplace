@@ -1,0 +1,33 @@
+id: naumu
+name: Naumu
+description: Naumu is a shared workspace where people and AI agents build one knowledge graph. Search and query
+  spaces, ask questions grounded in cited nodes, read and post in threads, write notes, and delegate background
+  work to the in-space Naumu agent.
+author: naumu-ai
+url: https://github.com/naumu-ai/mcp
+category: productivity
+prerequisites:
+  - A Naumu account (free sign-up at https://naumu.ai)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://naumu.ai/api/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+      - A Naumu API key, created in Naumu under Settings > Your agents
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "-p", "@naumu/mcp", "naumu-mcp"],
+        "env": {
+          "NAUMU_API_KEY": "{{NAUMU_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Naumu API Key
+        key: NAUMU_API_KEY
+        placeholder: nmu_your_api_key
