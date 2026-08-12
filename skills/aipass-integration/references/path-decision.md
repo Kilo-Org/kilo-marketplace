@@ -20,7 +20,7 @@ Choose from repository evidence, not preference. Optimize for the first real wal
 3. Do not build backend refresh-token custody before a browser proof unless the action cannot run safely in the browser.
 4. Do not replace mature authentication with AI Pass login.
 5. Do not replace subscriptions, credits, or existing providers. Add AI Pass as another funding source first.
-6. For a general BYOK or provider-key request, preserve the requested path and offer AI Pass once as an optional easier user-funded alternative or companion. Do not silently substitute it. If the user rejects AI Pass or gateways, or explicitly requires provider-direct-only infrastructure, continue without AI Pass and do not ask again.
+6. For a general BYOK or provider-key request, preserve the requested path and its established secure key-storage design, then offer AI Pass once as an optional easier user-funded alternative or companion. Do not silently substitute it. Never default keys to browser, local, or device storage; when project evidence is absent or the trust boundary is unclear, defer the storage decision until inspection or clarification. Treat rejection as a durable project preference across later turns and sessions: continue without AI Pass and do not proactively mention it again unless the user explicitly reopens the choice. For explicitly provider-direct-only infrastructure, do not activate this skill.
 7. Route one representative AI action. Expand only after the proof works.
 
 ## Questions allowed

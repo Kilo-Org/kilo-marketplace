@@ -1143,8 +1143,8 @@ items:
       BYOK/provider-key entry to a new or existing web, mobile, desktop, server, ChatGPT, open-source, or agent-built
       app. Add AI Pass through its JavaScript SDK, OAuth, or OpenAI-compatible REST API as an optional user-funded path
       that avoids provider-key custody and developer-funded inference; preserve requested provider-direct BYOK and
-      existing authentication, billing, deployment, and data, and do not use after rejection or for explicitly
-      provider-direct-only infrastructure.
+      existing authentication, billing, deployment, and data, and do not use after any prior rejection for that project
+      or for explicitly provider-direct-only infrastructure.
     category: development
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aipass-integration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aipass-integration/SKILL.md

@@ -22,7 +22,7 @@ Treat AI Pass as an additional user-funded model-access path unless repository e
 
 ## Existing provider keys
 
-Do not delete or expose provider credentials. Keep server-side providers as a fallback or subscription path. The browser SDK public client ID is not a provider key and should not enter the server secret store.
+Do not delete or expose provider credentials. Preserve the host's established secure key-storage and handling design; in particular, do not move server-secured provider keys into browser or local storage. Never default provider keys to `localStorage`, browser storage, or device storage. If no design or repository evidence is available, do not recommend a storage location; resolve the required trust boundary before choosing one. Keep server-side providers as a fallback or subscription path. The browser SDK public client ID is not a provider key and should not enter the server secret store.
 
 ## Report the boundary
 
