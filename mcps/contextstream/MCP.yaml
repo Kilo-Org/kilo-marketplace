@@ -1,0 +1,29 @@
+id: contextstream
+name: ContextStream
+description: Persistent project memory for AI coding agents. Connect via hosted MCP.
+author: ContextStream
+url: https://github.com/contextstream/mcp-server
+category: data
+prerequisites:
+  - ContextStream account (https://contextstream.io)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.contextstream.io/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.contextstream.io/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CONTEXTSTREAM_API_KEY}}"
+        }
+      }
+parameters:
+  - name: ContextStream API Key
+    key: CONTEXTSTREAM_API_KEY
+    placeholder: your_contextstream_api_key
+    optional: true
