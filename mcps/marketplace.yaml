@@ -4603,9 +4603,10 @@ items:
         key: DATABRICKS_TOKEN
         placeholder: your_databricks_pat
   - id: upstash
-    name: Upstash
-    description: Manage and debug Upstash resources — Redis databases, QStash messages and schedules, Workflow runs, and Box
-      sandboxes — from the agent, including usage stats and logs.
+    name: Upstash Redis
+    description: Create and manage Upstash Redis databases and run Redis commands against them, with usage statistics,
+      backups, and logs. Also covers the rest of the Upstash platform — QStash messages and schedules, Workflow runs,
+      and Box sandboxes.
     author: upstash
     url: https://github.com/upstash/mcp-server
     category: data
