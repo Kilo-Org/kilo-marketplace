@@ -1129,6 +1129,43 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/udf-benchmark
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/udf-benchmark/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/udf-benchmark.tar.gz
+  - id: upstash-redis-js
+    description: >-
+      Work with the Upstash Redis TypeScript/JavaScript SDK for serverless Redis operations. Use for caching, session
+      storage, rate limiting, leaderboards, full-text search (querying, filtering, aggregating) with Upstash Redis
+      Search (different from regular FT.SEARCH), and all Redis data structures. Supports automatic
+      serialization/deserialization of JavaScript types. Upstash Redis Search also available via @upstash/search-redis
+      and @upstash/search-ioredis adapters for TCP clients.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-redis-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-redis-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-redis-js.tar.gz
+  - id: upstash-redis-start
+    description: >-
+      Provision a zero-config, no-signup Upstash Redis database for an AI agent via a single POST to
+      `https://upstash.com/start-redis`. Use when an agent needs scratch Redis for short-term memory, conversation
+      history, sub-agent work queues, or ranked recall and the user has not provided credentials. The database lives 3
+      days unless the user claims it.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-redis-start
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-redis-start/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-redis-start.tar.gz
+  - id: upstash-search-js
+    description: >-
+      Skills covering Upstash Search quick starts, core concepts, and TypeScript/JavaScript SDK usage. Use when a user
+      asks how to get started, how indexing works, or how to use the TS client.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-search-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-search-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-search-js.tar.gz
+  - id: upstash-vector-js
+    description: >-
+      Skills for Upstash Vector features, TypeScript/JavaScript SDK usage, and integrations. Use when users ask how to
+      work with Vector, its TS SDK, features, or supported frameworks.
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-vector-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-vector-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-vector-js.tar.gz
   - id: agent-md-refactor
     description: >-
       Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure
@@ -1613,6 +1650,58 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-share.tar.gz
+  - id: upstash-box-js
+    description: >-
+      Work with the @upstash/box TypeScript/JavaScript SDK for sandboxed cloud containers with AI agents, shell,
+      filesystem, git, cron schedules, and a headless browser. Use when building with Upstash Box, creating sandboxed
+      environments, running AI agents in containers, browser automation from a box, or orchestrating parallel boxes.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-box-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-box-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-box-js.tar.gz
+  - id: upstash-box-py
+    description: >-
+      Work with the upstash-box Python SDK for sandboxed cloud containers with AI agents, shell, filesystem, git, cron
+      schedules, and a headless browser. Use when building with Upstash Box in Python, creating sandboxed environments,
+      running AI agents in containers, browser automation from a box, or orchestrating parallel boxes.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-box-py
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-box-py/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-box-py.tar.gz
+  - id: upstash-cli
+    description: >-
+      Run the Upstash CLI (`upstash`) against the Upstash Developer API for Redis, Vector, Search, QStash, and teams.
+      Use when listing or managing databases, backups, vector/search indexes, QStash instances, team members, stats, or
+      any non-interactive Upstash automation with JSON output and terminal commands.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-cli
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-cli/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-cli.tar.gz
+  - id: upstash-qstash-js
+    description: >-
+      Work with the QStash TypeScript/JavaScript SDK for serverless messaging, scheduling. Use when publishing messages
+      to HTTP endpoints, creating schedules, managing queues, verifying incoming messages and other QStash features in
+      serverless environments.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-qstash-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-qstash-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-qstash-js.tar.gz
+  - id: upstash-ratelimit-js
+    description: >-
+      Lightweight guidance for using the Upstash Redis RateLimit TypeScript/JavaScript SDK, including setup steps, basic
+      usage, and pointers to advanced algorithm, features, pricing, and traffic‑protection docs.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-ratelimit-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-ratelimit-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-ratelimit-js.tar.gz
+  - id: upstash-workflow-js
+    description: >-
+      Skills for the Upstash Workflow TypeScript/JavaScript SDK to define, trigger, and manage workflows. Use this Skill
+      whenever a user wants to create workflow endpoints, run steps, or interact with the Upstash Workflow client.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/upstash-workflow-js
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/upstash-workflow-js/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/upstash-workflow-js.tar.gz
   - id: validating-json-data
     description: >-
       Validates JSON data against JSON Schema using the z-schema library. Use when the user needs to validate JSON,

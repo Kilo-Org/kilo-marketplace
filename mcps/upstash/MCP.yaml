@@ -1,0 +1,31 @@
+id: upstash
+name: Upstash Redis
+description: Create and manage Upstash Redis databases and run Redis commands against them, with usage statistics,
+  backups, and logs. Also covers the rest of the Upstash platform — QStash messages and schedules, Workflow runs, and
+  Box sandboxes.
+author: upstash
+url: https://github.com/upstash/mcp-server
+category: data
+prerequisites:
+  - Upstash account
+  - Upstash API key from Upstash Console → Account → API Keys
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@upstash/mcp-server@latest"],
+        "env": {
+          "UPSTASH_EMAIL": "{{UPSTASH_EMAIL}}",
+          "UPSTASH_API_KEY": "{{UPSTASH_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Upstash Email
+    key: UPSTASH_EMAIL
+    placeholder: your_upstash_account_email
+  - name: Upstash API Key
+    key: UPSTASH_API_KEY
+    placeholder: your_upstash_api_key
