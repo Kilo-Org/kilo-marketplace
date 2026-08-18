@@ -1,0 +1,30 @@
+id: upstash
+name: Upstash
+description: Manage and debug Upstash resources — Redis databases, QStash messages and schedules, Workflow runs, and Box
+  sandboxes — from the agent, including usage stats and logs.
+author: upstash
+url: https://github.com/upstash/mcp-server
+category: data
+prerequisites:
+  - Upstash account
+  - Upstash API key from Upstash Console → Account → API Keys
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@upstash/mcp-server@latest"],
+        "env": {
+          "UPSTASH_EMAIL": "{{UPSTASH_EMAIL}}",
+          "UPSTASH_API_KEY": "{{UPSTASH_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Upstash Email
+    key: UPSTASH_EMAIL
+    placeholder: your_upstash_account_email
+  - name: Upstash API Key
+    key: UPSTASH_API_KEY
+    placeholder: your_upstash_api_key
