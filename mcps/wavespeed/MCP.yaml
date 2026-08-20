@@ -1,0 +1,26 @@
+id: wavespeed
+name: WaveSpeed AI
+description: Enables AI assistants to generate and edit media (image, video, audio, 3D) through the WaveSpeed AI
+  platform, with typed tools for model catalog search, input schema introspection, price quoting, and running any
+  model with local-file upload support.
+author: WaveSpeedAI
+url: https://github.com/WaveSpeedAI/mcp-server
+category: development
+prerequisites:
+  - WaveSpeed AI account (https://wavespeed.ai) with an API key
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@wavespeed/mcp"],
+        "env": {
+          "WAVESPEED_API_KEY": "{{WAVESPEED_API_KEY}}"
+        }
+      }
+parameters:
+  - name: WaveSpeed API Key
+    key: WAVESPEED_API_KEY
+    placeholder: your_wavespeed_api_key

@@ -86,6 +86,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/theme-factory
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/theme-factory/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/theme-factory.tar.gz
+  - id: wavespeed
+    description: >-
+      Generate or edit AI media (image, video, audio, 3D) by calling the wavespeed CLI on the user's machine. Use
+      whenever the user asks to create, edit, animate, upscale, or transform a visual asset, generate audio/TTS/music,
+      or produce marketing creatives. Every model on the WaveSpeed platform is one `wavespeed run <id>` call.
+    category: creative-media
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wavespeed
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wavespeed/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wavespeed.tar.gz
   - id: youtube-downloader
     description: >-
       Download YouTube videos with customizable quality and format options. Use this skill when the user asks to
