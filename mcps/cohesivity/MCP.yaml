@@ -1,0 +1,19 @@
+id: cohesivity
+name: Cohesivity
+description: >-
+  cohesivity.ai offers free agent native backend services. Anonymous account
+  (no-signup) to get started through MCP or API. Hosting, postgres, email,
+  storage, containers, LLMs, voice and third-party APIs. Includes free tiers
+  and 5 USD/mo in AI and Search credits. Top-ups through x402.
+author: Cohesivity
+url: https://github.com/cohesivity-org/cohesivity-plugin
+category: development
+prerequisites:
+  - Cohesivity sign-in for the remote management MCP; the paired skill documents the separate anonymous bootstrap flow
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://cohesivity.ai/mcp/manage"
+      }

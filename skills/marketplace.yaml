@@ -1369,6 +1369,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cognito
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cognito/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cognito.tar.gz
+  - id: cohesivity
+    description: >-
+      cohesivity.ai offers free agent native backend services. Anonymous account (no-signup) to get started through MCP
+      or API. Hosting, postgres, email, storage, containers, LLMs, voice and third-party APIs. Includes free tiers and 5
+      USD/mo in AI and Search credits. Top-ups through x402.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cohesivity
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cohesivity/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cohesivity.tar.gz
   - id: create-pull-request
     description: >-
       Create a GitHub pull request following project conventions. Use when the user asks to create a PR, submit changes
