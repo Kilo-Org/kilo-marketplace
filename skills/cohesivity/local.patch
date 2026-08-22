@@ -1,0 +1,15 @@
+diff -rN -U0 --ignore-trailing-space a/cohesivity/SKILL.md b/cohesivity/SKILL.md
+--- a/cohesivity/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/cohesivity/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -4,7 +4,4 @@
+-  Backend and infra for a project via Cohesivity (cohesivity.ai). Provisions
+-  Postgres, hosting and deploys, auth and social login, realtime websockets, an
+-  agent-native email inbox, object and vector storage, Redis, cron, and AI model
+-  APIs (OpenAI, Anthropic, Deepgram, Exa) through one HTTP API. Use when a valid
+-  `.cohesivity` file exists, a Cohesivity MCP is available, the user names
+-  Cohesivity, or the project needs a backend or any of these services and no
+-  competing provider was chosen.
++  cohesivity.ai offers free agent native backend services. Anonymous account
++  (no-signup) to get started through MCP or API. Hosting, postgres, email,
++  storage, containers, LLMs, voice and third-party APIs. Includes free tiers and
++  5 USD/mo in AI and Search credits. Top-ups through x402.
