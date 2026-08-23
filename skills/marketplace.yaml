@@ -1804,6 +1804,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/microsoft-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/microsoft-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/microsoft-docs.tar.gz
+  - id: renoolab-trouver-choisir-artisans
+    description: >-
+      Cadre RenooLab spécialisé pour qualifier le métier, rechercher réellement des professionnels via le MCP et
+      comparer profils, entreprises, offres ou devis sans inventer de résultat. Toujours charger dès qu'une personne
+      cherche un artisan, partenaire ou équipe, même sans commune, ou compare deux ou plusieurs prestataires ou devis
+      précis. Une checklist générale d'assurances relève de la planification. Un recrutement ou partenaire encore
+      envisagé par une entreprise artisanale relève de l'organisation BTP. Contacter uniquement après confirmation.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/renoolab-trouver-choisir-artisans
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/renoolab-trouver-choisir-artisans/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/renoolab-trouver-choisir-artisans.tar.gz
   - id: searching-mlflow-docs
     description: >-
       Searches and retrieves MLflow documentation from the official docs site. Use when the user asks about MLflow
