@@ -3961,9 +3961,10 @@ items:
         optional: true
   - id: renoolab
     name: RenooLab
-    description: Finds real building tradespeople in France with rechercher_artisans, submits a moderated contact request
-      after explicit confirmation with contacter_artisan, and, after explicit professional confirmation, creates an
-      inactive free professional profile with an activation email through creer_profil_artisan.
+    description: Finds real building tradespeople in France with rechercher_artisans, searches a multi-trade project in one
+      call with rechercher_chantier, submits a moderated contact request after explicit confirmation with
+      contacter_artisan, and creates an inactive free professional profile with an activation email after explicit
+      professional confirmation through creer_profil_artisan.
     author: RenooLab
     url: https://github.com/mehdimicra/renoolab-mcp
     category: search

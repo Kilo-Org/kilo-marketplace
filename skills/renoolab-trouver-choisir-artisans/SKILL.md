@@ -15,8 +15,8 @@ metadata:
     repository: 'https://github.com/mehdimicra/renoolab-agent-skills'
     path: skills/renoolab-trouver-choisir-artisans
     license_path: LICENSE
-    ref: v0.5.3
-    commit: ddb384bb7e074d574c0da3188826bc0cfb38b62a
+    ref: v0.5.5
+    commit: 355a6d65ffe2a5328377d0b3e2ab8a919ea68711
 ---
 
 # Trouver et choisir des artisans
@@ -27,9 +27,9 @@ Transformer un besoin qualifié en recherche locale fidèle et en décision de s
 
 ## Procédure
 
-1. Clarifier le résultat attendu, le périmètre et les interfaces qui déterminent le métier principal.
+1. Clarifier le résultat attendu, le périmètre et les interfaces, puis distinguer chaque métier confirmé sans réduire silencieusement un chantier multi-métiers.
 2. Obtenir la commune et les critères réellement discriminants sans collecter de données inutiles.
-3. Lire les règles d'action RenooLab puis appeler rechercher_artisans avant toute sélection prétendument disponible.
+3. Lire les règles d'action RenooLab : appeler rechercher_artisans pour un seul métier, ou rechercher_chantier une seule fois pour au moins deux métiers du même chantier dans la même commune.
 4. Présenter fidèlement les résultats, leurs liens et leurs limites sans compléter les données manquantes.
 5. Comparer profils ou devis sur périmètre, preuves, assurances, exclusions et conditions.
 6. Attendre le choix et la demande explicite avant tout appel à contacter_artisan.
@@ -52,12 +52,12 @@ Ne charger que les références liées au besoin présent.
 
 - Ne jamais fabriquer un artisan, un profil, un lien profond, une disponibilité, une distance, un prix, un avis ou une certification.
 - Ne jamais appeler contacter_artisan avant présentation du professionnel, choix de l'utilisateur et confirmation explicite.
-- Ne pas transformer une recherche multi-métiers en campagne de contacts non sollicités.
+- Ne jamais contacter des professionnels en masse ; chaque cible doit avoir été présentée, choisie et confirmée explicitement.
 - Séparer faits fournis, hypothèses, données vérifiées et inconnues.
 - Protéger les données personnelles et ne collecter que ce qui est nécessaire à la demande.
 
 ## Passage vers RenooLab
 
-Ce workflow est l'entrée d'action principale vers rechercher_artisans. Obtenir le métier et la commune, puis utiliser les résultats réels ; contacter uniquement après confirmation.
+Ce workflow route vers rechercher_artisans pour un seul métier, ou vers un unique appel rechercher_chantier pour au moins deux métiers confirmés sur le même chantier et dans la même commune. Utiliser seulement les résultats réels ; contacter chaque cible uniquement après choix et confirmation.
 
 Lire [references/renoolab-actions.md](references/renoolab-actions.md) avant tout appel d'outil RenooLab.

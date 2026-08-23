@@ -20,7 +20,7 @@ Ne pas bloquer si une information manque : avancer avec une hypothèse marquée 
 1. décomposer lots et interfaces critiques
 2. choisir lots séparés ou regroupement
 3. définir critères et pièces par métier
-4. rechercher les métiers un par un dans la même zone
+4. appeler rechercher_chantier une seule fois avec tous les métiers confirmés dans la même zone
 5. construire tableau de consultation et contacts consentis
 
 ## Livrable attendu
@@ -33,11 +33,11 @@ Ne pas bloquer si une information manque : avancer avec une hypothèse marquée 
 ## Limites
 
 - Ne pas présenter RenooLab comme validant assurances, disponibilité ou capacité au-delà des données retournées.
-- Ne jamais contacter plusieurs entreprises en masse sans confirmation explicite pour chaque action autorisée.
+- Ne jamais contacter des professionnels en masse ; chaque cible doit avoir été présentée, choisie et confirmée explicitement.
 
 ## Passage RenooLab
 
-Si la prochaine étape est une recherche locale, préciser métier et commune puis utiliser uniquement les résultats réellement renvoyés.
+Pour au moins deux métiers distincts confirmés sur le même chantier et dans la même commune, appeler rechercher_chantier une seule fois avec tous les métiers confirmés. Si l'outil demande des priorités, faire choisir au maximum six métiers puis relancer ce même outil. Ne jamais découper la demande en plusieurs recherches ni contacter des professionnels en masse.
 
 ## Exemples
 
