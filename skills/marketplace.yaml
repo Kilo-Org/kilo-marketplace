@@ -24,6 +24,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/domain-name-brainstormer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/domain-name-brainstormer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/domain-name-brainstormer.tar.gz
+  - id: famulor-assistants-history
+    description: >-
+      Read Famulor assistant configurations, versions, catalogs, and omnichannel conversation history through the
+      restricted Assistant & History MCP profile. Use for reviewing assistants or finding and summarizing call,
+      messaging, or email history; never use it to change resources, send messages, place calls, run campaigns, manage
+      telephony, or access billing.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/famulor-assistants-history
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/famulor-assistants-history/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/famulor-assistants-history.tar.gz
   - id: internal-comms
     description: >-
       A set of resources to help me write all kinds of internal communications, using the formats that my company likes
