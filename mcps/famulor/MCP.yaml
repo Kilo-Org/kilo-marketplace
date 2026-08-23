@@ -1,6 +1,6 @@
 id: famulor
 name: Famulor
-description: Manage AI assistant configurations and review omnichannel conversation history through Famulor's read-only hosted MCP profile.
+description: Inspect AI assistant configurations and review omnichannel conversation history through Famulor's read-only hosted MCP profile.
 author: BEK Service GmbH
 url: https://github.com/bekservice/Famulor-MCP
 category: productivity

@@ -1427,7 +1427,7 @@ items:
         placeholder: your_exa_api_key_here
   - id: famulor
     name: Famulor
-    description: Manage AI assistant configurations and review omnichannel conversation history through Famulor's read-only
+    description: Inspect AI assistant configurations and review omnichannel conversation history through Famulor's read-only
       hosted MCP profile.
     author: BEK Service GmbH
     url: https://github.com/bekservice/Famulor-MCP
