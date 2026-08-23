@@ -1,0 +1,606 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+VERSION='2.1.2'
+START_DIR=$(pwd -P)
+SELF=$0
+while [[ -L "$SELF" ]]; do
+  LINK=$(readlink -- "$SELF")
+  if [[ "$LINK" == /* ]]; then SELF=$LINK; else SELF=$(dirname -- "$SELF")/$LINK; fi
+done
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$SELF")" && pwd)
+SRC_ROOT=${UNPACK_FLOW_SRC_ROOT:-$START_DIR}
+OUT_ROOT=${UNPACK_FLOW_OUT_ROOT:-$START_DIR}
+STATE_ROOT=${UNPACK_FLOW_STATE_ROOT:-${XDG_STATE_HOME:-$HOME/.local/state}/unpack-flow}
+if [[ -n "${UNPACK_FLOW_TOOLS_ROOT:-}" ]]; then
+  TOOLS_ROOT=$UNPACK_FLOW_TOOLS_ROOT
+elif [[ -d "$SCRIPT_DIR/../tools/linux-x64" ]]; then
+  TOOLS_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/../tools/linux-x64" && pwd)
+else
+  TOOLS_ROOT=/opt/unpack-flow/tools
+fi
+UNRAR=${UNPACK_FLOW_UNRAR:-}
+[[ -n "$UNRAR" ]] || { [[ -x "$TOOLS_ROOT/unrar" ]] && UNRAR="$TOOLS_ROOT/unrar" || UNRAR=$(command -v unrar 2>/dev/null || true); }
+MAX_LAYERS=${UNPACK_FLOW_MAX_LAYERS:-10}
+RECURSIVE=${UNPACK_FLOW_RECURSIVE:-0}
+
+usage() {
+  cat <<'EOF'
+Usage / 用法:
+  unpack-flow run [options/选项] <path-or-pattern/路径或通配符...>
+      Foreground extraction with live progress / 前台解压并持续显示进度
+  unpack-flow start [options/选项] <path-or-pattern/路径或通配符...>
+      Start a background job and return immediately / 提交后台任务并立即返回
+  unpack-flow list [options/选项] <path-or-pattern/路径或通配符...>
+      List matches only / 只列出匹配项
+  unpack-flow plan [options/选项] <path-or-pattern/路径或通配符...>
+      Inspect the entry volume without extracting / 分析首卷但不解压
+  unpack-flow status [job-id/任务号]   Show job status / 查看任务状态
+  unpack-flow wait [job-id/任务号]     Monitor and wait / 监控并等待任务结束
+  unpack-flow log [job-id/任务号]      Show recent log / 查看最近日志
+  unpack-flow [options/选项] <path...> Legacy background shortcut / 旧版后台兼容入口
+
+Examples / 示例:
+  unpack-flow run -o /data/extracted '/mnt/incoming/dataset*.7z'
+  unpack-flow start --output /data/extracted '/data/archives/*'
+  unpack-flow plan '/data/archives/backup.part1.rar'
+  unpack-flow status
+  unpack-flow log JOB_ID
+
+Options / 选项:
+  -o, --output DIR   Absolute output root; one folder per package
+                     绝对输出根目录；每个包仍建立独立目录
+  -r, --recursive    Recursively discover archives and unpack inner layers
+                     递归发现压缩包并继续解压内层归档
+  -h, --help         Show bilingual help / 显示中英文帮助
+  --version          Show version / 显示版本
+
+Path rules / 路径规则:
+  name or 'X*'       Match below the current directory / 在当前目录匹配
+  .、./*、../*       Resolve relative to the current directory / 按当前目录解析
+  /absolute/path/*   Match an absolute path / 匹配绝对路径
+  Quoted or shell-expanded wildcards are accepted. Non-archives and later
+  multipart volumes are filtered automatically.
+  支持带引号或由 Shell 展开的通配符；自动过滤非归档文件和后续分卷。
+
+Formats / 支持格式:
+  RAR/multipart RAR, 7z, ZIP, TAR, GZ, BZ2, XZ, CAB, ISO, WIM, DMG,
+  DEB, RPM, APK and CPIO; up to 10 inner layers by default.
+  支持 RAR/分卷 RAR、7z、ZIP、TAR、GZ、BZ2、XZ、CAB、ISO、WIM、
+  DMG、DEB、RPM、APK、CPIO；默认递归最多 10 个内层。
+
+Requirements / 运行环境:
+  Linux, Bash 4+, GNU utilities and 7z/7zz; x64 releases bundle UnRAR.
+  Linux、Bash 4+、GNU 工具和 7z/7zz；x64 发布包内置 UnRAR。
+  Inputs must be readable; output and state directories must be writable.
+  输入需可读，输出和任务状态目录需可写，并预留足够磁盘空间。
+
+Environment / 环境变量:
+  UNPACK_FLOW_SRC_ROOT       Source root / 默认源目录
+  UNPACK_FLOW_OUT_ROOT       Output root / 默认输出目录
+  UNPACK_FLOW_STATE_ROOT     Job state directory / 任务状态目录
+  UNPACK_FLOW_TOOLS_ROOT     Portable tools directory / 绿色工具目录
+  UNPACK_FLOW_UNRAR          UnRAR executable / UnRAR 可执行文件
+  UNPACK_FLOW_PASSWORDS_FILE Password candidates, one per line / 密码候选文件
+
+Safety / 安全:
+  Source archives are preserved, existing destinations are not overwritten,
+  and unknown EXE files are never executed.
+  保留源归档，不覆盖已有目标，也不会执行未知 EXE 文件。
+EOF
+}
+
+die() { echo "错误：$*" >&2; exit 1; }
+die_usage() {
+  echo "错误：$*" >&2
+  echo >&2
+  usage >&2
+  exit 1
+}
+need_tools() {
+  [[ -x "$TOOLS_ROOT/7zz" || -x "$TOOLS_ROOT/7z" ]] || command -v 7zz >/dev/null || command -v 7z >/dev/null || die '缺少 7z/7zz'
+}
+
+find_seven() {
+  if [[ -x "$TOOLS_ROOT/7zz" ]]; then printf '%s\n' "$TOOLS_ROOT/7zz"
+  elif [[ -x "$TOOLS_ROOT/7z" ]]; then printf '%s\n' "$TOOLS_ROOT/7z"
+  else command -v 7zz || command -v 7z
+  fi
+}
+
+is_dangerous_source() {
+  case "$1" in /|/bin|/boot|/dev|/etc|/lib|/lib64|/proc|/root|/run|/sbin|/sys|/usr|/var) return 0;; *) return 1;; esac
+}
+
+validate_output_root() {
+  [[ "$OUT_ROOT" == /* ]] || die_usage "输出目录必须是绝对路径：$OUT_ROOT"
+  OUT_ROOT=${OUT_ROOT%/}; [[ -n "$OUT_ROOT" ]] || OUT_ROOT=/
+  case "$OUT_ROOT" in /|/bin|/boot|/dev|/etc|/lib|/lib64|/proc|/root|/run|/sbin|/sys|/usr|/var|/home) die_usage "拒绝使用系统目录作为输出根目录：$OUT_ROOT";; esac
+}
+
+resolve_patterns() {
+  local p expression path canonical cwd
+  local -a expanded=()
+  local -A seen=()
+  MATCHES=()
+  cwd=$(pwd -P)
+  shopt -s nullglob
+  for p in "$@"; do
+    [[ -n "$p" ]] || die '名称或通配符不能为空'
+    if [[ "$p" == /* ]]; then
+      expression=$p
+    elif [[ "$p" == '.' || "$p" == ./* || "$p" == ../* ]]; then
+      expression="$cwd/$p"
+    else
+      expression="$SRC_ROOT/$p"
+    fi
+    mapfile -t expanded < <(compgen -G "$expression" || true)
+    for path in "${expanded[@]}"; do
+      [[ -e "$path" ]] || continue
+      canonical=$(realpath -e -- "$path" 2>/dev/null || true)
+      [[ -n "$canonical" ]] || continue
+      is_dangerous_source "$canonical" && die "拒绝把系统根目录作为归档输入：$canonical"
+      [[ -n "${seen[$canonical]:-}" ]] && continue
+      seen[$canonical]=1
+      MATCHES+=("$canonical")
+    done
+  done
+  shopt -u nullglob
+}
+
+validate_source_output_separation() {
+  local p out_parent
+  out_parent=$(realpath -m -- "$OUT_ROOT")
+  for p in "${MATCHES[@]}"; do
+    [[ "$out_parent" != "$p"/* ]] || die "输出目录不能位于源项目的子目录内：$p -> $OUT_ROOT"
+  done
+}
+
+archive_kind() {
+  local n=${1,,} name
+  name=${n##*/}
+  if [[ "$name" =~ \.part0*([2-9]|[1-9][0-9]+)\.(rar|exe)$ ]] ||
+     [[ "$name" =~ \.(7z|zip)\.0*([2-9]|[1-9][0-9]+)$ ]] ||
+     [[ "$name" =~ \.(r|z)[0-9]+$ ]]; then
+    echo unknown
+    return
+  fi
+  case "$n" in
+    *.part01.exe|*.part1.exe|*.part001.exe) echo rar ;;
+    *.part01.rar|*.part1.rar|*.part001.rar) echo rar ;;
+    *.rar) echo rar ;;
+    *.7z|*.7z.001|*.zip|*.zip.001|*.tar|*.tar.gz|*.tgz|*.tar.bz2|*.tbz2|*.tar.xz|*.txz|*.gz|*.bz2|*.xz|*.cab|*.arj|*.lzh|*.chm|*.deb|*.rpm|*.apk|*.cpio) echo seven ;;
+    *.iso|*.dmg) echo iso ;;
+    *.wim|*.swm|*.esd) echo wim ;;
+    *)
+      if [[ "$name" != *.* ]] && [[ -f "$1" ]] && "${SEVEN:-$(find_seven)}" t "$1" >/dev/null 2>&1; then echo seven
+      else echo unknown
+      fi ;;
+  esac
+}
+
+find_entry_archive() {
+  local src=$1 a
+  if [[ -f "$src" ]]; then
+    archive_kind "$src" | grep -qv unknown && printf '%s\n' "$src"
+    return
+  fi
+  for glob in '*.part01.exe' '*.part1.exe' '*.part001.exe' '*.part01.rar' '*.part1.rar' '*.part001.rar' '*.7z.001' '*.zip.001' '*.rar' '*.7z' '*.zip' '*.tar' '*.tar.gz' '*.tgz' '*.tar.bz2' '*.tbz2' '*.tar.xz' '*.txz' '*.gz' '*.bz2' '*.xz' '*.cab' '*.arj' '*.lzh' '*.chm' '*.deb' '*.rpm' '*.apk' '*.cpio' '*.wim' '*.swm' '*.esd' '*.iso' '*.dmg'; do
+    a=$(find "$src" -maxdepth 2 -type f -iname "$glob" -print -quit 2>/dev/null || true)
+    if [[ -n "$a" ]] && [[ "$(archive_kind "$a")" != unknown ]]; then printf '%s\n' "$a"; return; fi
+  done
+}
+
+normalize_matches() {
+  local p arc
+  local -a normalized=()
+  local -A seen_archives=()
+  for p in "${MATCHES[@]}"; do
+    arc=$(find_entry_archive "$p" || true)
+    [[ -n "$arc" ]] || continue
+    [[ -n "${seen_archives[$arc]:-}" ]] && continue
+    seen_archives[$arc]=1
+    normalized+=("$p")
+  done
+  MATCHES=("${normalized[@]}")
+}
+
+expand_recursive_matches() {
+  (( RECURSIVE == 1 )) || return 0
+  local p candidate canonical kind
+  local -a recursive_matches=()
+  local -A seen_recursive=()
+  for p in "${MATCHES[@]}"; do
+    if [[ -f "$p" ]]; then
+      recursive_matches+=("$p")
+      seen_recursive[$p]=1
+      continue
+    fi
+    while IFS= read -r -d '' candidate; do
+      canonical=$(realpath -e -- "$candidate" 2>/dev/null || true)
+      [[ -n "$canonical" && -z "${seen_recursive[$canonical]:-}" ]] || continue
+      kind=$(archive_kind "$canonical")
+      [[ "$kind" != unknown ]] || continue
+      seen_recursive[$canonical]=1
+      recursive_matches+=("$canonical")
+    done < <(find "$p" -type f -print0 2>/dev/null)
+  done
+  MATCHES=("${recursive_matches[@]}")
+}
+
+list_matches() {
+  local p size arc kind
+  printf '%-12s %-10s %-8s %s\n' '编号' '容量' '类型' '路径'
+  for p in "${MATCHES[@]}"; do
+    size=$(du -sh "$p" 2>/dev/null | cut -f1)
+    arc=$(find_entry_archive "$p" || true)
+    kind=未识别
+    [[ -n "$arc" ]] && kind=$(archive_kind "$arc")
+    printf '%-12s %-10s %-8s %s\n' "$(basename "$p")" "${size:-?}" "$kind" "$p"
+  done
+}
+
+plan_matches() {
+  local p arc kind first
+  for p in "${MATCHES[@]}"; do
+    echo "=== $(basename "$p") ==="
+    arc=$(find_entry_archive "$p" || true)
+    if [[ -z "$arc" ]]; then echo '未找到支持的压缩包'; continue; fi
+    kind=$(archive_kind "$arc")
+    echo "首包：$arc"
+    echo "类型：$kind"
+    case "$kind" in
+      rar) first=$($UNRAR lb -p- "$arc" 2>&1 | head -n 8 || true) ;;
+      *) first=$(${SEVEN:-7zz} l -ba "$arc" 2>&1 | head -n 8 || true) ;;
+    esac
+    printf '%s\n' "$first"
+  done
+}
+
+latest_job() {
+  find "$STATE_ROOT" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' 2>/dev/null | sort | tail -n1
+}
+
+status_job() {
+  local id=${1:-} dir pid started now elapsed running=否
+  [[ -n "$id" ]] || id=$(latest_job)
+  [[ -n "$id" ]] || die '没有历史任务'
+  dir="$STATE_ROOT/$id"
+  [[ -d "$dir" ]] || die "任务不存在：$id"
+  echo "任务：$id"
+  cat "$dir/status.txt" 2>/dev/null || true
+  cat "$dir/progress.txt" 2>/dev/null || true
+  [[ -f "$dir/output-root.txt" ]] && echo "输出：$(<"$dir/output-root.txt")"
+  if [[ -f "$dir/pid" ]]; then
+    pid=$(<"$dir/pid")
+    kill -0 "$pid" 2>/dev/null && running=是
+    echo "PID：$pid（运行中：$running）"
+  fi
+  if [[ -f "$dir/started-epoch.txt" ]]; then
+    started=$(<"$dir/started-epoch.txt")
+    if [[ -f "$dir/ended-epoch.txt" ]]; then now=$(<"$dir/ended-epoch.txt"); else now=$(date +%s); fi
+    elapsed=$((now-started))
+    printf '已运行：%02d:%02d:%02d\n' $((elapsed/3600)) $(((elapsed%3600)/60)) $((elapsed%60))
+  fi
+}
+
+wait_job() {
+  local id=${1:-} dir last=''
+  [[ -n "$id" ]] || id=$(latest_job)
+  [[ -n "$id" ]] || die '没有历史任务'
+  dir="$STATE_ROOT/$id"; [[ -d "$dir" ]] || die "任务不存在：$id"
+  while :; do
+    clear 2>/dev/null || true
+    status_job "$id"
+    last=$(head -n1 "$dir/status.txt" 2>/dev/null || true)
+    [[ "$last" == 已完成 || "$last" == 部分失败 ]] && break
+    sleep 2
+  done
+  [[ "$last" == 已完成 ]]
+}
+
+log_job() {
+  local id=${1:-}
+  [[ -n "$id" ]] || id=$(latest_job)
+  [[ -n "$id" && -f "$STATE_ROOT/$id/job.log" ]] || die '找不到任务日志'
+  tail -n 80 "$STATE_ROOT/$id/job.log"
+}
+
+write_source_status() {
+  local src=$1 state=$2 info=$3
+  [[ -d "$src" ]] || return 0
+  printf '%s\n时间：%s\n%s\n任务：%s\n' "$state" "$(date '+%F %T')" "$info" "$JOB_ID" > "$src/整理状态.txt"
+}
+
+update_progress() {
+  local item=$1 phase=$2 layer=$3
+  printf '当前包：%s\n当前阶段：%s\n当前解压层：%s（最多自动展开 %s 个内层）\n更新时间：%s\n' \
+    "$item" "$phase" "$layer" "$MAX_LAYERS" "$(date '+%F %T')" > "$JOB_DIR/progress.txt"
+  if [[ "${UNPACK_FLOW_FOREGROUND:-0}" == 1 ]]; then
+    printf '[%s] %s | %s | 层 %s/%s\n' "$(date '+%F %T')" "$item" "$phase" "$layer" "$MAX_LAYERS"
+  fi
+}
+
+clean_temp() {
+  local d=$1
+  [[ "$d" == "$OUT_ROOT/.unpack_flow_"* ]] || die "拒绝清理非临时目录：$d"
+  rm -rf -- "$d"
+}
+
+extract_archive() {
+  local arc=$1 dest=$2 kind p lower output_name
+  local -a passwords=('-')
+  kind=$(archive_kind "$arc")
+  lower=${arc,,}
+  mkdir -p "$dest"
+  echo "[$(date '+%F %T')] 尝试 7-Zip：$arc" >> "$JOB_LOG"
+  if "$SEVEN" x -y -o"$dest" "$arc" >> "$JOB_LOG" 2>&1; then return 0; fi
+  find "$dest" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+  case "$kind" in
+    rar)
+      if [[ -z "$UNRAR" || ! -x "$UNRAR" ]]; then
+        echo "[$(date '+%F %T')] UnRAR 不可用，继续尝试其他可用工具" >> "$JOB_LOG"
+      else
+        echo "[$(date '+%F %T')] 7-Zip 失败，改用 UnRAR：$arc" >> "$JOB_LOG"
+      if [[ -n "${UNPACK_FLOW_PASSWORDS_FILE:-}" && -r "$UNPACK_FLOW_PASSWORDS_FILE" ]]; then
+        mapfile -t passwords < "$UNPACK_FLOW_PASSWORDS_FILE"
+        passwords=('-' "${passwords[@]}")
+      fi
+      for p in "${passwords[@]}"; do
+        if "$UNRAR" x -y -o+ -p"$p" "$arc" "$dest/" >> "$JOB_LOG" 2>&1; then return 0; fi
+        find "$dest" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+      done
+      fi ;;
+  esac
+  if [[ "$lower" =~ \.(tar|tar\.gz|tgz|tar\.bz2|tbz2|tar\.xz|txz)$ ]] && command -v tar >/dev/null 2>&1; then
+    echo "[$(date '+%F %T')] 改用系统 tar：$arc" >> "$JOB_LOG"
+    if tar -xf "$arc" -C "$dest" >> "$JOB_LOG" 2>&1; then return 0; fi
+    find "$dest" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+  fi
+  if [[ "$lower" == *.gz && ! "$lower" =~ \.(tar\.gz|tgz)$ ]] && command -v gzip >/dev/null 2>&1; then
+    output_name=$(basename "${arc%.gz}")
+    echo "[$(date '+%F %T')] 改用系统 gzip：$arc" >> "$JOB_LOG"
+    if gzip -dc -- "$arc" > "$dest/$output_name" 2>> "$JOB_LOG"; then return 0; fi
+    find "$dest" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+  fi
+  echo "[$(date '+%F %T')] 所有可用解压工具均失败：$arc" >> "$JOB_LOG"
+  return 1
+}
+
+remove_archive_volumes() {
+  local arc=$1 dir name stem
+  dir=$(dirname "$arc"); name=$(basename "$arc")
+  shopt -s nullglob nocaseglob
+  if [[ "$name" =~ ^(.*)\.part0*1\.rar$ ]]; then
+    stem=${BASH_REMATCH[1]}; rm -f -- "$dir/$stem".part*.rar
+  elif [[ "$name" =~ ^(.*\.zip)\.0*1$ ]]; then
+    stem=${BASH_REMATCH[1]}; rm -f -- "$dir/$stem".[0-9]*
+  elif [[ "$name" =~ ^(.*)\.zip$ ]] && compgen -G "$dir/${BASH_REMATCH[1]}.z[0-9]*" >/dev/null; then
+    stem=${BASH_REMATCH[1]}; rm -f -- "$arc" "$dir/$stem".z[0-9]*
+  else
+    rm -f -- "$arc"
+  fi
+  shopt -u nullglob nocaseglob
+}
+
+flatten_root() {
+  local root=$1 item
+  mapfile -d '' -t items < <(find "$root" -mindepth 1 -maxdepth 1 -print0)
+  if [[ ${#items[@]} -eq 1 && -d "${items[0]}" ]]; then
+    item=${items[0]}
+    [[ "$(basename "$item")" == '__MACOSX' ]] || root=$item
+  fi
+  printf '%s\n' "$root"
+}
+
+safe_name() {
+  local name=$1
+  name=${name//$'\n'/ }
+  name=${name//\//-}
+  name=${name//\\/-}
+  name=${name//:/：}
+  printf '%s\n' "$name"
+}
+
+archive_output_name() {
+  local name=$1 lower=${1,,}
+  case "$lower" in
+    *.part01.exe|*.part1.exe|*.part001.exe|*.part01.rar|*.part1.rar|*.part001.rar)
+      name=${name%.*}; name=${name%.*} ;;
+    *.7z.001|*.zip.001|*.tar.gz|*.tar.bz2|*.tar.xz)
+      name=${name%.*}; name=${name%.*} ;;
+    *.tgz|*.tbz2|*.txz|*.rar|*.7z|*.zip|*.tar|*.gz|*.bz2|*.xz|*.cab|*.arj|*.lzh|*.chm|*.deb|*.rpm|*.apk|*.cpio|*.iso|*.dmg|*.wim|*.swm|*.esd)
+      name=${name%.*} ;;
+  esac
+  printf '%s\n' "$name"
+}
+
+process_item() {
+  local src=$1 base arc work next payload root name dest layer=0 processed partial=0 candidate
+  local -a payloads=()
+  local -A failed_payloads=()
+  base=$(basename "$src")
+  update_progress "$base" '扫描压缩包' 0
+  arc=$(find_entry_archive "$src" || true)
+  if [[ -z "$arc" ]]; then
+    write_source_status "$src" '跳过' '未找到支持的压缩包'
+    echo "[$(date '+%F %T')] 跳过 $base：未找到压缩包" >> "$JOB_LOG"
+    return 0
+  fi
+  work="$OUT_ROOT/.unpack_flow_${JOB_ID}_${base}"
+  next="$OUT_ROOT/.unpack_flow_${JOB_ID}_${base}_next"
+  clean_temp "$work"; clean_temp "$next"
+  mkdir -p "$work"
+  write_source_status "$src" '处理中' "首包：$arc"
+  update_progress "$base" '解压首层' 1
+  echo "[$(date '+%F %T')] 开始 $base：$arc" >> "$JOB_LOG"
+  if ! extract_archive "$arc" "$work"; then
+    write_source_status "$src" '失败' '首层解压失败，请查看日志'
+    return 1
+  fi
+
+  while (( layer < MAX_LAYERS )); do
+    mapfile -d '' -t payloads < <(
+      find "$work" -type f \( -iname '*.part01.exe' -o -iname '*.part1.exe' -o -iname '*.part001.exe' -o -iname '*.part01.rar' -o -iname '*.part1.rar' -o -iname '*.part001.rar' -o -iname '*.rar' -o -iname '*.7z' -o -iname '*.7z.001' -o -iname '*.zip' -o -iname '*.zip.001' -o -iname '*.tar' -o -iname '*.tar.gz' -o -iname '*.tgz' -o -iname '*.tar.bz2' -o -iname '*.tbz2' -o -iname '*.tar.xz' -o -iname '*.txz' -o -iname '*.gz' -o -iname '*.bz2' -o -iname '*.xz' -o -iname '*.cab' -o -iname '*.deb' -o -iname '*.rpm' -o -iname '*.apk' -o -iname '*.cpio' -o -iname '*.iso' -o -iname '*.dmg' -o -iname '*.wim' -o -iname '*.swm' -o -iname '*.esd' \) -print0
+      while IFS= read -r -d '' candidate; do
+        [[ "$(basename "$candidate")" == *.* ]] && continue
+        "$SEVEN" t "$candidate" >/dev/null 2>&1 && printf '%s\0' "$candidate"
+      done < <(find "$work" -type f -print0)
+    )
+    processed=0
+    for payload in "${payloads[@]}"; do
+      [[ "$(basename "$payload")" =~ \.part0*([2-9]|[1-9][0-9]+)\.rar$ ]] && continue
+      [[ -n "${failed_payloads[$payload]:-}" ]] && continue
+      next="$(dirname "$payload")/.unpack_flow_inner_${JOB_ID}_${layer}_$RANDOM"
+      mkdir -p "$next"
+      echo "[$(date '+%F %T')] $base：展开内层 $(basename "$payload")" >> "$JOB_LOG"
+      update_progress "$base" "展开内层：$(basename "$payload")" "$((layer+2))"
+      if extract_archive "$payload" "$next"; then
+        remove_archive_volumes "$payload"
+        cp -a "$next/." "$(dirname "$payload")/"
+        rm -rf -- "$next"
+        processed=1
+      else
+        failed_payloads[$payload]=1
+        partial=1
+        rm -rf -- "$next"
+        echo "[$(date '+%F %T')] $base：跳过失败的内层归档 $payload" >> "$JOB_LOG"
+      fi
+    done
+    (( processed == 1 )) || break
+    ((layer+=1))
+  done
+
+  root=$(flatten_root "$work")
+  name=$(basename "$root")
+  [[ "$name" == "$base" || "$name" == '.unpack_flow_'* ]] && name=$(archive_output_name "$base")
+  name=$(safe_name "$name")
+  dest="$OUT_ROOT/$name"
+  if (( RECURSIVE == 1 )) && [[ -e "$dest" ]]; then
+    local source_parent collision_name suffix=2
+    source_parent=$(safe_name "$(basename "$(dirname "$arc")")")
+    if [[ -n "$source_parent" && "$source_parent" != "$name" ]]; then
+      collision_name="$name-$source_parent-unpacked"
+    else
+      collision_name="$name-unpacked"
+    fi
+    dest="$OUT_ROOT/$collision_name"
+    while [[ -e "$dest" ]]; do
+      dest="$OUT_ROOT/$collision_name-$suffix"
+      ((suffix+=1))
+    done
+  fi
+  update_progress "$base" '整理文件' "$((layer+1))"
+  if [[ -e "$dest" ]]; then
+    write_source_status "$src" '跳过' "目标已存在，未覆盖：$dest"
+    clean_temp "$work"; clean_temp "$next"
+    return 0
+  fi
+  if [[ "$root" == "$work" ]]; then mv "$work" "$dest"; else mv "$root" "$dest"; clean_temp "$work"; fi
+  find "$dest" -type f \( -name '.DS_Store' -o -name '._*' \) -delete
+  find "$dest" -depth -type d -name '__MACOSX' -exec rm -rf -- {} +
+  write_source_status "$src" '已完成' "目标：$dest；容量：$(du -sh "$dest" | cut -f1)"
+  echo "[$(date '+%F %T')] 完成 $base：$dest" >> "$JOB_LOG"
+  update_progress "$base" "已完成：$dest" "$((layer+1))"
+  return "$partial"
+}
+
+worker() {
+  local rc=0 p
+  printf '运行中\n开始：%s\n匹配：%s 项\n' "$(date '+%F %T')" "${#MATCHES[@]}" > "$JOB_DIR/status.txt"
+  for p in "${MATCHES[@]}"; do process_item "$p" || rc=1; done
+  if (( rc == 0 )); then state=已完成; else state=部分失败; fi
+  date +%s > "$JOB_DIR/ended-epoch.txt"
+  printf '%s\n结束：%s\n匹配：%s 项\n' "$state" "$(date '+%F %T')" "${#MATCHES[@]}" > "$JOB_DIR/status.txt"
+  return "$rc"
+}
+
+main() {
+  local cmd=start id pid
+  local -a args=()
+  if [[ $# -eq 0 ]]; then
+    echo '请提供目录名称或通配符。'
+    echo
+    usage
+    exit 1
+  fi
+  case "$1" in
+    -h|--help|help) usage; exit 0 ;;
+    --version|version) echo "$VERSION"; exit 0 ;;
+    list|plan|run|start) cmd=$1; shift ;;
+    status) shift; status_job "${1:-}"; exit 0 ;;
+    log) shift; log_job "${1:-}"; exit 0 ;;
+    wait) shift; wait_job "${1:-}"; exit 0 ;;
+  esac
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -o|--output) [[ $# -ge 2 ]] || die_usage "$1 后缺少目录"; OUT_ROOT=$2; shift 2;;
+      --output=*) OUT_ROOT=${1#*=}; shift;;
+      -r|--recursive) RECURSIVE=1; shift;;
+      -h|--help) usage; exit 0;;
+      --) shift; args+=("$@"); break;;
+      -*) die_usage "未知选项：$1";;
+      *) args+=("$1"); shift;;
+    esac
+  done
+  [[ ${#args[@]} -gt 0 ]] || die_usage "命令 '$cmd' 后需要提供名称、路径或通配符"
+  if [[ "$cmd" != list ]]; then
+    need_tools
+    SEVEN=$(find_seven)
+  fi
+  resolve_patterns "${args[@]}"
+  expand_recursive_matches
+  normalize_matches
+  [[ ${#MATCHES[@]} -gt 0 ]] || die_usage '没有匹配项，请检查目录名称、通配符或当前路径'
+  case "$cmd" in
+    list) list_matches; exit 0 ;;
+    plan) plan_matches; exit 0 ;;
+  esac
+  validate_output_root
+  validate_source_output_separation
+
+  mkdir -p "$STATE_ROOT" "$OUT_ROOT"
+  JOB_ID=$(date '+%Y%m%d_%H%M%S')
+  JOB_DIR="$STATE_ROOT/$JOB_ID"
+  JOB_LOG="$JOB_DIR/job.log"
+  mkdir -p "$JOB_DIR"
+  date +%s > "$JOB_DIR/started-epoch.txt"
+  printf '%s\0' "${MATCHES[@]}" > "$JOB_DIR/items.bin"
+  printf '%s\n' "${args[@]}" > "$JOB_DIR/patterns.txt"
+  printf '%s\n' "$OUT_ROOT" > "$JOB_DIR/output-root.txt"
+  printf '%s\n' "$SRC_ROOT" > "$JOB_DIR/source-root.txt"
+  export JOB_ID JOB_DIR JOB_LOG SEVEN
+  if [[ "${UNPACK_FLOW_WORKER:-0}" == 1 ]]; then worker; exit $?; fi
+  if [[ "$cmd" == run ]]; then
+    echo "前台任务：$JOB_ID"
+    echo "日志：$JOB_LOG"
+    UNPACK_FLOW_FOREGROUND=1 worker
+    exit $?
+  fi
+  UNPACK_FLOW_WORKER=1 UNPACK_FLOW_OUT_ROOT="$OUT_ROOT" UNPACK_FLOW_SRC_ROOT="$SRC_ROOT" \
+    UNPACK_FLOW_STATE_ROOT="$STATE_ROOT" UNPACK_FLOW_TOOLS_ROOT="$TOOLS_ROOT" \
+    UNPACK_FLOW_RECURSIVE="$RECURSIVE" \
+    UNPACK_FLOW_UNRAR="$UNRAR" UNPACK_FLOW_PASSWORDS_FILE="${UNPACK_FLOW_PASSWORDS_FILE:-}" \
+    nohup ionice -c2 -n7 nice -n 15 "$0" _worker "$JOB_ID" > "$JOB_DIR/nohup.log" 2>&1 </dev/null &
+  pid=$!
+  printf '%s\n' "$pid" > "$JOB_DIR/pid"
+  echo "已提交后台任务：$JOB_ID"
+  echo "PID：$pid"
+  echo "查看状态：unpack-flow status $JOB_ID"
+  echo "查看日志：unpack-flow log $JOB_ID"
+}
+
+# 后台入口：从任务文件恢复精确路径，不重新展开通配符。
+if [[ "${1:-}" == _worker ]]; then
+  JOB_ID=${2:?}
+  JOB_DIR="$STATE_ROOT/$JOB_ID"
+  JOB_LOG="$JOB_DIR/job.log"
+  [[ -f "$JOB_DIR/output-root.txt" ]] && OUT_ROOT=$(<"$JOB_DIR/output-root.txt")
+  [[ -f "$JOB_DIR/source-root.txt" ]] && SRC_ROOT=$(<"$JOB_DIR/source-root.txt")
+  SEVEN=$(find_seven)
+  mapfile -d '' -t MATCHES < "$JOB_DIR/items.bin"
+  worker
+  exit $?
+fi
+
+main "$@"
