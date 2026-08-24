@@ -16,7 +16,7 @@ $ErrorActionPreference = 'Stop'
 if ($PSStyle -and $PSStyle.PSObject.Properties.Name -contains 'OutputRendering') {
     $PSStyle.OutputRendering = 'PlainText'
 }
-$Version = '2.1.2'
+$Version = '2.1.4'
 $Started = Get-Date
 $script:HeartbeatSeconds = 30
 $configuredHeartbeat = 0
@@ -53,7 +53,7 @@ function Write-JobState([string]$Status, [string]$Message, [Nullable[int]]$ExitC
         job_id = $script:CurrentJobId
         status = $Status
         message = $Message
-        pid = if ($Status -eq 'queued' -and $previous) { $previous.pid } else { $PID }
+        pid = if ($previous -and $previous.pid) { $previous.pid } else { $PID }
         started_at = if ($previous -and $previous.started_at) { $previous.started_at } else { (Get-Date).ToString('o') }
         updated_at = (Get-Date).ToString('o')
         ended_at = if ($Status -in @('completed','partial_failure','failed')) { (Get-Date).ToString('o') } else { $null }
@@ -96,6 +96,7 @@ function Start-BackgroundJob {
     New-Item -ItemType Directory -Path $jobDir | Out-Null
     $requestPath = Join-Path $jobDir 'request.json'
     $logPath = Join-Path $jobDir 'job.log'
+    New-Item -ItemType File -Path $logPath -Force | Out-Null
     [ordered]@{
         job_id = $id
         input_path = @($ResolvedInputs)
@@ -112,30 +113,91 @@ function Start-BackgroundJob {
     $escapedScript = $PSCommandPath.Replace("'", "''")
     $escapedRequest = $requestPath.Replace("'", "''")
     $escapedLog = $logPath.Replace("'", "''")
-    $commandText = "`$ProgressPreference='SilentlyContinue'; & '$escapedScript' run -JobFile '$escapedRequest' *> '$escapedLog'; exit `$LASTEXITCODE"
+    $commandText = @"
+`$ProgressPreference='SilentlyContinue'
+try {
+    & '$escapedScript' run -JobFile '$escapedRequest' *>> '$escapedLog'
+    `$workerExit = if (`$null -eq `$LASTEXITCODE) { 1 } else { [int]`$LASTEXITCODE }
+} catch {
+    `$workerExit = 1
+    "Background worker failed / 后台 Worker 启动失败: `$(`$_.Exception.Message)" | Add-Content -LiteralPath '$escapedLog' -Encoding UTF8
+}
+if (`$workerExit -ne 0) {
+    try {
+        `$statePath = Join-Path (Split-Path -Parent '$escapedRequest') 'state.json'
+        `$state = Get-Content -LiteralPath `$statePath -Raw -Encoding UTF8 | ConvertFrom-Json
+        if (`$state.status -notin @('completed','partial_failure','failed')) {
+            `$state.status = 'failed'
+            `$state.message = 'Background worker failed / 后台 Worker 启动失败'
+            `$state.updated_at = (Get-Date).ToString('o')
+            `$state.ended_at = `$state.updated_at
+            `$state.exit_code = `$workerExit
+            `$state | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath `$statePath -Encoding UTF8
+        }
+    } catch {
+        "Failed to persist worker failure / 无法记录 Worker 失败: `$(`$_.Exception.Message)" | Add-Content -LiteralPath '$escapedLog' -Encoding UTF8
+    }
+}
+exit `$workerExit
+"@
     $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($commandText))
     $hostExe = if ($PSVersionTable.PSEdition -eq 'Core') { (Get-Process -Id $PID).Path } else { Join-Path $PSHOME 'powershell.exe' }
-    $processInfo = New-Object System.Diagnostics.ProcessStartInfo
-    $processInfo.FileName = $hostExe
-    $workerArguments = @('-NoLogo','-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-EncodedCommand',$encoded)
-    if ($processInfo.PSObject.Properties.Name -contains 'ArgumentList') {
-        foreach ($argument in $workerArguments) { [void]$processInfo.ArgumentList.Add($argument) }
+    $workerArguments = if ($IsMacOS) {
+        # ExecutionPolicy is a Windows policy surface; omit it on macOS instead of
+        # depending on compatibility parsing that has changed between pwsh builds.
+        @('-NoLogo','-NoProfile','-NonInteractive','-EncodedCommand',$encoded)
     } else {
-        $processInfo.Arguments = "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -EncodedCommand $encoded"
+        @('-NoLogo','-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-EncodedCommand',$encoded)
     }
+    $processInfo = New-Object System.Diagnostics.ProcessStartInfo
     $processInfo.UseShellExecute = $false
     $processInfo.CreateNoWindow = $true
-    $processInfo.RedirectStandardInput = $true
-    $processInfo.RedirectStandardOutput = $true
-    $processInfo.RedirectStandardError = $true
-    $process = [System.Diagnostics.Process]::Start($processInfo)
-    $process.StandardInput.Close()
-    $process.BeginOutputReadLine()
-    $process.BeginErrorReadLine()
+    try {
+        if ($IsMacOS) {
+            # Apply file redirections before nohup starts, then replace the shell with
+            # the worker. The returned PID is therefore the real long-lived worker PID.
+            $processInfo.FileName = '/bin/sh'
+            if ($null -eq $processInfo.ArgumentList) { throw 'ProcessStartInfo.ArgumentList is unavailable on this PowerShell runtime' }
+            $launchArguments = @('-c', 'exec /usr/bin/nohup "$@" </dev/null >>"$0" 2>&1', $logPath, $hostExe) + $workerArguments
+            foreach ($argument in $launchArguments) { [void]$processInfo.ArgumentList.Add($argument) }
+        } else {
+            $processInfo.FileName = $hostExe
+            if ($null -ne $processInfo.ArgumentList) {
+                foreach ($argument in $workerArguments) { [void]$processInfo.ArgumentList.Add($argument) }
+            } else {
+                $processInfo.Arguments = "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -EncodedCommand $encoded"
+            }
+            $processInfo.RedirectStandardInput = $true
+            $processInfo.RedirectStandardOutput = $true
+            $processInfo.RedirectStandardError = $true
+        }
+        $process = [System.Diagnostics.Process]::Start($processInfo)
+        if (-not $IsMacOS) {
+            $process.StandardInput.Close()
+            $process.BeginOutputReadLine()
+            $process.BeginErrorReadLine()
+        }
+    } catch {
+        "Background launch failed / 后台启动失败: $($_.Exception.Message)" | Add-Content -LiteralPath $logPath -Encoding UTF8
+        Write-JobState 'failed' "Background launch failed / 后台启动失败: $($_.Exception.Message)" 1
+        throw
+    }
     $statePath = Join-Path $jobDir 'state.json'
     $state = Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json
     $state.pid = $process.Id
     $state | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $statePath -Encoding UTF8
+    # An exec/host failure happens after Process.Start succeeds. Give that narrow
+    # failure window a brief check so it cannot leave a permanently queued job.
+    Start-Sleep -Milliseconds 150
+    $process.Refresh()
+    if ($process.HasExited) {
+        $state = Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($state.status -eq 'queued') {
+            $launchMessage = "Background worker exited during startup / 后台 Worker 启动时退出 (exit $($process.ExitCode))"
+            $launchMessage | Add-Content -LiteralPath $logPath -Encoding UTF8
+            Write-JobState 'failed' $launchMessage ([int]$process.ExitCode)
+        }
+    }
     Write-Host "Background job / 后台任务: $id"
     Write-Host "PID: $($process.Id)"
     Write-Host "Status / 状态: unpack-flow status $id"
@@ -151,7 +213,7 @@ trap {
 
 function Show-Help {
 @'
-UnpackFlow for Windows and macOS 2.1.2
+UnpackFlow for Windows and macOS 2.1.4
 
 Usage / 用法:
   unpack-flow run 'X*' -Output 'Extracted'     foreground / 前台运行

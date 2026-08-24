@@ -1,3 +1,5 @@
+<p align="center"><a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email" width="100%"></a></p>
+
 # UnpackFlow — вложенные архивы без дежурства
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
@@ -115,8 +117,15 @@ scripts/install_local.sh .
 
 В Windows Skill устанавливается через `scripts/install_local.ps1`. Python не нужен для распаковки; он используется только автоматическим установщиком Skill для Linux/macOS и Python-аудитом.
 
-## Безопасность и поддержка
+## Безопасность, проект и поддержка
 
-Исходники сохраняются, каталоги не перезаписываются, неизвестные EXE не запускаются. Поддержка: [once-email.com](https://once-email.com). MIT, версия 2.1.2.
+UnpackFlow сохраняет исходные файлы, не перезаписывает каталоги назначения и не запускает неизвестные EXE-файлы.
 
-Издатель, сопровождающий и официальный сайт: [once-email.com](https://once-email.com). Автор и разработчик: helen.jar. Проект GitHub: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow). По любым вопросам пишите на [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com).
+- Официальный сайт: [once-email.com](https://once-email.com)
+- Автор и разработчик: helen.jar
+- Проект GitHub: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
+- Электронная почта поддержки: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+
+По любым вопросам пишите на [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) или [создайте обращение в GitHub Issues](https://github.com/pangxin12345/unpack-flow/issues).
+
+Лицензия MIT, версия 2.1.4.

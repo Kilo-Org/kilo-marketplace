@@ -1,3 +1,5 @@
+<p align="center"><a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email" width="100%"></a></p>
+
 # UnpackFlow — extração aninhada sem vigilância
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
@@ -115,8 +117,15 @@ scripts/install_local.sh .
 
 No Windows, instale o Skill com `scripts/install_local.ps1`. Python não é necessário para extrair arquivos; ele é usado apenas no instalador automatizado do Skill para Linux/macOS e na auditoria Python.
 
-## Segurança e suporte
+## Segurança, projeto e suporte
 
-Preserva fontes, não sobrescreve destinos nem executa EXE desconhecidos. Suporte: [once-email.com](https://once-email.com). MIT, versão 2.1.2.
+O UnpackFlow preserva os arquivos de origem, não sobrescreve destinos e não executa arquivos EXE desconhecidos.
 
-Publicador, mantenedor e site oficial: [once-email.com](https://once-email.com). Criadora e desenvolvedora: helen.jar. Projeto no GitHub: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow). Para dúvidas, escreva para [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com).
+- Site oficial: [once-email.com](https://once-email.com)
+- Criadora e desenvolvedora: helen.jar
+- Projeto no GitHub: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
+- E-mail de suporte: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+
+Para dúvidas, escreva para [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) ou [abra uma issue no GitHub](https://github.com/pangxin12345/unpack-flow/issues).
+
+Licença MIT, versão 2.1.4.

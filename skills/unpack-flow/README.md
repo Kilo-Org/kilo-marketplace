@@ -1,8 +1,49 @@
-# UnpackFlow — cross-platform nested and multipart archive extraction
+<p align="center">
+  <a href="https://once-email.com"><img src="assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email — Extract nested archives safely" width="100%"></a>
+</p>
+
+# UnpackFlow
+
+<p align="center"><strong>Cross-platform extraction for nested, multipart and self-extracting archives.</strong></p>
+
+<p align="center">
+  <a href="https://github.com/pangxin12345/unpack-flow/releases"><img alt="Version 2.1.4" src="https://img.shields.io/badge/version-2.1.4-635bff"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-22a06b"></a>
+  <img alt="Linux, Windows and macOS" src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-1684ff">
+  <a href="https://once-email.com"><img alt="Published by Once Email" src="https://img.shields.io/badge/by-Once%20Email-0aa7a7"></a>
+  <a href="mailto:tiantuowl@gmail.com"><img alt="Email support at tiantuowl@gmail.com" src="https://img.shields.io/badge/support-tiantuowl%40gmail.com-ea4335"></a>
+</p>
 
 UnpackFlow is an intelligent archive extraction orchestrator for Linux, Windows and macOS. It finds the correct first volume, extracts nested layers in sequence, handles batches, reports progress, and never executes unknown self-extracting files.
 
 [English](README.md) · [简体中文](docs/README.zh-CN.md) · [Español](docs/README.es.md) · [हिन्दी](docs/README.hi.md) · [العربية](docs/README.ar.md) · [Português](docs/README.pt-BR.md) · [Français](docs/README.fr.md) · [Deutsch](docs/README.de.md) · [日本語](docs/README.ja.md) · [Русский](docs/README.ru.md)
+
+## Quick start
+
+Preview what will be selected, inspect the first volume, then extract:
+
+```bash
+unpack-flow list '/path/to/archives/*'
+unpack-flow plan '/path/to/archives/backup.part1.rar'
+unpack-flow run '/path/to/archives/*' -Output '/path/to/extracted'
+```
+
+For a persistent background job:
+
+```bash
+unpack-flow start '/path/to/archives/*' -Output '/path/to/extracted'
+unpack-flow status
+unpack-flow log
+unpack-flow wait
+```
+
+| Need | Command | Result |
+|---|---|---|
+| See what will be processed | `list` | Filters unrelated files and later volumes |
+| Inspect one archive | `plan` | Shows format, entry volume and contents |
+| Watch extraction live | `run` | Stays in the current terminal |
+| Keep extracting in the background | `start` | Returns a job ID immediately |
+| Follow a background job | `status`, `log`, `wait` | Shows progress, diagnostics and the final result |
 
 ## What UnpackFlow solves
 
@@ -20,6 +61,19 @@ UnpackFlow is an intelligent archive extraction orchestrator for Linux, Windows 
 - Native TAR, TAR.GZ/TGZ and standalone GZ fallback when 7-Zip cannot extract them; PowerShell also falls back to native ZIP support.
 
 Typical uses include software distributions, datasets, backups, media assets, log bundles, disk images and large downloaded archives.
+
+## Supported inputs at a glance
+
+| Input | Handling |
+|---|---|
+| RAR and multipart RAR | Finds the first volume; can fall back from 7-Zip to bundled UnRAR |
+| Common RAR SFX (`part01.exe`) | Reads archive data without executing the EXE |
+| 7z and multipart 7z | Selects `.7z.001` as the entry volume |
+| ZIP and multipart ZIP | Selects the first volume; PowerShell has a native ZIP fallback |
+| TAR, TAR.GZ/TGZ and GZ | Uses 7-Zip when available, then native archive tools |
+| ISO and WIM | Extracted through the selected 7-Zip engine |
+
+Actual format coverage depends on the extraction engines available for the current platform.
 
 ## Install the command-line tool
 
@@ -161,15 +215,15 @@ scripts/build-release.sh
 scripts/export-public-source.sh /tmp/unpack-flow-public/unpack-flow
 ```
 
-The build creates Linux `.tar.gz`, macOS `.tar.gz`, Windows `.zip`, and `SHA256SUMS` under `dist/`. The export command includes tracked project files by default, excludes the fixed private/build paths, and rejects internal acceptance or distribution records. Platform packages still copy only the runtime files required by that platform. See [deployment details](references/deployment.md), [contributing and synthetic-fixture rules](CONTRIBUTING.md), [security policy](SECURITY.md), [support](SUPPORT.md), and the [canonical publisher identity](PUBLISHER.md).
+The build creates Linux `.tar.gz`, macOS `.tar.gz`, Windows `.zip`, and `SHA256SUMS` under `dist/`. The export command includes tracked project files by default, excludes the fixed private/build paths, and rejects internal acceptance or distribution records. Platform packages still copy only the runtime files required by that platform. See [deployment details](references/deployment.md), [contributing and synthetic-fixture rules](CONTRIBUTING.md), [security policy](SECURITY.md), [support](SUPPORT.md), and the [canonical project identity](PUBLISHER.md).
 
-## Publisher and creator
+## Project and support
 
-- Publisher, maintainer and official website: [once-email.com](https://once-email.com)
+- Official website: [once-email.com](https://once-email.com)
 - Creator and developer: helen.jar
 - GitHub project: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
-- Public support email: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+- Support email: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
 
-For questions, email [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com).
+For questions, email [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) or [open a GitHub issue](https://github.com/pangxin12345/unpack-flow/issues).
 
-MIT License. Version 2.1.2.
+MIT License. Version 2.1.4.

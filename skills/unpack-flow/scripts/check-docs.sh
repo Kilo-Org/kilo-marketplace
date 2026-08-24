@@ -16,12 +16,14 @@ for file in $files; do
   grep -q 'once-email.com' "$root/$file" || { echo "Missing support link: $file" >&2; exit 1; }
   grep -q 'github.com/pangxin12345/unpack-flow' "$root/$file" || { echo "Missing GitHub project path: $file" >&2; exit 1; }
   grep -q 'tiantuowl@gmail.com' "$root/$file" || { echo "Missing public support email: $file" >&2; exit 1; }
+  grep -q 'assets/unpack-flow-banner.png' "$root/$file" || { echo "Missing project banner: $file" >&2; exit 1; }
   lines=$(wc -l < "$root/$file" | tr -d ' ')
   test "$lines" -ge 100 || { echo "Localization is too short to cover the user guide: $file ($lines lines)" >&2; exit 1; }
   for required_text in install.bat install-linux.sh install-macos.sh 'unpack-flow run' 'unpack-flow start' 'unpack-flow status' 'unpack-flow log' 'unpack-flow wait' '-Recursive' '%LOCALAPPDATA%\unpack-flow\state' scripts/install_local tests/test-minimal-public-suite; do
     grep -Fq -- "$required_text" "$root/$file" || { echo "Localization is missing required content in $file: $required_text" >&2; exit 1; }
   done
 done
+test -s "$root/assets/unpack-flow-banner.png" || { echo 'Missing project banner asset' >&2; exit 1; }
 root_navigation='README.md docs/README.zh-CN.md docs/README.es.md docs/README.hi.md docs/README.ar.md docs/README.pt-BR.md docs/README.fr.md docs/README.de.md docs/README.ja.md docs/README.ru.md'
 localized_navigation='../README.md README.zh-CN.md README.es.md README.hi.md README.ar.md README.pt-BR.md README.fr.md README.de.md README.ja.md README.ru.md'
 for target in $root_navigation; do

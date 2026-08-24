@@ -2,11 +2,20 @@
 
 ## Unreleased
 
+## 2.1.4 — 2026-08-24
+
 - Added private GitLab release gates for policy, security, one-time artifact freezing, manual GitHub publication, remote read-back and evidence aggregation without changing the tested runtime directory layout.
 - Kept bundled platform executables and libraries in their existing runtime paths while excluding `.gitlab-ci.yml`, `.internal/` and the private public-export helper from public source and customer artifacts.
 - Split CI dependencies by stage after the first real Runner rehearsal, keeping publication-only clients out of ordinary validation jobs.
 - Added an explicit Alpine package mirror for the home Runner after live network checks showed the official CDN path was impractically slow; official images and package signature verification remain in place.
 - Split Bash and PowerShell-on-Linux regression jobs, pinning the official Microsoft PowerShell image by digest so the existing background-isolation test runs in its required runtime instead of failing on a missing `pwsh` command.
+- Redesigned the English and Simplified Chinese README introductions with an original Once Email banner, project badges, clearer quick-start guidance, command and format tables, and a clickable support email.
+- Added the shared project banner to every localized README and made documentation validation require the banner asset and reference.
+
+## 2.1.3 — 2026-08-23
+
+- Fixed macOS `start` workers exiting early or remaining permanently queued by detaching them with `nohup`, pre-creating persistent logs, and recording bootstrap failures as terminal job states.
+- Extended the background isolation regression to verify the live worker PID, immediate log availability, state transitions, complete phase logging, and absence of terminal control output.
 
 ## 2.1.2 — 2026-08-22
 

@@ -1,3 +1,5 @@
+<p align="center"><a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email" width="100%"></a></p>
+
 # UnpackFlow — verschachtelte Archive unbeaufsichtigt entpacken
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
@@ -115,8 +117,15 @@ scripts/install_local.sh .
 
 Unter Windows wird der Skill mit `scripts/install_local.ps1` installiert. Python ist zum Entpacken nicht erforderlich; es wird nur für den automatischen Linux/macOS-Skill-Installer und das Python-Audit benötigt.
 
-## Sicherheit und Hilfe
+## Sicherheit, Projekt und Hilfe
 
-Quellen bleiben erhalten, Ziele werden nicht überschrieben und unbekannte EXE nie ausgeführt. Hilfe: [once-email.com](https://once-email.com). MIT, Version 2.1.2.
+UnpackFlow erhält Quelldateien, überschreibt keine Ziele und führt keine unbekannten EXE-Dateien aus.
 
-Herausgeber, Maintainer und offizielle Website: [once-email.com](https://once-email.com). Erstellerin und Entwicklerin: helen.jar. GitHub-Projekt: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow). Bei Fragen schreiben Sie an [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com).
+- Offizielle Website: [once-email.com](https://once-email.com)
+- Erstellerin und Entwicklerin: helen.jar
+- GitHub-Projekt: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
+- Support-E-Mail: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+
+Bei Fragen schreiben Sie an [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) oder [eröffnen Sie ein GitHub-Issue](https://github.com/pangxin12345/unpack-flow/issues).
+
+MIT-Lizenz, Version 2.1.4.

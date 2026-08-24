@@ -1,3 +1,5 @@
+<p align="center"><a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email" width="100%"></a></p>
+
 # UnpackFlow — فك الأرشيفات المتداخلة بلا مراقبة
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
@@ -115,8 +117,15 @@ scripts/install_local.sh .
 
 على Windows ثبّت Skill بواسطة `scripts/install_local.ps1`. لا يحتاج فك الأرشيفات إلى Python؛ يُستخدم Python فقط لمثبت Skill الآلي على Linux/macOS وللتدقيق المكتوب بـ Python.
 
-## الأمان والدعم
+## الأمان والمشروع والدعم
 
-لا يحذف المصادر ولا يستبدل الوجهات ولا يشغّل EXE مجهولاً. الدعم: [once-email.com](https://once-email.com). ترخيص MIT، الإصدار 2.1.2.
+يحافظ UnpackFlow على الملفات المصدر، ولا يستبدل مجلدات الوجهة، ولا يشغّل ملفات EXE مجهولة.
 
-الناشر والمشرف والموقع الرسمي: [once-email.com](https://once-email.com). المنشئة والمطوّرة: helen.jar. مشروع GitHub: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow). لأي سؤال، راسل [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com).
+- الموقع الرسمي: [once-email.com](https://once-email.com)
+- المنشئة والمطوّرة: helen.jar
+- مشروع GitHub: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
+- بريد الدعم: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+
+لأي سؤال، راسل [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) أو [افتح مشكلة على GitHub](https://github.com/pangxin12345/unpack-flow/issues).
+
+ترخيص MIT، الإصدار 2.1.4.

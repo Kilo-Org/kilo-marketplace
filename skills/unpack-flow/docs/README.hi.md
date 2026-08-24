@@ -1,3 +1,5 @@
+<p align="center"><a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email" width="100%"></a></p>
+
 # UnpackFlow — बिना निगरानी नेस्टेड आर्काइव निकालें
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
@@ -115,8 +117,15 @@ scripts/install_local.sh .
 
 Windows में Skill को `scripts/install_local.ps1` से इंस्टॉल करें। आर्काइव निकालने के लिए Python आवश्यक नहीं है; यह केवल Linux/macOS के स्वचालित Skill इंस्टॉलर और Python ऑडिट में उपयोग होता है।
 
-## सुरक्षा और सहायता
+## सुरक्षा, परियोजना और सहायता
 
-स्रोत नहीं मिटते, गंतव्य नहीं बदलते और अनजान EXE नहीं चलते। सहायता: [once-email.com](https://once-email.com)। MIT लाइसेंस, संस्करण 2.1.2।
+UnpackFlow स्रोत फ़ाइलें सुरक्षित रखता है, गंतव्यों को ओवरराइट नहीं करता और अज्ञात EXE नहीं चलाता।
 
-प्रकाशक, अनुरक्षक और आधिकारिक वेबसाइट: [once-email.com](https://once-email.com)। निर्माता और डेवलपर: helen.jar। GitHub परियोजना: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)। किसी भी प्रश्न के लिए [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) पर ईमेल करें।
+- आधिकारिक वेबसाइट: [once-email.com](https://once-email.com)
+- निर्माता और डेवलपर: helen.jar
+- GitHub परियोजना: [pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
+- सहायता ईमेल: [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+
+किसी भी प्रश्न के लिए [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) पर ईमेल करें या [GitHub Issues में समस्या दर्ज करें](https://github.com/pangxin12345/unpack-flow/issues)।
+
+MIT लाइसेंस, संस्करण 2.1.4।

@@ -1,23 +1,14 @@
 ---
 name: unpack-flow
-description: >-
-  在 Linux、Windows 或 macOS
-  上分析、批量解压和整理多层、分卷及自解压归档，并持续报告当前归档、阶段、层数与耗时。当用户要求解压文件、批量处理归档、展开嵌套压缩包、处理分卷包、查看解压进度或部署通用解压工具时使用；支持文件、目录、相对/绝对路径和通配符。
+description: 在 Linux、Windows 或 macOS 上分析、批量解压和整理多层、分卷及自解压归档，并持续报告当前归档、阶段、层数与耗时。当用户要求解压文件、批量处理归档、展开嵌套压缩包、处理分卷包、查看解压进度或部署通用解压工具时使用；支持文件、目录、相对/绝对路径和通配符。
 metadata:
-  author: once-email.com
-  homepage: 'https://once-email.com'
-  github: 'https://github.com/pangxin12345/unpack-flow'
-  github_profile: 'https://github.com/pangxin12345'
-  creator: helen.jar
-  license: MIT
-  version: 2.1.2
-  category: development
-  source:
-    repository: 'https://github.com/pangxin12345/unpack-flow-codex-marketplace'
-    path: plugins/unpack-flow/skills/unpack-flow
-    license_path: plugins/unpack-flow/skills/unpack-flow/LICENSE
-    ref: main
-    commit: d88ec39c2dbbf745bed903b79c5795d1641950f7
+  author: "once-email.com"
+  homepage: "https://once-email.com"
+  github: "https://github.com/pangxin12345/unpack-flow"
+  github_profile: "https://github.com/pangxin12345"
+  creator: "helen.jar"
+  license: "MIT"
+  version: "2.1.4"
 ---
 
 # UnpackFlow / 智能解压编排器

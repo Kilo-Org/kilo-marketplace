@@ -1,4 +1,18 @@
-# UnpackFlow：跨平台多层、分卷和批量归档解压
+<p align="center">
+  <a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email——安全展开嵌套归档" width="100%"></a>
+</p>
+
+# UnpackFlow
+
+<p align="center"><strong>跨平台处理嵌套归档、分卷包与自解压归档。</strong></p>
+
+<p align="center">
+  <a href="https://github.com/pangxin12345/unpack-flow/releases"><img alt="版本 2.1.4" src="https://img.shields.io/badge/版本-2.1.4-635bff"></a>
+  <a href="../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/许可证-MIT-22a06b"></a>
+  <img alt="Linux、Windows 和 macOS" src="https://img.shields.io/badge/平台-Linux%20%7C%20Windows%20%7C%20macOS-1684ff">
+  <a href="https://once-email.com"><img alt="Once Email 出品" src="https://img.shields.io/badge/出品-Once%20Email-0aa7a7"></a>
+  <a href="mailto:tiantuowl@gmail.com"><img alt="支持邮箱 tiantuowl@gmail.com" src="https://img.shields.io/badge/支持邮箱-tiantuowl%40gmail.com-ea4335"></a>
+</p>
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
 
@@ -248,13 +262,13 @@ Windows 自动安装：
 
 也可以把整个 `unpack-flow` 目录手工复制到 Agent 使用的 Skills 目录。安装后新建会话，再调用 `$unpack-flow`。
 
-## 支持与发布者
+## 项目与支持
 
-- 发布者、维护者和官网：[once-email.com](https://once-email.com)
+- 发布者与官网：[Once Email（once-email.com）](https://once-email.com)
 - 创建者与开发者：helen.jar
 - GitHub 项目：[pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
-- 公开支持邮箱：[tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+- 支持邮箱：[tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)（点击即可发邮件）
 
-有问题请直接发送邮件至 [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)。
+一般问题或功能建议可以在 [GitHub Issues](https://github.com/pangxin12345/unpack-flow/issues) 中提交；需要邮件联系时，请发送至 [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)。请勿发送密码、访问令牌、私人归档或未经检查的敏感日志。
 
-MIT License，版本 2.1.2。
+MIT License，版本 2.1.4。

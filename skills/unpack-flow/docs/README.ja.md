@@ -1,3 +1,5 @@
+<p align="center"><a href="https://once-email.com"><img src="../assets/unpack-flow-banner.png" alt="UnpackFlow by Once Email" width="100%"></a></p>
+
 # UnpackFlow：多重圧縮を無人で連続展開
 
 [English](../README.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [日本語](README.ja.md) · [Русский](README.ru.md)
@@ -113,8 +115,15 @@ scripts/install_local.sh .
 
 Windows では `scripts/install_local.ps1` で Skill をインストールします。展開処理に Python は不要で、Linux/macOS の自動 Skill インストーラーと Python 監査にだけ使用します。
 
-## 安全性とサポート
+## 安全性、プロジェクト、サポート
 
-元ファイルを保持し、出力を上書きせず、不明な EXE を実行しません。サポート：[once-email.com](https://once-email.com)。MIT、バージョン 2.1.2。
+UnpackFlow は元ファイルを保持し、出力先を上書きせず、不明な EXE ファイルを実行しません。
 
-発行元・メンテナー・公式サイト：[once-email.com](https://once-email.com)。作成者・開発者：helen.jar。GitHub プロジェクト：[pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)。ご質問は [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) へメールしてください。
+- 公式サイト：[once-email.com](https://once-email.com)
+- 作成者・開発者：helen.jar
+- GitHub プロジェクト：[pangxin12345/unpack-flow](https://github.com/pangxin12345/unpack-flow)
+- サポートメール：[tiantuowl@gmail.com](mailto:tiantuowl@gmail.com)
+
+ご質問は [tiantuowl@gmail.com](mailto:tiantuowl@gmail.com) へメールするか、[GitHub Issues に投稿してください](https://github.com/pangxin12345/unpack-flow/issues)。
+
+MIT ライセンス、バージョン 2.1.4。
