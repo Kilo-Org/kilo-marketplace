@@ -4447,8 +4447,8 @@ items:
         placeholder: your_pat_secret
   - id: tavily
     name: Tavily
-    description: Enables real-time web search and data extraction capabilities through Tavily's API, providing AI assistants
-      with filtered search results and intelligent content extraction from web pages.
+    description: Connects AI assistants to Tavily's real-time web search and intelligent page extraction tools, with
+      advanced filtering and domain controls for research and agent workflows.
     author: tavily-ai
     url: https://github.com/tavily-ai/tavily-mcp
     category: search
@@ -4463,7 +4463,7 @@ items:
         content: |
           {
             "command": "npx",
-            "args": ["-y", "tavily-mcp@0.2.3"],
+            "args": ["-y", "tavily-mcp@latest"],
             "env": {
               "TAVILY_API_KEY": "{{TAVILY_API_KEY}}"
             }
