@@ -1,0 +1,9 @@
+diff -rN -U0 --ignore-trailing-space a/tavily-map/SKILL.md b/tavily-map/SKILL.md
+--- a/tavily-map/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/tavily-map/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -36 +36 @@
+-See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
++Run `tvly --help` for additional CLI options.
+@@ -42 +42 @@
+-- Step 3 in the [workflow](../tavily-cli/SKILL.md): search → extract → **map** → crawl → research
++- Step 3 in the workflow: search → extract → **map** → crawl → research

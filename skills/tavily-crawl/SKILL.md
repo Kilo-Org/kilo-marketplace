@@ -33,13 +33,13 @@ curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
 
 Do not skip this step or fall back to other tools.
 
-See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
+Run `tvly --help` for additional CLI options.
 
 ## When to use
 
 - You need content from many pages on a site (e.g., all `/docs/`)
 - You want to download documentation for offline use
-- Step 4 in the [workflow](../tavily-cli/SKILL.md): search → extract → map → **crawl** → research
+- Step 4 in the workflow: search → extract → map → **crawl** → research
 
 ## Quick start
 

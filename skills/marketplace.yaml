@@ -1813,29 +1813,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
-  - id: tavily-best-practices
-    description: >-
-      Build production-ready Tavily integrations with best practices baked in. Reference documentation for developers
-      using coding assistants (Claude Code, Cursor, etc.) to implement web search, content extraction, crawling, and
-      research in agentic workflows, RAG systems, or autonomous agents.
-    category: search
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-best-practices
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-best-practices/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-best-practices.tar.gz
-  - id: tavily-cli
-    description: >
-      Web search, content extraction, crawling, and deep research via the Tavily CLI. Use this skill whenever the user
-      wants to search the web, find articles, research a topic, look something up online, extract content from a URL,
-      grab text from a webpage, crawl documentation, download a site's pages, discover URLs on a domain, or conduct
-      in-depth research with citations. Also use when they say "fetch this page", "pull the content from", "get the page
-      at https://", "find me articles about", or reference extracting data from external websites. This provides
-      LLM-optimized web search, content extraction, site crawling, URL discovery, and AI-powered deep research —
-      capabilities beyond what agents can do natively. Do NOT trigger for local file operations, git commands,
-      deployments, or code editing tasks.
-    category: search
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-cli
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-cli/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-cli.tar.gz
   - id: tavily-crawl
     description: >
       Crawl websites and extract content from multiple pages via the Tavily CLI. Use this skill when the user wants to
@@ -1847,18 +1824,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-crawl
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-crawl/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-crawl.tar.gz
-  - id: tavily-dynamic-search
-    description: >
-      Programmatic web search with context isolation. Use this skill for any research task where you need to search the
-      web, filter results, and extract specific information — without polluting your context window with raw HTML and
-      boilerplate. This is the default skill for web research. Triggered by "search for", "look up", "find", "research",
-      "what's the latest on", or any query that requires current web information. Also use when asked to "search and
-      filter", "find the important parts", or "extract the key details" — any case where the user wants curated,
-      noise-free content.
-    category: search
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-dynamic-search
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-dynamic-search/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-dynamic-search.tar.gz
   - id: tavily-extract
     description: >
       Extract clean markdown or text content from specific URLs via the Tavily CLI. Use this skill when the user has one

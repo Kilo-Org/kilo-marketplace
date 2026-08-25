@@ -33,14 +33,14 @@ curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
 
 Do not skip this step or fall back to other tools.
 
-See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
+Run `tvly --help` for additional CLI options.
 
 ## When to use
 
 - You need comprehensive, multi-source analysis
 - The user wants a comparison, market report, or literature review
 - Quick searches aren't enough — you need synthesis with citations
-- Step 5 in the [workflow](../tavily-cli/SKILL.md): search → extract → map → crawl → **research**
+- Step 5 in the workflow: search → extract → map → crawl → **research**
 
 ## Quick start
 
