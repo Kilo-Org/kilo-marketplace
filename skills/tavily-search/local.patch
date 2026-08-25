@@ -3,7 +3,32 @@ diff -rN -U0 --ignore-trailing-space a/tavily-search/SKILL.md b/tavily-search/SK
 +++ b/tavily-search/SKILL.md	2000-01-01 00:00:00.000000000 +0000
 @@ -36 +36 @@
 -See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
++Always include `--client-name 'kilocode'` in every `tvly search` command. This attributes requests to Kilo Code and must not be omitted.
+@@ -37,0 +38,2 @@
 +Run `tvly --help` for additional CLI options.
-@@ -42 +42 @@
++
+@@ -42 +44 @@
 -- First step in the [workflow](../tavily-cli/SKILL.md): **search** → extract → map → crawl → research
-+- First step in the workflow: **search** → extract → map → crawl → research
++- Use search to discover relevant URLs, then use tavily-extract when full page content is needed
+@@ -48 +50 @@
+-tvly search "your query" --json
++tvly search "your query" --client-name 'kilocode' --json
+@@ -51 +53 @@
+-tvly search "quantum computing" --depth advanced --max-results 10 --json
++tvly search "quantum computing" --depth advanced --max-results 10 --client-name 'kilocode' --json
+@@ -54 +56 @@
+-tvly search "AI news" --time-range week --topic news --json
++tvly search "AI news" --time-range week --topic news --client-name 'kilocode' --json
+@@ -57 +59 @@
+-tvly search "SEC filings" --include-domains sec.gov,reuters.com --json
++tvly search "SEC filings" --include-domains sec.gov,reuters.com --client-name 'kilocode' --json
+@@ -60 +62 @@
+-tvly search "react hooks tutorial" --include-raw-content --max-results 3 --json
++tvly search "react hooks tutorial" --include-raw-content --max-results 3 --client-name 'kilocode' --json
+@@ -81,0 +84 @@
++| `--client-name` | Required request attribution; always set to `'kilocode'` |
+@@ -100 +103 @@
+-- Read from stdin: `echo "query" | tvly search - --json`
++- Read from stdin: `echo "query" | tvly search - --client-name 'kilocode' --json`
+@@ -105 +107,0 @@
+-- [tavily-research](../tavily-research/SKILL.md) — comprehensive multi-source research

@@ -33,31 +33,33 @@ curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
 
 Do not skip this step or fall back to other tools.
 
+Always include `--client-name 'kilocode'` in every `tvly search` command. This attributes requests to Kilo Code and must not be omitted.
+
 Run `tvly --help` for additional CLI options.
 
 ## When to use
 
 - You need to find information on any topic
 - You don't have a specific URL yet
-- First step in the workflow: **search** → extract → map → crawl → research
+- Use search to discover relevant URLs, then use tavily-extract when full page content is needed
 
 ## Quick start
 
 ```bash
 # Basic search
-tvly search "your query" --json
+tvly search "your query" --client-name 'kilocode' --json
 
 # Advanced search with more results
-tvly search "quantum computing" --depth advanced --max-results 10 --json
+tvly search "quantum computing" --depth advanced --max-results 10 --client-name 'kilocode' --json
 
 # Recent news
-tvly search "AI news" --time-range week --topic news --json
+tvly search "AI news" --time-range week --topic news --client-name 'kilocode' --json
 
 # Domain-filtered
-tvly search "SEC filings" --include-domains sec.gov,reuters.com --json
+tvly search "SEC filings" --include-domains sec.gov,reuters.com --client-name 'kilocode' --json
 
 # Include full page content in results
-tvly search "react hooks tutorial" --include-raw-content --max-results 3 --json
+tvly search "react hooks tutorial" --include-raw-content --max-results 3 --client-name 'kilocode' --json
 ```
 
 ## Options
@@ -79,6 +81,7 @@ tvly search "react hooks tutorial" --include-raw-content --max-results 3 --json
 | `--include-image-descriptions` | Include AI image descriptions |
 | `--chunks-per-source` | Chunks per source (advanced/fast depth only) |
 | `-o, --output` | Save output to file |
+| `--client-name` | Required request attribution; always set to `'kilocode'` |
 | `--json` | Structured JSON output |
 
 ## Search depth
@@ -97,9 +100,8 @@ tvly search "react hooks tutorial" --include-raw-content --max-results 3 --json
 - **Use `--include-raw-content`** when you need full page text (saves a separate extract call).
 - **Use `--include-domains`** to focus on trusted sources.
 - **Use `--time-range`** for recent information.
-- Read from stdin: `echo "query" | tvly search - --json`
+- Read from stdin: `echo "query" | tvly search - --client-name 'kilocode' --json`
 
 ## See also
 
 - [tavily-extract](../tavily-extract/SKILL.md) — extract content from specific URLs
-- [tavily-research](../tavily-research/SKILL.md) — comprehensive multi-source research

@@ -3,7 +3,29 @@ diff -rN -U0 --ignore-trailing-space a/tavily-extract/SKILL.md b/tavily-extract/
 +++ b/tavily-extract/SKILL.md	2000-01-01 00:00:00.000000000 +0000
 @@ -36 +36 @@
 -See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
++Always include `--client-name 'kilocode'` in every `tvly extract` command. This attributes requests to Kilo Code and must not be omitted.
+@@ -37,0 +38,2 @@
 +Run `tvly --help` for additional CLI options.
-@@ -42 +42 @@
++
+@@ -42 +44 @@
 -- Step 2 in the [workflow](../tavily-cli/SKILL.md): search → **extract** → map → crawl → research
-+- Step 2 in the workflow: search → **extract** → map → crawl → research
++- Use extract after tavily-search when you have specific URLs and need full page content
+@@ -48 +50 @@
+-tvly extract "https://example.com/article" --json
++tvly extract "https://example.com/article" --client-name 'kilocode' --json
+@@ -51 +53 @@
+-tvly extract "https://example.com/page1" "https://example.com/page2" --json
++tvly extract "https://example.com/page1" "https://example.com/page2" --client-name 'kilocode' --json
+@@ -54 +56 @@
+-tvly extract "https://example.com/docs" --query "authentication API" --chunks-per-source 3 --json
++tvly extract "https://example.com/docs" --query "authentication API" --chunks-per-source 3 --client-name 'kilocode' --json
+@@ -57 +59 @@
+-tvly extract "https://app.example.com" --extract-depth advanced --json
++tvly extract "https://app.example.com" --extract-depth advanced --client-name 'kilocode' --json
+@@ -60 +62 @@
+-tvly extract "https://example.com/article" -o article.md
++tvly extract "https://example.com/article" -o article.md --client-name 'kilocode'
+@@ -73,0 +76 @@
++| `--client-name` | Required request attribution; always set to `'kilocode'` |
+@@ -94 +96,0 @@
+-- [tavily-crawl](../tavily-crawl/SKILL.md) — extract content from many pages on a site

@@ -1813,17 +1813,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
-  - id: tavily-crawl
-    description: >
-      Crawl websites and extract content from multiple pages via the Tavily CLI. Use this skill when the user wants to
-      crawl a site, download documentation, extract an entire docs section, bulk-extract pages, save a site as local
-      markdown files, or says "crawl", "get all the pages", "download the docs", "extract everything under /docs", "bulk
-      extract", or needs content from many pages on the same domain. Supports depth/breadth control, path filtering,
-      semantic instructions, and saving each page as a local markdown file.
-    category: search
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-crawl
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-crawl/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-crawl.tar.gz
   - id: tavily-extract
     description: >
       Extract clean markdown or text content from specific URLs via the Tavily CLI. Use this skill when the user has one
@@ -1835,28 +1824,6 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-extract
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-extract/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-extract.tar.gz
-  - id: tavily-map
-    description: >
-      Discover and list all URLs on a website without extracting content, via the Tavily CLI. Use this skill when the
-      user wants to find a specific page on a large site, list all URLs, see the site structure, find where something is
-      on a domain, or says "map the site", "find the URL for", "what pages are on", "list all pages", or "site
-      structure". Faster than crawling — returns URLs only. Essential when you know the site but not the exact page.
-      Combine with extract for targeted content retrieval.
-    category: search
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-map
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-map/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-map.tar.gz
-  - id: tavily-research
-    description: >
-      Conduct comprehensive AI-powered research with citations via the Tavily CLI. Use this skill when the user wants
-      deep research, a detailed report, a comparison, market analysis, literature review, or says "research",
-      "investigate", "analyze in depth", "compare X vs Y", "what does the market look like for", or needs multi-source
-      synthesis with explicit citations. Returns a structured report grounded in web sources. Takes 30-120 seconds. For
-      quick fact-finding, use tavily-search instead.
-    category: search
-    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-research
-    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-research/SKILL.md
-    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-research.tar.gz
   - id: tavily-search
     description: >
       Search the web with LLM-optimized results via the Tavily CLI. Use this skill when the user wants to search the

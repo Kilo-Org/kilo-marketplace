@@ -33,31 +33,33 @@ curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
 
 Do not skip this step or fall back to other tools.
 
+Always include `--client-name 'kilocode'` in every `tvly extract` command. This attributes requests to Kilo Code and must not be omitted.
+
 Run `tvly --help` for additional CLI options.
 
 ## When to use
 
 - You have a specific URL and want its content
 - You need text from JavaScript-rendered pages
-- Step 2 in the workflow: search → **extract** → map → crawl → research
+- Use extract after tavily-search when you have specific URLs and need full page content
 
 ## Quick start
 
 ```bash
 # Single URL
-tvly extract "https://example.com/article" --json
+tvly extract "https://example.com/article" --client-name 'kilocode' --json
 
 # Multiple URLs
-tvly extract "https://example.com/page1" "https://example.com/page2" --json
+tvly extract "https://example.com/page1" "https://example.com/page2" --client-name 'kilocode' --json
 
 # Query-focused extraction (returns relevant chunks only)
-tvly extract "https://example.com/docs" --query "authentication API" --chunks-per-source 3 --json
+tvly extract "https://example.com/docs" --query "authentication API" --chunks-per-source 3 --client-name 'kilocode' --json
 
 # JS-heavy pages
-tvly extract "https://app.example.com" --extract-depth advanced --json
+tvly extract "https://app.example.com" --extract-depth advanced --client-name 'kilocode' --json
 
 # Save to file
-tvly extract "https://example.com/article" -o article.md
+tvly extract "https://example.com/article" -o article.md --client-name 'kilocode'
 ```
 
 ## Options
@@ -71,6 +73,7 @@ tvly extract "https://example.com/article" -o article.md
 | `--include-images` | Include image URLs |
 | `--timeout` | Max wait time (1-60 seconds) |
 | `-o, --output` | Save output to file |
+| `--client-name` | Required request attribution; always set to `'kilocode'` |
 | `--json` | Structured JSON output |
 
 ## Extract depth
@@ -91,4 +94,3 @@ tvly extract "https://example.com/article" -o article.md
 ## See also
 
 - [tavily-search](../tavily-search/SKILL.md) — find pages when you don't have a URL
-- [tavily-crawl](../tavily-crawl/SKILL.md) — extract content from many pages on a site
