@@ -8,6 +8,17 @@ category: search
 prerequisites:
   - Tavily account
 content:
+  - name: Remote Server
+    description: Connects to Tavily's hosted MCP and attributes Tavily API requests to Kilo Code with the X-Client-Name header.
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.tavily.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TAVILY_API_KEY}}",
+          "X-Client-Name": "kilocode"
+        }
+      }
   - name: NPX
     prerequisites:
       - Node.js
