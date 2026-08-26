@@ -1,0 +1,22 @@
+id: samedaydesk
+name: SameDayDesk
+description: >-
+  Connects agents to SameDayDesk's hosted x402-data-gateway MCP server for
+  credential-free initialization and tool discovery across 22 tools covering web
+  extraction, enrichment, audits, and machine-payment research. Connecting and
+  listing tools requires no account or API key; individual paid tool calls are
+  gated by x402 payment offers that the caller must review and settle. This
+  entry does not include automatic installation, tool selection, authorization,
+  or payment.
+author: epistemedeus
+url: https://github.com/epistemedeus/x402-url-extractor
+category: business
+prerequisites:
+  - An MCP client with Streamable HTTP transport support
+content:
+  - name: Remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://agents.samedaydesk.com/mcp"
+      }
