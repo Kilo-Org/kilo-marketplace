@@ -1,9 +1,9 @@
 id: bird
 name: Bird
-description: Send email, SMS, WhatsApp and voice from your agent on Bird's own sending infrastructure and
-  carrier connections. Runs one-time-passcode verification, provisions sending domains and phone numbers
-  including 10DLC registration, and manages contacts, webhooks and Realtime. 328 tools generated from
-  Bird's public API.
+description: Send and receive across email, SMS, WhatsApp, and voice. One API, one contract. Runs
+  one-time-passcode verification, provisions sending domains and phone numbers including 10DLC
+  registration, and manages contacts, webhooks and Realtime. 328 tools generated from Bird's public
+  API.
 author: Bird
 url: https://bird.com/docs/ai/mcp-server
 category: business
