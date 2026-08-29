@@ -1,0 +1,15 @@
+id: certscore-mcp-light
+name: CertScore.ai MCP Light
+description: >-
+  Free website privacy scanner to detect pre-consent cookies and trackers, CMP and consent controls,
+  privacy policy, GDPR/ePrivacy and CCPA, and HTTPS/TLS signals.
+author: CertScore.ai, LLC
+url: https://github.com/ergoveritas1-alt/certscore.ai
+category: web-automation
+content:
+  - name: Remote MCP - Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.certscore.ai/mcp/light"
+      }
