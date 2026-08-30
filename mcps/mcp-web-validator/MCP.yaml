@@ -1,0 +1,25 @@
+id: mcp-web-validator
+name: Web Validator by DigestSEO
+description: Provides local HTML/CSS validation, technical SEO and JSON-LD checks, broken-link checks, and responsive screenshots, plus constrained hosted public-page and site audits.
+author: DigestSEO
+url: https://github.com/AKzar1el/mcp-web-validator
+category: web-automation
+prerequisites:
+  - Internet access is required for W3C validation and eligible public-link checks.
+  - Node.js 22.12.0 or newer is required for the local NPX option.
+  - Puppeteer may download a compatible Chromium browser when screenshots are used locally.
+content:
+  - name: Local NPX server
+    prerequisites:
+      - Node.js 22.12.0 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-web-validator"]
+      }
+  - name: Hosted Streamable HTTP server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://web-validator-mcp.digestseo.com/mcp"
+      }
