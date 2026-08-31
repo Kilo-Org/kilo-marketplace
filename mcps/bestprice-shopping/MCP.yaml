@@ -1,0 +1,15 @@
+id: bestprice-shopping
+name: BestPrice Shopping
+description: Searches Greek products, compares merchant offers, and retrieves price history through BestPrice's public, read-only hosted MCP server.
+author: BestPrice.gr
+url: https://github.com/TheBestCo/bestprice-mcp
+category: search
+prerequisites:
+  - No account or API key required
+content:
+  - name: BestPrice hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.bestprice.gr/mcp"
+      }
