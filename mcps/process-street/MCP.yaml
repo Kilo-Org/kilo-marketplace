@@ -1,0 +1,16 @@
+id: process-street
+name: Process Street
+description: Connect AI assistants to Process Street workflows, workflow runs, tasks, users, data sets, and operational records.
+author: process-street
+url: https://github.com/process-street/process-street-mcp
+category: productivity
+prerequisites:
+  - Process Street account
+  - MCP client with OAuth support
+content:
+  - name: Process Street Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.process.st/"
+      }
