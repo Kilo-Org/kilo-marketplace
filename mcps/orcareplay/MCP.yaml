@@ -1,0 +1,29 @@
+id: orcareplay
+name: OrcaReplay
+description: Reads a coding agent's own recorded runs from the local trace, so it can answer why an
+  earlier run did something from evidence rather than memory - the tool calls, exit codes and file
+  changes as they happened - and replay or fork that run offline.
+author: Continuum-AI-Corp
+url: https://github.com/Continuum-AI-Corp/OrcaReplay
+category: observability
+prerequisites:
+  - Node.js 20 or newer
+  - At least one recorded run under the project's .orca/runs directory
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "orcareplay", "mcp"]
+      }
+  - name: Global install
+    prerequisites:
+      - Node.js 20+
+      - npm i -g orcareplay
+    content: |
+      {
+        "command": "orca",
+        "args": ["mcp"]
+      }
