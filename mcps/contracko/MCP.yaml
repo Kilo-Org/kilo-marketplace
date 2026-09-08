@@ -1,0 +1,17 @@
+id: contracko
+name: Contracko
+description: AI contract management. Review contracts for risks and obligations, extract dates, parties and values,
+  search inside documents, and track renewal deadlines and reminders.
+author: contracko
+url: https://github.com/contracko/contracko-skills
+category: business
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.contracko.com/mcp"
+      }
+    prerequisites:
+      - MCP client with OAuth support
+      - A Contracko account, or start a free trial from the sign in screen
