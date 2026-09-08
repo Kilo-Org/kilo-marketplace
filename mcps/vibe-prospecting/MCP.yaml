@@ -1,0 +1,16 @@
+id: vibe-prospecting
+name: Vibe Prospecting
+description: Remote B2B prospecting connector powered by Explorium. Find and enrich companies and professionals from chat with live data across firmographics, contacts, technographics, and buying signals. Sign in with browser OAuth on first use. No local install and no API key.
+author: Explorium
+url: https://github.com/explorium-ai/vibeprospecting-mcp
+category: business
+prerequisites:
+  - Vibe Prospecting / Explorium account
+  - MCP client with OAuth support
+content:
+  - name: Remote Connector
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://vibeprospecting.explorium.ai/mcp"
+      }

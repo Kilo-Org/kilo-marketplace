@@ -1,0 +1,22 @@
+id: explorium
+name: Explorium AgentSource
+description: Remote MCP access to Explorium AgentSource business and prospect data. Match and fetch companies and contacts, enrich records, and track events through the hosted streamable HTTP endpoint using your Explorium API key.
+author: Explorium
+url: https://developers.explorium.ai/mcp-docs/agentsource-mcp
+category: business
+prerequisites:
+  - Explorium account and API key
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+          "api_key": "{{EXPLORIUM_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Explorium API Key
+    key: EXPLORIUM_API_KEY
+    placeholder: your_explorium_api_key
