@@ -1,6 +1,6 @@
 id: explorium
 name: Explorium AgentSource
-description: Remote MCP access to Explorium AgentSource business and prospect data. Match and fetch companies and contacts, enrich records, and track events through the hosted streamable HTTP endpoint. Sign in with browser OAuth on first use. No local install and no API key.
+description: Access Explorium business and contact data through the Model Context Protocol.
 author: Explorium
 url: https://developers.explorium.ai/mcp-docs/agentsource-mcp
 category: business
