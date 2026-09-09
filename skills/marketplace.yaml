@@ -1784,6 +1784,13 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/integrate-anything
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/integrate-anything/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/integrate-anything.tar.gz
+  - id: linkedin-post
+    description: >-
+      Create and schedule LinkedIn posts with text, images, videos, and documents via Publora MCP
+    category: productivity
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/linkedin-post
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/linkedin-post/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/linkedin-post.tar.gz
   - id: microsoft-code-reference
     description: >-
       Find working code samples, verify API signatures, and fix Microsoft SDK errors using official docs. Use whenever
