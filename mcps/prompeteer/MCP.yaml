@@ -1,0 +1,30 @@
+id: prompeteer
+name: Prompeteer
+description: Generates and scores prompts and agent skills, saves reusable prompts to PromptDrive, and retrieves private Prompeteer Memory through an authenticated hosted MCP server.
+author: Prompeteer
+url: https://github.com/prompeteer/prompeteer-mcp
+category: productivity
+prerequisites:
+  - Prompeteer account and browser sign-in through the client's OAuth flow
+  - Authorized scopes and available plan quota; ask_memory requires Pro access
+  - Successful generation automatically saves its result; explicit saves and Memory settings change account data
+  - Scoring consumes quota, and Memory search can persist embedding vectors
+  - Setup and current plan details at https://prompeteer.ai/connect and https://prompeteer.ai/pricing
+content:
+  - name: Hosted Streamable HTTP with OAuth
+    prerequisites:
+      - MCP client with Streamable HTTP and OAuth discovery support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://prompeteer.ai/mcp"
+      }
+  - name: NPX stdio bridge with OAuth
+    prerequisites:
+      - Node.js 22.14.0 or later
+      - Browser access for sign-in; the bridge connects to the hosted service
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@prompeteer.ai/mcp-server@2.0.3"]
+      }
