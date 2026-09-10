@@ -1,0 +1,69 @@
+id: zovo-back-office
+name: Zovo Back Office
+description: Hosted back-office toolsets for the paperwork around a small business. PDF invoices with VAT
+  and sequential numbering, quotes and estimates, xlsx and csv spreadsheets, PDF page editing, billable time
+  tracking, and expenses with receipts and mileage. Each toolset is a separate endpoint selected on install.
+author: theluckystrike
+url: https://github.com/theluckystrike/mcp-servers
+category: business
+prerequisites:
+  - A free anonymous token from https://mcp.zovo.one/mcp/token - no account, no card, no email
+content:
+  - name: Invoicing toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.zovo.one/mcp/invoice",
+        "headers": {
+          "Authorization": "Bearer {{ZOVO_TOKEN}}"
+        }
+      }
+  - name: Quotes and estimates toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.zovo.one/mcp/quotes",
+        "headers": {
+          "Authorization": "Bearer {{ZOVO_TOKEN}}"
+        }
+      }
+  - name: Spreadsheet toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.zovo.one/mcp/spreadsheet",
+        "headers": {
+          "Authorization": "Bearer {{ZOVO_TOKEN}}"
+        }
+      }
+  - name: PDF toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.zovo.one/mcp/pdf",
+        "headers": {
+          "Authorization": "Bearer {{ZOVO_TOKEN}}"
+        }
+      }
+  - name: Time tracking toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.zovo.one/mcp/time-tracker",
+        "headers": {
+          "Authorization": "Bearer {{ZOVO_TOKEN}}"
+        }
+      }
+  - name: Expense tracking toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.zovo.one/mcp/expense-tracker",
+        "headers": {
+          "Authorization": "Bearer {{ZOVO_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Zovo Token
+    key: ZOVO_TOKEN
+    placeholder: anon_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
