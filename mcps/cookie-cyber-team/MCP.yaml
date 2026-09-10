@@ -1,0 +1,44 @@
+id: cookie-cyber-team
+name: Cookie Cyber Team
+description: >-
+  Single Unified Intelligent MCP Server with 5-Gate Defensive Cyber Guardrails
+  for AI coding agents. Provides SAST taint analysis, binary triage, malware
+  IOC extraction, sandbox integration, secure patch guardrails, and blue-team
+  cybersecurity tooling.
+author: LoveCookieee-java
+url: https://github.com/LoveCookieee-java/CookieCyberTeam
+category: security
+prerequisites:
+  - Python 3.9+
+  - uv or pip
+content:
+  - name: UVX (Recommended)
+    content: |
+      {
+        "command": "uvx",
+        "args": ["cookie-cyber-team", "--stdio"],
+        "env": {
+          "CAPE_API_URL": "{{CAPE_API_URL}}",
+          "CAPE_API_KEY": "{{CAPE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: CAPEv2 Sandbox URL
+        key: CAPE_API_URL
+        placeholder: "http://your-cape-instance/apiv2"
+        optional: true
+      - name: CAPEv2 API Key
+        key: CAPE_API_KEY
+        placeholder: ""
+        optional: true
+    prerequisites:
+      - uv (install via https://docs.astral.sh/uv/)
+  - name: PIP
+    content: |
+      {
+        "command": "cookie-cyber-team",
+        "args": ["--stdio"]
+      }
+    prerequisites:
+      - Python 3.9+
+      - pip install cookie-cyber-team
