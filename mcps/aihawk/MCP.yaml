@@ -1,0 +1,20 @@
+id: aihawk
+name: AIHawk
+description: Open-source AI browser agent that browses, clicks, types and reads real web pages from plain-English
+  instructions. Drives its own Firefox build through the real pointer and keyboard, so the agent works on the
+  actual page rather than a headless shell. Also ships a standalone web UI.
+author: feder-cr
+url: https://github.com/feder-cr/AIHawk
+category: web-automation
+prerequisites:
+  - uv (https://docs.astral.sh/uv/)
+  - One-time browser download with `uvx invisible-playwright fetch`
+content:
+  - name: UVX
+    prerequisites:
+      - uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["aihawk"]
+      }
