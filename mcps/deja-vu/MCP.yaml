@@ -1,0 +1,25 @@
+id: deja-vu
+name: deja-vu
+description: Searches the coding sessions already written to this machine — Claude Code, Codex, Cursor, Cline, Roo,
+  opencode and twenty more — so the agent can answer from work that was done before it was installed, including work
+  done in another tool.
+author: vshulcz
+url: https://github.com/vshulcz/deja-vu
+category: data
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@vshulcz/deja-vu", "mcp"]
+      }
+  - name: Homebrew
+    prerequisites:
+      - Homebrew
+    content: |
+      {
+        "command": "deja",
+        "args": ["mcp"]
+      }
