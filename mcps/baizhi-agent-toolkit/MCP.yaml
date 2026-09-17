@@ -5,7 +5,7 @@ description: >-
   developer documentation, and cloud code execution through one hosted MCP
   endpoint. Supports research and development workflows with a shared API key.
 author: Baizhi Cloud
-url: https://github.com/ct-jaryn/baizhi-agent-toolkit
+url: https://github.com/chaitin/baizhi-agent-toolkit
 category: search
 prerequisites:
   - A Baizhi Cloud account and API key from https://agent-toolkit.app.baizhi.cloud/
