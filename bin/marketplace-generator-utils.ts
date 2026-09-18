@@ -49,6 +49,11 @@ export const AGENT_CATEGORIES = new Set([
   "creative-media",
 ]);
 
+export const PLUGIN_CATEGORIES = new Set([
+  ...MARKETPLACE_CATEGORIES,
+  "providers",
+]);
+
 export function repoPathFromBin(...segments: string[]): string {
   return path.join(BIN_DIR, "..", ...segments);
 }
