@@ -44,6 +44,11 @@ function pluginFromYaml(dirName: string): MarketplacePlugin {
   if (id !== dirName) {
     throw new Error(`${file}: id must match directory name (${dirName})`);
   }
+  // The client keys installed state by id, so content must resolve to the same
+  // npm package name (an optional @version pin is allowed).
+  if (content !== id && !content.startsWith(`${id}@`)) {
+    throw new Error(`${file}: content must be the ${id} package, optionally pinned with @version`);
+  }
   if (!PLUGIN_CATEGORIES.has(category)) {
     throw new Error(`${file}: invalid category "${category}"`);
   }
