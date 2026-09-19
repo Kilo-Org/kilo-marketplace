@@ -1,0 +1,24 @@
+id: sceneview-mcp
+name: SceneView
+description: Provides the SceneView 3D and AR SDK reference to coding assistants — API surface,
+  compilable samples and dependency coordinates for Android (Jetpack Compose + Filament),
+  Apple (SwiftUI + RealityKit) and Web — plus a validator that checks generated snippets
+  against the current API.
+author: sceneview
+url: https://github.com/sceneview/sceneview
+category: development
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "sceneview-mcp"]
+      }
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.sceneview.dev/mcp"
+      }
