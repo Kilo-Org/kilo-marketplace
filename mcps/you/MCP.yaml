@@ -1,0 +1,30 @@
+id: you
+name: You.com
+description: Adds real-time web search, URL content extraction, and research tools through You.com's hosted MCP servers,
+  with a keyless profile for basic web search or an API key for the full toolset.
+author: youdotcom-oss
+url: https://github.com/youdotcom-oss/agent-skills
+category: search
+content:
+  - name: Remote Server (keyless)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.you.com/mcp?profile=free"
+      }
+  - name: Remote Server (full toolset)
+    prerequisites:
+      - You.com API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.you.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{YDC_API_KEY}}"
+        }
+      }
+parameters:
+  - name: You.com API Key
+    key: YDC_API_KEY
+    placeholder: your_youcom_api_key_here
+    optional: true
