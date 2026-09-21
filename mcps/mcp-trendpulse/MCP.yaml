@@ -9,11 +9,11 @@ prerequisites:
   - Internet access is required for Google News, Google Trends, and article retrieval.
   - Playwright Chromium is optional and only needed for browser fallback on difficult article pages.
 content:
-  - name: UVX (PyPI 0.2.13)
+  - name: UVX (PyPI)
     prerequisites:
       - uv/uvx
     content: |
       {
         "command": "uvx",
-        "args": ["mcp-trendpulse==0.2.13"]
+        "args": ["mcp-trendpulse"]
       }
