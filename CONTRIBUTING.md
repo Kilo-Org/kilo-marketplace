@@ -2,6 +2,10 @@
 
 Thank you for your interest in contributing to the Kilo Marketplace! This guide will help you add new skills that benefit the entire community.
 
+## Contributing Plugins
+
+To contribute an npm plugin, follow the [plugin contribution workflow](plugins/README.md#contribution-workflow). It covers scoped and unscoped package directories, supported registry specifiers, server and TUI manifest requirements, and catalog generation and checks. Plugin source code stays in its own repository and is published to npm.
+
 ## Before You Start
 
 - Ensure your skill is based on a **real use case**, not a hypothetical scenario.
