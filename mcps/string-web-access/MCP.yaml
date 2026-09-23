@@ -1,0 +1,36 @@
+id: string-web-access
+name: String Web Access
+description: Search the web, fetch any URL or send it a write request, and map a site's URLs — all
+  returned as clean, LLM-ready Markdown. Proxy rotation, anti-bot handling, CAPTCHA solving and
+  JavaScript rendering happen server-side, so the agent gets the page instead of a block screen.
+  Best for sites that rate-limit, geo-gate or block automated traffic.
+author: usestring
+url: https://github.com/usestring/string-ai-mcp
+category: web-automation
+prerequisites:
+  - String account
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.usestring.ai/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{STRING_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@usestring/mcp"],
+        "env": {
+          "STRING_AI_API_KEY": "{{STRING_API_KEY}}"
+        }
+      }
+parameters:
+  - name: String API Key
+    key: STRING_API_KEY
+    placeholder: your_string_api_key_here
