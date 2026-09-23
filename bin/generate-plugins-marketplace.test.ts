@@ -82,6 +82,88 @@ for (const id of ["Uppercase", "bad name", "bad!name", "node_modules", "@Scope/p
   });
 }
 
+const GIT_SPECS: Array<[string, string]> = [
+  ["git/github.com/owner/repo", "git:github.com/owner/repo"],
+  ["git/github.com/owner/repo", "git:github.com/owner/repo@v1"],
+  ["git/github.com/owner/repo", "git:github.com/owner/repo@main"],
+  ["git/github.com/owner/repo", "git:https://github.com/owner/repo"],
+  ["git/github.com/owner/repo", "git:https://github.com/owner/repo.git@v1.2.3"],
+  ["git/github.com/owner/repo", "git:git://github.com/owner/repo@main"],
+  ["git/github.com/owner/repo/plugins/x", "git:github.com/owner/repo#plugins/x"],
+  ["git/github.com/owner/repo/plugins/x", "git:github.com/owner/repo@v1#plugins/x"],
+  ["git/github.com/owner/repo/sub", "git:https://github.com/owner/repo.git#sub"],
+];
+
+for (const [id, content] of GIT_SPECS) {
+  test(`accepts git spec ${content} for ${id}`, (t) => {
+    const root = fixture(t);
+    const item = plugin(root, id, content);
+    assert.deepEqual(generatePlugins(root), [item]);
+  });
+}
+
+const MALFORMED_GIT_SPECS = [
+  "git:",
+  "git:github.com/owner",
+  "git:github.com/owner/repo/extra",
+  "git:github.com/owner/repo@",
+  "git:github.com/owner/repo#",
+  "git:github.com/owner/repo#/plugins/x",
+  "git:github.com/owner/repo#plugins//x",
+  "git:github.com/owner/repo#plugins/x/",
+  "git:github.com/owner/repo#..",
+  "git:github.com/owner/repo@..",
+  "git:github.com/owner/repo@--upload-pack=/bin/sh",
+  "git:github.com/owner/repo@-x",
+  "git:github.com/owner/repo@feat..ure",
+  "git:https://user:pass@host/repo",
+  "git:vendor/plugin",
+  "git:github.com/owner/repo@v1@v2",
+  "git:https://",
+  "git:https://github.com",
+  "git:ftp://github.com/owner/repo",
+  "git:ssh://git@github.com/owner/repo",
+  "git:git@github.com/owner/repo",
+  "git:github.com/owner/repo name",
+  "git:../plugin",
+  "git:./../plugin",
+  "git:file://",
+];
+
+for (const content of MALFORMED_GIT_SPECS) {
+  test(`rejects malformed git spec ${content}`, (t) => {
+    const root = fixture(t);
+    plugin(root, "github.com/owner/repo", content);
+    assert.throws(() => generatePlugins(root), /invalid git content spec/);
+    assert.equal(fs.existsSync(path.join(root, "marketplace.yaml")), false);
+  });
+}
+
+test("requires the id to match the git repo identity", (t) => {
+  const root = fixture(t);
+  plugin(root, "git/github.com/other/repo", "git:github.com/owner/repo@v1");
+  assert.throws(
+    () => generatePlugins(root),
+    /id must equal the git source identity \(git\/github\.com\/owner\/repo\)/,
+  );
+});
+
+test("requires the id to include the git subpath", (t) => {
+  const root = fixture(t);
+  plugin(root, "git/github.com/owner/repo", "git:github.com/owner/repo#plugins/x");
+  assert.throws(
+    () => generatePlugins(root),
+    /id must equal the git source identity \(git\/github\.com\/owner\/repo\/plugins\/x\)/,
+  );
+});
+
+test("generates a catalog with registry and git plugins together", (t) => {
+  const root = fixture(t);
+  const git = plugin(root, "git/github.com/owner/repo", "git:github.com/owner/repo@v1");
+  const registry = plugin(root, "my-plugin", "my-plugin@1.2.3");
+  assert.deepEqual(generatePlugins(root), [git, registry]);
+});
+
 test("requires the id to match the full relative directory name", (t) => {
   const root = fixture(t);
   plugin(root, "@scope/package", "@scope/package", "package");
