@@ -27,6 +27,7 @@ type SelfRequirement = {
 
 type GenerateMarketplaceOptions<T> = {
   rootDir: string;
+  directories?: string[];
   outputFile?: string;
   parseItem: (dirName: string) => T;
   sortItems?: (a: T, b: T) => number;
@@ -47,6 +48,11 @@ export const MARKETPLACE_CATEGORIES = new Set([
 export const AGENT_CATEGORIES = new Set([
   ...MARKETPLACE_CATEGORIES,
   "creative-media",
+]);
+
+export const PLUGIN_CATEGORIES = new Set([
+  ...MARKETPLACE_CATEGORIES,
+  "providers",
 ]);
 
 export function repoPathFromBin(...segments: string[]): string {
@@ -94,7 +100,7 @@ export function writeMarketplaceYaml(
 }
 
 export function generateMarketplace<T>(options: GenerateMarketplaceOptions<T>): T[] {
-  const items = listVisibleDirectories(options.rootDir).map(options.parseItem);
+  const items = (options.directories ?? listVisibleDirectories(options.rootDir)).map(options.parseItem);
   if (options.sortItems) items.sort(options.sortItems);
 
   writeMarketplaceYaml(
@@ -165,7 +171,7 @@ export function isValidVscodeExtension(entry: unknown): boolean {
 export function foldedScalar(value: string): Scalar {
   const scalar = new Scalar(value);
   scalar.type = Scalar.BLOCK_FOLDED;
-  scalar.blockChomping = "strip";
+  Object.assign(scalar, { blockChomping: "strip" });
   return scalar;
 }
 

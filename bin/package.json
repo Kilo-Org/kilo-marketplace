@@ -1,8 +1,20 @@
 {
   "type": "module",
+  "scripts": {
+    "test": "tsx --test generate-plugins-marketplace.test.ts",
+    "typecheck:plugins": "tsc --noEmit --allowImportingTsExtensions --module nodenext --target es2022 generate-plugins-marketplace.ts generate-plugins-marketplace.test.ts"
+  },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "npm-package-arg": "^12.0.2",
     "tsx": "^4.19.2",
+    "validate-npm-package-name": "^6.0.2",
     "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/npm-package-arg": "^6.1.4",
+    "@types/validate-npm-package-name": "^4.0.2",
+    "typescript": "^5.9.3"
   }
 }
