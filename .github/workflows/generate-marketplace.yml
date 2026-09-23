@@ -45,8 +45,8 @@ jobs:
         run: pnpm exec tsx generate-mcps-marketplace.ts
         working-directory: bin
 
-      - name: Test plugin generator
-        run: pnpm test && pnpm run typecheck:plugins
+      - name: Test marketplace generators
+        run: pnpm test && pnpm run typecheck:plugins && pnpm run typecheck:mcps
         working-directory: bin
 
       - name: Generate plugins marketplace.yaml
