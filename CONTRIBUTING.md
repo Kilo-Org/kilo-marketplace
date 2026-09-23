@@ -4,7 +4,9 @@ Thank you for your interest in contributing to the Kilo Marketplace! This guide 
 
 ## Contributing Plugins
 
-To contribute an npm plugin, follow the [plugin contribution workflow](plugins/README.md#contribution-workflow). It covers scoped and unscoped package directories, supported registry specifiers, server and TUI manifest requirements, and catalog generation and checks. Plugin source code stays in its own repository and is published to npm.
+To contribute an npm or git plugin, follow the [plugin contribution workflow](plugins/README.md#contribution-workflow). It covers scoped and unscoped package directories, supported registry and git source specifiers, the normalized git identity rule for `id`, server and TUI manifest requirements, and catalog generation and checks.
+
+Registry plugin source code stays in its own repository and is published to npm. Git plugin source code can live in any public git repository, or inside this marketplace repository. Git plugins must be self-contained: Kilo clones the repository and loads the plugin directly, and it does not install npm dependencies for git plugins in this version. Contributions are accepted through pull requests only.
 
 ## Before You Start
 
