@@ -12,8 +12,8 @@ Each plugin is a directory named after its `id`. npm packages use the package na
 plugins/
   my-plugin/PLUGIN.yaml
   @scope/package/PLUGIN.yaml
-  github.com/owner/repo/PLUGIN.yaml
-  github.com/owner/repo/plugins/x/PLUGIN.yaml
+  git/github.com/owner/repo/PLUGIN.yaml
+  git/github.com/owner/repo/plugins/x/PLUGIN.yaml
 ```
 
 ## PLUGIN.yaml Fields
@@ -86,7 +86,7 @@ content: my-plugin
 Git plugin:
 
 ```yaml
-id: github.com/your-name/my-plugin
+id: git/github.com/your-name/my-plugin
 name: My Plugin
 description: Adds custom tools and provider hooks to Kilo.
 category: providers
@@ -99,7 +99,7 @@ content: git:github.com/your-name/my-plugin@v1
 
 The committed `plugins/marketplace.yaml` is generated from the per-plugin `PLUGIN.yaml` files. Do not edit it manually.
 
-Install dependencies and run the generator from `bin/`, matching CI (Node.js 20.17 or newer and pnpm 9):
+Install dependencies and run the generator from `bin/`, matching CI (Node.js 20 and pnpm 9):
 
 ```bash
 cd bin
