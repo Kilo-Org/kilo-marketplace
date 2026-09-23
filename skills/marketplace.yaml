@@ -1775,6 +1775,20 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/troubleshoot-cassandra
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/troubleshoot-cassandra/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
+  - id: centricmem-agent
+    description: >-
+      Organises and retrieves Markdown memory on the hosted CentricMem librarian (search, notes, decisions,
+      transcripts). Use when starting a session, resuming after context compress / checkpoint / new chat, filing
+      Non-Micro work, searching project memory, connecting an agent key, or refreshing this Skill. On session start,
+      compare the loaded copy (see REFERENCE Skill refresh) against cm_health / ambient skill_latest and refresh if
+      stale.
+    category: productivity
+    requirements:
+      mcps:
+        - centricmem
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/centricmem-agent
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/centricmem-agent/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/centricmem-agent.tar.gz
   - id: integrate-anything
     description: >-
       This skill should be used only when an external-app action must be executed through the Membrane CLI and an
