@@ -1,0 +1,24 @@
+id: centricmem
+name: CentricMem
+description: Hosted librarian for agent memory. Searches, files and retrieves cards, decisions and
+  session records on named shelves, so working context survives across sessions, projects and agents.
+author: zeyu-j
+url: https://github.com/zeyu-j/centricmem-skill
+category: productivity
+prerequisites:
+  - A CentricMem account and an agent key from centricmem.com
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mem.centricmem.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CENTRICMEM_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Agent key
+        key: CENTRICMEM_TOKEN
+        placeholder: "..."
+        optional: false
