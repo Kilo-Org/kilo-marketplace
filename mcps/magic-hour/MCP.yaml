@@ -1,0 +1,22 @@
+id: magic-hour
+name: Magic Hour
+description: Generates and edits videos, images, and audio through Magic Hour's hosted MCP server for coding and automation workflows.
+author: Magic Hour AI, Inc.
+url: https://github.com/magichourhq/magic-hour-mcp
+category: development
+prerequisites:
+  - Magic Hour account and API key
+content:
+  - name: Hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.magichour.ai/",
+        "headers": {
+          "Authorization": "Bearer {{MAGIC_HOUR_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Magic Hour API key
+    key: MAGIC_HOUR_API_KEY
+    placeholder: your_magic_hour_api_key
