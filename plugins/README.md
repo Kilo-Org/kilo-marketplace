@@ -46,11 +46,11 @@ git:<repo>[@ref][#subpath]
 
 | Part | Required | Description |
 |---|---|---|
-| `repo` | Yes | `github.com/owner/repo`, a full URL with an `https`, `http`, `git`, `ssh`, or `file` scheme, or a local path. The repo must not contain `@`, so SSH URLs with a `user@` prefix are not supported. |
+| `repo` | Yes | `github.com/owner/repo`, or a full URL with an `https`, `http`, `git`, or `ssh` scheme. The repo must not contain `@`, so SSH URLs with a `user@` prefix and scp-style `git@host:path` are not supported. Local paths and `file:` URLs are not allowed in the catalog; use them only in your own config. |
 | `ref` | No | Branch, tag, or commit after the last `@`. |
 | `subpath` | No | Plugin directory inside the repository, after the first `#`. |
 
-For git entries, `id` must equal the normalized git identity: the repo without its scheme and without a trailing `.git`, plus the subpath appended as `/subpath` when present. For example `git:github.com/owner/repo@v1` has id `github.com/owner/repo`, and `git:github.com/owner/repo#plugins/x` has id `github.com/owner/repo/plugins/x`. Malformed git specs are rejected. Because `id` is also the directory path under `plugins/`, a repo that normalizes to a relative path (for example `vendor/plugin`) is the practical local form; absolute paths and `file://` URLs are accepted as specs but do not map to a relative catalog directory.
+For git entries, `id` must equal the normalized git identity: `git/` plus the repo without its scheme and without a trailing `.git`, plus the subpath appended as `/subpath` when present. For example `git:github.com/owner/repo@v1` has id `git/github.com/owner/repo`, and `git:github.com/owner/repo#plugins/x` has id `git/github.com/owner/repo/plugins/x`. Malformed git specs are rejected, including refs that start with `-` or contain `..`. Because `id` is also the directory path under `plugins/`, that first example lives in `plugins/git/github.com/owner/repo/`.
 
 Git plugins must be self-contained. Kilo clones the repository at the given ref and loads the plugin directly; it does not install npm dependencies for git plugins in this version. Vendor any runtime dependencies into the repository.
 

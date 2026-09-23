@@ -83,16 +83,15 @@ for (const id of ["Uppercase", "bad name", "bad!name", "node_modules", "@Scope/p
 }
 
 const GIT_SPECS: Array<[string, string]> = [
-  ["github.com/owner/repo", "git:github.com/owner/repo"],
-  ["github.com/owner/repo", "git:github.com/owner/repo@v1"],
-  ["github.com/owner/repo", "git:github.com/owner/repo@main"],
-  ["github.com/owner/repo", "git:https://github.com/owner/repo"],
-  ["github.com/owner/repo", "git:https://github.com/owner/repo.git@v1.2.3"],
-  ["github.com/owner/repo", "git:git://github.com/owner/repo@main"],
-  ["github.com/owner/repo/plugins/x", "git:github.com/owner/repo#plugins/x"],
-  ["github.com/owner/repo/plugins/x", "git:github.com/owner/repo@v1#plugins/x"],
-  ["github.com/owner/repo/sub", "git:https://github.com/owner/repo.git#sub"],
-  ["vendor/plugin", "git:vendor/plugin"],
+  ["git/github.com/owner/repo", "git:github.com/owner/repo"],
+  ["git/github.com/owner/repo", "git:github.com/owner/repo@v1"],
+  ["git/github.com/owner/repo", "git:github.com/owner/repo@main"],
+  ["git/github.com/owner/repo", "git:https://github.com/owner/repo"],
+  ["git/github.com/owner/repo", "git:https://github.com/owner/repo.git@v1.2.3"],
+  ["git/github.com/owner/repo", "git:git://github.com/owner/repo@main"],
+  ["git/github.com/owner/repo/plugins/x", "git:github.com/owner/repo#plugins/x"],
+  ["git/github.com/owner/repo/plugins/x", "git:github.com/owner/repo@v1#plugins/x"],
+  ["git/github.com/owner/repo/sub", "git:https://github.com/owner/repo.git#sub"],
 ];
 
 for (const [id, content] of GIT_SPECS) {
@@ -114,6 +113,11 @@ const MALFORMED_GIT_SPECS = [
   "git:github.com/owner/repo#plugins/x/",
   "git:github.com/owner/repo#..",
   "git:github.com/owner/repo@..",
+  "git:github.com/owner/repo@--upload-pack=/bin/sh",
+  "git:github.com/owner/repo@-x",
+  "git:github.com/owner/repo@feat..ure",
+  "git:https://user:pass@host/repo",
+  "git:vendor/plugin",
   "git:github.com/owner/repo@v1@v2",
   "git:https://",
   "git:https://github.com",
@@ -137,25 +141,25 @@ for (const content of MALFORMED_GIT_SPECS) {
 
 test("requires the id to match the git repo identity", (t) => {
   const root = fixture(t);
-  plugin(root, "github.com/other/repo", "git:github.com/owner/repo@v1");
+  plugin(root, "git/github.com/other/repo", "git:github.com/owner/repo@v1");
   assert.throws(
     () => generatePlugins(root),
-    /id must equal the git source identity \(github\.com\/owner\/repo\)/,
+    /id must equal the git source identity \(git\/github\.com\/owner\/repo\)/,
   );
 });
 
 test("requires the id to include the git subpath", (t) => {
   const root = fixture(t);
-  plugin(root, "github.com/owner/repo", "git:github.com/owner/repo#plugins/x");
+  plugin(root, "git/github.com/owner/repo", "git:github.com/owner/repo#plugins/x");
   assert.throws(
     () => generatePlugins(root),
-    /id must equal the git source identity \(github\.com\/owner\/repo\/plugins\/x\)/,
+    /id must equal the git source identity \(git\/github\.com\/owner\/repo\/plugins\/x\)/,
   );
 });
 
 test("generates a catalog with registry and git plugins together", (t) => {
   const root = fixture(t);
-  const git = plugin(root, "github.com/owner/repo", "git:github.com/owner/repo@v1");
+  const git = plugin(root, "git/github.com/owner/repo", "git:github.com/owner/repo@v1");
   const registry = plugin(root, "my-plugin", "my-plugin@1.2.3");
   assert.deepEqual(generatePlugins(root), [git, registry]);
 });

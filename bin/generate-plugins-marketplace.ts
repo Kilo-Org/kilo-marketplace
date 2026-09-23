@@ -38,11 +38,12 @@ type GitSource = {
 };
 
 const GIT_PREFIX = "git:";
-const GIT_SCHEMES = new Set(["https", "http", "git", "ssh", "file"]);
+// Catalog entries must point at a network git host. Local and file repos are
+// valid in a user's own config but not in a shared catalog.
+const GIT_SCHEMES = new Set(["https", "http", "git", "ssh"]);
 const GIT_SHORTHAND = /^github\.com\/[^/\s@#]+\/[^/\s@#]+$/;
 const GIT_SCHEME = /^([a-z][a-z0-9+.-]*):\/\//i;
-const GIT_RELATIVE = /^(?:[^/\s@#\\]+\/)+[^/\s@#\\]+$/;
-const GIT_PREFIXED = /^(?:\.\.?\/|~\/)[^\s@#\\]+$/;
+const GIT_REF = /^(?!-)(?!.*\.\.)(?!.*@\{)[^\s~^:?*[\]\\@#]+$/;
 
 function hasParentSegment(value: string): boolean {
   return value.split("/").some((segment) => segment === "..");
@@ -56,23 +57,20 @@ function isValidGitRepo(repo: string): boolean {
   if (repo.startsWith("github.com/")) return GIT_SHORTHAND.test(repo);
 
   const scheme = GIT_SCHEME.exec(repo);
-  if (scheme) {
-    if (!GIT_SCHEMES.has(scheme[1].toLowerCase())) return false;
-    try {
-      const url = new URL(repo);
-      return url.protocol === "file:"
-        ? url.pathname !== "" && url.pathname !== "/"
-        : url.hostname.length > 0 && url.pathname !== "" && url.pathname !== "/";
-    } catch {
-      return false;
-    }
+  if (!scheme) return false;
+  if (!GIT_SCHEMES.has(scheme[1].toLowerCase())) return false;
+  try {
+    const url = new URL(repo);
+    if (url.username || url.password) return false;
+    return url.hostname.length > 0 && url.pathname !== "" && url.pathname !== "/";
+  } catch {
+    return false;
   }
-
-  return GIT_RELATIVE.test(repo) || GIT_PREFIXED.test(repo);
 }
 
 function isValidGitRef(ref: string): boolean {
-  return ref.length > 0 && !/[\s@#\\]/.test(ref) && !hasParentSegment(ref);
+  if (!GIT_REF.test(ref)) return false;
+  return !ref.endsWith(".") && !ref.endsWith(".lock");
 }
 
 function isValidGitSubpath(subpath: string): boolean {
@@ -107,8 +105,14 @@ function parseGitSource(content: string): GitSource | undefined {
 }
 
 function gitSourceId(source: GitSource): string {
-  const base = source.repo.replace(GIT_SCHEME, "").replace(/\.git$/, "");
-  return source.subpath ? `${base}/${source.subpath}` : base;
+  // Namespaced with `git/` so it cannot collide with an npm name or a local path,
+  // and normalized the same way the client resolves the identity.
+  const base = source.repo
+    .replace(GIT_SCHEME, "")
+    .replace(/\/+$/, "")
+    .replace(/\.git$/i, "")
+    .replace(/^\/+/, "");
+  return `git/${source.subpath ? `${base}/${source.subpath}` : base}`;
 }
 
 function pluginFromYaml(root: string, dirName: string): MarketplacePlugin {

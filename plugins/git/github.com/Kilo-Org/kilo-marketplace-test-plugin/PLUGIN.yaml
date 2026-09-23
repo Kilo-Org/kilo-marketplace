@@ -1,4 +1,4 @@
-id: github.com/Kilo-Org/kilo-marketplace-test-plugin
+id: git/github.com/Kilo-Org/kilo-marketplace-test-plugin
 name: Kilo Marketplace Test Plugin
 description: Test fixture that verifies git-source plugin installation and runtime loading in the Kilo Marketplace.
 category: development
