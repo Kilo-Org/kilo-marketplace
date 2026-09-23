@@ -1,0 +1,19 @@
+id: mcp-trendpulse
+name: TrendPulse - Google News & Trends
+description: Researches current Google News and Google Trends data, including articles, trending terms, interest over time, growth, regions, related queries, and topics.
+author: Tomi Šeregi
+url: https://github.com/AKzar1el/mcp-trendpulse
+category: search
+prerequisites:
+  - Python with uv/uvx is required to run the published package.
+  - Internet access is required for Google News, Google Trends, and article retrieval.
+  - Playwright Chromium is optional and only needed for browser fallback on difficult article pages.
+content:
+  - name: UVX (PyPI)
+    prerequisites:
+      - uv/uvx
+    content: |
+      {
+        "command": "uvx",
+        "args": ["mcp-trendpulse"]
+      }
