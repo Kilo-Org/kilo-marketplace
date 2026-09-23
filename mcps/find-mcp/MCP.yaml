@@ -1,0 +1,22 @@
+id: find-mcp
+name: Find MCP
+description: Search 17,000+ MCP servers from the official MCP registry. Remote Streamable HTTP or stdio, no auth
+  needed for search.
+author: agentage
+url: https://github.com/agentage/find-mcp
+category: search
+content:
+  - name: NPX
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@agentage/find-mcp"]
+      }
+    prerequisites:
+      - Node.js
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://catalog.agentage.io/mcp"
+      }
