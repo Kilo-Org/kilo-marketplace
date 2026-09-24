@@ -1369,6 +1369,13 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cognito
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cognito/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cognito.tar.gz
+  - id: companion-smoke-guide
+    description: >-
+      Verify the harmless Companion Smoke Test MCP connection and report its status without changing any external state.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/companion-smoke-guide
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/companion-smoke-guide/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/companion-smoke-guide.tar.gz
   - id: create-pull-request
     description: >-
       Create a GitHub pull request following project conventions. Use when the user asks to create a PR, submit changes
