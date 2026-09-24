@@ -1,0 +1,66 @@
+id: directus
+name: Directus
+description: Directus Content MCP Server that provides seamless integration with Directus APIs, enabling AI tools to manage content, collections, fields, automation workflows, and more.
+author: directus
+url: https://github.com/directus/mcp
+tags:
+  - directus
+  - cms
+  - content-management
+  - headless-cms
+  - api-integration
+  - official
+prerequisites:
+  - Directus instance (v11.12+ for built-in MCP)
+content:
+  - name: NPX (Token Auth)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@directus/content-mcp@latest"],
+        "env": {
+          "DIRECTUS_URL": "{{DIRECTUS_URL}}",
+          "DIRECTUS_TOKEN": "{{DIRECTUS_TOKEN}}"
+        }
+      }
+  - name: NPX (Email/Password Auth)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@directus/content-mcp@latest"],
+        "env": {
+          "DIRECTUS_URL": "{{DIRECTUS_URL}}",
+          "DIRECTUS_USER_EMAIL": "{{DIRECTUS_USER_EMAIL}}",
+          "DIRECTUS_USER_PASSWORD": "{{DIRECTUS_USER_PASSWORD}}"
+        }
+      }
+  - name: Streamable HTTP
+    prerequisites:
+      - Directus v11.12+
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{DIRECTUS_URL}}/mcp",
+        "headers": {
+          "Authorization": "Bearer {{DIRECTUS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Directus URL
+    key: DIRECTUS_URL
+    placeholder: https://your-directus-instance.com
+  - name: Directus Token
+    key: DIRECTUS_TOKEN
+    placeholder: your_directus_token_here
+  - name: Directus User Email
+    key: DIRECTUS_USER_EMAIL
+    placeholder: user@example.com
+    optional: true
+  - name: Directus User Password
+    key: DIRECTUS_USER_PASSWORD
+    placeholder: your_password_here
+    optional: true
