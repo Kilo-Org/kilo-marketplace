@@ -1,0 +1,18 @@
+id: companion-smoke-test
+name: Companion Smoke Test
+description: Harmless read-only MCP server used to verify companion-skill installation from the marketplace.
+author: marius-kilocode
+url: https://github.com/marius-kilocode/kilo-companion-smoke-test
+category: development
+prerequisites:
+  - Node.js with npx available on PATH
+  - A client version with MCP companion skill support
+skills:
+  - companion-smoke-guide
+content:
+  - name: Local
+    content: |
+      {
+        "type": "local",
+        "command": ["npx", "-y", "@modelcontextprotocol/server-everything"]
+      }
