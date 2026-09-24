@@ -121,6 +121,8 @@ MCP servers can run locally on your machine or remotely as cloud services, depen
 
 Browse available MCP servers in the [`mcps/`](./mcps/) directory.
 
+MCP definitions can include companion skills that teach agents how to use the server. Authors list skill IDs in an optional `skills` field; the catalog generator resolves them to the same archives used by standalone skill installations. This is separate from setup `prerequisites` and dependency `requirements`. See [MCP Companion Skills](CONTRIBUTING.md#mcp-companion-skills) for a complete remote-server example, validation commands, and release order. Companion installation requires a client with bundle support.
+
 ---
 
 ## Agents

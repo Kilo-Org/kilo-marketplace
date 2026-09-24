@@ -1,7 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "test": "tsx --test generate-plugins-marketplace.test.ts",
+    "test": "tsx --test *.test.ts",
+    "typecheck:mcps": "tsc --noEmit --allowImportingTsExtensions --module nodenext --target es2022 generate-mcps-marketplace.ts generate-mcps-marketplace.test.ts generate-skill-marketplace.ts",
     "typecheck:plugins": "tsc --noEmit --allowImportingTsExtensions --module nodenext --target es2022 generate-plugins-marketplace.ts generate-plugins-marketplace.test.ts"
   },
   "dependencies": {
