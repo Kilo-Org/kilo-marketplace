@@ -1,6 +1,6 @@
 # Skills Documentation
 
-This document describes how skills should be structured in this repository.
+This document describes how skills should be structured in this repository. For plugins, see [Plugins](#plugins) below and [plugins/README.md](plugins/README.md).
 
 ## What is a Skill?
 
@@ -73,3 +73,33 @@ If you need more information, checkout https://agentskills.io/llms.txt
 
 when asked to add a skill from a github url
 use the instructions in .kilocode/skills/add-remote-skill/SKILL.md
+
+## Plugins
+
+Plugins extend Kilo with hooks, custom tools, auth providers, model providers, and runtime behavior. Each plugin lives in one directory named after its `id` and contains one `PLUGIN.yaml` file:
+
+```
+plugins/
+  my-plugin/PLUGIN.yaml
+  @scope/package/PLUGIN.yaml
+  git/github.com/owner/repo/PLUGIN.yaml
+  git/github.com/owner/repo/plugins/x/PLUGIN.yaml
+```
+
+Required `PLUGIN.yaml` fields: `id`, `name`, `description`, `category`, `author`, `url`, and `content`. Do not set `tags`; the generator derives `tags` from `category`. Valid categories are `business`, `data`, `development`, `observability`, `productivity`, `providers`, `search`, and `web-automation`.
+
+The directory path must equal `id`. For a registry plugin, `id` is the exact npm package name and `content` is a registry specifier for that same package with an optional version, range, or tag. For a git plugin, `id` is the normalized git identity `git/` plus the repo without scheme or trailing `.git`, plus the subpath when present, and `content` is `git:<repo>[@ref][#subpath]`.
+
+Git plugins must be self-contained. Kilo clones the repository and loads the plugin directly, and it does not install npm dependencies for git plugins. The `package.json` must declare at least one target supported by the Kilo client, such as a server or TUI entry. This repository's generator validates catalog fields and content specifiers only, not the remote package manifest, so see [plugins/README.md](plugins/README.md#package-requirements) for the target rules.
+
+After adding or changing a plugin, regenerate the catalog and run the checks from `bin/`:
+
+```bash
+cd bin
+pnpm install
+pnpm exec tsx generate-plugins-marketplace.ts
+pnpm test
+pnpm run typecheck:plugins
+```
+
+Do not edit `plugins/marketplace.yaml` manually. Submit plugins through a pull request; direct pushes are not accepted. See [plugins/README.md](plugins/README.md) for the full rules.
