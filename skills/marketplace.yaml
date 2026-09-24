@@ -1820,3 +1820,25 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: tavily-extract
+    description: >
+      Extract clean markdown or text content from specific URLs via the Tavily CLI. Use this skill when the user has one
+      or more URLs and wants their content, says "extract", "grab the content from", "pull the text from", "get the page
+      at", "read this webpage", or needs clean text from web pages. Handles JavaScript-rendered pages, returns
+      LLM-optimized markdown, and supports query-focused chunking for targeted extraction. Can process up to 20 URLs in
+      a single call.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-extract
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-extract/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-extract.tar.gz
+  - id: tavily-search
+    description: >
+      Search the web with LLM-optimized results via the Tavily CLI. Use this skill when the user wants to search the
+      web, find articles, look up information, get recent news, discover sources, or says "search for", "find me", "look
+      up", "what's the latest on", "find articles about", or needs current information from the internet. Returns
+      relevant results with content snippets, relevance scores, and metadata — optimized for LLM consumption. Supports
+      domain filtering, time ranges, and multiple search depths.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tavily-search
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tavily-search/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tavily-search.tar.gz
