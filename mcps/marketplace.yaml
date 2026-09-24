@@ -9,7 +9,7 @@
 # - observability: 13
 # - productivity: 11
 # - web-automation: 7
-# - business: 3
+# - business: 4
 #
 items:
   - id: agent-platform-mcp
@@ -4819,6 +4819,55 @@ items:
         key: WXFLOWS_PATH
         placeholder: /path/to/wxflows/examples/mcp/javascript
         optional: true
+  - id: xrocket-exchange
+    name: xRocket Exchange
+    description: Connects Kilo to xRocket for live spot-market data and bounded autonomous trading. The local setup lets
+      agents place and cancel orders on any available spot pair inside one daily value limit; transfers and withdrawals
+      remain disabled.
+    author: corefather
+    url: https://github.com/nakazanie-ton/myrocket
+    category: business
+    tags:
+      - business
+    content:
+      - name: Hosted Market Data Demo
+        prerequisites:
+          - No account or API token required; this option exposes public market data only
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://xrocket-mcp-production.up.railway.app/mcp"
+          }
+      - name: Local Trading
+        prerequisites:
+          - Node.js 20 or later
+          - Sign in to xRocket and create an API token under Menu, Settings, Exchange settings, API token
+          - Install at global scope so the API token stays in your user configuration instead of a project file
+        content: |
+          {
+            "command": "npx",
+            "args": ["-y", "xrocket-mcp@0.6.0"],
+            "env": {
+              "XROCKET_API_TOKEN": "{{XROCKET_API_TOKEN}}",
+              "XROCKET_PROFILE": "full",
+              "XROCKET_ENVIRONMENT": "{{XROCKET_ENVIRONMENT}}",
+              "XROCKET_ENABLE_TRADING": "true",
+              "XROCKET_TRADING_LIMIT": "{{XROCKET_TRADING_LIMIT}}",
+              "XROCKET_ENABLE_TRANSFERS": "false",
+              "XROCKET_ENABLE_WITHDRAWALS": "false",
+              "XROCKET_ALLOW_MAINNET_WRITES": "true"
+            }
+          }
+        parameters:
+          - name: xRocket API Token
+            key: XROCKET_API_TOKEN
+            placeholder: paste_the_token_only_in_local_kilo_settings
+          - name: Environment
+            key: XROCKET_ENVIRONMENT
+            placeholder: testnet
+          - name: Daily Trading Limit
+            key: XROCKET_TRADING_LIMIT
+            placeholder: 100 USD
   - id: youtube
     name: YouTube Subtitles
     description: Downloads and extracts YouTube video subtitles using yt-dlp, enabling AI assistants to analyze and
