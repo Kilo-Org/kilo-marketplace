@@ -1,0 +1,15 @@
+id: scout7
+name: Scout7
+description: "Runs a week of organic marketing from your AI agent: plans the week from your brand, writes SEO blogs, videos, LinkedIn carousels and social posts, schedules them across your channels and reports what moved, via Scout7's hosted OAuth server. You approve before anything goes live."
+author: Scout7
+url: https://scout7.ai/mcp?utm_source=kilo-marketplace&utm_medium=listing&utm_campaign=mcp-directories&ref=kilo-marketplace
+category: business
+prerequisites:
+  - "Scout7 account, created at https://scout7.ai (free to start, no card needed)"
+content:
+  - name: Scout7 (hosted OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.scout7.ai/mcp"
+      }
