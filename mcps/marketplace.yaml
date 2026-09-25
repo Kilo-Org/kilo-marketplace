@@ -4552,8 +4552,8 @@ items:
     name: Trackly SMS
     description: Send approved business texts, read customer replies, check delivery status, and prepare US number
       registration with Trackly SMS.
-    author: It-s-Today-Media
-    url: https://github.com/It-s-Today-Media/trackly-sms-integrations
+    author: Trackly-Inc
+    url: https://github.com/Trackly-Inc/trackly-sms-integrations
     category: business
     tags:
       - business
