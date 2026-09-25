@@ -9,7 +9,7 @@
 # - observability: 13
 # - productivity: 11
 # - web-automation: 7
-# - business: 3
+# - business: 4
 #
 items:
   - id: agent-platform-mcp
@@ -4569,6 +4569,27 @@ items:
           - name: Local Timezone
             key: LOCAL_TIMEZONE
             placeholder: America/New_York
+  - id: trackly-sms
+    name: Trackly SMS
+    description: Send approved business texts, read customer replies, check delivery status, and prepare US number
+      registration with Trackly SMS.
+    author: Trackly-Inc
+    url: https://github.com/Trackly-Inc/trackly-sms-integrations
+    category: business
+    tags:
+      - business
+    prerequisites:
+      - Trackly account with owner authorization; sign up during browser OAuth if needed
+      - Sandbox connection with required human send approval for testing
+      - Eligible sending list and consented test recipient for SMS tests
+      - Separate registration consent for number-registration tools
+    content:
+      - name: Hosted Streamable HTTP with OAuth
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.tracklysms.com/mcp"
+          }
   - id: transform-mcp
     name: Unstructured Transform MCP
     description: "Production-grade document processing your AI agents call as MCP tools: parse PDFs, spreadsheets, and

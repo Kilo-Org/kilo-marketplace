@@ -1,0 +1,18 @@
+id: trackly-sms
+name: Trackly SMS
+description: Send approved business texts, read customer replies, check delivery status, and prepare US number registration with Trackly SMS.
+author: Trackly-Inc
+url: https://github.com/Trackly-Inc/trackly-sms-integrations
+category: business
+prerequisites:
+  - Trackly account with owner authorization; sign up during browser OAuth if needed
+  - Sandbox connection with required human send approval for testing
+  - Eligible sending list and consented test recipient for SMS tests
+  - Separate registration consent for number-registration tools
+content:
+  - name: Hosted Streamable HTTP with OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.tracklysms.com/mcp"
+      }
