@@ -1,0 +1,31 @@
+id: oed-gehaltsrechner
+name: Öffentlicher Dienst & Beamte Gehaltsrechner
+description: Offizieller Gehalts- und Besoldungsrechner für den öffentlichen Dienst in Deutschland (TVöD, TV-L, Bund, alle 16 Bundesländer, Beamtenbesoldung, Erfahrungsstufen, Familienzuschläge, Zulagen und Brutto-Netto-Berechnung).
+author: dunkio
+url: https://github.com/dunkio/oed-gehaltsrechner-mcp
+category: productivity
+content:
+  - name: Remote SSE (Empfohlen)
+    content: |
+      {
+        "type": "sse",
+        "url": "https://infos-oeffentlicher-dienst.de/mcp/sse"
+      }
+  - name: Remote SSE (mit API-Key)
+    content: |
+      {
+        "type": "sse",
+        "url": "https://infos-oeffentlicher-dienst.de/mcp/sse?apiKey={{API_KEY}}"
+      }
+    parameters:
+      - name: API-Key
+        key: API_KEY
+        placeholder: Optionaler API-Key (von https://infos-oeffentlicher-dienst.de/mcp)
+  - name: UVX (Lokal)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "git+https://github.com/dunkio/oed-gehaltsrechner-mcp", "oed-gehaltsrechner-mcp"]
+      }
