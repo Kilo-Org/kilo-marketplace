@@ -1,0 +1,24 @@
+id: turingcorp-decider
+name: TuringCorp Decider
+description: A decision model for the calls that do not have a right answer. Send a neutral task and two
+  defensible options; it returns the better one, a calibrated confidence, and the reason. Read-only, free
+  retrieval of an earlier decision by job id is included.
+author: TuringCorp
+url: https://mcp.turingcorp.net/
+category: development
+prerequisites:
+  - A TuringCorp Agent Pass (self-service sign-up at https://agent-pass.turingcorp.net, valid 7 days)
+content:
+  - name: TuringCorp remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.turingcorp.net/mcp",
+        "headers": {
+          "Authorization": "Bearer {{AGENT_PASS}}"
+        }
+      }
+parameters:
+  - name: TuringCorp Agent Pass
+    key: AGENT_PASS
+    placeholder: your_agent_pass
