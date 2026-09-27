@@ -1,0 +1,7 @@
+interface:
+  display_name: "Integrate AI Pass"
+  short_description: "Add user-funded AI to any app"
+  icon_small: "assets/aipass.svg"
+  icon_large: "assets/aipass.svg"
+  brand_color: "#4F46E5"
+  default_prompt: "Use $aipass-integration to add AI Pass user-funded model calls to this application while preserving its current hosting, authentication, billing, and deployment."

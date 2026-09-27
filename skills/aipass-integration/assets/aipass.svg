@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <clipPath id="tile">
+      <rect x="8" y="8" width="84" height="84" rx="26" ry="26" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#tile)">
+    <rect x="8" y="8" width="84" height="84" fill="#4F46E5" />
+    <polygon points="8,8 42.8,8 67.4,32.6 8,92" fill="#FFFFFF" fill-opacity="0.15" />
+  </g>
+
+  <text
+    x="50"
+    y="61"
+    text-anchor="middle"
+    font-family="Outfit, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="44"
+    font-weight="800"
+    letter-spacing="-2"
+    fill="#FFFFFF">AI</text>
+</svg>
