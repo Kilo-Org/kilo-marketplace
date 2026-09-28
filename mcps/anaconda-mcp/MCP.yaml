@@ -1,0 +1,23 @@
+id: anaconda-mcp
+name: Anaconda MCP
+description: Provides pre-install intelligence for conda packages, including versions, platforms, dependency constraints, CVE details, organization channel policies, and Anaconda community forum search.
+author: Anaconda
+url: https://anaconda.com/api/mcp
+category: development
+prerequisites:
+  - Anaconda account
+  - API token from https://anaconda.com/app/profile/api-keys with read-only User Resources scope
+content:
+  - name: Anaconda hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://anaconda.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ANACONDA_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Anaconda API token
+    key: ANACONDA_API_TOKEN
+    placeholder: your_anaconda_api_token
