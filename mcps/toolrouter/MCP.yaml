@@ -1,0 +1,37 @@
+id: toolrouter
+name: ToolRouter
+description: The OpenRouter for tools. One connection gives an agent a hosted catalog of 250+ specialist tools for web
+  search, scraping, image and video generation, SEO, finance, property and compliance, discovered at runtime and billed
+  per call.
+author: Humanleap
+url: https://github.com/Humanleap/toolrouter-mcp
+category: development
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.toolrouter.com/mcp"
+      }
+  - name: Remote with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.toolrouter.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TOOLROUTER_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "toolrouter-mcp"]
+      }
+parameters:
+  - name: ToolRouter API Key
+    key: TOOLROUTER_API_KEY
+    placeholder: your_toolrouter_api_key
+    optional: true
