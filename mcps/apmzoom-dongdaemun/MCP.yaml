@@ -1,0 +1,15 @@
+id: apmzoom-dongdaemun
+name: apMZoomAI · Dongdaemun wholesale
+description: Search wholesale fashion items listed by stalls in the Dongdaemun market in Seoul, see new arrivals and
+  find stalls by building, floor and stall number, with links to apMZoomAI. Public and read-only; no API key, no prices
+  or contact details.
+author: apmzoom
+url: https://github.com/apmleokeo-gif/apmzoom-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.apmzoom.com/mcp"
+      }
