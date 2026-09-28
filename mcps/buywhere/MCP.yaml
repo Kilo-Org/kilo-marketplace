@@ -1,0 +1,41 @@
+id: buywhere
+name: BuyWhere
+description: Real-time product search and price comparison for Singapore and Southeast Asia. Access 260K+ products from Lazada, Shopee, FairPrice, Courts, and other major SEA merchants.
+author: BuyWhere
+url: https://github.com/BuyWhere/buywhere-mcp
+tags:
+  - e-commerce
+  - shopping
+  - price-comparison
+  - product-search
+  - singapore
+  - southeast-asia
+  - lazada
+  - shopee
+prerequisites:
+  - BuyWhere API key (free at buywhere.ai/api-keys)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@buywhere/mcp-server"],
+        "env": {
+          "BUYWHERE_API_KEY": "{{BUYWHERE_API_KEY}}"
+        }
+      }
+  - name: Remote (No Install)
+    prerequisites: []
+    content: |
+      {
+        "url": "https://mcp.buywhere.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BUYWHERE_API_KEY}}"
+        }
+      }
+parameters:
+  - name: BuyWhere API Key
+    key: BUYWHERE_API_KEY
+    placeholder: bw_xxxxxxxxxxxxxxxxxxxxxxxx
