@@ -1,0 +1,16 @@
+id: sitelemetry
+name: Sitelemetry
+description: Authorized website audits for the sites you build and maintain - security posture, technical SEO, AI visibility (GEO/AEO), analytics integrations, WCAG 2.2 accessibility and performance - returning evidence-backed findings with fixes in nine languages. Hosted remote MCP server with browser OAuth sign-in; no API key to paste.
+author: Sitelemetry
+url: https://sitelemetry.com/mcp-guide
+category: development
+prerequisites:
+  - A Sitelemetry account (free tier available) - the first connection opens an OAuth sign-in in your browser
+  - Only audit websites you own or are explicitly authorized to test
+content:
+  - name: Remote (Streamable HTTP, OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://sitelemetry.com/mcp"
+      }
