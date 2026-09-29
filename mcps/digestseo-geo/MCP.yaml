@@ -1,0 +1,53 @@
+id: digestseo-geo
+name: DigestSEO GEO Tracker
+description: Measures how often a brand is cited and recommended across ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews, with visibility history, competitor comparisons, citation evidence, and content-gap analysis.
+author: DigestSEO
+url: https://github.com/AKzar1el/mcp-geo
+category: search
+prerequisites:
+  - A DigestSEO hosted MCP connection can be authorized in the browser when using the hosted option
+  - Node.js 22 or newer and at least one supported provider API key when using the local NPX option
+content:
+  - name: DigestSEO hosted MCP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://geo-mcp.digestseo.com/mcp"
+      }
+  - name: Local NPX server
+    prerequisites:
+      - Node.js 22 or newer
+      - At least one supported provider API key
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@digestseo/mcp-geo"],
+        "env": {
+          "OPENAI_API_KEY": "{{OPENAI_API_KEY}}",
+          "ANTHROPIC_API_KEY": "{{ANTHROPIC_API_KEY}}",
+          "GEMINI_API_KEY": "{{GEMINI_API_KEY}}",
+          "PERPLEXITY_API_KEY": "{{PERPLEXITY_API_KEY}}",
+          "SERPAPI_API_KEY": "{{SERPAPI_API_KEY}}"
+        }
+      }
+parameters:
+  - name: OpenAI API key
+    key: OPENAI_API_KEY
+    placeholder: sk-your_openai_api_key
+    optional: true
+  - name: Anthropic API key
+    key: ANTHROPIC_API_KEY
+    placeholder: sk-ant-your_anthropic_api_key
+    optional: true
+  - name: Gemini API key
+    key: GEMINI_API_KEY
+    placeholder: your_gemini_api_key
+    optional: true
+  - name: Perplexity API key
+    key: PERPLEXITY_API_KEY
+    placeholder: pplx-your_perplexity_api_key
+    optional: true
+  - name: SerpAPI API key
+    key: SERPAPI_API_KEY
+    placeholder: your_serpapi_api_key
+    optional: true
