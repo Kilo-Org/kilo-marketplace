@@ -1,0 +1,16 @@
+id: explorium
+name: Explorium AgentSource
+description: Access Explorium business and contact data through the Model Context Protocol.
+author: Explorium
+url: https://developers.explorium.ai/mcp-docs/agentsource-mcp
+category: business
+prerequisites:
+  - Explorium account
+  - MCP client with OAuth support
+content:
+  - name: Remote Connector
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.explorium.ai/mcp"
+      }
