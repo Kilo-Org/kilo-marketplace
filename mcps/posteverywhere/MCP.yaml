@@ -1,0 +1,16 @@
+id: posteverywhere
+name: PostEverywhere
+description: Schedule and publish posts to 12 social networks from your agent, with tools for accounts, posts, media, campaigns, and analytics, via PostEverywhere's hosted OAuth server.
+author: PostEverywhere
+url: https://posteverywhere.ai/mcp
+category: productivity
+prerequisites:
+  - PostEverywhere account, created at https://posteverywhere.ai
+  - MCP client with OAuth support
+content:
+  - name: PostEverywhere hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.posteverywhere.ai/mcp"
+      }
