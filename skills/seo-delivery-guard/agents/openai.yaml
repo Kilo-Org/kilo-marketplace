@@ -1,0 +1,6 @@
+interface:
+  display_name: "SEO Delivery Guard"
+  short_description: "SEO development and release governance"
+  default_prompt: "Use $seo-delivery-guard to govern SEO requirements through development, review, release, and production verification."
+policy:
+  allow_implicit_invocation: true
