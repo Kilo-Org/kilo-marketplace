@@ -1,0 +1,15 @@
+id: gitwarren
+name: GitWarren
+description: Local code review for you and your coding agent. The agent opens a review of its changes and hands you a link; you comment on lines; it replies and fixes. Nothing leaves your computer.
+author: klarluft
+url: https://github.com/klarluft/gitwarren-app
+category: development
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22.14 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "gitwarren@latest", "mcp", "--serve"]
+      }
