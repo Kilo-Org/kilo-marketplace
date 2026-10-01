@@ -1,0 +1,28 @@
+id: hyperconsciousness
+name: Hyperconsciousness
+description: Developer-alpha MCP server for searching encrypted, append-only knowledge through scoped, expiring grants.
+author: louis030195
+url: https://github.com/louis030195/hyperconsciousness
+category: data
+prerequisites:
+  - "Build the hc executable from source with Rust 1.88.0: https://github.com/louis030195/hyperconsciousness#install-from-source"
+  - "Initialize a store and issue a read-only grant to the local device identity on the same trusted node: https://github.com/louis030195/hyperconsciousness#give-an-agent-limited-access"
+  - "Use absolute paths for the executable and store. The grant must be unexpired and permit the records you want to read."
+  - "Grants limit server responses, not OS-level access. Hosted model providers can see plaintext returned through a grant."
+content:
+  - name: Local source build (read-only)
+    content: |
+      {
+        "command": "{{HC_BINARY}}",
+        "args": ["mcp", "--as", "{{HC_GRANT_ID}}", "--dir", "{{HC_STORE}}"]
+      }
+parameters:
+  - name: HC executable (absolute path)
+    key: HC_BINARY
+    placeholder: /absolute/path/to/hc
+  - name: Read-only grant ID
+    key: HC_GRANT_ID
+    placeholder: your_grant_id
+  - name: HC store (absolute path)
+    key: HC_STORE
+    placeholder: /absolute/path/to/hc-demo
