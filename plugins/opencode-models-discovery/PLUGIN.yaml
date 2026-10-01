@@ -1,0 +1,7 @@
+id: opencode-models-discovery
+name: Models Discovery
+description: Discovers models dynamically from any OpenAI-compatible provider and injects them into Kilo's provider config, with provider-level controls, model filters, and metadata enrichment.
+category: providers
+author: yuhp
+url: https://github.com/yuhp/opencode-models-discovery
+content: opencode-models-discovery

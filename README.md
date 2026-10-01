@@ -1,18 +1,19 @@
 <h1 align="center">Kilo Marketplace</h1>
 
-A curated collection of **Skills**, **MCP Servers**, and **Agents** for enhancing AI agent capabilities across the Kilo ecosystem—including Kilo Code (VS Code extension), Kilo CLI, and compatible AI agents.
+A curated collection of **Skills**, **MCP Servers**, **Agents**, and **Plugins** for enhancing AI agent capabilities across the Kilo ecosystem, including Kilo Code (VS Code extension), Kilo CLI, and compatible AI agents.
 
 ---
 
 ## What is the Kilo Marketplace?
 
-The Kilo Marketplace is a community-driven repository of agent tooling prompts and configurations. It provides three types of resources that extend what AI agents can do:
+The Kilo Marketplace is a community-driven repository of agent tooling prompts and configurations. It provides four types of resources that extend what AI agents can do:
 
 | Resource | Description |
 |----------|-------------|
 | **[Skills](#skills)** | Modular workflows and domain expertise that teach agents how to perform specific tasks |
 | **[MCP Servers](#mcp-servers)** | Standardized integrations that connect agents to external tools and services |
 | **[Agents](#agents)** | Specialized agent configurations for focused tasks and workflows |
+| **[Plugins](#plugins)** | Code that extends agent runtime behavior with hooks, custom tools, auth providers, and model providers |
 
 ---
 
@@ -26,6 +27,8 @@ The Kilo Marketplace is a community-driven repository of agent tooling prompts a
   - [What Are MCP Servers?](#what-are-mcp-servers)
 - [Agents](#agents)
   - [What Are Agents?](#what-are-agents)
+- [Plugins](#plugins)
+  - [What Are Plugins?](#what-are-plugins)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -118,6 +121,8 @@ MCP servers can run locally on your machine or remotely as cloud services, depen
 
 Browse available MCP servers in the [`mcps/`](./mcps/) directory.
 
+MCP definitions can include companion skills that teach agents how to use the server. Authors list skill IDs in an optional `skills` field; the catalog generator resolves them to the same archives used by standalone skill installations. This is separate from setup `prerequisites` and dependency `requirements`. See [MCP Companion Skills](CONTRIBUTING.md#mcp-companion-skills) for a complete remote-server example, validation commands, and release order. Companion installation requires a client with bundle support.
+
 ---
 
 ## Agents
@@ -130,11 +135,23 @@ Browse available agents in the [`agents/`](./agents/) directory. The [`modes/`](
 
 ---
 
+## Plugins
+
+### What Are Plugins?
+
+Plugins extend Kilo with hooks, custom tools, auth providers, model providers, and runtime behavior. A plugin is published to npm or hosted in a public git repository, and each plugin is described by one `PLUGIN.yaml` file under `plugins/<id>/`.
+
+Plugins use the categories `business`, `data`, `development`, `observability`, `productivity`, `providers`, `search`, and `web-automation`.
+
+Plugins execute code with the user's permissions, so review the source before installation. Browse available plugins in the [`plugins/`](./plugins/) directory, and see [`plugins/README.md`](./plugins/README.md) for the manifest fields, supported source specifiers, and contribution workflow.
+
+---
+
 ## Contributing
 
 We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on:
 
-- How to submit new skills or MCP servers
+- How to submit new skills, MCP servers, or plugins
 - Quality standards
 - Pull request process
 - Code of conduct
