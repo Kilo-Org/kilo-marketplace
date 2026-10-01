@@ -1,0 +1,21 @@
+id: screenpipe
+name: screenpipe
+description: Local-first workflow memory for AI agents. Search private screen and audio history, reconstruct multi-app work from timestamped evidence, draft cited SOPs, and identify automation candidates.
+author: screenpipe
+url: https://github.com/screenpipe/screenpipe/tree/main/packages/screenpipe-mcp
+category: productivity
+prerequisites:
+  - screenpipe desktop installed and running
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "screenpipe-mcp@0.19.1"],
+        "env": {
+          "SCREENPIPE_MCP_CLIENT": "kilo-marketplace",
+          "SCREENPIPE_DISABLE_TELEMETRY": "1"
+        }
+      }
