@@ -59,6 +59,10 @@ export function repoPathFromBin(...segments: string[]): string {
   return path.join(BIN_DIR, "..", ...segments);
 }
 
+export function archive(id: string): string {
+  return `https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/${id}.tar.gz`;
+}
+
 export function listVisibleDirectories(rootDir: string): string[] {
   return fs
     .readdirSync(rootDir, { withFileTypes: true })
