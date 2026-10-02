@@ -1,0 +1,16 @@
+id: sendly
+name: Sendly
+description: "Send transactional email, run campaigns, and manage contacts, lists and segments in Sendly. Official hosted server operated by Devino Solutions; sign in with your Sendly account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/sendly
+category: business
+prerequisites:
+  - Sendly account
+  - MCP client with OAuth support
+content:
+  - name: Sendly hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.sendly.now/api/mcp"
+      }

@@ -1,0 +1,16 @@
+id: voicelabs
+name: VoiceLabs
+description: "Generate speech from text in your voices and transcribe audio with VoiceLabs. Official hosted server operated by Devino Solutions; sign in with your VoiceLabs account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/voicelabs
+category: productivity
+prerequisites:
+  - VoiceLabs account
+  - MCP client with OAuth support
+content:
+  - name: VoiceLabs hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.voicelabs.now/api/mcp"
+      }

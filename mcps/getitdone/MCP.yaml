@@ -1,0 +1,16 @@
+id: getitdone
+name: GetItDone
+description: "Create, update and track tasks and projects across your GetItDone team workspaces. Official hosted server operated by Devino Solutions; sign in with your GetItDone account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/getitdone
+category: productivity
+prerequisites:
+  - GetItDone account
+  - MCP client with OAuth support
+content:
+  - name: GetItDone hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.nowgetitdone.com/api/mcp"
+      }
