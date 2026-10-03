@@ -1,0 +1,15 @@
+id: objekts-production-desk
+name: objekts Production Desk
+description: Production preflight by objekts for AI/VFX, CGI, motion, animation and commercial visual production.
+author: objekts
+url: https://github.com/peach420fuzz/objekts-production-desk
+category: business
+prerequisites:
+  - No account or API key is required for production diagnosis or directional estimates
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.objekts.ai/mcp"
+      }
