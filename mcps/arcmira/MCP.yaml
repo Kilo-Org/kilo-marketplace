@@ -1,0 +1,28 @@
+id: arcmira
+name: 'Arcmira: YouTube Transcript Search'
+description: >-
+  Search indexed YouTube transcripts for timestamped quotes, speaker appearances,
+  mentions, sponsors, and organic recommendations. Follow new mentions with
+  monitors. Explicit Premium retrieval can use included credits and on-demand
+  usage within your account budget. Monitor changes require authorized write
+  access. Coverage and research access depend on your account.
+author: arcmira
+url: https://arcmira.com/docs
+category: search
+prerequisites:
+  - An Arcmira account and API key from https://arcmira.com/dashboard/api
+  - Premium transcripts and commercial intelligence depend on account entitlements
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.arcmira.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ARCMIRA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Arcmira API key
+    key: ARCMIRA_API_KEY
+    placeholder: your_arcmira_api_key
