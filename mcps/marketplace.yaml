@@ -213,18 +213,18 @@ items:
         placeholder: your_apify_api_token
   - id: arcmira
     name: "Arcmira: YouTube Transcript Search"
-    description: Search indexed YouTube videos and livestreams for timestamped quotes, people and company mentions,
-      sponsors, and organic recommendations. Research tools are read-only. A separate Premium transcript preparation
-      action uses included credits; new monetary charges require an explicitly approved amount. Coverage and access
-      depend on your account.
+    description: Search indexed YouTube transcripts for timestamped quotes, speaker appearances, mentions, sponsors, and
+      organic recommendations. Follow new mentions with monitors. Explicit Premium retrieval can use included credits
+      and on-demand usage within your account budget. Monitor changes require authorized write access. Coverage and
+      research access depend on your account.
     author: arcmira
-    url: https://github.com/arcmira/mcp
+    url: https://arcmira.com/docs
     category: search
     tags:
       - search
     prerequisites:
       - An Arcmira account and API key from https://arcmira.com/dashboard/api
-      - Premium preparation and commercial intelligence depend on account entitlements
+      - Premium transcripts and commercial intelligence depend on account entitlements
     content:
       - name: Remote
         content: |
