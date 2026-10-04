@@ -1,0 +1,13 @@
+id: skyaccess
+name: SkyAccess
+description: Search 5,000+ live empty leg flights, get charter price estimates and booking links. No account or API key.
+author: SkyAccess
+url: https://github.com/sky-access/skyaccess-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.skyaccess.com/mcp"
+      }
