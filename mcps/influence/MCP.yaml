@@ -1,0 +1,22 @@
+id: influence
+name: Influence
+description: Plan social media campaigns, draft posts in your brand voice, review and schedule approved content, and read connected-account Insights.
+author: influence-so
+url: https://github.com/influence-so/influence-mcp
+category: productivity
+prerequisites:
+  - An Influence account and authorized workspace with an active subscription or seven-day trial. The trial requires a payment method and starts the selected subscription unless canceled before it ends.
+  - A scoped API key from https://influence.so/app/settings/account#settings-developer with only the permissions needed for your workflow.
+  - Review the exact content, accounts, attached media and time, then obtain fresh approval before publishing or changing a schedule.
+content: |
+  {
+    "type": "streamable-http",
+    "url": "https://influence.so/api/mcp",
+    "headers": {
+      "Authorization": "Bearer {{INFLUENCE_MCP_TOKEN}}"
+    }
+  }
+parameters:
+  - name: Influence API key
+    key: INFLUENCE_MCP_TOKEN
+    placeholder: your_scoped_influence_key
