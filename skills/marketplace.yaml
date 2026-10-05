@@ -1613,6 +1613,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/securing-s3-buckets
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/securing-s3-buckets/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/securing-s3-buckets.tar.gz
+  - id: shipvela-publish
+    description: >-
+      Publish a website through the user's connected Shipvela account, inspect deployment status and logs, and return a
+      verified live HTTPS URL. Use only when the user chooses Shipvela or asks to manage an existing Shipvela website.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/shipvela-publish
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/shipvela-publish/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/shipvela-publish.tar.gz
   - id: skill-creator
     description: >-
       Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an
