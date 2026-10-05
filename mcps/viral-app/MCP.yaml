@@ -1,0 +1,15 @@
+id: viral-app
+name: viral.app
+description: "UGC and creator campaign analytics for TikTok, Instagram, YouTube, Facebook, and Snapchat: tracked accounts and videos, tags and workflows, Creator Hub campaigns and creators, and live lookups, via viral.app's hosted OAuth server."
+author: FMD Labs
+url: https://github.com/fmd-labs/viral-app-agents
+category: business
+prerequisites:
+  - "viral.app account on a plan with API access (https://viral.app/app/org/api/agents)"
+content:
+  - name: viral.app MCP (hosted OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://viral.app/api/mcp"
+      }
