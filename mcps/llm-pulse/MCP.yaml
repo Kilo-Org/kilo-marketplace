@@ -1,0 +1,16 @@
+id: llm-pulse
+name: LLM Pulse
+description: Provides AI visibility analytics for brand mentions, citations, sentiment, share of voice, tracked prompts, recommendations, and AI-referred traffic.
+author: LLM Pulse
+url: https://github.com/LLM-Pulse/llmpulse-mcp
+category: data
+prerequisites:
+  - LLM Pulse account
+  - MCP client with OAuth support
+content:
+  - name: Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.llmpulse.ai/api/v1/mcp"
+      }
