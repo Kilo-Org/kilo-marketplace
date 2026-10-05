@@ -1,0 +1,13 @@
+id: appdeploy
+name: AppDeploy
+description: Create and deploy real web apps directly from Kilo Code. Describe what you want, and AppDeploy turns it into a live public app - with hosting, user authentication and databases, file uploads and storage, secure secrets management, real-time updates and notifications, custom domains, AI capabilities, scheduled jobs, and automated QA built in. Zero setup - no Git, hosting provider, or API keys.
+author: FreeBraavos LTD.
+url: https://appdeploy.ai/kilo-code-installation-instructions
+category: development
+content:
+  - name: Remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api-v2.appdeploy.ai/mcp"
+      }
