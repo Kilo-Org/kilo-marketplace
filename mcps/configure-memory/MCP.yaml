@@ -1,0 +1,16 @@
+id: configure-memory
+name: Configure Memory
+description: Bring your saved project decisions, preferences, and requirements into your next coding task. Search relevant context from a profile you control and save new decisions when you ask.
+author: configure-dev
+url: https://github.com/configure-dev/configure-mcp-plugin
+category: data
+prerequisites:
+  - A Configure account with context you want to use
+  - A client that supports remote MCP with browser-based OAuth authentication
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.configure.dev/"
+      }
