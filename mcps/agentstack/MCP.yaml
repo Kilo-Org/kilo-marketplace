@@ -1,0 +1,30 @@
+id: agentstack
+name: AgentStack (agentstack.tech)
+description: "Backend platform for AI agents: one agentstack.execute tool runs batched steps over ~668 actions (hosting, storage, auth, payments, CRM, app builder)."
+author: AgentStack
+url: https://github.com/agentstacktech/AgentStack
+category: development
+prerequisites:
+  - AgentStack account
+content:
+  - name: Remote (OAuth)
+    prerequisites:
+      - MCP client with OAuth 2.1 support (DCR + PKCE)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://agentstack.tech/mcp"
+      }
+  - name: Remote (API Key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://agentstack.tech/mcp",
+        "headers": {
+          "X-API-Key": "{{AGENTSTACK_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: AgentStack API Key
+        key: AGENTSTACK_API_KEY
+        placeholder: your_agentstack_api_key
