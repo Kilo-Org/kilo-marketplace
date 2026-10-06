@@ -1,0 +1,27 @@
+id: neither
+name: Neither
+description: Project context / decision memory for AI coding agents. Save selected notes and
+  documents, then retrieve Decision/Rejected/Constraint context with source evidence. Does not
+  index an entire codebase.
+author: stonianua
+url: https://github.com/stonianua/neither-mcp
+category: data
+prerequisites:
+  - Neither workspace API key from https://www.neither.online/start/?product=dev
+  - Node.js 20+
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@neitherai/mcp-server@latest"],
+        "env": {
+          "NEITHER_API_KEY": "{{NEITHER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Neither API Key
+    key: NEITHER_API_KEY
+    placeholder: your_workspace_api_key
