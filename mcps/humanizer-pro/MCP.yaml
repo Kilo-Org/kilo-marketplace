@@ -1,0 +1,17 @@
+id: humanizer-pro
+name: Humanizer PRO
+description: >-
+  Hosted OAuth MCP for rewriting authorized draft text, scanning AI-style
+  signals, and checking word-balance patterns while preserving intended meaning.
+author: Khadin Akbar Labs
+url: https://github.com/khadinakbarlabs/humanizer-pro-mcp
+category: productivity
+prerequisites:
+  - Humanizer PRO account
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://texthumanizer.pro/mcp"
+      }
