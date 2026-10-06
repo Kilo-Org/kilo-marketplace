@@ -1,0 +1,16 @@
+id: postify
+name: Postify
+description: "Draft, schedule and publish social media posts to your connected channels, and read post analytics, from your Postify calendar. Official hosted server operated by Devino Solutions; sign in with your Postify account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/postify
+category: business
+prerequisites:
+  - Postify account
+  - MCP client with OAuth support
+content:
+  - name: Postify hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.usepostify.com/api/mcp"
+      }

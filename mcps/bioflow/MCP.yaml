@@ -1,0 +1,16 @@
+id: bioflow
+name: BioFlow
+description: "Edit and publish your link-in-bio page, its links and blocks, and read page analytics and signups from BioFlow. Official hosted server operated by Devino Solutions; sign in with your BioFlow account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/bioflow
+category: business
+prerequisites:
+  - BioFlow account
+  - MCP client with OAuth support
+content:
+  - name: BioFlow hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.getbioflow.com/api/mcp"
+      }

@@ -1,0 +1,16 @@
+id: caly
+name: Caly
+description: "Find open meeting times, book, reschedule and cancel meetings, and read your event types, bookings and schedules in Caly. Official hosted server operated by Devino Solutions; sign in with your Caly account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/caly
+category: productivity
+prerequisites:
+  - Caly account
+  - MCP client with OAuth support
+content:
+  - name: Caly hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.trycaly.com/mcp"
+      }

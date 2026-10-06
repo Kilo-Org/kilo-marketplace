@@ -1,0 +1,16 @@
+id: uptimely
+name: Uptimely
+description: "Manage uptime monitors, incidents and status pages, and read check results, in Uptimely. Official hosted server operated by Devino Solutions; sign in with your Uptimely account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/uptimely
+category: observability
+prerequisites:
+  - Uptimely account
+  - MCP client with OAuth support
+content:
+  - name: Uptimely hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.getuptimely.com/api/mcp"
+      }
