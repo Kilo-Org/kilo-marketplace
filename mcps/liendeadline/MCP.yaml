@@ -1,0 +1,26 @@
+id: liendeadline
+name: LienDeadline
+description: US mechanics lien and preliminary notice deadlines for construction material suppliers, with statute-cited
+  lien guides for all 50 states and DC.
+author: LienDeadline
+url: https://github.com/LienDeadline/liendeadline-mcp
+category: business
+skills:
+  - liendeadline
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "liendeadline-mcp"],
+        "env": {
+          "LIENDEADLINE_API_KEY": "{{LIENDEADLINE_API_KEY}}"
+        }
+      }
+parameters:
+  - name: LienDeadline Customer API Key
+    key: LIENDEADLINE_API_KEY
+    placeholder: your_liendeadline_customer_api_key
+    optional: true
