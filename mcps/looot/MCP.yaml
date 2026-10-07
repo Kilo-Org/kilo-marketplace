@@ -1,0 +1,15 @@
+id: looot
+name: looot
+description: Search, price and run 2,500+ data endpoints from 90+ providers (work email find and verify, company and people enrichment, SEO and SERP, social, web scraping) from one prepaid balance. Browser OAuth sign-in, no API key to paste.
+author: looot
+url: https://github.com/loootai/looot-mcp
+category: data
+prerequisites:
+  - A looot account (free sign-up at https://looot.ai) and prepaid credit for paid calls; searching and inspecting are free
+content:
+  - name: Remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.looot.ai/mcp"
+      }
