@@ -1,0 +1,21 @@
+id: vatfind
+name: VATFind
+description: >-
+  Find VAT numbers and US EINs, match company identities with source evidence,
+  and monitor company-record changes through 14 tools. Checks cover identifier
+  format and company-record associations, not live tax-authority registration
+  validation; country coverage varies.
+author: VATFind
+url: https://github.com/sens663/vatfind-mcp
+category: business
+prerequisites:
+  - A VATFind workspace with available allowance; MCP operations use that allowance.
+  - An MCP client with remote Streamable HTTP and OAuth support.
+  - Complete VATFind OAuth authorization in the client before using tools.
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://vatfind.com/api/mcp"
+      }
