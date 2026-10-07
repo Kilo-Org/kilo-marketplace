@@ -1,0 +1,18 @@
+id: veripoint
+name: Veripoint
+description: Research private and public company financials, inspect supporting evidence, retrieve saved workspace reports, and check usage with four MCP tools.
+author: Veripoint
+url: https://github.com/sens663/veripoint-mcp
+category: business
+prerequisites:
+  - A Veripoint workspace with an active workspace key
+  - Link the workspace key at https://veripoint.sens663.chatgpt.site/mcp-link
+  - Complete OAuth authorization in a client supporting Streamable HTTP and OAuth
+  - Setup guide at https://veripoint.ai/api-docs/mcp-setup
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://veripoint.sens663.chatgpt.site/mcp"
+      }
