@@ -1,0 +1,13 @@
+id: dodo-knowledge
+name: Dodo Payments Knowledge MCP
+description: Searches the current Dodo Payments documentation, API reference, and SDK guides through Dodo Payments' public hosted MCP endpoint without requiring credentials.
+author: Dodo Payments
+url: https://docs.dodopayments.com/developer-resources/mcp-server
+category: search
+content:
+  - name: Dodo Payments hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://knowledge.dodopayments.com/mcp"
+      }
