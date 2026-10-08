@@ -1,0 +1,16 @@
+id: heyreagent
+name: HeyReagent
+description: Hosted MCP server for your own LinkedIn account. Read the inbox and see who is waiting for a reply, send messages and connection invitations, search people, and read profiles and posts, with a daily limit per account for each kind of action. Not affiliated with LinkedIn.
+author: HeyReagent
+url: https://github.com/linglistack/heyreagent-linkedin-mcp
+category: productivity
+prerequisites:
+  - HeyReagent account (free to start) with your own LinkedIn account connected
+  - MCP client with OAuth support
+content:
+  - name: HeyReagent hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.heyreagent.com/mcp"
+      }
