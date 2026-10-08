@@ -1,0 +1,15 @@
+id: hourtick
+name: Hourtick
+description: Connects agents to Hourtick's hosted MCP server for time tracking, tasks and team chat, so an agent can log the time it worked and its token cost next to people's hours. Signs in with OAuth on hourtick.com.
+author: Hourtick
+url: https://hourtick.com
+category: productivity
+prerequisites:
+  - Hourtick account
+content:
+  - name: Hourtick hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://hourtick.com/api/mcp"
+      }
