@@ -1,0 +1,17 @@
+id: aisle
+name: Aisle
+description: >-
+  Aisle helps couples search destination wedding venues and suppliers, estimate budgets, plan timelines, and manage wedding details, guests and events. Public planning tools need no account; private tools use OAuth and changes require an Aisle membership.
+author: Aisle
+url: https://aisle.wedding/mcp
+category: productivity
+prerequisites:
+  - Internet connection; no account is needed for public planning tools
+  - OAuth sign-in for private wedding tools; an Aisle membership is required for changes
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aisle.wedding/api/claude/mcp"
+      }
