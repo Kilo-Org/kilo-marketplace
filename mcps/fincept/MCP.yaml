@@ -1,0 +1,16 @@
+id: fincept
+name: Fincept MCP
+description: Hosted MCP server for Fincept Terminal with quotes, candles, option chains, fundamentals, economic data, SEC filings, news, backtests, paper trading and 15 quant engines (statistics, forecasting, volatility, portfolio optimisation, derivatives pricing).
+author: Fincept Corporation
+url: https://docs.fincept.in
+category: business
+prerequisites:
+  - Fincept account on the paid Exclusive Pro plan
+  - MCP client with OAuth support
+content:
+  - name: Fincept hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://enterprise.fincept.in/mcp"
+      }
