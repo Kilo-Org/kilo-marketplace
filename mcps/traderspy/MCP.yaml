@@ -1,0 +1,22 @@
+id: traderspy
+name: TraderSpy
+description: "Read-only crypto futures market data from TraderSpy's hosted MCP server: AI-generated signals with entry, take-profit and stop levels; top-trader positioning on Binance, Hyperliquid, Bybit and OKX; prices, candles, 19 technical indicators, funding rate and open interest, a screener and a backtester. No order, transfer or withdrawal tools. Market data and analysis, not financial advice."
+author: TraderSpy
+url: https://github.com/target1m/traderspy-mcp
+category: business
+prerequisites:
+  - "TraderSpy account (the free plan needs no card and allows 300 tool calls a day) and a personal MCP key from https://traderspy.app/mcp, starting with mcp_"
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.traderspy.app/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TRADERSPY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: TraderSpy MCP Key
+    key: TRADERSPY_API_KEY
+    placeholder: mcp_your_traderspy_key
