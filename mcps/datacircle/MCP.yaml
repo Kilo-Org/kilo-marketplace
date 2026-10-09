@@ -1,0 +1,30 @@
+id: datacircle
+name: Datacircle
+description: Looks up LinkedIn profiles and B2B data at the data provider's own price, no markup, paid from your Datacircle balance, and gives download links for your data files, including a free 10M+ U.S. B2B leads dataset.
+author: Datacircle
+url: https://docs.datacircle.dev/mcp-server
+category: search
+prerequisites:
+  - Datacircle account (sign up with a work email; a new account gets a $5 credit)
+content:
+  - name: Datacircle hosted OAuth server
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.datacircle.dev/mcp"
+      }
+  - name: Datacircle hosted server with an API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.datacircle.dev/mcp",
+        "headers": {
+          "Authorization": "Bearer {{DATACIRCLE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Datacircle API Key
+        key: DATACIRCLE_API_KEY
+        placeholder: your_datacircle_api_key
