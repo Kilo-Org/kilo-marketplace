@@ -1,0 +1,7 @@
+id: "@honcho-ai/kilo-honcho"
+name: Honcho
+description: Persistent memory for Kilo. Recalls what Honcho knows about you on every prompt, saves the conversation, and gives the agent honcho_* tools for search, chat and saved conclusions.
+category: productivity
+author: Plastic Labs
+url: https://github.com/plastic-labs/honcho/tree/main/kilo-honcho
+content: "@honcho-ai/kilo-honcho"
