@@ -1,0 +1,37 @@
+id: hootlens
+name: Hoot Lens
+description: Reads session replays and click heatmaps from your websites, so the agent can find clicks that broke, open the
+  JavaScript error and source line behind them, and check whether a fix helped.
+author: Parallel Platforms
+url: https://github.com/Parallel-Platforms/hootlens-mcp
+category: observability
+prerequisites:
+  - Hoot Lens account with at least one project
+content:
+  - name: Hosted (sign in with Hoot Lens)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.hootlens.com/mcp"
+      }
+  - name: NPX with access key
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@hootlens/mcp"],
+        "env": {
+          "HOOTLENS_PAT": "{{HOOTLENS_PAT}}"
+        }
+      }
+    parameters:
+      - name: Hoot Lens access key
+        key: HOOTLENS_PAT
+        placeholder: hl_pat_...
+  - name: Demo with sample data (no account)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.hootlens.com/demo"
+      }
