@@ -1,0 +1,17 @@
+id: aihot
+name: AIHOT
+description: >-
+  Read Chinese AI news, search recent items, follow hot topics and story timelines,
+  and retrieve daily, weekly and monthly briefs from the AIHOT news aggregator.
+  The official hosted endpoint provides eight read-only tools without an account
+  or API key. Code is MIT licensed; hosted content follows https://aihot.news/terms.
+author: AIHOT
+url: https://github.com/KKKKhazix/AIHOT
+category: search
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aihot.news/api/mcp"
+      }
