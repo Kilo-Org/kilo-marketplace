@@ -1,4 +1,13 @@
 items:
+  - id: kimi3-game-research
+    description: >-
+      Research and analysis of Kimi K3 model's game generation capabilities (K399 / K3 Game Arcade).
+      Documents the DDD + multi-agent swarm architecture, tech stack, and workflow used to generate
+      complete games from single-sentence prompts. Includes comparison with Astrocade platform.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/kimi3-game-research
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/kimi3-game-research/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/kimi3-game-research.tar.gz
   - id: competitive-ads-extractor
     description: >-
       Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging,
