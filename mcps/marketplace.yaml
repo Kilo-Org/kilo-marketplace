@@ -1294,7 +1294,7 @@ items:
     name: DropTheHassle
     description: Lets your AI publish a site on a free HTTPS link, no account needed for the first deploy. For a .com
       (€19/$19) it hands you a payment link; after you pay, the site goes live on it with no DNS. A mailbox on the
-      domain is optional. Restore brings back the previous version of a claimed site. The AI never pays.
+      domain is optional. Edit files changes one file without a rebuild, and Restore undoes the last Update or Edit files save. The AI never pays.
     author: DropTheHassle
     url: https://github.com/bosmdavid-gif/dropthehassle-mcp
     category: development
