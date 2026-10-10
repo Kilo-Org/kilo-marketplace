@@ -1,0 +1,23 @@
+id: dialmcp
+name: DialMCP
+description: Let AI agents place real phone calls from your own SMS-verified number, with full transcripts, recordings, and structured outcomes. US & Canada.
+author: DialMCP / Datawizz
+url: https://dialmcp.com
+category: communication
+prerequisites:
+  - A US or Canadian phone number you can receive SMS on
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.dialmcp.com/mcp"
+      }
+  - name: NPX connector (stdio bridge)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "dialmcp-connector"]
+      }
