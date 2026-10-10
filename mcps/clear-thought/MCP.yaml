@@ -1,0 +1,42 @@
+id: clear-thought
+name: Clear Thought 1.5
+description: A unified reasoning tool with 38 structured thinking operations covering core thinking patterns, collaborative reasoning, and advanced patterns like tree-of-thought and MCTS for systematic problem-solving workflows.
+author: waldzellai
+url: https://github.com/waldzellai/clearthought-onepointfive
+tags:
+  - mental-models
+  - debugging
+  - systematic-thinking
+  - decision-framework
+  - reasoning
+  - problem-solving
+  - cognitive-tools
+  - tree-of-thought
+  - mcts
+  - sequential-thinking
+prerequisites:
+  - Node.js 18.x or higher
+  - npm 9.x or higher
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@waldzellai/clear-thought-onepointfive"],
+        "env": {}
+      }
+  - name: Docker
+    prerequisites:
+      - Docker
+    content: |
+      {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "waldzellai/clear-thought-onepointfive"
+        ],
+        "env": {}
+      }
