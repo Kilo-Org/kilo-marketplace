@@ -673,7 +673,7 @@ items:
     name: Ball Ranks
     description: Read-only NFL and NBA fantasy rankings and player projections through REST-backed MCP tools.
     author: Ball Ranks
-    url: https://ballranks.com/developers
+    url: https://github.com/Ollynov/ball-ranks-plugin
     category: data
     tags:
       - data
@@ -685,7 +685,7 @@ items:
             "url": "https://ballranks.com/api/mcp"
           }
         prerequisites:
-          - Anonymous access is limited to 10 requests per day
+          - Anonymous access is limited to 10 requests per day per public IP
       - name: API Key
         content: |
           {
@@ -701,6 +701,7 @@ items:
             placeholder: brk_your_key
         prerequisites:
           - Free Ball Ranks account for higher Model Zero limits
+          - Create an API key at https://ballranks.com/account#developer-access
           - Active Premium membership for Model One access
   - id: bigquery-mcp
     name: BigQuery Remote MCP
