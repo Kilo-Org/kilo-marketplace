@@ -218,11 +218,13 @@ items:
       on-demand budget. Monitor changes require authorized write access. Coverage and research access depend on your
       account.
     author: arcmira
-    url: https://arcmira.com/docs
+    url: https://github.com/arcmira/mcp
     category: search
     tags:
       - search
     prerequisites:
+      - Arcmira https://arcmira.com
+      - API documentation https://arcmira.com/docs
       - An Arcmira account and API key from https://arcmira.com/dashboard/api
       - Premium transcripts and commercial intelligence depend on account entitlements
     content:
