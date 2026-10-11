@@ -33,6 +33,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/internal-comms
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/internal-comms/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/internal-comms.tar.gz
+  - id: kooperativa-lead-generation
+    description: >-
+      This skill should be used when the user wants to find, qualify, or research B2B leads, target accounts, or
+      decision makers and the Kooperativa MCP tools (kooperativa_*) are connected. It confirms the ideal customer
+      profile and geography first, applies the correct search filters, enriches only a shortlist, and keeps verified
+      data separate from inference.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/kooperativa-lead-generation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/kooperativa-lead-generation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/kooperativa-lead-generation.tar.gz
   - id: lead-research-assistant
     description: >-
       Identifies high-quality leads for your product or service by analyzing your business, searching for target
