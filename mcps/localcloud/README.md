@@ -36,18 +36,9 @@ For manual Kilo CLI setup, create `kilo.json` in your project with the following
 }
 ```
 
-Then run `kilo mcp list` and check that LocalCloud is connected. In Kilo Code’s extension MCP configuration editor, use this server entry instead (inside its `mcpServers` object):
+Then run `kilo mcp list` and check that LocalCloud is connected. Current Kilo CLI and VS Code extension versions share the `mcp` object with `type: "local"` and a command array; the extension also supports `kilo.jsonc`. Follow the [official Kilo MCP guide](https://kilo.ai/docs/automate/mcp/using-in-kilo-code) for the settings editor and configuration location.
 
-```json
-{
-  "localcloud": {
-    "command": "/absolute/path/to/localcloud",
-    "args": ["mcp"]
-  }
-}
-```
-
-These formats differ: the CLI uses `mcp` and a command array; the extension uses `mcpServers` with command/args. Keep tool approval enabled and review calls that change resources. MCP management writes and destructive actions are disabled by default; an agent executing application code with an SDK can still write test resources.
+Keep tool approval enabled and review calls that change resources. MCP management writes and destructive actions are disabled by default; an agent executing application code with an SDK can still write test resources.
 
 ## First workflow
 
