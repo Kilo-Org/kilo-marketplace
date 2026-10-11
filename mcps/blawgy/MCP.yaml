@@ -1,0 +1,37 @@
+id: blawgy
+name: Blawgy
+description: Research keywords, plan, write, update and publish SEO blog posts on your WordPress, Shopify, Webflow, Wix, Framer, Ghost or Duda site, and read Search Console traffic, rankings and indexing status.
+author: Blawgy
+url: https://github.com/adamgusky/blawgy-mcp
+category: productivity
+prerequisites:
+  - Blawgy account on a paid plan (free trial available)
+content:
+  - name: Streamable HTTP (OAuth sign-in)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.blawgy.com/mcp"
+      }
+  - name: Streamable HTTP (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.blawgy.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BLAWGY_API_KEY}}"
+        }
+      }
+  - name: NPX (mcp-remote bridge)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://app.blawgy.com/mcp"]
+      }
+parameters:
+  - name: Blawgy API Key
+    key: BLAWGY_API_KEY
+    placeholder: your_blawgy_api_key_here
+    optional: true
