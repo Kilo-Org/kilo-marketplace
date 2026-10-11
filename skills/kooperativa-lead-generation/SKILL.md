@@ -12,9 +12,9 @@ metadata:
   source:
     repository: 'https://github.com/kooperativa-team/kooperativa-mcp'
     path: skills/kooperativa-lead-generation
-    ref: main
     license_path: LICENSE.md
-    commit: dcb311f504def99530c5a6e9423d8ed4f9cc5b3a
+    ref: main
+    commit: aac3600b56e734a2a7f6899ca1978e87cdb5900f
 ---
 
 # Kooperativa Lead Generation
@@ -55,6 +55,26 @@ Do not use it to find emails or phone numbers (not available), or to look up a p
 | Role | `title`, `seniority` | not applicable |
 
 There is no generic `query` field. At least one filter is required. A 404 means "not indexed yet", not "does not exist".
+
+## Example
+
+**User:** "We sell outbound analytics to US B2B software companies with 20 to 200 employees. Find 10 decision makers I can reach out to first."
+
+**What the agent does:**
+
+1. Notes what is already clear (US only, company size, the product) and asks only for what is missing, such as target titles and exclusions.
+2. Calls `kooperativa_account_info` to confirm the license is active.
+3. Calls `kooperativa_search_companies` with `{"country": "US", "industry": "Software Development", "min_staff": 20, "max_staff": 200, "per_page": 25}`. Each result carries a `company_id`.
+4. For the most promising companies, calls `kooperativa_company_decision_makers` with `{"company_id": "<company_id from step 3>", "seniority": "c-level,vp"}` until it has 10 people.
+5. Calls `kooperativa_enrich_person` for those 10 people only.
+
+**Output** (illustrative, all values are fictional):
+
+| Name | Role | Company | Location | Why it may fit (inference) |
+|---|---|---|---|---|
+| Jane Example | VP Sales | Example Analytics Inc. | Austin, US | Leads outbound at a software company in the target size range |
+
+Caveats: the headcount shown for Example Analytics Inc. is approximate; 4 of the 25 companies were dropped as out-of-scope or fuzzy matches.
 
 ## Safety rules
 
