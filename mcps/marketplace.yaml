@@ -1292,10 +1292,14 @@ items:
         placeholder: cloud.getdbt.com
   - id: dropthehassle
     name: DropTheHassle
-    description: Lets your AI publish a site live on a free HTTPS link with no account and no email first; it returns the live link
-      and a claim link (no-email deploy is live on the Remote Server; NPX follows in its next release). Right after, it
-      can get you a .com (€19/$19 a year). It hands you a payment link, and after you pay the site goes live on it with
-      no DNS. An optional mailbox on the domain sends and receives. Edit files changes one file without a rebuild, and Restore undoes the last Update or Edit files save. Collect leads turns on a contact form on a claimed site; messages land in your mailbox. An optional password locks a claimed site until you're ready; an empty password means public. Hide from Google asks search engines to skip a claimed site; visitors can still open it. The AI never pays.
+    description: Lets your AI publish a site live on a free HTTPS link with no account and no email first; it returns the
+      live link and a claim link (no-email deploy is live on the Remote Server; NPX follows in its next release). Right
+      after, it can get you a .com (€19/$19 a year). It hands you a payment link, and after you pay the site goes live
+      on it with no DNS. An optional mailbox on the domain sends and receives. Edit files changes one file without a
+      rebuild, and Restore undoes the last Update or Edit files save. Collect leads turns on a contact form on a claimed
+      site; messages land in your mailbox. An optional password locks a claimed site until you're ready; an empty
+      password means public. Hide from Google asks search engines to skip a claimed site; visitors can still open it.
+      The AI never pays.
     author: DropTheHassle
     url: https://github.com/bosmdavid-gif/dropthehassle-mcp
     category: development
