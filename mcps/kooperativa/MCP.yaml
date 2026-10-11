@@ -1,0 +1,24 @@
+id: kooperativa
+name: Kooperativa
+description: B2B people and company data for AI agents. Enrich and search professional profiles and companies, find decision makers, hiring signals and job changes, resolve an email address to a profile, and manage change-alert webhooks. It holds no contact data (no email addresses or phone numbers).
+author: kooperativa-team
+url: https://github.com/kooperativa-team/kooperativa-mcp
+category: data
+prerequisites:
+  - A Kooperativa account with an active license and an API key (https://kooperativa.io/api-keys)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@kooperativa_team/mcp-server"],
+        "env": {
+          "KOOPERATIVA_API_KEY": "{{KOOPERATIVA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Kooperativa API Key
+    key: KOOPERATIVA_API_KEY
+    placeholder: ik_live_your_key_here
