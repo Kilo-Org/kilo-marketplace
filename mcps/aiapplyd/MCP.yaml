@@ -1,0 +1,13 @@
+id: aiapplyd
+name: AI Applyd
+description: Finds jobs matched to your resume, tailors the resume and cover letter for each role, and applies on the employer's own hiring system (34 systems, including Workday, Greenhouse, Lever and iCIMS), with an optional approval step before each application. Sign in once with OAuth; no API key.
+author: AI Applyd
+url: https://github.com/aiapplyd/aiapplyd-mcp
+category: productivity
+content:
+  - name: AI Applyd hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.aiapplyd.com/mcp"
+      }
