@@ -1,0 +1,23 @@
+id: hydracept
+name: Hydracept
+description: Hosted MCP server for AI capability discovery, quotes, durable jobs, receipts, and artifacts across
+  multiple AI providers (for example image generation and editing, and sound effects).
+author: zencodeinc
+url: https://github.com/zencodeinc/hydracept-public
+category: development
+prerequisites:
+  - Hydracept account and API key (https://hydracept.com/start)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.hydracept.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{HYDRACEPT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Hydracept API Key
+    key: HYDRACEPT_API_KEY
+    placeholder: your_hydracept_api_key
