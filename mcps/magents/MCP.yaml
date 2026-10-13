@@ -1,0 +1,25 @@
+id: magents
+name: magents
+description: Local session bus over the transcripts coding agents already write (Claude Code, Codex, Copilot CLI, Cursor, Gemini CLI, Grok, OpenCode). List and read other live sessions, search transcripts, hand off compact state into another chat, send a message into a specific session, or spawn a headless session that replies through a shared inbox.
+author: abnegate
+url: https://github.com/abnegate/magents
+category: development
+prerequisites:
+  - The magents binary on PATH (Homebrew, APT, cargo, or a release binary)
+content:
+  - name: Homebrew
+    prerequisites:
+      - "Homebrew: brew install abnegate/tap/magents"
+    content: |
+      {
+        "command": "magents",
+        "args": ["mcp"]
+      }
+  - name: Cargo
+    prerequisites:
+      - "Rust toolchain: cargo install magents --locked"
+    content: |
+      {
+        "command": "magents",
+        "args": ["mcp"]
+      }
