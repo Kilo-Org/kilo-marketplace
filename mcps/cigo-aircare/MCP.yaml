@@ -1,0 +1,17 @@
+id: cigo-aircare
+name: Cigo Aircare & Carsafe
+description: >-
+  Look up Cigo HVAC FFU/BFU filter specifications and airflow-specific power
+  comparisons, find Carsafe cabin filters by vehicle model and year with purchase
+  links, and get regional air-quality guidance. Also supports user-confirmed
+  B2B inquiries and replacement-date records. No API key is required.
+author: cigo240920
+url: https://github.com/cigo240920/cigo-aircare-connector
+category: business
+prerequisites:
+  - Internet connection
+content: |
+  {
+    "type": "streamable-http",
+    "url": "https://cigo-mcp-system-wzoy.onrender.com/mcp/"
+  }
