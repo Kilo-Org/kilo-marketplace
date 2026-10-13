@@ -1,0 +1,17 @@
+id: inboxmcp
+name: InboxMCP
+description: Connects LinkedIn, WhatsApp, Telegram and Instagram inboxes for reading conversations, profile research and user-approved messaging through a hosted MCP server.
+author: Logike SAS (Breakcold)
+url: https://github.com/breakcold/inboxmcp
+category: productivity
+prerequisites:
+  - InboxMCP account with a connected LinkedIn, WhatsApp, Telegram or Instagram account
+  - Active trial or paid InboxMCP subscription
+  - MCP client with OAuth 2.1 support; sign in to InboxMCP when prompted
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://inbox-mcp.com/mcp"
+      }
