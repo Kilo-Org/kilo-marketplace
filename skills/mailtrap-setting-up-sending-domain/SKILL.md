@@ -8,7 +8,7 @@ metadata:
     repository: https://github.com/mailtrap/mailtrap-skills
     path: skills/setting-up-sending-domain
     license_path: LICENSE
-    commit: 73a7113dbab938f716b8a77b3f63b83a91d8be93
+    commit: 2c95794d19d1e2ed337b798332209f143e51d11b
 ---
 
 # Setting Up a Sending Domain with Mailtrap
