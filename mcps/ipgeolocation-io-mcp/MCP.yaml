@@ -1,0 +1,27 @@
+id: ipgeolocation-io-mcp
+name: IPGeolocation.io
+description: >-
+  Look up IP geolocation, VPN/proxy/Tor indicators, ASN data and abuse contacts.
+  Also provides time zone, astronomy and user-agent tools, with cached pagination.
+author: IPGeolocation.io
+url: https://github.com/IPGeolocation/ipgeolocation-io-mcp
+category: search
+prerequisites:
+  - Node.js 22 or later and npx
+  - An IPGeolocation.io API key for most API tools; get_my_ip works without a key
+  - API plan access for paid features
+content:
+  - name: NPX
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "ipgeolocation-io-mcp@2.0.1"],
+        "env": {
+          "IPGEOLOCATION_API_KEY": "{{IPGEOLOCATION_API_KEY}}"
+        }
+      }
+parameters:
+  - name: IPGeolocation.io API Key
+    key: IPGEOLOCATION_API_KEY
+    placeholder: your_api_key_here
+    optional: true
