@@ -1,0 +1,14 @@
+id: statorigin
+name: StatOrigin
+description: Read-only search of a free archive of industry statistics. Each record carries its publisher, source
+  document URL and the sentence the figure was taken from. Tools search, fetch and get_ranking; no API key.
+author: SudoAI-App
+url: https://github.com/SudoAI-App/statorigin-mcp
+category: search
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://statorigin.org/mcp"
+      }
