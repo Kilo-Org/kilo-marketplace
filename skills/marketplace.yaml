@@ -60,6 +60,22 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/canvas-design
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/canvas-design/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/canvas-design.tar.gz
+  - id: find-stock-photos
+    description: >-
+      Use this skill when the user asks for real photographs or states a need that photographs fill: to find, show or
+      provide photos or pictures ("show me images of"); for an article, blog post, website, landing page, product,
+      slide, social post, ad, newsletter, banner, thumbnail, cover, poster, background, wallpaper or mood board; for
+      content they ask to illustrate with photographs ("write an article with pictures"); for free, stock, royalty-free,
+      commercially usable or documentary photographs; for a real photograph when they ask for one; or for free
+      alternatives to a picture they link to or upload, or to a Pexafy photo. A request with no reason given ("a photo
+      of a white mug", "a train in Japan") is a complete request, and these requests count in any language. A request
+      for a visual is not always a request for a photograph: not for illustrations, logos, icons, diagrams or
+      screenshots, not for generating, editing or upscaling an image, not for a named person, and not to add photographs
+      the user did not ask for.
+    category: creative-media
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/find-stock-photos
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/find-stock-photos/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/find-stock-photos.tar.gz
   - id: image-enhancer
     description: >-
       Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect
