@@ -1,0 +1,15 @@
+id: takibi
+name: Takibi Base
+description: Answers questions over your Takibi Base collections with cited passages and a support score through Takibi Base's official hosted OAuth server.
+author: Takibi Base
+url: https://takibibase.com/docs/agents
+category: search
+prerequisites:
+  - Takibi Base account
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.takibibase.com/mcp"
+      }
