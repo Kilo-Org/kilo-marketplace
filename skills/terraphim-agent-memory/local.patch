@@ -1,0 +1,92 @@
+diff --git a/terraphim-agent-memory/SKILL.md b/terraphim-agent-memory/SKILL.md
+--- a/terraphim-agent-memory/SKILL.md
++++ b/terraphim-agent-memory/SKILL.md
+@@ -32,8 +32,7 @@
+ ```
+
+ The examples target released **Clients 1.21.20**. Homebrew may install a different
+-version; inspect the installed help before using a command. For signed,
+-checksummed release archives, follow the
++version; inspect the installed help before using a command. For checksummed release archives, follow the
+ [installation guide](https://terraphim-skills.md/docs/non-technical/).
+ The skill does not install software automatically.
+
+@@ -111,3 +110,11 @@
+
+ Browse the [Community, Core, and Premium skill catalogue](https://terraphim-skills.md/skills/).
+ Discovering a related skill never starts checkout or changes an entitlement.
++
++## Kilo distribution provenance
++
++This Kilo copy preserves the original skill instructions and resources. Its
++frontmatter and packaging were transformed by the pinned Kilo importer. The
++original Terraphim signature applies to the immutable source, not this copy.
++See [source provenance](references/kilo-provenance.json), [LICENSE](LICENSE) and
++[NOTICE](NOTICE).
+diff --git a/terraphim-agent-memory/NOTICE b/terraphim-agent-memory/NOTICE
+new file mode 100644
+--- /dev/null
++++ b/terraphim-agent-memory/NOTICE
+@@ -0,0 +1,5 @@
++Terraphim Skills Introduction for Cursor
++Copyright 2026 Terraphim AI
++
++The V-model overview artwork in assets/ is Copyright 2026 Terraphim AI and is
++distributed under the Apache License 2.0 with the rest of this repository.
+diff --git a/terraphim-agent-memory/references/kilo-provenance.json b/terraphim-agent-memory/references/kilo-provenance.json
+new file mode 100644
+--- /dev/null
++++ b/terraphim-agent-memory/references/kilo-provenance.json
+@@ -0,0 +1,52 @@
++{
++  "schemaVersion": 1,
++  "entryId": "terraphim-agent-memory",
++  "source": {
++    "repository": "https://github.com/terraphim/terraphim-cursor-plugin",
++    "commit": "391c7e4ebc103f1770b9dca589fcce7ccd211d5f",
++    "release": "v0.2.4",
++    "version": "1.0.3",
++    "manifestSha256": "249fbecb60b3b27c6a0f20f6942ad348d488108c03f72d33ee1610a9eb67ac11",
++    "publisherKey": "261c6820525270bfe2a5daaa5bf3f581bd9bc193e1a0148010e870a3a63ad959",
++    "files": {
++      "SKILL.md": {
++        "sha256": "6bb242978369119366f87b415c848668c22e885b5745ece7c2b04947114e8d6e",
++        "blake3": "dbd32a2646ec4a015b993e536d1f78cab6128e767a3eafe45167c29721c468f8"
++      },
++      "references/command-guide.md": {
++        "sha256": "fd9af409bae86ec3b77495fad94694af021c1fc1d42081fd0ce13cdeab99bc89",
++        "blake3": "6bc5848a2bb8e8ff8d68dd080d4b00ea9b7770010cd8f0debe424e8a7e609121"
++      },
++      "references/risk-concern.knowledge-graph.json": {
++        "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
++        "blake3": "83f089bacf0236cd3127a2d27272ef4fa39f72b56a83a4134e2c6909a666f153"
++      },
++      "references/workflows.md": {
++        "sha256": "77d840f59c99c502413161985be10eedb09162a6e3dd337caa2a24aceccc0fad",
++        "blake3": "2b4a2146de020ccc210478c26c91be8a83d483aa9c182acd72cf7dd813648a39"
++      }
++    }
++  },
++  "importer": {
++    "repository": "https://github.com/AlexMikhalev/kilo-marketplace",
++    "commit": "e042daafcab97ffa487ce8c7d6e090fc64457e4f"
++  },
++  "transforms": [
++    "upstream frontmatter/source/category serialization",
++    "upstream text whitespace normalization",
++    "root LICENSE via metadata.source.license_path",
++    "root skill.toml removed via local.remove",
++    "NOTICE, provenance and explanation added via local.patch",
++    "exact CLI archive wording correction recorded in wordingCorrections"
++  ],
++  "signatureScope": "The original signature verifies the immutable source skill, not this transformed Kilo copy.",
++  "wordingCorrections": [
++    {
++      "sourceVersion": "1.0.3",
++      "sourceCommit": "391c7e4ebc103f1770b9dca589fcce7ccd211d5f",
++      "oldText": "For signed,\nchecksummed release archives",
++      "newText": "For checksummed release archives",
++      "reason": "The verified skill signature does not authenticate separate CLI archives; only CLI release checksums were verified."
++    }
++  ]
++}

@@ -15,7 +15,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 import { execFileSync, spawnSync } from "child_process";
 import * as os from "os";
 import matter from "gray-matter";
@@ -315,7 +315,22 @@ function groupBySource(skills: SkillInfo[]): SourceGroup[] {
  * Try to apply a patch file to a skill directory.
  * Returns true if patch applied successfully, false otherwise.
  */
-function applyPatch(skillDir: string, patchContent: string): boolean {
+export function applyPatch(skillDir: string, patchContent: string): boolean {
+  // Git otherwise silently skips paths when cwd is a repository subdirectory.
+  // Prefix paths with that actual cwd; outside a repository Git uses cwd directly.
+  const location = spawnSync("git", ["rev-parse", "--show-prefix"], {
+    cwd: skillDir,
+    encoding: "utf-8",
+  });
+  const prefix = location.status === 0 ? location.stdout.trimEnd() : "";
+  if (
+    path.isAbsolute(prefix) ||
+    prefix.split(/[\\/]/).some((part) => part === "..") ||
+    /[\r\n]/.test(prefix)
+  ) {
+    console.error("Invalid staging directory prefix");
+    return false;
+  }
   const args = [
     "apply",
     "--binary",
@@ -323,6 +338,7 @@ function applyPatch(skillDir: string, patchContent: string): boolean {
     "--unidiff-zero",
     "--recount",
     "-p2",
+    ...(prefix ? [`--directory=${prefix}`] : []),
   ];
   const check = spawnSync("git", [...args, "--check", "-"], {
     cwd: skillDir,
@@ -587,7 +603,9 @@ async function main() {
   if (totals.failed > 0) process.exitCode = 1;
 }
 
-main().catch((err) => {
-  console.error("Error:", err.message);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main().catch((err) => {
+    console.error("Error:", err.message);
+    process.exit(1);
+  });
+}

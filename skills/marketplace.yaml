@@ -1629,6 +1629,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-share.tar.gz
+  - id: terraphim-agent-learn
+    description: >-
+      Inspect and capture command failures or user corrections with terraphim-agent learn. Use when a user asks to
+      preserve a concrete operational lesson, search earlier failures, or attach a correction; use
+      terraphim-agent-memory for authored memory capture and retrieval.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/terraphim-agent-learn
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/terraphim-agent-learn/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/terraphim-agent-learn.tar.gz
   - id: validating-json-data
     description: >-
       Validates JSON data against JSON Schema using the z-schema library. Use when the user needs to validate JSON,
@@ -1800,6 +1809,28 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/integrate-anything
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/integrate-anything/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/integrate-anything.tar.gz
+  - id: terraphim-agent-memory
+    description: >-
+      Save explicit authored lessons, read saved memory by ID, and retrieve configured KG-ranked memory with
+      terraphim-agent memory. Use for local memory capture/readback, heuristic checks, or explicitly requested exports;
+      use terraphim-agent-learn for command failures and corrections.
+    category: productivity
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/terraphim-agent-memory
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/terraphim-agent-memory/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/terraphim-agent-memory.tar.gz
+  - id: terraphim-editor
+    description: >-
+      Create and swap wording alternatives in the existing Terraphim editor, save the annotated document, export its
+      synonym graph, and search related decisions with terraphim-grep. Use for a writing-to-search workflow, not for
+      installing an editor runtime or automatically activating agent hooks.
+    category: productivity
+    suggest_for:
+      vscode_extension:
+        - name: Terraphim
+          id: applied-knowledge-systems.terraphim-it
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/terraphim-editor
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/terraphim-editor/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/terraphim-editor.tar.gz
   - id: microsoft-code-reference
     description: >-
       Find working code samples, verify API signatures, and fix Microsoft SDK errors using official docs. Use whenever
@@ -1829,3 +1860,11 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: terraphim-grep
+    description: >-
+      Search local source code and documentation with the installed terraphim-grep CLI. Use for bounded text or
+      knowledge-graph-assisted retrieval inside a project; do not use it for internet search or file-name-only lookup.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/terraphim-grep
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/terraphim-grep/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/terraphim-grep.tar.gz

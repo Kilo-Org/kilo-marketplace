@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "entryId": "terraphim-agent-learn",
+  "source": {
+    "repository": "https://github.com/terraphim/terraphim-cursor-plugin",
+    "commit": "391c7e4ebc103f1770b9dca589fcce7ccd211d5f",
+    "release": "v0.2.4",
+    "version": "1.0.3",
+    "manifestSha256": "b1dfaf37ea17cfa74a3564d39b2308a1c0d3951dd7dddf73db17bc1d8a5d6b76",
+    "publisherKey": "261c6820525270bfe2a5daaa5bf3f581bd9bc193e1a0148010e870a3a63ad959",
+    "files": {
+      "SKILL.md": {
+        "sha256": "38283275884b8ffcc581b6ef73d3fed1e6e5ee57deab79404409bec4525a15ec",
+        "blake3": "80e6f3bbdbc022bfff4702195000ae6fdc19781659118d992f0970b893c4cd5f"
+      },
+      "references/command-guide.md": {
+        "sha256": "d076dfb8ad82fc2db1296549fa2c2cab606b28836a42a43e20e4f91b056529b2",
+        "blake3": "966ce206965be67335afcdfea8e8eea5cdd945f8c7927b2072d27bd3d39b79a9"
+      },
+      "references/risk-concern.knowledge-graph.json": {
+        "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+        "blake3": "83f089bacf0236cd3127a2d27272ef4fa39f72b56a83a4134e2c6909a666f153"
+      },
+      "references/workflows.md": {
+        "sha256": "77d840f59c99c502413161985be10eedb09162a6e3dd337caa2a24aceccc0fad",
+        "blake3": "2b4a2146de020ccc210478c26c91be8a83d483aa9c182acd72cf7dd813648a39"
+      }
+    }
+  },
+  "importer": {
+    "repository": "https://github.com/AlexMikhalev/kilo-marketplace",
+    "commit": "e042daafcab97ffa487ce8c7d6e090fc64457e4f"
+  },
+  "transforms": [
+    "upstream frontmatter/source/category serialization",
+    "upstream text whitespace normalization",
+    "root LICENSE via metadata.source.license_path",
+    "root skill.toml removed via local.remove",
+    "NOTICE, provenance and explanation added via local.patch",
+    "exact CLI archive wording correction recorded in wordingCorrections"
+  ],
+  "signatureScope": "The original signature verifies the immutable source skill, not this transformed Kilo copy.",
+  "wordingCorrections": [
+    {
+      "sourceVersion": "1.0.3",
+      "sourceCommit": "391c7e4ebc103f1770b9dca589fcce7ccd211d5f",
+      "oldText": "For signed,\nchecksummed release archives",
+      "newText": "For checksummed release archives",
+      "reason": "The verified skill signature does not authenticate separate CLI archives; only CLI release checksums were verified."
+    }
+  ]
+}
