@@ -1,0 +1,15 @@
+id: mailcoach
+name: Mailcoach
+description: Reads email lists, subscribers, campaigns, stats, templates and transactional mail logs, and drafts campaigns and test sends, through Mailcoach's official hosted OAuth server.
+author: Spatie
+url: https://www.mailcoach.app/resources/learn-mailcoach/integrations/mcp-server/
+category: business
+prerequisites:
+  - Mailcoach account
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.mailcoach.app"
+      }
