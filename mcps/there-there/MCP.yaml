@@ -1,0 +1,15 @@
+id: there-there
+name: There There
+description: Reads, triages and replies to helpdesk tickets, saves private drafts and edits knowledge base articles through There There's official hosted OAuth server.
+author: Spatie
+url: https://there-there.app/docs/integrations/mcp-server
+category: business
+prerequisites:
+  - There There account
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://there-there.app/mcp"
+      }
