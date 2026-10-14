@@ -1,0 +1,32 @@
+id: oh-my-android
+name: Oh My Android
+description: Lets agents see and drive the Android Emulator and adb-connected phones through the stdio MCP server built
+  into the Oh My Android macOS app. Tools cover screenshots and the UI tree in dp, taps and swipes, text input, logcat,
+  and device settings such as dark mode, font scale, locale/RTL, TalkBack, network, and GPS.
+author: ateymoori
+url: https://github.com/ateymoori/oh-my-android
+category: development
+prerequisites:
+  - macOS 26 or later on Apple silicon
+  - Oh My Android app installed with `brew install --cask ateymoori/tap/oh-my-android` or from the GitHub releases page
+  - Android SDK with adb, and a running emulator or a phone connected over adb
+content:
+  - name: Homebrew (PATH)
+    description: Runs the ohmyandroid-mcp binary that the Homebrew cask puts on PATH.
+    prerequisites:
+      - Installed with Homebrew, so ohmyandroid-mcp is on PATH
+    content: |
+      {
+        "command": "ohmyandroid-mcp",
+        "args": []
+      }
+  - name: App bundle path
+    description: Runs ohmyandroid-mcp from inside the app bundle, for zip installs or shells where PATH is not inherited
+      by Kilo.
+    prerequisites:
+      - Oh My Android.app is in /Applications
+    content: |
+      {
+        "command": "/Applications/Oh My Android.app/Contents/MacOS/ohmyandroid-mcp",
+        "args": []
+      }
