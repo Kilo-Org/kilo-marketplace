@@ -1,0 +1,15 @@
+id: ohdear
+name: Oh Dear
+description: Checks uptime, SSL certificates, broken links, DNS, cron jobs and status pages for your sites through Oh Dear's official hosted OAuth server.
+author: Oh Dear
+url: https://ohdear.app/docs/tools-and-sdks/mcp-server
+category: observability
+prerequisites:
+  - Oh Dear account
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ohdear.app/mcp"
+      }
