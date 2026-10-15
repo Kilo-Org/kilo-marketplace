@@ -1,0 +1,24 @@
+id: financial-evidence
+name: Financial Evidence by LiquiLens
+description: >-
+  Read-only financial research tools for covered-bank evidence, dollar funding,
+  money markets and indicative BTC liquidity, preserving source dates,
+  coverage gaps and transport-versus-evidence status.
+author: beepboop2025
+url: https://github.com/beepboop2025/financial-evidence-skills
+category: business
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://liquilens.in/mcp/financial-evidence"
+      }
+  - name: Docker
+    prerequisites:
+      - Docker with outbound HTTPS access
+    content: |
+      {
+        "command": "docker",
+        "args": ["run", "-i", "--rm", "ghcr.io/beepboop2025/financial-evidence-skills:0.1.9"]
+      }
