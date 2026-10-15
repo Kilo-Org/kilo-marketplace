@@ -20,5 +20,5 @@ content:
     content: |
       {
         "command": "docker",
-        "args": ["run", "-i", "--rm", "ghcr.io/beepboop2025/financial-evidence-skills:0.1.7"]
+        "args": ["run", "-i", "--rm", "ghcr.io/beepboop2025/financial-evidence-skills:0.1.9"]
       }
