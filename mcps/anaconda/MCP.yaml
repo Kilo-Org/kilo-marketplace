@@ -1,0 +1,18 @@
+id: anaconda
+name: Anaconda MCP
+description: Provides read-only package intelligence for conda workflows, including compatibility metadata, vulnerability details, organization channel policies, and community troubleshooting.
+author: Anaconda
+url: https://anaconda.com/api/mcp
+category: development
+prerequisites:
+  - Anaconda account
+  - MCP client with OAuth support
+skills:
+  - anaconda-intelligence
+content:
+  - name: Anaconda hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://anaconda.com/api/mcp"
+      }
