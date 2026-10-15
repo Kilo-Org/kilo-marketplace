@@ -1,0 +1,36 @@
+id: terraphim-kg
+name: Terraphim Knowledge Graph
+description: >-
+  Search and match concepts using an explicitly configured local role and Markdown
+  knowledge graph with the separately installed Rust MCP server. Concept notes
+  use Logseq-compatible synonyms:: properties. Configure the role and local
+  settings before connecting; config-dir alone does not isolate server storage.
+  The server also exposes configuration/file operations and code-executing RLM
+  tools; inspect requested tools and keep approval enabled. Previewing an
+  editor-exported JSON file alone does not register an active role graph.
+author: terraphim
+url: https://github.com/terraphim/terraphim-clients/releases/tag/terraphim_mcp_server-v1.21.22-rc.2
+category: search
+prerequisites:
+  - Verified terraphim_mcp_server-v1.21.22-rc.2 executable; this is a prerelease
+  - Explicit selected/default role in project .terraphim/config.json with separate authored concept and read-only corpus directories; request that role in each tool call
+  - Configured local settings directory containing settings.toml with initialized=true, explicit default_data_path and a memory storage profile; use explicit local-only roles to avoid default remote-backed configuration
+  - Explicit writable server data directory; settings and data paths below are directories, not files
+  - RLM tools require separately installed terraphim_rlm; RLM and configuration/file tools were not part of the verified graph example and need separate review before use
+parameters:
+  - name: Terraphim MCP executable
+    key: MCP_PATH
+    placeholder: /absolute/path/to/terraphim_mcp_server
+  - name: Configured project directory
+    key: PROJECT_PATH
+    placeholder: /absolute/path/to/project
+  - name: Configured local settings directory
+    key: SETTINGS_PATH
+    placeholder: /absolute/path/to/settings
+  - name: Server data directory
+    key: DATA_PATH
+    placeholder: /absolute/path/to/data
+content:
+  - name: Explicit local role and knowledge graph
+    content: |
+      {"command":"{{MCP_PATH}}","args":["--profile","server","--config-dir","{{PROJECT_PATH}}"],"env":{"TERRAPHIM_SETTINGS_PATH":"{{SETTINGS_PATH}}","TERRAPHIM_DATA_PATH":"{{DATA_PATH}}"}}

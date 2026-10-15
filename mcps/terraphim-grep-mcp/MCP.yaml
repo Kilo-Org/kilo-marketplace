@@ -1,0 +1,43 @@
+id: terraphim-grep-mcp
+name: Terraphim Grep
+description: >-
+  Search an explicit local corpus using an editor-exported synonym graph with the
+  released Terraphim Continue 0.1.1 transport and separately installed
+  terraphim-grep. Retrieval stays local; the optional synthesis method sends
+  selected context to your configured model provider. Verify release checksums
+  and configure absolute paths before connecting.
+author: terraphim
+url: https://github.com/terraphim/terraphim-ai/tree/terraphim_continue-v0.1.1/integrations/continue
+category: search
+prerequisites:
+  - Separately installed terraphim-grep; examples verified with Clients 1.21.20
+  - Verified Terraphim Continue 0.1.1 archive and a Python 3.11+ environment with its locked requirements
+  - Explicit clean corpus directory and exported JSON thesaurus outside that corpus
+parameters:
+  - name: Python executable
+    key: PYTHON_PATH
+    placeholder: /absolute/path/to/venv/bin/python
+  - name: Released Continue server.py
+    key: SERVER_PATH
+    placeholder: /absolute/path/to/terraphim-continue/server.py
+  - name: Terraphim Grep executable
+    key: GREP_PATH
+    placeholder: /absolute/path/to/terraphim-grep
+  - name: Verified Grep SHA-256
+    key: GREP_SHA256
+    placeholder: 64 lowercase hexadecimal characters
+  - name: Exported JSON thesaurus
+    key: GRAPH_PATH
+    placeholder: /absolute/path/to/risk-concern.knowledge-graph.json
+  - name: Clean corpus directory
+    key: CORPUS_PATH
+    placeholder: /absolute/path/to/corpus
+content:
+  - name: Local retrieval
+    content: |
+      {"command":"{{PYTHON_PATH}}","args":["{{SERVER_PATH}}","--binary","{{GREP_PATH}}","--binary-sha256","{{GREP_SHA256}}","--graph","{{GRAPH_PATH}}","--corpus","{{CORPUS_PATH}}"]}
+  - name: Retrieval and provider synthesis
+    prerequisites:
+      - Explicit choice to use your configured provider; provider credentials stay outside this catalog
+    content: |
+      {"command":"{{PYTHON_PATH}}","args":["{{SERVER_PATH}}","--binary","{{GREP_PATH}}","--binary-sha256","{{GREP_SHA256}}","--graph","{{GRAPH_PATH}}","--corpus","{{CORPUS_PATH}}","--allow-synthesis"]}
