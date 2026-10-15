@@ -2,7 +2,7 @@ id: specstream
 name: SpecStream
 description: Gives agents finished lists from the live web. Describe the list in plain words and get every matching row with the page it came from, priced per match after a quoted ceiling.
 author: SpecStream
-url: https://github.com/Specstreamai/specstream-tools
+url: https://github.com/specstream/specstream-tools
 category: search
 prerequisites:
   - SpecStream account (new accounts start with $10 of work free for 30 days, no card)
