@@ -1829,3 +1829,32 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: specstream-approve-work
+    description: >-
+      Approve an exact SpecStream price, up to the maximum the person set. This starts paid work.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/specstream-approve-work
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/specstream-approve-work/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-approve-work.tar.gz
+  - id: specstream-compile
+    description: >-
+      Read a plain-English SpecStream request back to the person before anything runs. No price, no work.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/specstream-compile
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/specstream-compile/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-compile.tar.gz
+  - id: specstream-continue-work
+    description: >-
+      Read the finished SpecStream rows with the page behind each fact, send them where the person works, and start new
+      work only on purpose.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/specstream-continue-work
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/specstream-continue-work/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-continue-work.tar.gz
+  - id: specstream-review-work
+    description: >-
+      Get the real SpecStream price for the exact request. Nothing runs.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/specstream-review-work
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/specstream-review-work/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-review-work.tar.gz
