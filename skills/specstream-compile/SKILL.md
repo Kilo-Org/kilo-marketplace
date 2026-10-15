@@ -8,7 +8,7 @@ metadata:
   category: search
   author: SpecStream
   source:
-    repository: 'https://github.com/Specstreamai/specstream-tools'
+    repository: 'https://github.com/specstream/specstream-tools'
     path: integrations/kilo/skills/specstream-compile
     ref: main
     commit: 899bb63328dd72ba7613f66c7dc36dd59d1bf188
