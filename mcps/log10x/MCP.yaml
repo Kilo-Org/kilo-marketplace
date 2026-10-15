@@ -1,0 +1,32 @@
+id: log10x
+name: Log10x MCP
+description: Ranks log patterns by volume and cost on Splunk, Datadog, Elasticsearch, CloudWatch and ClickHouse, and
+  plans compact, tier down or offload for the excess over each cap. Runs locally over stdio; no log data reaches
+  log10x. Read-only against a public demo dataset without an API key.
+author: log-10x
+url: https://github.com/log-10x/log10x-mcp
+category: observability
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "log10x-mcp@latest"]
+      }
+  - name: NPX with a Log10x API key
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "log10x-mcp@latest"],
+        "env": {
+          "LOG10X_API_KEY": "{{LOG10X_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Log10x API key
+        key: LOG10X_API_KEY
+        placeholder: your-log10x-api-key
