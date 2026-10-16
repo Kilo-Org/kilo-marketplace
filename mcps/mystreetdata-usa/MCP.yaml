@@ -1,0 +1,13 @@
+id: mystreetdata-usa
+name: MyStreetData USA
+description: Search and compare 1.33M street records across 8 US states with sourced walkability, SNAP retailer and EV station context. Free, read-only, no API key; shared daily quotas apply.
+author: MyStreetData
+url: https://github.com/Habanacasta88/mystreetdata-mcp
+category: search
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mystreetdata.com/api/mcp"
+      }
