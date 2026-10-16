@@ -1,0 +1,16 @@
+id: qrflow-sdk
+name: QRFLOW.codes
+description: >-
+  Lets an AI assistant create dynamic QR codes that can change after printing
+author: nativecodeapps
+url: https://github.com/nativecodeapps/qrflow-sdk
+category: development
+content:
+  - name: Remote
+    prerequisites:
+      - An MCP client that supports remote servers
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://qrflow.codes/mcp"
+      }
