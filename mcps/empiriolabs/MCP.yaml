@@ -1,0 +1,28 @@
+id: empiriolabs
+name: EmpirioLabs AI
+description: Runs 200+ AI models for chat, image, video, speech, music, and 3D generation, plus web search with citations, batch and async jobs, GPU Cloud, and hosted agents through EmpirioLabs AI's hosted server.
+author: EmpirioLabs AI
+url: https://github.com/EmpirioLabs-AI/mcp
+category: development
+prerequisites:
+  - EmpirioLabs AI account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.empiriolabs.ai/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.empiriolabs.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{EMPIRIOLABS_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: EmpirioLabs AI API Key
+        key: EMPIRIOLABS_API_KEY
+        placeholder: sk-empiriolabs-your_key_here
