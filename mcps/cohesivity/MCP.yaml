@@ -8,12 +8,10 @@ description: >-
 author: Cohesivity
 url: https://github.com/cohesivity-org/cohesivity-plugin
 category: development
-prerequisites:
-  - Cohesivity sign-in for the remote management MCP; the paired skill documents the separate anonymous bootstrap flow
 content:
-  - name: Remote OAuth
+  - name: Hosted remote server
     content: |
       {
         "type": "streamable-http",
-        "url": "https://cohesivity.ai/mcp/manage"
+        "url": "https://cohesivity.ai/mcp"
       }
