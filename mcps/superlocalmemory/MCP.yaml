@@ -1,0 +1,30 @@
+id: superlocalmemory
+name: SuperLocalMemory
+description: Local-first memory for AI agents. Remember, recall and search decisions and context across sessions and
+  across agents, stored on your own machine.
+author: qualixar
+url: https://github.com/qualixar/superlocalmemory
+category: data
+content:
+  - name: Installed (slm)
+    content: |
+      {
+        "command": "slm",
+        "args": ["mcp"],
+        "env": {
+          "SLM_AGENT_ID": "kilo_code"
+        }
+      }
+    prerequisites:
+      - "SuperLocalMemory installed (pipx install superlocalmemory, or npm install -g superlocalmemory)"
+  - name: uvx
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "superlocalmemory", "slm", "mcp"],
+        "env": {
+          "SLM_AGENT_ID": "kilo_code"
+        }
+      }
+    prerequisites:
+      - uv
