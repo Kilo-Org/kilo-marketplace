@@ -1,0 +1,46 @@
+id: mrscraper
+name: MrScraper
+description: Fetches web pages as HTML, Markdown, or screenshots with optional browser rendering, proxies, and geo-targeting, runs Google searches that return parsed organic results, and reports MrScraper plan usage.
+author: MrScraper
+url: https://github.com/mrscraper-com/mrscraper-mcp
+category: web-automation
+prerequisites:
+  - MrScraper account (https://app.mrscraper.com)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.mrscraper.com/mcp"
+      }
+  - name: Remote API Key
+    prerequisites:
+      - MrScraper API key (https://app.mrscraper.com/api-tokens)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.mrscraper.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{MRSCRAPER_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: MrScraper API Key
+        key: MRSCRAPER_API_KEY
+        placeholder: your_mrscraper_api_key
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or later
+      - MrScraper API key (https://app.mrscraper.com/api-tokens)
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@mrscraper/mcp@0.2.0"],
+        "env": {
+          "MRSCRAPER_API_KEY": "{{MRSCRAPER_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: MrScraper API Key
+        key: MRSCRAPER_API_KEY
+        placeholder: your_mrscraper_api_key
