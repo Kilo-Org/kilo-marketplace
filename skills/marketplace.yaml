@@ -1380,7 +1380,7 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cognito.tar.gz
   - id: cohesivity
     description: >-
-      cohesivity.ai offers free agent native backend services. Anonymous account (no-signup) to get started through MCP
+      cohesivity.ai offers free agent-native backend services. Anonymous account (no-signup) to get started through MCP
       or API. Hosting, postgres, email, storage, containers, LLMs, voice and third-party APIs. Includes free tiers and 5
       USD/mo in AI and Search credits. Top-ups through x402.
     category: development
