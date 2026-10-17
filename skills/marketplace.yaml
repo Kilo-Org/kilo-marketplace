@@ -1800,6 +1800,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/integrate-anything
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/integrate-anything/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/integrate-anything.tar.gz
+  - id: pricewin-travel-search
+    description: >-
+      Search and compare live hotel and flight prices with the PriceWin MCP server, look up one named hotel, inspect
+      OpenTravel direct listings, send a booking request to a partner hotel (no payment; the guest pays at the
+      property), and cancel one. Use when the user asks to find hotels or flights for dates, compare travel prices,
+      inspect a hotel or room, check a rate's cancellation policy, book a partner hotel, or cancel a booking they made
+      this way.
+    category: productivity
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pricewin-travel-search
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pricewin-travel-search/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/pricewin-travel-search.tar.gz
   - id: microsoft-code-reference
     description: >-
       Find working code samples, verify API signatures, and fix Microsoft SDK errors using official docs. Use whenever
