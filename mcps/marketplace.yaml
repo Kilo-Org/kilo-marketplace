@@ -2038,7 +2038,7 @@ items:
     description: Generate and edit GPT Image images through Ace Data Cloud, including asynchronous task retrieval. Reuses
       OpenAIMCP, which also exposes chat, embedding and audio tools; not an official OpenAI plugin.
     author: Ace Data Cloud
-    url: https://github.com/AceDataCloud/OpenAIMCP
+    url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/openai/kilo/README.md
     category: productivity
     tags:
       - productivity
@@ -2097,7 +2097,7 @@ items:
     description: Generate and edit HappyHorse (Happy Horse) videos through Ace Data Cloud, with same-task retrieval. An
       Ace-provided video integration; generation uses your Ace balance.
     author: Ace Data Cloud
-    url: https://github.com/AceDataCloud/HappyHorseMCP
+    url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/happyhorse/kilo/README.md
     category: productivity
     tags:
       - productivity
@@ -2844,7 +2844,7 @@ items:
     description: Generate and edit Nano Banana images through Ace Data Cloud and retrieve the same task for results. An
       Ace-provided integration, not an official Google plugin.
     author: Ace Data Cloud
-    url: https://github.com/AceDataCloud/NanoBananaMCP
+    url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/nanobanana/kilo/README.md
     category: productivity
     tags:
       - productivity
@@ -4229,7 +4229,7 @@ items:
     description: Generate Seedance videos from text or images through Ace Data Cloud and retrieve video task results. An
       Ace-provided integration, not an official ByteDance plugin.
     author: Ace Data Cloud
-    url: https://github.com/AceDataCloud/SeedanceMCP
+    url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/seedance/kilo/README.md
     category: productivity
     tags:
       - productivity
@@ -4590,7 +4590,7 @@ items:
     description: Generate Suno music and lyrics through Ace Data Cloud, then retrieve the same task for audio results. An
       Ace-provided integration, not an official Suno plugin.
     author: Ace Data Cloud
-    url: https://github.com/AceDataCloud/SunoMCP
+    url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/suno/kilo/README.md
     category: productivity
     tags:
       - productivity

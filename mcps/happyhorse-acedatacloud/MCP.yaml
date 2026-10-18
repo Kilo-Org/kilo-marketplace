@@ -3,7 +3,7 @@ name: HappyHorse by Ace Data Cloud
 description: >-
   Generate and edit HappyHorse (Happy Horse) videos through Ace Data Cloud, with same-task retrieval. An Ace-provided video integration; generation uses your Ace balance.
 author: Ace Data Cloud
-url: https://github.com/AceDataCloud/HappyHorseMCP
+url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/happyhorse/kilo/README.md
 category: productivity
 prerequisites:
   - Ace Data Cloud account with access to HappyHorse; generation may incur usage charges

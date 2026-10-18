@@ -3,7 +3,7 @@ name: Nano Banana by Ace Data Cloud
 description: >-
   Generate and edit Nano Banana images through Ace Data Cloud and retrieve the same task for results. An Ace-provided integration, not an official Google plugin.
 author: Ace Data Cloud
-url: https://github.com/AceDataCloud/NanoBananaMCP
+url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/nanobanana/kilo/README.md
 category: productivity
 prerequisites:
   - Ace Data Cloud account with access to Nano Banana; generation may incur usage charges
