@@ -1,0 +1,34 @@
+id: khive
+name: khive
+description: Memory and a knowledge graph for agents that last across sessions and clients. Save and recall memories by
+  meaning, record entities and typed links between them, walk the graph, and keep a task list, all in one store per
+  workspace.
+author: khive AI
+url: https://github.com/ohdearquant/khive
+category: data
+prerequisites:
+  - A khive account with a plan (https://www.khive.ai/docs/quickstart) and an API key from the dashboard, for the
+    remote server
+  - Rust toolchain, for the local server (cargo install kkernel)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://khive.ai/v1/mcp",
+        "headers": {
+          "Authorization": "ApiKey {{KHIVE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: khive API Key
+        key: KHIVE_API_KEY
+        placeholder: your_khive_api_key
+  - name: Local (stdio)
+    prerequisites:
+      - Rust toolchain, then cargo install kkernel
+    content: |
+      {
+        "command": "kkernel",
+        "args": ["mcp"]
+      }
