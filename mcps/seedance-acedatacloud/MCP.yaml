@@ -1,0 +1,39 @@
+id: seedance-acedatacloud
+name: Seedance by Ace Data Cloud
+description: >-
+  Generate Seedance videos from text or images through Ace Data Cloud and retrieve video task results. An Ace-provided integration, not an official ByteDance plugin.
+author: Ace Data Cloud
+url: https://github.com/AceDataCloud/SeedanceMCP
+category: productivity
+prerequisites:
+  - Ace Data Cloud account with access to Seedance; generation may incur usage charges
+  - An Ace Data Cloud application API token, not a platform management token
+  - Use global installation for credentials; do not commit tokens to project configuration
+content:
+  - name: Hosted (API token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://seedance.mcp.acedata.cloud/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ACEDATACLOUD_API_TOKEN}}"
+        },
+        "oauth": false
+      }
+  - name: Local (UVX, pinned)
+    prerequisites:
+      - Python 3.10 or later and uv with uvx available on PATH
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "mcp-seedance==2026.10.12.1"
+        ],
+        "env": {
+          "ACEDATACLOUD_API_TOKEN": "{{ACEDATACLOUD_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Ace Data Cloud API Token
+    key: ACEDATACLOUD_API_TOKEN
+    placeholder: Paste only your application API token
