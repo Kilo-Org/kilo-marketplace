@@ -1,0 +1,24 @@
+id: muslim-prayer-reminder-mcp
+name: Muslim Prayer Reminder MCP
+description: >-
+  Free, open-source MCP server that calculates Muslim prayer timetables using
+  explicit location and regional calculation methods, with the next prayer
+  and remaining countdown.
+author: Independent maintainer
+url: https://github.com/tareq7/muslim-prayer-mcp
+category: productivity
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "muslim-prayer-mcp"]
+      }
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://muslim-prayer-mcp.najetareqz.workers.dev/mcp"
+      }
