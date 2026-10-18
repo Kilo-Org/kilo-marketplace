@@ -1,0 +1,39 @@
+id: nano-banana-acedatacloud
+name: Nano Banana by Ace Data Cloud
+description: >-
+  Generate and edit Nano Banana images through Ace Data Cloud and retrieve the same task for results. An Ace-provided integration, not an official Google plugin.
+author: Ace Data Cloud
+url: https://github.com/AceDataCloud/MCPs/blob/b217952/nanobanana/kilo/README.md
+category: productivity
+prerequisites:
+  - Ace Data Cloud account with access to Nano Banana; generation may incur usage charges
+  - An Ace Data Cloud application API token, not a platform management token
+  - Use global installation for credentials; do not commit tokens to project configuration
+content:
+  - name: Hosted (API token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nanobanana.mcp.acedata.cloud/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ACEDATACLOUD_API_TOKEN}}"
+        },
+        "oauth": false
+      }
+  - name: Local (UVX, pinned)
+    prerequisites:
+      - Python 3.10 or later and uv with uvx available on PATH
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "mcp-nanobanana-pro==2026.10.12.1"
+        ],
+        "env": {
+          "ACEDATACLOUD_API_TOKEN": "{{ACEDATACLOUD_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Ace Data Cloud API Token
+    key: ACEDATACLOUD_API_TOKEN
+    placeholder: Paste only your application API token
