@@ -1566,6 +1566,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/langsmith-fetch
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/langsmith-fetch/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/langsmith-fetch.tar.gz
+  - id: ledger-tasks-yylo
+    description: >-
+      Retrieve any YYLO Ledger Record by ID, discover PDRs and artifacts, and manage tasks and dependencies. Use for
+      unknown record types, universal get/search, task operations, and source-of-truth boundaries.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ledger-tasks-yylo
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ledger-tasks-yylo/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ledger-tasks-yylo.tar.gz
   - id: mcp-builder
     description: >-
       Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external
