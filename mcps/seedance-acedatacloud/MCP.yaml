@@ -3,7 +3,7 @@ name: Seedance by Ace Data Cloud
 description: >-
   Generate Seedance videos from text or images through Ace Data Cloud and retrieve video task results. An Ace-provided integration, not an official ByteDance plugin.
 author: Ace Data Cloud
-url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/seedance/kilo/README.md
+url: https://github.com/AceDataCloud/MCPs/blob/b217952/seedance/kilo/README.md
 category: productivity
 prerequisites:
   - Ace Data Cloud account with access to Seedance; generation may incur usage charges

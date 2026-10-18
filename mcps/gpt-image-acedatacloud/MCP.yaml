@@ -3,7 +3,7 @@ name: GPT Image by Ace Data Cloud
 description: >-
   Generate and edit GPT Image images through Ace Data Cloud, including asynchronous task retrieval. Reuses OpenAIMCP, which also exposes chat, embedding and audio tools; not an official OpenAI plugin.
 author: Ace Data Cloud
-url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/openai/kilo/README.md
+url: https://github.com/AceDataCloud/MCPs/blob/b217952/openai/kilo/README.md
 category: productivity
 prerequisites:
   - Ace Data Cloud account with access to GPT Image; generation may incur usage charges

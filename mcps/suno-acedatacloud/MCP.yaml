@@ -3,7 +3,7 @@ name: Suno by Ace Data Cloud
 description: >-
   Generate Suno music and lyrics through Ace Data Cloud, then retrieve the same task for audio results. An Ace-provided integration, not an official Suno plugin.
 author: Ace Data Cloud
-url: https://github.com/AceDataCloud/MCPs/blob/ec865bc/suno/kilo/README.md
+url: https://github.com/AceDataCloud/MCPs/blob/b217952/suno/kilo/README.md
 category: productivity
 prerequisites:
   - Ace Data Cloud account with access to Suno; generation may incur usage charges
