@@ -1,0 +1,17 @@
+id: gscmate
+name: GSCmate
+description: Read Google Search Console properties and Search Analytics through a read-only remote MCP server.
+author: Fushey
+url: https://github.com/Fushey/gscmate-mcp-listing
+category: search
+prerequisites:
+  - A Google account with access to the Search Console properties you want to query.
+content:
+  - name: Hosted OAuth endpoint
+    prerequisites:
+      - An MCP client with Streamable HTTP and OAuth 2.1 support.
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://gscmate.com/mcp"
+      }
