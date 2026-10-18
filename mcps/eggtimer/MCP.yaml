@@ -1,0 +1,13 @@
+id: eggtimer
+name: Eggtimer.app
+description: Create shareable browser timer links from your agent (countdowns, clock times, Pomodoro, Tabata and multi-step recipes) through the hosted Eggtimer.app MCP server. Seven read-only tools validate input and return eggtimer.app URLs; no account or API key needed.
+author: Gotoh Industries LLC
+url: https://eggtimer.app/ai.html
+category: productivity
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://eggtimer.app/api/mcp"
+      }
