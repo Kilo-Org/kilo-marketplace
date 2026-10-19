@@ -1,0 +1,18 @@
+id: uiverify
+name: UI Verify
+description: Lets the agent review visual test results from UI Verify, listing a pull request's visual changes, showing before/after diffs with the AI judge's verdict (intended, regression or flake), and accepting new baselines.
+author: UI Verify
+url: https://uiverify.ai/docs/mcp-tools
+category: development
+prerequisites:
+  - UI Verify account
+  - MCP client with OAuth support
+skills:
+  - triage-visual-changes
+content:
+  - name: UI Verify hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://uiverify.ai/mcp"
+      }

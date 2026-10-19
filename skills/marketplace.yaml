@@ -1629,6 +1629,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-share.tar.gz
+  - id: triage-visual-changes
+    description: >-
+      Triage a UI Verify build from your coding agent via the UI Verify MCP — bucket a build's changed stories into real
+      regressions vs cosmetic reflow vs rendering noise, summarize the real regressions for a PR comment, and accept
+      baselines in bulk. Use after a UI Verify build reports changes and you want the agent to review, summarize, or
+      accept from the terminal instead of clicking through the dashboard. Triggers - "triage this build", "summarize the
+      visual regressions", "accept all the new baselines".
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/triage-visual-changes
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/triage-visual-changes/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/triage-visual-changes.tar.gz
   - id: validating-json-data
     description: >-
       Validates JSON data against JSON Schema using the z-schema library. Use when the user needs to validate JSON,
