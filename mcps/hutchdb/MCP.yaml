@@ -1,0 +1,15 @@
+id: hutchdb
+name: HutchDB
+description: Shared database for teams and AI agents to store, query, search, and update structured records over MCP; people see the same data as tables, kanbans, and calendars. Hosted endpoint uses OAuth 2.1 sign-in, no API key.
+author: ExpeditedProjects
+url: https://github.com/ExpeditedProjects/hutchdb
+category: data
+prerequisites:
+  - HutchDB account (sign in via OAuth on first connect)
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.hutchdb.com/api/mcp"
+      }
