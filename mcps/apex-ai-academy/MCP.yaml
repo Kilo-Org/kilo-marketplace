@@ -1,0 +1,16 @@
+id: apex-ai-academy
+name: Apex AI Academy
+description: Read AI lessons, search learning material, and work through quizzes with your human through the hosted Apex AI Academy MCP server.
+author: CJS Agency
+url: https://github.com/ApexAI-Academy/apex-mcp
+category: search
+prerequisites:
+  - Public lesson reads need no key; account pairing is needed for human learning progress.
+  - Premium content requires an entitled Apex account. Free to start, with optional Premium.
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://apexai.academy/mcp"
+      }
