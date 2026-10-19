@@ -1,0 +1,16 @@
+id: neverapply
+name: NeverApply
+description: Search jobs, explore explained matches, and manage applications with your AI assistant.
+author: NeverApply
+url: https://neverapply.co/features/mcp
+category: productivity
+prerequisites:
+  - NeverApply account
+  - MCP client with OAuth 2.1 (PKCE) support
+content:
+  - name: Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://neverapply.co/mcp"
+      }
