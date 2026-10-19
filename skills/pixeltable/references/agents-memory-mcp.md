@@ -1,5 +1,7 @@
 # Agent with Memory and MCP Tools
 
+This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
+
 A production recipe combining a tool-calling agent with persistent memory (chat history + knowledge bank) and external MCP server integration. The agent remembers past conversations, retrieves stored facts, and can call both local tools and remote MCP tools.
 
 ## Workflow
@@ -115,7 +117,7 @@ tools = pxt.tools(get_weather, save_memory, recall_memories)
 @pxt.udf
 def build_prompt(
     question: str,
-    tool_outputs: list | None,
+    tool_outputs: dict | None,
     chat_context: list | None,
     memory_context: list | None,
 ) -> str:
@@ -188,8 +190,7 @@ agent.add_computed_column(
             {'role': 'user', 'content': agent.context},
         ],
         model='gpt-4o-mini',
-        max_tokens=agent.max_tokens,
-        temperature=agent.temperature,
+        model_kwargs={'max_tokens': agent.max_tokens, 'temperature': agent.temperature},
     ), if_exists='ignore')
 
 agent.add_computed_column(
@@ -230,7 +231,7 @@ chat_history.insert([
 Connect to any MCP-compliant server to extend the agent with external tools:
 
 ```python
-# Load tools from an MCP server
+# Load tools from an MCP server (streamable HTTP). Tools that return images or audio are not supported.
 mcp_tools = pxt.mcp_udfs('http://localhost:8000/mcp')
 
 # Inspect available tools
@@ -265,14 +266,14 @@ To switch providers, change the import and the LLM call function. The `tools` ob
 
 3. **User scoping** — All queries filter by `user_id`, so multiple users can share the same tables without seeing each other's data.
 
-4. **MCP integration** — `pxt.mcp_udfs()` loads tools from any MCP server as regular Pixeltable UDFs. They're bundled with `pxt.tools()` and executed with `invoke_tools()` just like local functions.
+4. **MCP integration** — `pxt.mcp_udfs(url)` loads streamable-HTTP tools as Pixeltable UDFs. Tools that return images or audio are not supported. Bundle the rest with `pxt.tools()` and run them with that provider's `invoke_tools`.
 
 ## Adapting This Recipe
 
 - **Add document RAG**: Create a document chunking view and add a `search_documents` query to the tools list
 - **Add image memory**: Use CLIP embeddings on an image column for visual memory recall
-- **Serve via API**: Wrap in a FastAPI endpoint — see [workflows.md → FastAPI App Pattern](workflows.md#fastapi-app-pattern)
-- **Use Anthropic instead**: Swap `chat_completions` → `messages` and `openai_invoke_tools` → `anthropic_invoke_tools` (updating the import accordingly) — see [providers.md → Quick Reference](providers.md#quick-reference)
+- **Serve via API**: Declare a `FastAPIRouter` in `app.py` — see [workflows.md](workflows.md)
+- **Use Anthropic instead**: Swap `chat_completions` → `messages` (`max_tokens=` stays a top-level argument) and `openai_invoke_tools` → `anthropic_invoke_tools` — see [providers.md → Quick reference](providers.md#quick-reference)
 
 ## Agent with Memory Checklist
 

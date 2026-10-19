@@ -1,5 +1,7 @@
 # ML Data Wrangling Pipeline
 
+This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
+
 A complete recipe for processing multimodal data (video, audio, images, documents) into training-ready datasets. Covers ingestion, enrichment with AI models, dataset versioning, and export to PyTorch, Parquet, and pandas.
 
 ## Ingest Raw Data
@@ -36,7 +38,7 @@ labeled_data = pxt.create_table('ml_data.labeled',
 from pixeltable.io import import_huggingface_dataset
 import datasets
 ds = datasets.load_dataset('cifar10', split='train[:500]')
-cifar = import_huggingface_dataset('ml_data.cifar', ds, if_exists='ignore')
+cifar = import_huggingface_dataset('ml_data.cifar', ds)
 ```
 
 ## Explore and Sample
@@ -66,7 +68,7 @@ images.add_computed_column(
             'role': 'user',
             'content': [
                 {'type': 'text', 'text': 'Classify this image into exactly one word: cat, dog, bird, or other.'},
-                {'type': 'image_url', 'image_url': {'url': images.image}}
+                {'type': 'image_url', 'image_url': images.image}
             ]
         }],
         model='gpt-4o-mini',
@@ -80,9 +82,11 @@ images.add_computed_column(
     if_exists='ignore')
 
 # Visualize detections (draw bounding boxes on images)
-from pixeltable.functions.image import draw_bounding_boxes
+from pixeltable.functions.vision import bboxes_draw
 images.add_computed_column(
-    annotated=draw_bounding_boxes(images.image, images.detections),
+    annotated=bboxes_draw(
+        images.image, boxes=images.detections.boxes, labels=images.detections.label_text
+    ),
     if_exists='ignore')
 
 # Generate captions
@@ -92,7 +96,7 @@ images.add_computed_column(
             'role': 'user',
             'content': [
                 {'type': 'text', 'text': 'Describe this image in one sentence.'},
-                {'type': 'image_url', 'image_url': {'url': images.image}}
+                {'type': 'image_url', 'image_url': images.image}
             ]
         }],
         model='gpt-4o-mini',
@@ -121,8 +125,8 @@ near_dupes = images.where(sim > 0.95).select(images.filename, sim).collect()
 errors = images.where(images.label.errortype != None).select(
     images.filename, images.label.errormsg).collect()
 
-# Recompute failed columns (critical for retrying after API errors)
-images.recompute_columns(columns=['label'], where=images.label.errortype != None)
+# OpenAI already retried the call. Recompute only the cells that still failed.
+images.recompute_columns('label', errors_only=True)
 ```
 
 ## Video Frame Extraction
@@ -196,17 +200,18 @@ for batch in dataloader:
     break
 
 # To Parquet (for Spark, DuckDB, or cross-platform sharing)
+from pathlib import Path
 from pixeltable.io import export_parquet
 
 export_parquet(
     images.where(images.split == 'train').select(
         images.filename, images.label, images.caption),
-    'output/train/')
+    Path('output/train'))
 
 export_parquet(
     images.where(images.split == 'val').select(
         images.filename, images.label, images.caption),
-    'output/val/')
+    Path('output/val'))
 
 # To pandas (for quick analysis or CSV export)
 df = images.select(
@@ -242,8 +247,8 @@ print(f'Inserted: {status.num_rows}, Errors: {status.num_excs}')
 errors = images.where(images.label.errortype != None).select(
     images.filename, images.label.errormsg).collect()
 
-# Retry failed computations (e.g., after fixing rate limits)
-images.recompute_columns(columns=['label'], where=images.label.errortype != None)
+# Retry cells that still failed after the provider's own retries
+images.recompute_columns('label', errors_only=True)
 ```
 
 ### PyTorch Dataset Options
@@ -259,24 +264,24 @@ Data is cached to disk for efficient repeated loading. Use `num_workers > 0` in 
 
 | Step | Function | Purpose |
 |------|----------|---------|
-| Ingest | `create_table(source='file.csv')` | Load from CSV, Parquet, URLs, S3 |
+| Ingest | `create_table(path, source='file.csv')` | Load from CSV, Parquet, URLs, S3 |
 | Ingest | `import_huggingface_dataset()` | Load from Hugging Face Hub |
 | Explore | `t.head(5)`, `t.count()`, `t.sample(n)` | Quick data inspection |
 | Enrich | `add_computed_column(label=...)` | Auto-label with AI models |
 | Enrich | `detr_for_object_detection()` | Bounding box detection |
-| Visualize | `draw_bounding_boxes(image, detections)` | Overlay detections on images |
+| Visualize | `bboxes_draw(image, boxes=..., labels=...)` | Overlay detections on images |
 | Search | `add_embedding_index()` + `.similarity()` | Find similar / deduplicate |
 | Curate | `.where(col.errortype != None)` | Review failed transformations |
-| Retry | `recompute_columns(columns=[...], where=...)` | Re-run failed computations |
+| Retry | `recompute_columns('col', errors_only=True)` | Re-run cells that still failed after the provider's own retries |
 | Version | `create_snapshot('name', table)` | Point-in-time dataset copy |
 | Export | `to_pytorch_dataset(image_format='pt')` | PyTorch DataLoader-ready |
-| Export | `export_parquet(query, 'path/')` | Parquet files for sharing |
+| Export | `export_parquet(query, Path('dir'))` | Parquet files for sharing |
 | Export | `.collect().to_pandas()` | pandas DataFrame |
 | Lookup | `pxt.retrieval_udf(table, ...)` | Structured data enrichment |
 
 ## Adapting This Recipe
 
-- **Audio data**: Use `audio_splitter` and `transcriptions` to create labeled audio datasets — see [workflows.md → Audio Transcription](workflows.md#audio-transcription-and-analysis)
-- **Document data**: Use `document_splitter` to chunk PDFs into training examples — see [workflows.md → RAG Pipeline](workflows.md#rag-pipeline)
+- **Audio data**: Use `audio_splitter` and `transcriptions` to create labeled audio datasets — see [core-api.md → Built-in functions](core-api.md#built-in-functions)
+- **Document data**: Use `document_splitter` to chunk PDFs into training examples — see [workflows.md](workflows.md)
 - **Add human labels**: Export to Label Studio, annotate, then re-import
 - **Multi-GPU training**: The PyTorch dataset supports `DistributedSampler` with standard PyTorch patterns

@@ -1,5 +1,7 @@
 # Video RAG Agent
 
+This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
+
 A complete recipe that combines video processing, document/transcript retrieval, and a tool-calling agent into one pipeline. Insert a video and a question — the agent automatically searches frames, transcripts, and documents to answer it.
 
 ## Full Pipeline
@@ -46,7 +48,7 @@ frames.add_computed_column(
             'role': 'user',
             'content': [
                 {'type': 'text', 'text': 'Describe this video frame in one sentence.'},
-                {'type': 'image_url', 'image_url': {'url': frames.frame}}
+                {'type': 'image_url', 'image_url': frames.frame}
             ]
         }],
         model='gpt-4o-mini'
@@ -110,7 +112,7 @@ def web_search(keywords: str) -> str:
 @pxt.udf
 def assemble_context(
     question: str,
-    tool_outputs: list | None,
+    tool_outputs: dict | None,
     transcript_context: list | None,
     frame_context: list | None,
 ) -> str:
@@ -249,5 +251,5 @@ The pipeline is a chain of computed columns. Inserting a row into `agent` trigge
 
 - **Swap providers**: Replace `messages` (Anthropic) with `chat_completions` (OpenAI/Together/etc.) — see [providers.md](providers.md#quick-reference) for import and output shapes
 - **Add document RAG**: Add a `document_splitter` view and a `search_documents` query function to the tools list
-- **Use local models**: Replace OpenAI transcription with `transcribe()` (`from pixeltable.functions.whisper import transcribe`) and use `chat` (`from pixeltable.functions.ollama import chat`) for the LLM — see [workflows.md → Local LLM Pipeline](workflows.md#local-llm-pipeline-ollama)
-- **Serve via API**: Wrap the pipeline in a FastAPI endpoint — see [workflows.md → FastAPI App Pattern](workflows.md#fastapi-app-pattern)
+- **Use local models**: Replace OpenAI transcription with `transcribe()` (`from pixeltable.functions.whisper import transcribe`) and use `chat` (`from pixeltable.functions.ollama import chat`) for the LLM — see [providers.md](providers.md#quick-reference). Those local calls do not retry on their own.
+- **Serve via API**: Declare a `FastAPIRouter` in `app.py` — see [workflows.md](workflows.md)

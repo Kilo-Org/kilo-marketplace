@@ -1,5 +1,7 @@
 # Agentic Patterns
 
+This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
+
 Six architectural patterns and two reasoning strategies for building AI agents with Pixeltable. Every pattern uses declarative computed columns — no async code, no orchestration framework, no loop management.
 
 **Core principle**: Your agent _is_ a table. Each step is a computed column. The engine resolves dependencies, parallelizes independent columns, caches results, and persists every intermediate step automatically.
@@ -362,7 +364,7 @@ planner.add_computed_column(
 | Persistence | Built-in — every intermediate stored | Separate logging/DB layer |
 | Caching | Automatic — same input never recomputed | Manual memoization |
 | Reusable sub-agent | `pxt.udf(table, return_value=...)` | Agent class with `.run()` |
-| Error recovery | `recompute_columns(where=errortype != None)` | Re-run entire pipeline |
+| Error recovery | `t.recompute_columns('col', errors_only=True)` | Re-run entire pipeline |
 | Observability | Query any column on any row | Attach tracing callbacks |
 
 Patterns compose naturally — an orchestrator can use routing in its dispatch, tool use within workers, and ReAct reasoning inside tool loops, all without special glue code.

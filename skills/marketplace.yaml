@@ -918,12 +918,11 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oracledb.tar.gz
   - id: pixeltable
     description: >
-      Build multimodal AI applications with Pixeltable — declarative tables replace LangChain + pandas + vector DB with
-      one system. Automates chunking, embedding, retrieval, tool-calling agents, and 25+ AI provider integrations
-      (OpenAI, Anthropic, Gemini, etc.) via computed columns that run on insert. Use when building RAG pipelines,
-      processing images/video/audio/documents, orchestrating LLM inference, or deploying agents with persistent memory.
-      Covers incremental computation, version control, similarity search, the `pxt` CLI (inspect, debug, serve, deploy),
-      FastAPI serving, and production patterns. Do NOT use for general Python or direct PostgreSQL administration.
+      Build multimodal AI apps with Pixeltable. One application file (app.py) declares TableModel tables and
+      FastAPIRouter routes. Create tables with pxt schema update. Start HTTP with pxt service update. Insert a row or
+      POST to try the app. Use computed columns instead of LangChain, pandas-as-store, or a separate vector DB. Use when
+      building RAG or tool-calling agents, processing images/video/audio/documents, or serving an API. Do NOT use for
+      general Python or direct PostgreSQL administration.
     category: data
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pixeltable
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pixeltable/SKILL.md
