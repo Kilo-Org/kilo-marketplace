@@ -1,0 +1,13 @@
+id: carejobs-healthcare-jobs-mcp
+name: CareJobs Healthcare Jobs MCP
+description: Searches 170,000+ open US healthcare jobs (nursing, CNA, therapy, imaging, pharmacy, physicians) read daily from hospitals' and health systems' own career sites, with the pay each employer posts; free, read-only, no API key.
+author: CareJobs.Now
+url: https://carejobs.now
+category: search
+content:
+  - name: CareJobs.Now remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://carejobs.now/api/mcp"
+      }
