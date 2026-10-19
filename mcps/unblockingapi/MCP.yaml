@@ -1,0 +1,34 @@
+id: unblockingapi
+name: UnblockingAPI
+description: Fetch bot-protected and JavaScript-heavy pages, choosing plain HTTP or a real browser per site, or parse
+  supported pages into JSON with published templates.
+author: unblockingapi
+url: https://github.com/unblockingapi/mcp
+category: web-automation
+prerequisites:
+  - UnblockingAPI account and API key (https://unblockingapi.com)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@unblockingapi/mcp"],
+        "env": {
+          "UNBLOCKINGAPI_KEY": "{{UNBLOCKINGAPI_KEY}}"
+        }
+      }
+  - name: Remote MCP - Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.unblockingapi.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{UNBLOCKINGAPI_KEY}}"
+        }
+      }
+parameters:
+  - name: UnblockingAPI key
+    key: UNBLOCKINGAPI_KEY
+    placeholder: your_unblockingapi_key
