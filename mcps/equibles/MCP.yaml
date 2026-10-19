@@ -1,0 +1,30 @@
+id: equibles
+name: Equibles
+description: US stock market data for research through the hosted Equibles server. Search SEC filings and read the exact source lines, pull XBRL financial statements, earnings call transcripts, insider and congressional trades, 13F holdings, short interest, prices and macro data. 130 tools; 10 of them write to your own Equibles portfolios, watchlist or feedback.
+author: Equibles
+url: https://equibles.com/mcp
+category: data
+prerequisites:
+  - A free Equibles account at https://equibles.com (100 requests a day, no card)
+content:
+  - name: Remote (OAuth)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.equibles.com/mcp?auth=oauth"
+      }
+  - name: Remote (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.equibles.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{EQUIBLES_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Equibles API Key
+        key: EQUIBLES_API_KEY
+        placeholder: eq_your_api_key
