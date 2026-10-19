@@ -17,7 +17,7 @@ Use no sub-agents for trivial docs, formatting, or generated-only changes; use
 1-2 for a focused risk. Use all 6 for multi-package imports or changes combining
 external sources, executable code, and assets. Shard them across:
 
-1. provenance, licensing, metadata, generated entries, and update behavior;
+1. provenance, licensing, metadata, plugin manifests, generated entries, and update behavior;
 2. scripts, hooks, templates, notebooks, archives, and binaries;
 3. packaging, missing resources, links, and installation portability;
 4. domain correctness of formulas, SQL, APIs, versions, and examples;
@@ -66,6 +66,17 @@ composition rule. Prefer tested scripts/templates for deterministic work, but do
 not reward brevity that omits safety or verification. For batch imports, include
 a concise per-skill quality verdict.
 
+## Plugin quality
+
+Keep each plugin entry accurate and safe. Verify:
+
+- The directory path under `plugins/` equals the `PLUGIN.yaml` `id`.
+- Registry entries use an exact npm package name as `id` and a `content` specifier for that same package with an optional version, range, or tag. npm aliases, `file:` paths, tarball URLs, and bare git URLs are invalid.
+- Git entries use the normalized identity `git/<repo without scheme or trailing .git>[/subpath]` as `id` and a matching `git:<repo>[@ref][#subpath]` `content`. The repo must be a network host, and refs must not start with `-` or contain `..`.
+- `category` is one of `business`, `data`, `development`, `observability`, `productivity`, `providers`, `search`, or `web-automation`, and `tags` is absent because the generator derives it.
+- Git plugins are self-contained and their `package.json` declares at least one target supported by the Kilo client, such as a server or TUI entry (see [plugins/README.md](plugins/README.md#package-requirements)). The generator does not validate the remote manifest, so verify it manually. Kilo does not install npm dependencies for git plugins, so runtime dependencies must be vendored.
+- Plugins execute code with the user's permissions. Treat the source and dependencies as code under review, and remember that catalog validation is not a security review.
+
 ## Updates and generated output
 
 Treat `local.patch` and `local.remove` as maintained security/correctness
@@ -86,8 +97,9 @@ Marketplace YAML is derived: review source definitions and generators, not
 unchanged generated churn. Verify deterministic output, unique IDs, valid
 categories, URLs, archive names, and required definition files. For agents check
 permissions/prompt/mode; for MCPs check installation JSON, parameters,
-placeholders, secrets, and category; for release workflows inspect packaged
-files.
+placeholders, secrets, and category; for plugins check the `PLUGIN.yaml` fields,
+the `id` to directory match, the content specifier, the category, and the
+declared server or TUI target; for release workflows inspect packaged files.
 
 Use read-only evidence from the repository's Validate Skills and Generate
 Marketplace workflows, updater/patch idempotence checks, executable-resource
