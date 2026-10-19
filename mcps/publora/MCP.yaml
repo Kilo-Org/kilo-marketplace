@@ -1,0 +1,25 @@
+id: publora
+name: Publora
+description: Schedule and publish social posts to LinkedIn, X, Instagram, Threads, TikTok, YouTube, Facebook, Bluesky,
+  Mastodon, and Telegram. Create, update, and delete scheduled posts, upload media, list connected channels, and manage
+  LinkedIn comments, reactions, and reshares.
+author: Publora
+url: https://github.com/publora/mcp-server
+category: productivity
+prerequisites:
+  - Publora account with at least one connected social channel
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.publora.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{PUBLORA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Publora API Key
+    key: PUBLORA_API_KEY
+    placeholder: sk_your_api_key
+    optional: true
