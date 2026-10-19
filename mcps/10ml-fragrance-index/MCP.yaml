@@ -1,0 +1,13 @@
+id: 10ml-fragrance-index
+name: 10ML Fragrance Index
+description: Perfume notes, accords, families, similar scents and alternatives, houses and expert guides, curated by 10ML's fragrance editors. Free, read-only, no sign-in.
+author: 10ML
+url: https://github.com/10ml-com/perfume-finder-mcp
+category: search
+content:
+  - name: Hosted streamable HTTP server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.10ml.com/mcp"
+      }
