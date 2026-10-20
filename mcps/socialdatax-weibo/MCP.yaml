@@ -1,0 +1,25 @@
+id: socialdatax-weibo
+name: SocialDataX 微博 Weibo MCP
+description: "Weibo post and user search, post details, comments, replies and user timelines. Hosted
+  by SocialDataX; business calls consume credits. Setup and API Key:
+  https://socialdatax.com/ai?from=kilo"
+author: SocialDataX
+url: https://github.com/DevinChen2014/weibo-mcp
+category: search
+prerequisites:
+  - "SocialDataX account and your own API Key: https://socialdatax.com/ai?from=kilo"
+  - Business tool calls consume SocialDataX credits; the account points-balance tool is free.
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.socialdatax.com/weibo/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SOCIALDATAX_API_KEY}}"
+        }
+      }
+parameters:
+  - name: SocialDataX API Key
+    key: SOCIALDATAX_API_KEY
+    placeholder: your_socialdatax_api_key

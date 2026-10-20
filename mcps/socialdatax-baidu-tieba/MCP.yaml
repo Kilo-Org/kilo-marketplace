@@ -1,0 +1,25 @@
+id: socialdatax-baidu-tieba
+name: SocialDataX 百度贴吧 MCP
+description: "Baidu Tieba search, forum threads, posts, comments, user profiles and activity. Hosted
+  by SocialDataX; business calls consume credits. Setup and API Key:
+  https://socialdatax.com/ai?from=kilo"
+author: SocialDataX
+url: https://github.com/DevinChen2014/baidu-tieba-mcp
+category: search
+prerequisites:
+  - "SocialDataX account and your own API Key: https://socialdatax.com/ai?from=kilo"
+  - Business tool calls consume SocialDataX credits; the account points-balance tool is free.
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.socialdatax.com/baidu-tieba/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SOCIALDATAX_API_KEY}}"
+        }
+      }
+parameters:
+  - name: SocialDataX API Key
+    key: SOCIALDATAX_API_KEY
+    placeholder: your_socialdatax_api_key
