@@ -2,7 +2,7 @@ id: oceantoken
 name: OceanToken
 description: Search and price 480+ AI models from many labs, estimate what a request costs, generate images, video and voice-overs, transcribe audio into subtitles, and hand sub-tasks to another model, billed to a prepaid OceanToken balance.
 author: OceanToken
-url: https://github.com/NextFormAI/oceantoken-plugins
+url: https://github.com/OceanTokenAI/oceantoken-plugins
 category: development
 prerequisites:
   - OceanToken account with credit (https://app.oceantoken.ai/ui/signup/)

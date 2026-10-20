@@ -3047,7 +3047,7 @@ items:
       voice-overs, transcribe audio into subtitles, and hand sub-tasks to another model, billed to a prepaid OceanToken
       balance.
     author: OceanToken
-    url: https://github.com/NextFormAI/oceantoken-plugins
+    url: https://github.com/OceanTokenAI/oceantoken-plugins
     category: development
     tags:
       - development
