@@ -1,0 +1,17 @@
+id: greatwait
+name: GreatWait
+description: Reliable webhook scheduling for your agent, your app, and you! Connect to GreatWait's hosted MCP server to inspect and manage scheduled callbacks.
+author: GreatWait
+authorUrl: https://greatwait.dev
+url: https://docs.greatwait.dev/guides/mcp
+category: productivity
+prerequisites:
+  - GreatWait account
+  - MCP client with OAuth support
+content:
+  - name: GreatWait hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.greatwait.dev/mcp"
+      }
