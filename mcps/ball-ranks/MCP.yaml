@@ -1,5 +1,5 @@
 id: ball-ranks
-name: Ball Ranks
+name: Ball Ranks Fantasy Sports
 description: Read-only NFL and NBA fantasy rankings and player projections through REST-backed MCP tools.
 author: Ball Ranks
 url: https://github.com/Ollynov/ball-ranks-plugin
