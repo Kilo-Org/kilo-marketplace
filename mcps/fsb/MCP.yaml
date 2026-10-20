@@ -1,0 +1,20 @@
+id: fsb
+name: FSB (Full Self Browsing)
+description: Lets your AI client drive your real Chromium browser (Chrome, Edge, Brave, Arc) through the FSB extension.
+  Reads pages through DOM structure, selectors and ARIA instead of screenshots, with 69 MCP tools for navigation,
+  clicks, typing, tabs, file uploads, read-only inspection, session replay, multi-agent tab ownership and long term
+  memory. No FSB API key needed; your MCP client's model does the reasoning.
+author: LakshmanTurlapati
+url: https://github.com/fullselfbrowsing/FSB
+category: web-automation
+prerequisites:
+  - FSB browser extension installed in Chrome, Edge, Brave, Arc or Chromium 116+ (https://chromewebstore.google.com/detail/badgafnfchcihdfnjneklogedcdkmjfk)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "fsb-mcp-server@latest"]
+      }
