@@ -1,8 +1,10 @@
 id: ipgeolocation-io-mcp
 name: IPGeolocation.io
 description: >-
-  Look up IP geolocation, VPN/proxy/Tor indicators, ASN data and abuse contacts.
-  Also provides time zone, astronomy and user-agent tools, with cached pagination.
+  The official IPGeolocation.io MCP server provides 17 tools for IP geolocation, company
+  information, ASN and network data, IP security (VPN, proxy, Tor, bot, hosting and spam
+  detection), abuse contacts, time zones, astronomy, currency data and user-agent parsing.
+  It runs over stdio and supports cached pagination for large results.
 author: IPGeolocation.io
 url: https://github.com/IPGeolocation/ipgeolocation-io-mcp
 category: search
