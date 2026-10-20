@@ -1,0 +1,29 @@
+id: cloudbase
+name: Tencent CloudBase
+description: Managed backend for AI coding — document database, PostgreSQL/MySQL, auth, object storage, cloud functions and hosting. The hosted server uses OAuth 2.1, so no API keys are pasted.
+author: Tencent CloudBase
+url: https://github.com/TencentCloudBase/CloudBase-AI-Toolkit
+category: development
+prerequisites:
+  - A CloudBase environment (a free tier is available; the OAuth flow offers to create one)
+content:
+  - name: Remote (OAuth, China)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://tcb-api.cloud.tencent.com/mcp/v1"
+      }
+  - name: Remote (OAuth, international)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://tcb-api.tencentcloud.com/mcp/v1"
+      }
+  - name: Local (NPX)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@cloudbase/cloudbase-mcp@latest"]
+      }
