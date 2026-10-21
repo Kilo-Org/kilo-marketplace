@@ -1,0 +1,16 @@
+id: easygerber
+name: EasyGerber
+description: AI PCB design, layout, and routing
+author: EasyGerber
+url: https://github.com/EasyGerber/easygerber-agent-plugin
+category: development
+prerequisites:
+  - No EasyGerber account, OAuth grant, or API key is needed to connect, initialize, or discover tools.
+  - Saved account boards require EasyGerber OAuth consent.
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.easygerber.com/api/mcp"
+      }
