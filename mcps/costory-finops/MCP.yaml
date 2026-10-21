@@ -1,6 +1,6 @@
 id: costory-finops
 name: Costory FinOps MCP
-description: "FinOps agent MCP: one allocated view of cloud, AI and data costs across providers, shared by your whole team with SSO. Starter $300/mo, 30-day free trial."
+description: "FinOps agent MCP: one allocated view of cloud, AI and data costs across providers, shared by your whole team with SSO."
 author: Costory
 url: https://github.com/costory-io/costory-finops-mcp-skills
 category: business
