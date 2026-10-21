@@ -1,0 +1,22 @@
+id: vibe-monitor
+name: Vibe Monitor
+description: >-
+  Local architecture evolution observations and staged advice for AI coding.
+  Source analysis is read-only. Apache-2.0 client with separate proprietary cloud
+  policy/scoring; bounded pseudonymous telemetry defaults on, and opting out
+  pauses Free analysis.
+author: tubban1
+url: https://github.com/tubban1/vibe-monitor
+category: development
+prerequisites:
+  - Node.js 22 or later
+  - Follow the repository setup instructions for current cloud access requirements
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "--registry=https://registry.npmjs.org", "@vibe-monitor/setup@latest", "mcp"]
+      }
