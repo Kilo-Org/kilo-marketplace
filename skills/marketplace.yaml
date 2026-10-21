@@ -1105,6 +1105,18 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tableau-dashboard-creator
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tableau-dashboard-creator/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tableau-dashboard-creator.tar.gz
+  - id: teable-assistant-ops
+    description: >-
+      Operate Teable projects — tables, fields, views, records, SQL queries, automations, headless routines, apps, image
+      generation, and web scraping. Trigger when user mentions Cuppy, Teable, teable CLI, or Teable-style IDs (bseXXX,
+      tblXXX, fldXXX, recXXX, viwXXX), or wants to manage tables/fields/records, build dashboards/apps, generate images
+      or charts, create automations, import/export data, trigger AI fill, or scrape websites (LinkedIn, Amazon, YouTube,
+      etc.) — even if they don't explicitly say "Teable" but are clearly working with a Teable project (called base in
+      the API).
+    category: data
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/teable-assistant-ops
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/teable-assistant-ops/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/teable-assistant-ops.tar.gz
   - id: tensorflow-data-pipelines
     description: >-
       Create efficient data pipelines with tf.data
