@@ -1,0 +1,16 @@
+id: studiomeyer-crm
+name: StudioMeyer CRM
+description: AI-native CRM for contacts, leads, pipelines, follow-ups, and revenue analytics through MCP.
+author: StudioMeyer
+url: https://github.com/studiomeyer-io/studiomeyer-crm
+category: business
+prerequisites:
+  - StudioMeyer CRM account (free tier available)
+  - MCP client with OAuth 2.1 support
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://crm.studiomeyer.io/mcp"
+      }
