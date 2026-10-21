@@ -1,0 +1,16 @@
+id: mubboo-flights
+name: Mubboo Flights Search
+description: >-
+  Find airports, validate trip details and prepare flight-comparison links to
+  help travellers compare options on Mubboo. Free hosted MCP with no API key;
+  does not return live fares, check availability or make bookings.
+author: Mubboo-Ai
+url: https://github.com/Mubboo-Ai/mubboo-flights-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mubboo.flights/api/mcp"
+      }
