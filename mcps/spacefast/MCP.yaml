@@ -1,0 +1,18 @@
+id: spacefast
+name: Spacefast
+description: Publishes websites, apps, reports, and other agent-built artifacts to a live, shareable URL, and manages Spaces, versions, custom domains, and access from the editor.
+author: Automattic
+url: https://github.com/spacefast/mcp
+category: development
+prerequisites:
+  - Spacefast account
+  - MCP client with OAuth support
+skills:
+  - spacefast
+content:
+  - name: Spacefast hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.spacefast.com"
+      }
