@@ -1,0 +1,29 @@
+id: mrscraper
+name: MrScraper
+description: Retrieves public web pages as HTML, Markdown, or screenshots and runs Google searches with parsed results
+  through MrScraper's hosted server, and reports plan and token usage.
+author: MrScraper
+url: https://github.com/mrscraper-com/mrscraper-mcp
+category: web-automation
+prerequisites:
+  - MrScraper account
+content:
+  - name: Hosted remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.mrscraper.com/mcp"
+      }
+  - name: Hosted remote server (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.mrscraper.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{MRSCRAPER_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: MrScraper API Key
+        key: MRSCRAPER_API_KEY
+        placeholder: your_mrscraper_api_key
