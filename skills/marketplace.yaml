@@ -1829,3 +1829,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: socialdatax-content-research-assistant
+    description: >-
+      Use when doing cross-platform content research, topic planning, competitor research, trend insight, comment
+      insight, or creator research across SocialDataX public platforms including 小红书 / XHS, Douyin, Kuaishou, Bilibili,
+      Zhihu, Instagram, X / Twitter, YouTube, TikTok, Weibo, Toutiao, and WeChat Channels, plus WeChat Official Account
+      article link details and statistics. For account points use `account balance`; for API documentation use `docs
+      search`, `docs operation`, or `docs openapi`. Also supports Haokan / 好看视频 content research and replies authored by
+      X creators.
+    category: search
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/socialdatax-content-research-assistant
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/socialdatax-content-research-assistant/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/socialdatax-content-research-assistant.tar.gz
