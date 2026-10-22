@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify design application"
+  short_description: "Check each component against saved standards."
+  default_prompt: "Use $verify-design-system to check this build against our design system."
