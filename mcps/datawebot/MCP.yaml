@@ -1,0 +1,16 @@
+id: datawebot
+name: datawebot
+description: Product search and seller prices across online shops worldwide, plus extraction jobs for search results, catalogue and product pages on Amazon in 10 countries and 1,100+ Shopify stores. Hosted remote server with a free daily search allowance and 200 free trial credits for extraction jobs.
+author: datawebot
+url: https://github.com/datawebot/datawebot-mcp
+category: search
+prerequisites:
+  - datawebot account (free sign-up by email approval)
+  - MCP client with OAuth support
+content:
+  - name: datawebot hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.datawebot.com/mcp"
+      }
