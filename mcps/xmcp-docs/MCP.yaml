@@ -1,0 +1,13 @@
+id: xmcp-docs
+name: xmcp Docs
+description: Search and retrieve official xmcp documentation for building MCP servers with TypeScript. Free, read-only hosted server with no authentication required.
+author: basementstudio
+url: https://github.com/basementstudio/xmcp/tree/main/apps/website
+category: search
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://xmcp.dev/mcp"
+      }
