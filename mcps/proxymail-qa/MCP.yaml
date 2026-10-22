@@ -1,0 +1,30 @@
+id: proxymail-qa
+name: Proxy Mail QA
+description: Disposable test inboxes for testing an app's sign-up, login-code, magic-link and password-reset emails. Creates
+  test addresses with fictional personas and returns only the code or link that arrives, never the email's text.
+author: Proxy Mail QA
+url: https://github.com/aaquib90/proxymail-qa-plugin
+category: development
+prerequisites:
+  - A Proxy Mail QA account (the free plan works)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.proxymail.qa/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.proxymail.qa/mcp",
+        "headers": {
+          "Authorization": "Bearer {{PROXYMAIL_QA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Proxy Mail QA API key
+    key: PROXYMAIL_QA_API_KEY
+    placeholder: qa_your_api_key
+    optional: true
