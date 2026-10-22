@@ -11,6 +11,16 @@ category: development
 prerequisites:
   - Node.js 22 or later
   - Follow the repository setup instructions for current cloud access requirements
+  - >-
+    Telemetry is ON by default. Run `npx -y @vibe-monitor/setup@latest telemetry off`
+    to disable collection; this also pauses Free architecture analysis. Run
+    `npx -y @vibe-monitor/setup@latest telemetry on` to restore both. Inspect the
+    current choice with `npx -y @vibe-monitor/setup@latest telemetry status`.
+  - >-
+    The NPX configuration intentionally follows the latest published stable release
+    for ongoing updates. To review and pin a specific release instead, replace
+    `@latest` in the configuration with its exact published version. The command
+    respects your configured npm registry.
 content:
   - name: NPX
     prerequisites:
@@ -18,5 +28,5 @@ content:
     content: |
       {
         "command": "npx",
-        "args": ["-y", "--registry=https://registry.npmjs.org", "@vibe-monitor/setup@latest", "mcp"]
+        "args": ["-y", "@vibe-monitor/setup@latest", "mcp"]
       }
