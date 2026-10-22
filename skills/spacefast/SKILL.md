@@ -10,6 +10,7 @@ metadata:
   source:
     repository: 'https://github.com/spacefast/plugins'
     path: skills/spacefast
+    license_path: LICENSE
     ref: main
     commit: ae351469bf4ce5d72cd8e3de36bd2947ca0924aa
 ---

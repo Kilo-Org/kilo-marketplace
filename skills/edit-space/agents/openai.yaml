@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update your site"
+  short_description: "Change a live Space and review the result."
+  default_prompt: "Use $edit-space to update this Space and show me the result."

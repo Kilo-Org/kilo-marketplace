@@ -9,6 +9,8 @@ prerequisites:
   - MCP client with OAuth support
 skills:
   - spacefast
+  - edit-space
+  - verify-design-system
 content:
   - name: Spacefast hosted OAuth server
     content: |
