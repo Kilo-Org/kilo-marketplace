@@ -676,7 +676,7 @@ items:
       current prices before starting. When finished, stop the sessions you created, confirm they are released, and
       review the final charges. Disconnecting a client does not end the remote session."
     author: ctcbyzx
-    url: https://github.com/ctcbyzx/baizhi-cloud-browser
+    url: https://github.com/chaitin/baizhi-cloud-browser
     category: web-automation
     tags:
       - web-automation
