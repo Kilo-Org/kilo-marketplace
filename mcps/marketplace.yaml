@@ -2605,7 +2605,7 @@ items:
         parameters:
           - name: Mnemoverse API Key
             key: MNEMOVERSE_API_KEY
-            placeholder: mk_live_your_key_from_console.mnemoverse.com
+            placeholder: your_mnemoverse_api_key
   - id: mongodb-mcp-server
     name: MongoDB MCP Server
     description: Queries MongoDB databases and Atlas metadata with connection-string or Atlas service-account
