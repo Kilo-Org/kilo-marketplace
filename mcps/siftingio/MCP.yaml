@@ -1,0 +1,26 @@
+id: siftingio
+name: SiftingIO Market Data
+description: >-
+  Official SiftingIO MCP server for real-time and historical US stock,
+  forex, crypto, and commodity data. Includes OHLCV bars, SEC fundamentals,
+  holdings, market hours, an economic calendar, and live WebSocket tools.
+author: SiftingIO
+url: https://github.com/SiftingIO/siftingio-mcp
+category: business
+prerequisites:
+  - Node.js and npm
+  - A SiftingIO account and API key (https://sifting.io/register)
+content:
+  - name: NPX
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "siftingio-mcp"],
+        "env": {
+          "SIFTING_API_KEY": "{{SIFTING_API_KEY}}"
+        }
+      }
+parameters:
+  - name: SiftingIO API Key
+    key: SIFTING_API_KEY
+    placeholder: your_siftingio_api_key
