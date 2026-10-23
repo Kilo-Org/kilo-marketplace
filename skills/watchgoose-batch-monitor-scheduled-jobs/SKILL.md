@@ -10,8 +10,8 @@ metadata:
     repository: 'https://github.com/pixeware/watchgoose-plugin'
     path: skills/watchgoose-batch-monitor-scheduled-jobs
     license_path: LICENSE
-    ref: v1.1.2
-    commit: 90438ea061faa52ce125ebeac2ebcd8dda78cb5a
+    ref: v1.1.3
+    commit: 3839e81ee371bcd81c4ea0032894ddcb8dd21a73
 ---
 
 # Set up an approved batch

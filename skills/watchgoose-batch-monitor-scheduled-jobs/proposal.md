@@ -108,12 +108,13 @@ a user decision precede any further write. Error-message retry advice never gran
 response proves only that row's reported result. Stored `new` awaits completion cadence, not proof
 of a completed job; a processed start can trigger down at start-plus-grace before completion.
 
-If row A succeeds and B times out, keep A's success, mark B uncertain and C not attempted. A
-read-only lookup returning no B match does not prove failure. Stop all writes until the user decides
-the specific recovery action; do not replay A, retry B automatically, switch to upsert, continue C
-or delete A. Explain that an expressly approved re-create can still duplicate a prior successful
-write. There is no transaction/rollback/batch endpoint. Any error stops remaining writes until a
-user decision and revalidated settings/capacity status, without plan guesses or purchases.
+If row A succeeds and B times out, keep A's success, mark B uncertain and later rows not attempted.
+A read-only lookup returning no B match does not prove failure. Stop all writes until the user
+decides the specific recovery action; do not replay A, retry B automatically, switch to upsert,
+continue with later rows or delete A. Explain that an expressly approved re-create can still
+duplicate a prior successful write. There is no transaction/rollback/batch endpoint. Any error stops
+remaining writes until a user decision and revalidated settings/capacity status, without plan
+guesses or purchases.
 
 For a reported check-limit rejection, record that row as error and later rows not-attempted; earlier
 successes stand. The API rejects over-limit new creation before saving that check, not a transaction

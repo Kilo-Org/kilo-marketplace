@@ -10,17 +10,17 @@ metadata:
     repository: 'https://github.com/pixeware/watchgoose-plugin'
     path: skills/watchgoose-cron-coverage-audit
     license_path: LICENSE
-    ref: v1.1.2
-    commit: 90438ea061faa52ce125ebeac2ebcd8dda78cb5a
+    ref: v1.1.3
+    commit: 3839e81ee371bcd81c4ea0032894ddcb8dd21a73
 ---
 
 # Audit scheduled-job coverage
 
 Report evidence and read-only questions, never wrapper/heartbeat drafts or synthetic job/ping tests.
 
-Instrumentation handoff: request a separate `watchgoose-monitor-scheduled-job` workflow using its
-reviewed reference if available; otherwise say guidance is unavailable. The request is
-instrumentation-only; no test requests, commands or verification promises.
+Instrumentation handoff: request `watchgoose-monitor-scheduled-job` for one gap or
+`watchgoose-batch-monitor-scheduled-jobs` for several; otherwise say guidance is unavailable. The
+request is instrumentation-only; no test requests, commands or verification promises.
 
 ## Tool facts
 

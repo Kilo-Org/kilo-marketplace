@@ -7,8 +7,9 @@ not an instruction to run it during setup.
 
 Save the private check URL from the Watchgoose dashboard in `WATCHGOOSE_PING_URL` using the job's
 environment/secret manager. Never paste it into chat, print it, commit it, or derive it from
-`unique_key`. Use the dashboard's bare per-check URL, without added query parameters or path
-suffixes. Configure the expected schedule and alert integrations separately.
+`unique_key`. Store the per-check URL exactly as the dashboard shows it, without query parameters or
+a `/start`, `/fail` or exit-status suffix; the wrapper appends `/fail` itself when the job fails.
+Configure the expected schedule and alert integrations separately.
 
 The wrapper runs one supplied command, records its actual exit status and, when configured, sends a
 success or failure heartbeat after it returns. It preserves job status even when notification fails.
@@ -37,19 +38,28 @@ if [ -z "${WATCHGOOSE_PING_URL:-}" ]; then
   exit "$job_status"
 fi
 
+if ! command -v curl >/dev/null 2>&1; then
+  printf '%s\n' 'curl is not on PATH; job ran without notification.' >&2
+  exit "$job_status"
+fi
+
 ping_url="$WATCHGOOSE_PING_URL"
 if [ "$job_status" -ne 0 ]; then
   ping_url="${WATCHGOOSE_PING_URL%/}/fail"
 fi
 
-if ! curl --fail --silent --max-time 10 --request POST --output /dev/null "$ping_url" 2>/dev/null; then
+# -q ignores ~/.curlrc; redirects are followed over HTTPS only and stay POST.
+if ! curl -q --fail --silent --location --proto-redir =https --max-time 10 --request POST \
+  --output /dev/null -- "$ping_url" 2>/dev/null; then
   printf '%s\n' 'Watchgoose heartbeat request failed; job exit status preserved.' >&2
 fi
 exit "$job_status"
 ```
 
-Example invocation after the operator configures the secret:
-`sh heartbeat-wrapper.sh /usr/local/bin/run-backup`. No private URL is needed in the command shown
+Example invocation after the operator installs the wrapper as an executable file and configures the
+secret: `/usr/local/bin/watchgoose-heartbeat /usr/local/bin/run-backup`. Use absolute paths, because
+cron and systemd run jobs with a minimal `PATH` and a different working directory; the wrapper warns
+and skips the heartbeat when `curl` is not on `PATH`. No private URL is needed in the command shown
 to the agent.
 
 ## Boundaries and verification
@@ -58,8 +68,9 @@ to the agent.
   pipeline/subcommand failures inside a script that incorrectly returns zero. Do not promise that
   `set -e` catches every failure.
 - Missing or empty heartbeat configuration never prevents the job from running. The wrapper skips
-  notification, prints a fixed warning, and returns the job's status. Only a missing job command
-  exits 64. Missing-heartbeat alerts still depend on an armed check and configured alert routing.
+  notification, prints a fixed warning, and returns the job's status. A missing `curl` is handled
+  the same way. Only a missing job command exits 64. Missing-heartbeat alerts still depend on an
+  armed check and configured alert routing.
 - A notification failure emits only the fixed warning, not curl stderr/private URLs. Do not enable
   shell tracing (`set -x`) around credentials. Curl's URL argument and the wrapper's environment can
   still be visible to local process inspection; use a trusted job runner, not an untrusted shared
