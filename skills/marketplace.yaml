@@ -1791,6 +1791,46 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/troubleshoot-cassandra
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/troubleshoot-cassandra/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
+  - id: watchgoose-batch-monitor-scheduled-jobs
+    description: >-
+      Use when proposing new Watchgoose checks for multiple scheduled jobs from an audit, list or CSV, rather than
+      configuring one job or updating existing checks.
+    category: observability
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/watchgoose-batch-monitor-scheduled-jobs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/watchgoose-batch-monitor-scheduled-jobs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/watchgoose-batch-monitor-scheduled-jobs.tar.gz
+  - id: watchgoose-cron-coverage-audit
+    description: >-
+      Use when reviewing whether a repository's cron jobs, backups, scheduled tasks, or recurring workers have
+      Watchgoose monitoring coverage, or when identifying gaps before configuring checks.
+    category: observability
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/watchgoose-cron-coverage-audit
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/watchgoose-cron-coverage-audit/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/watchgoose-cron-coverage-audit.tar.gz
+  - id: watchgoose-missed-run-triage
+    description: >-
+      Use when investigating a Watchgoose check that is down, late, paused, unarmed, missing heartbeats, or showing
+      unexpected status transitions, including requests for a missed-run incident handoff.
+    category: observability
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/watchgoose-missed-run-triage
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/watchgoose-missed-run-triage/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/watchgoose-missed-run-triage.tar.gz
+  - id: watchgoose-monitor-scheduled-job
+    description: >-
+      Use when configuring Watchgoose monitoring for a cron job, scheduled backup, recurring worker, or systemd timer,
+      or when drafting heartbeat instrumentation and check settings for an identified job.
+    category: observability
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/watchgoose-monitor-scheduled-job
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/watchgoose-monitor-scheduled-job/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/watchgoose-monitor-scheduled-job.tar.gz
+  - id: watchgoose-monitoring-health-review
+    description: >-
+      Use when asking whether existing Watchgoose monitoring is actually working, or reviewing neglected, unarmed or
+      paused checks, alert routing, runtime headroom and repeated status changes.
+    category: observability
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/watchgoose-monitoring-health-review
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/watchgoose-monitoring-health-review/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/watchgoose-monitoring-health-review.tar.gz
   - id: integrate-anything
     description: >-
       This skill should be used only when an external-app action must be executed through the Membrane CLI and an
