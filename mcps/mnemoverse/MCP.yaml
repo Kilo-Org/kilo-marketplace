@@ -1,12 +1,20 @@
 id: mnemoverse
 name: Mnemoverse Memory
-description: Long-term memory for AI agents that persists across sessions and across every tool connected to the same account. Save preferences, decisions and lessons, recall them by natural-language search, rate a recalled memory as helpful or misleading to re-rank what comes back next, and share memory through rooms.
+description: Long-term memory for AI agents that persists across sessions and across every tool connected to the same account. Save preferences, decisions and lessons, recall them by natural-language search, rate a recalled memory as helpful or misleading to re-rank what comes back next, and share memory through shared rooms (beta).
 author: Mnemoverse
 url: https://github.com/mnemoverse/mcp-memory-server
 category: data
 prerequisites:
   - Mnemoverse account (free plan)
 content:
+  - name: Remote Server (OAuth)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.mnemoverse.com/mcp"
+      }
   - name: NPX
     prerequisites:
       - Node.js
@@ -22,11 +30,3 @@ content:
       - name: Mnemoverse API Key
         key: MNEMOVERSE_API_KEY
         placeholder: mk_live_your_key_from_console.mnemoverse.com
-  - name: Remote Server (OAuth)
-    prerequisites:
-      - MCP client with OAuth support
-    content: |
-      {
-        "type": "streamable-http",
-        "url": "https://mcp.mnemoverse.com/mcp"
-      }
