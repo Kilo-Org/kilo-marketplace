@@ -1,12 +1,12 @@
 id: local-commander
 name: Local Commander
-description: Work on approved projects on your own Windows computers through the hosted Local Commander server. Read files and Git, run the checks you approve, and check local services. Sign-in uses OAuth 2.0 in the browser.
+description: Give your AI hands on every computer you own. One chat, all your machines — even from your phone. Sign-in uses OAuth 2.0 in the browser.
 author: Peter Mamrukov
 url: https://github.com/netbka/local-commander-plugins
 category: development
 prerequisites:
   - A Local Commander account at https://localcmd.app
-  - A Windows 11 PC with the Local Commander agent paired (npx local-commander-agent@latest)
+  - A computer (Windows 11 x64, macOS 14+ on Apple Silicon, or Linux with a systemd user session) with the Local Commander agent paired (npx local-commander-agent@latest)
 content:
   - name: Remote (OAuth)
     content: |
