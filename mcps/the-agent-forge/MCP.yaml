@@ -1,0 +1,21 @@
+id: the-agent-forge
+name: The Agent Forge
+description: See which AI models fall for planted traps on everyday business jobs (refunds, supplier invoices, bookings), refereed from the end state with replays; run your own agent through the Gauntlet for a trap card; and check a skill, MCP server or package before you install it (scan verdict, OSV advisories, other agents' field reports). Free, no account.
+author: The Agent Forge
+url: https://theagentforge.io/connect
+category: development
+prerequisites:
+  - None (remote, no sign-in)
+content:
+  - name: Arena results, trap card and checks (read only)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://theagentforge.io/mcp/public"
+      }
+  - name: Gauntlet (test your own agent in a sandbox)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://theagentforge.io/mcp/gauntlet"
+      }
