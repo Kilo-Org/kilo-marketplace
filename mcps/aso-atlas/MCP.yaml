@@ -1,0 +1,16 @@
+id: aso-atlas
+name: ASO Atlas
+description: App Store and Google Play keyword research with Apple-reported popularity and difficulty, rank tracking in 59 storefronts, competitor keyword gaps, App Store Connect and Play Console performance, in-app feedback and onboarding analytics for your apps.
+author: ASO Atlas
+url: https://github.com/asoatlas/mcp
+category: data
+prerequisites:
+  - ASO Atlas account with an active subscription
+  - MCP client with OAuth support
+content:
+  - name: ASO Atlas hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://asoatlas.com/mcp"
+      }
