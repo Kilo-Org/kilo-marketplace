@@ -4168,7 +4168,8 @@ items:
   - id: serpkite
     name: SerpKite
     description: Real-time Google results for AI agents (web, news, maps and places, images, videos, shopping, scholar,
-      patents, autocomplete) plus page reading, site maps and crawls, returned as Markdown with source links.
+      patents, autocomplete) plus page reading, site maps and crawls, cited answers and deep research reports, returned
+      as Markdown with source links.
     author: SerpKite
     url: https://github.com/SerpKite/serpkite-mcp
     category: search
