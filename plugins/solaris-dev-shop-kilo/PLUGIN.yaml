@@ -1,0 +1,7 @@
+id: solaris-dev-shop-kilo
+name: Solaris DevShop
+description: Bundles 61 specialist workflows and a Chief of Staff coordinator in one plugin, registered through Kilo native skill discovery. Includes local delivery, recovery, and evidence tools used when their workflows are invoked.
+category: development
+author: Solaris Technologies
+url: https://github.com/Shaisolaris/solaris-dev-shop-kilo
+content: solaris-dev-shop-kilo@0.66.0
