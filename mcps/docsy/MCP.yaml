@@ -1,9 +1,9 @@
 id: docsy
-name: Docsy
+name: Docsy by getremcp
 description: Retrieve version-specific developer documentation and original source citations using five read-only MCP tools.
 author: getremcp
 url: https://github.com/getremcp/docsy-plugin
-category: development
+category: search
 prerequisites:
   - Docsy account authorization via OAuth 2.1 in a compatible MCP client
 content:
