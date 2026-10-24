@@ -73,23 +73,6 @@ items:
             "type": "streamable-http",
             "url": "https://aiplatform.googleapis.com/mcp/prompts"
           }
-  - id: aiapplyd
-    name: GetMattered
-    description: Finds jobs matched to your resume, tailors the resume and cover letter for each role, and applies on the
-      employer's own hiring system (34 systems, including Workday, Greenhouse, Lever and iCIMS), with an optional
-      approval step before each application. Sign in once with OAuth; no API key.
-    author: GetMattered
-    url: https://github.com/aiapplyd/aiapplyd-mcp
-    category: productivity
-    tags:
-      - productivity
-    content:
-      - name: GetMattered hosted remote server
-        content: |
-          {
-            "type": "streamable-http",
-            "url": "https://mcp.getmattered.com/mcp"
-          }
   - id: airbyte-agent-mcp
     name: Airbyte Agent MCP
     description: Connects agents to Airbyte's hosted MCP service for inspecting data connections and operating sync
@@ -1772,6 +1755,23 @@ items:
       - name: Prerequisites
         key: PREREQUISITES
         placeholder: Requires Node.js 18+ and Genkit SDK installation
+  - id: getmattered
+    name: GetMattered
+    description: Finds jobs matched to your resume, tailors the resume and cover letter for each role, and applies on the
+      employer's own hiring system (34 systems, including Workday, Greenhouse, Lever and iCIMS), with an optional
+      approval step before each application. Sign in once with OAuth; no API key.
+    author: GetMattered
+    url: https://github.com/getmattered/getmattered-mcp
+    category: productivity
+    tags:
+      - productivity
+    content:
+      - name: GetMattered hosted remote server
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.getmattered.com/mcp"
+          }
   - id: git
     name: Git Tools
     description: Provides Git repository interaction and automation tools for reading, searching, and manipulating Git
