@@ -1,0 +1,29 @@
+id: baizhi-cloud-browser
+name: Baizhi Cloud Browser
+description: >-
+  Baizhi Cloud Browser (CapyBrowser) provides on-demand cloud browser sessions for coding
+  agents. This MCP connection manages sessions and CDP access; a compatible
+  CDP client performs page actions. Sessions may incur charges: check current
+  prices before starting. When finished, stop the sessions you created, confirm
+  they are released, and review the final charges.
+  Disconnecting a client does not end the remote session.
+author: ctcbyzx
+url: https://github.com/chaitin/baizhi-cloud-browser
+category: web-automation
+prerequisites:
+  - A Baizhi Cloud Browser account and API key
+  - A separate compatible CDP client for page actions
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://capybrowser.app.baizhi.cloud/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CAPYBROWSER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Baizhi Cloud Browser API Key
+    key: CAPYBROWSER_API_KEY
+    placeholder: your-api-key
