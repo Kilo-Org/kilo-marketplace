@@ -1,7 +1,7 @@
 id: baizhi-cloud-browser
 name: Baizhi Cloud Browser
 description: >-
-  Baizhi Cloud Browser provides on-demand cloud browser sessions for coding
+  Baizhi Cloud Browser (CapyBrowser) provides on-demand cloud browser sessions for coding
   agents. This MCP connection manages sessions and CDP access; a compatible
   CDP client performs page actions. Sessions may incur charges: check current
   prices before starting. When finished, stop the sessions you created, confirm

@@ -671,10 +671,10 @@ items:
             placeholder: contoso
   - id: baizhi-cloud-browser
     name: Baizhi Cloud Browser
-    description: "Baizhi Cloud Browser provides on-demand cloud browser sessions for coding agents. This MCP connection
-      manages sessions and CDP access; a compatible CDP client performs page actions. Sessions may incur charges: check
-      current prices before starting. When finished, stop the sessions you created, confirm they are released, and
-      review the final charges. Disconnecting a client does not end the remote session."
+    description: "Baizhi Cloud Browser (CapyBrowser) provides on-demand cloud browser sessions for coding agents. This MCP
+      connection manages sessions and CDP access; a compatible CDP client performs page actions. Sessions may incur
+      charges: check current prices before starting. When finished, stop the sessions you created, confirm they are
+      released, and review the final charges. Disconnecting a client does not end the remote session."
     author: ctcbyzx
     url: https://github.com/chaitin/baizhi-cloud-browser
     category: web-automation
