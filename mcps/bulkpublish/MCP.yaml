@@ -1,0 +1,31 @@
+id: bulkpublish
+name: BulkPublish
+description: Schedule, publish, and analyze social media posts across 15 platforms, upload media, manage queue slots, and reply to inbox messages from an AI agent.
+author: BulkPublish
+url: https://github.com/azeemkafridi/bulkpublish-ai-toolkit
+category: productivity
+prerequisites:
+  - BulkPublish account
+  - BulkPublish API key (NPX option) or an MCP client with OAuth support (hosted option)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@bulkpublish/mcp-server"],
+        "env": {
+          "BULKPUBLISH_API_KEY": "{{BULKPUBLISH_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: BulkPublish API Key
+        key: BULKPUBLISH_API_KEY
+        placeholder: bp_your_api_key
+  - name: Hosted remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.bulkpublish.com/mcp"
+      }
