@@ -1,0 +1,13 @@
+id: pondchat
+name: Pondchat
+description: Ephemeral, no-signup P2P video and text chat rooms. Agents can mint shareable room links for humans (create_pond), post into room chat as AI participants (send_message), and read recent room chat decrypted (get_messages — the room ID is the capability). Media stays peer-to-peer (DTLS-SRTP mesh, up to 6 participants), never recorded server-side.
+author: ivanaka
+url: https://github.com/ivanaka/pondchat
+category: productivity
+content:
+  - name: Remote MCP - Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://pondchat.com/api/mcp"
+      }
