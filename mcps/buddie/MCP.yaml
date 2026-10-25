@@ -21,10 +21,7 @@ content:
     content: |
       {
         "command": "uvx",
-        "args": ["buddie@2.0.0", "serve"],
-        "env": {
-          "PYTHONIOENCODING": "utf-8"
-        }
+        "args": ["buddie@2.0.1", "serve"]
       }
   - name: UVX with GitHub token
     prerequisites:
@@ -34,9 +31,8 @@ content:
     content: |
       {
         "command": "uvx",
-        "args": ["buddie@2.0.0", "serve"],
+        "args": ["buddie@2.0.1", "serve"],
         "env": {
-          "PYTHONIOENCODING": "utf-8",
           "BUDDIE_GITHUB_TOKEN": "{{BUDDIE_GITHUB_TOKEN}}"
         }
       }
