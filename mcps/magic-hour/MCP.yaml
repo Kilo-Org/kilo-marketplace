@@ -1,6 +1,6 @@
 id: magic-hour
 name: Magic Hour
-description: Generates and edits videos, images, and audio through Magic Hour's hosted MCP server for coding and automation workflows.
+description: Create and edit images and video, and retrieve existing audio projects through Magic Hour's hosted MCP server.
 author: Magic Hour AI, Inc.
 url: https://github.com/magichourhq/magic-hour-mcp
 category: development
