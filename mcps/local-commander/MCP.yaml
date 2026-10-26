@@ -1,6 +1,6 @@
 id: local-commander
 name: Local Commander
-description: Give your AI hands on every computer you own. One chat, all your machines — even from your phone. Sign-in uses OAuth 2.0 in the browser.
+description: Use Kilo Code to read and edit files, inspect Git repositories, run approved commands and checks, and inspect local services on paired computers. Connections are relayed through Local Commander's hosted third-party MCP server at https://localcmd.app/mcp with OAuth 2.0 browser sign-in. Work is limited to user-authorized projects, commands and checks. If you enable full access, it can act with your local user account's permissions.
 author: Peter Mamrukov
 url: https://github.com/netbka/local-commander-plugins
 category: development
