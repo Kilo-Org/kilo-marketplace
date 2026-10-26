@@ -1,0 +1,16 @@
+id: flaghand
+name: Flaghand
+description: Your agent starts at flaghand.com/llms.txt, signs you up, drafts X and LinkedIn posts; you approve.
+author: Flaghand
+url: https://github.com/flaghand/flaghand
+category: productivity
+prerequisites:
+  - "A Flaghand account at https://flaghand.com (7-day free trial, then $19/month or $190/year)"
+  - MCP client with OAuth support
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.flaghand.com/mcp"
+      }
