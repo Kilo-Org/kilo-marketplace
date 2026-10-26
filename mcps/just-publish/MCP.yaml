@@ -6,6 +6,7 @@ url: https://github.com/just-done/just-publish-mcp
 category: development
 prerequisites:
   - Just account
+  - MCP client with OAuth support
 content:
   - name: Just Publish hosted remote server
     content: |
