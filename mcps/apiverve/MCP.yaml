@@ -1,0 +1,32 @@
+id: apiverve
+name: APIVerve
+description: Provides about 380 ready-to-use APIs through one hosted server, including email and phone validation,
+  IP geolocation, DNS, WHOIS and SSL lookups, exchange rates, stock and SEC data, VIN decoding, and PDF and screenshot
+  generation.
+author: APIVerve
+url: https://docs.apiverve.com/vervekit/mcp
+category: data
+prerequisites:
+  - APIVerve account (free tier available)
+content:
+  - name: Hosted server (OAuth)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.apiverve.com/v1/mcp"
+      }
+  - name: Hosted server (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.apiverve.com/v1/mcp",
+        "headers": {
+          "x-api-key": "{{APIVERVE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: APIVerve API Key
+        key: APIVERVE_API_KEY
+        placeholder: your_apiverve_api_key
