@@ -4,6 +4,8 @@ description: Publish and update the website you built with AI at a live public U
 author: Just Done, LLC
 url: https://github.com/just-done/just-publish-mcp
 category: development
+prerequisites:
+  - Just account
 content:
   - name: Just Publish hosted remote server
     content: |
