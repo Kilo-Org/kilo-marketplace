@@ -1,0 +1,21 @@
+--- a/flaghand/SKILL.md
++++ b/flaghand/SKILL.md
+@@ -1,8 +1,8 @@
+ ---
+ name: flaghand
+ description: >-
+-  Draft, check and request approval for X, LinkedIn and TikTok posts through
++  Draft, check and request approval for X and LinkedIn posts through
+   Flaghand. Use when the user asks to write, schedule or publish social content.
+   Only the owner approves with a passkey; agents never approve, schedule or
+   post.
+ metadata:
+@@ -198,8 +198,7 @@
+
+ After the owner's approval, follow `getDraft` or `listJobs` (`draft_id` filters jobs), then `getJob`. Report the
+ post links in `job.result.urls` and, for X, the live read-back in `job.result.check`. LinkedIn has no live read-back.
+-Report a failed job's reason rather than claiming it posted. TikTok may finish in `inbox` (not published) or spend
+-time `processing`; read [TikTok's guide](https://app.flaghand.com/docs/tiktok.md) for its creator choices, consent and audit posture.
++Report a failed job's reason rather than claiming it posted.
+
+ ## Platform details and safety

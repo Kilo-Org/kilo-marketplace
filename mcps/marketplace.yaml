@@ -1679,7 +1679,7 @@ items:
     tags:
       - productivity
     prerequisites:
-      - A Flaghand account at https://flaghand.com (7-day free trial, then $19/month or $190/year)
+      - "A Flaghand account: sign-up, plans and current price at https://app.flaghand.com/api/v1/plans"
       - MCP client with OAuth support
     content:
       - name: Remote
