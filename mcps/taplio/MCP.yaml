@@ -1,0 +1,17 @@
+id: taplio
+name: Taplio
+description: Write, schedule and analyze LinkedIn posts, find inspiration, comment, like and connect through your Taplio
+  account. 35 tools; write actions run only when you ask.
+author: Taplio
+url: https://mcp.taplio.com/
+category: business
+prerequisites:
+  - Taplio account with LinkedIn connected
+  - MCP client with OAuth support
+content:
+  - name: Taplio hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.taplio.com/"
+      }
