@@ -1,0 +1,7 @@
+id: git/github.com/volc-iga-pages/iga-pages-plugin
+name: IGA Pages Agent Plugin
+description: Develop and deploy frontend and full-stack applications with IGA Pages.
+category: development
+author: Volcengine IGA Pages
+url: https://github.com/volc-iga-pages/iga-pages-plugin
+content: git:github.com/volc-iga-pages/iga-pages-plugin@v0.1.0
