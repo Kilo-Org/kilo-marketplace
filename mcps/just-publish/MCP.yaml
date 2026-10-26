@@ -1,0 +1,16 @@
+id: just-publish
+name: Just Publish.
+description: Publish and update the website you built with AI at a live public URL. Sign-in required.
+author: Just Done, LLC
+url: https://github.com/just-done/just-publish-mcp
+category: development
+prerequisites:
+  - Just account
+  - MCP client with OAuth support
+content:
+  - name: Just Publish hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.justpublish.ai/"
+      }
