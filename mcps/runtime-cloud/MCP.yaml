@@ -1,0 +1,39 @@
+id: runtime-cloud
+name: Runtime Cloud
+description: Firecracker microVM sandboxes for AI agents. Run commands, read and write files, start processes, preview ports, and pause and wake with memory kept.
+author: Runtime Cloud
+url: https://github.com/withruntime/runtime
+category: development
+prerequisites:
+  - Runtime Cloud account
+content:
+  - name: Remote OAuth
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.withruntime.com/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.withruntime.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{RUNTIME_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 22.12 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "withruntime", "mcp"]
+      }
+parameters:
+  - name: Runtime API Key
+    key: RUNTIME_API_KEY
+    placeholder: your_runtime_api_key
+    optional: true
