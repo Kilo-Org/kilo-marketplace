@@ -6,13 +6,13 @@ author: usestring
 url: https://github.com/usestring/string-ai-mcp
 category: web-automation
 prerequisites:
-  - String account
+  - String account, created at https://portal.usestring.ai
 content:
   - name: Remote MCP
     content: |
       {
         "type": "streamable-http",
-        "url": "https://mcp.usestring.ai/v1/mcp",
+        "url": "https://mcp.usestring.ai/v3/mcp",
         "headers": {
           "Authorization": "Bearer {{STRING_API_KEY}}"
         }
