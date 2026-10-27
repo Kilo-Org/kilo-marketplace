@@ -1,0 +1,21 @@
+id: 1social
+name: 1Social
+description: >-
+  Publish and schedule social media posts to Instagram, TikTok, X (Twitter), LinkedIn, Threads,
+  Facebook Pages, YouTube Shorts and Bluesky. Preview a draft against each network's limits for free,
+  publish now or up to 30 days ahead, and read a per-network receipt of what actually landed.
+author: sultanlive
+url: https://github.com/sultanlive/1social-mcp
+category: productivity
+prerequisites:
+  - A 1Social account (https://1social.dev) with at least one social network connected in the browser
+  - MCP client with OAuth support
+skills:
+  - social-media-publisher
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.1social.dev/mcp"
+      }
