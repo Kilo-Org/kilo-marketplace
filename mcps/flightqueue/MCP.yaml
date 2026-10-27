@@ -1,0 +1,15 @@
+id: flightqueue
+name: FlightQueue
+description: Airport security wait times, forecasts, FAA delays, EES border queues and baggage stats for 8,000+ airports through a hosted MCP server.
+author: FlightQueue
+url: https://github.com/Flight-Queue/mcp
+category: search
+content:
+  - name: Remote Server
+    prerequisites:
+      - FlightQueue account (free sign-up, OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.flightqueue.com/mcp"
+      }
