@@ -1,0 +1,13 @@
+id: fotofoto
+name: foto foto
+description: Turn your photos or a public iCloud Shared Album into a printed hardcover photo book. Attach photos, give image links, or paste a public iCloud Shared Album link, and foto foto designs every spread and returns a preview link to save, edit and order on fotofoto.app. Also compares photo book prices across services. Hosted server; no API key required.
+author: nternet-company
+url: https://github.com/nternet-company/fotofoto-mcp
+category: business
+content:
+  - name: foto foto remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://fotofoto.app/mcp"
+      }
