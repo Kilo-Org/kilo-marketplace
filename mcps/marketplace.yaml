@@ -1686,7 +1686,7 @@ items:
         content: |
           {
             "type": "streamable-http",
-            "url": "https://app.flaghand.com/mcp"
+            "url": "https://app.flaghand.com/mcp/via/kilo"
           }
   - id: gcp-pubsub
     name: Google Cloud Pub/Sub Remote MCP

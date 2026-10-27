@@ -12,5 +12,5 @@ content:
     content: |
       {
         "type": "streamable-http",
-        "url": "https://app.flaghand.com/mcp"
+        "url": "https://app.flaghand.com/mcp/via/kilo"
       }
