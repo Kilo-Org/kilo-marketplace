@@ -1,0 +1,23 @@
+id: hookpost
+name: Hookpost
+description: Drafts and schedules social media posts on the channels connected in a Hookpost workspace, after checking each network's character limits, media rules and required settings. Posts land in the Hookpost calendar as drafts, scheduled posts or publish-now; there is no delete tool.
+author: Hookstep
+url: https://github.com/jatinder14/hookpost-mcp
+category: productivity
+prerequisites:
+  - Hookpost account on a Standard or Pro plan (each starts with a 3-day trial)
+  - Hookpost workspace API key from Settings > Developers
+content:
+  - name: Hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://hookpost.hookstep.in/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{HOOKPOST_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Hookpost API key
+    key: HOOKPOST_API_KEY
+    placeholder: your_hookpost_api_key
