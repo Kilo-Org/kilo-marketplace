@@ -1,0 +1,24 @@
+id: pennyocr
+name: PennyOCR
+description: Convert PDFs and images to Markdown or text, estimate document-processing costs, and check credit balances with
+  an API key and hard spend caps.
+author: PennyOCR
+url: https://github.com/imiraoui/pennyocr-mcp
+category: productivity
+prerequisites:
+- PennyOCR API key and document-processing credits; OCR requests consume credits
+- Use estimate_cost and a per-request max_cost cap before processing documents
+content:
+- name: Remote HTTP
+  content: |
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.pennyocr.com",
+      "headers": {
+        "Authorization": "Bearer {{PENNYOCR_API_KEY}}"
+      }
+    }
+parameters:
+- name: PennyOCR API key
+  key: PENNYOCR_API_KEY
+  placeholder: your-pennyocr-api-key
