@@ -1,0 +1,42 @@
+id: shipmail
+name: Shipmail
+description: Business email on your own domain for people and AI agents. Read, search, send and reply in mailboxes, and manage domains, mailboxes, forwarding, inbox rules, calendars, booking pages, newsletters and webhooks.
+author: Shipmail
+url: https://github.com/shipmail-to/shipmail-mcp
+category: productivity
+prerequisites:
+  - Shipmail account (https://shipmail.to)
+content:
+  - name: Shipmail hosted OAuth server
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://shipmail.to/api/mcp"
+      }
+  - name: Shipmail hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://shipmail.to/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SHIPMAIL_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "shipmail-mcp"],
+        "env": {
+          "SHIPMAIL_API_KEY": "{{SHIPMAIL_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Shipmail API Key
+    key: SHIPMAIL_API_KEY
+    placeholder: sm_live_your_api_key
+    optional: true
