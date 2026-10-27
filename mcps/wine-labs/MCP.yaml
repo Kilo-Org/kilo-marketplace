@@ -1,0 +1,17 @@
+id: wine-labs
+name: Wine Labs
+description: Fine-wine matching, market prices, auctions, merchant offers, and portfolio intelligence through a hosted MCP
+  server; browser OAuth and account plans or credits apply.
+author: Wine Labs
+url: https://github.com/imiraoui/winelabs-mcp
+category: business
+prerequisites:
+- Wine Labs account and browser OAuth in a compatible MCP client
+- Account plans or credits are required for paid service features
+content:
+- name: Remote HTTP
+  content: |
+    {
+      "type": "streamable-http",
+      "url": "https://chat.wine-labs.com/mcp"
+    }
