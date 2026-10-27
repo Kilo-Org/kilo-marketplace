@@ -1,0 +1,13 @@
+id: lifeverse-product-discovery
+name: LifeVerse Product Discovery
+description: Discover, search, inspect, and recommend 11 public LifeVerse AI products and interactive experiences through four read-only tools. No account or API key is required.
+author: lifeversegu
+url: https://github.com/lifeversegu/lifeverse-mcp
+category: search
+content:
+  - name: Hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://lifeverse.gufreelancer.com/api/mcp"
+      }
