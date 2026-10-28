@@ -124,6 +124,9 @@ function normalizeFrontmatter(
   if (skill.frontmatter?.metadata?.suggest_for) {
     normalized.metadata.suggest_for = skill.frontmatter.metadata.suggest_for;
   }
+  if (skill.frontmatter?.metadata?.author) {
+    normalized.metadata.author = skill.frontmatter.metadata.author;
+  }
   if (!skill.source.license_path && skill.frontmatter?.license && !normalized.license) {
     normalized.license = skill.frontmatter.license;
   }

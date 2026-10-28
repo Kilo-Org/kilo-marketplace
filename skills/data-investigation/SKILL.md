@@ -7,7 +7,7 @@ description: >-
   root cause analysis, or preparing a one-off investigation dashboard or memo.
 metadata:
   category: data
-  author: Pedro / Kilo Code
+  author: Pedro
   source:
     repository: 'https://github.com/Kilo-Org/skills'
     path: skills/data-investigation
