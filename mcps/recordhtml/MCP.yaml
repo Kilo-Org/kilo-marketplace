@@ -1,0 +1,33 @@
+id: recordhtml
+name: RecordHTML
+description: Records public web pages, or HTML documents the agent writes (banners, ads, animations, landing pages), to
+  MP4, WebM or GIF in a real browser and returns a signed video link. Pages can mark the exact start and end of an
+  animation with trim_start() and trim_end(), and each recording reports dropped frames, page errors and failed requests.
+author: RecordHTML
+url: https://recordhtml.com/docs/mcp
+category: web-automation
+prerequisites:
+  - RecordHTML account (https://recordhtml.com); the free plan includes 10 credits a month
+content:
+  - name: RecordHTML hosted OAuth server
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.recordhtml.com"
+      }
+  - name: RecordHTML hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.recordhtml.com",
+        "headers": {
+          "Authorization": "Bearer {{RECORDHTML_API_KEY}}"
+        }
+      }
+parameters:
+  - name: RecordHTML API Key
+    key: RECORDHTML_API_KEY
+    placeholder: your_recordhtml_api_key
+    optional: true
