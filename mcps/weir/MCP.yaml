@@ -3,9 +3,9 @@ name: Weir
 description: Searches and reads public X (Twitter) and Reddit data, including posts, replies, threads, quotes, profiles, followers, subreddits and comment threads, and runs monitors that report new matches.
 author: Weir
 url: https://github.com/tarun-khatri/weir-mcp
-category: data
+category: search
 prerequisites:
-  - Weir account (free; 5,000 credits a month)
+  - Weir account with 5,000 free credits a month; more use needs prepaid credits, and calls stop when credits run out, so nothing is billed automatically
   - MCP client with OAuth support
 content:
   - name: Weir hosted OAuth server
