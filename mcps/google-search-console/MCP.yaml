@@ -1,0 +1,25 @@
+id: google-search-console
+name: Google Search Console
+description: Google Search Console MCP server for search performance analytics, keyword rankings, sitemaps, and indexing health.
+author: Surendran B
+url: https://github.com/surendranb/google-search-console-mcp
+category: search
+prerequisites:
+  - Python and uv
+  - Google Search Console API credentials
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: >
+      {
+        "command": "uvx",
+        "args": ["google-search-console-mcp==0.10.10"],
+        "env": {
+          "GOOGLE_APPLICATION_CREDENTIALS": "{{GOOGLE_APPLICATION_CREDENTIALS}}"
+        }
+      }
+    parameters:
+      - name: Google Application Credentials
+        key: GOOGLE_APPLICATION_CREDENTIALS
+        placeholder: Path to service-account.json
