@@ -1,0 +1,29 @@
+id: microsoft-clarity
+name: Microsoft Clarity
+description: Microsoft Clarity behavioral UX analytics MCP server for rage clicks, dead clicks, quick backs, excessive scroll, and JS errors.
+author: Surendran B
+url: https://github.com/surendranb/microsoft-clarity-mcp
+category: observability
+prerequisites:
+  - Python and uv
+  - Microsoft Clarity API Token and Project ID
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: >
+      {
+        "command": "uvx",
+        "args": ["microsoft-clarity-mcp==0.1.3"],
+        "env": {
+          "CLARITY_API_TOKEN": "{{CLARITY_API_TOKEN}}",
+          "CLARITY_PROJECT_ID": "{{CLARITY_PROJECT_ID}}"
+        }
+      }
+    parameters:
+      - name: Clarity API Token
+        key: CLARITY_API_TOKEN
+        placeholder: Microsoft Clarity Data Export API token
+      - name: Clarity Project ID
+        key: CLARITY_PROJECT_ID
+        placeholder: Microsoft Clarity Project ID

@@ -1,0 +1,31 @@
+id: bing-webmaster
+name: Bing Webmaster & IndexNow
+description: Bing Webmaster Tools and IndexNow API MCP server for search performance, crawl issues, and instant URL indexing.
+author: Surendran B
+url: https://github.com/surendranb/bing-webmaster-mcp-server
+category: search
+prerequisites:
+  - Python and uv
+  - Bing Webmaster Tools API key or IndexNow key
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: >
+      {
+        "command": "uvx",
+        "args": ["bing-webmaster-mcp==0.1.3"],
+        "env": {
+          "BING_WEBMASTER_API_KEY": "{{BING_WEBMASTER_API_KEY}}",
+          "INDEXNOW_KEY": "{{INDEXNOW_KEY}}"
+        }
+      }
+    parameters:
+      - name: Bing Webmaster API Key
+        key: BING_WEBMASTER_API_KEY
+        placeholder: API Key from Bing Webmaster Tools
+        optional: true
+      - name: IndexNow Key
+        key: INDEXNOW_KEY
+        placeholder: IndexNow API key for instant submission
+        optional: true
