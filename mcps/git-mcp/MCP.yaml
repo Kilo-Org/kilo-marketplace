@@ -5,13 +5,7 @@ description: GitMCP is a free, open-source, remote MCP server that transforms an
   the LLM has never encountered them, thereby eliminating code hallucinations seamlessly.
 author: idosal
 url: https://github.com/idosal/git-mcp
-tags:
-  - git
-  - github
-  - documentation
-  - code-search
-  - repository-management
-  - hallucination-reduction
+category: search
 content:
   - name: SSE
     content: |

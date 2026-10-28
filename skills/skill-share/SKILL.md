@@ -9,6 +9,7 @@ metadata:
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: skill-share
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 ## When to use this skill
@@ -21,7 +22,7 @@ Use this skill when you need to:
 - **Package and distribute** skills to your team
 
 Also use this skill when:
-- **User says he wants to create/share his skill** 
+- **User says he wants to create/share his skill**
 
 This skill is ideal for:
 - Creating skills as part of team workflows

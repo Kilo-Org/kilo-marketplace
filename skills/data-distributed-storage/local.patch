@@ -1,0 +1,47 @@
+diff -rN -U0 --ignore-trailing-space a/data-distributed-storage/references/s3-compatible-configs.md b/data-distributed-storage/references/s3-compatible-configs.md
+--- a/data-distributed-storage/references/s3-compatible-configs.md	2000-01-01 00:00:00.000000000 +0000
++++ b/data-distributed-storage/references/s3-compatible-configs.md	2000-01-01 00:00:00.000000000 +0000
+@@ -13 +13 @@
+-    verify=False,
++    verify="/path/to/private-ca-bundle.pem",
+diff -rN -U0 --ignore-trailing-space a/data-distributed-storage/references/storage-deployment-guide.md b/data-distributed-storage/references/storage-deployment-guide.md
+--- a/data-distributed-storage/references/storage-deployment-guide.md	2000-01-01 00:00:00.000000000 +0000
++++ b/data-distributed-storage/references/storage-deployment-guide.md	2000-01-01 00:00:00.000000000 +0000
+@@ -48 +48 @@
+-  image: quay.io/minio/minio:latest
++  image: ${MINIO_IMAGE_REF:?Set MINIO_IMAGE_REF to quay.io/minio/minio@sha256:<reviewed-digest>}
+diff -rN -U0 --ignore-trailing-space a/data-distributed-storage/SKILL.md b/data-distributed-storage/SKILL.md
+--- a/data-distributed-storage/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/data-distributed-storage/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-description: >
++description: >-
+@@ -10,5 +9,0 @@
+-compatibility:
+-  claude-code: true
+-  cursor: true
+-  codex: true
+-  windsurf: true
+@@ -16,8 +10,0 @@
+-  upstream:
+-    version: 1.0.0
+-    author: j4flmao
+-    tags:
+-      - data
+-      - storage
+-      - distributed
+-      - phase-11
+@@ -259 +246 @@
+-  image: quay.io/minio/minio:latest
++  image: ${MINIO_IMAGE_REF:?Set MINIO_IMAGE_REF to quay.io/minio/minio@sha256:<reviewed-digest>}
+@@ -576,3 +563,7 @@
+-  - references/distributed-storage-patterns.md — Distributed Storage Patterns
+-  - references/storage-cost-optimization.md — Storage Cost Optimization
+-  - references/storage-tiering.md — Storage Tiering Reference
++
++- [Distributed storage fundamentals](references/distributed-storage-fundamentals.md)
++- [Advanced distributed storage](references/distributed-storage-advanced.md)
++- [HDFS architecture](references/hdfs-architecture.md)
++- [S3-compatible storage](references/s3-compatible.md)
++- [S3-compatible configurations](references/s3-compatible-configs.md)
++- [Storage deployment guide](references/storage-deployment-guide.md)

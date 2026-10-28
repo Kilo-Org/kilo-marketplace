@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:5046a3e3cfedf5ee2c5aab5677c2a28d89b1409b5e1c2331b0e9c29091b15823",
+  "scoredAt": "2026-05-13T15:09:48.618Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for operations."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill specifies compatibility only for macOS and Linux, lacking Windows support."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.54,
+    "baselineAvg": 65,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "create-keyspace-table-insert-query",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B meets every rubric requirement, while Response A omits the durable_writes=true clause in the keyspace definition."
+      },
+      {
+        "name": "nodejs-driver-insert-query-stream",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements, while Response B omits the required consistency setting and uses manual pagination instead of client.stream."
+      }
+    ]
+  }
+}

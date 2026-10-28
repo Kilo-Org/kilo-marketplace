@@ -1,0 +1,84 @@
+diff -rN -U0 --ignore-trailing-space a/elasticsearch-esql/references/environment-setup.md b/elasticsearch-esql/references/environment-setup.md
+--- a/elasticsearch-esql/references/environment-setup.md	2000-01-01 00:00:00.000000000 +0000
++++ b/elasticsearch-esql/references/environment-setup.md	2000-01-01 00:00:00.000000000 +0000
+@@ -33 +33,3 @@
+-export ELASTICSEARCH_PASSWORD="changeme"
++read -r -s -p "Elasticsearch password: " ELASTICSEARCH_PASSWORD
++printf '\n'
++export ELASTICSEARCH_PASSWORD
+@@ -38,2 +40,7 @@
+-For local development and testing, use [start-local](https://github.com/elastic/start-local) to quickly spin up
+-Elasticsearch and Kibana using Docker or Podman:
++For local development and testing, [start-local](https://github.com/elastic/start-local) can create Elasticsearch and
++Kibana containers with Docker or Podman. It downloads code and creates containers, volumes, credentials, and local
++files: obtain the user's explicit consent for the reviewed source/ref and those effects before downloading or running it.
++Never pipe a network response directly to a shell.
++
++Use a pinned release or commit, inspect the script, and verify it against a checksum obtained through a trusted release
++page or an organization security review:
+@@ -42 +49,18 @@
+-curl -fsSL https://elastic.co/start-local | sh
++START_LOCAL_REF="<PINNED_RELEASE_OR_COMMIT>"
++EXPECTED_SHA256="<TRUSTED_SHA256>"
++DOWNLOAD_DIR=$(mktemp -d)
++SCRIPT="$DOWNLOAD_DIR/start-local.sh"
++
++curl --fail --location --proto '=https' --tlsv1.2 \
++  --output "$SCRIPT" \
++  "https://raw.githubusercontent.com/elastic/start-local/${START_LOCAL_REF}/start-local.sh"
++chmod 0600 "$SCRIPT"
++
++# Review the complete file and its requested Docker/Podman resources.
++less "$SCRIPT"
++printf '%s  %s\n' "$EXPECTED_SHA256" "$SCRIPT" | sha256sum --check --strict
++
++# Run only after checksum verification and a second explicit execution consent.
++sh "$SCRIPT"
++rm -f "$SCRIPT"
++rmdir "$DOWNLOAD_DIR"
+@@ -44,0 +69,3 @@
++Do not execute the script if a trusted expected checksum is unavailable or verification fails. Instead, follow the
++manual, pinned installation instructions in the official repository and have the downloaded files reviewed.
++
+@@ -47 +74 @@
+-created `elastic-start-local` folder.
++created `elastic-start-local` folder; keep that file mode `0600` and out of version control.
+@@ -59 +86,3 @@
+-## Optional: Skip TLS verification (development only)
++## Private CA certificates
++
++Keep TLS verification enabled. For a development cluster signed by a private CA, point Node.js at the reviewed CA bundle:
+@@ -62 +91 @@
+-export ELASTICSEARCH_INSECURE="true"
++export NODE_EXTRA_CA_CERTS="/path/to/private-ca-bundle.pem"
+diff -rN -U0 --ignore-trailing-space a/elasticsearch-esql/scripts/esql.js b/elasticsearch-esql/scripts/esql.js
+--- a/elasticsearch-esql/scripts/esql.js	2000-01-01 00:00:00.000000000 +0000
++++ b/elasticsearch-esql/scripts/esql.js	2000-01-01 00:00:00.000000000 +0000
+@@ -25 +24,0 @@
+-  const insecure = process.env.ELASTICSEARCH_INSECURE === "true";
+@@ -42 +41 @@
+-    console.error("For local development, use start-local to run Elasticsearch via Docker:");
++    console.error("For local development, follow the reviewed start-local instructions:");
+@@ -44,2 +43,3 @@
+-    console.error("");
+-    console.error("  curl -fsSL https://elastic.co/start-local | sh");
++    console.error("Download the versioned installer to a file, inspect it, verify the published");
++    console.error("checksum/signature, and obtain explicit approval before executing it.");
++    console.error("Never pipe a remote response directly into a shell.");
+@@ -61,4 +60,0 @@
+-  // TLS settings
+-  if (insecure) {
+-    config.tls = { rejectUnauthorized: false };
+-  }
+@@ -620 +616 @@
+-  ELASTICSEARCH_INSECURE    Set to "true" to skip TLS verification
++  NODE_EXTRA_CA_CERTS       Path to a trusted private CA bundle, when required
+diff -rN -U0 --ignore-trailing-space a/elasticsearch-esql/SKILL.md b/elasticsearch-esql/SKILL.md
+--- a/elasticsearch-esql/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/elasticsearch-esql/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-description: >
++description: >-
+@@ -8,2 +7,0 @@
+-  author: elastic
+-  version: 0.3.0

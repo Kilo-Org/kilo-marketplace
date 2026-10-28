@@ -1,0 +1,20 @@
+diff -rN -U0 --ignore-trailing-space a/adbc/resources/languages/go.md b/adbc/resources/languages/go.md
+--- a/adbc/resources/languages/go.md	2000-01-01 00:00:00.000000000 +0000
++++ b/adbc/resources/languages/go.md	2000-01-01 00:00:00.000000000 +0000
+@@ -7,5 +7,5 @@
+-- github.com/apache/arrow-adbc/go/adbc@latest
+-- github.com/apache/arrow-adbc/go/adbc/drivermgr@latest
+-- github.com/apache/arrow-go/v18/arrow@latest
+-- github.com/apache/arrow-go/v18/arrow/array@latest
+-- github.com/apache/arrow-go/v18/arrow/memory@latest
++- github.com/apache/arrow-adbc/go/adbc@v1.11.0
++- github.com/apache/arrow-adbc/go/adbc/drivermgr@v1.11.0
++- github.com/apache/arrow-go/v18/arrow@v18.6.0
++- github.com/apache/arrow-go/v18/arrow/array@v18.6.0
++- github.com/apache/arrow-go/v18/arrow/memory@v18.6.0
+diff -rN -U0 --ignore-trailing-space a/adbc/SKILL.md b/adbc/SKILL.md
+--- a/adbc/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/adbc/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -7,2 +6,0 @@
+-  author: Columnar
+-  version: 0.2.2

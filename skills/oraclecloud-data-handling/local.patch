@@ -1,0 +1,6 @@
+diff -rN -U0 --ignore-trailing-space a/oraclecloud-data-handling/SKILL.md b/oraclecloud-data-handling/SKILL.md
+--- a/oraclecloud-data-handling/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oraclecloud-data-handling/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -12 +12 @@
+-compatibility: Designed for Claude Code
++compatibility: Agent clients with shell and file-editing tools

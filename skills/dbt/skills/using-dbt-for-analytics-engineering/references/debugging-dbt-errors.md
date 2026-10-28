@@ -51,7 +51,7 @@ error: dbt0101: mismatched input 'orders' expecting one of 'SELECT', 'TABLE', '(
 
 ```bash
 03:16:39  Failure in unit_test test_does_location_opened_at_trunc_to_date (models/staging/stg_locations.yml)
-03:16:39    
+03:16:39
 
 actual differs from expected:
 
@@ -69,7 +69,7 @@ Invalid data is detected during execution of a dbt project, e.g. during `dbt bui
 ```bash
 03:29:09  Failure in test accepted_values_customers_customer_type__new__returning (models/marts/customers.yml)
 03:29:09    Got 1 result, configured to fail if != 0
-03:29:09  
+03:29:09
 03:29:09    compiled code at target/compiled/jaffle_shop/models/marts/customers.yml/accepted_values_customers_customer_type__new__returning.sql
 ```
 

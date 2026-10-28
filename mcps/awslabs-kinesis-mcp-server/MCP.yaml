@@ -1,0 +1,30 @@
+id: awslabs-kinesis-mcp-server
+name: Amazon Kinesis MCP
+description: Inspects Kinesis streams, consumers, shards, and limits with AWS credentials; write operations remain disabled by the server's read-only flag.
+author: AWS Labs
+url: https://github.com/awslabs/mcp/tree/main/src/kinesis-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - AWS credentials with Kinesis read permissions
+content:
+  - name: UVX (official, read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["awslabs.kinesis-mcp-server==0.1.2"],
+        "env": {
+          "AWS_PROFILE": "{{AWS_PROFILE}}",
+          "AWS_REGION": "{{AWS_REGION}}",
+          "KINESIS-READONLY": "true"
+        }
+      }
+parameters:
+  - name: AWS profile
+    key: AWS_PROFILE
+    placeholder: default
+  - name: AWS region
+    key: AWS_REGION
+    placeholder: us-west-2

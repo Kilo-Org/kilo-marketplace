@@ -42,7 +42,7 @@ unit_tests:
     overrides:
       macros:
         # unit test this model in "full refresh" mode
-        is_incremental: false 
+        is_incremental: false
     given:
       - input: ref('events')
         rows:
@@ -56,14 +56,14 @@ unit_tests:
     overrides:
       macros:
         # unit test this model in "incremental" mode
-        is_incremental: true 
+        is_incremental: true
     given:
       - input: ref('events')
         rows:
           - {event_id: 1, event_time: 2020-01-01}
           - {event_id: 2, event_time: 2020-01-02}
           - {event_id: 3, event_time: 2020-01-03}
-      - input: this 
+      - input: this
         # contents of current my_incremental_model
         rows:
           - {event_id: 1, event_time: 2020-01-01}

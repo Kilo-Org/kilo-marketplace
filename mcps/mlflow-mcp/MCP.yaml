@@ -1,0 +1,30 @@
+id: mlflow-mcp
+name: MLflow MCP (Official)
+description: Runs MLflow's official trace-focused MCP server for searching and inspecting MLflow traces against the configured tracking server.
+author: MLflow
+url: https://github.com/mlflow/mlflow
+category: data
+prerequisites:
+  - Python and uv
+  - MLflow tracking server credentials supplied through MLflow's standard authentication environment
+content:
+  - name: UVX (official, trace-focused)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "mlflow[mcp]==3.14.0", "mlflow", "mcp", "run"],
+        "env": {
+          "MLFLOW_TRACKING_URI": "{{MLFLOW_TRACKING_URI}}",
+          "MLFLOW_TRACKING_TOKEN": "{{MLFLOW_TRACKING_TOKEN}}"
+        }
+      }
+parameters:
+  - name: MLflow tracking URI
+    key: MLFLOW_TRACKING_URI
+    placeholder: http://localhost:5000
+  - name: MLflow bearer token
+    key: MLFLOW_TRACKING_TOKEN
+    placeholder: your_mlflow_token
+    optional: true

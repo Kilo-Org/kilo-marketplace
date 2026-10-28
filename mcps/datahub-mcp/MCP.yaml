@@ -1,0 +1,15 @@
+id: datahub-mcp
+name: DataHub Managed MCP
+description: Searches DataHub assets, schemas, lineage, ownership, and SQL context through DataHub Cloud's hosted OAuth endpoint with user-scoped catalog permissions.
+author: DataHub
+url: https://github.com/acryldata/mcp-server-datahub
+category: data
+prerequisites:
+  - DataHub Cloud account
+content:
+  - name: DataHub Cloud OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.datahub.com/mcp"
+      }

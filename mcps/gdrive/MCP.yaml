@@ -4,12 +4,7 @@ description: Enables searching, listing, and reading files from Google Drive, wi
   files to common formats like Markdown, CSV, and PNG.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/gdrive
-tags:
-  - google-drive
-  - file-management
-  - document-storage
-  - workspace
-  - file-search
+category: search
 prerequisites:
   - Google account with Drive API access
 content:

@@ -1,0 +1,6 @@
+diff -rN -U0 --ignore-trailing-space a/gcs-lifecycle-policy/SKILL.md b/gcs-lifecycle-policy/SKILL.md
+--- a/gcs-lifecycle-policy/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/gcs-lifecycle-policy/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -16 +16 @@
+-    compatible-with: claude-code
++    compatible-with: agent-clients

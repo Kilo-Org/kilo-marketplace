@@ -1,0 +1,22 @@
+id: dbhub
+name: DBHub
+description: Connects to PostgreSQL, MySQL, MariaDB, SQL Server, or SQLite through Bytebase's token-efficient local MCP server using a user-supplied TOML guardrail configuration.
+author: Bytebase
+url: https://github.com/bytebase/dbhub
+category: data
+prerequisites:
+  - Node.js
+  - DBHub TOML config with execute_sql readonly=true and an appropriate max_rows limit
+content:
+  - name: NPX with guarded TOML config
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@bytebase/dbhub@0.22.4", "--transport", "stdio", "--config", "{{DBHUB_CONFIG_PATH}}"]
+      }
+parameters:
+  - name: DBHub TOML config path
+    key: DBHUB_CONFIG_PATH
+    placeholder: /absolute/path/to/dbhub.toml

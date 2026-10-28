@@ -1,0 +1,923 @@
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/alerts/SKILL.md b/newrelic-cli-skills/alerts/SKILL.md
+--- a/newrelic-cli-skills/alerts/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/alerts/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,11 @@
++---
++name: "newrelic-cli-alerts"
++description: "This subskill should be used when managing New Relic alert policies, APM or NRQL conditions, notification channels, or open incidents with the New Relic CLI. Use the parent newrelic-cli-skills skill for setup and routing."
++metadata:
++  category: observability
++  source:
++    repository: "https://github.com/vince-winkintel/newrelic-cli-skills"
++    path: "alerts"
++    license_path: "LICENSE"
++---
++
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/apm/SKILL.md b/newrelic-cli-skills/apm/SKILL.md
+--- a/newrelic-cli-skills/apm/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/apm/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,11 @@
++---
++name: "newrelic-cli-apm"
++description: "This subskill should be used when triaging New Relic APM latency, throughput, database time, transaction errors, or performance regressions with the New Relic CLI and NRQL. Use the parent newrelic-cli-skills skill for setup and routing."
++metadata:
++  category: observability
++  source:
++    repository: "https://github.com/vince-winkintel/newrelic-cli-skills"
++    path: "apm"
++    license_path: "LICENSE"
++---
++
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/deployments/SKILL.md b/newrelic-cli-skills/deployments/SKILL.md
+--- a/newrelic-cli-skills/deployments/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/deployments/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,11 @@
++---
++name: "newrelic-cli-deployments"
++description: "This subskill should be used when recording, listing, or automating New Relic APM deployment markers and correlating releases with performance changes. Use the parent newrelic-cli-skills skill for setup and routing."
++metadata:
++  category: observability
++  source:
++    repository: "https://github.com/vince-winkintel/newrelic-cli-skills"
++    path: "deployments"
++    license_path: "LICENSE"
++---
++
+@@ -101 +112 @@
+-  --user "steven-openclaw"
++  --user "ci-bot"
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/diagnostics/SKILL.md b/newrelic-cli-skills/diagnostics/SKILL.md
+--- a/newrelic-cli-skills/diagnostics/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/diagnostics/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,11 @@
++---
++name: "newrelic-cli-diagnostics"
++description: "This subskill should be used when diagnosing New Relic agent configuration, API connectivity, profile authentication, or missing telemetry with the New Relic CLI. Use the parent newrelic-cli-skills skill for setup and routing."
++metadata:
++  category: observability
++  source:
++    repository: "https://github.com/vince-winkintel/newrelic-cli-skills"
++    path: "diagnostics"
++    license_path: "LICENSE"
++---
++
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/.gitattributes b/newrelic-cli-skills/.gitattributes
+--- a/newrelic-cli-skills/.gitattributes	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/.gitattributes	1970-01-01 00:00:00.000000000 +0000
+@@ -1,5 +0,0 @@
+-LICENSE export-ignore
+-README.md export-ignore
+-.DS_Store export-ignore
+-.gitignore export-ignore
+-.gitattributes export-ignore
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/.gitignore b/newrelic-cli-skills/.gitignore
+--- a/newrelic-cli-skills/.gitignore	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/.gitignore	1970-01-01 00:00:00.000000000 +0000
+@@ -1,3 +0,0 @@
+-.DS_Store
+-*.env
+-*.local
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/infrastructure/SKILL.md b/newrelic-cli-skills/infrastructure/SKILL.md
+--- a/newrelic-cli-skills/infrastructure/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/infrastructure/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,11 @@
++---
++name: "newrelic-cli-infrastructure"
++description: "This subskill should be used when investigating New Relic Infrastructure host CPU, memory, disk, network, process, or capacity metrics with the New Relic CLI and NRQL. Use the parent newrelic-cli-skills skill for setup and routing."
++metadata:
++  category: observability
++  source:
++    repository: "https://github.com/vince-winkintel/newrelic-cli-skills"
++    path: "infrastructure"
++    license_path: "LICENSE"
++---
++
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/nrql/SKILL.md b/newrelic-cli-skills/nrql/SKILL.md
+--- a/newrelic-cli-skills/nrql/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/nrql/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,11 @@
++---
++name: "newrelic-cli-nrql"
++description: "This subskill should be used when composing or running ad hoc NRQL queries for New Relic telemetry, facets, time windows, rates, and comparisons. Use newrelic-nrql-debug-ladder instead for failing, empty, or schema-mismatched queries."
++metadata:
++  category: observability
++  source:
++    repository: "https://github.com/vince-winkintel/newrelic-cli-skills"
++    path: "nrql"
++    license_path: "LICENSE"
++---
++
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/README.md b/newrelic-cli-skills/README.md
+--- a/newrelic-cli-skills/README.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/README.md	1970-01-01 00:00:00.000000000 +0000
+@@ -1,76 +0,0 @@
+-# newrelic-cli-skills
+-
+-An [OpenClaw](https://openclaw.ai) agent skill for monitoring, querying, and managing New Relic observability data via the `newrelic` CLI.
+-
+-## What It Does
+-
+-- **Performance triage** — identify slow transactions, DB bottlenecks, and error spikes
+-- **NRQL queries** — run ad-hoc queries against your New Relic account from the terminal
+-- **Deployment markers** — record releases so you can correlate deploys with performance changes
+-- **Alert management** — create and manage alert policies, conditions, and channels, including condition deletion workflows
+-- **Infrastructure monitoring** — host CPU, memory, disk, and process metrics
+-- **Agent diagnostics** — validate agent config and connectivity
+-
+-## Requirements
+-
+-- [`newrelic` CLI](https://github.com/newrelic/newrelic-cli) installed
+-- `NEW_RELIC_API_KEY` — User key (starts with `NRAK-`)
+-- `NEW_RELIC_ACCOUNT_ID` — Numeric account ID
+-
+-## Install CLI
+-
+-Use a package manager or install the binary manually from the official New Relic CLI releases page.
+-
+-### Option 1: Homebrew (macOS)
+-
+-```bash
+-brew install newrelic-cli
+-```
+-
+-### Option 2: Manual install from official releases
+-
+-1. Open https://github.com/newrelic/newrelic-cli/releases
+-2. Download the archive for your OS/architecture
+-3. Extract it
+-4. Move the `newrelic` binary into a directory on your `PATH`
+-5. Verify with:
+-
+-```bash
+-newrelic --version
+-```
+-
+-## Setup
+-
+-```bash
+-newrelic profile add \
+-  --profile default \
+-  --apiKey $NEW_RELIC_API_KEY \
+-  --accountId $NEW_RELIC_ACCOUNT_ID \
+-  --region US
+-
+-newrelic profile default --profile default
+-```
+-
+-## Sub-skills
+-
+-| Sub-skill | Purpose |
+-|---|---|
+-| `apm/` | Performance triage — slow transactions, DB analysis, error rates |
+-| `nrql/` | NRQL query patterns and ad-hoc data exploration |
+-| `deployments/` | Deployment markers and release tracking |
+-| `alerts/` | Alert policies, conditions, channels |
+-| `infrastructure/` | Host metrics — CPU, memory, disk, processes |
+-| `diagnostics/` | Agent health, config validation, connectivity |
+-
+-## Scripts
+-
+-| Script | Purpose |
+-|---|---|
+-| `check-performance.sh` | Health check across all apps |
+-| `deployment-marker.sh` | Record a deployment event |
+-| `top-slow-transactions.sh` | Find the 10 slowest transactions |
+-| `error-report.sh` | Recent errors with messages and counts |
+-
+-## License
+-
+-MIT
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/references/nrql-patterns.md b/newrelic-cli-skills/references/nrql-patterns.md
+--- a/newrelic-cli-skills/references/nrql-patterns.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/references/nrql-patterns.md	1970-01-01 00:00:00.000000000 +0000
+@@ -1,175 +0,0 @@
+-# NRQL Patterns Reference
+-
+-## Transaction Performance
+-
+-```nrql
+--- Response time percentiles
+-SELECT percentile(duration, 50, 75, 95, 99)
+-FROM Transaction
+-WHERE appName = 'my-app'
+-SINCE 1 hour ago
+-
+--- Apdex score (T = 0.5s threshold)
+-SELECT apdex(duration, 0.5)
+-FROM Transaction
+-WHERE appName = 'my-app'
+-TIMESERIES 5 minutes
+-SINCE 1 hour ago
+-
+--- Compare this week vs last week
+-SELECT average(duration)
+-FROM Transaction
+-WHERE appName = 'my-app'
+-SINCE 1 week ago
+-COMPARE WITH 1 week ago
+-
+--- Request volume by hour of day
+-SELECT count(*)
+-FROM Transaction
+-WHERE appName = 'my-app'
+-FACET hourOf(timestamp)
+-SINCE 1 week ago
+-```
+-
+-## Error Analysis
+-
+-```nrql
+--- Error rate trend
+-SELECT percentage(count(*), WHERE error IS true)
+-FROM Transaction
+-WHERE appName = 'my-app'
+-TIMESERIES 5 minutes
+-SINCE 3 hours ago
+-
+--- Top errors by frequency
+-SELECT count(*)
+-FROM TransactionError
+-WHERE appName = 'my-app'
+-FACET error.class, message
+-SINCE 1 hour ago
+-LIMIT 20
+-
+--- Errors in the last 10 minutes
+-SELECT timestamp, transactionName, error.class, message
+-FROM TransactionError
+-WHERE appName = 'my-app'
+-SINCE 10 minutes ago
+-LIMIT 25
+-
+--- HTTP 5xx errors (if using HTTP status tracking)
+-SELECT count(*)
+-FROM Transaction
+-WHERE appName = 'my-app' AND response.status >= '500'
+-FACET response.status, name
+-SINCE 1 hour ago
+-```
+-
+-## Database Performance
+-
+-```nrql
+--- DB time breakdown by operation type
+-SELECT average(duration)
+-FROM DatabaseTrace
+-WHERE appName = 'my-app'
+-FACET databaseVendor, category
+-SINCE 1 hour ago
+-
+--- Queries with high execution count (potential N+1)
+-SELECT count(*), average(duration)
+-FROM DatabaseTrace
+-WHERE appName = 'my-app'
+-FACET statement
+-SINCE 30 minutes ago
+-LIMIT 20
+-ORDER BY count(*) DESC
+-
+--- DB connection pool issues
+-SELECT count(*)
+-FROM TransactionError
+-WHERE appName = 'my-app' AND error.class LIKE '%connection%'
+-SINCE 1 hour ago
+-```
+-
+-## Infrastructure
+-
+-```nrql
+--- All hosts CPU over time
+-SELECT average(cpuPercent)
+-FROM SystemSample
+-FACET hostname
+-TIMESERIES 10 minutes
+-SINCE 3 hours ago
+-
+--- Memory pressure (used > 85%)
+-SELECT latest(memoryUsedPercent)
+-FROM SystemSample
+-FACET hostname
+-WHERE memoryUsedPercent > 85
+-SINCE 5 minutes ago
+-
+--- Disk almost full (> 90%)
+-SELECT latest(diskUsedPercent), latest(mountPoint)
+-FROM StorageSample
+-FACET hostname
+-WHERE diskUsedPercent > 90
+-SINCE 10 minutes ago
+-```
+-
+-## Browser / Front-End
+-
+-```nrql
+--- Page load time by page
+-SELECT average(duration)
+-FROM PageView
+-FACET pageUrl
+-SINCE 1 hour ago
+-LIMIT 20
+-ORDER BY average(duration) DESC
+-
+--- Core Web Vitals: LCP
+-SELECT average(largestContentfulPaint)
+-FROM PageViewTiming
+-FACET pageUrl
+-SINCE 1 hour ago
+-
+--- JS errors by page
+-SELECT count(*)
+-FROM JavaScriptError
+-FACET pageUrl, errorMessage
+-SINCE 1 hour ago
+-LIMIT 20
+-```
+-
+-## Deployments
+-
+-```nrql
+--- Recent deployments
+-SELECT *
+-FROM Deployment
+-SINCE 1 week ago
+-LIMIT 20
+-
+--- Performance before vs after a specific deployment
+-SELECT average(duration)
+-FROM Transaction
+-WHERE appName = 'my-app'
+-SINCE '2026-02-25 10:00:00' UNTIL '2026-02-25 14:00:00'
+-TIMESERIES 5 minutes
+-```
+-
+-## Logs
+-
+-```nrql
+--- Recent error logs
+-SELECT message, timestamp
+-FROM Log
+-WHERE level = 'ERROR'
+-SINCE 30 minutes ago
+-LIMIT 25
+-
+--- Log volume by level
+-SELECT count(*)
+-FROM Log
+-FACET level
+-SINCE 1 hour ago
+-```
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/references/performance-triage.md b/newrelic-cli-skills/references/performance-triage.md
+--- a/newrelic-cli-skills/references/performance-triage.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/references/performance-triage.md	1970-01-01 00:00:00.000000000 +0000
+@@ -1,162 +0,0 @@
+-# Performance Triage Guide
+-
+-Step-by-step guide for investigating a reported performance issue.
+-
+----
+-
+-## Step 1: Confirm the Problem
+-
+-```bash
+-# Is there actually a performance issue right now?
+-./scripts/check-performance.sh "" 30
+-```
+-
+-Look for:
+-- Avg response time > 1s (warning) or > 2s (critical)
+-- Error rate > 1% (warning) or > 5% (critical)
+-- RPM significantly lower than baseline (could indicate traffic drop or outage)
+-
+----
+-
+-## Step 2: Narrow to One App
+-
+-```bash
+-# Which app is affected?
+-newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
+-  SELECT average(duration) AS 'Avg (s)', percentage(count(*), WHERE error IS true) AS 'Error %'
+-  FROM Transaction
+-  FACET appName
+-  SINCE 30 minutes ago
+-  ORDER BY average(duration) DESC
+-"
+-```
+-
+----
+-
+-## Step 3: Find the Slow Endpoint
+-
+-```bash
+-./scripts/top-slow-transactions.sh "my-app" 30
+-```
+-
+-Identify the top offender by avg duration.
+-
+----
+-
+-## Step 4: Is It the Database?
+-
+-```bash
+-newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
+-  SELECT average(duration) AS 'Total', average(databaseDuration) AS 'DB',
+-         percentage(average(databaseDuration), average(duration)) AS 'DB %'
+-  FROM Transaction
+-  WHERE appName = 'my-app'
+-  FACET name
+-  SINCE 30 minutes ago
+-  ORDER BY average(databaseDuration) DESC
+-  LIMIT 10
+-"
+-```
+-
+-**If DB% > 60%:** Focus on database query optimization.
+-**If DB% < 20% but total is slow:** Look at external calls or application logic.
+-
+----
+-
+-## Step 5: Is It the Host?
+-
+-```bash
+-# Check if host is under pressure
+-newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
+-  SELECT average(cpuPercent), average(memoryUsedPercent)
+-  FROM SystemSample
+-  FACET hostname
+-  SINCE 30 minutes ago
+-"
+-```
+-
+-**CPU > 80%:** Server is overloaded — check for runaway processes.
+-**Memory > 90%:** Memory pressure — check for leaks or insufficient allocation.
+-
+----
+-
+-## Step 6: Is It a New Deployment?
+-
+-```bash
+-newrelic apm deployment list --applicationId <APP_ID>
+-```
+-
+-If a deploy happened in the last few hours, compare performance before/after:
+-
+-```bash
+-newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
+-  SELECT average(duration)
+-  FROM Transaction
+-  WHERE appName = 'my-app'
+-  TIMESERIES 10 minutes
+-  SINCE 3 hours ago
+-"
+-```
+-
+-Look for an inflection point matching the deployment timestamp.
+-
+----
+-
+-## Step 7: Check for Errors
+-
+-```bash
+-./scripts/error-report.sh "my-app" 30
+-```
+-
+-A spike in errors often precedes or accompanies a performance degradation.
+-
+----
+-
+-## Step 8: External Dependencies
+-
+-```bash
+-newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
+-  SELECT average(duration), count(*)
+-  FROM ExternalTrace
+-  WHERE appName = 'my-app'
+-  FACET host
+-  SINCE 30 minutes ago
+-  ORDER BY average(duration) DESC
+-  LIMIT 10
+-"
+-```
+-
+-If an external service (API, auth provider, CDN) is slow, that's often the root cause.
+-
+----
+-
+-## Decision Tree Summary
+-
+-```
+-Slow app reported
+-    │
+-    ├─ Check all apps ──► Which one is slow?
+-    │
+-    ├─ Check transactions ──► Which endpoint?
+-    │
+-    ├─ DB % high? ──► Yes ──► Slow query / N+1 / missing index
+-    │                └─ No ──► External call? / CPU pressure? / code logic?
+-    │
+-    ├─ Host CPU/memory high? ──► Yes ──► Scale up or find runaway process
+-    │
+-    ├─ Recent deployment? ──► Yes ──► Regression — compare before/after
+-    │
+-    └─ Error spike? ──► Yes ──► Error-report.sh ──► Stack trace ──► Fix
+-```
+-
+----
+-
+-## What the CLI Cannot Do
+-
+-- View distributed trace waterfalls (requires NR UI)
+-- Show flame graphs / code-level profiling (requires NR UI)
+-- Access custom dashboards interactively
+-- Resolve alerts or acknowledge incidents (UI only)
+-
+-For deep dives requiring call graphs, hand the NRQL findings to the UI:
+-`https://one.newrelic.com/data-exploration` → paste NRQL query
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/scripts/check-performance.sh b/newrelic-cli-skills/scripts/check-performance.sh
+--- a/newrelic-cli-skills/scripts/check-performance.sh	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/scripts/check-performance.sh	1970-01-01 00:00:00.000000000 +0000
+@@ -1,103 +0,0 @@
+-#!/bin/bash
+-# check-performance.sh — Quick performance health check across all monitored apps
+-# Usage: ./check-performance.sh [app-name] [minutes-ago]
+-# Example: ./check-performance.sh my-app 60
+-
+-set -euo pipefail
+-
+-APP="${1:-}"
+-SINCE="${2:-60}"
+-
+-if [[ -z "${NEW_RELIC_API_KEY:-}" || -z "${NEW_RELIC_ACCOUNT_ID:-}" ]]; then
+-  echo "ERROR: NEW_RELIC_API_KEY and NEW_RELIC_ACCOUNT_ID must be set"
+-  exit 1
+-fi
+-
+-require_positive_integer() {
+-  local value="$1"
+-  local name="$2"
+-
+-  if [[ ! "$value" =~ ^[1-9][0-9]*$ ]]; then
+-    echo "ERROR: ${name} must be a positive integer" >&2
+-    exit 1
+-  fi
+-}
+-
+-nrql_escape_string() {
+-  local input="$1"
+-  local output=""
+-  local char
+-  local i
+-
+-  for ((i = 0; i < ${#input}; i++)); do
+-    char="${input:i:1}"
+-    case "$char" in
+-      "\\") output+="\\\\" ;;
+-      "'") output+="''" ;;
+-      *) output+="$char" ;;
+-    esac
+-  done
+-
+-  printf '%s' "$output"
+-}
+-
+-require_positive_integer "$SINCE" "minutes-ago"
+-
+-WHERE=""
+-if [[ -n "$APP" ]]; then
+-  SAFE_APP="$(nrql_escape_string "$APP")"
+-  WHERE="WHERE appName = '$SAFE_APP'"
+-fi
+-
+-run_nrql() {
+-  local query="$1"
+-  newrelic nrql query --accountId "$NEW_RELIC_ACCOUNT_ID" --query "$query"
+-}
+-
+-echo "=== Performance Health Check (last ${SINCE} minutes) ==="
+-echo ""
+-
+-echo "--- Response Time (avg + P95) ---"
+-run_nrql "
+-  SELECT average(duration) AS 'Avg (s)', percentile(duration, 95) AS 'P95 (s)'
+-  FROM Transaction
+-  $WHERE
+-  FACET appName
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 20
+-  ORDER BY average(duration) DESC
+-"
+-
+-echo ""
+-echo "--- Error Rate ---"
+-run_nrql "
+-  SELECT percentage(count(*), WHERE error IS true) AS 'Error %', count(*) AS 'Total Requests'
+-  FROM Transaction
+-  $WHERE
+-  FACET appName
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 20
+-"
+-
+-echo ""
+-echo "--- Throughput (RPM) ---"
+-run_nrql "
+-  SELECT rate(count(*), 1 minute) AS 'RPM'
+-  FROM Transaction
+-  $WHERE
+-  FACET appName
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 20
+-"
+-
+-echo ""
+-echo "--- Top 5 Slowest Transactions ---"
+-run_nrql "
+-  SELECT average(duration) AS 'Avg (s)', count(*) AS 'Calls'
+-  FROM Transaction
+-  $WHERE
+-  FACET appName, name
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 5
+-  ORDER BY average(duration) DESC
+-"
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/scripts/deployment-marker.sh b/newrelic-cli-skills/scripts/deployment-marker.sh
+--- a/newrelic-cli-skills/scripts/deployment-marker.sh	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/scripts/deployment-marker.sh	1970-01-01 00:00:00.000000000 +0000
+@@ -1,30 +0,0 @@
+-#!/bin/bash
+-# deployment-marker.sh — Record a deployment event in New Relic
+-# Usage: ./deployment-marker.sh <app_id> <revision> [description] [user]
+-# Example: ./deployment-marker.sh 12345678 "v2.1.0" "MR !193: Svelte 5 migration" "steven-openclaw"
+-
+-set -euo pipefail
+-
+-APP_ID="${1:?Usage: $0 <app_id> <revision> [description] [user]}"
+-REVISION="${2:?revision required (e.g. git SHA, semver, MR number)}"
+-DESCRIPTION="${3:-Automated deployment}"
+-USER="${4:-deploy-bot}"
+-
+-if [[ -z "${NEW_RELIC_API_KEY:-}" ]]; then
+-  echo "ERROR: NEW_RELIC_API_KEY must be set"
+-  exit 1
+-fi
+-
+-echo "Recording deployment marker..."
+-echo "  App ID:      $APP_ID"
+-echo "  Revision:    $REVISION"
+-echo "  Description: $DESCRIPTION"
+-echo "  User:        $USER"
+-
+-newrelic apm deployment create \
+-  --applicationId "$APP_ID" \
+-  --revision "$REVISION" \
+-  --description "$DESCRIPTION" \
+-  --user "$USER"
+-
+-echo "Done. Deployment marker recorded in New Relic."
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/scripts/error-report.sh b/newrelic-cli-skills/scripts/error-report.sh
+--- a/newrelic-cli-skills/scripts/error-report.sh	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/scripts/error-report.sh	1970-01-01 00:00:00.000000000 +0000
+@@ -1,97 +0,0 @@
+-#!/bin/bash
+-# error-report.sh — Recent errors with messages and counts
+-# Usage: ./error-report.sh <app-name> [minutes-ago]
+-# Example: ./error-report.sh my-app 60
+-
+-set -euo pipefail
+-
+-APP="${1:?Usage: $0 <app-name> [minutes-ago]}"
+-SINCE="${2:-60}"
+-
+-if [[ -z "${NEW_RELIC_API_KEY:-}" || -z "${NEW_RELIC_ACCOUNT_ID:-}" ]]; then
+-  echo "ERROR: NEW_RELIC_API_KEY and NEW_RELIC_ACCOUNT_ID must be set"
+-  exit 1
+-fi
+-
+-require_positive_integer() {
+-  local value="$1"
+-  local name="$2"
+-
+-  if [[ ! "$value" =~ ^[1-9][0-9]*$ ]]; then
+-    echo "ERROR: ${name} must be a positive integer" >&2
+-    exit 1
+-  fi
+-}
+-
+-nrql_escape_string() {
+-  local input="$1"
+-  local output=""
+-  local char
+-  local i
+-
+-  for ((i = 0; i < ${#input}; i++)); do
+-    char="${input:i:1}"
+-    case "$char" in
+-      "\\") output+="\\\\" ;;
+-      "'") output+="''" ;;
+-      *) output+="$char" ;;
+-    esac
+-  done
+-
+-  printf '%s' "$output"
+-}
+-
+-require_positive_integer "$SINCE" "minutes-ago"
+-SAFE_APP="$(nrql_escape_string "$APP")"
+-
+-run_nrql() {
+-  local query="$1"
+-  newrelic nrql query --accountId "$NEW_RELIC_ACCOUNT_ID" --query "$query"
+-}
+-
+-echo "=== Error Report: $APP (last ${SINCE} minutes) ==="
+-echo ""
+-
+-echo "--- Overall Error Rate ---"
+-run_nrql "
+-  SELECT count(*) AS 'Total Requests',
+-         filter(count(*), WHERE error IS true) AS 'Errors',
+-         percentage(count(*), WHERE error IS true) AS 'Error %'
+-  FROM Transaction
+-  WHERE appName = '$SAFE_APP'
+-  SINCE ${SINCE} minutes ago
+-"
+-
+-echo ""
+-echo "--- Errors by Transaction ---"
+-run_nrql "
+-  SELECT count(*) AS 'Count'
+-  FROM TransactionError
+-  WHERE appName = '$SAFE_APP'
+-  FACET transactionName
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 10
+-  ORDER BY count(*) DESC
+-"
+-
+-echo ""
+-echo "--- Errors by Class/Type ---"
+-run_nrql "
+-  SELECT count(*) AS 'Count'
+-  FROM TransactionError
+-  WHERE appName = '$SAFE_APP'
+-  FACET error.class
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 10
+-  ORDER BY count(*) DESC
+-"
+-
+-echo ""
+-echo "--- Recent Error Messages ---"
+-run_nrql "
+-  SELECT timestamp, transactionName, error.class, message
+-  FROM TransactionError
+-  WHERE appName = '$SAFE_APP'
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 10
+-"
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/scripts/top-slow-transactions.sh b/newrelic-cli-skills/scripts/top-slow-transactions.sh
+--- a/newrelic-cli-skills/scripts/top-slow-transactions.sh	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/scripts/top-slow-transactions.sh	1970-01-01 00:00:00.000000000 +0000
+@@ -1,90 +0,0 @@
+-#!/bin/bash
+-# top-slow-transactions.sh — Find the 10 slowest transactions for an app
+-# Usage: ./top-slow-transactions.sh <app-name> [minutes-ago]
+-# Example: ./top-slow-transactions.sh my-app 60
+-
+-set -euo pipefail
+-
+-APP="${1:?Usage: $0 <app-name> [minutes-ago]}"
+-SINCE="${2:-60}"
+-
+-if [[ -z "${NEW_RELIC_API_KEY:-}" || -z "${NEW_RELIC_ACCOUNT_ID:-}" ]]; then
+-  echo "ERROR: NEW_RELIC_API_KEY and NEW_RELIC_ACCOUNT_ID must be set"
+-  exit 1
+-fi
+-
+-require_positive_integer() {
+-  local value="$1"
+-  local name="$2"
+-
+-  if [[ ! "$value" =~ ^[1-9][0-9]*$ ]]; then
+-    echo "ERROR: ${name} must be a positive integer" >&2
+-    exit 1
+-  fi
+-}
+-
+-nrql_escape_string() {
+-  local input="$1"
+-  local output=""
+-  local char
+-  local i
+-
+-  for ((i = 0; i < ${#input}; i++)); do
+-    char="${input:i:1}"
+-    case "$char" in
+-      "\\") output+="\\\\" ;;
+-      "'") output+="''" ;;
+-      *) output+="$char" ;;
+-    esac
+-  done
+-
+-  printf '%s' "$output"
+-}
+-
+-require_positive_integer "$SINCE" "minutes-ago"
+-SAFE_APP="$(nrql_escape_string "$APP")"
+-
+-run_nrql() {
+-  local query="$1"
+-  newrelic nrql query --accountId "$NEW_RELIC_ACCOUNT_ID" --query "$query"
+-}
+-
+-echo "=== Top 10 Slowest Transactions: $APP (last ${SINCE} minutes) ==="
+-echo ""
+-
+-echo "--- By Average Duration ---"
+-run_nrql "
+-  SELECT average(duration) AS 'Avg (s)', percentile(duration, 95) AS 'P95 (s)', count(*) AS 'Calls'
+-  FROM Transaction
+-  WHERE appName = '$SAFE_APP'
+-  FACET name
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 10
+-  ORDER BY average(duration) DESC
+-"
+-
+-echo ""
+-echo "--- DB-Heavy Transactions (DB time > 50% of total) ---"
+-run_nrql "
+-  SELECT average(duration) AS 'Total (s)',
+-         average(databaseDuration) AS 'DB (s)',
+-         percentage(average(databaseDuration), average(duration)) AS 'DB %'
+-  FROM Transaction
+-  WHERE appName = '$SAFE_APP' AND databaseDuration > 0
+-  FACET name
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 10
+-  ORDER BY average(databaseDuration) DESC
+-"
+-
+-echo ""
+-echo "--- Slowest Individual DB Queries ---"
+-run_nrql "
+-  SELECT average(duration) AS 'Avg (s)', count(*) AS 'Executions'
+-  FROM DatabaseTrace
+-  WHERE appName = '$SAFE_APP'
+-  FACET statement
+-  SINCE ${SINCE} minutes ago
+-  LIMIT 10
+-  ORDER BY average(duration) DESC
+-"
+diff -rN -U0 --ignore-trailing-space a/newrelic-cli-skills/SKILL.md b/newrelic-cli-skills/SKILL.md
+--- a/newrelic-cli-skills/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/newrelic-cli-skills/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-description: >
++description: >-
+@@ -11,30 +10,0 @@
+-  openclaw:
+-    purpose: >
+-      New Relic observability skill for both read and targeted write workflows.
+-      Reads APM metrics, NRQL query results, alert policies/conditions,
+-      incidents, and infrastructure host data from the New Relic API. Write
+-      operations in this repo include deployment marker creation plus alert
+-      policy, condition, and notification channel creation; the alerts sub-skill
+-      also documents alert condition deletion. Helper scripts execute newrelic
+-      CLI commands only and should validate untrusted inputs before embedding
+-      them in NRQL.
+-    requires:
+-      env:
+-        - NEW_RELIC_API_KEY
+-        - NEW_RELIC_ACCOUNT_ID
+-      binaries:
+-        - newrelic
+-      notes: |
+-        NEW_RELIC_API_KEY must be a User Key (starts with NRAK-).
+-        NEW_RELIC_ACCOUNT_ID is the numeric account ID from the NR UI.
+-        See README.md for CLI installation instructions.
+-        Use an API key scoped to the minimum required accounts.
+-  upstream:
+-    version: 1.0.3
+-    tags:
+-      - newrelic
+-      - observability
+-      - apm
+-      - monitoring
+-      - performance
+-      - nrql
+@@ -149 +119 @@
+-## Scripts
++## Bundled Guidance
+@@ -151,11 +121 @@
+-| Script | Purpose |
+-|---|---|
+-| [`scripts/check-performance.sh`](scripts/check-performance.sh) | Quick health check across all apps |
+-| [`scripts/deployment-marker.sh`](scripts/deployment-marker.sh) | Record a deployment event |
+-| [`scripts/top-slow-transactions.sh`](scripts/top-slow-transactions.sh) | Find the 10 slowest transactions |
+-| [`scripts/error-report.sh`](scripts/error-report.sh) | Recent errors with stack traces |
+-
+-## References
+-
+-- [`references/nrql-patterns.md`](references/nrql-patterns.md) — Common NRQL query patterns
+-- [`references/performance-triage.md`](references/performance-triage.md) — Step-by-step triage guide
++The package contains the six sub-skills listed above. It does not bundle helper scripts or a separate references directory. Use the inline CLI and NRQL examples in the relevant sub-skill, inspect `newrelic --help` for the installed CLI version, and adapt commands to the user's account and region.

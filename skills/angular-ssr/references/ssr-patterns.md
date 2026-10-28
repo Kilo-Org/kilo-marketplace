@@ -28,7 +28,7 @@ export class Time {
 })
 export class Time {
   currentTime = signal('');
-  
+
   constructor() {
     afterNextRender(() => {
       this.currentTime.set(new Date().toLocaleTimeString());
@@ -81,7 +81,7 @@ export class Seo {
   private meta = inject(Meta);
   private title = inject(Title);
   private document = inject(DOCUMENT);
-  
+
   updateMetaTags(config: {
     title: string;
     description: string;
@@ -92,52 +92,52 @@ export class Seo {
     // Basic meta
     this.title.setTitle(config.title);
     this.meta.updateTag({ name: 'description', content: config.description });
-    
+
     // Open Graph
     this.meta.updateTag({ property: 'og:title', content: config.title });
     this.meta.updateTag({ property: 'og:description', content: config.description });
     this.meta.updateTag({ property: 'og:type', content: config.type || 'website' });
-    
+
     if (config.image) {
       this.meta.updateTag({ property: 'og:image', content: config.image });
     }
-    
+
     if (config.url) {
       this.meta.updateTag({ property: 'og:url', content: config.url });
       this.updateCanonicalUrl(config.url);
     }
-    
+
     // Twitter Card
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
     this.meta.updateTag({ name: 'twitter:description', content: config.description });
-    
+
     if (config.image) {
       this.meta.updateTag({ name: 'twitter:image', content: config.image });
     }
   }
-  
+
   private updateCanonicalUrl(url: string) {
     let link: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
-    
+
     if (!link) {
       link = this.document.createElement('link');
       link.setAttribute('rel', 'canonical');
       this.document.head.appendChild(link);
     }
-    
+
     link.setAttribute('href', url);
   }
-  
+
   setJsonLd(data: object) {
     let script: HTMLScriptElement | null = this.document.querySelector('script[type="application/ld+json"]');
-    
+
     if (!script) {
       script = this.document.createElement('script');
       script.type = 'application/ld+json';
       this.document.head.appendChild(script);
     }
-    
+
     script.textContent = JSON.stringify(data);
   }
 }
@@ -147,7 +147,7 @@ export class Seo {
 export class Product {
   private seo = inject(Seo);
   product = input.required<Product>();
-  
+
   constructor() {
     effect(() => {
       const product = this.product();
@@ -158,7 +158,7 @@ export class Product {
         url: `https://mystore.com/products/${product.id}`,
         type: 'product',
       });
-      
+
       this.seo.setJsonLd({
         '@context': 'https://schema.org',
         '@type': 'Product',
@@ -184,7 +184,7 @@ export const seoResolver: ResolveFn<SeoData> = async (route) => {
   const productId = route.paramMap.get('id')!;
   const productService = inject(Product);
   const product = await productService.getById(productId);
-  
+
   return {
     title: `${product.name} | My Store`,
     description: product.description,
@@ -204,7 +204,7 @@ export const seoResolver: ResolveFn<SeoData> = async (route) => {
 export class Product {
   private seo = inject(Seo);
   seoData = input.required<SeoData>(); // From resolver
-  
+
   constructor() {
     effect(() => {
       this.seo.updateMetaTags(this.seoData());
@@ -225,7 +225,7 @@ import { REQUEST } from '@angular/ssr/tokens';
 export class Auth {
   private request = inject(REQUEST, { optional: true });
   private platformId = inject(PLATFORM_ID);
-  
+
   getToken(): string | null {
     if (isPlatformServer(this.platformId) && this.request) {
       // Read from request cookies on server
@@ -233,13 +233,13 @@ export class Auth {
       const match = cookies.match(/auth_token=([^;]+)/);
       return match ? match[1] : null;
     }
-    
+
     if (isPlatformBrowser(this.platformId)) {
       // Read from document cookies on client
       const match = document.cookie.match(/auth_token=([^;]+)/);
       return match ? match[1] : null;
     }
-    
+
     return null;
   }
 }
@@ -253,7 +253,7 @@ export const serverRoutes: ServerRoute[] = [
   // Public routes - prerender
   { path: '', renderMode: RenderMode.Prerender },
   { path: 'products', renderMode: RenderMode.Prerender },
-  
+
   // Authenticated routes - client only
   { path: 'dashboard', renderMode: RenderMode.Client },
   { path: 'profile', renderMode: RenderMode.Client },
@@ -273,7 +273,7 @@ import { REQUEST, RESPONSE_INIT } from '@angular/ssr/tokens';
 @Component({...})
 export class ProductList {
   private responseInit = inject(RESPONSE_INIT, { optional: true });
-  
+
   constructor() {
     // Set cache headers for SSR response
     if (this.responseInit) {
@@ -319,7 +319,7 @@ import { isPlatformServer } from '@angular/common';
 @Injectable()
 export class SsrError implements ErrorHandler {
   private platformId = inject(PLATFORM_ID);
-  
+
   handleError(error: Error) {
     if (isPlatformServer(this.platformId)) {
       // Log server errors
@@ -351,14 +351,14 @@ export class SsrError implements ErrorHandler {
 })
 export class PageCmpt {
   private dataService = inject(Data);
-  
+
   data = signal<Data | null>(null);
   dataError = signal(false);
-  
+
   constructor() {
     this.loadData();
   }
-  
+
   private async loadData() {
     try {
       const data = await this.dataService.getData();
@@ -381,24 +381,24 @@ export class PageCmpt {
     <header>
       <app-navigation />
     </header>
-    
+
     <!-- Main content - hydrate on viewport -->
     <main>
       @defer (hydrate on viewport) {
         <app-product-grid [products]="products()" />
       }
     </main>
-    
+
     <!-- Below fold - hydrate on idle -->
     @defer (hydrate on idle) {
       <app-reviews [productId]="productId()" />
     }
-    
+
     <!-- Interactive only - hydrate on interaction -->
     @defer (hydrate on interaction) {
       <app-chat-widget />
     }
-    
+
     <!-- Static footer - never hydrate -->
     @defer (hydrate never) {
       <app-footer />
@@ -455,18 +455,18 @@ describe('SSR', () => {
       providers: config.providers,
       url: '/',
     });
-    
+
     expect(html).toContain('<h1>Welcome</h1>');
     expect(html).toContain('</app-root>');
   });
-  
+
   it('should render product page with data', async () => {
     const html = await renderApplication(App, {
       appId: 'my-app',
       providers: config.providers,
       url: '/products/123',
     });
-    
+
     expect(html).toContain('Product Name');
     expect(html).not.toContain('Loading...');
   });
@@ -485,11 +485,11 @@ describe('Hydration', () => {
       providers: [provideClientHydration()],
     });
   });
-  
+
   it('should hydrate without errors', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    
+
     // No hydration mismatch errors should be thrown
     expect(fixture.componentInstance).toBeTruthy();
   });

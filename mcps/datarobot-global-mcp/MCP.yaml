@@ -1,0 +1,25 @@
+id: datarobot-global-mcp
+name: DataRobot Global MCP
+description: Accesses DataRobot predictive AI projects, deployments, and prediction tools through an account-specific Global MCP endpoint authenticated by a DataRobot API token.
+author: DataRobot
+url: https://docs.datarobot.com/en/docs/agentic-ai/agentic-mcp/agentic-mcp-clients.html
+category: data
+prerequisites:
+  - DataRobot account with Global MCP enabled
+content:
+  - name: DataRobot account remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://{{DATAROBOT_HOST}}/api/v2/genai/globalmcp/mcp",
+        "headers": {
+          "Authorization": "Bearer {{DATAROBOT_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: DataRobot hostname
+    key: DATAROBOT_HOST
+    placeholder: app.datarobot.com
+  - name: DataRobot API token
+    key: DATAROBOT_API_TOKEN
+    placeholder: your_datarobot_api_token

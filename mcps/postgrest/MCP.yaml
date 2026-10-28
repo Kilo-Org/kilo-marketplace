@@ -4,12 +4,7 @@ description: Enables database operations on PostgreSQL through PostgREST, suppor
   API requests for querying and modifying data.
 author: supabase-community
 url: https://github.com/supabase-community/mcp-supabase/tree/HEAD/packages/mcp-server-postgrest
-tags:
-  - postgresql
-  - postgrest
-  - database-api
-  - sql
-  - supabase
+category: data
 content:
   - name: NPX
     prerequisites:

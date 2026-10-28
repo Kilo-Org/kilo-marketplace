@@ -3,9 +3,7 @@ id: code-simplifier
 name: Code Simplifier
 description: For simplifying/refactoring features of codebase
 author: "@cau1k"
-tags:
-  - refactor
-  - quality
+category: development
 mode: primary
 permission:
   read: allow

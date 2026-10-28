@@ -1,0 +1,15 @@
+id: transform-mcp
+name: Unstructured Transform MCP
+description: "Production-grade document processing your AI agents call as MCP tools: parse PDFs, spreadsheets, and dozens of file types with tables and layout intact, via Unstructured's hosted OAuth server."
+author: Unstructured
+url: https://docs.unstructured.io/transform/overview
+category: data
+prerequisites:
+  - "Unstructured account, created at https://transform.unstructured.io/get-started (free tier includes 15,000 pages a month)"
+content:
+  - name: Transform MCP (hosted OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.transform.unstructured.io"
+      }

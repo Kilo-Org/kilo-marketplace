@@ -186,7 +186,7 @@ One row per transaction with running balance
 2. Add window function for cumulative quantity on hand
 3. Filter to end-of-day balance per product
 
-## Unit tests 
+## Unit tests
 - Running balance correctly accumulates across multiple transactions for same product
 - End-of-day quantity reflects the last transaction when multiple occur on the same day
 - Value on hand equals quantity on hand multiplied by unit cost

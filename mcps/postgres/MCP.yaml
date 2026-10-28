@@ -4,12 +4,7 @@ description: Provides read-only access to PostgreSQL databases, allowing LLMs to
   read-only queries within protected transactions.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres
-tags:
-  - postgresql
-  - database-queries
-  - schema-inspection
-  - read-only
-  - sql
+category: data
 content:
   - name: NPX
     prerequisites:

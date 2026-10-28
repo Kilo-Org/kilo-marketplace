@@ -1,0 +1,14 @@
+[project]
+name = "mypkg"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = "==3.13.*"
+dependencies = [
+    "mlflow-skinny",
+    "azureml-mlflow"
+]
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"

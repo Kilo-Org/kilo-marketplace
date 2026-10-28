@@ -1,0 +1,13 @@
+id: astronomer-docs-mcp
+name: Astronomer Docs MCP
+description: Searches Astronomer and Astro documentation through Astronomer's public hosted MCP endpoint without requiring local credentials.
+author: Astronomer
+url: https://www.astronomer.io/docs/_mcp/server
+category: search
+content:
+  - name: Astronomer hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.astronomer.io/docs/_mcp/server"
+      }

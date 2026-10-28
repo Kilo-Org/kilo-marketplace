@@ -2,6 +2,12 @@
 
 Thank you for your interest in contributing to the Kilo Marketplace! This guide will help you add new skills that benefit the entire community.
 
+## Contributing Plugins
+
+To contribute an npm or git plugin, follow the [plugin contribution workflow](plugins/README.md#contribution-workflow). It covers scoped and unscoped package directories, supported registry and git source specifiers, the normalized git identity rule for `id`, server and TUI manifest requirements, and catalog generation and checks.
+
+Registry plugin source code stays in its own repository and is published to npm. Git plugin source code can live in any public git repository, or inside this marketplace repository. Git plugins must be self-contained: Kilo clones the repository and loads the plugin directly, and it does not install npm dependencies for git plugins in this version. Contributions are accepted through pull requests only.
+
 ## Before You Start
 
 - Ensure your skill is based on a **real use case**, not a hypothetical scenario.
@@ -126,18 +132,28 @@ description: >-
 metadata:
   category: development
   author: your-github-username
+  suggest_for:
+    filename:
+      - "*.component.ts"
   source:
     repository: https://github.com/yourname/your-skill-repo
     path: path/to/skill
     license_path: LICENSE
+    commit: 0123456789abcdef0123456789abcdef01234567
 ---
 ```
 
 | Field | Required | Description |
 |-------|----------|-------------|
+| `metadata.suggest_for.filename` | No | Non-empty list of patterns that make this skill highly probable from the filename alone; prefer distinctive forms such as `"*.component.ts"` and omit broad patterns such as `"*.ts"` |
+| `metadata.suggest_for.vscode_extension` | No | Non-empty list of VS Code extension objects (`name` + `id`) that strongly indicate this skill is relevant, such as `{ name: "Jupyter", id: "ms-toolsai.jupyter" }` |
+| `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
 | `metadata.source.repository` | **Yes** (for contributed skills) | URL to the GitHub repository containing your skill |
 | `metadata.source.path` | **Yes** (for contributed skills) | Path within the repository to the skill directory |
 | `metadata.source.license_path` | **Yes** (for contributed skills) | Path to the LICENSE file in the source repo |
+| `metadata.source.commit` | **Yes** (for new imports and updates) | Full 40-character Git SHA of the imported upstream revision; managed by marketplace tooling |
+
+Suggestion patterns are intentionally not exhaustive. A format being supported as input or output is not enough to add it: for example, a generic Markdown or audio file does not imply a writing or meeting-analysis task. Likewise, only list a VS Code extension when its installation strongly indicates the exact skill is relevant. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Real-World Examples
 
@@ -181,6 +197,7 @@ metadata:
   source:
     repository: 'https://github.com/cline/cline'
     path: .cline/skills/create-pull-request
+    license_path: LICENSE
 ---
 ```
 
@@ -256,131 +273,28 @@ Examples:
 
 ---
 
-## Contributing Custom Modes
+## Marketplace Requirements
 
-Custom modes allow you to tailor Kilo Code's behavior for specific tasks or workflows. You can contribute modes that benefit the community.
-
-### Mode Requirements
-
-All contributed modes must:
-
-1. **Serve a clear purpose** - Optimized for specific tasks like documentation, testing, or security review
-2. **Be well-documented** - Include clear descriptions and use cases
-3. **Define appropriate permissions** - Use tool groups and file restrictions responsibly
-4. **Be tested** - Verify the mode works correctly in Kilo Code
-
-### Mode Structure
-
-Create a new folder with your mode name (use lowercase and hyphens):
-
-```
-modes/
-└── mode-name/
-    └── MODE.yaml
-```
-
-The `MODE.yaml` file should contain:
+Agent, skill, and MCP definitions may declare machine-readable dependencies with an optional top-level `requirements` field:
 
 ```yaml
-id: mode-slug
-name: Mode Display Name
-description: Brief description of what this mode does
-author: "@your-github-username"
-tags: [relevant, tags, here]
-content: |
-  slug: mode-slug
-  name: 🎯 Mode Display Name
-  roleDefinition: |
-    You are a specialist in [domain]. Your expertise includes:
-    - Capability 1
-    - Capability 2
-    - Capability 3
-  groups:
-    - read
-    - edit
-    - command
-  customInstructions: |
-    Specific behavioral guidelines for this mode.
+requirements:
+  skills:
+    - jupyter-notebook
+  vscode_extensions:
+    - name: Jupyter
+      id: ms-toolsai.jupyter
+  mcps:
+    - jupyter
 ```
 
-### Mode Properties
+The supported subgroups are exactly `skills`, `vscode_extensions`, and `mcps`. Each subgroup that is present must be a non-empty list, and every listed item is a direct required dependency; alternative or OR groups are not supported. Omit `requirements` entirely when the resource has no machine-readable dependencies.
 
-| Property | Required | Description |
-|----------|----------|-------------|
-| `id` | Yes | Unique identifier (kebab-case) |
-| `name` | Yes | Display name shown in the marketplace |
-| `description` | Yes | Brief description of the mode's purpose |
-| `author` | Yes | Your GitHub username with @ prefix |
-| `tags` | Yes | Array of relevant tags for discovery |
-| `content.slug` | Yes | Internal identifier (must match `id`) |
-| `content.name` | Yes | Display name with optional emoji |
-| `content.roleDefinition` | Yes | Defines the mode's expertise and personality |
-| `content.groups` | Yes | Tool groups the mode can access |
-| `content.customInstructions` | No | Additional behavioral guidelines |
-| `content.whenToUse` | No | Guidance for automated mode selection |
+Skill values must be exact marketplace skill IDs, and MCP values must match the `id` in the resource's `MCP.yaml`. Both are checked during marketplace generation. A skill cannot require itself, and an MCP cannot require itself. Dependencies between multiple resources are not expanded or checked for cycles. Each VS Code extension requires a human-readable `name` and a non-empty extension identifier in `id`. Authored values and list ordering are preserved without normalization, sorting, or deduplication.
 
-### Available Tool Groups
+Declare requirements at the top level of `agents/<id>/AGENT_DEFINITION.md`, `skills/<id>/SKILL.md`, or `mcps/<id>/MCP.yaml`. Generated agent requirements are emitted as `items[].content.requirements` so installation retains them. Generated skill and MCP requirements remain at `items[].requirements`, because skill content is a download URL and MCP content is runtime configuration.
 
-- `read` - Read files and explore the codebase
-- `edit` - Modify files (can include file restrictions)
-- `command` - Execute terminal commands
-- `browser` - Browser automation capabilities
-- `mcp` - Access MCP server tools
-
-### File Restrictions Example
-
-To restrict which files a mode can edit:
-
-```yaml
-groups:
-  - read
-  - - edit
-    - fileRegex: \.(md|mdx)$
-      description: Markdown files only
-  - command
-```
-
-### Mode Examples
-
-**Documentation Writer** (`modes/docs-writer/MODE.yaml`):
-```yaml
-id: docs-writer
-name: Documentation Writer
-description: Technical documentation expert for clear, comprehensive docs
-author: "@your-username"
-tags: [documentation, markdown, technical-writing]
-content: |
-  slug: docs-writer
-  name: 📝 Documentation Writer
-  roleDefinition: |
-    You are a technical writer specializing in clear documentation.
-  groups:
-    - read
-    - - edit
-      - fileRegex: \.md$
-        description: Markdown files only
-  customInstructions: |
-    Focus on clarity, proper formatting, and comprehensive examples.
-```
-
-**Security Reviewer** (`modes/security-review/MODE.yaml`):
-```yaml
-id: security-review
-name: Security Reviewer
-description: Read-only security analysis and vulnerability assessment
-author: "@your-username"
-tags: [security, audit, code-review]
-content: |
-  slug: security-review
-  name: 🔒 Security Reviewer
-  roleDefinition: |
-    You are a security specialist reviewing code for vulnerabilities.
-  groups:
-    - read
-    - browser
-  customInstructions: |
-    Focus on input validation, authentication flaws, and data exposure risks.
-```
+Keep setup instructions that cannot be resolved to marketplace skills, MCPs, or VS Code extensions in `prerequisites`.
 
 ---
 
@@ -415,10 +329,10 @@ name: Service Name
 description: Brief description of what this MCP server provides
 author: author-name
 url: https://github.com/org/repo
-tags:
-  - relevant
-  - tags
-  - here
+category: development
+suggest_for:
+  filename:
+    - "*.i64"
 prerequisites:
   - Required software or accounts
 content:
@@ -448,10 +362,28 @@ parameters:
 | `description` | Yes | Clear description of capabilities |
 | `author` | Yes | Author or organization name |
 | `url` | Yes | Link to the MCP server repository |
-| `tags` | Yes | Array of relevant tags |
+| `category` | Yes | Primary category: `business`, `data`, `development`, `observability`, `productivity`, `search`, or `web-automation` |
+| `suggest_for.filename` | No | Non-empty list of patterns that make this MCP server highly probable from the filename alone; prefer proprietary formats such as `"*.i64"` and omit broad patterns such as `"*.php"` |
+| `suggest_for.vscode_extension` | No | Non-empty list of VS Code extension objects (`name` + `id`) that strongly indicate this MCP server is relevant, such as `{ name: "Jupyter", id: "ms-toolsai.jupyter" }` |
+| `requirements` | No | Direct skill, VS Code extension, and MCP dependencies; see [Marketplace Requirements](#marketplace-requirements) |
+| `skills` | No | Companion skill IDs installed with this MCP; see [MCP Companion Skills](#mcp-companion-skills) |
 | `prerequisites` | No | Required software or accounts |
 | `content` | Yes | Installation configuration(s) |
 | `parameters` | No | User-configurable parameters |
+
+Choose the single category that best represents how users will discover the MCP. Categories are broad navigation groups, not a list of every capability:
+
+- `business` - Finance, payments, contracts, and other specialized business operations
+- `data` - Databases, storage, data engineering, and persistent knowledge
+- `development` - Code, repositories, developer platforms, and software tooling
+- `observability` - Logs, errors, telemetry, and application or infrastructure monitoring
+- `productivity` - Projects, workflows, collaboration, communication, and office tools
+- `search` - Web, documentation, knowledge, and other information retrieval
+- `web-automation` - Browser control, testing, scraping, and web content extraction
+
+Propose a new category only when several MCPs share a distinct primary purpose that does not fit an existing category.
+
+Suggestion patterns are intentionally not exhaustive. Do not list every format an MCP can open; add only filenames or VS Code extensions that strongly identify that exact MCP, such as `"*.ipynb"` or `{ name: "Jupyter", id: "ms-toolsai.jupyter" }`. A `suggest_for` object must contain at least one of `filename` or `vscode_extension`.
 
 ### Transport Types
 
@@ -526,6 +458,120 @@ parameters:
     optional: true
 ```
 
+### MCP Companion Skills
+
+Use the optional top-level `skills` field to install workflows with an MCP server. Author a non-empty list of unique marketplace skill IDs, not URLs or descriptor objects. Each ID must be lowercase kebab-case, must not be a reserved device name such as `con`, and must reference `skills/<id>/SKILL.md`. The file must be a regular file with a matching frontmatter `name` and a non-empty `description`. Omit the field when the server has no companions.
+
+When `skills` is present, the MCP's own `id` must also be safe lowercase kebab-case. Device names and prototype-related names such as `constructor`, `prototype`, and `__proto__` are not permitted. This extra validation does not change MCPs without companions.
+
+Companion skills follow the same [external source-hosting requirement](#skills-must-be-hosted-externally) as standalone skills. Keep the canonical source in a public repository and retain `metadata.source` in the imported marketplace copy.
+
+These fields have different purposes:
+
+- `prerequisites` describes setup the user must complete, such as an account, credentials, or a running service. It does not install files.
+- `requirements.skills` retains its existing meaning as direct dependency metadata. It is not expanded into companion archives and does not grant ownership of a skill installation.
+- `skills` selects companion archives to install with the MCP in the same project or global scope. It does not recursively install a skill's dependencies.
+
+Keep `skills` outside the JSON runtime configuration in `content`. It applies to every installation method for the MCP. Clients with bundle support disclose the companions before installation and manage removal using local installation ownership, not the current catalog's list. A pre-existing skill is not adopted or overwritten.
+
+#### Complete Remote Example
+
+The following definitions are documentation examples, not a published service. Replace the example owner, URLs, and workflow with your actual public source and tested MCP endpoint before submitting a listing.
+
+In the server's public repository, create `skills/example-docs-guide/SKILL.md`:
+
+```markdown
+---
+name: example-docs-guide
+description: Use the Example Docs MCP to find version-specific documentation and cite source pages.
+license: Apache-2.0
+metadata:
+  category: search
+---
+
+# Example Docs Guide
+
+1. Confirm the product, version, and question with the user when they are unclear.
+2. Use the connected Example Docs MCP's documented tools to search and read relevant pages.
+3. Check that the returned pages match the requested product and version.
+4. Answer with source URLs. If the tools fail or no matching page exists, state the limitation instead of inventing documentation.
+
+Use read-only tools. Never request credentials in the conversation or include them in an answer.
+```
+
+Import the skill with the [remote skill workflow](#adding-your-skill-to-the-marketplace). The imported copy belongs at `skills/example-docs-guide/`; the importer records its canonical repository, path, ref, and commit in `metadata.source`. Review licensing and preserve required license files and notices. Official Kilo skills use [Kilo-Org/skills](https://github.com/Kilo-Org/skills) as their canonical source, not this catalog.
+
+After the skill archive is published, add `mcps/example-docs/MCP.yaml`:
+
+```yaml
+id: example-docs
+name: Example Docs
+description: Search and read version-specific product documentation.
+author: example-org
+url: https://github.com/example-org/docs-mcp
+category: search
+prerequisites:
+  - An Example Docs account with read access
+  - A client version with MCP companion skill support
+skills:
+  - example-docs-guide
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.example.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{DOCS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Read-only API token
+    key: DOCS_TOKEN
+    placeholder: your_read_only_token
+```
+
+Keep real credentials out of source files. The generator preserves the MCP configuration and replaces only the authored companion references in `mcps/marketplace.yaml`:
+
+```yaml
+skills:
+  - id: example-docs-guide
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/example-docs-guide.tar.gz
+```
+
+This optional API field contains only `id` and the archive URL in `content`. Clients do not need a second catalog lookup. The `/api/marketplace/mcps` API passes generated YAML through unchanged. Do not edit generated catalogs manually.
+
+#### Resources And Archives
+
+A companion is the same package as a standalone skill, not just its Markdown text. Keep any `scripts/`, `references/`, `assets/`, `examples/`, and required license files inside the skill directory. Resolve resources relative to the loaded skill directory, not a fixed project path. Review bundled scripts; installation does not execute them.
+
+On a `main` push affecting `skills/**` or `bin/**`, the Package Skills workflow archives each skill with a single outer `<id>/` directory. It includes the resources and excludes `<id>/evals`, `<id>/local.patch`, and `<id>/local.remove`. It creates a timestamped release and updates the mutable `skills-latest` assets used by both catalogs. A change in the canonical source alone does not update a published archive: import or update the marketplace copy, validate it, and merge it first.
+
+#### Validation And Publication
+
+From `bin/`, run the catalog checks:
+
+```sh
+pnpm install
+pnpm exec tsx generate-skill-marketplace.ts
+pnpm exec tsx generate-mcps-marketplace.ts
+pnpm test
+pnpm run typecheck:mcps
+pnpm run typecheck:plugins
+```
+
+Validate each new or changed skill with `skills-ref validate skills/<id>` from the repository root, as the Validate Skills workflow does. Test the real MCP endpoint and companion workflow in a supported client, including a skill that has a relative resource file. Check both installation scopes, a conflicting existing skill, and removal. Confirm that unrelated skills remain unchanged.
+
+Publish in this order:
+
+1. Release a Kilo CLI version with the companion install and removal contract. Verify and release each client that exposes the feature. In JetBrains, bump the pinned CLI version only after that CLI release exists, then test and release the plugin. Older clients can ignore `skills` and install only the MCP; do not advertise a complete bundle to those clients.
+2. Merge the real skill into its canonical public repository. Import it into this repository, validate its metadata and resources, and merge the skill and generated standalone catalog through a pull request.
+3. Wait for Package Skills to finish and verify `https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/<id>.tar.gz` is downloadable and contains `<id>/SKILL.md` plus the required resources. Generator validation checks local sources, not remote asset availability.
+4. Add the MCP's companion IDs, regenerate the MCP catalog, and submit the listing through a pull request. An already published skill can be referenced directly without a separate skill release.
+5. After merge, allow for the API's one-hour cache and client cache refresh, then verify installation from the public marketplace.
+
+Do not rely on cache delay to hide a missing archive. Catalog changes and release uploads are separate operations, so merging a new skill and its first MCP reference together can expose a download URL before its asset exists.
+
 ### MCP Example
 
 **Example Service** (`mcps/example-service/MCP.yaml`):
@@ -536,10 +582,7 @@ name: Example Service
 description: Enables AI assistants to interact with Example Service API for data retrieval and automation.
 author: example-org
 url: https://github.com/example-org/example-mcp
-tags:
-  - api-integration
-  - automation
-  - data-retrieval
+category: business
 prerequisites:
   - Example Service account
 content:
@@ -575,6 +618,6 @@ parameters:
 
 ## Questions?
 
-Open an issue if you have questions about contributing or need help structuring your skill, mode, or MCP server.
+Open an issue if you have questions about contributing or need help structuring your skill, agent, or MCP server.
 
 Thank you for contributing to Kilo Marketplace!

@@ -1,0 +1,32 @@
+id: microsoft-data-api-builder
+name: Microsoft SQL MCP Server
+description: Runs Data API builder's self-hosted SQL MCP server over stdio, exposing only the database entities and operations allowed by the supplied DAB configuration and RBAC policy.
+author: Microsoft
+url: https://github.com/Azure/data-api-builder
+category: data
+prerequisites:
+  - Docker on an x86-64 host
+  - DAB configuration with explicit entities, authentication, and read-only permissions where appropriate
+content:
+  - name: Docker (official Data API builder 2.0.8)
+    prerequisites:
+      - Docker on an x86-64 host
+    content: |
+      {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-v",
+          "{{DAB_CONFIG_PATH}}:/App/dab-config.json:ro",
+          "mcr.microsoft.com/azure-databases/data-api-builder:2.0.8",
+          "--mcp-stdio",
+          "--config",
+          "/App/dab-config.json"
+        ]
+      }
+parameters:
+  - name: Data API builder config path
+    key: DAB_CONFIG_PATH
+    placeholder: /absolute/path/to/dab-config.json

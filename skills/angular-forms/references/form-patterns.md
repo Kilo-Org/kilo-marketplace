@@ -25,21 +25,21 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
       @if (form.controls.email.errors?.['required'] && form.controls.email.touched) {
         <span class="error">Email is required</span>
       }
-      
+
       <input type="password" formControlName="password" />
-      
+
       <button type="submit" [disabled]="form.invalid">Login</button>
     </form>
   `,
 })
 export class Login {
   private fb = inject(FormBuilder);
-  
+
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
-  
+
   onSubmit() {
     if (this.form.valid) {
       console.log(this.form.value);
@@ -99,7 +99,7 @@ import { NonNullableFormBuilder } from '@angular/forms';
 @Component({...})
 export class Profile {
   private fb = inject(NonNullableFormBuilder);
-  
+
   form = this.fb.group({
     name: ['', Validators.required],           // FormControl<string>
     email: ['', [Validators.required, Validators.email]],
@@ -121,20 +121,20 @@ export class Profile {
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <input formControlName="name" placeholder="Name" />
-      
+
       <div formGroupName="address">
         <input formControlName="street" placeholder="Street" />
         <input formControlName="city" placeholder="City" />
         <input formControlName="zip" placeholder="ZIP" />
       </div>
-      
+
       <button type="submit">Submit</button>
     </form>
   `,
 })
 export class Profile {
   private fb = inject(NonNullableFormBuilder);
-  
+
   form = this.fb.group({
     name: ['', Validators.required],
     address: this.fb.group({
@@ -170,26 +170,26 @@ import { FormArray } from '@angular/forms';
 })
 export class Order {
   private fb = inject(NonNullableFormBuilder);
-  
+
   form = this.fb.group({
     items: this.fb.array([this.createItem()]),
   });
-  
+
   get items() {
     return this.form.controls.items;
   }
-  
+
   createItem() {
     return this.fb.group({
       product: ['', Validators.required],
       quantity: [1, [Validators.required, Validators.min(1)]],
     });
   }
-  
+
   addItem() {
     this.items.push(this.createItem());
   }
-  
+
   removeItem(index: number) {
     this.items.removeAt(index);
   }
@@ -205,8 +205,8 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function forbiddenValue(forbidden: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    return control.value === forbidden 
-      ? { forbiddenValue: { value: control.value } } 
+    return control.value === forbidden
+      ? { forbiddenValue: { value: control.value } }
       : null;
   };
 }
@@ -249,7 +249,7 @@ export function uniqueEmail(userService: User): AsyncValidatorFn {
 }
 
 // Usage
-email: ['', 
+email: ['',
   [Validators.required, Validators.email],  // sync validators
   [uniqueEmail(this.userService)]            // async validators
 ],
@@ -313,10 +313,10 @@ form.statusChanges.subscribe(status => {
 ### Unified Events (Angular v18+)
 
 ```typescript
-import { 
+import {
   ValueChangeEvent, StatusChangeEvent,
   PristineChangeEvent,TouchedChangeEvent,
-  FormSubmittedEvent, FormResetEvent 
+  FormSubmittedEvent, FormResetEvent
 } from '@angular/forms';
 
 form.events.subscribe(event => {
@@ -347,7 +347,7 @@ form.events.subscribe(event => {
 @Component({
   template: `
     <input formControlName="email" />
-    
+
     @if (form.controls.email.invalid && form.controls.email.touched) {
       <div class="errors">
         @if (form.controls.email.errors?.['required']) {
@@ -384,13 +384,13 @@ export class Form {
 })
 export class Form {
   isSubmitting = false;
-  
+
   async onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-    
+
     this.isSubmitting = true;
     try {
       await this.api.submit(this.form.getRawValue());

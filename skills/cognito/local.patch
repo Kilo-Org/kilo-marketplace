@@ -1,0 +1,28 @@
+diff -rN -U0 --ignore-trailing-space a/cognito/SKILL.md b/cognito/SKILL.md
+--- a/cognito/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/cognito/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -8,3 +7,0 @@
+-  upstream:
+-    last_updated: '2026-01-07'
+-    doc_source: 'https://docs.aws.amazon.com/cognito/latest/developerguide/'
+@@ -126,0 +124,6 @@
++import os
++
++username = 'user@example.invalid'
++client_id = os.environ['COGNITO_CLIENT_ID']
++client_secret = os.environ['COGNITO_CLIENT_SECRET']
++
+@@ -128,4 +131,4 @@
+-    ClientId='client-id',
+-    SecretHash=get_secret_hash('user@example.com', 'client-id', 'client-secret'),
+-    Username='user@example.com',
+-    Password='SecurePassword123!',
++    ClientId=client_id,
++    SecretHash=get_secret_hash(username, client_id, client_secret),
++    Username=username,
++    Password=os.environ['COGNITO_INITIAL_PASSWORD'],
+@@ -133,2 +136,2 @@
+-        {'Name': 'email', 'Value': 'user@example.com'},
+-        {'Name': 'name', 'Value': 'John Doe'}
++        {'Name': 'email', 'Value': username},
++        {'Name': 'name', 'Value': 'Example User'}

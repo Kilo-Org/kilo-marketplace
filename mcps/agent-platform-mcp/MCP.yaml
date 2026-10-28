@@ -1,0 +1,58 @@
+id: agent-platform-mcp
+name: Gemini Enterprise Agent Platform MCP
+description: Provides selectable hosted MCP toolsets for Gemini Enterprise Agent Platform generation, prediction, notebooks, endpoints, models, tuning, evaluation, and prompts using Google OAuth and IAM.
+author: Google Cloud
+url: https://docs.cloud.google.com/gemini-enterprise-agent-platform/reference/use-agent-platform-mcp
+category: development
+prerequisites:
+  - Google Cloud project with the Gemini Enterprise Agent Platform API enabled
+  - MCP Tool User and Agent Platform User IAM roles
+content:
+  - name: Generate toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/generate"
+      }
+  - name: Predict toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/predict"
+      }
+  - name: Notebook toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/notebook"
+      }
+  - name: Endpoint management toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/endpoints"
+      }
+  - name: Model management toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/models"
+      }
+  - name: Tuning toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/tuning"
+      }
+  - name: Evaluation toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/evaluation"
+      }
+  - name: Prompt management toolset
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aiplatform.googleapis.com/mcp/prompts"
+      }

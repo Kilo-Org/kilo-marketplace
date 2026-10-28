@@ -1,0 +1,33 @@
+id: openmetadata-us-all
+name: OpenMetadata MCP (Community Full CRUD)
+description: Exposes broad OpenMetadata entity, lineage, governance, quality, and search APIs from a standalone community server, using a bot JWT and keeping mutation tools disabled by default.
+author: us-all
+url: https://github.com/us-all/openmetadata-mcp-server
+category: data
+prerequisites:
+  - Node.js 22 or newer
+  - OpenMetadata instance and bot token
+content:
+  - name: NPX (read-only)
+    prerequisites:
+      - Node.js 22 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@us-all/openmetadata-mcp@1.16.10"
+        ],
+        "env": {
+          "OPENMETADATA_HOST": "{{OPENMETADATA_HOST}}",
+          "OPENMETADATA_TOKEN": "{{OPENMETADATA_TOKEN}}",
+          "OPENMETADATA_ALLOW_WRITE": "false"
+        }
+      }
+parameters:
+  - name: OpenMetadata Host
+    key: OPENMETADATA_HOST
+    placeholder: https://openmetadata.example.com
+  - name: OpenMetadata Bot Token
+    key: OPENMETADATA_TOKEN
+    placeholder: your_read_only_bot_jwt

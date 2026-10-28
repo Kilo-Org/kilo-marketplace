@@ -4,13 +4,13 @@ description: >-
   Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to
   follow progressive disclosure principles. Splits monolithic files into
   organized, linked documentation.
-license: MIT
 metadata:
   category: development
   source:
     repository: 'https://github.com/softaworks/agent-toolkit'
     path: skills/agent-md-refactor
     license_path: LICENSE
+    commit: 3027f20f3181758385a1bb8c022d4041dfb4de84
 ---
 
 # Agent MD Refactor

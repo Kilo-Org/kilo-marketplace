@@ -1,0 +1,32 @@
+id: unity-catalog-functions
+name: Databricks Unity Catalog Functions MCP
+description: Exposes governed Unity Catalog functions in a Databricks catalog and schema as callable tools through the workspace-managed MCP endpoint, using a PAT and the caller's EXECUTE permissions.
+author: Databricks
+url: https://docs.databricks.com/aws/en/generative-ai/mcp/managed-mcp
+category: data
+prerequisites:
+  - Databricks workspace with managed MCP enabled
+  - Token with Unity Catalog function EXECUTE permissions
+content:
+  - name: Databricks Managed Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://{{DATABRICKS_WORKSPACE_HOST}}/api/2.0/mcp/functions/{{DATABRICKS_CATALOG}}/{{DATABRICKS_SCHEMA}}",
+        "headers": {
+          "Authorization": "Bearer {{DATABRICKS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Databricks Workspace Host
+    key: DATABRICKS_WORKSPACE_HOST
+    placeholder: dbc-xxxxxxxx-xxxx.cloud.databricks.com
+  - name: Unity Catalog Catalog
+    key: DATABRICKS_CATALOG
+    placeholder: main
+  - name: Unity Catalog Schema
+    key: DATABRICKS_SCHEMA
+    placeholder: tools
+  - name: Databricks Personal Access Token
+    key: DATABRICKS_TOKEN
+    placeholder: your_databricks_pat

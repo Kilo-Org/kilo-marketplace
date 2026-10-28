@@ -4,13 +4,13 @@ description: >-
   Toolkit for interacting with and testing local web applications using
   Playwright. Supports verifying frontend functionality, debugging UI behavior,
   capturing browser screenshots, and viewing browser logs.
-license: Complete terms in LICENSE.txt
 metadata:
   category: development
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: webapp-testing
     license_path: webapp-testing/LICENSE.txt
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 # Web Application Testing
@@ -91,7 +91,7 @@ with sync_playwright() as p:
 
 ## Best Practices
 
-- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly. 
+- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly.
 - Use `sync_playwright()` for synchronous scripts
 - Always close the browser when done
 - Use descriptive selectors: `text=`, `role=`, CSS selectors, or IDs

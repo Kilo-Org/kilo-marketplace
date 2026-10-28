@@ -1,0 +1,15 @@
+{
+  "baseline_name": "current",
+  "updated_at": "2026-05-22T10:36:23.051Z",
+  "skill_name": "redis-core",
+  "eval_suite": "core",
+  "iteration": "iteration-1",
+  "input_root": "eval-workspaces/redis-core/core/iteration-1",
+  "included_files": [
+    "aggregate-benchmark.json",
+    "aggregate-benchmark.md",
+    "model-matrix.json",
+    "baseline.json",
+    "README.md"
+  ]
+}

@@ -1,0 +1,8 @@
+customer_name,segment,industry,company_size,account_manager,customer_since,lifetime_value,nps_score
+Acme Corp,Enterprise,Technology,500-1000,Sarah Chen,2021-03-15,45200.00,72
+GlobalTech Ltd,Enterprise,Manufacturing,1000+,James Miller,2020-07-22,38500.00,65
+Sakura Inc,Mid-Market,Technology,200-500,Sarah Chen,2022-01-10,28900.00,81
+Nordic Solutions,Mid-Market,Consulting,100-200,Lisa Wang,2022-06-18,21400.00,78
+Maple Systems,Enterprise,Finance,500-1000,James Miller,2021-09-03,33800.00,69
+Outback Digital,Mid-Market,Media,100-200,Lisa Wang,2023-02-28,18200.00,85
+Thames Analytics,Enterprise,Finance,1000+,Sarah Chen,2020-11-05,41600.00,74

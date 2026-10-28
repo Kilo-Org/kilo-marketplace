@@ -4,13 +4,13 @@ description: >-
   Guide for creating effective skills. This skill should be used when users want
   to create a new skill (or update an existing skill) that extends Kilo's
   capabilities with specialized knowledge, workflows, or tool integrations.
-license: Complete terms in LICENSE.txt
 metadata:
   category: development
   source:
     repository: 'https://github.com/ComposioHQ/awesome-claude-skills'
     path: skill-creator
     license_path: skill-creator/LICENSE.txt
+    commit: 92568c1edaff1bde5371154f036d959346c145a8
 ---
 
 # Skill Creator

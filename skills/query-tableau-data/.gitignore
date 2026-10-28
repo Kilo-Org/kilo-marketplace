@@ -1,0 +1,7 @@
+# Environment variables — never commit secrets
+.env
+
+!.env.template
+
+temp/*
+!temp/.gitkeep

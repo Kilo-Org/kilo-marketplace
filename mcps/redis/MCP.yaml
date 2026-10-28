@@ -4,12 +4,7 @@ description: Provides access to Redis key-value stores, enabling operations like
   keys with optional expiration time support.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/redis
-tags:
-  - redis
-  - key-value-store
-  - caching
-  - data-storage
-  - database-operations
+category: data
 content:
   - name: UVX
     prerequisites:

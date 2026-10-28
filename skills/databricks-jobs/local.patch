@@ -1,0 +1,20 @@
+diff -rN -U0 --ignore-trailing-space a/databricks-jobs/SKILL.md b/databricks-jobs/SKILL.md
+--- a/databricks-jobs/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/databricks-jobs/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -7 +6,0 @@
+-compatibility: Requires databricks CLI (>= v1.0.0)
+@@ -9,3 +7,0 @@
+-  version: 0.2.0
+-  upstream:
+-    parent: databricks-core
+@@ -45 +41 @@
+-After scaffolding, create `CLAUDE.md` and `AGENTS.md` in the project directory. These files are essential to provide agents with guidance on how to work with the project. Use this content:
++After scaffolding, create `AGENTS.md` in the project directory to provide agents with project guidance. Use this content:
+@@ -55,2 +51,2 @@
+-- macOS: `brew tap databricks/tap && brew install databricks`
+-- Linux: `curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh`
++- macOS/Linux with Homebrew: `brew tap databricks/tap && brew install databricks`
++- Linux without Homebrew: download the versioned archive from the [official releases](https://github.com/databricks/cli/releases), verify the published checksum, inspect its contents, and install the binary only after explicit approval
+@@ -59 +55 @@
+-Verify: `databricks -v`
++Never pipe a remote installer directly into a shell. Verify the installed binary with `databricks -v`.

@@ -1,0 +1,34 @@
+id: fivetran-mcp-server
+name: Fivetran MCP Server (Official)
+description: Inspects Fivetran connectors, sync status, schedules, and account metadata through Fivetran's official local server; POST, PATCH, and DELETE operations are disabled.
+author: Fivetran
+url: https://github.com/fivetran/fivetran-mcp
+category: data
+prerequisites:
+  - Python 3.10+ and uv
+  - Fivetran API credentials with least-privilege access
+content:
+  - name: UVX from immutable official source
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/fivetran/fivetran-mcp.git@0f06047e354410b40c5afb25633af1ea490151b8",
+          "fivetran-mcp"
+        ],
+        "env": {
+          "FIVETRAN_API_KEY": "{{FIVETRAN_API_KEY}}",
+          "FIVETRAN_API_SECRET": "{{FIVETRAN_API_SECRET}}",
+          "FIVETRAN_ALLOW_WRITES": "false"
+        }
+      }
+parameters:
+  - name: Fivetran API key
+    key: FIVETRAN_API_KEY
+    placeholder: your_fivetran_api_key
+  - name: Fivetran API secret
+    key: FIVETRAN_API_SECRET
+    placeholder: your_fivetran_api_secret

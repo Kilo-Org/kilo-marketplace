@@ -1,0 +1,13 @@
+{
+  "name": "redis-observability",
+  "version": "1.0.0",
+  "description": "Redis observability — key metrics to monitor (INFO), debugging commands (SLOWLOG, MEMORY DOCTOR, FT.PROFILE), Redis Insight.",
+  "author": {
+    "name": "Redis",
+    "email": "support@redis.com"
+  },
+  "homepage": "https://redis.io",
+  "repository": "https://github.com/redis/agent-skills",
+  "license": "MIT",
+  "keywords": ["redis", "observability", "monitoring", "metrics", "slowlog"]
+}

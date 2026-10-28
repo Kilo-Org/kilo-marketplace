@@ -1,0 +1,13 @@
+id: airbyte-knowledge-mcp
+name: Airbyte Knowledge MCP
+description: Searches Airbyte product documentation and implementation guidance through Airbyte's hosted Kapa knowledge server; no local installation is required.
+author: Airbyte
+url: https://airbyte.mcp.kapa.ai
+category: search
+content:
+  - name: Airbyte knowledge remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://airbyte.mcp.kapa.ai"
+      }

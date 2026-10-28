@@ -5,13 +5,7 @@ description: Brings Figma directly into your workflow by providing important des
   Code Connect integration.
 author: figma
 url: https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Dev-Mode-MCP-Server
-tags:
-  - figma
-  - design-to-code
-  - ui-development
-  - design-systems
-  - code-generation
-  - dev-mode
+category: development
 content:
   - name: Figma Dev Mode
     content: |

@@ -1,0 +1,16 @@
+id: knowledge-catalog-mcp
+name: Google Cloud Knowledge Catalog MCP
+description: Discovers Dataplex Universal Catalog entries, metadata, profiles, and data-quality results through Google's hosted MCP endpoint using Google OAuth and IAM.
+author: Google Cloud
+url: https://docs.cloud.google.com/dataplex/docs/use-remote-mcp
+category: data
+prerequisites:
+  - Google Cloud project with the Dataplex API enabled
+  - Google identity with the intended Dataplex IAM roles
+content:
+  - name: Google hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://dataplex.googleapis.com/mcp"
+      }

@@ -1,6 +1,6 @@
 ---
 name: configuring-dbt-mcp-server
-description: Generates MCP server configuration JSON, resolves authentication setup, and validates server connectivity for dbt. Use when setting up, configuring, or troubleshooting the dbt MCP server for AI tools like Kilo, Cursor, VS Code, or Claude Desktop.
+description: Generates MCP server configuration JSON, resolves authentication setup, and validates server connectivity for dbt. Use when setting up, configuring, or troubleshooting the dbt MCP server for compatible MCP clients.
 user-invocable: false
 metadata:
   author: dbt-labs
@@ -21,14 +21,14 @@ flowchart TB
     q1 -->|consumption only,<br>no local install| remote[Remote Server<br>HTTP endpoint]
     local --> q2{Which client?}
     remote --> q2
-    q2 --> kilo[Kilo]
-    q2 --> claude_desktop[Claude Desktop]
-    q2 --> cursor[Cursor]
-    q2 --> vscode[VS Code]
-    kilo --> config[Generate config<br>+ test setup]
-    claude_desktop --> config
-    cursor --> config
-    vscode --> config
+    q2 --> global[Global client config]
+    q2 --> project[Project config]
+    q2 --> desktop[Desktop MCP client]
+    q2 --> editor[Editor MCP client]
+    global --> config[Generate config<br>+ test setup]
+    project --> config
+    desktop --> config
+    editor --> config
 ```
 
 ## Questions to Ask
@@ -46,10 +46,10 @@ flowchart TB
 
 ### 2. MCP Client
 **Ask:** "Which MCP client are you using?"
-- Kilo (CLI or VS Code extension)
-- Claude Desktop
-- Cursor
-- VS Code
+- Global client config
+- Project config
+- Desktop MCP client
+- Editor MCP client
 
 ### 3. Use Case (Local Server Only)
 **Ask:** "What's your use case?"
@@ -211,18 +211,11 @@ DBT_PATH=/path/to/dbt
 
 ## Client-Specific Setup
 
-### Claude Desktop
-1. Click **Claude menu** in system menu bar (not in-app)
-2. Select **Settings...**
-3. Go to **Developer** tab
-4. Click **Edit Config**
-5. Add the JSON configuration
-6. Save and restart Claude Desktop
-7. **Verify:** Look for MCP server indicator in bottom-right of input box
-
-**Config location:**
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+### Generic MCP Client
+1. Open your MCP client's server configuration.
+2. Add the JSON configuration.
+3. Save and restart the client.
+4. **Verify:** Confirm the dbt MCP server is listed and reachable.
 
 ### Kilo
 

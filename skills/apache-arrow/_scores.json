@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:fc75f0c9bed16b9b76ca33df173fdd74e9b6e3b1cf8103ab4408f115888d34ab",
+  "scoredAt": "2026-05-13T14:00:28.892Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Skill examples lack coverage of error handling and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "setup",
+        "detail": "Installation commands lack checksum verification, increasing risk of tampered packages."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 1.17,
+    "baselineAvg": 75,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "stream-parquet-batch-processing",
+        "baseline": 70,
+        "treatment": 75,
+        "rationale": "Both responses correctly use ParquetFile, iter_batches, and pc.filter, but neither computes mean; A is more direct and avoids unnecessary Table conversion, giving it a slight edge."
+      },
+      {
+        "name": "arrow-ipc-python-js-interop",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A omits the required tableFromIPC usage."
+      }
+    ]
+  }
+}

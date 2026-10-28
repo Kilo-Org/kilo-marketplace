@@ -1,12 +1,6 @@
-diff -ruN a/langsmith-fetch/SKILL.md b/langsmith-fetch/SKILL.md
---- a/langsmith-fetch/SKILL.md	2026-04-07 14:51:41
-+++ b/langsmith-fetch/SKILL.md	2026-04-07 14:50:09
-@@ -477,7 +477,7 @@
- 
- ---
- 
+diff -rN -U0 --ignore-trailing-space a/langsmith-fetch/SKILL.md b/langsmith-fetch/SKILL.md
+--- a/langsmith-fetch/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/langsmith-fetch/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -482 +482 @@
 -## Notes for Claude
 +## Notes for Kilo
- 
- - Always check if `langsmith-fetch` is installed before running commands
- - Verify environment variables are set

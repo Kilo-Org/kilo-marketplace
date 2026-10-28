@@ -1,0 +1,44 @@
+id: vault-radar-mcp
+name: HCP Vault Radar MCP Server
+description: Retrieves Vault Radar data sources, resources, detected-secret events, and secret types from an HCP project using a service principal scoped to that project.
+author: HashiCorp
+url: https://developer.hashicorp.com/hcp/docs/vault-radar/mcp-server/deploy
+category: observability
+prerequisites:
+  - Docker
+  - HCP Vault Radar project and service principal
+content:
+  - name: Docker image 0.1.0
+    prerequisites:
+      - Docker
+    content: |
+      {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "HCP_PROJECT_ID",
+          "-e",
+          "HCP_CLIENT_ID",
+          "-e",
+          "HCP_CLIENT_SECRET",
+          "hashicorp/vault-radar-mcp-server@sha256:7ca74c677531ee70a6eefc32526def46701518576e7f036466d9a46d3141aac0"
+        ],
+        "env": {
+          "HCP_PROJECT_ID": "{{HCP_PROJECT_ID}}",
+          "HCP_CLIENT_ID": "{{HCP_CLIENT_ID}}",
+          "HCP_CLIENT_SECRET": "{{HCP_CLIENT_SECRET}}"
+        }
+      }
+parameters:
+  - name: HCP Project ID
+    key: HCP_PROJECT_ID
+    placeholder: your_hcp_project_id
+  - name: HCP Service Principal Client ID
+    key: HCP_CLIENT_ID
+    placeholder: your_hcp_client_id
+  - name: HCP Service Principal Client Secret
+    key: HCP_CLIENT_SECRET
+    placeholder: your_hcp_client_secret

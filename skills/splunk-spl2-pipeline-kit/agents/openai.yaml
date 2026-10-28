@@ -1,0 +1,3 @@
+display_name: SPL2 Pipeline Kit
+short_description: Render and lint shared SPL2 pipeline templates.
+default_prompt: Render reusable SPL2 pipeline templates and run compatibility linting for Ingest Processor and Edge Processor.

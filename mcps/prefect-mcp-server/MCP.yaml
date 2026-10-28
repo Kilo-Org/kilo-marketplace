@@ -1,0 +1,35 @@
+id: prefect-mcp-server
+name: Prefect MCP Server
+description: Provides read-only inspection of Prefect Cloud or self-hosted flows, deployments, runs, logs, work pools, automations, events, and current Prefect documentation using a local profile or API credentials.
+author: Prefect
+url: https://github.com/PrefectHQ/prefect-mcp-server
+category: data
+prerequisites:
+  - Python and uv
+  - Prefect profile or API credentials
+content:
+  - name: UVX (read-only)
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "prefect-mcp==0.0.1b11",
+          "prefect-mcp-server"
+        ],
+        "env": {
+          "PREFECT_API_URL": "{{PREFECT_API_URL}}",
+          "PREFECT_API_KEY": "{{PREFECT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Prefect API URL
+    key: PREFECT_API_URL
+    placeholder: https://api.prefect.cloud/api/accounts/ACCOUNT_ID/workspaces/WORKSPACE_ID
+    optional: true
+  - name: Prefect API Key
+    key: PREFECT_API_KEY
+    placeholder: your_prefect_api_key
+    optional: true

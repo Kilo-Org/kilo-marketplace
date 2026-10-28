@@ -4,12 +4,7 @@ description: A structured problem-solving tool that enables step-by-step analysi
   for complex reasoning tasks.
 author: modelcontextprotocol
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking
-tags:
-  - problem-solving
-  - reasoning
-  - analysis
-  - structured-thinking
-  - decision-making
+category: productivity
 content:
   - name: NPX
     prerequisites:

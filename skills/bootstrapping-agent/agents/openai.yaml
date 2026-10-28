@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bootstrapping Agent"
+  short_description: "Wires up an Airbyte connector for use in a PydanticAI or Claude SDK agent"
+  default_prompt: "Use $bootstrapping-agent to wire up an Airbyte connector in your agent."

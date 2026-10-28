@@ -16,7 +16,7 @@ models:
     description: All customers who are active
 ```
 
-Good: 
+Good:
 
 ```yml
 models:
@@ -31,9 +31,9 @@ Calculated fields should include a brief description of the transformation and i
 Bad:
 
 ```yml
-models: 
+models:
   - name: customers
-    columns: 
+    columns:
       - name: customer_id
         description: The customer's identification number
 ```
@@ -41,9 +41,9 @@ models:
 Good:
 
 ```yml
-models: 
+models:
   - name: customers
-    columns: 
+    columns:
       - name: customer_id
         description: Users older than 2020-02-16 have `v1_` prefixed to their customer ID due to the platform migration.
 ```

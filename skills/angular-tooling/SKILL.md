@@ -13,6 +13,7 @@ metadata:
     repository: 'https://github.com/analogjs/angular-skills'
     path: skills/angular-tooling
     license_path: LICENSE
+    commit: 610c90eb9490194bcff703f343f97fa0e00bdb2f
 ---
 
 # Angular Tooling

@@ -1,0 +1,35 @@
+
+# Tells Azure ML what kind of YAML this is.
+#  Docs: https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-job-command
+# Fetch the below schema
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+# Name of the experiment where all jobs will end up in the Azure ML dashboard
+experiment_name: mypkg
+
+# What to run
+command: |-
+  make run pkg=mypkg \
+    ARGS=' \
+    --data_path "${{inputs.data_path}}" \
+    --greeting "${{inputs.greeting}}" \
+    '
+
+# Inputs that can be referenced in the command
+inputs:
+  data_path:
+    # Only works if dataset created using Azure ML CLI v2; run `az ml data create --help` to see how
+    #   YAML schema: https://learn.microsoft.com/en-us/azure/machine-learning/reference-yaml-data
+    type: uri_folder  # default, can be changed to `uri_file` if data_path points to a file
+    path: azureml:<azure-ml-dataset-name>:<azure-ml-dataset-version>
+  greeting: "Hello"
+
+# What code to make available
+code: ../../
+
+# Where to run it
+environment:
+  build:
+    path: ../../.devcontainer/
+
+compute: azureml:<azure-ml-cluster-name>

@@ -1,0 +1,36 @@
+id: sagemaker-spark-troubleshooting-mcp
+name: SageMaker Unified Studio Spark Troubleshooting MCP
+description: Diagnoses failed Spark workloads on EMR, EMR Serverless, Glue, and SageMaker by securely signing requests to AWS's managed troubleshooting endpoint with the selected AWS profile and region.
+author: AWS Labs
+url: https://awslabs.github.io/mcp/servers/sagemaker-unified-studio-spark-troubleshooting-mcp-server
+category: observability
+prerequisites:
+  - Python and uv
+  - AWS profile assuming the Spark troubleshooting IAM role
+content:
+  - name: AWS SigV4 Proxy
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "mcp-proxy-for-aws==1.6.2",
+          "https://sagemaker-unified-studio-mcp.{{AWS_REGION}}.api.aws/spark-troubleshooting/mcp",
+          "--service",
+          "sagemaker-unified-studio-mcp",
+          "--profile",
+          "{{AWS_PROFILE}}",
+          "--region",
+          "{{AWS_REGION}}",
+          "--read-timeout",
+          "180"
+        ]
+      }
+parameters:
+  - name: AWS Profile
+    key: AWS_PROFILE
+    placeholder: smus-mcp-profile
+  - name: AWS Region
+    key: AWS_REGION
+    placeholder: us-east-1

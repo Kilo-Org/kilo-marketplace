@@ -1,14 +1,13 @@
 id: ida-pro
 name: IDA Pro
 description: An MCP server for interacting with the IDA Pro disassembler.
+suggest_for:
+  filename:
+    - "*.idb"
+    - "*.i64"
 author: mrexodia
 url: https://github.com/mrexodia/ida-pro-mcp
-tags:
-  - ida-pro
-  - reverse-engineering
-  - disassembler
-  - debugging
-  - security
+category: development
 content:
   - name: UVX
     prerequisites:

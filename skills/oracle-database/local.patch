@@ -1,0 +1,388 @@
+diff -rN -U0 --ignore-trailing-space a/oracle-database/agent/client-identification.md b/oracle-database/agent/client-identification.md
+--- a/oracle-database/agent/client-identification.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/agent/client-identification.md	2000-01-01 00:00:00.000000000 +0000
+@@ -15 +15 @@
+-    module_name => 'claude-agent',   -- max 48 chars; identifies the agent system
++    module_name => 'kilo-agent',   -- max 48 chars; identifies the agent system
+@@ -99 +99 @@
+-WHERE  module = 'claude-agent'
++WHERE  module = 'kilo-agent'
+@@ -115 +115 @@
+-WHERE  module = 'claude-agent'
++WHERE  module = 'kilo-agent'
+@@ -132 +132 @@
+-WHERE  module = 'claude-agent'
++WHERE  module = 'kilo-agent'
+@@ -164 +164 @@
+-MODULE:  '<agent-name>'                  e.g. 'claude-agent', 'my-chatbot'
++MODULE:  '<agent-name>'                  e.g. 'kilo-agent', 'my-chatbot'
+@@ -167 +167 @@
+-CLIENT_IDENTIFIER: '<agent>:<user>:<id>' e.g. 'claude-agent:klrice:session-42'
++CLIENT_IDENTIFIER: '<agent>:<user>:<id>' e.g. 'kilo-agent:klrice:session-42'
+@@ -198 +198 @@
+-EXEC init_agent_session('claude-agent', 'rag-ingest', 'klrice', 'req-1042');
++EXEC init_agent_session('kilo-agent', 'rag-ingest', 'klrice', 'req-1042');
+@@ -231 +231 @@
+-Truncated to 64 bytes, with the most important segment (AGENT_TYPE) placed first so it survives truncation. Example: `claude-agent:ra-ingest:task-042:step-3`.
++Truncated to 64 bytes, with the most important segment (AGENT_TYPE) placed first so it survives truncation. Example: `kilo-agent:rag-ingest:task-042:step-3`.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/adb-free.md b/oracle-database/containers/adb-free.md
+--- a/oracle-database/containers/adb-free.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/adb-free.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/adb-free:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/adb-free` from Oracle Container Registry and pull `container-registry.oracle.com/database/adb-free@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/cman.md b/oracle-database/containers/cman.md
+--- a/oracle-database/containers/cman.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/cman.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/cman:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/cman` from Oracle Container Registry and pull `container-registry.oracle.com/database/cman@sha256:<reviewed-digest>`. Do not use a moving tag.
+@@ -18 +18 @@
+-- The OCR readme examples currently use `container-registry.oracle.com/database/client-cman:latest`, while the repository pull-command section is published under `container-registry.oracle.com/database/cman:latest`.
++- Confirm whether the required image is `client-cman` or `cman`, then pin the selected Oracle Container Registry image by digest.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/enterprise.md b/oracle-database/containers/enterprise.md
+--- a/oracle-database/containers/enterprise.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/enterprise.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/enterprise:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/enterprise` from Oracle Container Registry and pull `container-registry.oracle.com/database/enterprise@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/enterprise_ru.md b/oracle-database/containers/enterprise_ru.md
+--- a/oracle-database/containers/enterprise_ru.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/enterprise_ru.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/enterprise_ru:latest-19`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/enterprise_ru` from Oracle Container Registry and pull `container-registry.oracle.com/database/enterprise_ru@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/free.md b/oracle-database/containers/free.md
+--- a/oracle-database/containers/free.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/free.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/free:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/free` from Oracle Container Registry and pull `container-registry.oracle.com/database/free@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/graph-quickstart.md b/oracle-database/containers/graph-quickstart.md
+--- a/oracle-database/containers/graph-quickstart.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/graph-quickstart.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/graph-quickstart:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/graph-quickstart` from Oracle Container Registry and pull `container-registry.oracle.com/database/graph-quickstart@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/gsm.md b/oracle-database/containers/gsm.md
+--- a/oracle-database/containers/gsm.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/gsm.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/gsm:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/gsm` from Oracle Container Registry and pull `container-registry.oracle.com/database/gsm@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/gsm_ru.md b/oracle-database/containers/gsm_ru.md
+--- a/oracle-database/containers/gsm_ru.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/gsm_ru.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/gsm_ru:latest-23`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/gsm_ru` from Oracle Container Registry and pull `container-registry.oracle.com/database/gsm_ru@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/instantclient.md b/oracle-database/containers/instantclient.md
+--- a/oracle-database/containers/instantclient.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/instantclient.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/instantclient:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/instantclient` from Oracle Container Registry and pull `container-registry.oracle.com/database/instantclient@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/microtx-ee-console.md b/oracle-database/containers/microtx-ee-console.md
+--- a/oracle-database/containers/microtx-ee-console.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/microtx-ee-console.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/microtx-ee-console:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/microtx-ee-console` from Oracle Container Registry and pull `container-registry.oracle.com/database/microtx-ee-console@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/microtx-ee-coordinator.md b/oracle-database/containers/microtx-ee-coordinator.md
+--- a/oracle-database/containers/microtx-ee-coordinator.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/microtx-ee-coordinator.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/microtx-ee-coordinator:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/microtx-ee-coordinator` from Oracle Container Registry and pull `container-registry.oracle.com/database/microtx-ee-coordinator@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/operator.md b/oracle-database/containers/operator.md
+--- a/oracle-database/containers/operator.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/operator.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/operator:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/operator` from Oracle Container Registry and pull `container-registry.oracle.com/database/operator@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/ords.md b/oracle-database/containers/ords.md
+--- a/oracle-database/containers/ords.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/ords.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/ords:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/ords` from Oracle Container Registry and pull `container-registry.oracle.com/database/ords@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/otmm.md b/oracle-database/containers/otmm.md
+--- a/oracle-database/containers/otmm.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/otmm.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/otmm:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/otmm` from Oracle Container Registry and pull `container-registry.oracle.com/database/otmm@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/private-ai.md b/oracle-database/containers/private-ai.md
+--- a/oracle-database/containers/private-ai.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/private-ai.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/private-ai:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/private-ai` from Oracle Container Registry and pull `container-registry.oracle.com/database/private-ai@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/rac.md b/oracle-database/containers/rac.md
+--- a/oracle-database/containers/rac.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/rac.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/rac:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/rac` from Oracle Container Registry and pull `container-registry.oracle.com/database/rac@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/rac_ru.md b/oracle-database/containers/rac_ru.md
+--- a/oracle-database/containers/rac_ru.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/rac_ru.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/rac_ru:latest-19`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/rac_ru` from Oracle Container Registry and pull `container-registry.oracle.com/database/rac_ru@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/containers/sqlcl.md b/oracle-database/containers/sqlcl.md
+--- a/oracle-database/containers/sqlcl.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/containers/sqlcl.md	2000-01-01 00:00:00.000000000 +0000
+@@ -11 +11 @@
+-- **Latest pull command shown on OCR:** `docker pull container-registry.oracle.com/database/sqlcl:latest`
++- **Image selection:** Resolve an exact reviewed digest for `container-registry.oracle.com/database/sqlcl` from Oracle Container Registry and pull `container-registry.oracle.com/database/sqlcl@sha256:<reviewed-digest>`. Do not use a moving tag.
+diff -rN -U0 --ignore-trailing-space a/oracle-database/devops/database-testing.md b/oracle-database/devops/database-testing.md
+--- a/oracle-database/devops/database-testing.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/devops/database-testing.md	2000-01-01 00:00:00.000000000 +0000
+@@ -16,2 +16,5 @@
+-# Clone the repository
+-git clone https://github.com/utPLSQL/utPLSQL.git
++# Fetch the reviewed source revision
++git init utPLSQL
++git -C utPLSQL remote add origin https://github.com/utPLSQL/utPLSQL.git
++git -C utPLSQL fetch --depth 1 origin 5852e44dfb8aad1d99c6db3140bf8967ca5c18e3
++git -C utPLSQL checkout --detach FETCH_HEAD
+@@ -633 +636 @@
+-          ORACLE_PASSWORD: testpassword
++          ORACLE_PASSWORD: ${{ secrets.ORACLE_TEST_PASSWORD }}
+@@ -637 +640 @@
+-          --health-cmd "sqlplus -L sys/testpassword@//localhost:1521/FREEPDB1 AS SYSDBA < /dev/null"
++          --health-cmd "sqlplus -L sys/${{ secrets.ORACLE_TEST_PASSWORD }}@//localhost:1521/FREEPDB1 AS SYSDBA < /dev/null"
+@@ -647 +650 @@
+-          sqlplus sys/testpassword@//localhost:1521/FREEPDB1 AS SYSDBA \
++          sqlplus sys/${{ secrets.ORACLE_TEST_PASSWORD }}@//localhost:1521/FREEPDB1 AS SYSDBA \
+@@ -654 +657 @@
+-            --username=sys --password=testpassword \
++            --username=sys --password="${{ secrets.ORACLE_TEST_PASSWORD }}" \
+@@ -660 +663 @@
+-          sqlplus app_owner/password@//localhost:1521/FREEPDB1 \
++          sqlplus app_owner/${{ secrets.ORACLE_APP_PASSWORD }}@//localhost:1521/FREEPDB1 \
+@@ -699,3 +702,5 @@
+-# Install
+-wget https://github.com/utPLSQL/utPLSQL-cli/releases/latest/download/utplsql-cli.zip
+-unzip utplsql-cli.zip
++# Install the reviewed v3.2.0 artifact
++wget https://github.com/utPLSQL/utPLSQL-cli/releases/download/v3.2.0/utPLSQL-cli.zip
++printf '%s  %s\n' '717e157c4b4f35b057c94cd1a1f276abada6bb8fadd4a1f194d0f9c449a75bdb' 'utPLSQL-cli.zip' | sha256sum -c -
++unzip -l utPLSQL-cli.zip
++unzip utPLSQL-cli.zip
+diff -rN -U0 --ignore-trailing-space a/oracle-database/devops/schema-migrations.md b/oracle-database/devops/schema-migrations.md
+--- a/oracle-database/devops/schema-migrations.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/devops/schema-migrations.md	2000-01-01 00:00:00.000000000 +0000
+@@ -676,2 +676,2 @@
+-      username="hardcoded_user"
+-      password="hardcoded_password">
++      username="<REQUIRED_USERNAME>"
++      password="<REQUIRED_SECRET>">
+diff -rN -U0 --ignore-trailing-space a/oracle-database/ords/ords-architecture.md b/oracle-database/ords/ords-architecture.md
+--- a/oracle-database/ords/ords-architecture.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/ords/ords-architecture.md	2000-01-01 00:00:00.000000000 +0000
+@@ -226 +226 @@
+-docker pull container-registry.oracle.com/database/ords:latest
++docker pull "${ORDS_IMAGE_REF:?Set ORDS_IMAGE_REF to container-registry.oracle.com/database/ords@sha256:<reviewed-digest>}"
+@@ -235 +235 @@
+-  container-registry.oracle.com/database/ords:latest
++  "$ORDS_IMAGE_REF"
+diff -rN -U0 --ignore-trailing-space a/oracle-database/ords/ords-metadata-catalog.md b/oracle-database/ords/ords-metadata-catalog.md
+--- a/oracle-database/ords/ords-metadata-catalog.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/ords/ords-metadata-catalog.md	2000-01-01 00:00:00.000000000 +0000
+@@ -285,3 +285,7 @@
+-# Download Swagger UI distribution
+-curl -L https://github.com/swagger-api/swagger-ui/archive/v5.x.x.tar.gz | tar xz
+-cp -r swagger-ui-5.x.x/dist/* /opt/oracle/ords/config/ords/standalone/doc_root/swagger/
++# Download and verify the reviewed Swagger UI source revision
++curl -fL https://github.com/swagger-api/swagger-ui/archive/4e0d3f88de7db0395a80ef0541ff428f0926d484.tar.gz -o swagger-ui.tar.gz
++printf '%s  %s\n' 'ca41262ad814d6a7f08ba17c1b3fbd52e022982114754a1779cf49b2fa343872' 'swagger-ui.tar.gz' | sha256sum -c -
++tar -tzf swagger-ui.tar.gz
++mkdir -p swagger-ui-src
++tar -xzf swagger-ui.tar.gz --strip-components=1 -C swagger-ui-src
++cp -r swagger-ui-src/dist/* /opt/oracle/ords/config/ords/standalone/doc_root/swagger/
+diff -rN -U0 --ignore-trailing-space a/oracle-database/SKILL.md b/oracle-database/SKILL.md
+--- a/oracle-database/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -34,19 +34,18 @@
+-db/
+-├── admin/
+-├── agent/
+-├── appdev/
+-├── architecture/
+-├── backup-recovery/
+-├── containers/
+-├── design/
+-├── devops/
+-├── features/
+-├── frameworks/
+-├── migrations/
+-├── monitoring/
+-├── ords/
+-├── performance/
+-├── plsql/
+-├── security/
+-├── sql-dev/
+-└── sqlcl/
++admin/
++agent/
++appdev/
++architecture/
++backup-recovery/
++containers/
++design/
++devops/
++features/
++frameworks/
++migrations/
++monitoring/
++ords/
++performance/
++plsql/
++security/
++sql-dev/
++sqlcl/
+@@ -59,18 +58,18 @@
+-| Data Guard, redo/undo logs, users | `db/admin/` |
+-| Safe DML, destructive operation guards, idempotency, schema discovery, ORA- error handling | `db/agent/` |
+-| JDBC, pooling, JSON, XML, spatial, Oracle Text, transactions, MLE, language drivers | `db/appdev/` |
+-| RAC, Multitenant, Exadata, In-Memory, OCI database services, Data Guard architecture | `db/architecture/` |
+-| Backup, recovery, RMAN, Autonomous Recovery Service, Cloud Protect | `db/backup-recovery/` |
+-| OCR database-category container images and pull guidance | `db/containers/` |
+-| ERD, data modeling, partitioning, tablespaces | `db/design/` |
+-| Schema migrations, online operations, edition-based redefinition, testing, version control | `db/devops/` |
+-| AQ, DBMS_SCHEDULER, materialized views, DBLinks, APEX, vector search, SELECT AI | `db/features/` |
+-| SQLAlchemy, Django, Pandas, Spring JPA, MyBatis, TypeORM, Sequelize, Dapper, GORM | `db/frameworks/` |
+-| Migrations from PostgreSQL, MySQL, SQL Server, MongoDB, Snowflake, and more | `db/migrations/` |
+-| Alert log, ADR, health monitor, space management, top SQL | `db/monitoring/` |
+-| ORDS architecture, installation, REST design, authentication, monitoring, ORDS Concert Sample App | `db/ords/` |
+-| AWR, ASH, explain plan, indexes, optimizer stats, wait events, memory | `db/performance/` |
+-| Package design, error handling, performance, collections, cursors, debugging | `db/plsql/` |
+-| Privileges, VPD, masking, auditing, encryption, network security | `db/security/` |
+-| SQL tuning, SQL patterns, dynamic SQL, injection avoidance | `db/sql-dev/` |
+-| SQLcl basics, scripting, Liquibase, formatting, DDL generation, data loading, MCP server, scheduler daemon, AWR, background jobs, schema comparison with DIFF | `db/sqlcl/` |
++| Data Guard, redo/undo logs, users | `admin/` |
++| Safe DML, destructive operation guards, idempotency, schema discovery, ORA- error handling | `agent/` |
++| JDBC, pooling, JSON, XML, spatial, Oracle Text, transactions, MLE, language drivers | `appdev/` |
++| RAC, Multitenant, Exadata, In-Memory, OCI database services, Data Guard architecture | `architecture/` |
++| Backup, recovery, RMAN, Autonomous Recovery Service, Cloud Protect | `backup-recovery/` |
++| OCR database-category container images and pull guidance | `containers/` |
++| ERD, data modeling, partitioning, tablespaces | `design/` |
++| Schema migrations, online operations, edition-based redefinition, testing, version control | `devops/` |
++| AQ, DBMS_SCHEDULER, materialized views, DBLinks, APEX, vector search, SELECT AI | `features/` |
++| SQLAlchemy, Django, Pandas, Spring JPA, MyBatis, TypeORM, Sequelize, Dapper, GORM | `frameworks/` |
++| Migrations from PostgreSQL, MySQL, SQL Server, MongoDB, Snowflake, and more | `migrations/` |
++| Alert log, ADR, health monitor, space management, top SQL | `monitoring/` |
++| ORDS architecture, installation, REST design, authentication, monitoring, ORDS Concert Sample App | `ords/` |
++| AWR, ASH, explain plan, indexes, optimizer stats, wait events, memory | `performance/` |
++| Package design, error handling, performance, collections, cursors, debugging | `plsql/` |
++| Privileges, VPD, masking, auditing, encryption, network security | `security/` |
++| SQL tuning, SQL patterns, dynamic SQL, injection avoidance | `sql-dev/` |
++| SQLcl basics, scripting, Liquibase, formatting, DDL generation, data loading, MCP server, scheduler daemon, AWR, background jobs, schema comparison with DIFF | `sqlcl/` |
+@@ -80,10 +79,10 @@
+-- `db/sqlcl/sqlcl-mcp-server.md`
+-- `db/migrations/migration-assessment.md`
+-- `db/performance/explain-plan.md`
+-- `db/plsql/plsql-package-design.md`
+-- `db/appdev/java-oracle-jdbc.md`
+-- `db/devops/schema-migrations.md`
+-- `db/agent/schema-discovery.md`
+-- `db/containers/container-selection-matrix.md`
+-- `db/backup-recovery/autonomous-recovery-service.md`
+-- `db/backup-recovery/cloud-protect.md`
++- `sqlcl/sqlcl-mcp-server.md`
++- `migrations/migration-assessment.md`
++- `performance/explain-plan.md`
++- `plsql/plsql-package-design.md`
++- `appdev/java-oracle-jdbc.md`
++- `devops/schema-migrations.md`
++- `agent/schema-discovery.md`
++- `containers/container-selection-matrix.md`
++- `backup-recovery/autonomous-recovery-service.md`
++- `backup-recovery/cloud-protect.md`
+diff -rN -U0 --ignore-trailing-space a/oracle-database/sqlcl/sqlcl-cicd.md b/oracle-database/sqlcl/sqlcl-cicd.md
+--- a/oracle-database/sqlcl/sqlcl-cicd.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/sqlcl/sqlcl-cicd.md	2000-01-01 00:00:00.000000000 +0000
+@@ -338 +338,3 @@
+-          curl -sL https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip -o sqlcl.zip
++          curl -fsSL "${{ vars.SQLCL_DOWNLOAD_URL }}" -o sqlcl.zip
++          printf '%s  %s\n' "${{ vars.SQLCL_SHA256 }}" sqlcl.zip | sha256sum -c -
++          unzip -l sqlcl.zip
+@@ -379 +381,3 @@
+-          curl -sL https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip -o sqlcl.zip
++          curl -fsSL "${{ vars.SQLCL_DOWNLOAD_URL }}" -o sqlcl.zip
++          printf '%s  %s\n' "${{ vars.SQLCL_SHA256 }}" sqlcl.zip | sha256sum -c -
++          unzip -l sqlcl.zip
+@@ -469 +473,3 @@
+-          curl -sL https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip -o sqlcl.zip
++          curl -fsSL "${{ vars.SQLCL_DOWNLOAD_URL }}" -o sqlcl.zip
++          printf '%s  %s\n' "${{ vars.SQLCL_SHA256 }}" sqlcl.zip | sha256sum -c -
++          unzip -l sqlcl.zip
+@@ -507 +513,3 @@
+-    - curl -sL https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip -o sqlcl.zip
++    - curl -fsSL "$SQLCL_DOWNLOAD_URL" -o sqlcl.zip
++    - printf '%s  %s\n' "$SQLCL_SHA256" sqlcl.zip | sha256sum -c -
++    - unzip -l sqlcl.zip
+diff -rN -U0 --ignore-trailing-space a/oracle-database/sqlcl/sqlcl-liquibase.md b/oracle-database/sqlcl/sqlcl-liquibase.md
+--- a/oracle-database/sqlcl/sqlcl-liquibase.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/sqlcl/sqlcl-liquibase.md	2000-01-01 00:00:00.000000000 +0000
+@@ -382,2 +382,4 @@
+-          wget -q https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
+-          unzip -q sqlcl-latest.zip -d /opt/sqlcl
++          curl -fsSL "${{ vars.SQLCL_DOWNLOAD_URL }}" -o sqlcl.zip
++          printf '%s  %s\n' "${{ vars.SQLCL_SHA256 }}" sqlcl.zip | sha256sum -c -
++          unzip -l sqlcl.zip
++          unzip -q sqlcl.zip -d /opt/sqlcl
+@@ -410 +412 @@
+-  image: container-registry.oracle.com/database/sqlcl:latest
++  image: $SQLCL_IMAGE  # Set to container-registry.oracle.com/database/sqlcl@sha256:<reviewed-digest>
+diff -rN -U0 --ignore-trailing-space a/oracle-database/sqlcl/sqlcl-mcp-server.md b/oracle-database/sqlcl/sqlcl-mcp-server.md
+--- a/oracle-database/sqlcl/sqlcl-mcp-server.md	2000-01-01 00:00:00.000000000 +0000
++++ b/oracle-database/sqlcl/sqlcl-mcp-server.md	2000-01-01 00:00:00.000000000 +0000
+@@ -5 +5 @@
+-The SQLcl MCP Server is a built-in capability of Oracle SQLcl (**25.2 or later**) that exposes Oracle Database functionality to AI assistants via the **Model Context Protocol (MCP)**. SQLcl acts as the MCP server — it holds the database connection and handles authentication, while AI clients (Claude Desktop, Claude Code, VS Code with Cline, etc.) drive the interaction through well-defined MCP tool calls.
++The SQLcl MCP Server is a built-in capability of Oracle SQLcl (**25.2 or later**) that exposes Oracle Database functionality to AI assistants via the **Model Context Protocol (MCP)**. SQLcl acts as the MCP server — it holds the database connection and handles authentication, while compatible MCP clients drive the interaction through well-defined MCP tool calls.
+@@ -13 +13 @@
+-- **SQLcl 25.2 or later** (MCP was not present in 24.3 or earlier) — download: https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
++- **SQLcl 25.2 or later** (MCP was not present in 24.3 or earlier). Prefer Homebrew or WinGet; for manual installation, select an exact release and verify a separately authenticated SHA-256 before extraction.
+@@ -35,7 +35 @@
+-Manual install from zip (macOS/Linux):
+-
+-```shell
+-curl -O https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
+-unzip sqlcl-latest.zip -d ~/sqlcl
+-export PATH="$HOME/sqlcl/sqlcl/bin:$PATH"
+-```
++Manual install from zip (macOS/Linux): download an exact version from Oracle's official downloads page, obtain its SHA-256 through a separately authenticated channel, verify it, inspect the archive with `unzip -l`, and only then extract it to a user-owned directory. If an independently verifiable SHA-256 is unavailable, use Homebrew or WinGet instead.
+@@ -115 +109 @@
+-### Claude Desktop
++### Generic MCP Client Config
+@@ -117 +111 @@
+-Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
++Add a `sqlcl` MCP server entry to your client's MCP configuration:
+@@ -152,5 +146 @@
+-Restart Claude Desktop after editing the config.
+-
+-### Claude Code
+-
+-Add the server using the `claude mcp add` command:
++Restart your MCP client after editing the config.
+@@ -158,3 +148 @@
+-```shell
+-claude mcp add sqlcl /path/to/sql -- -mcp
+-```
++### Project-Level MCP Config
+@@ -162 +150 @@
+-Or manually create/edit `.mcp.json` in your project directory:
++Create or edit `.mcp.json` in your project directory:
+@@ -175,5 +163 @@
+-Verify the server is registered:
+-
+-```shell
+-claude mcp list
+-```
++Verify the server is registered with your MCP client.
+@@ -407 +391 @@
+-- `V$SESSION.MODULE` — set to the MCP client name (e.g., `Claude Desktop`)
++- `V$SESSION.MODULE` — set to the MCP client name

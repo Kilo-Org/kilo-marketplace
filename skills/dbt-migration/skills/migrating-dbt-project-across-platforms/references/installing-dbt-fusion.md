@@ -52,5 +52,5 @@ dbtf --version
 
 If Fusion is already installed, you can updated it to the latest version with
 ```bash
-dbtf system update 
+dbtf system update
 ```

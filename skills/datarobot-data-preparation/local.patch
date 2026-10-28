@@ -1,0 +1,9 @@
+diff -rN -U0 --ignore-trailing-space a/datarobot-data-preparation/SKILL.md b/datarobot-data-preparation/SKILL.md
+--- a/datarobot-data-preparation/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/datarobot-data-preparation/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -124 +124 @@
+-This skill includes executable helper scripts that Claude can run directly:
++This skill includes executable helper scripts that the agent can run directly:
+@@ -134 +134 @@
+-Claude can run this script directly or use it as reference when writing code.
++The agent can run this script directly or use it as reference when writing code.

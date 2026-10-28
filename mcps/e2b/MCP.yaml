@@ -4,12 +4,7 @@ description: Adds secure code execution capabilities to Claude Desktop using E2B
   Python environments.
 author: e2b-dev
 url: https://github.com/e2b-dev/mcp-server
-tags:
-  - code-execution
-  - sandbox
-  - javascript
-  - python
-  - claude-integration
+category: development
 content:
   - name: NPX
     prerequisites:
