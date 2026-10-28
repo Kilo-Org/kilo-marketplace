@@ -1,0 +1,29 @@
+id: carbon-forge
+name: Carbon Forge
+description: Source control and a shared record for people and agents. Code, files and prose live in one record on the server, agents open lanes instead of cloning, and each landing is one all-or-nothing changeset. Blame, grep, diff and history run on the server. Reads public workspaces without a token; writing needs a bearer token.
+author: 100monkeys.ai
+url: https://carbonforge.dev/docs/p/guides/mcp-anonymous-access
+category: development
+prerequisites:
+  - Carbon Forge account, only to write or to read private workspaces
+content:
+  - name: Remote (read-only, no token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://carbonforge.dev/api/mcp"
+      }
+  - name: Remote with API token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://carbonforge.dev/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CARBON_FORGE_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Carbon Forge API token
+    key: CARBON_FORGE_TOKEN
+    placeholder: your-carbon-forge-token
+    optional: true
