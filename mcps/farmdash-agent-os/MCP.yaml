@@ -1,0 +1,46 @@
+id: farmdash-agent-os
+name: FarmDash Agent OS
+description: >-
+  Zero-custody DeFi intelligence and execution controls for AI agents. MCP v5.0.0 exposes
+  94 capability-labeled tools for protocol research, wallet/risk analysis and simulation.
+  USER_SIGNED is the default; policy-bounded automation requires separate authorization
+  and live readiness. FarmDash never receives customer raw private keys. Payment or an
+  API key does not grant transaction authority. Local source-built stdio, not a hosted
+  MCP endpoint or a published npm package.
+author: FarmDash
+url: https://github.com/Parmasanandgarlic/farmdash-openclaw-skills/tree/main/mcp-server
+category: business
+prerequisites:
+  - Node.js 18 or later and Git.
+  - Build the public source using the repository README (npm ci, build and smoke in mcp-server/).
+  - Enter the absolute path to the built mcp-server/dist/index.js file; do not use an unverified npm install command.
+  - Check https://www.farmdash.one/execution-truth.json before wallet-affecting workflows; some rails remain preparation-only or deployment-gated.
+content:
+  - name: Source build - free Scout
+    prerequisites:
+      - Keyless Scout access is quota-limited; no API key or customer private key is required for discovery.
+    content: |
+      {
+        "command": "node",
+        "args": ["{{FARMDASH_SERVER_PATH}}"]
+      }
+    parameters:
+      - name: Built MCP server entry point (absolute path)
+        key: FARMDASH_SERVER_PATH
+        placeholder: /absolute/path/farmdash-openclaw-skills/mcp-server/dist/index.js
+  - name: Source build - paid API capacity
+    prerequisites:
+      - A FarmDash Pioneer or Syndicate API key for paid request capacity, not transaction authority.
+    content: |
+      {
+        "command": "node",
+        "args": ["{{FARMDASH_SERVER_PATH}}"],
+        "env": { "FARMDASH_API_KEY": "{{FARMDASH_API_KEY}}" }
+      }
+    parameters:
+      - name: Built MCP server entry point (absolute path)
+        key: FARMDASH_SERVER_PATH
+        placeholder: /absolute/path/farmdash-openclaw-skills/mcp-server/dist/index.js
+      - name: FarmDash API key (never a wallet private key)
+        key: FARMDASH_API_KEY
+        placeholder: your_farmdash_api_key
