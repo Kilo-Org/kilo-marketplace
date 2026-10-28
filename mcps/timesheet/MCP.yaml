@@ -1,0 +1,34 @@
+id: timesheet
+name: Timesheet
+description: Official Timesheet time tracking server. Start, pause and stop timers, log past work, manage projects,
+  todos, tags, expenses, absences and teams, and pull statistics, reports and exports (Excel, CSV, PDF).
+author: timesheetIO
+url: https://github.com/timesheetIO/timesheet-mcp
+category: productivity
+prerequisites:
+  - Timesheet account with a Pro plan or above (includes API access)
+content:
+  - name: Timesheet hosted server (OAuth)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.timesheet.io"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or higher
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@timesheet/mcp"],
+        "env": {
+          "TIMESHEET_API_TOKEN": "{{TIMESHEET_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Timesheet API Key (NPX only; the hosted server signs in with OAuth)
+    key: TIMESHEET_API_TOKEN
+    placeholder: your_timesheet_api_key
+    optional: true
