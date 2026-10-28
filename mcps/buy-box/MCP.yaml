@@ -1,0 +1,16 @@
+id: buy-box
+name: Buy-Box
+description: Saves your buying criteria for homes, cars or any other category (budget, must-haves, nice-to-haves, dealbreakers) so the agent loads them before it searches, and scores and ranks listings against a saved buy box. Hosted server with OAuth sign-in, no API key.
+author: Agentic Consulting LLC
+url: https://github.com/tthompson0808/buy-box-cursor-plugin
+category: productivity
+prerequisites:
+  - Google account
+  - MCP client with OAuth support
+content:
+  - name: Buy-Box hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://buybox.agentconsult.ai/mcp"
+      }
