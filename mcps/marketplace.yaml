@@ -716,9 +716,11 @@ items:
           - name: Bing Webmaster API Key
             key: BING_WEBMASTER_API_KEY
             placeholder: API Key from Bing Webmaster Tools
+            optional: true
           - name: IndexNow Key
             key: INDEXNOW_KEY
             placeholder: IndexNow API key for instant submission
+            optional: true
   - id: brave-search
     name: Brave Search
     description: Integrates Brave Search API to provide comprehensive web and local search capabilities with smart
@@ -2058,7 +2060,7 @@ items:
         parameters:
           - name: Google Application Credentials
             key: GOOGLE_APPLICATION_CREDENTIALS
-            placeholder: Path to service-account.json
+            placeholder: /absolute/path/to/service-account.json
   - id: google-workspace
     name: Google Workspace
     description: Control Gmail, Google Calendar, Docs, Sheets, Slides, Chat, Forms, Tasks, Search & Drive with AI. The most

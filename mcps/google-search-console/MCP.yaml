@@ -22,4 +22,4 @@ content:
     parameters:
       - name: Google Application Credentials
         key: GOOGLE_APPLICATION_CREDENTIALS
-        placeholder: Path to service-account.json
+        placeholder: /absolute/path/to/service-account.json

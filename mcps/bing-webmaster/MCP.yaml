@@ -24,6 +24,8 @@ content:
       - name: Bing Webmaster API Key
         key: BING_WEBMASTER_API_KEY
         placeholder: API Key from Bing Webmaster Tools
+        optional: true
       - name: IndexNow Key
         key: INDEXNOW_KEY
         placeholder: IndexNow API key for instant submission
+        optional: true
