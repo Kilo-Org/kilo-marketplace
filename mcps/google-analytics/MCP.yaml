@@ -1,0 +1,29 @@
+id: google-analytics
+name: Google Analytics 4
+description: Google Analytics 4 MCP server for real-time reporting, schema discovery, metric aggregation, and audience insights.
+author: Surendran B
+url: https://github.com/surendranb/google-analytics-mcp
+category: data
+prerequisites:
+  - Python and uv
+  - Google Analytics 4 Property ID and Service Account credentials
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: >
+      {
+        "command": "uvx",
+        "args": ["google-analytics-mcp==2.11.6"],
+        "env": {
+          "GA4_PROPERTY_ID": "{{GA4_PROPERTY_ID}}",
+          "GOOGLE_APPLICATION_CREDENTIALS": "{{GOOGLE_APPLICATION_CREDENTIALS}}"
+        }
+      }
+    parameters:
+      - name: GA4 Property ID
+        key: GA4_PROPERTY_ID
+        placeholder: Numeric GA4 Property ID (e.g. 123456789)
+      - name: Google Application Credentials
+        key: GOOGLE_APPLICATION_CREDENTIALS
+        placeholder: Path to service-account.json

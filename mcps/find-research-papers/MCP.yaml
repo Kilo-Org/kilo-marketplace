@@ -1,0 +1,17 @@
+id: find-research-papers
+name: Find Research Papers
+description: Scientific literature grounding across 250M+ scholarly papers on arXiv, PubMed, OpenAlex, CrossRef, and Semantic Scholar.
+author: Surendran B
+url: https://github.com/surendranb/find-research-papers-mcp
+category: search
+prerequisites:
+  - Python and uv
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: >
+      {
+        "command": "uvx",
+        "args": ["find-research-papers-mcp==0.4.8"]
+      }
