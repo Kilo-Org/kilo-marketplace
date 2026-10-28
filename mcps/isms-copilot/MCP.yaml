@@ -1,0 +1,15 @@
+id: isms-copilot
+name: ISMS Copilot
+description: The compliance specialist your AI calls for ISO 27001, SOC 2, GDPR, NIS 2, DORA and more. Hosted MCP server for framework interpretation, policy drafting, control mapping, gap analysis, risk registers and audit prep, working with your ISMS Copilot workspaces, documents, memories, company profile and client companies.
+author: Better ISMS
+url: https://www.ismscopilot.com/mcp?ref=kilo
+category: business
+prerequisites:
+  - ISMS Copilot account (free plan available; sign in through OAuth when the client connects)
+content:
+  - name: ISMS Copilot hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://account.ismscopilot.com/v1/account/mcp"
+      }
