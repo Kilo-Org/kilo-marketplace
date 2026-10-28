@@ -1,0 +1,23 @@
+id: llm-gateway
+name: LLM Gateway
+description: Official hosted LLM Gateway MCP server. Chat with any supported model, generate images, list models with
+  pricing, and check account usage and costs.
+author: LLM Gateway
+url: https://github.com/theopenco/llmgateway
+category: development
+prerequisites:
+  - LLM Gateway API key
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.llmgateway.io/mcp",
+        "headers": {
+          "Authorization": "Bearer {{LLMGATEWAY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: LLM Gateway API Key
+    key: LLMGATEWAY_API_KEY
+    placeholder: your_llmgateway_api_key
