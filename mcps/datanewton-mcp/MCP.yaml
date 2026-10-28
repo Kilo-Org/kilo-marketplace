@@ -1,0 +1,27 @@
+id: datanewton-mcp
+name: DataNewton MCP
+description: >-
+  Hosted MCP for Russian company and individual entrepreneur data, financial
+  information, corporate connections, court cases, bankruptcy and risk indicators.
+  Requires a paid DataNewton MCP subscription and a personal Bearer token.
+author: DataNewton
+url: https://github.com/DatanewtonMCP/datanewton-mcp
+category: business
+prerequisites:
+  - A DataNewton account and a paid DataNewton MCP subscription
+  - A personal MCP token issued by DataNewton support at info@datanewton.ru
+  - "Connection documentation: https://datanewton.ru/docs/mcp"
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://datanewton.ru/mcp",
+        "headers": {
+          "Authorization": "Bearer {{DATANEWTON_MCP_TOKEN}}"
+        }
+      }
+parameters:
+  - name: DataNewton MCP token (without the Bearer prefix)
+    key: DATANEWTON_MCP_TOKEN
+    placeholder: your_personal_datanewton_mcp_token
