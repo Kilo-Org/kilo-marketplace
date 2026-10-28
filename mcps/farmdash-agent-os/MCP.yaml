@@ -8,11 +8,13 @@ description: >-
   API key does not grant transaction authority. Local source-built stdio, not a hosted
   MCP endpoint or a published npm package.
 author: FarmDash
-url: https://github.com/Parmasanandgarlic/farmdash-openclaw-skills/tree/main/mcp-server
+url: https://github.com/Parmasanandgarlic/farmdash-openclaw-skills/tree/c6cf29727d9c4b08ae27cfc660a0f35375eec5ec/mcp-server
 category: business
 prerequisites:
   - Node.js 18 or later and Git.
-  - Build the public source using the repository README (npm ci, build and smoke in mcp-server/).
+  - Check out exact public-source commit c6cf29727d9c4b08ae27cfc660a0f35375eec5ec before building; do not run floating main.
+  - Review source and dependency lifecycle scripts before following the pinned README npm ci, build and smoke steps in mcp-server/.
+  - The personal-namespace public mirror is advertised by https://www.farmdash.one/.well-known/mcp.json under installation.public_source; it is not the canonical product repository.
   - Enter the absolute path to the built mcp-server/dist/index.js file; do not use an unverified npm install command.
   - Check https://www.farmdash.one/execution-truth.json before wallet-affecting workflows; some rails remain preparation-only or deployment-gated.
 content:
