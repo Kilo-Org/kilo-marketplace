@@ -1,0 +1,16 @@
+id: trypost
+name: TryPost
+description: Run your social media on autopilot with AI agents. Your agent plans, writes and schedules posts across 13 networks, with approvals and analytics. Open source.
+author: trypostit
+url: https://github.com/trypostit/trypost
+category: productivity
+prerequisites:
+  - TryPost account
+  - MCP client with OAuth 2.1 support (dynamic client registration)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.trypost.it/mcp/trypost"
+      }
