@@ -1,0 +1,16 @@
+id: relaticle
+name: Relaticle
+description: "Open-source CRM your AI agents can read and update: companies, people, opportunities, tasks, notes and custom fields."
+author: Relaticle
+url: https://github.com/relaticle/relaticle
+category: business
+prerequisites:
+  - Relaticle account (14-day free trial at https://app.relaticle.com/login, or a self-hosted instance)
+  - MCP client with OAuth support
+content:
+  - name: Relaticle hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.relaticle.com"
+      }
