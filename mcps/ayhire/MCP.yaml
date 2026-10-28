@@ -1,0 +1,16 @@
+id: ayhire
+name: AyHire
+description: Hire engineers by what they shipped. Describe a role and AyHire finds developers from their public GitHub work, judges each one against the role's criteria with links to the evidence, and keeps roles and a shortlist shared with the AyHire web app.
+author: AyHire
+url: https://ayhire.com/mcp
+category: search
+prerequisites:
+  - AyHire account (14-day free trial)
+  - MCP client with OAuth support
+content:
+  - name: AyHire hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ayhire.com/mcp"
+      }
