@@ -1412,8 +1412,8 @@ items:
           }
   - id: ignav-flights
     name: Ignav Flights
-    description: Hosted MCP server providing live flight prices, booking links, and airport lookup for AI agents, anonymous
-      testing supported with optional API-key usage.
+    description: Hosted flight search, cheapest-date comparison, airport lookup, and booking links. Tool calls require OAuth
+      or an API key.
     author: gusgordon
     url: https://github.com/gusgordon/ignav-skill
     tags:
@@ -1423,7 +1423,7 @@ items:
       - airport-lookup
       - remote-mcp
     content:
-      - name: Remote Server
+      - name: Remote Server (OAuth)
         content: |
           {
             "type": "streamable-http",
