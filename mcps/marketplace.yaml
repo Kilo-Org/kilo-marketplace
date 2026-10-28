@@ -2079,7 +2079,7 @@ items:
       for framework interpretation, policy drafting, control mapping, gap analysis, risk registers and audit prep,
       working with your ISMS Copilot workspaces, documents, memories, company profile and client companies.
     author: Better ISMS
-    url: https://www.ismscopilot.com/mcp?ref=kilo
+    url: https://github.com/better-isms/ismscopilot-plugin
     category: business
     tags:
       - business
