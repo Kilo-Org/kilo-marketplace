@@ -1,0 +1,13 @@
+id: varg-how-to
+name: varg how to
+description: "Video how-to search for AI agents: 2,000+ video skills, tutorials and FFmpeg recipes. No key. search_how_to takes the person's request in their own words, in any language, and returns ranked cards with install commands; get_how_to returns the full tutorial as Markdown: the best skill, the 2–4 choices to show the person with example videos, and the steps."
+author: varg
+url: https://varg.ai/how-to
+category: search
+content:
+  - name: varg hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.varg.ai/v2/skills/mcp"
+      }
