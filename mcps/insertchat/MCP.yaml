@@ -1,0 +1,15 @@
+id: insertchat
+name: InsertChat
+description: AI receptionist and AI chatbot. Triage calls and chats that need you, draft replies, look up leads, review reports, and train your assistant on web pages. Replies are drafts only; it never sends messages, places calls, or books. Uses OAuth 2.1 sign-in, no API key.
+author: MindCrafters LLC
+url: https://github.com/MindCraftersGroup/claude-plugin
+category: productivity
+prerequisites:
+  - InsertChat account (https://app.insertchat.com)
+content:
+  - name: InsertChat hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.insertchat.com/v2/mcp"
+      }
