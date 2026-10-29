@@ -1,0 +1,31 @@
+id: batchdata
+name: BatchData
+description: Gives agents U.S. real estate data through BatchData's official hosted MCP endpoint, including property lookup,
+  comparables, property search, owner skip tracing, phone verification and address geocoding.
+author: BatchData
+url: https://github.com/batchdataco/batchdata-mcp-server
+category: data
+prerequisites:
+  - BatchData account (OAuth sign-in or API token)
+  - MCP client with Streamable HTTP support
+content:
+  - name: BatchData hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.batchdata.com"
+      }
+  - name: BatchData hosted server with API token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.batchdata.com",
+        "headers": {
+          "Authorization": "Bearer {{BATCHDATA_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: BatchData API token
+    key: BATCHDATA_API_TOKEN
+    placeholder: your_batchdata_api_token
+    optional: true
