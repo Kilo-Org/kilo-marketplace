@@ -1,0 +1,13 @@
+id: npmscan
+name: npmscan
+description: A remote supply-chain security service and MCP plugin that audits npm packages for malware, trust, and AI vulnerabilities before installation.
+author: salemalem
+url: https://github.com/salemalem/npmscan-mcp-plugin
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://npmscan.com/mcp"
+      }
