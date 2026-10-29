@@ -1,0 +1,43 @@
+id: wiro-ai
+name: Wiro AI
+description: Official MCP server for Wiro AI. Search 3,500+ AI models for images, video, audio, speech, music and text, check each model's parameters and price, run it and get the results back in your assistant.
+author: Wiro AI
+url: https://github.com/wiroai/Wiro-MCP
+category: development
+prerequisites:
+  - Wiro account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.wiro.ai/v1"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.wiro.ai/v1",
+        "headers": {
+          "Authorization": "Bearer {{WIRO_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Wiro API Key
+        key: WIRO_API_KEY
+        placeholder: your-api-key
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@wiro-ai/wiro-mcp"],
+        "env": {
+          "WIRO_API_KEY": "{{WIRO_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Wiro API Key
+        key: WIRO_API_KEY
+        placeholder: your-api-key
