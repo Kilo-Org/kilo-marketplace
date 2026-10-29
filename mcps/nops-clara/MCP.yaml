@@ -1,0 +1,15 @@
+id: nops-clara
+name: Clara by nOps
+description: Official nOps FinOps assistant for querying AWS, GCP and Azure cost and usage, Reserved Instance and Savings Plan performance, budgets, reports, cost allocation and anomalies through a hosted server with OAuth sign-in.
+author: nOps
+url: https://github.com/nops-io/clara-mcp
+category: business
+prerequisites:
+  - nOps account
+content:
+  - name: Clara hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.nops.io"
+      }
