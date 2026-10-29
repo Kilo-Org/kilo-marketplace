@@ -1,0 +1,30 @@
+id: house-ai
+name: House AI
+description: Redesign a room, house exterior or yard from a photo in 100+ styles, preview wall paint and flooring, and find
+  real furniture and decor to match, through House AI's official hosted MCP endpoint.
+author: House AI
+url: https://github.com/Apex-Byte-Technologies/house-ai-mcp
+category: productivity
+prerequisites:
+  - House AI account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.houseaiapp.com/mcp"
+      }
+  - name: Remote API Token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.houseaiapp.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{HOUSE_AI_TOKEN}}"
+        }
+      }
+parameters:
+  - name: House AI API Token
+    key: HOUSE_AI_TOKEN
+    placeholder: your_house_ai_token
+    optional: true
