@@ -1,0 +1,29 @@
+id: bankbridge
+name: BankBridge
+description: Gives agents read-only access to your connected bank accounts, transactions, recurring charges, cashflow, and investment holdings through BankBridge's hosted OAuth 2.1 server, fetched live from your banks.
+author: Great Work
+url: https://bankbridge.money/docs
+category: business
+prerequisites:
+  - BankBridge account with at least one connected bank ($5/mo per connected bank), created at https://bankbridge.money
+content:
+  - name: Remote OAuth (read-only)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://bankbridge.money/api/mcp"
+      }
+  - name: Remote API Key (read-only)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://bankbridge.money/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BANKBRIDGE_API_KEY}}"
+        }
+      }
+parameters:
+  - name: BankBridge API Key
+    key: BANKBRIDGE_API_KEY
+    placeholder: bbk_your_api_key
+    optional: true
