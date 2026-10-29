@@ -33,3 +33,4 @@ parameters:
   - name: AccountsOS API Key
     key: ACCOUNTSOS_API_KEY
     placeholder: your_accountsos_api_key
+    optional: true
