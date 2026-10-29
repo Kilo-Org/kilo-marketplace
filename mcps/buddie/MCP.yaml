@@ -1,12 +1,17 @@
 id: buddie
-name: Buddie
-description: Checks AI agent reports against primary evidence without a model in the check. Quotations are looked up
+name: buddie
+description: >-
+  Checks AI agent reports against primary evidence without a model in the check. Quotations are looked up
   in content-addressed snapshots of the pages they cite; repository, PR and CI anchors are checked against git and the
   GitHub API. Returns receipts that name failed and unchecked claims. Also observes local environment categories
   (OS, CPU, memory, GPU, runtimes) only after the person grants them. Runs locally over stdio; no account or hosted
   endpoint; snap and verify_report fetch the URLs a report cites and store snapshots locally. Optional
   BUDDIE_GITHUB_TOKEN for private repositories; an ambient GITHUB_TOKEN is never read. Installing the MCP
-  server alone does not gate agent answers.
+  server alone does not gate agent answers. Eight tools: verify_report, snap, source_text, summary, environment_snapshot,
+  feedback_start, feedback_resolve and feedback_accept. The feedback tools support bounded corrections and accepting
+  only the exact verified final text. feedback_start and feedback_resolve may fetch evidence and write local feedback
+  state; feedback_accept reads the chain without changing it. summary needs the Claude Code hook journal.
+  PASS covers only checks that ran; GAPS and EMPTY are not passes.
 author: tsyyan
 url: https://github.com/tsyyan/buddie
 category: development
@@ -21,7 +26,7 @@ content:
     content: |
       {
         "command": "uvx",
-        "args": ["buddie@2.0.1", "serve"]
+        "args": ["buddie@2.0.5", "serve"]
       }
   - name: UVX with GitHub token
     prerequisites:
@@ -31,7 +36,7 @@ content:
     content: |
       {
         "command": "uvx",
-        "args": ["buddie@2.0.1", "serve"],
+        "args": ["buddie@2.0.5", "serve"],
         "env": {
           "BUDDIE_GITHUB_TOKEN": "{{BUDDIE_GITHUB_TOKEN}}"
         }
