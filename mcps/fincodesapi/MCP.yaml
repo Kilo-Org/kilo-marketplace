@@ -1,0 +1,23 @@
+id: fincodesapi
+name: Fin Codes API
+description: Validate IBANs and bank codes, verify payee names, and screen names against sanctions lists through eleven hosted tools.
+author: swiftcodesapi
+url: https://github.com/swiftcodesapi/fincodesapi-mcp
+category: business
+prerequisites:
+  - Fin Codes API account with lookup quota; payee checks use prepaid VoP credits
+  - API key from https://fincodesapi.com/api-keys
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fincodesapi.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{FINCODESAPI_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Fin Codes API key
+    key: FINCODESAPI_API_KEY
+    placeholder: your_fincodesapi_api_key
