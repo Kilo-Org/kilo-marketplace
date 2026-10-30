@@ -1,0 +1,30 @@
+id: fictura
+name: Fictura
+description: Reads a Fictura mobile app's paywalls, onboarding flows, subscription analytics and funnels, A/B experiment results, attribution and ad spend, App Store and Google Play analytics, and error reports, and creates draft paywalls and onboarding flows for Expo and React Native apps.
+author: Fictura
+url: https://github.com/Apex-Byte-Technologies/fictura-mcp
+category: data
+prerequisites:
+  - Fictura account with an app set up (https://fictura.co)
+  - MCP client with OAuth support, or a Fictura MCP key
+content:
+  - name: Hosted Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fictura.co/mcp"
+      }
+  - name: Hosted Remote (MCP key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fictura.co/mcp",
+        "headers": {
+          "Authorization": "Bearer {{FICTURA_MCP_KEY}}"
+        }
+      }
+parameters:
+  - name: Fictura MCP Key
+    key: FICTURA_MCP_KEY
+    placeholder: fk_mcp_your_key
+    optional: true
