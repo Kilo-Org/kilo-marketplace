@@ -1,0 +1,31 @@
+id: quady3d
+name: Quady3D MCP
+description: Create 3D assets from text or one image, check credit quotes, recover original tasks and save model files to a project. Setup guide at https://quady3d.com/integrations/mcp. Cloud generation uses account credits.
+author: Quady3D AI
+url: https://github.com/quady3dai/quady3d-tools
+category: development
+prerequisites:
+  - Node.js 22 or newer
+  - A Quady3D account and a limited API key from https://quady3d.com/account?section=connections
+  - An existing project directory configured in QUADY3D_ALLOWED_ROOTS as a JSON array of absolute paths
+  - Available account credits for generation and download access for model delivery
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["--yes", "--ignore-scripts", "--package=@quady3d/mcp@0.1.2", "quady3d-mcp"],
+        "env": {
+          "QUADY3D_API_KEY": "{{QUADY3D_API_KEY}}",
+          "QUADY3D_ALLOWED_ROOTS": "{{QUADY3D_ALLOWED_ROOTS}}"
+        }
+      }
+parameters:
+  - name: Quady3D API key
+    key: QUADY3D_API_KEY
+    placeholder: your_limited_quady3d_api_key
+  - name: Allowed project roots (JSON array)
+    key: QUADY3D_ALLOWED_ROOTS
+    placeholder: '["/absolute/path/to/your/project"]'
