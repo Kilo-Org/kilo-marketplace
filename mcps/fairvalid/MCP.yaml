@@ -1,0 +1,25 @@
+id: fairvalid
+name: FairValid
+description: Verify email addresses, monitor asynchronous verification jobs, read results and check workspace credits with FairValid.
+author: FairValid
+url: https://github.com/moonlitnayeem/fairvalid-ai
+category: business
+prerequisites:
+  - A FairValid account and workspace at https://fairvalid.com.
+  - A FairValid API key with only the scopes needed by your workflow. Use a live key for real verification and set a spending cap.
+  - Live submissions may reserve credits; completed Valid and Invalid checks cost one credit. Genuine Unknown and unresolved catch-all outcomes have zero net cost.
+  - Store your API key only in client credential configuration, never in prompts, source control, screenshots or tool arguments.
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fairvalid.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{FAIRVALID_API_KEY}}"
+        }
+      }
+parameters:
+  - name: FairValid API Key
+    key: FAIRVALID_API_KEY
+    placeholder: your_fairvalid_api_key
