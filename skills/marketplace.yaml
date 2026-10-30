@@ -1829,3 +1829,11 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: vidbyte-memory
+    description: >-
+      Install correction-driven memory into a repository so every correction the user gives becomes a slim fact, a
+      pytest test that fails if the mistake comes back, and a git commit. Use when the agent keeps repeating mistakes
+      the user already corrected, or when the user asks to install vidbyte-memory.
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vidbyte-memory
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vidbyte-memory/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vidbyte-memory.tar.gz
