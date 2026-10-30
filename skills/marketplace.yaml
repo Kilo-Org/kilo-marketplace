@@ -1666,6 +1666,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-react-best-practices
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-react-best-practices/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-react-best-practices.tar.gz
+  - id: vidbyte-memory
+    description: >-
+      Use when the owner asks to add vidbyte-memory to a repo, or to repair a partial install. Runs the installer, which
+      copies the memory protocol into the repo without overwriting anything and wires the Stop hook for each coding
+      agent it finds, then fills the Task section with the owner and runs the tests.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vidbyte-memory
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vidbyte-memory/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vidbyte-memory.tar.gz
   - id: web-design-guidelines
     description: >-
       Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility",
