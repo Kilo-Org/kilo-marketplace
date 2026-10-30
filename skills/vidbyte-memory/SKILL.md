@@ -1,78 +1,62 @@
 ---
 name: vidbyte-memory
-description: Install correction-driven memory into a repository so every correction the user gives becomes a slim fact, a pytest test that fails if the mistake comes back, and a git commit. Use when the agent keeps repeating mistakes the user already corrected, or when the user asks to install vidbyte-memory.
-license: MIT
+description: >-
+  Use when the owner asks to add vidbyte-memory to a repo, or to repair a
+  partial install. Runs the installer, which copies the memory protocol into the
+  repo without overwriting anything and wires the Stop hook for each coding
+  agent it finds, then fills the Task section with the owner and runs the tests.
+metadata:
+  category: development
+  source:
+    repository: 'https://github.com/cerredz/vidbyte-memory'
+    path: skills/install-memory
+    license_path: LICENSE
+    ref: v0.2.1
+    commit: dd50971bc393eff9fcc04db5033b2b1c4a44087e
 ---
 
-# vidbyte-memory
+# Install memory
 
-Installs [vidbyte-memory](https://github.com/cerredz/vidbyte-memory) (MIT) into the repository you are working in. After the install, the memory lives in the repo's own files: `AGENTS.md`, typed memory under `memory/`, slim facts under `facts/`, skills under `.agents/skills/` and tests under `tests/`.
+## Goal
 
-From then on, every correction the user gives is logged word for word and becomes three things:
-- a fact or rule the agent loads next time;
-- a test or verifier that fails if the mistake returns;
-- a footprint commit that shows how memory changed.
+A repo the owner already works in gains the whole memory protocol in one step, with nothing of theirs overwritten. From the next request on, the agent starts by reading memory, every correction becomes a fact and a test, and the guard enforces the guarantees in every coding agent the owner uses on that repo. The install is visible and reversible: every file it touched is listed, and every file it changed has a backup.
 
-No API key, database or service is involved. In Kilo, the installer also writes `.kilo/plugins/vidbyte-memory.js`. When a session goes idle, that plugin re-prompts it while tests fail, feedback is pending or changes are uncommitted, so the request is actually finished before the agent stops.
+## Objective
 
-## When to Use This Skill
+Run the installer on the target repo, show the owner the plan before writing, apply it, and leave the repo with a filled Task section, a passing test suite and a commit that records the install. Report what was written, which agents were wired, which existing files were kept, and any step the owner must take by hand.
 
-- The user corrects the agent ("no, we never do X here") and wants the correction to stick for future sessions.
-- The user asks for memory that is enforced by tests, not just written down.
-- The user asks to install, repair or remove vidbyte-memory.
+## Tasks
 
-## What This Skill Does
-
-1. **Previews the install.** It clones the template to a temporary folder and shows a dry-run plan: files to create, agents detected, and existing files it keeps.
-2. **Installs without overwriting.** An existing `AGENTS.md` is folded into the new `## Task` section, every edited file gets a `.vidbyte-memory-backup` copy, and every write is recorded in `.vidbyte-memory/install.json`.
-3. **Sets up enforcement.** It writes the Kilo plugin and the hooks for the other coding agents found in the repo or on the machine.
-4. **Finishes the setup with the user.** It fills the `## Task` section, runs the tests and commits.
-
-## How to Use
-
-### Basic Usage
-
-```
-Install vidbyte-memory in this repo
-```
-
-### Advanced Usage
-
-```
-Install vidbyte-memory here, wire only Kilo and Codex, and show me the plan first
-```
-
-## Steps
-
-1. Clone the template outside the repository and show the user `scripts/install.py` before running it:
-   ```bash
-   git clone --depth 1 https://github.com/cerredz/vidbyte-memory /tmp/vidbyte-memory
-   ```
-2. Show the plan: `python /tmp/vidbyte-memory/scripts/install.py --target . --dry-run`. When the user names their agents, pass them with `--agents`, for example `--agents kilo,codex`. `AGENTS.md`, the `.agents/skills` mirror and the Claude Code hook are always written.
-3. If the plan reports a conflict on `tests/helpers.py`, `tests/test_memory_integrity.py`, `scripts/guard.py` or `scripts/footprint.py`, stop and ask the user how to resolve it.
-4. Confirm with the user, then run the same command without `--dry-run`.
-5. Ask the user for the recurring task this repository serves, and replace the placeholder under `## Task` in `AGENTS.md` with it.
-6. Run `python -m pytest -q tests` (install pytest first if needed) and fix anything the install caused.
+1. Find the installer. When this skill was loaded from the vidbyte-memory plugin or a clone, it is `scripts/install.py` two folders above this file. Otherwise clone the release this skill shipped with into a temporary folder outside the repo, `git clone --depth 1 --branch v0.2.1 https://github.com/cerredz/vidbyte-memory <tmp>`, and use `<tmp>/scripts/install.py`, so the owner can read the script before it runs and the install is the reviewed release, not whatever `main` holds today. Run it as `python <installer> --target <repo>` from then on.
+2. Run it with `--dry-run --target <repo>` and show the owner the plan: the files it would create, the agents it detected and why, and any existing files it would keep.
+3. If the plan lists a conflict on a file the memory needs (its tests helpers, its integrity test, the guard or the footprint script), stop and ask the owner how to resolve it before going on.
+4. Run it again without `--dry-run`.
+5. Ask the owner for the recurring task this repo serves, then replace the paragraph in the `## Task` section of `AGENTS.md` with it: what is produced, for whom, from what inputs, and where it goes. If the installer moved the old instructions to `AGENTS.previous.md`, keep that file and the pointer to it.
+6. Run `python -m pytest -q tests`. Fix what the install caused; report anything that was already failing in the owner's own tests.
 7. Commit with `python scripts/footprint.py --commit --title "install vidbyte-memory"`.
 
-To remove it, run `python scripts/install.py uninstall --dry-run`, show the plan, then run it without `--dry-run`. Memory the agent wrote is kept unless the user asks for `--force`.
+## Instructions
 
-## Example
+- **Never overwrite the owner's files.** The installer keeps every existing file and lists the ones that differ from the template; leave them as they are unless the owner says otherwise. A backup named `<file>.vidbyte-memory-backup` sits next to every file it edited, such as `.claude/settings.json` or `CLAUDE.md`.
+- **Wire only the agents the owner uses.** Detection looks at the repo, the home folder and PATH. When the owner names their agents, pass them with `--agents`, so the repo does not collect hook files for tools nobody runs.
+- **Tell the owner about steps an agent cannot take.** Codex skips project hooks until the owner trusts them with `/hooks`; Grok Build needs `/hooks-trust`; Hermes loads project skills after `hermes skills trust`. The installer prints these as notes; repeat them in the report.
+- **The guard is the enforcement.** After the install, `scripts/guard.py` blocks the end of a turn while tests fail, feedback is pending or memory is uncommitted, in every agent whose hook was wired. In other agents the checklist in `AGENTS.md` is the same contract, kept by hand.
 
-**User**: "You keep writing prices without the currency. Make that stick, and install whatever you need."
+## Checklist
 
-**Output**:
-```
-vidbyte-memory would write 77 files in /work/shop
-  + kilo (repo has .kilo)
-Proceed? -> yes
-vidbyte-memory wrote 77 files in /work/shop
-36 passed, 3 skipped
-[main 1a2b3c4] install vidbyte-memory
-```
-Then the correction goes through the `handle-feedback` skill. It becomes `R-001: every price shows its currency`, a test `tests/test_fb001_price_currency.py` that fails on a price without one, and a footprint commit.
+- [ ] **The owner saw the dry-run plan before anything was written.** The report quotes the number of files and the agents wired.
+- [ ] **No existing file was overwritten.** Every kept file is listed, and every edited file has a backup.
+- [ ] **The `## Task` section of `AGENTS.md` describes the owner's recurring task.** The template's placeholder paragraph is gone.
+- [ ] **`python -m pytest -q tests` passes, or the report names each failure and whether the install caused it.**
+- [ ] **The install is committed**, and `.vidbyte-memory/install.json` lists what was written.
 
-## Requirements
+## Output
 
-- Python 3.9 or later. The installer and scripts use only the standard library; the tests need pytest.
-- git.
+A short report: the repo, the files written (count and the notable ones), the agents wired and why each was detected, the files kept because they already existed, the hand steps left for the owner (hook trust, conflicts), the test result, and the commit.
+
+## Runtime behavior
+
+- Loaded only when the owner asks to add memory to a repo or to repair an install; it is not part of the per-request protocol.
+- The installer is idempotent: running it again creates only what is missing, so it also repairs a partial install.
+- When the owner asks to remove the memory, run `python scripts/install.py uninstall --dry-run`, show the plan, then run it without `--dry-run`. It deletes what the install created, restores edited files from their backups, takes the guard hook out of agent settings the owner edited since, and keeps memory the agent wrote unless the owner asks for `--force`.
+- Uses `scripts/install.py`, which needs Python 3.9 or later and nothing outside the standard library.

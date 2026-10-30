@@ -16,7 +16,7 @@ items:
       - development
     author: cerredz
     url: https://github.com/cerredz/vidbyte-memory/tree/main/integrations/opencode
-    content: git:github.com/cerredz/vidbyte-memory@v0.2.0#integrations/opencode
+    content: git:github.com/cerredz/vidbyte-memory@v0.2.1#integrations/opencode
   - id: git/github.com/Kilo-Org/kilo-marketplace-test-plugin
     name: Kilo Marketplace Test Plugin
     description: Test fixture that verifies git-source plugin installation and runtime loading in the Kilo Marketplace.
