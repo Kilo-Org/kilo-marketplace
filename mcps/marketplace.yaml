@@ -4658,11 +4658,6 @@ items:
     prerequisites:
       - A UXKIN account with a Monthly or Lifetime plan
       - MCP client with OAuth support (or a UXKIN agent token)
-    skills:
-      - id: no-ui-slop
-        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/no-ui-slop.tar.gz
-      - id: uxkin-research
-        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/uxkin-research.tar.gz
     content:
       - name: Sign in with UXKIN (OAuth)
         content: |

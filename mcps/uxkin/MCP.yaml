@@ -7,9 +7,6 @@ category: development
 prerequisites:
   - A UXKIN account with a Monthly or Lifetime plan
   - MCP client with OAuth support (or a UXKIN agent token)
-skills:
-  - no-ui-slop
-  - uxkin-research
 content:
   - name: Sign in with UXKIN (OAuth)
     content: |
