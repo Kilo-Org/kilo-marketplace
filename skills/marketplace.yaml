@@ -1575,6 +1575,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/mcp-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/mcp-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/mcp-builder.tar.gz
+  - id: no-ui-slop
+    description: >-
+      Build UI that fits the product instead of generic AI defaults. Use whenever building, designing, redesigning,
+      restyling, polishing or reviewing screens, pages, components, flows or design systems, including requests like
+      "make this UI better", "improve the UX" or "make it look less generic": work from the existing design system,
+      design every state, check the rendered result, and look up real app and website references with the optional UXKIN
+      MCP tools when a decision needs evidence.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/no-ui-slop
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/no-ui-slop/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/no-ui-slop.tar.gz
   - id: okta-identity-integration-patterns
     description: >-
       Integrate Okta for enterprise identity workflows including OIDC login, group claims, and policy-based access
@@ -1629,6 +1640,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/skill-share
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/skill-share/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/skill-share.tar.gz
+  - id: uxkin-research
+    description: >-
+      Research how real products handle a screen, flow or visual style before designing it. Use when the person asks how
+      other apps do something, wants UI inspiration or comparable apps, needs examples of a flow (onboarding, sign-up,
+      checkout, paywall, cancellation, account deletion, empty states) or a design system to start from: search the
+      UXKIN library of real iOS screens, user journeys and website design systems, compare several and report what they
+      share.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/uxkin-research
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/uxkin-research/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/uxkin-research.tar.gz
   - id: validating-json-data
     description: >-
       Validates JSON data against JSON Schema using the z-schema library. Use when the user needs to validate JSON,
