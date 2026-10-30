@@ -1,0 +1,38 @@
+id: recued
+name: Recued
+description: Connects to a Recued server you run yourself (macOS, Linux, Windows) that sits between the agent and your mail, calendar, files and CRM; the agent sees only the tools its contract lists, every call is logged before it runs, and writes and deletes wait for the owner's approval by default.
+author: Recued
+url: https://github.com/recued/recued
+category: productivity
+prerequisites:
+  - A Recued server you run yourself (https://recued.com/docs)
+  - A contract key for this agent, created on that server
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{RECUED_MCP_URL}}",
+        "headers": {
+          "Authorization": "Bearer {{RECUED_CONTRACT_KEY}}"
+        }
+      }
+    parameters:
+      - name: Recued MCP URL
+        key: RECUED_MCP_URL
+        placeholder: https://your-server.example.com/mcp
+  - name: Local (stdio)
+    prerequisites:
+      - Recued installed on this machine
+    content: |
+      {
+        "command": "recued",
+        "args": ["--mcp"],
+        "env": {
+          "RECUED_MCP_TOKEN": "{{RECUED_CONTRACT_KEY}}"
+        }
+      }
+parameters:
+  - name: Recued Contract Key
+    key: RECUED_CONTRACT_KEY
+    placeholder: your_contract_key
