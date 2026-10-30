@@ -1594,6 +1594,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ponytail
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ponytail/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ponytail.tar.gz
+  - id: quady3d
+    description: >-
+      Create and deliver 3D assets through the Quady3D MCP tools, including text or selected-image generation, task
+      recovery, and saving model files to a project. Use when the user wants a real 3D asset or help with a Quady3D
+      task.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/quady3d
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/quady3d/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/quady3d.tar.gz
   - id: secrets-vault-manager
     description: >-
       Use when the user asks to set up secret management infrastructure, integrate HashiCorp Vault, configure cloud
