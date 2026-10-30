@@ -13,8 +13,8 @@ metadata:
     path: skills/quady3d
     ref: v0.1.2
     commit: 74a5f041ed987cd826b77ba0466dc558aaa52b1a
+    license_path: skills/quady3d/LICENSE
   author: Quady3D AI
-license: MIT
 compatibility: >-
   Requires Node.js 22+, the Quady3D MCP server, a Quady3D account and an allowed
   project directory. Cloud generation uses credits.
