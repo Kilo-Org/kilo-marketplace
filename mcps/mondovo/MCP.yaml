@@ -1,0 +1,16 @@
+id: mondovo
+name: Mondovo
+description: Build, edit, and publish professional websites in your Mondovo account from conversation, using OAuth and workspace permissions.
+author: Mondovo
+url: https://github.com/Mondovo/claude-plugin
+category: business
+prerequisites:
+  - Mondovo account and OAuth authorization for the selected workspace
+  - Setup guidance at https://app.mondovo.com/connectors
+content:
+  - name: Mondovo hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.mondovo.com/api/mcp/sites"
+      }
