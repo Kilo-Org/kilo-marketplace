@@ -1,0 +1,15 @@
+id: corpusiq
+name: CorpusIQ
+description: Answers business questions from the tools a company already runs, such as QuickBooks, Stripe, Shopify, HubSpot, Google Analytics and Gmail, and returns read-only, source-cited numbers instead of a fresh estimate for each assistant.
+author: CorpusIQ
+url: https://mcp2.corpusiq.io/mcp
+category: business
+prerequisites:
+  - CorpusIQ account with at least one connected data source
+content:
+  - name: CorpusIQ remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp2.corpusiq.io/mcp"
+      }
