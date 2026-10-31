@@ -1,0 +1,15 @@
+id: ravenpost
+name: Ravenpost
+description: "Social media scheduling from Ravenpost's hosted MCP server: list the accounts connected in Ravenpost (Instagram, TikTok, X, LinkedIn, Threads, Bluesky, YouTube, Pinterest and Telegram), upload media and cut an image to each network's canvas, preview a post as each network will render it with a warning for anything a network would reject, then save it as a draft, schedule it, queue it or publish it. Edit or cancel pending posts and read followers and engagement where a network reports them."
+author: Ravenpost
+url: https://github.com/target1m/ravenpost-mcp
+category: productivity
+prerequisites:
+  - "A Ravenpost account (there is a free plan) with the social accounts to post to connected at https://ravenpo.st/dashboard/accounts"
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.ravenpo.st/mcp"
+      }
