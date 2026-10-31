@@ -1470,9 +1470,9 @@ items:
         placeholder: your_exa_api_key_here
   - id: faxforagents
     name: Fax for Agents
-    description: Send and receive faxes from an AI agent. Fax for Agents is a fax API, a hosted MCP server and SDKs built so
-      AI agents can send and receive faxes, made by JSB Holdings LLC. 15 tools cover preparing a document, getting a
-      quote, sending, polling for the carrier's evidence and reading inbound faxes.
+    description: Fax for Agents is a fax API, a hosted MCP server and SDKs built so AI agents can send and receive faxes. It
+      is made by JSB Holdings LLC. The tools prepare a document, get a quote, send, poll for the carrier's evidence and
+      read inbound faxes.
     author: Fax for Agents
     url: https://github.com/faxforagents/mcp
     category: productivity
