@@ -1,0 +1,23 @@
+id: kin
+name: Kin
+description: >-
+  Use your accounts at GitHub, Notion, Linear and other services from Kilo,
+  even two accounts of one service, each with its own rule per action: Allow,
+  Ask me or Block. Kin checks the rule on its server when the action runs, and
+  Ask me waits for your approval.
+author: Kin
+url: https://github.com/kinlab-ai/kin-plugin
+category: productivity
+prerequisites:
+  - Kin account
+  - MCP client with OAuth support
+skills:
+  - kin
+  - kin-accounts
+content:
+  - name: Kin hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.kinlab.ai/mcp"
+      }
