@@ -1,0 +1,33 @@
+id: sequenzy
+name: Sequenzy
+description: Manage email marketing contacts, segments, campaigns, automations, transactional emails, and analytics for SaaS and ecommerce through Sequenzy.
+author: Sequenzy
+url: https://github.com/Sequenzy/mcp
+category: business
+prerequisites:
+  - A Sequenzy account and an API key with permissions for the operations you want to perform.
+content:
+  - name: Remote HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.sequenzy.com/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SEQUENZY_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js and npm
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@sequenzy/mcp"],
+        "env": {
+          "SEQUENZY_API_KEY": "{{SEQUENZY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Sequenzy API Key
+    key: SEQUENZY_API_KEY
+    placeholder: seq_user_your_key_here
