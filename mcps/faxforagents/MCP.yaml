@@ -1,0 +1,33 @@
+id: faxforagents
+name: Fax for Agents
+description: Fax for Agents is a fax API, a hosted MCP server and SDKs built so AI agents can send and receive faxes. It is made by JSB Holdings LLC. The tools prepare a document, get a quote, send, poll for the carrier's evidence and read inbound faxes.
+author: Fax for Agents
+url: https://github.com/faxforagents/mcp
+category: productivity
+prerequisites:
+  - Fax for Agents API key from https://app.faxforagents.com (a test key is free and uses a sandbox with no carrier)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "faxforagents-mcp"],
+        "env": {
+          "FAXFORAGENTS_API_KEY": "{{FAXFORAGENTS_API_KEY}}"
+        }
+      }
+  - name: Hosted Streamable HTTP server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.faxforagents.com/mcp/",
+        "headers": {
+          "Authorization": "Bearer {{FAXFORAGENTS_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Fax for Agents API key
+    key: FAXFORAGENTS_API_KEY
+    placeholder: ffa_test_...
