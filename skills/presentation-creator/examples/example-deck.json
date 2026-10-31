@@ -1,0 +1,79 @@
+{
+  "title": "Presentation Creator",
+  "subtitle": "Polished decks from a brief, in one pass",
+  "theme": "clean-light",
+  "aspect": "16:9",
+  "slides": [
+    {
+      "layout": "title",
+      "notes": "Open with the promise: a brief in, a reviewed deck out. Keep it to 20 seconds."
+    },
+    {
+      "layout": "bullets",
+      "title": "Decks fail on the same three things",
+      "subtitle": "Every review we ran found these",
+      "bullets": [
+        "Slides are walls of text with no single takeaway",
+        "Layouts drift because each slide is hand-tweaked",
+        "No check runs before the deck is delivered"
+      ],
+      "notes": "Frame the problem. Pause after the third bullet before moving to the fix."
+    },
+    {
+      "layout": "two_column",
+      "title": "Outline first, then generate",
+      "columns": [
+        [
+          "Assertion-style headlines",
+          "Five bullets or fewer",
+          "Speaker notes per slide"
+        ],
+        [
+          "JSON spec drives the build",
+          "One of three themes",
+          "QA pass before delivery"
+        ]
+      ],
+      "notes": "Contrast the manual approach on the left with the skill's workflow on the right."
+    },
+    {
+      "layout": "table",
+      "title": "What the QA gate catches",
+      "table": {
+        "headers": ["Check", "Severity", "Fix"],
+        "rows": [
+          ["Text overflow", "Error", "Resize box or split slide"],
+          ["Low contrast", "Error", "Adjust text or fill"],
+          ["Missing notes", "Warning", "Add one paragraph"],
+          ["Duplicate titles", "Error", "Rewrite headline"]
+        ]
+      },
+      "notes": "Emphasize that errors block delivery; warnings are advisory."
+    },
+    {
+      "layout": "chart",
+      "title": "Review time drops once QA is automated",
+      "chart": {
+        "type": "bar",
+        "categories": ["Draft", "Review", "Revise", "Ship"],
+        "series": [
+          { "name": "Manual", "values": [90, 60, 75, 45] },
+          { "name": "With skill", "values": [20, 15, 10, 5] }
+        ]
+      },
+      "notes": "Illustrative numbers. Make the point: the loop gets shorter, not the thinking."
+    },
+    {
+      "layout": "quote",
+      "quote": "A deck is a decision aid, not a document dump.",
+      "attribution": "Design principle",
+      "notes": "Land the philosophy before the closing slide."
+    },
+    {
+      "layout": "closing",
+      "title": "Build your next deck with the skill",
+      "subtitle": "brief -> outline -> spec -> validated .pptx",
+      "notes": "End on the workflow. Invite the audience to try it on a real brief."
+    }
+  ]
+}
