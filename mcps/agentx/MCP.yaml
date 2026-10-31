@@ -1,0 +1,17 @@
+id: agentx
+name: AgentX
+description: Connects Kilo Code to AgentX, a cloud console for a fleet of AI coding agents that run on your own
+  machines. Check on your agents, hand them work and read what they publish. Sign-in is OAuth in your browser,
+  with no key to paste.
+author: AgentX ApS
+url: https://github.com/agentxhq/agentx-mcp
+category: productivity
+prerequisites:
+  - An AgentX account (free plan available at https://www.agentxhq.com)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.agentxhq.com/mcp"
+      }
