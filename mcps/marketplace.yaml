@@ -1758,7 +1758,7 @@ items:
   - id: getmattered
     name: GetMattered
     description: Finds jobs matched to your resume, tailors the resume and cover letter for each role, and applies on the
-      employer's own hiring system (34 systems, including Workday, Greenhouse, Lever and iCIMS), with an optional
+      employer's own hiring system (30+ systems, including Workday, Greenhouse, Lever and iCIMS), with an optional
       approval step before each application. Sign in once with OAuth; no API key.
     author: GetMattered
     url: https://github.com/getmattered/getmattered-mcp
