@@ -11,7 +11,7 @@ prerequisites:
   - uv installed, with uvx available on the MCP client's PATH
   - Python 3.10 or newer; Python 3.11–3.14 recommended
   - >-
-    Initialize your project with uvx --from selvedge selvedge init --path
+    Initialize your project with uvx --from selvedge==0.3.18 selvedge init --path
     "/absolute/path/to/project", replacing the example with your project's absolute
     path. Set Database Path below to that project's .selvedge/selvedge.db file.
   - >-
@@ -22,7 +22,7 @@ content:
     content: |
       {
         "command": "uvx",
-        "args": ["--from", "selvedge", "selvedge-server"],
+        "args": ["--from", "selvedge==0.3.18", "selvedge-server"],
         "env": {
           "SELVEDGE_DB": "{{SELVEDGE_DB}}"
         }
