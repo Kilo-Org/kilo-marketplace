@@ -1,0 +1,30 @@
+id: world-monitor
+name: World Monitor
+description: Real-time global intelligence on conflict, markets, energy, trade, shipping and cyber through World Monitor's official hosted Streamable HTTP server, with about 100 read-only tools.
+author: World Monitor
+url: https://github.com/koala73/worldmonitor
+category: search
+prerequisites:
+  - A free World Monitor account (https://www.worldmonitor.app); some advanced tools need a paid plan
+content:
+  - name: Hosted remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://worldmonitor.app/mcp"
+      }
+  - name: Hosted remote server (API key)
+    prerequisites:
+      - A World Monitor API key on a paid API plan
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://worldmonitor.app/mcp",
+        "headers": {
+          "X-WorldMonitor-Key": "{{WORLDMONITOR_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: World Monitor API Key
+        key: WORLDMONITOR_API_KEY
+        placeholder: wm_your_api_key_here
