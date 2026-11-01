@@ -1,0 +1,33 @@
+id: selvedge
+name: Selvedge
+description: >-
+  Record and retrieve explicit software decisions, reasons, and rejected approaches
+  in local SQLite so coding agents can reuse project context. Storage and retrieval
+  make no LLM calls; connected agents may share returned context with model providers.
+author: masondelan
+url: https://github.com/masondelan/selvedge
+category: development
+prerequisites:
+  - uv installed, with uvx available on the MCP client's PATH
+  - Python 3.10 or newer; Python 3.11–3.14 recommended
+  - >-
+    Initialize your project with uvx --from selvedge selvedge init --path
+    "/absolute/path/to/project", replacing the example with your project's absolute
+    path. Set Database Path below to that project's .selvedge/selvedge.db file.
+  - >-
+    Use an absolute Database Path so storage does not depend on the client's working
+    directory. See https://selvedge.sh/start/quickstart/ for setup documentation.
+content:
+  - name: UVX
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "selvedge", "selvedge-server"],
+        "env": {
+          "SELVEDGE_DB": "{{SELVEDGE_DB}}"
+        }
+      }
+parameters:
+  - name: Database Path (absolute)
+    key: SELVEDGE_DB
+    placeholder: /absolute/path/to/project/.selvedge/selvedge.db
