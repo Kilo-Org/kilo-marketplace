@@ -24,7 +24,8 @@ content:
           "X-WorldMonitor-Key": "{{WORLDMONITOR_API_KEY}}"
         }
       }
-    parameters:
-      - name: World Monitor API Key
-        key: WORLDMONITOR_API_KEY
-        placeholder: wm_your_api_key_here
+parameters:
+  - name: World Monitor API Key
+    key: WORLDMONITOR_API_KEY
+    placeholder: wm_your_api_key_here
+    optional: true
