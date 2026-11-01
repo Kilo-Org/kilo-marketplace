@@ -1,0 +1,16 @@
+id: lurkapi
+name: LurkAPI
+description: Live public data from 16 social platforms and the web, including TikTok, Instagram and YouTube profiles and posts, Reddit threads, comments, video transcripts and ads from the Meta, Google, TikTok and LinkedIn ad libraries, via LurkAPI's hosted OAuth server. Read-only, one tool per endpoint.
+author: LurkAPI
+url: https://lurkapi.com/docs#claude
+category: web-automation
+prerequisites:
+  - "LurkAPI account, created during sign-in at https://lurkapi.com/login (100 free credits, no card)"
+  - MCP client with OAuth support
+content:
+  - name: LurkAPI hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.lurkapi.com/mcp"
+      }
