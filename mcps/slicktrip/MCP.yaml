@@ -1,0 +1,21 @@
+id: slicktrip
+name: SlickTrip
+description: >-
+  Live flight, hotel and seat prices, cheapest-day calendars, and price-drop
+  and seat alerts. Search flights and hotels for real dates, see the cheapest
+  days to go, check open seats on a flight, and watch any fare, stay, seat or
+  flexible bucket list; SlickTrip emails or texts you when the price drops.
+  Booking happens on the airline's or hotel seller's own site.
+author: SlickTrip
+url: https://github.com/sliktrip/slicktrip-mcp
+category: search
+prerequisites:
+  - Free SlickTrip account (sign in with Google, Apple or email when the OAuth window opens)
+  - MCP client with OAuth support
+content:
+  - name: SlickTrip hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.slicktrip.com/mcp"
+      }
