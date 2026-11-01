@@ -1,0 +1,17 @@
+id: gosset
+name: Gosset
+description: Search connected pharmaceutical drug, clinical trial, result, patent and deal data with source links through
+  Gosset’s hosted MCP server.
+author: Gosset, Inc.
+url: https://docs.gosset.ai/guide/claude-connector
+category: search
+prerequisites:
+- Gosset account; free and paid plans are described at https://gosset.ai/pricing
+- MCP client with OAuth support; sign in to Gosset when prompted
+content:
+- name: Gosset hosted MCP (OAuth)
+  content: |
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.gosset.ai/mcp"
+    }
