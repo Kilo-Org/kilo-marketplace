@@ -1,0 +1,154 @@
+id: nova-by-civai
+name: Nova by CIVAI
+description: Selectable hosted MCP servers for the Nova agent catalog by CIVAI TECHNOLOGIES, covering research, documents and slides, spreadsheets, email and messaging, browser automation, code execution, social publishing and lead discovery. Each server is a separate Streamable HTTP endpoint using Nova OAuth or a Nova API key.
+author: CIVAI TECHNOLOGIES
+url: https://nova.civai.co
+category: productivity
+prerequisites:
+  - Nova account at https://nova.civai.co
+  - Sign in with OAuth when prompted, or create an API key at https://nova.civai.co/api-keys
+content:
+  - name: Blogger Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/blogger-agent"
+      }
+  - name: Browser Automation Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/browsergpt-agent"
+      }
+  - name: Calendar Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/calendar-agent"
+      }
+  - name: Code Interpreter Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/code-interpreter-agent"
+      }
+  - name: Content Calendar Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/content-calendar-agent"
+      }
+  - name: Content Pipeline Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/content-pipeline-agent"
+      }
+  - name: Gmail Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/gmail-agent"
+      }
+  - name: Google Docs Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/google-docs-agent"
+      }
+  - name: Google Sheets Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/google-sheets-agent"
+      }
+  - name: Instagram Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/instagram-web-agent"
+      }
+  - name: Interviewer Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/interviewer-agent"
+      }
+  - name: Leads Discovery Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/leads-discovery-agent"
+      }
+  - name: Music Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/music-agent"
+      }
+  - name: Nova Inbox Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/nova-inbox-agent"
+      }
+  - name: OpenClaw Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/openclaw-agent"
+      }
+  - name: PDF Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/pdf-agent"
+      }
+  - name: Product Admin
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/product-admin"
+      }
+  - name: Research Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/research-agent"
+      }
+  - name: Slidegen Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/slidegen-agent"
+      }
+  - name: Support Agent Admin
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/support-agent-admin"
+      }
+  - name: Telegram Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/telegram-agent"
+      }
+  - name: Terminal Command Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/terminal-command-agent"
+      }
+  - name: Twitter Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/twitter-agent"
+      }
+  - name: WhatsApp Web Agent
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/whatsapp-web-agent"
+      }
