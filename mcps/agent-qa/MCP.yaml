@@ -1,0 +1,35 @@
+id: agent-qa
+name: agent-qa
+description: Web, Android and iOS QA with natural-language tests, inspectable run evidence,
+  persistent memidex memory, and evidence-based self-improvement.
+author: vostride
+url: https://github.com/vostride/agent-qa
+category: web-automation
+prerequisites:
+  - Node.js 24 or newer
+  - An initialized agent-qa project with its target, model and credentials configured.
+    Setup guide at https://vostride.com/docs/agent-qa/quickstart
+  - Configure a long MCP tool timeout for test runs.
+    MCP documentation at https://vostride.com/docs/agent-qa/mcp
+  - The CLI is free; model and execution infrastructure costs are separate.
+    Product website at https://vostride.com
+  - Licensed under FSL-1.1-ALv2, with restrictions on competing commercial use
+content:
+  - name: NPX
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "agent-qa@0.2.4", "--config", "{{CONFIG_PATH}}", "mcp"]
+      }
+  - name: Installed CLI
+    prerequisites:
+      - agent-qa 0.2.4 installed and available on PATH
+    content: |
+      {
+        "command": "agent-qa",
+        "args": ["--config", "{{CONFIG_PATH}}", "mcp"]
+      }
+parameters:
+  - name: Absolute path to agent-qa.config.yaml
+    key: CONFIG_PATH
+    placeholder: /absolute/path/to/project/agent-qa.config.yaml
