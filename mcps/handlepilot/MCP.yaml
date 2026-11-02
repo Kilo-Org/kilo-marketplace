@@ -1,0 +1,29 @@
+id: handlepilot
+name: HandlePilot
+description: Instagram content hub for your AI agent. Research competitors' accounts and posts, break down reels (transcript,
+  scenes, hook, structure, music), plan content from your own numbers, and write editable carousels and scripts in your voice.
+author: handlepilot
+url: https://github.com/Handlepilot/instagram-mcp
+category: productivity
+prerequisites:
+  - A HandlePilot account (free plan available at https://handlepilot.com)
+content:
+  - name: Remote MCP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.handlepilot.com/mcp"
+      }
+  - name: Remote MCP (personal access token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.handlepilot.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{HANDLEPILOT_TOKEN}}"
+        }
+      }
+parameters:
+  - name: HandlePilot personal access token
+    key: HANDLEPILOT_TOKEN
+    placeholder: your_handlepilot_personal_access_token
