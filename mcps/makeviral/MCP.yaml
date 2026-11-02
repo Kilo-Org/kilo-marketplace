@@ -1,0 +1,19 @@
+id: makeviral
+name: MakeViral
+description: Find the newest viral AI video trend templates on TikTok and Instagram Reels and make them from your photos
+  (https://www.makeviral.ai). Search trend templates with example clips and credit prices, run a template with your own
+  photos, and make any AI image or video from a prompt with models such as Veo, Kling, Seedance, Nano Banana and GPT
+  Image. Check runs, list creations and see the credit balance.
+author: MakeViral
+url: https://github.com/makeviral-ai/cursor-plugin
+category: productivity
+prerequisites:
+  - MakeViral account (https://www.makeviral.ai) for runs; browsing templates needs no sign-in
+  - MCP client with OAuth support
+content:
+  - name: MakeViral hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.makeviral.ai/mcp"
+      }
