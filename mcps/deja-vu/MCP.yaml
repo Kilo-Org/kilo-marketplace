@@ -17,7 +17,7 @@ content:
       }
   - name: Homebrew
     prerequisites:
-      - Homebrew
+      - Homebrew (`brew install vshulcz/tap/deja-vu`)
     content: |
       {
         "command": "deja",
