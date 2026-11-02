@@ -1,0 +1,28 @@
+id: stophy
+name: Stophy
+description: One API to search the web, read what people say, and look up products, places, jobs and homes.
+author: Stophy
+url: https://github.com/stophydotdev/stophy
+category: search
+prerequisites:
+  - Stophy account (https://stophy.dev/signup)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.stophy.dev/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.stophy.dev/mcp",
+        "headers": {
+          "Authorization": "Bearer {{STOPHY_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Stophy API Key
+        key: STOPHY_API_KEY
+        placeholder: your_stophy_api_key
