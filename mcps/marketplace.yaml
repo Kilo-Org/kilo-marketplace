@@ -2671,7 +2671,7 @@ items:
   - id: mrscraper
     name: MrScraper
     description: Fetches web pages as HTML, Markdown, or screenshots with optional browser rendering, proxies, and
-      geo-targeting, runs Google searches that return parsed organic results, and reports MrScraper plan usage.
+      geo-targeting, searches the web for ranked results, and reports MrScraper plan usage.
     author: MrScraper
     url: https://github.com/mrscraper-com/mrscraper-mcp
     category: web-automation
