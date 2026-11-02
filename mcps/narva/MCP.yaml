@@ -1,0 +1,16 @@
+id: narva
+name: Narva
+description: Make faceless YouTube videos and Shorts from a topic or a script (narration, AI visuals, footage, motion graphics, captions, music), edit them in words and publish or schedule them to your YouTube channel.
+author: Narva
+url: https://github.com/Negmus/narva-mcp
+category: productivity
+prerequisites:
+  - Narva account with a plan
+  - MCP client with OAuth support
+content:
+  - name: Narva hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://narva.app/mcp"
+      }
