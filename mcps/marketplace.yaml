@@ -824,7 +824,7 @@ items:
         content: |
           {
             "command": "uvx",
-            "args": ["buddie@2.0.5", "serve"]
+            "args": ["buddie@2.0.8", "serve"]
           }
       - name: UVX with GitHub token
         prerequisites:
@@ -834,7 +834,7 @@ items:
         content: |
           {
             "command": "uvx",
-            "args": ["buddie@2.0.5", "serve"],
+            "args": ["buddie@2.0.8", "serve"],
             "env": {
               "BUDDIE_GITHUB_TOKEN": "{{BUDDIE_GITHUB_TOKEN}}"
             }
