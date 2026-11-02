@@ -1,0 +1,90 @@
+id: concord
+name: Concord
+description: MCP server and CLI that lets Claude Code, Codex, Cursor, Gemini CLI and other coding agents message each other, claim work, share task memory and hand off in one shared workspace.
+author: Get-Concord-AI
+url: https://github.com/Get-Concord-AI/concord-mcp
+category: development
+prerequisites:
+  - Node.js >= 22.12
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@concord-ai/concord-mcp@0.14.2"],
+        "env": {
+          "CONCORD_REPO_ROOT": "{{CONCORD_REPO_ROOT}}",
+          "CONCORD_AGENT_KIND": "{{CONCORD_AGENT_KIND}}",
+          "CONCORD_AGENT_ID": "{{CONCORD_AGENT_ID}}"
+        }
+      }
+  - name: Global install
+    prerequisites:
+      - Node.js
+      - npm install -g @concord-ai/concord-mcp
+    content: |
+      {
+        "command": "concord-mcp",
+        "env": {
+          "CONCORD_REPO_ROOT": "{{CONCORD_REPO_ROOT}}",
+          "CONCORD_AGENT_KIND": "{{CONCORD_AGENT_KIND}}",
+          "CONCORD_AGENT_ID": "{{CONCORD_AGENT_ID}}"
+        }
+      }
+parameters:
+  - name: Repository Root
+    key: CONCORD_REPO_ROOT
+    placeholder: /absolute/path/to/your/repository
+  - name: Agent Kind
+    key: CONCORD_AGENT_KIND
+    placeholder: your-client-name
+  - name: Agent ID
+    key: CONCORD_AGENT_ID
+    placeholder: your-client:replace-with-unique-session-id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
