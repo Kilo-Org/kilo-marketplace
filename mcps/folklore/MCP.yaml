@@ -1,0 +1,17 @@
+id: folklore
+name: Folklore MCP
+description: ACMG/AMP germline variant classification, gene profiles, disease associations and literature.
+author: Helena Bioinformatics
+url: https://github.com/helena-bioinformatics/folklore-mcp
+category: search
+prerequisites:
+  - Internet access to the free public hosted endpoint; no account or API key required.
+  - Public GRCh38 nuclear germline SNVs and simple indels shorter than 50 bp only; no patient, phenotype, family or private-case data or genomic uploads.
+  - Results require qualified professional review. Setup and scope https://folklore.helena.bio/integrations/mcp
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.helena.bio/folklore/v1/mcp"
+      }
