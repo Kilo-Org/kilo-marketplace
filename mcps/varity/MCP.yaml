@@ -1,0 +1,19 @@
+id: varity
+name: Varity
+description: Deploy apps, AI agents, and LLMs to production from your editor with one command, with the cost shown
+  before you deploy. Tools cover deploys, status, logs, app templates, virtual machines, and cost estimates.
+author: varity-labs
+url: https://github.com/varity-labs/varity-mcp
+category: development
+prerequisites:
+  - Varity account and deploy key (https://developer.store.varity.so)
+  - Varity CLI for deploys (pipx install varitykit)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22.11 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@varity-labs/mcp@2.3.22"]
+      }
