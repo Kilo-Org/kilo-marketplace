@@ -1,0 +1,30 @@
+id: kineticist
+name: Kineticist
+description: Pinball news, games and editions, designers, places to play and the Hype Index from Kineticist. The hosted
+  server needs no key; the local package adds tools for your own play log, ownership, wishlist and reviews.
+author: colinize
+url: https://github.com/colinize/kineticist-mcp
+category: search
+content:
+  - name: Remote MCP - Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.kineticist.com/api/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+      - Kineticist API key (kineticist.com/settings)
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@kineticist/mcp-server"],
+        "env": {
+          "KINETICIST_API_KEY": "{{KINETICIST_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Kineticist API Key
+        key: KINETICIST_API_KEY
+        placeholder: your_kineticist_api_key
