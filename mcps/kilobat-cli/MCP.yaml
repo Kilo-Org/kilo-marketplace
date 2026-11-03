@@ -1,0 +1,17 @@
+id: kilobat-cli
+name: Kilobat CLI
+description: Local macOS network diagnostics and connection information through a stdio MCP server.
+author: seifip
+url: https://github.com/seifip/kilobat-cli
+category: observability
+prerequisites:
+  - macOS 14 or later
+  - Install Kilobat CLI from its official repository and make kilobat available on Kilo's PATH
+  - Homebrew source builds require Xcode 16 or later; some tools require macOS permissions or the separately distributed Kilobat desktop app
+content:
+  - name: Local
+    content: |
+      {
+        "type": "local",
+        "command": ["kilobat", "mcp"]
+      }
