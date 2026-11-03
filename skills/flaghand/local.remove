@@ -4,3 +4,7 @@ GEMINI.md
 README.md
 gemini-extension.json
 server.json
+.cursor-plugin
+CURSOR.md
+claude-plugin
+mcp.json
