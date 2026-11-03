@@ -12,7 +12,7 @@ metadata:
     path: .
     license_path: LICENSE
     ref: main
-    commit: 13e43c457dc382b0d0cd080c25da81d75749154b
+    commit: ad88b66c510c6197cd1ea5b0b19455a9b838320c
 ---
 
 # Flaghand
@@ -103,7 +103,7 @@ US billing country/state AND known US trusted edge-IP evidence are required at q
 
 The 200 receipt gives `paid_through` and `auto_renews:false`. Prepaid does not renew; topping up adds after current paid time without extra X allowance. Ongoing or overdue recurring subscriptions refuse prepaid with `recurring_subscription_active`; follow existing billing recovery. When prepaid extends beyond Stripe's 730-day deferral maximum, recurring `startCheckout` returns `checkout_url:null`, `recurring_available_from` and `for_person`: no plan or charge starts. Relay that message, not a null link, and return on or after that date; do not buy another payment to bypass it. Posting still needs the owner's separate passkey approval. [Payment details, free days and receipts](https://app.flaghand.com/docs/billing.md#prepaid-payments-for-agents).
 
-Stablecoins in hosted Checkout use `listPlans.crypto_checkout.enabled`, separately from MPP. Supply the same `billing_country` / US `billing_state` discovery queries; `crypto_checkout.country_policy` explains any missing location or ineligibility. Crypto also checks trusted edge IP country, never a client-supplied country header; MPP card uses its SPT evidence instead. No location does not imply global crypto availability. If enabled, `startCheckout` with `{plan:"monthly",payment_method:"crypto"}` buys one prepaid period, never a subscription. Relay its `for_person` and short `checkout_url` unchanged; only a wallet the person delegated and funded may pay. Save the Session/payment IDs and recover with `confirmCheckout`, not a new purchase. Stripe converts to USD; refunds, if due, return as the same coin to the paying wallet. It is on in live mode for US payers. [Stablecoin Checkout](https://app.flaghand.com/docs/billing.md#stablecoins-in-checkout).
+Stablecoins in hosted Checkout use `listPlans.crypto_checkout.enabled`, separately from MPP. Supply the same `billing_country` / US `billing_state` discovery queries; `crypto_checkout.country_policy` explains any missing location or ineligibility. Crypto also checks trusted edge IP country, never a client-supplied country header; MPP card uses its SPT evidence instead. No location does not imply global crypto availability. If enabled, `startCheckout` with `{plan:"monthly",payment_method:"crypto"}` buys one prepaid period, never a subscription: `payment_method:"crypto"` implies a one-time payment, so it needs no `mode:"payment"`. Relay its `for_person` and short `checkout_url` unchanged; only a wallet the person delegated and funded may pay. Save the Session/payment IDs and recover with `confirmCheckout`, not a new purchase. Stripe converts to USD; refunds, if due, return as the same coin to the paying wallet. It is on in live mode for US payers. [Stablecoin Checkout](https://app.flaghand.com/docs/billing.md#stablecoins-in-checkout).
 
 ## Person sign-in, methods and recovery
 
@@ -194,7 +194,7 @@ import { createHash } from "node:crypto"; import { mkdtempSync, writeFileSync } 
 const get = async (url) => { const r = await fetch(url); if (!r.ok) throw Error("HTTP " + r.status + " from " + url); return r; };
 const cli = await (await get("https://app.flaghand.com/cli/latest.json")).json(), tgz = Buffer.from(await (await get(cli.url)).arrayBuffer());
 if ("sha512-" + createHash("sha512").update(tgz).digest("base64") !== cli.integrity) throw Error("The CLI archive does not match the catalog SHA-512");
-const file = join(mkdtempSync(join(tmpdir(), "flaghand-cli-")), "flaghand.tgz"); writeFileSync(file, tgz); console.log(file)')"
+const file = join(mkdtempSync(join(tmpdir(), "flaghand-cli-")), "flaghand.tgz"); writeFileSync(file, tgz); console.log(file)')" || FLAGHAND_CLI=/nonexistent/flaghand-cli-unverified.tgz
 ```
 PowerShell:
 ```powershell
@@ -209,7 +209,7 @@ npx --yes --package "$FLAGHAND_CLI" flaghand --url https://app.flaghand.com sign
 ```
 
 Use that prefix (including `--url`) for every CLI command: `signup`, `connections wait`, `drafts wait`, or `--help`.
-The resolver runs the catalog's immutable tarball only once it matches the catalog's SHA-512 integrity; every build with different contents has its own version. Keep a release's URL and integrity to pin it. After npm publication, prefer `npx --yes flaghand`; hosted
+The resolver runs the catalog's immutable tarball only once it matches the catalog's SHA-512 integrity. On a failed download or a mismatch, `FLAGHAND_CLI` names a missing file, so `npx` stops with an error instead of resolving `flaghand` anywhere else; every build with different contents has its own version. Keep a release's URL and integrity to pin it. After npm publication, prefer `npx --yes flaghand`; hosted
 versioned URLs keep working.
 
 Call `getMe` (`GET /api/v1/me`) to confirm the workspace and scopes. Follow its `next.operation_id`:
@@ -463,6 +463,13 @@ share these operations; [examples](https://app.flaghand.com/docs/schedule-and-re
 
 - An X thread is **one** `x_thread` draft with ordered `body.posts`, not drafts replying to each other. `reply_to_url`
   refers only to an already-live post. Use `x_post` for a single post and `linkedin_post` for LinkedIn.
+- Bluesky works the same way: `bluesky_post` for one post, one `bluesky_thread` draft with ordered `body.posts` for a
+  thread. Details: [Bluesky](https://app.flaghand.com/docs/bluesky.md).
+- TikTok uses `tiktok_video` (`title`, one video in `media`, `post_mode`) or `tiktok_photo` (`title`, `description`,
+  photo `media` or a `slideshow`). The owner makes TikTok's creator choices and gives its consent when approving,
+  never the agent. Details: [TikTok](https://app.flaghand.com/docs/tiktok.md).
+- Every network connects the same way: `startConnection` for its platform, relay `for_person` and `url`, wait on the
+  attempt with `getConnectionAttempt` (above). The person signs in to the network; the agent never does.
 - Mention, quote, media and platform rules come from the check, not assumptions. LinkedIn company URLs resolve through
   `lookUpLinkedInOrganization` (read-only); use `linkLinkedInTag` with the exact page name and returned `urn`.
   Numeric/saved IDs are unverified. If Community Management permission is missing, the error gives the exact

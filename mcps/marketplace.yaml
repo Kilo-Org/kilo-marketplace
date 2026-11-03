@@ -1672,7 +1672,8 @@ items:
         placeholder: your_fivetran_api_secret
   - id: flaghand
     name: Flaghand
-    description: Your agent starts at flaghand.com/llms.txt, signs you up, drafts X and LinkedIn posts; you approve.
+    description: Your agent starts at flaghand.com/llms.txt, signs you up, drafts X, LinkedIn, Bluesky and TikTok posts; you
+      approve.
     author: Flaghand
     url: https://github.com/flaghand/flaghand
     category: productivity
