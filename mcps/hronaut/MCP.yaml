@@ -1,0 +1,62 @@
+id: hronaut
+name: Hronaut
+description: >-
+  Connect Kilo to Hronaut, a local, visible desktop browser with persistent named
+  workspaces for supervised web-app checks. Requires the Hronaut desktop app running
+  on the same machine; it is not a hosted or cloud browser.
+author: hronaut
+url: https://github.com/hronaut/hronaut
+category: web-automation
+prerequisites:
+  - >-
+    Install and start the Hronaut desktop app on this machine (download at
+    https://hronaut.dev). This entry only adds an MCP connection to its local loopback
+    endpoint; it does not install the app or provide a hosted server.
+  - >-
+    Keep the default loopback endpoint and do not expose it publicly. Kilo Cloud Agents
+    cannot reach it; use the Kilo IDE, CLI or JetBrains clients on the same machine.
+  - >-
+    Setup guide: https://hronaut.dev/kilo-code-browser-mcp
+  - >-
+    Hronaut is source-available under its proprietary Subscription and Trial License.
+    The 10-day trial starts with the first agent tool call; afterwards a paid
+    subscription is required (USD 4/month or USD 24/year per named user, up to three
+    active devices). Current terms: https://github.com/hronaut/hronaut#license
+  - >-
+    The Windows binary is unsigned and macOS packages are not Apple-notarized, so
+    SmartScreen or Gatekeeper may warn on first launch.
+content:
+  - name: With MCP authentication (recommended, Global scope only)
+    prerequisites:
+      - >-
+        Make sure Require MCP authentication is on in Hronaut's Settings → MCP security. Hronaut
+        keeps the owner token in a protected file and shows the token-aware client setup
+        on Hronaut Home. Export that token as HRONAUT_MCP_TOKEN in the environment that
+        launches Kilo (for example your shell profile), then restart Kilo. Alternatively,
+        use the global kilo.jsonc entry Hronaut Home generates, which references the token
+        file instead. Never paste the token into a project file, chat or issue.
+      - >-
+        Select Global in Kilo's installation dialog. Kilo skips project MCP headers that
+        contain environment or file references, so Project scope does not work with this
+        option.
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "http://127.0.0.1:47812/mcp",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {env:HRONAUT_MCP_TOKEN}"
+        }
+      }
+  - name: Without a token (MCP authentication turned off)
+    prerequisites:
+      - >-
+        Only for when Require MCP authentication is turned off in Hronaut's Settings → MCP
+        security. In that mode any process running as your user can control the browser,
+        so prefer the authenticated option before relying on valuable sign-ins.
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "http://127.0.0.1:47812/mcp",
+        "oauth": false
+      }
