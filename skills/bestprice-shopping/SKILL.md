@@ -12,9 +12,9 @@ metadata:
     commit: 7ac84944e78548d18b668269181f283c2ebcd006
 ---
 
-# BestPrice Shopping
+# BestPrice
 
-Use BestPrice Shopping when the user is shopping for safe physical products available in Greece, even when they do not name BestPrice.
+Use BestPrice when the user is shopping for safe physical products available in Greece, even when they do not name BestPrice.
 
 ## Route by shopper intent
 
