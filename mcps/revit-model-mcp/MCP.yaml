@@ -1,0 +1,25 @@
+id: revit-model-mcp
+name: Model MCP
+description: >-
+  Open-source MCP server for Autodesk Revit 2022 to 2027: read, audit and edit live models with 89 tools, one Undo entry per change, and a workstation read-only lock.
+author: sharafutdinovdi
+url: https://github.com/sharafutdinovdi/revit-model-mcp
+category: productivity
+prerequisites:
+  - Autodesk Revit 2022 to 2027 on Windows with the matching Model MCP add-in installed and a model open
+  - Install the per-user MSI from https://github.com/sharafutdinovdi/revit-model-mcp/releases/latest
+  - For macOS or Linux clients, configure SSH as documented at https://sharafutdinovdi.github.io/revit-model-mcp/install/
+content:
+  - name: UVX on Windows
+    prerequisites:
+      - uv installed and available on PATH
+      - MCP client running on the same Windows account as Revit
+    content: |
+      {
+        "command": "uvx",
+        "args": ["revit-model-mcp"],
+        "env": {
+          "REVIT_MCP_HOST": "local",
+          "REVIT_MCP_REDACT_PATHS": "1"
+        }
+      }
