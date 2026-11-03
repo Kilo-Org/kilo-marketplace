@@ -1,0 +1,26 @@
+id: smstunnel
+name: SMSTunnel
+description: Send texts (SMS) and sign-in codes from your own Android phone and your own number, check whether they went out,
+  and read replies. The assistant shows you the number and the words before anything is sent and sends one text per person.
+author: SMSTunnel
+url: https://github.com/narcisbodea/smstunnel-mcp
+category: productivity
+prerequisites:
+  - An Android phone with the SMSTunnel app from Google Play, signed in
+  - An SMSTunnel key (dashboard.smstunnel.io, Apps → Add an app)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@narcisbodea/smstunnel-mcp"],
+        "env": {
+          "SMSTUNNEL_API_KEY": "{{SMSTUNNEL_API_KEY}}"
+        }
+      }
+parameters:
+  - name: SMSTunnel key
+    key: SMSTUNNEL_API_KEY
+    placeholder: sk_live_your_key
