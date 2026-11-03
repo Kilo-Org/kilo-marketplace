@@ -1,11 +1,11 @@
 ---
 name: pixeltable
 description: >
-  This skill should be used when the task imports pixeltable, runs the pxt
-  CLI, edits TableModel classes, or changes pixeltable.toml. It documents
-  Pixeltable tables, computed columns, views, embedding indexes, and the
-  pxt schema update and pxt service update commands. Do not use it for
-  general Python or direct PostgreSQL administration.
+  This skill should be used when the task imports pixeltable, runs the pxt CLI,
+  edits TableModel classes, or changes pixeltable.toml. It documents Pixeltable
+  tables, computed columns, views, embedding indexes, and the pxt schema update
+  and pxt service update commands. Do not use it for general Python or direct
+  PostgreSQL administration.
 license: Apache-2.0
 metadata:
   author: Pixeltable
