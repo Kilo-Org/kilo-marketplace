@@ -1,0 +1,16 @@
+id: silicon-floor
+name: Silicon Floor
+description: >-
+  Follow the AI stock market from your editor: AI and semiconductor stocks, their news, the sector's market cap,
+  dividends, who owns each company, what insiders and hedge funds bought and sold each quarter, and short interest
+  with the short float, every SEC figure dated and linked to its filing. Free and read-only, no API key or account.
+author: Silicon Floor
+url: https://siliconfloor.com/docs/mcp
+category: business
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://siliconfloor.com/mcp"
+      }
