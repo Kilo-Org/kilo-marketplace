@@ -12,7 +12,7 @@ metadata:
     path: .
     license_path: LICENSE
     ref: main
-    commit: ad88b66c510c6197cd1ea5b0b19455a9b838320c
+    commit: 03aead0408433537cfc0885cab7f676628312199
 ---
 
 # Flaghand
@@ -355,8 +355,8 @@ rules. This uses the stored hourly reads, not new X reads or model training; for
    video with `getMedia`, never `getMediaContent`. [Where a file can come from](https://app.flaghand.com/docs/media-and-threads.md#where-a-file-can-come-from). Upload reads width, height and duration from the file.
    For animated WebP or an unusual video it cannot read, supply real `width` and `height` as digit strings (for example
    `"800"`, `"600"`) and video `duration` as a seconds string such as `"12.5"`.
-3. For X and LinkedIn, use `createDraft` and `checkDraft` in the intended mode before requesting approval. Fix
-   `suggestions` with `code: "reach"` first: media, photo/video alt text, length, LinkedIn links and timing. A link card
+3. For every network, use `createDraft` and `checkDraft` in the intended mode before requesting approval. Fix
+   `suggestions` with `code: "reach"` first (X and LinkedIn): media, photo/video alt text, length, LinkedIn links and timing. A link card
    is not native media. Trade-offs and stored-data-only fixes: [Reach checklist](https://app.flaghand.com/docs/reach.md).
    If keeping a link or longer text is the better choice, explain it in the existing note; do not ask for another
    confirmation. Check every option. Reach includes passing rows and never changes `ok`, which counts problems only.
