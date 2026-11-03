@@ -2708,7 +2708,7 @@ items:
         content: |
           {
             "command": "npx",
-            "args": ["-y", "@mrscraper/mcp@0.2.0"],
+            "args": ["-y", "@mrscraper/mcp@0.3.0"],
             "env": {
               "MRSCRAPER_API_KEY": "{{MRSCRAPER_API_KEY}}"
             }
