@@ -1,0 +1,16 @@
+id: sendable
+name: Sendable
+description: Finds LinkedIn prospects showing buying intent, qualifies them against an ideal customer profile, and manages Sendable outreach campaigns, leads, and LinkedIn inbox conversations with account-scoped OAuth.
+author: Sendable
+url: https://docs.getsendable.io/integrations/mcp
+category: productivity
+prerequisites:
+  - Sendable account with a connected LinkedIn account
+  - MCP client with OAuth support
+content:
+  - name: Sendable hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.getsendable.io/api/mcp"
+      }
