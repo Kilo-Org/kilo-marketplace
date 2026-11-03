@@ -6,7 +6,6 @@ url: https://github.com/peach420fuzz/objekts-production-desk
 category: business
 prerequisites:
   - No account or API key is required for production diagnosis or directional estimates
-  - Dated publisher probe (2026-10-17) verified MCP protocol 2025-11-25; protocol 2026-07-28 returned HTTP 400; Kilo-client connectivity not independently tested
 content:
   - name: Remote Server
     content: |
