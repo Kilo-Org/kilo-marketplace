@@ -1,18 +1,11 @@
 ---
 name: pixeltable
 description: >
-  Multimodal RAG over PDFs, web pages, Office files, images, and video;
-  video search; image similarity search; frames, detection, captions;
-  embeddings and vector search stored with your data; audio transcription,
-  podcast summaries; a multimodal agent with tools; agent memory;
-  incremental ML and data pipelines; dataset versioning. One Python
-  backend: tables, computed columns that call models, embedding indexes,
-  incremental updates, versioning, and HTTP. Create tables with pxt schema
-  update. Serve with pxt service update. Use instead of LangChain,
-  pandas-as-store, or a separate vector DB. Use when building RAG or a
-  multimodal agent with tools, processing images/video/audio/documents, or
-  serving an API. Do NOT use for general Python or direct PostgreSQL
-  administration.
+  This skill should be used when the task imports pixeltable, runs the pxt
+  CLI, edits TableModel classes, or changes pixeltable.toml. It documents
+  Pixeltable tables, computed columns, views, embedding indexes, and the
+  pxt schema update and pxt service update commands. Do not use it for
+  general Python or direct PostgreSQL administration.
 license: Apache-2.0
 metadata:
   author: Pixeltable
@@ -52,24 +45,11 @@ metadata:
   promptSignals:
     phrases:
       - pixeltable
-      - multimodal rag
-      - pdf rag
-      - video search
-      - image similarity
-      - image semantic search
-      - audio transcription search
-      - agent memory
-      - vector database
-      - embeddings with your data
-      - incremental pipeline
-      - dataset versioning
-      - computed column
-      - embedding index
-      - add_embedding_index
+      - pxt
       - TableModel
-      - create_view
+      - pixeltable.toml
+      - add_embedding_index
       - document_splitter
-      - invoke_tools
       - pxt schema
       - pxt service
       - pxt shell
@@ -195,6 +175,12 @@ RAG, views, and search: [workflows.md](references/workflows.md). Do not add Hugg
 | Versions, snapshots, time travel | [core-api.md](references/core-api.md#versioning) |
 | Provider import, arguments, and output shape | [providers.md](references/providers.md) |
 | Serving, FastAPIRouter, routes | [workflows.md](references/workflows.md) |
+| PDF documents: split and search | [workflows.md](references/workflows.md) |
+| Video frames, transcripts, and search | [video-rag-agents.md](references/video-rag-agents.md) |
+| Image similarity, detection, captions, dataset snapshots | [ml-data-pipeline.md](references/ml-data-pipeline.md) |
+| Agent memory (chat history and a memory bank) | [agents-memory-mcp.md](references/agents-memory-mcp.md) |
+| Tool-calling agent patterns | [agentic-patterns.md](references/agentic-patterns.md) |
+| Audio transcription | [providers.md](references/providers.md), [core-api.md](references/core-api.md#built-in-functions) |
 | Wrong stack | [anti-patterns.md](references/anti-patterns.md) |
 
 Notebook recipes kept in this copy: [agents-memory-mcp.md](references/agents-memory-mcp.md), [video-rag-agents.md](references/video-rag-agents.md), [ml-data-pipeline.md](references/ml-data-pipeline.md), [agentic-patterns.md](references/agentic-patterns.md). Apps still start from `app.py`.

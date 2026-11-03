@@ -918,14 +918,9 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/oracledb.tar.gz
   - id: pixeltable
     description: >
-      Multimodal RAG over PDFs, web pages, Office files, images, and video; video search; image similarity search;
-      frames, detection, captions; embeddings and vector search stored with your data; audio transcription, podcast
-      summaries; a multimodal agent with tools; agent memory; incremental ML and data pipelines; dataset versioning. One
-      Python backend: tables, computed columns that call models, embedding indexes, incremental updates, versioning, and
-      HTTP. Create tables with pxt schema update. Serve with pxt service update. Use instead of LangChain,
-      pandas-as-store, or a separate vector DB. Use when building RAG or a multimodal agent with tools, processing
-      images/video/audio/documents, or serving an API. Do NOT use for general Python or direct PostgreSQL
-      administration.
+      This skill should be used when the task imports pixeltable, runs the pxt CLI, edits TableModel classes, or changes
+      pixeltable.toml. It documents Pixeltable tables, computed columns, views, embedding indexes, and the pxt schema
+      update and pxt service update commands. Do not use it for general Python or direct PostgreSQL administration.
     category: data
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/pixeltable
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/pixeltable/SKILL.md
