@@ -1,16 +1,36 @@
 id: firecrawl
 name: Firecrawl
-description: Adds web scraping, crawling, mapping, search, and structured extraction to AI assistants, turning any URL or
-  query into clean, agent-ready data from the live web.
+description: The context API for AI agents. Search the web, scrape pages into clean Markdown or structured data, parse
+  documents, crawl and map sites, and interact with dynamic pages, plus Agent and Monitor jobs.
 author: firecrawl
 url: https://github.com/firecrawl/firecrawl-mcp-server
 category: web-automation
-prerequisites:
-  - Firecrawl account
 content:
+  - name: Remote MCP (no API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.firecrawl.dev/v2/mcp"
+      }
+  - name: Remote MCP (API key)
+    prerequisites:
+      - Firecrawl account
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.firecrawl.dev/v2/mcp",
+        "headers": {
+          "Authorization": "Bearer {{FIRECRAWL_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Firecrawl API Key
+        key: FIRECRAWL_API_KEY
+        placeholder: fc-your-api-key-here
   - name: NPX
     prerequisites:
       - Node.js
+      - Firecrawl account
     content: |
       {
         "command": "npx",
@@ -19,14 +39,10 @@ content:
           "FIRECRAWL_API_KEY": "{{FIRECRAWL_API_KEY}}"
         }
       }
-  - name: Remote MCP
-    prerequisites:
-      - Node.js
-    content: |
-      {
-        "command": "npx",
-        "args": ["-y", "mcp-remote", "https://mcp.firecrawl.dev/{{FIRECRAWL_API_KEY}}/v2/mcp"]
-      }
+    parameters:
+      - name: Firecrawl API Key
+        key: FIRECRAWL_API_KEY
+        placeholder: fc-your-api-key-here
   - name: Self-Hosted
     prerequisites:
       - Node.js
@@ -43,7 +59,7 @@ content:
       - name: Firecrawl API URL
         key: FIRECRAWL_API_URL
         placeholder: https://firecrawl.your-domain.com
-parameters:
-  - name: Firecrawl API Key
-    key: FIRECRAWL_API_KEY
-    placeholder: fc-your-api-key-here
+      - name: Firecrawl API Key
+        key: FIRECRAWL_API_KEY
+        placeholder: fc-your-api-key-here
+        optional: true
