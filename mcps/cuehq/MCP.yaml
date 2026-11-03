@@ -1,0 +1,31 @@
+id: cuehq
+name: CueHQ
+description: Find the Reddit, X, YouTube and TikTok threads where people ask for a product like yours, ranked, with reply drafts in your voice. You post every reply yourself.
+author: CueHQ
+url: https://github.com/CueHQSocial/cuehq-mcp
+category: business
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.cuehq.social/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CUEHQ_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "cuehq-mcp@0.1.0"],
+        "env": {
+          "CUEHQ_API_KEY": "{{CUEHQ_API_KEY}}"
+        }
+      }
+parameters:
+  - name: CueHQ API key
+    key: CUEHQ_API_KEY
+    placeholder: your_cuehq_api_key
