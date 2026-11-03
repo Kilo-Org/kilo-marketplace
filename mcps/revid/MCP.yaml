@@ -1,0 +1,17 @@
+id: revid
+name: Revid
+description: Researches what goes viral on TikTok, YouTube, Instagram and X, makes finished short-form videos with voice,
+  captions, music and AI footage, and publishes or schedules them to connected social accounts. 30 tools.
+author: Revid
+url: https://www.revid.ai/mcp
+category: productivity
+prerequisites:
+  - Revid account
+  - MCP client with OAuth support
+content:
+  - name: Revid hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.revid.ai/api/mcp"
+      }
