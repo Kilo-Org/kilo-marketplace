@@ -1,0 +1,15 @@
+id: holos33
+name: Holos33
+description: Search and read public, sourced facts about Holos33, an EU privacy-first wellbeing platform, including modules, Early Access, privacy and public contact information through eleven read-only tools.
+author: Holos33
+url: https://github.com/aiagentcycle/holos33-mcp
+category: search
+prerequisites:
+  - Internet access to the public Holos33 MCP endpoint
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.holos33.com/mcp"
+      }
