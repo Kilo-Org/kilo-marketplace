@@ -51,6 +51,18 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
+  - id: silicon-floor-research
+    description: >-
+      Research listed AI and semiconductor stocks with the Silicon Floor MCP tools and answer with dated, sourced
+      figures — financial statements as filed with the SEC, who owns the shares (13F, 13D/G, insiders, funds), FINRA
+      short interest, dividends, SEC filings, what changed since a date, and the sector as one market. Use for questions
+      about chip, semiconductor, AI infrastructure, data-center, cloud or AI-software companies (NVIDIA, TSMC, Broadcom,
+      AMD, Palantir…). Do not use to place trades, for crypto or companies outside the tracked universe, or to give
+      personal investment advice.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/silicon-floor-research
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/silicon-floor-research/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/silicon-floor-research.tar.gz
   - id: canvas-design
     description: >-
       Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the
