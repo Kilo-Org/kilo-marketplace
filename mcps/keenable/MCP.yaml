@@ -1,0 +1,35 @@
+id: keenable
+name: Keenable
+description: Live web search and clean-markdown page fetch for AI assistants over the Keenable web index. Hosted remote
+  MCP server; works without an API key on a public tier, and an optional API key raises the limits.
+author: keenableai
+url: https://github.com/keenableai/keenable-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.keenable.ai/mcp"
+      }
+  - name: Remote MCP with API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.keenable.ai/mcp",
+        "headers": {
+          "X-API-Key": "{{KEENABLE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Keenable API Key
+        key: KEENABLE_API_KEY
+        placeholder: keen_your_api_key_here
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@keenable/mcp"]
+      }
