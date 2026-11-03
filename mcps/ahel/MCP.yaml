@@ -1,0 +1,19 @@
+id: ahel
+name: Ahel
+description: One catalog of data tasks for AI agents, including work email finding, company and people enrichment, SEO,
+  SERP and keyword data, social media data (TikTok, Instagram, YouTube, X, Reddit, LinkedIn), official EU business
+  registers with sanctions screening, and web page monitoring. Each run is priced before it starts and paid from a
+  prepaid balance.
+author: Ahel
+url: https://github.com/ahel-technologies/ahel
+category: search
+prerequisites:
+  - Ahel account (public sign-up at ahel.ai, free starting credit)
+  - MCP client with OAuth support
+content:
+  - name: Ahel hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.ahel.ai"
+      }
