@@ -1,7 +1,6 @@
 ---
 name: bestprice-shopping
 description: "Use for physical-product shopping in Greece without naming BestPrice: what to buy, known products, cheapest delivered price, or whether a price is good/history; not travel/services."
-license: Apache-2.0
 metadata:
   category: search
   source:
