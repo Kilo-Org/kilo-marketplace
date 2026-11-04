@@ -1,0 +1,33 @@
+id: serpkite
+name: SerpKite
+description: Real-time Google results for AI agents (web, news, maps and places, images, videos, shopping, scholar,
+  patents, autocomplete) plus page reading, site maps and crawls, cited answers, deep research reports, and the answers
+  of ChatGPT, Gemini, Copilot Search, Google AI Mode and Brave with their cited sources, returned as Markdown with source
+  links.
+author: SerpKite
+url: https://github.com/SerpKite/serpkite-mcp
+category: search
+prerequisites:
+  - SerpKite account (free tier, no card) and an API key from https://app.serpkite.com
+content:
+  - name: Remote (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.serpkite.com/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SERPKITE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: SerpKite API Key
+        key: SERPKITE_API_KEY
+        placeholder: skt_live_your_api_key
+  - name: Remote (OAuth)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.serpkite.com/v1/mcp"
+      }
