@@ -1,0 +1,16 @@
+id: saas-pro-max
+name: SaaS Pro Max
+description: Queries product analytics, investigates errors, and manages feature flags and SaaS operations in a selected organization with scoped OAuth access.
+author: SaaS Pro Max
+url: https://saaspro.dev/docs/mcp
+category: observability
+prerequisites:
+  - SaaS Pro Max workspace and permission to create access tokens
+  - Complete Google sign-in and passkey verification, then choose one organization and access level
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://saaspro.dev/api/mcp"
+      }
