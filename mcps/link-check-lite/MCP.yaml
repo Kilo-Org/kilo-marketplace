@@ -1,0 +1,24 @@
+id: link-check-lite
+name: Link Check Lite
+description: Checks a list of web links and reports the status code, final URL, redirect chain and any error for each one, so you can find broken links. One tool, check_links, for up to 200 links. Runs on your computer with no API key and only visits the links you give it.
+author: Tidy Byte Tools
+url: https://github.com/tidybytetools/link-check-lite
+category: web-automation
+prerequisites:
+  - Python 3.10 or later
+content:
+  - name: UVX
+    prerequisites:
+      - uv (https://docs.astral.sh/uv/)
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "link-check-lite", "link-check-lite-mcp"]
+      }
+  - name: Python/Pip
+    prerequisites:
+      - pip install link-check-lite
+    content: |
+      {
+        "command": "link-check-lite-mcp"
+      }
