@@ -1,0 +1,18 @@
+id: leash
+name: Leash
+description: Free protected access to connected personal accounts with configurable checks, activity history and undo for supported reversible actions. Only activity routed through Leash is covered.
+author: Leash
+url: https://github.com/open-leash/leash-plugin
+category: productivity
+prerequisites:
+  - Free Leash account at https://openleash.com
+  - Connect the services you want to use in Leash
+content:
+  - name: Remote OAuth
+    prerequisites:
+      - An MCP client that supports remote Streamable HTTP and OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://secure.openleash.com/mcp"
+      }
