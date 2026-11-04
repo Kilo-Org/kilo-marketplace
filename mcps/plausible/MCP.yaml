@@ -1,0 +1,29 @@
+id: plausible
+name: Plausible Analytics
+description: Plausible Analytics MCP server for privacy-first website statistics, real-time visitors, breakdowns, and trendlines.
+author: Surendran B
+url: https://github.com/surendranb/plausible-mcp
+category: data
+prerequisites:
+  - Python and uv
+  - Plausible API key
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: >
+      {
+        "command": "uvx",
+        "args": ["plausible-mcp==0.1.3"],
+        "env": {
+          "PLAUSIBLE_API_KEY": "{{PLAUSIBLE_API_KEY}}",
+          "PLAUSIBLE_SITE_ID": "{{PLAUSIBLE_SITE_ID}}"
+        }
+      }
+    parameters:
+      - name: Plausible API Key
+        key: PLAUSIBLE_API_KEY
+        placeholder: Plausible Analytics API key
+      - name: Plausible Site ID
+        key: PLAUSIBLE_SITE_ID
+        placeholder: Site domain (e.g. yoursite.com)
