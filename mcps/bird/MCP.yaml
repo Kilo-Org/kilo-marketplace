@@ -1,0 +1,25 @@
+id: bird
+name: Bird
+description: Send and receive across email, SMS, WhatsApp, and voice. One API, one contract. Runs
+  one-time-passcode verification, provisions sending domains and phone numbers including 10DLC
+  registration, and manages contacts, webhooks and Realtime. 328 tools generated from Bird's public
+  API.
+author: Bird
+url: https://bird.com/docs/ai/mcp-server
+category: business
+content:
+  - name: Hosted
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.bird.com"
+      }
+  - name: Local via the bird CLI
+    prerequisites:
+      - Bird CLI installed
+      - Signed in once with `bird auth login`
+    content: |
+      {
+        "command": "bird",
+        "args": ["mcp"]
+      }
