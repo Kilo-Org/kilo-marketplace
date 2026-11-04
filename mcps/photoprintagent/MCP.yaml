@@ -1,0 +1,16 @@
+id: photoprintagent
+name: PhotoPrintAgent
+description: Browse photo prints, check artwork requirements, estimate prices from ZIP/state, and follow your orders. Narrow connector with website checkout handoff; US delivery and paid printing/shipping.
+author: Rainmaker LLC
+url: https://github.com/blockrushusa/photoprintagent-mcp
+category: business
+prerequisites:
+  - Public catalog and estimates require no account.
+  - Private photos and orders require a PhotoPrintAgent account and an OAuth-capable client.
+content:
+  - name: Remote narrow connector
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://photoprintagent.com/mcp-narrow"
+      }
