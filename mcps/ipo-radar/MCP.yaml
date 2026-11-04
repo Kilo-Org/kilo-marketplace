@@ -1,0 +1,14 @@
+id: ipo-radar
+name: IPO Radar MCP
+description: Free hosted MCP for live India IPO grey market premium (GMP), subscription
+  status, upcoming IPOs, and GMP accuracy.
+author: songiangvan40006-boop
+url: https://github.com/songiangvan40006-boop/ipo-radar-mcp
+category: business
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ipogmpradar.com/mcp"
+      }
