@@ -1,0 +1,31 @@
+id: metabrain
+name: metabrain
+description: Persistent memory for coding agents. Stores lessons, failures, and hypotheses in a local SQLite file and
+  retrieves them by keyword before the next task, through learn, recall, verdict, hypotheses, start_brief, stats, and
+  capture_error.
+author: ariaxhan
+url: https://github.com/ariaxhan/metabrain
+category: data
+prerequisites:
+  - Python and uv
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "metabrain[mcp]==1.1.2", "metabrain-mcp", "--db", "{{METABRAIN_DB}}"]
+      }
+  - name: Installed package
+    prerequisites:
+      - Python with metabrain[mcp] installed via pip
+    content: |
+      {
+        "command": "metabrain-mcp",
+        "args": ["--db", "{{METABRAIN_DB}}"]
+      }
+parameters:
+  - name: Database path
+    key: METABRAIN_DB
+    placeholder: ./agent.db

@@ -1,0 +1,19 @@
+id: site-spec
+name: site-spec
+description: Website audit and repair. Runs 40 checks across SEO, accessibility, privacy, structured data, and AI
+  searchability and returns each finding with the file and the fix, through audit_site, fix_issue, compile_spec, and
+  list_checks.
+author: ariaxhan
+url: https://github.com/ariaxhan/site-spec
+category: development
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "site-spec-mcp@0.3.0"]
+      }

@@ -1,0 +1,27 @@
+id: agentmailkit
+name: agentmailkit
+description: Email job runner for agents. Defines email sends as named jobs, renders a preview, and delivers only when
+  dry_run is set false, through list_jobs, run_job, preview_job, and list_plugins.
+author: ariaxhan
+url: https://github.com/ariaxhan/agentmailkit
+category: productivity
+prerequisites:
+  - Python and uv
+  - SMTP credentials for the account that sends the mail
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "agentmailkit[mcp]==0.2.2", "agentmailkit", "mcp"]
+      }
+  - name: Installed package
+    prerequisites:
+      - Python with agentmailkit[mcp] installed via pip
+    content: |
+      {
+        "command": "agentmailkit",
+        "args": ["mcp"]
+      }
