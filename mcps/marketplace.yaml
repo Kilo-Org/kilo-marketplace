@@ -5,11 +5,11 @@
 #
 # - data: 52
 # - development: 27
-# - search: 15
+# - search: 16
 # - observability: 13
 # - productivity: 11
 # - web-automation: 7
-# - business: 4
+# - business: 3
 #
 items:
   - id: agent-platform-mcp
@@ -1940,9 +1940,9 @@ items:
       login, cart, checkout, orders, payments or transactions.
     author: Good Nature Vibe
     url: https://github.com/aiagentcycle/gnv-catalog-mcp
-    category: business
+    category: search
     tags:
-      - business
+      - search
     prerequisites:
       - Internet access to the public Good Nature Vibe Catalog MCP endpoint
     content:
