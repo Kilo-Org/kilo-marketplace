@@ -1,0 +1,17 @@
+id: postonce
+name: PostOnce
+description: Publish and schedule posts to many social networks (Instagram, TikTok, YouTube, X, LinkedIn, Facebook,
+  Threads, Bluesky, Pinterest, and more) from one place, and manage drafts, connected accounts, workflows, and post
+  analytics through PostOnce's official hosted MCP endpoint.
+author: PostOnce
+url: https://postonce.to/mcp
+category: productivity
+prerequisites:
+  - PostOnce account (sign in with OAuth on first use)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://postonce.to/mcp"
+      }
