@@ -1,0 +1,32 @@
+id: brain-memory
+name: Brain Memory
+description: Persistent, neuroscience-inspired memory for AI agents. Connects to the user's hosted Brain Cloud brain to
+  recall relevant memories with spreading activation and context matching, store new memories (memorize), pin
+  always-present facts, and check brain health (status) — one memory shared across Kilo, Claude Code, and other
+  coding agents.
+author: Omelas
+url: https://github.com/omelas-tech/brain
+category: data
+prerequisites:
+  - Brain Cloud account (https://brainmemory.ai)
+  - MCP client with OAuth support (for the OAuth option)
+content:
+  - name: Hosted Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.brainmemory.ai/mcp"
+      }
+  - name: Hosted Remote (API token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.brainmemory.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BRAIN_CLOUD_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Brain Cloud Token
+        key: BRAIN_CLOUD_TOKEN
+        placeholder: your_brain_cloud_token
