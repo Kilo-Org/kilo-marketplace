@@ -1,0 +1,15 @@
+id: account-executive-jobs
+name: Account Executive Jobs
+description: Hosted MCP server for AccountExecutiveJobs.com. Search account executive and sales jobs and apply after confirmation, or manage your company's job posts and review applicants. Signs in with OAuth; every change needs a preview and confirmation.
+author: 854 Labs
+url: https://github.com/854Labs/account-executive-jobs
+category: business
+prerequisites:
+  - An AccountExecutiveJobs.com account (free for job seekers)
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.accountexecutivejobs.com/mcp"
+      }
