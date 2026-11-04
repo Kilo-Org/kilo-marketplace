@@ -1,0 +1,14 @@
+diff -rN -U0 --ignore-trailing-space a/socialdatax-content-research-assistant/SKILL.md b/socialdatax-content-research-assistant/SKILL.md
+--- a/socialdatax-content-research-assistant/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/socialdatax-content-research-assistant/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -24 +23,0 @@
+-        bins: []
+@@ -27,4 +25,0 @@
+-  upstream:
+-    source_client: socialdatax-skills
+-    source_platform: github
+-    source_skill: socialdatax-content-research-assistant
+@@ -37,0 +33,3 @@
++  source_client: socialdatax-skills
++  source_platform: github
++  source_skill: socialdatax-content-research-assistant

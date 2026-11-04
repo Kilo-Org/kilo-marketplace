@@ -1,0 +1,7 @@
+interface:
+  display_name: "SocialDataX Content Research"
+  short_description: "Research cross-platform social content"
+  default_prompt: "Use $socialdatax-content-research-assistant to research supported SocialDataX public platforms including XHS, Douyin, Kuaishou, Bilibili, Zhihu, Instagram, X / Twitter, YouTube, TikTok, Weibo, Toutiao, and WeChat Channels across search, details, comments, and creators, and to read WeChat Official Account article link details and statistics. Also supports Haokan / 好看视频 content research and replies authored by X creators."
+
+policy:
+  allow_implicit_invocation: true
