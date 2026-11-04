@@ -1,0 +1,23 @@
+id: stellary
+name: Stellary
+description: Hosted MCP for Stellary boards, documents, cockpit, and governed agent missions.
+author: Stellary
+url: https://stellary.co/docs/mcp/
+category: productivity
+prerequisites:
+  - Stellary account
+  - Personal access token from the Stellary app (see https://stellary.co/docs/mcp/)
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.stellary.co/mcp",
+        "headers": {
+          "Authorization": "Bearer {{STELLARY_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Stellary personal access token
+    key: STELLARY_TOKEN
+    placeholder: your_stellary_pat
