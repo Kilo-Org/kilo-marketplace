@@ -1,0 +1,22 @@
+id: brewpage
+name: BrewPage
+description: Publish HTML, Markdown, files, multi-file static sites, JSON and key-value data on brewpage.app and get a
+  shareable URL plus a manage link; update, delete and read view stats. Free, no sign-up or API key.
+author: kochetkov-ma
+url: https://github.com/kochetkov-ma/brewpage-openapi
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://brewpage.app/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "brewpage-mcp"]
+      }
