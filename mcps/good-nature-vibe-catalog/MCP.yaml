@@ -1,0 +1,15 @@
+id: good-nature-vibe-catalog
+name: Good Nature Vibe Catalog
+description: Search the public Good Nature Vibe product catalog and knowledge base through six read-only tools, with no login, cart, checkout, orders, payments or transactions.
+author: Good Nature Vibe
+url: https://github.com/aiagentcycle/gnv-catalog-mcp
+category: search
+prerequisites:
+  - Internet access to the public Good Nature Vibe Catalog MCP endpoint
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://catalog-mcp.goodnaturevibe.com/mcp"
+      }
