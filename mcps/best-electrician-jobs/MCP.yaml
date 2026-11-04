@@ -1,0 +1,15 @@
+id: best-electrician-jobs
+name: Best Electrician Jobs
+description: Hosted MCP server for BestElectricianJobs.com, a job board for electricians and electrical contractors. Employers draft, publish, pause and unpublish their own job posts, read applicants and résumés, and move candidates through hiring. Signs in with OAuth; publishing, rejecting and hiring need the employer's approval.
+author: 854 Labs
+url: https://github.com/854Labs/best-electrician-jobs
+category: business
+prerequisites:
+  - A BestElectricianJobs.com employer account
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.bestelectricianjobs.com/mcp"
+      }
