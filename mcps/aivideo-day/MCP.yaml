@@ -1,0 +1,28 @@
+id: aivideo-day
+name: AIVideo.day
+description: Prices and makes 2D videos and 3D films from a written brief in the signed-in user's AIVideo.day account, follows their progress and returns the finished MP4. Spends only that account's credits, within a per-call cap and a daily limit the user sets.
+author: Lumora Build
+url: https://aivideo.day/mcp/
+category: productivity
+prerequisites:
+  - AIVideo.day account on the Pro or Business plan
+content:
+  - name: AIVideo.day hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.aivideo.day/mcp"
+      }
+  - name: AIVideo.day hosted server with a token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.aivideo.day/mcp",
+        "headers": {
+          "Authorization": "Bearer {{AIVIDEO_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: AIVideo.day token (made at https://id.lumorabuild.com/account/mcp)
+        key: AIVIDEO_TOKEN
+        placeholder: lmt_your_token
