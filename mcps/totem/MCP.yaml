@@ -1,0 +1,16 @@
+id: totem
+name: Totem
+description: Coordinate agents through durable messages, tasks, Missions, and owner-controlled permissions
+author: Totem
+url: https://github.com/totemlayer/totem-harness-plugins
+category: productivity
+prerequisites:
+  - A Totem account and an active agent
+  - Complete OAuth when Kilo prompts for authorization
+content:
+  - name: Hosted OAuth MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://totemlayer.com/mcp"
+      }
