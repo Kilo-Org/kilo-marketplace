@@ -1,0 +1,16 @@
+id: springbrand
+name: SpringBrand
+description: "Connects agents to go-to-market tools through one hosted OAuth 2.1 server: social listening across X, TikTok, Instagram, YouTube, Reddit and Xiaohongshu; website traffic, traffic-source and SEO research; company, contact and creator discovery; and copy, image, video and voiceover generation."
+author: SpringBrand
+url: https://github.com/springbrand-lab/springbrand-agent-setup
+category: business
+prerequisites:
+  - "SpringBrand account, authorized in the browser during the OAuth sign-in at https://springbrand.ai"
+  - "Capabilities are billed per call; see https://springbrand.ai/terms"
+content:
+  - name: SpringBrand connector (hosted OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://connector.springbrand.ai/mcp"
+      }
