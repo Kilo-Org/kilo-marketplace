@@ -1,0 +1,28 @@
+id: ignav-flights
+name: Ignav Flights
+description: Hosted flight search, cheapest-date comparison, airport lookup, and booking links. Tool calls require OAuth
+  or an API key.
+author: gusgordon
+url: https://github.com/gusgordon/ignav-skill
+category: search
+content:
+  - name: Remote Server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ignav.com/mcp"
+      }
+  - name: Remote Server with API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ignav.com/mcp",
+        "headers": {
+          "X-Api-Key": "{{IGNAV_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Ignav API Key
+    key: IGNAV_API_KEY
+    placeholder: your_ignav_api_key
+    optional: true
