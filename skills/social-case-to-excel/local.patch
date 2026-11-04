@@ -1,0 +1,15 @@
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -2,12 +2,6 @@
+ name: social-case-to-excel
+ description: Research real social marketing cases and produce traceable Excel libraries
+   with images, method breakdowns and brand adaptations.
+-author: lingling1989r
+-version: '1.0'
+-tags:
+-- research
+-- marketing
+-- excel
+ metadata:
+   category: business
+   source:
