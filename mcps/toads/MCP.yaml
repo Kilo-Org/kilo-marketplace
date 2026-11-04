@@ -1,0 +1,23 @@
+id: toads
+name: Toads
+description: "Edit screen recordings in Toads on your Mac: tidy up filler words, cut by transcript, add captions, titles and zooms, and export."
+author: 854 Labs
+url: https://github.com/854Labs/toads
+category: productivity
+prerequisites:
+  - macOS with the Toads website edition installed (https://toads.io/download, 7-day trial, then license)
+  - Settings > AI assistants turned on in Toads
+content:
+  - name: Local app
+    prerequisites:
+      - macOS with the Toads website edition installed (https://toads.io/download, 7-day trial, then license)
+      - Settings > AI assistants turned on in Toads
+    content: |
+      {
+        "command": "{{TOADS_APP_PATH}}/Contents/MacOS/toads-mcp",
+        "args": []
+      }
+    parameters:
+      - name: Toads app location
+        key: TOADS_APP_PATH
+        placeholder: /Applications/Toads.app
