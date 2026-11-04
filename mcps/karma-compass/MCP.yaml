@@ -1,0 +1,17 @@
+id: karma-compass
+name: Karma Compass
+description: Manage nonprofit board meetings, agendas, minutes, motions and action items for boards and committees
+  (https://compass.karmahq.org). Access follows the signed-in member's own Karma Compass permissions.
+author: Karma
+url: https://github.com/show-karma/compass-claude-plugin
+category: productivity
+prerequisites:
+  - Karma Compass account (https://compass.karmahq.org)
+  - MCP client with OAuth support
+content:
+  - name: Karma Compass hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nonprofitsapi.karmahq.org/mcp"
+      }
