@@ -1,0 +1,23 @@
+id: uberllm
+name: UberLLM
+description: Generate and edit images, start video jobs and wait for them, list models with their current prices, quote a
+  request before running it, and check the prepaid balance through one UberLLM API key.
+author: UberLLM
+url: https://uberllm.dev/docs/mcp
+category: development
+prerequisites:
+  - UberLLM account with prepaid credit (from $5, no free tier)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.uberllm.dev/mcp",
+        "headers": {
+          "Authorization": "Bearer {{UBERLLM_API_KEY}}"
+        }
+      }
+parameters:
+  - name: UberLLM API key
+    key: UBERLLM_API_KEY
+    placeholder: ull_your_key_here
