@@ -1,0 +1,47 @@
+id: flashdata-youtube-trainability
+name: FlashData YouTube Creative Commons License Metadata
+description: "Inspect a YouTube video’s Creative Commons license classification. Record the returned license-label signal for a separate rights review. For AI agents using the paid FlashData API."
+author: FlashData
+url: https://github.com/rocosen/flashdata-mcp/tree/main/registry/servers/youtube-trainability
+category: web-automation
+prerequisites:
+  - "FlashData account and an API key with access to youtube_trainability (https://flashdata.dev/app/api-keys)."
+  - "Data queries consume your FlashData Credits; see https://flashdata.dev/pricing. Installation is free."
+  - "Setup and usage: https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_trainability.md"
+  - "FlashData is an independent provider, not affiliated with Google or YouTube."
+  - "License metadata is a label signal, not permission to train models or reuse content."
+content:
+  - name: "NPX (macOS / Linux)"
+    prerequisites:
+      - Node.js 22.18.0 or later
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@flashdata-dev/youtube-trainability@0.1.1",
+          "mcp"
+        ],
+        "env": {
+          "FLASHDATA_API_KEY": "{{FLASHDATA_API_KEY}}"
+        }
+      }
+  - name: "NPX (Windows)"
+    prerequisites:
+      - Node.js 22.18.0 or later
+    content: |
+      {
+        "command": "npx.cmd",
+        "args": [
+          "-y",
+          "@flashdata-dev/youtube-trainability@0.1.1",
+          "mcp"
+        ],
+        "env": {
+          "FLASHDATA_API_KEY": "{{FLASHDATA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: FlashData API Key
+    key: FLASHDATA_API_KEY
+    placeholder: your-flashdata-api-key

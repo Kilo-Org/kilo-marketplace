@@ -1,0 +1,46 @@
+id: flashdata-youtube-extended-search
+name: FlashData YouTube Extended Search
+description: "Search larger YouTube video result sets, with up to 700 requested results. Map recurring channels and topics from structured video records. For AI agents using the paid FlashData API."
+author: FlashData
+url: https://github.com/rocosen/flashdata-mcp/tree/main/registry/servers/youtube-extended-search
+category: search
+prerequisites:
+  - "FlashData account and an API key with access to youtube_search_extended (https://flashdata.dev/app/api-keys)."
+  - "Data queries consume your FlashData Credits; see https://flashdata.dev/pricing. Installation is free."
+  - "Setup and usage: https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/youtube_search_extended.md"
+  - "FlashData is an independent provider, not affiliated with Google or YouTube."
+content:
+  - name: "NPX (macOS / Linux)"
+    prerequisites:
+      - Node.js 22.18.0 or later
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@flashdata-dev/youtube-extended-search@0.1.1",
+          "mcp"
+        ],
+        "env": {
+          "FLASHDATA_API_KEY": "{{FLASHDATA_API_KEY}}"
+        }
+      }
+  - name: "NPX (Windows)"
+    prerequisites:
+      - Node.js 22.18.0 or later
+    content: |
+      {
+        "command": "npx.cmd",
+        "args": [
+          "-y",
+          "@flashdata-dev/youtube-extended-search@0.1.1",
+          "mcp"
+        ],
+        "env": {
+          "FLASHDATA_API_KEY": "{{FLASHDATA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: FlashData API Key
+    key: FLASHDATA_API_KEY
+    placeholder: your-flashdata-api-key

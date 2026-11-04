@@ -1,0 +1,46 @@
+id: flashdata-google-news
+name: FlashData Google News
+description: "Search Google News for articles, publishers, date labels and source links. Turn a topic into a traceable news briefing. For AI agents using the paid FlashData API."
+author: FlashData
+url: https://github.com/rocosen/flashdata-mcp/tree/main/registry/servers/google-news
+category: search
+prerequisites:
+  - "FlashData account and an API key with access to google_news (https://flashdata.dev/app/api-keys)."
+  - "Data queries consume your FlashData Credits; see https://flashdata.dev/pricing. Installation is free."
+  - "Setup and usage: https://github.com/rocosen/flashdata-mcp/blob/main/registry/guides/google_news.md"
+  - "FlashData is an independent provider, not affiliated with Google or YouTube."
+content:
+  - name: "NPX (macOS / Linux)"
+    prerequisites:
+      - Node.js 22.18.0 or later
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@flashdata-dev/google-news@0.1.1",
+          "mcp"
+        ],
+        "env": {
+          "FLASHDATA_API_KEY": "{{FLASHDATA_API_KEY}}"
+        }
+      }
+  - name: "NPX (Windows)"
+    prerequisites:
+      - Node.js 22.18.0 or later
+    content: |
+      {
+        "command": "npx.cmd",
+        "args": [
+          "-y",
+          "@flashdata-dev/google-news@0.1.1",
+          "mcp"
+        ],
+        "env": {
+          "FLASHDATA_API_KEY": "{{FLASHDATA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: FlashData API Key
+    key: FLASHDATA_API_KEY
+    placeholder: your-flashdata-api-key
