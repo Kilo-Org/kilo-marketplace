@@ -1,0 +1,24 @@
+id: doc2md-lite
+name: doc2md Lite
+description: Turns local text PDFs and saved HTML pages into clean Markdown, with tables kept as Markdown tables. One tool, convert_to_markdown, which returns the Markdown or saves it to a file. Runs on your computer with no API key; scanned PDFs need OCR first.
+author: Tidy Byte Tools
+url: https://github.com/tidybytetools/doc2md-lite
+category: data
+prerequisites:
+  - Python 3.10 or later
+content:
+  - name: UVX
+    prerequisites:
+      - uv (https://docs.astral.sh/uv/)
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "doc2md-lite", "doc2md-lite-mcp"]
+      }
+  - name: Python/Pip
+    prerequisites:
+      - pip install doc2md-lite
+    content: |
+      {
+        "command": "doc2md-lite-mcp"
+      }
