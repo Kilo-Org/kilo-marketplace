@@ -1,0 +1,19 @@
+id: gsc-pap
+name: GSC PAP
+description: Read-only Google Search Console, Google Analytics 4 and PageSpeed Insights for your own sites, plus live Google
+  results. Covers search analytics, URL inspection, sitemaps, quick wins, content decay, cannibalization, Search Console
+  pages joined to GA4 conversions and real-user Core Web Vitals, with a Search Console archive kept past Google's 16-month
+  limit.
+author: GSC PAP
+url: https://gscpap.com
+category: data
+prerequisites:
+  - Google account with Search Console access
+  - MCP client with OAuth support
+content:
+  - name: GSC PAP hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.gscpap.com/mcp"
+      }
