@@ -1,0 +1,15 @@
+id: ilook-face-analysis
+name: iLook Face Analysis
+description: Analyzes one user-provided face photo through iLook's hosted service, returning face-shape context, symmetry signals, Golden Ratio phi context and proportion ratios as structured, non-medical output.
+author: iLook
+url: https://www.ilook.fit/ai-agent-face-analysis-api
+category: data
+prerequisites:
+  - MCP client with Streamable HTTP support (no account or API key needed)
+content:
+  - name: iLook Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.ilook.fit/mcp"
+      }
