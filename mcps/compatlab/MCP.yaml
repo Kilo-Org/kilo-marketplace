@@ -1,0 +1,16 @@
+id: compatlab
+name: CompatLab
+description: >-
+  Look up recorded npm installation and module-loading evidence across pinned
+  Node.js, Bun and Deno runtimes. Read-only check_package and get_report tools;
+  no scans, account or API key. Loading results do not prove application correctness.
+author: siddiksawani
+url: https://github.com/siddiksawani/CompatLab
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://compatlab.me/mcp"
+      }
