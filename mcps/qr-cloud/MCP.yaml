@@ -1,0 +1,28 @@
+id: qr-cloud
+name: QR Cloud
+description: Official hosted QR Cloud MCP server for creating dynamic QR codes and short links, setting up QR Reviews that route happy guests to Google or Tripadvisor, and reading click, scan and review statistics.
+author: QR Cloud
+url: https://github.com/ritzelm/qr-cloud-mcp
+category: business
+prerequisites:
+  - QR Cloud account on a plan with API access (https://qr-cloud.com)
+content:
+  - name: Hosted remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://qr-cloud.com/mcp"
+      }
+  - name: Hosted remote server (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://qr-cloud.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{QR_CLOUD_API_KEY}}"
+        }
+      }
+parameters:
+  - name: QR Cloud API key
+    key: QR_CLOUD_API_KEY
+    placeholder: your_qr_cloud_api_key
