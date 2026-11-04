@@ -1,0 +1,16 @@
+id: three-ws
+name: three.ws 3D Studio
+description: Text-to-3D for coding agents with no account or API key. Generates textured GLB models and rigged,
+  animation-ready avatars from a prompt, auto-rigs an existing GLB, renders a model from several angles so the agent can
+  check it, and searches a catalog of about 1,300 ready-made props (CC0), rigged characters and motion clips with
+  paste-ready embed code.
+author: three.ws
+url: https://github.com/nirholas/three.ws
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://three.ws/api/mcp-studio"
+      }
