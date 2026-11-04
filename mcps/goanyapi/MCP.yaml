@@ -1,0 +1,17 @@
+id: goanyapi
+name: GoAnyAPI
+description: Official remote MCP server for website traffic, domain rating, backlinks, keyword research,
+  Google and Bing search results, and ads transparency data.
+author: GoAnyAPI
+url: https://github.com/GoAnyAPI/goanyapi-mcp
+category: search
+prerequisites:
+  - GoAnyAPI account
+  - MCP client with OAuth support for remote Streamable HTTP servers
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.goanyapi.com/mcp"
+      }
