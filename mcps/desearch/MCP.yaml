@@ -1,0 +1,34 @@
+id: desearch
+name: Desearch
+description: AI search, X search and web search for AI agents. Search X posts and users, web results, and read public web pages
+  through the Desearch API.
+author: Desearch-ai
+url: https://github.com/Desearch-ai/mcp-desearch
+category: search
+prerequisites:
+  - Desearch API key
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "desearch-mcp-server@0.1.4"],
+        "env": {
+          "DESEARCH_API_KEY": "{{DESEARCH_API_KEY}}"
+        }
+      }
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.desearch.ai/mcp",
+        "headers": {
+          "x-api-key": "{{DESEARCH_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Desearch API Key
+    key: DESEARCH_API_KEY
+    placeholder: your_desearch_api_key_here
