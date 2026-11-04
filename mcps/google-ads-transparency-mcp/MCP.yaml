@@ -1,0 +1,44 @@
+id: google-ads-transparency-mcp
+name: Google Ads Transparency MCP
+description: "Competitor Google ads from the Google Ads Transparency Center: give it a domain, advertiser ID, Transparency Center link or advertiser name and get the ads that are new, still running or stopped, with first and last shown dates, format and ad links. Tool calls run an Apify Actor billed to your own Apify account ($1 per 1,000 ads)."
+author: GeminiGeorge22
+url: https://github.com/GeminiGeorge22/google-ads-transparency-mcp
+category: web-automation
+prerequisites:
+  - Apify account and API token (tool calls are billed to your Apify account)
+content:
+  - name: Remote MCP - Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.apify.com?tools=publicrecords/google-ads-transparency-scraper",
+        "headers": {
+          "Authorization": "Bearer {{APIFY_TOKEN}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "github:GeminiGeorge22/google-ads-transparency-mcp"],
+        "env": {
+          "APIFY_TOKEN": "{{APIFY_TOKEN}}"
+        }
+      }
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["google-ads-transparency-mcp-server"],
+        "env": {
+          "APIFY_TOKEN": "{{APIFY_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Apify API Token
+    key: APIFY_TOKEN
+    placeholder: your_apify_api_token
