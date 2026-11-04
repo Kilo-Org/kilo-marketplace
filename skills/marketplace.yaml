@@ -42,6 +42,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/lead-research-assistant
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/lead-research-assistant/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/lead-research-assistant.tar.gz
+  - id: linkbunny
+    description: >-
+      Builds backlinks by linking backlinks to other sites. Use when user says "build backlinks" or "linkbunny"
+    category: business
+    author: hboon
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/linkbunny
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/linkbunny/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/linkbunny.tar.gz
   - id: meeting-insights-analyzer
     description: >-
       Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable
