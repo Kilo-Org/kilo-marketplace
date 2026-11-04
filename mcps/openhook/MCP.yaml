@@ -1,0 +1,17 @@
+id: openhook
+name: Openhook
+description: Capture webhook requests, email, and DNS callbacks in private inboxes, inspect their contents, and wait for new events while testing integrations.
+author: openhook-dev
+url: https://github.com/openhook-dev/openhook-inbox
+category: development
+prerequisites:
+  - Internet access to the hosted endpoint; no account or API key is needed to connect or create a disposable inbox.
+  - Keep the private inbox token returned by creation secret. Reading or deleting an inbox requires it as a tool argument.
+  - Hosted persistent inboxes require a separate Openhook account key. Callback capture does not prove that an application processed the event.
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://openhook.dev/mcp"
+      }
