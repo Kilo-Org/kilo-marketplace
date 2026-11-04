@@ -1,11 +1,11 @@
 id: browserless
 name: Browserless
-description: Cloud browser automation for AI agents, including web scraping, screenshots, PDF generation, crawling, and browser interactions.
+description: Cloud browsers for AI agents with stealth features such as proxies and a CAPTCHA solver, supporting web scraping, screenshots, PDF generation, crawling, and browser automation.
 author: browserless
 url: https://github.com/browserless/browserless-mcp
 category: web-automation
 prerequisites:
-  - Browserless account with an API token and available usage quota
+  - Browserless account with an API token and available usage quota. Sign up for a free plan at https://cloud.browserless.io/signup/email?plan=free
 content:
   - name: Hosted MCP
     content: |
