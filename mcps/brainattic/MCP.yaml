@@ -1,0 +1,18 @@
+id: brainattic
+name: Brainattic
+description: >-
+  EU-hosted knowledge base for AI agents with semantic and keyword search,
+  versioned documents, and permission-controlled knowledge workflows over MCP.
+author: Finite Software Systems Ltd.
+url: https://brainattic.ai
+category: data
+prerequisites:
+  - A Brainattic account with access to a workspace
+  - A browser to complete OAuth 2.1 sign-in
+content:
+  - name: Hosted remote server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.brainattic.ai/api/mcp"
+      }
