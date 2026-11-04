@@ -1,0 +1,15 @@
+id: ecommerce-leads
+name: Ecommerce Leads
+description: Look up any ecommerce store by domain (revenue, ad spend, traffic, buying signals). Log in with OAuth to search 600k+ stores and reveal contacts; reveals spend paid account credits after confirmation.
+author: Ecommerce Leads
+url: https://github.com/matosdfm/ecommerce-leads-mcp
+category: data
+prerequisites:
+  - None for lookupStore. An Ecommerce Leads account (OAuth login) for all other tools.
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://getecommerceleads.com/api/mcp"
+      }
