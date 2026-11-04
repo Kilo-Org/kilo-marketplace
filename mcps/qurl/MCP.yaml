@@ -1,0 +1,48 @@
+id: qurl
+name: qURL
+description: Mint, resolve, audit, and rotate scope-limited expiring access links (qURLs) for AI agents. Share localhost web apps, private APIs, and selected files through expiring qURL access links.
+author: layervai
+url: https://github.com/layervai/qurl-mcp
+category: development
+prerequisites:
+  - Node.js 22.12 or later (local options)
+  - "No-account option: the qURL CLI installed on the same machine (https://github.com/layervai/qurl-integrations)"
+  - "API-key and hosted options: a LayerV account and qURL API key (https://layerv.ai)"
+content:
+  - name: NPX (no account, uses local qURL CLI)
+    prerequisites:
+      - Node.js 22.12 or later
+      - qURL CLI
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@layervai/qurl-mcp"]
+      }
+  - name: NPX (qURL API key)
+    prerequisites:
+      - Node.js 22.12 or later
+      - qURL API key
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@layervai/qurl-mcp"],
+        "env": {
+          "QURL_API_KEY": "{{QURL_API_KEY}}"
+        }
+      }
+  - name: Remote (hosted)
+    prerequisites:
+      - qURL API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.connector.layerv.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{QURL_API_KEY}}"
+        }
+      }
+parameters:
+  - name: qURL API Key
+    key: QURL_API_KEY
+    placeholder: lv_live_xxx
+    optional: true
