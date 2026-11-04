@@ -1,0 +1,22 @@
+id: browserless
+name: Browserless
+description: Cloud browser automation for AI agents, including web scraping, screenshots, PDF generation, crawling, and browser interactions.
+author: browserless
+url: https://github.com/browserless/browserless-mcp
+category: web-automation
+prerequisites:
+  - Browserless account with an API token and available usage quota
+content:
+  - name: Hosted MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.browserless.io/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BROWSERLESS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Browserless API token
+    key: BROWSERLESS_TOKEN
+    placeholder: your_browserless_api_token
