@@ -92,7 +92,7 @@ items:
         content: |
           {
             "command": "npx",
-            "args": ["-y", "@agentseo/mcp-server@0.1.4"],
+            "args": ["-y", "@agentseo/mcp-server@0.1.5"],
             "env": {
               "AGENTSEO_API_KEY": "{{AGENTSEO_API_KEY}}"
             }
