@@ -273,15 +273,13 @@ def validate(path: Path) -> Report:
             elif not is_footer and max_size > 0:
                 for para in shape.text_frame.paragraphs:
                     for r in para.runs:
-                        if r.font.size is not None:
-                            sz = r.font.size.pt
-                            if sz < 12.0 or (12.0 < sz < BODY_FLOOR_PT):
-                                report.error(
-                                    idx,
-                                    f"body font {sz:.0f}pt is below the "
-                                    f"{BODY_FLOOR_PT:.0f}pt floor: {r.text[:40]!r}",
-                                )
-                                break
+                        if r.font.size is not None and r.font.size.pt < BODY_FLOOR_PT:
+                            report.error(
+                                idx,
+                                f"body font {r.font.size.pt:.0f}pt is below the "
+                                f"{BODY_FLOOR_PT:.0f}pt floor: {r.text[:40]!r}",
+                            )
+                            break
             elif not is_footer and max_size <= 0:
                 # inherited sizes: only flag clearly undersized explicit runs (none here)
                 pass

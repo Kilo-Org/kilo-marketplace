@@ -384,13 +384,8 @@ class DeckBuilder:
         return self._font_cache
 
     def _resolve_font(self, primary, fallbacks=None):
-        fallbacks = fallbacks or []
-        available = self._available_fonts()
-        if not available:
-            return primary
-        for cand in [primary] + list(fallbacks):
-            if cand and str(cand).strip().lower() in available:
-                return cand
+        # Deterministic: always write the theme's primary typeface and let
+        # PowerPoint substitute missing fonts. Do not probe the build host.
         return primary
 
     def _style_run(self, run, size, color, bold=False, italic=False, font=None):
@@ -715,7 +710,7 @@ class DeckBuilder:
             _, tf = self._textbox(slide, self.margin, cy, self.content_w, 0.4)
             run = tf.paragraphs[0].add_run()
             run.text = caption
-            self._style_run(run, self.sizes["caption"], self.theme["muted"])
+            self._style_run(run, max(self.sizes["caption"], 14), self.theme["muted"])
         self._notes(slide, slide_spec.get("notes"))
 
     def add_table(self, slide_spec):

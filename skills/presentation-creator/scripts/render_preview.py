@@ -8,6 +8,7 @@ LibreOffice. Skips gracefully when the tooling is absent.
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -45,6 +46,7 @@ def main() -> int:
         except OSError:
             backup = None
 
+    failed = False
     try:
         proc = subprocess.run(
             [soffice, "--headless", "--convert-to", "pdf", "--outdir", str(outdir), str(deck)],
@@ -52,15 +54,20 @@ def main() -> int:
         )
     except subprocess.TimeoutExpired:
         print(f"error: LibreOffice timed out after {args.timeout}s.", file=sys.stderr)
-        return 1
-    if proc.returncode != 0 or not pdf.is_file():
+        failed = True
+        proc = None
+    if not failed and (proc.returncode != 0 or not pdf.is_file()):
+        failed = True
+    if failed:
         if backup is not None and backup.exists():
             try:
-                backup.rename(pdf)
+                os.replace(backup, pdf)
             except OSError:
                 pass
-        if proc.returncode != 0:
+        if proc is not None and proc.returncode != 0:
             print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
+        elif proc is None:
+            pass
         else:
             print("skipped: PDF conversion failed.")
         return 1

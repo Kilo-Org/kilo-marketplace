@@ -16,7 +16,7 @@ metadata:
   source:
     repository: 'https://github.com/nitsan57/presentation_skill'
     path: skills/presentation-creator
-    license_path: LICENSE
+    license_path: skills/presentation-creator/LICENSE
     ref: main
     commit: 0adbd766d94a1262beb58a613b24caca0ea214bb
 ---
