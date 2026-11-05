@@ -22,8 +22,9 @@ spacing. Fixes:
 - Widen the box or lower the font size to the preset floor.
 - Split the slide (the estimate is a signal that the slide is genuinely dense).
 - Move detail into speaker notes.
-- If it is truly a false positive, confirm visually with the LibreOffice preview before
-  overriding; document the override in the deck notes.
+- If it is truly a false positive, confirm visually with the LibreOffice preview, then fix the
+  slide (widen the box, reduce text, or split it). The QA gate is a hard requirement and may
+  not be overridden or skipped.
 
 ## Missing fonts
 

@@ -34,13 +34,7 @@ def main() -> int:
         print("skipped: LibreOffice (soffice) not available; preview not rendered.")
         return 0
 
-    # Clean stale pdf to detect failure
     pdf = outdir / (deck.stem + ".pdf")
-    try:
-        if pdf.exists():
-            pdf.unlink()
-    except OSError:
-        pass
 
     try:
         proc = subprocess.run(
@@ -52,6 +46,7 @@ def main() -> int:
         return 1
     if proc.returncode != 0:
         print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
+        return 1
     if not pdf.is_file():
         print("skipped: PDF conversion failed.")
         return 1
@@ -74,6 +69,9 @@ def main() -> int:
         except subprocess.TimeoutExpired:
             print("warning: pdftoppm timed out; PNG keyframes may be partial.")
             return 0
+        if proc2.returncode != 0:
+            print(f"warning: pdftoppm failed (rc={proc2.returncode}): {proc2.stderr.decode(errors='replace').strip()}")
+            return 1
         pngs = sorted(outdir.glob("slide*.png"))
         if pngs:
             print(f"Rendered {len(pngs)} PNG keyframe(s) in: {outdir}")

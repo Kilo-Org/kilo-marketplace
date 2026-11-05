@@ -60,7 +60,7 @@ python3 ../scripts/build_deck.py example-deck.json -o /tmp/kilo/sample.pptx
 
 ```sh
 python3 ../scripts/validate_deck.py /tmp/kilo/sample.pptx
-# PASSED: 0 errors, 0 warning(s)
+# PASSED: 0 errors, 2 warning(s)
 ```
 
 Fix every error and re-run until the exit code is 0. To see the gate reject a deck, take a

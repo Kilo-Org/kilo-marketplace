@@ -13,12 +13,10 @@ metadata:
   category: productivity
   author: nitsan57
   version: 1.3.0
-  suggest_for:
-    filename:
-      - '*.pptx'
   source:
     repository: 'https://github.com/nitsan57/presentation_skill'
     path: skills/presentation-creator
+    license_path: LICENSE
     ref: main
     commit: 0adbd766d94a1262beb58a613b24caca0ea214bb
 ---

@@ -127,7 +127,7 @@ def _max_font_size(shape) -> float:
         for r in p.runs:
             if r.font.size is not None:
                 sizes.append(r.font.size.pt)
-    return max(sizes) if sizes else 18.0
+    return max(sizes) if sizes else 0.0
 
 
 def _estimate_overflow(shape):
@@ -209,14 +209,14 @@ def validate(path: Path) -> Report:
     for idx, slide in enumerate(prs.slides, start=1):
         texts = _text_shapes(slide)
         fill_shapes = []
-        for shape in slide.shapes:
+        for _i, shape in enumerate(slide.shapes):
             color = _solid_fill_color(shape)
             if color is None:
                 continue
             _x, _y, _w, _h = _shape_bbox(shape)
             if _w < int(0.05 * 914400) or _h < int(0.05 * 914400):
                 continue
-            fill_shapes.append((shape, _shape_bbox(shape), color))
+            fill_shapes.append((_i, shape, _shape_bbox(shape), color))
 
         # -- bounds -----------------------------------------------------
         for shape in slide.shapes:
@@ -264,7 +264,7 @@ def validate(path: Path) -> Report:
             elif not is_footer:
                 for p in shape.text_frame.paragraphs:
                     for r in p.runs:
-                        if r.font.size is not None and r.font.size.pt < 12.0:
+                        if r.font.size is not None and r.font.size.pt < BODY_FLOOR_PT:
                             report.error(
                                 idx,
                                 f"body font {r.font.size.pt:.0f}pt is below the "
@@ -285,10 +285,17 @@ def validate(path: Path) -> Report:
             # contrast: topmost solid fill below this text shape
             bbox = _shape_bbox(shape)
             bg = None
-            for fshape, fbbox, color in fill_shapes:
+            best_idx = -1
+            shape_idx = list(slide.shapes).index(shape)
+            for fidx, fshape, fbbox, color in fill_shapes:
                 if fshape is shape:
                     continue
-                if _rects_overlap(bbox, fbbox):
+                if fidx >= shape_idx:
+                    continue
+                if not _rects_overlap(bbox, fbbox):
+                    continue
+                if fidx > best_idx:
+                    best_idx = fidx
                     bg = color
             bg = bg or bg_default
             for p in shape.text_frame.paragraphs:
@@ -300,7 +307,7 @@ def validate(path: Path) -> Report:
                         continue
                     size = r.font.size.pt if r.font.size is not None else 18.0
                     bold = bool(r.font.bold)
-                    large = size >= 24 or (size >= 18 and bold)
+                    large = size >= 18 or (size >= 14 and bold)
                     required = 3.0 if large else 4.5
                     ratio = _contrast(fg, bg)
                     if ratio < required:

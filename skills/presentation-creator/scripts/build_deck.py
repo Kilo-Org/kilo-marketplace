@@ -48,6 +48,8 @@ THEMES: dict[str, dict] = {
         "band_text": "FFFFFF",
         "title_font": "Segoe UI Semibold",
         "body_font": "Segoe UI",
+        "title_font_fallbacks": ["Calibri", "Arial"],
+        "body_font_fallbacks": ["Calibri", "Arial"],
     },
     "corporate-blue": {
         "bg": "FFFFFF",
@@ -61,6 +63,8 @@ THEMES: dict[str, dict] = {
         "band_text": "FFFFFF",
         "title_font": "Calibri",
         "body_font": "Calibri",
+        "title_font_fallbacks": ["Arial", "Helvetica"],
+        "body_font_fallbacks": ["Arial", "Helvetica"],
     },
     "dark-tech": {
         "bg": "0D1117",
@@ -74,6 +78,8 @@ THEMES: dict[str, dict] = {
         "band_text": "E6EDF3",
         "title_font": "Segoe UI Semibold",
         "body_font": "Segoe UI",
+        "title_font_fallbacks": ["Calibri", "Arial"],
+        "body_font_fallbacks": ["Calibri", "Arial"],
     },
 }
 
@@ -155,7 +161,7 @@ def _is_path(value) -> bool:
 
 
 class DeckBuilder:
-    def __init__(self, spec: dict):
+    def __init__(self, spec: dict, base_dir=None, allow_chart_code: bool = False):
         theme_spec = spec.get("theme", "clean-light")
         palette_override = spec.get("palette")
         if isinstance(theme_spec, dict):
@@ -187,6 +193,8 @@ class DeckBuilder:
             raise ValueError(f"unknown aspect {aspect!r}; choose from {sorted(ASPECTS)}")
         width_in, height_in = ASPECTS[aspect]
 
+        self.base_dir = Path(base_dir) if base_dir is not None else Path.cwd()
+        self.allow_chart_code = bool(allow_chart_code)
         self.prs = Presentation()
         self.prs.slide_width = Inches(width_in)
         self.prs.slide_height = Inches(height_in)
@@ -214,13 +222,16 @@ class DeckBuilder:
         self.accent_bar_width = spec.get("accent_bar_width", None)
         self.card_padding = 0.25
         self.band_color = spec.get("band_color", self.theme["band"])
-        self.band_text_color = spec.get("band_text_color", self.theme["band_text"])
+        btc = spec.get("band_text_color")
+        if isinstance(btc, str):
+            self.theme["band_text"] = btc.lstrip("#")
+        self.band_text_color = self.theme["band_text"]
         self.band_height = spec.get("band_height", None)
         self.title_band_color = spec.get("title_band_color", self.band_color)
-        self.title_band_height = float(spec.get("title_band_height", 2.4))
+        self.title_band_height = float(spec.get("title_band_height", self.band_height if self.band_height is not None else 2.4))
         self.closing_band_color = spec.get("closing_band_color", self.band_color)
         self.section_band_color = spec.get("section_band_color", self.theme["accent"])
-        self.section_band_height = float(spec.get("section_band_height", 0.1))
+        self.section_band_height = float(spec.get("section_band_height", self.band_height if self.band_height is not None else 0.1))
 
         # footer options
         footer = spec.get("footer", True)
@@ -247,17 +258,31 @@ class DeckBuilder:
             logo = None
         self.logo = logo
         if self.logo and self.logo.get("path"):
-            p = Path(self.logo["path"])
+            p = self._resolve_path(self.logo["path"])
             if not p.is_file():
                 raise FileNotFoundError(f"logo not found: {self.logo['path']}")
+            self.logo["path"] = str(p)
         # font files (validated, not embedded by python-pptx)
         font_files = spec.get("font_files", [])
         if isinstance(font_files, str):
             font_files = [font_files]
+        resolved_fonts = []
         for fp in font_files or []:
-            if not Path(fp).is_file():
+            rp = self._resolve_path(fp)
+            if not rp.is_file():
                 raise FileNotFoundError(f"font file not found: {fp}")
-        self.font_files = list(font_files or [])
+            resolved_fonts.append(str(rp))
+        self.font_files = resolved_fonts
+
+    def _resolve_path(self, value):
+        p = Path(value)
+        if p.is_absolute():
+            return p
+        # try base_dir then CWD
+        cand = self.base_dir / p
+        if cand.exists():
+            return cand
+        return p
 
     def _apply_fonts(self, spec, theme_spec):
         # theme-level font overrides (when theme is a dict)
@@ -379,6 +404,8 @@ class DeckBuilder:
             slide.notes_slide.notes_text_frame.text = str(notes)
 
     def _add_bullets(self, slide, items, x, y, w, h, size, color):
+        if items is None:
+            items = []
         box, tf = self._textbox(slide, x, y, w, h)
         tf.vertical_anchor = MSO_ANCHOR.TOP
         for i, text in enumerate(items):
@@ -423,25 +450,39 @@ class DeckBuilder:
         if not isinstance(logo, dict):
             return
         path = logo.get("path")
-        if not path or not Path(path).is_file():
+        if not path:
             return
+        path = self._resolve_path(path)
+        if not Path(path).is_file():
+            raise FileNotFoundError(f"logo not found: {logo.get('path')}")
+        logo = dict(logo)
+        logo["path"] = str(path)
         if logo.get("enabled", True) is False:
             return
         pos = logo.get("position", "top-right")
         size = float(logo.get("size", 0.7))
         margin = float(logo.get("margin", 0.35))
+        # placeholder x; final x depends on actual rendered width
         if pos == "top-left":
             x, y = self.margin, 0.2
         elif pos == "top-right":
-            x, y = self.width_in - margin - size, 0.2
+            x, y = self.width_in - margin, 0.2
         elif pos == "bottom-left":
-            x, y = self.margin, self.height_in - margin - size
+            x, y = self.margin, self.height_in - margin
         elif pos == "bottom-right":
-            x, y = self.width_in - margin - size, self.height_in - margin - size
+            x, y = self.width_in - margin, self.height_in - margin
         else:
-            x, y = self.width_in - margin - size, 0.2
+            x, y = self.width_in - margin, 0.2
         try:
-            pic = slide.shapes.add_picture(str(path), Inches(x), Inches(y), height=Inches(size))
+            pic = slide.shapes.add_picture(str(path), Inches(0), Inches(y), height=Inches(size))
+            actual_w = pic.width / 914400
+            actual_h = pic.height / 914400
+            if pos in ("top-right", "bottom-right", "top-right"):
+                x = self.width_in - margin - actual_w
+            if pos in ("bottom-left", "bottom-right"):
+                y = self.height_in - margin - actual_h
+            pic.left = Inches(x)
+            pic.top = Inches(y)
             opacity = logo.get("opacity", logo.get("alpha"))
             if opacity is not None:
                 try:
@@ -568,6 +609,8 @@ class DeckBuilder:
         slide = self._new_slide()
         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
         items = slide_spec.get("bullets", [])
+        if items is None:
+            items = []
         self._add_bullets(
             slide, items, self.margin, 1.6, self.content_w, self.height_in - 2.2,
             self.sizes["body"], self.theme["text"],
@@ -585,6 +628,8 @@ class DeckBuilder:
         gap = 0.4
         col_w = (self.content_w - gap) / 2
         columns = slide_spec.get("columns", [[], []])
+        if columns is None:
+            columns = [[], []]
         left = columns[0] if len(columns) > 0 else []
         right = columns[1] if len(columns) > 1 else []
         pad = self.card_padding
@@ -603,9 +648,10 @@ class DeckBuilder:
         img = slide_spec.get("image")
         if not img:
             raise ValueError("image layout requires an 'image' path")
-        path = Path(img)
+        path = self._resolve_path(img)
         if not path.is_file():
             raise FileNotFoundError(f"image not found: {img}")
+        path = str(path)
         fit = slide_spec.get("fit", "contain")
         caption_pos = slide_spec.get("caption_position", "bottom")
         top = 1.6
@@ -614,7 +660,7 @@ class DeckBuilder:
             top = 2.1
             max_h = self.height_in - 2.8
         pic = slide.shapes.add_picture(
-            str(path), Inches(self.margin), Inches(top), width=Inches(self.content_w)
+            path, Inches(self.margin), Inches(top), width=Inches(self.content_w)
         )
         if fit == "contain" and pic.height > Inches(max_h):
             ratio = max_h / (pic.height / 914400)
@@ -637,6 +683,8 @@ class DeckBuilder:
         slide = self._new_slide()
         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
         tbl = slide_spec.get("table", {})
+        if tbl is None:
+            tbl = {}
         headers = tbl.get("headers", [])
         rows = tbl.get("rows", [])
         n_cols = len(headers) or (len(rows[0]) if rows and isinstance(rows[0], (list, tuple)) else 0)
@@ -718,6 +766,8 @@ class DeckBuilder:
         slide = self._new_slide()
         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
         chart = slide_spec.get("chart", {})
+        if chart is None:
+            chart = {}
         engine = chart.get("engine", "pptx")
         if engine == "matplotlib":
             self._add_chart_matplotlib(slide, slide_spec, chart)
@@ -842,8 +892,14 @@ class DeckBuilder:
         ctype = chart.get("type", "bar")
         categories = [str(c) for c in chart.get("categories", [])]
         series_list = chart.get("series", [])
+        if series_list is None:
+            series_list = []
         if not isinstance(series_list, (list, tuple)):
             series_list = [series_list]
+        if ctype in ("pie", "doughnut") and len(series_list) != 1:
+            raise ValueError("pie/doughnut charts require exactly one series")
+        if not series_list:
+            raise ValueError("chart layout requires at least one series")
         colors = chart.get("colors") or [
             "#" + self.theme["accent"], "#" + self.theme["accent2"], "#" + self.theme["accent3"], "#" + self.theme["muted"]
         ]
@@ -858,12 +914,16 @@ class DeckBuilder:
         ax.title.set_color("#" + self.theme["text"])
         code = chart.get("code")
         if code:
+            if not getattr(self, "allow_chart_code", False):
+                raise ValueError(
+                    "chart.code requires --allow-chart-code; refusing to exec spec-supplied code"
+                )
             ns = {
                 "plt": plt, "fig": fig, "ax": ax, "categories": categories,
                 "series_list": series_list, "colors": colors, "unit": unit,
                 "theme": self.theme,
             }
-            exec(code, ns)
+            exec(code, ns)  # noqa: S102 - gated behind explicit CLI flag
         else:
             if ctype in ("bar", "column"):
                 width = 0.8 / max(1, len(series_list))
@@ -883,8 +943,12 @@ class DeckBuilder:
                             color=colors[i % len(colors)])
                 plt.xticks(rotation=30, ha="right")
             elif ctype in ("pie", "doughnut"):
+                if not series_list:
+                    raise ValueError("pie/doughnut charts require exactly one series")
                 s = series_list[0]
                 vals = s.get("values", []) if isinstance(s, dict) else s
+                if not vals:
+                    raise ValueError("pie/doughnut charts require non-empty values")
                 wedges, _ = ax.pie(vals, labels=categories, colors=colors)
                 if ctype == "doughnut":
                     centre = plt.Circle((0, 0), 0.55, fc="#" + self.theme["bg"])
@@ -894,6 +958,8 @@ class DeckBuilder:
                     vals = s.get("values", []) if isinstance(s, dict) else s
                     xs = s.get("x", list(range(len(vals)))) if isinstance(s, dict) else list(range(len(vals)))
                     ax.scatter(xs, vals, color=colors[i % len(colors)], label=s.get("name") if isinstance(s, dict) else None)
+            else:
+                raise ValueError(f"unknown chart type {ctype!r}; choose from bar, line, pie, doughnut, scatter")
             if chart.get("x_title"):
                 ax.set_xlabel(chart["x_title"])
             if chart.get("y_title") or unit:
@@ -1167,11 +1233,12 @@ class DeckBuilder:
             cx = self.margin + 0.6
             cw = self.content_w - 0.6
             self._card(slide, cx, yy, cw, card_h, self.theme["surface"])
-            _, tf = self._textbox(slide, cx + pad, yy + 0.15, cw - 2 * pad, 0.5)
+            _, tf = self._textbox(slide, cx + pad, yy + 0.12, cw - 2 * pad, 0.42)
             run = tf.paragraphs[0].add_run()
             run.text = str(it.get("title", ""))
             self._style_run(run, self.sizes["body"], self.theme["text"], bold=True)
-            _, tf = self._textbox(slide, cx + pad, yy + 0.65, cw - 2 * pad, card_h - 0.75)
+            body_h = max(0.1, card_h - 0.58)
+            _, tf = self._textbox(slide, cx + pad, yy + 0.56, cw - 2 * pad, body_h)
             run = tf.paragraphs[0].add_run()
             run.text = str(it.get("body", ""))
             self._style_run(run, self.sizes["body"] - 2, self.theme["muted"])
@@ -1184,6 +1251,8 @@ class DeckBuilder:
         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
         headers = slide_spec.get("headers")
         columns = slide_spec.get("columns", slide_spec.get("items", slide_spec.get("cols", [])))
+        if columns is None:
+            columns = []
         if headers is None and isinstance(columns, (list, tuple)) and columns and isinstance(columns[0], dict) and ("header" in columns[0] or "title" in columns[0]):
             headers = [c.get("header", c.get("title", "")) for c in columns]
             columns = [c.get("items", c.get("bullets", c.get("points", []))) for c in columns]
@@ -1193,7 +1262,10 @@ class DeckBuilder:
             columns = list(columns.values())
         if not isinstance(columns, (list, tuple)):
             columns = [columns]
-        n = max(1, min(4, max(len(headers), len(columns))))
+        n = max(len(headers) if isinstance(headers, (list, tuple)) else 0,
+                len(columns) if isinstance(columns, (list, tuple)) else 0)
+        if n < 1:
+            n = 1
         if n > 4:
             raise ValueError("comparison layout supports at most 4 columns")
         highlight = slide_spec.get("highlight", slide_spec.get("emphasis"))
@@ -1471,6 +1543,7 @@ def main(argv=None) -> int:
     parser.add_argument("spec", help="path to the JSON deck spec")
     parser.add_argument("-o", "--output", required=True, help="output .pptx path")
     parser.add_argument("--force", action="store_true", help="overwrite an existing file")
+    parser.add_argument("--allow-chart-code", action="store_true", help="allow exec() of chart.code (unsafe)")
     args = parser.parse_args(argv)
 
     spec_path = Path(args.spec)
@@ -1492,11 +1565,22 @@ def main(argv=None) -> int:
         return 2
 
     try:
-        builder = DeckBuilder(spec)
+        builder = DeckBuilder(spec, base_dir=spec_path.parent, allow_chart_code=args.allow_chart_code)
         builder.build(spec)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        builder.prs.save(str(out_path))
-    except (ValueError, FileNotFoundError) as exc:
+        fd, tmp_name = tempfile.mkstemp(prefix=out_path.name + ".", suffix=".tmp", dir=str(out_path.parent))
+        os.close(fd)
+        tmp_path = Path(tmp_name)
+        try:
+            builder.prs.save(str(tmp_path))
+            os.replace(tmp_path, out_path)
+        finally:
+            if tmp_path.exists():
+                try:
+                    tmp_path.unlink()
+                except OSError:
+                    pass
+    except (ValueError, FileNotFoundError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 

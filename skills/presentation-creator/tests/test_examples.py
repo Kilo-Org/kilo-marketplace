@@ -34,8 +34,29 @@ class ExampleDecks(unittest.TestCase):
                     data = json.loads(r2.stdout)
                 except json.JSONDecodeError as exc:
                     self.fail(f"bad validator JSON: {exc}\n{r2.stdout}\n{r2.stderr}")
+                self.assertEqual(r2.returncode, 0, f"{spec_path.name}: validator exit {r2.returncode}")
                 self.assertFalse(data.get("errors"), f"{spec_path.name}: {data.get('errors')}")
 
+
+
+
+    def test_failing_deck_exits_nonzero(self):
+        import tempfile, json
+        spec = {"title": "T", "theme": "clean-light", "aspect": "16:9", "slides": [
+            {"layout": "bullets", "title": "B", "bullets": ["x" * 5000], "notes": "n"}
+        ]}
+        with tempfile.TemporaryDirectory() as tmp:
+            spec_path = Path(tmp) / "bad.json"
+            out = Path(tmp) / "bad.pptx"
+            spec_path.write_text(json.dumps(spec))
+            r = subprocess.run([sys.executable, str(BUILDER), str(spec_path), "-o", str(out), "--force"],
+                               capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            r2 = subprocess.run([sys.executable, str(VALIDATOR), str(out), "--json"],
+                                capture_output=True, text=True)
+            self.assertEqual(r2.returncode, 1)
+            data = json.loads(r2.stdout)
+            self.assertTrue(data.get("errors"))
 
 if __name__ == "__main__":
     unittest.main()
