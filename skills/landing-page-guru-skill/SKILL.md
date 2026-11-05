@@ -3,13 +3,13 @@ name: landing-page-guru-skill
 description: Build, audit, or improve landing pages with clear offers, persuasive evidence-backed copy, distinctive responsive design, working forms, and meaningful measurement. Use for product waitlists, B2B demo pages, local-service inquiries, lead magnets, landing-page conversion reviews, and repairs to a page's lead-capture or success-event flow. Preserve the user's existing stack and brand; adapt to available tools.
 metadata:
   author: Pageree
-  version: "0.1.1"
+  version: "0.1.2"
   category: productivity
   source:
     repository: 'https://github.com/Pageree/landing-page-guru-skill'
     path: skills/landing-page-guru-skill
     license_path: skills/landing-page-guru-skill/LICENSE.txt
-    commit: 0dc348e305f7a37601031bffc536501e36f82bad
+    commit: 1b52e962f18593ba827a97d881d97dd38e15f35a
 ---
 
 # Landing Page Guru Skill

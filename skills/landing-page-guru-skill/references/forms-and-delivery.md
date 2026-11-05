@@ -69,5 +69,6 @@ actual delivery, all accessibility requirements, or consent behavior. Supplement
 with available manual/browser checks and record unsupported tests honestly.
 
 Use `assets/browser-form-template.json` as the adapter shape inside the contract's
-`verification.browser` field. Synthetic values belong only in test inputs. Keep
-real personal data out of fixtures, screenshots, and reports.
+`verification.browser` field. Synthetic values belong only in test inputs; keep them
+distinctive, because a blocked post containing one fails the flow. Keep real
+personal data out of fixtures, screenshots, and reports.

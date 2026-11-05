@@ -1,3 +1,4 @@
+import { isIP } from 'node:net';
 import { addCheck, isMain, loadContract, parseArgs, readJSON, reportFor, writeReport } from './lib/common.mjs';
 
 const states = new Set(['granted', 'denied', 'withdrawn', 'not-required']);
@@ -6,9 +7,9 @@ const outcomes = new Set(['accepted', 'rejected', 'timeout', 'duplicate', 'inval
 const opaque = value => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value);
 const personal = value => [
   /@|bearer\s|https?:\/\/|(?:\+?\d[\s().-]*){9,}/i,
-  /\b\d{1,3}(?:\.\d{1,3}){3}\b|(?:[0-9a-f]{0,4}:){3,}[0-9a-f]{0,4}/i, // IP addresses
-  /\b(?:sk|pk|rk|sess|session|api_?key)[_-][a-z0-9]{4,}|\b[a-z0-9]{32,}\b/i // keys and session IDs
-].some(pattern => pattern.test(String(value)));
+  /\b(?:sk|pk|rk)[_-][a-zA-Z0-9]{4,}/, // provider keys; case-sensitive so SK-2024 stays a SKU
+  /\b(?:sess|session|api_?key)[_-][a-z0-9]{4,}|[a-z0-9]{32,}/i // session IDs and long tokens
+].some(pattern => pattern.test(String(value))) || String(value).split(/[\s,;=]+/).some(part => isIP(part));
 
 function permitted(definition, action, contract) {
   return definition.permission === 'none' || !contract.privacy.analyticsRequiresPermission || action.permission === 'granted';

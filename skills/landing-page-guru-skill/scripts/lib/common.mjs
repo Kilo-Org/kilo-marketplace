@@ -111,7 +111,7 @@ export function parseArgs(argv, permitted) {
 }
 
 export function reportFor(contract, tool, evidenceSource) {
-  return { schemaVersion: '1.0', tool, toolVersion: '0.1.1', pageId: contract.pageId, environment: contract.environment, timestamp: new Date().toISOString(), runtime: process.version, evidenceSource, checks: [], limitations: [] };
+  return { schemaVersion: '1.0', tool, toolVersion: '0.1.2', pageId: contract.pageId, environment: contract.environment, timestamp: new Date().toISOString(), runtime: process.version, evidenceSource, checks: [], limitations: [] };
 }
 
 export function addCheck(report, id, passed, expected, observation) {

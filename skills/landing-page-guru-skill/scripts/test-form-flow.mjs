@@ -1,5 +1,10 @@
 import { addCheck, isMain, loadBrowser, loadContract, parseArgs, reportFor, safeURL, writeReport } from './lib/common.mjs';
 
+// Playwright throws for a navigation that opens a new page, before its frame exists.
+function isTopLevel(request) {
+  try { return !request.frame().parentFrame(); } catch { return true; }
+}
+
 export async function testFormFlow(contract, { url, browserModule, executablePath, allowRemote = false, browser: suppliedBrowser } = {}) {
   const report = reportFor(contract, 'test-form-flow', 'browser-with-intercepted-responses');
   report.limitations.push('All configured form responses are intercepted. Backend acceptance, storage, delivery, full accessibility, and privacy behavior need separate checks.');
@@ -27,7 +32,7 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
     const adapter = contract.verification.browser;
     const endpoint = safeURL(contract.form.destination.endpoint, target);
     // Values this short could match an unrelated request body by chance.
-    const formValues = Object.values(adapter.values).filter(value => typeof value === 'string' && value.length > 3).flatMap(value => [value, encodeURIComponent(value)]);
+    const formValues = Object.values(adapter.values).filter(value => typeof value === 'string' && value.length > 3).flatMap(value => [value, encodeURIComponent(value), new URLSearchParams({ value }).toString().slice(6)]);
     for (const scenario of ['invalid', 'accepted', 'rejected', 'duplicate', 'timeout', 'retry']) {
       if (scenario === 'invalid' && !contract.form.fields.some(field => field.required && field.type !== 'hidden')) {
         addCheck(report, scenario, 'not-applicable', 'Required fields prevent empty submission', 'No required visible fields'); continue;
@@ -53,13 +58,14 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
           const requestURL = new URL(request.url());
           if (requestURL.href === endpoint.href && request.method() === contract.form.destination.method) {
             calls++;
-            if (request.isNavigationRequest()) nativeSubmission = true;
+            if (request.isNavigationRequest() && isTopLevel(request)) nativeSubmission = true;
             if (contract.form.responses.idempotencyHeader) identities.push(request.headers()[contract.form.responses.idempotencyHeader.toLowerCase()] ?? null);
             if (scenario === 'timeout' || scenario === 'retry' && calls === 1) return route.abort('timedout');
             const response = contract.form.responses[scenario === 'retry' || scenario === 'invalid' ? 'accepted' : scenario];
             return route.fulfill({ status: response.status, contentType: 'application/json', body: JSON.stringify(response.body), headers: { 'access-control-allow-origin': target.origin } });
           }
           if (!['GET', 'HEAD'].includes(request.method())) {
+            // Playwright answers CORS preflights itself while routing, so OPTIONS never reaches this branch.
             // Analytics and similar posts stay blocked; only the form's own data counts against the flow.
             const body = request.postData() ?? '';
             if (requestURL.origin === endpoint.origin && requestURL.pathname === endpoint.pathname || formValues.some(value => body.includes(value))) blockedMutations++;
@@ -121,7 +127,7 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
           addCheck(report, scenario, calls === expectedCalls && blockedMutations === 0 && visible && announced && retained && identityOK, 'Expected response state, announced feedback, retained input on failure, and safe retry identity', `${calls} intercepted requests; visible=${visible}; live-region=${announced}; retained=${retained}; retry-identity=${identityOK}; undeclared form mutations=${blockedMutations}; unrelated mutations blocked=${unrelatedMutations}`);
         }
       } catch {
-        if (nativeSubmission) addCheck(report, scenario, 'not-tested', 'A submission handled by page script', 'The form navigated on submit, which this helper cannot simulate. Raw page text and values omitted.');
+        if (nativeSubmission && scenario !== 'invalid') addCheck(report, scenario, 'not-tested', 'A submission handled by page script', 'The form navigated on submit, which this helper cannot simulate. Raw page text and values omitted.');
         else addCheck(report, scenario, false, 'The declared browser flow completes', `Flow did not meet its contract; ${calls} intercepted requests; ${blockedReads} cross-origin reads blocked. Raw page text and values omitted.`);
       } finally { await context.close(); }
     }
