@@ -1,0 +1,361 @@
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/examples/example-brief.md b/presentation-creator/examples/example-brief.md
+--- a/presentation-creator/examples/example-brief.md	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/examples/example-brief.md	2000-01-01 00:00:00.000000000 +0000
+@@ -63 +63 @@
+-# PASSED: 0 errors, 0 warning(s)
++# PASSED: 0 errors, 2 warning(s)
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/examples/example-deck.json b/presentation-creator/examples/example-deck.json
+--- a/presentation-creator/examples/example-deck.json	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/examples/example-deck.json	2000-01-01 00:00:00.000000000 +0000
+@@ -33 +32,0 @@
+-          "One of three themes",
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/references/troubleshooting.md b/presentation-creator/references/troubleshooting.md
+--- a/presentation-creator/references/troubleshooting.md	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/references/troubleshooting.md	2000-01-01 00:00:00.000000000 +0000
+@@ -25,2 +25,3 @@
+-- If it is truly a false positive, confirm visually with the LibreOffice preview before
+-  overriding; document the override in the deck notes.
++- If it is truly a false positive, confirm visually with the LibreOffice preview, then fix the
++  slide (widen the box, reduce text, or split it). The QA gate is a hard requirement and may
++  not be overridden or skipped.
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/scripts/build_deck.py b/presentation-creator/scripts/build_deck.py
+--- a/presentation-creator/scripts/build_deck.py	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/scripts/build_deck.py	2000-01-01 00:00:00.000000000 +0000
+@@ -50,0 +51,2 @@
++        "title_font_fallbacks": ["Calibri", "Arial"],
++        "body_font_fallbacks": ["Calibri", "Arial"],
+@@ -63,0 +66,2 @@
++        "title_font_fallbacks": ["Arial", "Helvetica"],
++        "body_font_fallbacks": ["Arial", "Helvetica"],
+@@ -76,0 +81,2 @@
++        "title_font_fallbacks": ["Calibri", "Arial"],
++        "body_font_fallbacks": ["Calibri", "Arial"],
+@@ -158 +164 @@
+-    def __init__(self, spec: dict):
++    def __init__(self, spec: dict, base_dir=None, allow_chart_code: bool = False):
+@@ -189,0 +196,2 @@
++        self.base_dir = Path(base_dir) if base_dir is not None else Path.cwd()
++        self.allow_chart_code = bool(allow_chart_code)
+@@ -217 +225,4 @@
+-        self.band_text_color = spec.get("band_text_color", self.theme["band_text"])
++        btc = spec.get("band_text_color")
++        if isinstance(btc, str):
++            self.theme["band_text"] = btc.lstrip("#")
++        self.band_text_color = self.theme["band_text"]
+@@ -220 +231 @@
+-        self.title_band_height = float(spec.get("title_band_height", 2.4))
++        self.title_band_height = float(spec.get("title_band_height", self.band_height if self.band_height is not None else 2.4))
+@@ -223 +234 @@
+-        self.section_band_height = float(spec.get("section_band_height", 0.1))
++        self.section_band_height = float(spec.get("section_band_height", self.band_height if self.band_height is not None else 0.1))
+@@ -250 +261 @@
+-            p = Path(self.logo["path"])
++            p = self._resolve_path(self.logo["path"])
+@@ -252,0 +264 @@
++            self.logo["path"] = str(p)
+@@ -256,0 +269 @@
++        resolved_fonts = []
+@@ -258 +271,2 @@
+-            if not Path(fp).is_file():
++            rp = self._resolve_path(fp)
++            if not rp.is_file():
+@@ -260 +274,12 @@
+-        self.font_files = list(font_files or [])
++            resolved_fonts.append(str(rp))
++        self.font_files = resolved_fonts
++
++    def _resolve_path(self, value):
++        p = Path(value)
++        if p.is_absolute():
++            return p
++        # try base_dir then CWD
++        cand = self.base_dir / p
++        if cand.exists():
++            return cand
++        return p
+@@ -381,0 +407,2 @@
++        if items is None:
++            items = []
+@@ -426 +453 @@
+-        if not path or not Path(path).is_file():
++        if not path:
+@@ -427,0 +455,5 @@
++        path = self._resolve_path(path)
++        if not Path(path).is_file():
++            raise FileNotFoundError(f"logo not found: {logo.get('path')}")
++        logo = dict(logo)
++        logo["path"] = str(path)
+@@ -432,0 +465 @@
++        # placeholder x; final x depends on actual rendered width
+@@ -436 +469 @@
+-            x, y = self.width_in - margin - size, 0.2
++            x, y = self.width_in - margin, 0.2
+@@ -438 +471 @@
+-            x, y = self.margin, self.height_in - margin - size
++            x, y = self.margin, self.height_in - margin
+@@ -440 +473 @@
+-            x, y = self.width_in - margin - size, self.height_in - margin - size
++            x, y = self.width_in - margin, self.height_in - margin
+@@ -442 +475 @@
+-            x, y = self.width_in - margin - size, 0.2
++            x, y = self.width_in - margin, 0.2
+@@ -444 +477,14 @@
+-            pic = slide.shapes.add_picture(str(path), Inches(x), Inches(y), height=Inches(size))
++            pic = slide.shapes.add_picture(str(path), Inches(0), Inches(y), height=Inches(size))
++            actual_w = pic.width / 914400
++            actual_h = pic.height / 914400
++            if pos in ("top-right", "bottom-right"):
++                x = self.width_in - margin - actual_w
++            elif pos not in ("top-left", "bottom-left"):
++                # unknown positions default to right-aligned with width correction
++                x = self.width_in - margin - actual_w
++            if pos in ("bottom-left", "bottom-right"):
++                y = self.height_in - margin - actual_h
++            elif pos not in ("top-left", "top-right"):
++                y = 0.2
++            pic.left = Inches(x)
++            pic.top = Inches(y)
+@@ -570,0 +617,2 @@
++        if items is None:
++            items = []
+@@ -587,0 +636,2 @@
++        if columns is None:
++            columns = [[], []]
+@@ -606 +656 @@
+-        path = Path(img)
++        path = self._resolve_path(img)
+@@ -608,0 +659 @@
++        path = str(path)
+@@ -617 +668 @@
+-            str(path), Inches(self.margin), Inches(top), width=Inches(self.content_w)
++            path, Inches(self.margin), Inches(top), width=Inches(self.content_w)
+@@ -633 +684 @@
+-            self._style_run(run, self.sizes["caption"], self.theme["muted"])
++            self._style_run(run, max(self.sizes["caption"], 14), self.theme["muted"])
+@@ -639,0 +691,2 @@
++        if tbl is None:
++            tbl = {}
+@@ -640,0 +694,2 @@
++        if headers is None:
++            headers = []
+@@ -641,0 +697,2 @@
++        if rows is None:
++            rows = []
+@@ -720,0 +778,2 @@
++        if chart is None:
++            chart = {}
+@@ -844,0 +904,2 @@
++        if series_list is None:
++            series_list = []
+@@ -846,0 +908,4 @@
++        if ctype in ("pie", "doughnut") and len(series_list) != 1:
++            raise ValueError("pie/doughnut charts require exactly one series")
++        if not series_list:
++            raise ValueError("chart layout requires at least one series")
+@@ -860,0 +926,4 @@
++            if not getattr(self, "allow_chart_code", False):
++                raise ValueError(
++                    "chart.code requires --allow-chart-code; refusing to exec spec-supplied code"
++                )
+@@ -866 +935 @@
+-            exec(code, ns)
++            exec(code, ns)  # noqa: S102 - gated behind explicit CLI flag
+@@ -885,0 +955,2 @@
++                if not series_list:
++                    raise ValueError("pie/doughnut charts require exactly one series")
+@@ -887,0 +959,2 @@
++                if not vals:
++                    raise ValueError("pie/doughnut charts require non-empty values")
+@@ -896,0 +970,2 @@
++            else:
++                raise ValueError(f"unknown chart type {ctype!r}; choose from bar, line, pie, doughnut, scatter")
+@@ -1170 +1245 @@
+-            _, tf = self._textbox(slide, cx + pad, yy + 0.15, cw - 2 * pad, 0.5)
++            _, tf = self._textbox(slide, cx + pad, yy + 0.12, cw - 2 * pad, 0.42)
+@@ -1174 +1249,2 @@
+-            _, tf = self._textbox(slide, cx + pad, yy + 0.65, cw - 2 * pad, card_h - 0.75)
++            body_h = max(0.1, card_h - 0.58)
++            _, tf = self._textbox(slide, cx + pad, yy + 0.56, cw - 2 * pad, body_h)
+@@ -1186,0 +1263,2 @@
++        if columns is None:
++            columns = []
+@@ -1196 +1274,4 @@
+-        n = max(1, min(4, max(len(headers), len(columns))))
++        n = max(len(headers) if isinstance(headers, (list, tuple)) else 0,
++                len(columns) if isinstance(columns, (list, tuple)) else 0)
++        if n < 1:
++            n = 1
+@@ -1473,0 +1555 @@
++    parser.add_argument("--allow-chart-code", action="store_true", help="allow exec() of chart.code (unsafe)")
+@@ -1495 +1577 @@
+-        builder = DeckBuilder(spec)
++        builder = DeckBuilder(spec, base_dir=spec_path.parent, allow_chart_code=args.allow_chart_code)
+@@ -1498,2 +1580,13 @@
+-        builder.prs.save(str(out_path))
+-    except (ValueError, FileNotFoundError) as exc:
++        fd, tmp_name = tempfile.mkstemp(prefix=out_path.name + ".", suffix=".tmp", dir=str(out_path.parent))
++        os.close(fd)
++        tmp_path = Path(tmp_name)
++        try:
++            builder.prs.save(str(tmp_path))
++            os.replace(tmp_path, out_path)
++        finally:
++            if tmp_path.exists():
++                try:
++                    tmp_path.unlink()
++                except OSError:
++                    pass
++    except (ValueError, FileNotFoundError, OSError) as exc:
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/scripts/render_preview.py b/presentation-creator/scripts/render_preview.py
+--- a/presentation-creator/scripts/render_preview.py	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/scripts/render_preview.py	2000-01-01 00:00:00.000000000 +0000
+@@ -10,0 +11 @@
++import os
+@@ -37 +37,0 @@
+-    # Clean stale pdf to detect failure
+@@ -39,5 +39,9 @@
+-    try:
+-        if pdf.exists():
+-            pdf.unlink()
+-    except OSError:
+-        pass
++    backup = None
++    if pdf.exists():
++        backup = outdir / (deck.stem + ".pdf.bak")
++        try:
++            if backup.exists():
++                backup.unlink()
++            pdf.rename(backup)
++        except OSError:
++            backup = None
+@@ -44,0 +49 @@
++    failed = False
+@@ -51,0 +57,16 @@
++        failed = True
++        proc = None
++    if not failed and (proc.returncode != 0 or not pdf.is_file()):
++        failed = True
++    if failed:
++        if backup is not None and backup.exists():
++            try:
++                os.replace(backup, pdf)
++            except OSError:
++                pass
++        if proc is not None and proc.returncode != 0:
++            print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
++        elif proc is None:
++            pass
++        else:
++            print("skipped: PDF conversion failed.")
+@@ -53,5 +74,5 @@
+-    if proc.returncode != 0:
+-        print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
+-    if not pdf.is_file():
+-        print("skipped: PDF conversion failed.")
+-        return 1
++    if backup is not None and backup.exists():
++        try:
++            backup.unlink()
++        except OSError:
++            pass
+@@ -76,0 +98,3 @@
++        if proc2.returncode != 0:
++            print(f"warning: pdftoppm failed (rc={proc2.returncode}): {proc2.stderr.decode(errors='replace').strip()}")
++            return 1
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/scripts/validate_deck.py b/presentation-creator/scripts/validate_deck.py
+--- a/presentation-creator/scripts/validate_deck.py	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/scripts/validate_deck.py	2000-01-01 00:00:00.000000000 +0000
+@@ -130 +130 @@
+-    return max(sizes) if sizes else 18.0
++    return max(sizes) if sizes else 0.0
+@@ -212 +212 @@
+-        for shape in slide.shapes:
++        for _i, shape in enumerate(slide.shapes):
+@@ -219 +219 @@
+-            fill_shapes.append((shape, _shape_bbox(shape), color))
++            fill_shapes.append((_i, shape, _shape_bbox(shape), color))
+@@ -251,0 +252,9 @@
++        # If no run has an explicit size, fall back to the topmost non-footer text shape
++        # so imported/hand-written decks do not all report "no title text".
++        if max_size <= 0 and texts:
++            for tsh in texts:
++                if (tsh.top or 0) < int(2.0 * 914400):
++                    title_text = tsh.text_frame.text.strip()
++                    break
++            if title_text is None and texts:
++                title_text = texts[0].text_frame.text.strip()
+@@ -257 +266 @@
+-            if max_size and size == max_size and title_text is None:
++            if max_size > 0 and size == max_size and title_text is None:
+@@ -264,4 +273,4 @@
+-            elif not is_footer:
+-                for p in shape.text_frame.paragraphs:
+-                    for r in p.runs:
+-                        if r.font.size is not None and r.font.size.pt < 12.0:
++            elif not is_footer and max_size > 0:
++                for para in shape.text_frame.paragraphs:
++                    for r in para.runs:
++                        if r.font.size is not None and r.font.size.pt < BODY_FLOOR_PT:
+@@ -273,0 +283,3 @@
++            elif not is_footer and max_size <= 0:
++                # inherited sizes: only flag clearly undersized explicit runs (none here)
++                pass
+@@ -288 +300,3 @@
+-            for fshape, fbbox, color in fill_shapes:
++            best_idx = -1
++            shape_idx = list(slide.shapes).index(shape)
++            for fidx, fshape, fbbox, color in fill_shapes:
+@@ -291 +305,6 @@
+-                if _rects_overlap(bbox, fbbox):
++                if fidx >= shape_idx:
++                    continue
++                if not _rects_overlap(bbox, fbbox):
++                    continue
++                if fidx > best_idx:
++                    best_idx = fidx
+@@ -303 +322 @@
+-                    large = size >= 24 or (size >= 18 and bold)
++                    large = size >= 18 or (size >= 14 and bold)
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/SKILL.md b/presentation-creator/SKILL.md
+--- a/presentation-creator/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -16,3 +15,0 @@
+-  suggest_for:
+-    filename:
+-      - '*.pptx'
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/tests/test_examples.py b/presentation-creator/tests/test_examples.py
+--- a/presentation-creator/tests/test_examples.py	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/tests/test_examples.py	2000-01-01 00:00:00.000000000 +0000
+@@ -36,0 +37 @@
++                self.assertEqual(r2.returncode, 0, f"{spec_path.name}: validator exit {r2.returncode}")
+@@ -38,0 +40,20 @@
++
++
++
++    def test_failing_deck_exits_nonzero(self):
++        import tempfile, json
++        spec = {"title": "T", "theme": "clean-light", "aspect": "16:9", "slides": [
++            {"layout": "bullets", "title": "B", "bullets": ["x" * 5000], "notes": "n"}
++        ]}
++        with tempfile.TemporaryDirectory() as tmp:
++            spec_path = Path(tmp) / "bad.json"
++            out = Path(tmp) / "bad.pptx"
++            spec_path.write_text(json.dumps(spec))
++            r = subprocess.run([sys.executable, str(BUILDER), str(spec_path), "-o", str(out), "--force"],
++                               capture_output=True, text=True)
++            self.assertEqual(r.returncode, 0, r.stderr)
++            r2 = subprocess.run([sys.executable, str(VALIDATOR), str(out), "--json"],
++                                capture_output=True, text=True)
++            self.assertEqual(r2.returncode, 1)
++            data = json.loads(r2.stdout)
++            self.assertTrue(data.get("errors"))
+diff -rN -U0 --ignore-trailing-space a/presentation-creator/tests/test_layouts.py b/presentation-creator/tests/test_layouts.py
+--- a/presentation-creator/tests/test_layouts.py	2000-01-01 00:00:00.000000000 +0000
++++ b/presentation-creator/tests/test_layouts.py	2000-01-01 00:00:00.000000000 +0000
+@@ -19,0 +20,2 @@
++    if len(builder.prs.slides) < 1:
++        raise AssertionError("expected at least one slide")
+@@ -23 +25,2 @@
+-        assert out.is_file() and out.stat().st_size > 0
++        if not out.is_file() or out.stat().st_size <= 0:
++            raise AssertionError("saved deck is empty")

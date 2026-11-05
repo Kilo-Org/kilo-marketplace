@@ -1,0 +1,17 @@
+{
+  "title": "Edge Cases",
+  "subtitle": "Defensive layout handling",
+  "theme": "dark-tech",
+  "aspect": "16:9",
+  "slides": [
+    {"layout": "title", "title": "Edge Cases", "subtitle": "Single and many items", "notes": "Intro."},
+    {"layout": "stats", "title": "One stat", "stats": [{"value": "1", "label": "Only", "delta": "+0"}], "notes": "Single stat."},
+    {"layout": "stats", "title": "Four stats", "stats": [{"value":"a","label":"L1"},{"value":"b","label":"L2"},{"value":"c","label":"L3"},{"value":"d","label":"L4"}], "notes": "Four stats."},
+    {"layout": "timeline", "title": "One step", "steps": [{"title":"Only","body":"Single step"}], "notes": "Single step."},
+    {"layout": "timeline", "title": "Six steps", "steps": [{"title":"A","body":"1"},{"title":"B","body":"2"},{"title":"C","body":"3"},{"title":"D","body":"4"},{"title":"E","body":"5"},{"title":"F","body":"6"}], "notes": "Six steps."},
+    {"layout": "comparison", "title": "One column", "headers": ["Only"], "columns": [["A","B"]], "notes": "Single column."},
+    {"layout": "cards", "title": "One card", "cards": [{"title":"Card","body":"Body","bullets":["b1","b2"]}], "notes": "Single card."},
+    {"layout": "chart", "title": "Pie", "chart": {"type":"pie","categories":["A","B"],"series":[{"name":"Share","values":[60,40]}]}, "notes": "Pie chart."},
+    {"layout": "closing", "title": "Done", "subtitle": "All edge cases", "notes": "Close."}
+  ]
+}
