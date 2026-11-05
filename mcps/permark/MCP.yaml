@@ -1,0 +1,15 @@
+id: permark
+name: PerMark
+description: "Markdown app that tells your AI agents what you are reading: the open document, section and selection, unread changes, your comments to mark done, and search across the project. Local; agents never edit through it; off until you share a project."
+author: EdelmarSchneider
+url: https://github.com/EdelmarSchneider/permark
+category: development
+content:
+  - name: PerMark Desktop (Native CLI)
+    prerequisites:
+      - PerMark installed (Scoop, Homebrew, Snap, deb-get, or binary release)
+    content: |
+      {
+        "command": "permark",
+        "args": ["mcp"]
+      }
