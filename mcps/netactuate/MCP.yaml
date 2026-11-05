@@ -1,0 +1,13 @@
+id: netactuate
+name: NetActuate
+description: Answers from NetActuate's own published pages about its global edge network, covering data center locations and specs, compliance by site, internet exchanges, the sites nearest a market, products and pricing, marketplace apps, and the technical docs and API reference. Read-only, no sign-in.
+author: NetActuate
+url: https://netactuate.com/mcp
+category: search
+content:
+  - name: NetActuate hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://netactuate.com/mcp"
+      }
