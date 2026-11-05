@@ -5,9 +5,24 @@ author: BlockVectra
 url: https://github.com/blockvectra/mcp
 category: search
 content:
-  - name: Hosted remote server
+  - name: Keyless connection
     content: |
       {
         "type": "streamable-http",
         "url": "https://docs.blockvectra.com/mcp"
       }
+  - name: Authenticated connection
+    prerequisites:
+      - A BlockVectra API key for indexed data and account tools
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://docs.blockvectra.com/mcp",
+        "headers": {
+          "x-api-key": "{{BLOCKVECTRA_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: BlockVectra API key
+        key: BLOCKVECTRA_API_KEY
+        placeholder: your_blockvectra_api_key

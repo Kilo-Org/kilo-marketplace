@@ -699,12 +699,27 @@ items:
     tags:
       - search
     content:
-      - name: Hosted remote server
+      - name: Keyless connection
         content: |
           {
             "type": "streamable-http",
             "url": "https://docs.blockvectra.com/mcp"
           }
+      - name: Authenticated connection
+        prerequisites:
+          - A BlockVectra API key for indexed data and account tools
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://docs.blockvectra.com/mcp",
+            "headers": {
+              "x-api-key": "{{BLOCKVECTRA_API_KEY}}"
+            }
+          }
+        parameters:
+          - name: BlockVectra API key
+            key: BLOCKVECTRA_API_KEY
+            placeholder: your_blockvectra_api_key
   - id: brave-search
     name: Brave Search
     description: Integrates Brave Search API to provide comprehensive web and local search capabilities with smart
