@@ -17,10 +17,13 @@ import build_deck  # noqa: E402
 def _build(spec):
     builder = build_deck.DeckBuilder(spec)
     builder.build(spec)
+    if len(builder.prs.slides) < 1:
+        raise AssertionError("expected at least one slide")
     with tempfile.TemporaryDirectory() as tmp:
         out = Path(tmp) / "deck.pptx"
         builder.prs.save(str(out))
-        assert out.is_file() and out.stat().st_size > 0
+        if not out.is_file() or out.stat().st_size <= 0:
+            raise AssertionError("saved deck is empty")
     return builder
 
 

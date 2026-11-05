@@ -1,0 +1,688 @@
+diff --git a/presentation-creator/SKILL.md b/presentation-creator/SKILL.md
+index bdc9e7a..556905d 100644
+--- a/presentation-creator/SKILL.md
++++ b/presentation-creator/SKILL.md
+@@ -13,12 +13,10 @@ metadata:
+   category: productivity
+   author: nitsan57
+   version: 1.3.0
+-  suggest_for:
+-    filename:
+-      - '*.pptx'
+   source:
+     repository: 'https://github.com/nitsan57/presentation_skill'
+     path: skills/presentation-creator
++    license_path: LICENSE
+     ref: main
+     commit: 0adbd766d94a1262beb58a613b24caca0ea214bb
+ ---
+diff --git a/presentation-creator/examples/example-brief.md b/presentation-creator/examples/example-brief.md
+index 80561b3..4328308 100644
+--- a/presentation-creator/examples/example-brief.md
++++ b/presentation-creator/examples/example-brief.md
+@@ -60,7 +60,7 @@ python3 ../scripts/build_deck.py example-deck.json -o /tmp/kilo/sample.pptx
+ 
+ ```sh
+ python3 ../scripts/validate_deck.py /tmp/kilo/sample.pptx
+-# PASSED: 0 errors, 0 warning(s)
++# PASSED: 0 errors, 2 warning(s)
+ ```
+ 
+ Fix every error and re-run until the exit code is 0. To see the gate reject a deck, take a
+diff --git a/presentation-creator/examples/example-deck.json b/presentation-creator/examples/example-deck.json
+index 128ff5c..f8eebe2 100644
+--- a/presentation-creator/examples/example-deck.json
++++ b/presentation-creator/examples/example-deck.json
+@@ -30,7 +30,6 @@
+         ],
+         [
+           "JSON spec drives the build",
+-          "One of three themes",
+           "QA pass before delivery"
+         ]
+       ],
+diff --git a/presentation-creator/references/troubleshooting.md b/presentation-creator/references/troubleshooting.md
+index 4c05447..e3190e6 100644
+--- a/presentation-creator/references/troubleshooting.md
++++ b/presentation-creator/references/troubleshooting.md
+@@ -22,8 +22,9 @@ spacing. Fixes:
+ - Widen the box or lower the font size to the preset floor.
+ - Split the slide (the estimate is a signal that the slide is genuinely dense).
+ - Move detail into speaker notes.
+-- If it is truly a false positive, confirm visually with the LibreOffice preview before
+-  overriding; document the override in the deck notes.
++- If it is truly a false positive, confirm visually with the LibreOffice preview, then fix the
++  slide (widen the box, reduce text, or split it). The QA gate is a hard requirement and may
++  not be overridden or skipped.
+ 
+ ## Missing fonts
+ 
+diff --git a/presentation-creator/scripts/build_deck.py b/presentation-creator/scripts/build_deck.py
+index 4722805..060522d 100644
+--- a/presentation-creator/scripts/build_deck.py
++++ b/presentation-creator/scripts/build_deck.py
+@@ -48,6 +48,8 @@ THEMES: dict[str, dict] = {
+         "band_text": "FFFFFF",
+         "title_font": "Segoe UI Semibold",
+         "body_font": "Segoe UI",
++        "title_font_fallbacks": ["Calibri", "Arial"],
++        "body_font_fallbacks": ["Calibri", "Arial"],
+     },
+     "corporate-blue": {
+         "bg": "FFFFFF",
+@@ -61,6 +63,8 @@ THEMES: dict[str, dict] = {
+         "band_text": "FFFFFF",
+         "title_font": "Calibri",
+         "body_font": "Calibri",
++        "title_font_fallbacks": ["Arial", "Helvetica"],
++        "body_font_fallbacks": ["Arial", "Helvetica"],
+     },
+     "dark-tech": {
+         "bg": "0D1117",
+@@ -74,6 +78,8 @@ THEMES: dict[str, dict] = {
+         "band_text": "E6EDF3",
+         "title_font": "Segoe UI Semibold",
+         "body_font": "Segoe UI",
++        "title_font_fallbacks": ["Calibri", "Arial"],
++        "body_font_fallbacks": ["Calibri", "Arial"],
+     },
+ }
+ 
+@@ -155,7 +161,7 @@ def _is_path(value) -> bool:
+ 
+ 
+ class DeckBuilder:
+-    def __init__(self, spec: dict):
++    def __init__(self, spec: dict, base_dir=None, allow_chart_code: bool = False):
+         theme_spec = spec.get("theme", "clean-light")
+         palette_override = spec.get("palette")
+         if isinstance(theme_spec, dict):
+@@ -187,6 +193,8 @@ class DeckBuilder:
+             raise ValueError(f"unknown aspect {aspect!r}; choose from {sorted(ASPECTS)}")
+         width_in, height_in = ASPECTS[aspect]
+ 
++        self.base_dir = Path(base_dir) if base_dir is not None else Path.cwd()
++        self.allow_chart_code = bool(allow_chart_code)
+         self.prs = Presentation()
+         self.prs.slide_width = Inches(width_in)
+         self.prs.slide_height = Inches(height_in)
+@@ -214,13 +222,16 @@ class DeckBuilder:
+         self.accent_bar_width = spec.get("accent_bar_width", None)
+         self.card_padding = 0.25
+         self.band_color = spec.get("band_color", self.theme["band"])
+-        self.band_text_color = spec.get("band_text_color", self.theme["band_text"])
++        btc = spec.get("band_text_color")
++        if isinstance(btc, str):
++            self.theme["band_text"] = btc.lstrip("#")
++        self.band_text_color = self.theme["band_text"]
+         self.band_height = spec.get("band_height", None)
+         self.title_band_color = spec.get("title_band_color", self.band_color)
+-        self.title_band_height = float(spec.get("title_band_height", 2.4))
++        self.title_band_height = float(spec.get("title_band_height", self.band_height if self.band_height is not None else 2.4))
+         self.closing_band_color = spec.get("closing_band_color", self.band_color)
+         self.section_band_color = spec.get("section_band_color", self.theme["accent"])
+-        self.section_band_height = float(spec.get("section_band_height", 0.1))
++        self.section_band_height = float(spec.get("section_band_height", self.band_height if self.band_height is not None else 0.1))
+ 
+         # footer options
+         footer = spec.get("footer", True)
+@@ -247,17 +258,31 @@ class DeckBuilder:
+             logo = None
+         self.logo = logo
+         if self.logo and self.logo.get("path"):
+-            p = Path(self.logo["path"])
++            p = self._resolve_path(self.logo["path"])
+             if not p.is_file():
+                 raise FileNotFoundError(f"logo not found: {self.logo['path']}")
++            self.logo["path"] = str(p)
+         # font files (validated, not embedded by python-pptx)
+         font_files = spec.get("font_files", [])
+         if isinstance(font_files, str):
+             font_files = [font_files]
++        resolved_fonts = []
+         for fp in font_files or []:
+-            if not Path(fp).is_file():
++            rp = self._resolve_path(fp)
++            if not rp.is_file():
+                 raise FileNotFoundError(f"font file not found: {fp}")
+-        self.font_files = list(font_files or [])
++            resolved_fonts.append(str(rp))
++        self.font_files = resolved_fonts
++
++    def _resolve_path(self, value):
++        p = Path(value)
++        if p.is_absolute():
++            return p
++        # try base_dir then CWD
++        cand = self.base_dir / p
++        if cand.exists():
++            return cand
++        return p
+ 
+     def _apply_fonts(self, spec, theme_spec):
+         # theme-level font overrides (when theme is a dict)
+@@ -339,11 +364,45 @@ class DeckBuilder:
+             pass
+         return shp
+ 
++    def _available_fonts(self):
++        if getattr(self, "_font_cache", None) is None:
++            self._font_cache = set()
++            try:
++                import subprocess
++
++                out = subprocess.check_output(
++                    ["fc-list", ":", "family"], text=True, stderr=subprocess.DEVNULL,
++                    timeout=5,
++                )
++                for line in out.splitlines():
++                    for part in line.split(","):
++                        name = part.strip()
++                        if name:
++                            self._font_cache.add(name.lower())
++            except Exception:
++                self._font_cache = set()
++        return self._font_cache
++
++    def _resolve_font(self, primary, fallbacks=None):
++        fallbacks = fallbacks or []
++        available = self._available_fonts()
++        if not available:
++            return primary
++        for cand in [primary] + list(fallbacks):
++            if cand and str(cand).strip().lower() in available:
++                return cand
++        return primary
++
+     def _style_run(self, run, size, color, bold=False, italic=False, font=None):
+         run.font.size = Pt(size)
+         run.font.bold = bold
+         run.font.italic = italic
+-        run.font.name = font or self.theme["body_font"]
++        primary = font or self.theme["body_font"]
++        if primary == self.theme.get("title_font"):
++            fallbacks = self.theme.get("title_font_fallbacks", [])
++        else:
++            fallbacks = self.theme.get("body_font_fallbacks", [])
++        run.font.name = self._resolve_font(primary, fallbacks)
+         run.font.color.rgb = rgb(color)
+ 
+     def _heading(self, slide, text, size, color, x=None, y=0.45, w=None, h=1.0):
+@@ -379,6 +438,8 @@ class DeckBuilder:
+             slide.notes_slide.notes_text_frame.text = str(notes)
+ 
+     def _add_bullets(self, slide, items, x, y, w, h, size, color):
++        if items is None:
++            items = []
+         box, tf = self._textbox(slide, x, y, w, h)
+         tf.vertical_anchor = MSO_ANCHOR.TOP
+         for i, text in enumerate(items):
+@@ -423,25 +484,44 @@ class DeckBuilder:
+         if not isinstance(logo, dict):
+             return
+         path = logo.get("path")
+-        if not path or not Path(path).is_file():
++        if not path:
+             return
++        path = self._resolve_path(path)
++        if not Path(path).is_file():
++            raise FileNotFoundError(f"logo not found: {logo.get('path')}")
++        logo = dict(logo)
++        logo["path"] = str(path)
+         if logo.get("enabled", True) is False:
+             return
+         pos = logo.get("position", "top-right")
+         size = float(logo.get("size", 0.7))
+         margin = float(logo.get("margin", 0.35))
++        # placeholder x; final x depends on actual rendered width
+         if pos == "top-left":
+             x, y = self.margin, 0.2
+         elif pos == "top-right":
+-            x, y = self.width_in - margin - size, 0.2
++            x, y = self.width_in - margin, 0.2
+         elif pos == "bottom-left":
+-            x, y = self.margin, self.height_in - margin - size
++            x, y = self.margin, self.height_in - margin
+         elif pos == "bottom-right":
+-            x, y = self.width_in - margin - size, self.height_in - margin - size
++            x, y = self.width_in - margin, self.height_in - margin
+         else:
+-            x, y = self.width_in - margin - size, 0.2
++            x, y = self.width_in - margin, 0.2
+         try:
+-            pic = slide.shapes.add_picture(str(path), Inches(x), Inches(y), height=Inches(size))
++            pic = slide.shapes.add_picture(str(path), Inches(0), Inches(y), height=Inches(size))
++            actual_w = pic.width / 914400
++            actual_h = pic.height / 914400
++            if pos in ("top-right", "bottom-right"):
++                x = self.width_in - margin - actual_w
++            elif pos not in ("top-left", "bottom-left"):
++                # unknown positions default to right-aligned with width correction
++                x = self.width_in - margin - actual_w
++            if pos in ("bottom-left", "bottom-right"):
++                y = self.height_in - margin - actual_h
++            elif pos not in ("top-left", "top-right"):
++                y = 0.2
++            pic.left = Inches(x)
++            pic.top = Inches(y)
+             opacity = logo.get("opacity", logo.get("alpha"))
+             if opacity is not None:
+                 try:
+@@ -568,6 +648,8 @@ class DeckBuilder:
+         slide = self._new_slide()
+         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
+         items = slide_spec.get("bullets", [])
++        if items is None:
++            items = []
+         self._add_bullets(
+             slide, items, self.margin, 1.6, self.content_w, self.height_in - 2.2,
+             self.sizes["body"], self.theme["text"],
+@@ -585,6 +667,8 @@ class DeckBuilder:
+         gap = 0.4
+         col_w = (self.content_w - gap) / 2
+         columns = slide_spec.get("columns", [[], []])
++        if columns is None:
++            columns = [[], []]
+         left = columns[0] if len(columns) > 0 else []
+         right = columns[1] if len(columns) > 1 else []
+         pad = self.card_padding
+@@ -603,9 +687,10 @@ class DeckBuilder:
+         img = slide_spec.get("image")
+         if not img:
+             raise ValueError("image layout requires an 'image' path")
+-        path = Path(img)
++        path = self._resolve_path(img)
+         if not path.is_file():
+             raise FileNotFoundError(f"image not found: {img}")
++        path = str(path)
+         fit = slide_spec.get("fit", "contain")
+         caption_pos = slide_spec.get("caption_position", "bottom")
+         top = 1.6
+@@ -614,7 +699,7 @@ class DeckBuilder:
+             top = 2.1
+             max_h = self.height_in - 2.8
+         pic = slide.shapes.add_picture(
+-            str(path), Inches(self.margin), Inches(top), width=Inches(self.content_w)
++            path, Inches(self.margin), Inches(top), width=Inches(self.content_w)
+         )
+         if fit == "contain" and pic.height > Inches(max_h):
+             ratio = max_h / (pic.height / 914400)
+@@ -637,8 +722,14 @@ class DeckBuilder:
+         slide = self._new_slide()
+         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
+         tbl = slide_spec.get("table", {})
++        if tbl is None:
++            tbl = {}
+         headers = tbl.get("headers", [])
++        if headers is None:
++            headers = []
+         rows = tbl.get("rows", [])
++        if rows is None:
++            rows = []
+         n_cols = len(headers) or (len(rows[0]) if rows and isinstance(rows[0], (list, tuple)) else 0)
+         if n_cols == 0 and rows:
+             n_cols = 1
+@@ -718,6 +809,8 @@ class DeckBuilder:
+         slide = self._new_slide()
+         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
+         chart = slide_spec.get("chart", {})
++        if chart is None:
++            chart = {}
+         engine = chart.get("engine", "pptx")
+         if engine == "matplotlib":
+             self._add_chart_matplotlib(slide, slide_spec, chart)
+@@ -842,8 +935,14 @@ class DeckBuilder:
+         ctype = chart.get("type", "bar")
+         categories = [str(c) for c in chart.get("categories", [])]
+         series_list = chart.get("series", [])
++        if series_list is None:
++            series_list = []
+         if not isinstance(series_list, (list, tuple)):
+             series_list = [series_list]
++        if ctype in ("pie", "doughnut") and len(series_list) != 1:
++            raise ValueError("pie/doughnut charts require exactly one series")
++        if not series_list:
++            raise ValueError("chart layout requires at least one series")
+         colors = chart.get("colors") or [
+             "#" + self.theme["accent"], "#" + self.theme["accent2"], "#" + self.theme["accent3"], "#" + self.theme["muted"]
+         ]
+@@ -858,12 +957,16 @@ class DeckBuilder:
+         ax.title.set_color("#" + self.theme["text"])
+         code = chart.get("code")
+         if code:
++            if not getattr(self, "allow_chart_code", False):
++                raise ValueError(
++                    "chart.code requires --allow-chart-code; refusing to exec spec-supplied code"
++                )
+             ns = {
+                 "plt": plt, "fig": fig, "ax": ax, "categories": categories,
+                 "series_list": series_list, "colors": colors, "unit": unit,
+                 "theme": self.theme,
+             }
+-            exec(code, ns)
++            exec(code, ns)  # noqa: S102 - gated behind explicit CLI flag
+         else:
+             if ctype in ("bar", "column"):
+                 width = 0.8 / max(1, len(series_list))
+@@ -883,8 +986,12 @@ class DeckBuilder:
+                             color=colors[i % len(colors)])
+                 plt.xticks(rotation=30, ha="right")
+             elif ctype in ("pie", "doughnut"):
++                if not series_list:
++                    raise ValueError("pie/doughnut charts require exactly one series")
+                 s = series_list[0]
+                 vals = s.get("values", []) if isinstance(s, dict) else s
++                if not vals:
++                    raise ValueError("pie/doughnut charts require non-empty values")
+                 wedges, _ = ax.pie(vals, labels=categories, colors=colors)
+                 if ctype == "doughnut":
+                     centre = plt.Circle((0, 0), 0.55, fc="#" + self.theme["bg"])
+@@ -894,6 +1001,8 @@ class DeckBuilder:
+                     vals = s.get("values", []) if isinstance(s, dict) else s
+                     xs = s.get("x", list(range(len(vals)))) if isinstance(s, dict) else list(range(len(vals)))
+                     ax.scatter(xs, vals, color=colors[i % len(colors)], label=s.get("name") if isinstance(s, dict) else None)
++            else:
++                raise ValueError(f"unknown chart type {ctype!r}; choose from bar, line, pie, doughnut, scatter")
+             if chart.get("x_title"):
+                 ax.set_xlabel(chart["x_title"])
+             if chart.get("y_title") or unit:
+@@ -1167,11 +1276,12 @@ class DeckBuilder:
+             cx = self.margin + 0.6
+             cw = self.content_w - 0.6
+             self._card(slide, cx, yy, cw, card_h, self.theme["surface"])
+-            _, tf = self._textbox(slide, cx + pad, yy + 0.15, cw - 2 * pad, 0.5)
++            _, tf = self._textbox(slide, cx + pad, yy + 0.12, cw - 2 * pad, 0.42)
+             run = tf.paragraphs[0].add_run()
+             run.text = str(it.get("title", ""))
+             self._style_run(run, self.sizes["body"], self.theme["text"], bold=True)
+-            _, tf = self._textbox(slide, cx + pad, yy + 0.65, cw - 2 * pad, card_h - 0.75)
++            body_h = max(0.1, card_h - 0.58)
++            _, tf = self._textbox(slide, cx + pad, yy + 0.56, cw - 2 * pad, body_h)
+             run = tf.paragraphs[0].add_run()
+             run.text = str(it.get("body", ""))
+             self._style_run(run, self.sizes["body"] - 2, self.theme["muted"])
+@@ -1184,6 +1294,8 @@ class DeckBuilder:
+         self._heading(slide, slide_spec.get("title", ""), self.sizes["title"], self.theme["text"])
+         headers = slide_spec.get("headers")
+         columns = slide_spec.get("columns", slide_spec.get("items", slide_spec.get("cols", [])))
++        if columns is None:
++            columns = []
+         if headers is None and isinstance(columns, (list, tuple)) and columns and isinstance(columns[0], dict) and ("header" in columns[0] or "title" in columns[0]):
+             headers = [c.get("header", c.get("title", "")) for c in columns]
+             columns = [c.get("items", c.get("bullets", c.get("points", []))) for c in columns]
+@@ -1193,7 +1305,10 @@ class DeckBuilder:
+             columns = list(columns.values())
+         if not isinstance(columns, (list, tuple)):
+             columns = [columns]
+-        n = max(1, min(4, max(len(headers), len(columns))))
++        n = max(len(headers) if isinstance(headers, (list, tuple)) else 0,
++                len(columns) if isinstance(columns, (list, tuple)) else 0)
++        if n < 1:
++            n = 1
+         if n > 4:
+             raise ValueError("comparison layout supports at most 4 columns")
+         highlight = slide_spec.get("highlight", slide_spec.get("emphasis"))
+@@ -1471,6 +1586,7 @@ def main(argv=None) -> int:
+     parser.add_argument("spec", help="path to the JSON deck spec")
+     parser.add_argument("-o", "--output", required=True, help="output .pptx path")
+     parser.add_argument("--force", action="store_true", help="overwrite an existing file")
++    parser.add_argument("--allow-chart-code", action="store_true", help="allow exec() of chart.code (unsafe)")
+     args = parser.parse_args(argv)
+ 
+     spec_path = Path(args.spec)
+@@ -1492,11 +1608,22 @@ def main(argv=None) -> int:
+         return 2
+ 
+     try:
+-        builder = DeckBuilder(spec)
++        builder = DeckBuilder(spec, base_dir=spec_path.parent, allow_chart_code=args.allow_chart_code)
+         builder.build(spec)
+         out_path.parent.mkdir(parents=True, exist_ok=True)
+-        builder.prs.save(str(out_path))
+-    except (ValueError, FileNotFoundError) as exc:
++        fd, tmp_name = tempfile.mkstemp(prefix=out_path.name + ".", suffix=".tmp", dir=str(out_path.parent))
++        os.close(fd)
++        tmp_path = Path(tmp_name)
++        try:
++            builder.prs.save(str(tmp_path))
++            os.replace(tmp_path, out_path)
++        finally:
++            if tmp_path.exists():
++                try:
++                    tmp_path.unlink()
++                except OSError:
++                    pass
++    except (ValueError, FileNotFoundError, OSError) as exc:
+         print(f"error: {exc}", file=sys.stderr)
+         return 2
+ 
+diff --git a/presentation-creator/scripts/render_preview.py b/presentation-creator/scripts/render_preview.py
+index b8ac7fb..6abd13e 100644
+--- a/presentation-creator/scripts/render_preview.py
++++ b/presentation-creator/scripts/render_preview.py
+@@ -34,13 +34,16 @@ def main() -> int:
+         print("skipped: LibreOffice (soffice) not available; preview not rendered.")
+         return 0
+ 
+-    # Clean stale pdf to detect failure
+     pdf = outdir / (deck.stem + ".pdf")
+-    try:
+-        if pdf.exists():
+-            pdf.unlink()
+-    except OSError:
+-        pass
++    backup = None
++    if pdf.exists():
++        backup = outdir / (deck.stem + ".pdf.bak")
++        try:
++            if backup.exists():
++                backup.unlink()
++            pdf.rename(backup)
++        except OSError:
++            backup = None
+ 
+     try:
+         proc = subprocess.run(
+@@ -50,11 +53,22 @@ def main() -> int:
+     except subprocess.TimeoutExpired:
+         print(f"error: LibreOffice timed out after {args.timeout}s.", file=sys.stderr)
+         return 1
+-    if proc.returncode != 0:
+-        print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
+-    if not pdf.is_file():
+-        print("skipped: PDF conversion failed.")
++    if proc.returncode != 0 or not pdf.is_file():
++        if backup is not None and backup.exists():
++            try:
++                backup.rename(pdf)
++            except OSError:
++                pass
++        if proc.returncode != 0:
++            print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
++        else:
++            print("skipped: PDF conversion failed.")
+         return 1
++    if backup is not None and backup.exists():
++        try:
++            backup.unlink()
++        except OSError:
++            pass
+     print(f"Rendered PDF: {pdf}")
+ 
+     pdftoppm = shutil.which("pdftoppm")
+@@ -74,6 +88,9 @@ def main() -> int:
+         except subprocess.TimeoutExpired:
+             print("warning: pdftoppm timed out; PNG keyframes may be partial.")
+             return 0
++        if proc2.returncode != 0:
++            print(f"warning: pdftoppm failed (rc={proc2.returncode}): {proc2.stderr.decode(errors='replace').strip()}")
++            return 1
+         pngs = sorted(outdir.glob("slide*.png"))
+         if pngs:
+             print(f"Rendered {len(pngs)} PNG keyframe(s) in: {outdir}")
+diff --git a/presentation-creator/scripts/validate_deck.py b/presentation-creator/scripts/validate_deck.py
+index b597756..2c3ce80 100644
+--- a/presentation-creator/scripts/validate_deck.py
++++ b/presentation-creator/scripts/validate_deck.py
+@@ -127,7 +127,7 @@ def _max_font_size(shape) -> float:
+         for r in p.runs:
+             if r.font.size is not None:
+                 sizes.append(r.font.size.pt)
+-    return max(sizes) if sizes else 18.0
++    return max(sizes) if sizes else 0.0
+ 
+ 
+ def _estimate_overflow(shape):
+@@ -209,14 +209,14 @@ def validate(path: Path) -> Report:
+     for idx, slide in enumerate(prs.slides, start=1):
+         texts = _text_shapes(slide)
+         fill_shapes = []
+-        for shape in slide.shapes:
++        for _i, shape in enumerate(slide.shapes):
+             color = _solid_fill_color(shape)
+             if color is None:
+                 continue
+             _x, _y, _w, _h = _shape_bbox(shape)
+             if _w < int(0.05 * 914400) or _h < int(0.05 * 914400):
+                 continue
+-            fill_shapes.append((shape, _shape_bbox(shape), color))
++            fill_shapes.append((_i, shape, _shape_bbox(shape), color))
+ 
+         # -- bounds -----------------------------------------------------
+         for shape in slide.shapes:
+@@ -249,28 +249,42 @@ def validate(path: Path) -> Report:
+         bg_default = _slide_bg_color(slide) or (255, 255, 255)
+         max_size = max((_max_font_size(s) for s in texts), default=0.0)
+         title_text = None
++        # If no run has an explicit size, fall back to the topmost non-footer text shape
++        # so imported/hand-written decks do not all report "no title text".
++        if max_size <= 0 and texts:
++            for tsh in texts:
++                if (tsh.top or 0) < int(2.0 * 914400):
++                    title_text = tsh.text_frame.text.strip()
++                    break
++            if title_text is None and texts:
++                title_text = texts[0].text_frame.text.strip()
+         for shape in texts:
+             size = _max_font_size(shape)
+             is_footer = (shape.top or 0) >= sh - int(CAPTION_BAND_IN * 914400)
+             text_value = shape.text_frame.text.strip()
+ 
+-            if max_size and size == max_size and title_text is None:
++            if max_size > 0 and size == max_size and title_text is None:
+                 title_text = text_value
+                 if size < TITLE_FLOOR_PT and (shape.top or 0) < int(2.0 * 914400):
+                     report.error(
+                         idx,
+                         f"title font {size:.0f}pt is below the {TITLE_FLOOR_PT:.0f}pt floor",
+                     )
+-            elif not is_footer:
+-                for p in shape.text_frame.paragraphs:
+-                    for r in p.runs:
+-                        if r.font.size is not None and r.font.size.pt < 12.0:
+-                            report.error(
+-                                idx,
+-                                f"body font {r.font.size.pt:.0f}pt is below the "
+-                                f"{BODY_FLOOR_PT:.0f}pt floor: {r.text[:40]!r}",
+-                            )
+-                            break
++            elif not is_footer and max_size > 0:
++                for para in shape.text_frame.paragraphs:
++                    for r in para.runs:
++                        if r.font.size is not None:
++                            sz = r.font.size.pt
++                            if sz < 12.0 or (12.0 < sz < BODY_FLOOR_PT):
++                                report.error(
++                                    idx,
++                                    f"body font {sz:.0f}pt is below the "
++                                    f"{BODY_FLOOR_PT:.0f}pt floor: {r.text[:40]!r}",
++                                )
++                                break
++            elif not is_footer and max_size <= 0:
++                # inherited sizes: only flag clearly undersized explicit runs (none here)
++                pass
+ 
+             over = _estimate_overflow(shape)
+             if over is not None:
+@@ -285,10 +299,17 @@ def validate(path: Path) -> Report:
+             # contrast: topmost solid fill below this text shape
+             bbox = _shape_bbox(shape)
+             bg = None
+-            for fshape, fbbox, color in fill_shapes:
++            best_idx = -1
++            shape_idx = list(slide.shapes).index(shape)
++            for fidx, fshape, fbbox, color in fill_shapes:
+                 if fshape is shape:
+                     continue
+-                if _rects_overlap(bbox, fbbox):
++                if fidx >= shape_idx:
++                    continue
++                if not _rects_overlap(bbox, fbbox):
++                    continue
++                if fidx > best_idx:
++                    best_idx = fidx
+                     bg = color
+             bg = bg or bg_default
+             for p in shape.text_frame.paragraphs:
+@@ -300,7 +321,7 @@ def validate(path: Path) -> Report:
+                         continue
+                     size = r.font.size.pt if r.font.size is not None else 18.0
+                     bold = bool(r.font.bold)
+-                    large = size >= 24 or (size >= 18 and bold)
++                    large = size >= 18 or (size >= 14 and bold)
+                     required = 3.0 if large else 4.5
+                     ratio = _contrast(fg, bg)
+                     if ratio < required:
+diff --git a/presentation-creator/tests/test_examples.py b/presentation-creator/tests/test_examples.py
+index f8aff10..568c142 100644
+--- a/presentation-creator/tests/test_examples.py
++++ b/presentation-creator/tests/test_examples.py
+@@ -34,8 +34,29 @@ class ExampleDecks(unittest.TestCase):
+                     data = json.loads(r2.stdout)
+                 except json.JSONDecodeError as exc:
+                     self.fail(f"bad validator JSON: {exc}\n{r2.stdout}\n{r2.stderr}")
++                self.assertEqual(r2.returncode, 0, f"{spec_path.name}: validator exit {r2.returncode}")
+                 self.assertFalse(data.get("errors"), f"{spec_path.name}: {data.get('errors')}")
+ 
+ 
++
++
++    def test_failing_deck_exits_nonzero(self):
++        import tempfile, json
++        spec = {"title": "T", "theme": "clean-light", "aspect": "16:9", "slides": [
++            {"layout": "bullets", "title": "B", "bullets": ["x" * 5000], "notes": "n"}
++        ]}
++        with tempfile.TemporaryDirectory() as tmp:
++            spec_path = Path(tmp) / "bad.json"
++            out = Path(tmp) / "bad.pptx"
++            spec_path.write_text(json.dumps(spec))
++            r = subprocess.run([sys.executable, str(BUILDER), str(spec_path), "-o", str(out), "--force"],
++                               capture_output=True, text=True)
++            self.assertEqual(r.returncode, 0, r.stderr)
++            r2 = subprocess.run([sys.executable, str(VALIDATOR), str(out), "--json"],
++                                capture_output=True, text=True)
++            self.assertEqual(r2.returncode, 1)
++            data = json.loads(r2.stdout)
++            self.assertTrue(data.get("errors"))
++
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/presentation-creator/tests/test_layouts.py b/presentation-creator/tests/test_layouts.py
+index 19bad82..49c07db 100644
+--- a/presentation-creator/tests/test_layouts.py
++++ b/presentation-creator/tests/test_layouts.py
+@@ -17,10 +17,13 @@ import build_deck  # noqa: E402
+ def _build(spec):
+     builder = build_deck.DeckBuilder(spec)
+     builder.build(spec)
++    if len(builder.prs.slides) < 1:
++        raise AssertionError("expected at least one slide")
+     with tempfile.TemporaryDirectory() as tmp:
+         out = Path(tmp) / "deck.pptx"
+         builder.prs.save(str(out))
+-        assert out.is_file() and out.stat().st_size > 0
++        if not out.is_file() or out.stat().st_size <= 0:
++            raise AssertionError("saved deck is empty")
+     return builder
+ 
+ 

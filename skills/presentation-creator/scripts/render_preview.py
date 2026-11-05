@@ -35,6 +35,15 @@ def main() -> int:
         return 0
 
     pdf = outdir / (deck.stem + ".pdf")
+    backup = None
+    if pdf.exists():
+        backup = outdir / (deck.stem + ".pdf.bak")
+        try:
+            if backup.exists():
+                backup.unlink()
+            pdf.rename(backup)
+        except OSError:
+            backup = None
 
     try:
         proc = subprocess.run(
@@ -44,12 +53,22 @@ def main() -> int:
     except subprocess.TimeoutExpired:
         print(f"error: LibreOffice timed out after {args.timeout}s.", file=sys.stderr)
         return 1
-    if proc.returncode != 0:
-        print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
+    if proc.returncode != 0 or not pdf.is_file():
+        if backup is not None and backup.exists():
+            try:
+                backup.rename(pdf)
+            except OSError:
+                pass
+        if proc.returncode != 0:
+            print(f"error: LibreOffice failed (rc={proc.returncode}): {proc.stderr.decode(errors='replace').strip()}", file=sys.stderr)
+        else:
+            print("skipped: PDF conversion failed.")
         return 1
-    if not pdf.is_file():
-        print("skipped: PDF conversion failed.")
-        return 1
+    if backup is not None and backup.exists():
+        try:
+            backup.unlink()
+        except OSError:
+            pass
     print(f"Rendered PDF: {pdf}")
 
     pdftoppm = shutil.which("pdftoppm")

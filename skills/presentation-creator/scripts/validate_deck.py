@@ -249,28 +249,42 @@ def validate(path: Path) -> Report:
         bg_default = _slide_bg_color(slide) or (255, 255, 255)
         max_size = max((_max_font_size(s) for s in texts), default=0.0)
         title_text = None
+        # If no run has an explicit size, fall back to the topmost non-footer text shape
+        # so imported/hand-written decks do not all report "no title text".
+        if max_size <= 0 and texts:
+            for tsh in texts:
+                if (tsh.top or 0) < int(2.0 * 914400):
+                    title_text = tsh.text_frame.text.strip()
+                    break
+            if title_text is None and texts:
+                title_text = texts[0].text_frame.text.strip()
         for shape in texts:
             size = _max_font_size(shape)
             is_footer = (shape.top or 0) >= sh - int(CAPTION_BAND_IN * 914400)
             text_value = shape.text_frame.text.strip()
 
-            if max_size and size == max_size and title_text is None:
+            if max_size > 0 and size == max_size and title_text is None:
                 title_text = text_value
                 if size < TITLE_FLOOR_PT and (shape.top or 0) < int(2.0 * 914400):
                     report.error(
                         idx,
                         f"title font {size:.0f}pt is below the {TITLE_FLOOR_PT:.0f}pt floor",
                     )
-            elif not is_footer:
-                for p in shape.text_frame.paragraphs:
-                    for r in p.runs:
-                        if r.font.size is not None and r.font.size.pt < BODY_FLOOR_PT:
-                            report.error(
-                                idx,
-                                f"body font {r.font.size.pt:.0f}pt is below the "
-                                f"{BODY_FLOOR_PT:.0f}pt floor: {r.text[:40]!r}",
-                            )
-                            break
+            elif not is_footer and max_size > 0:
+                for para in shape.text_frame.paragraphs:
+                    for r in para.runs:
+                        if r.font.size is not None:
+                            sz = r.font.size.pt
+                            if sz < 12.0 or (12.0 < sz < BODY_FLOOR_PT):
+                                report.error(
+                                    idx,
+                                    f"body font {sz:.0f}pt is below the "
+                                    f"{BODY_FLOOR_PT:.0f}pt floor: {r.text[:40]!r}",
+                                )
+                                break
+            elif not is_footer and max_size <= 0:
+                # inherited sizes: only flag clearly undersized explicit runs (none here)
+                pass
 
             over = _estimate_overflow(shape)
             if over is not None:

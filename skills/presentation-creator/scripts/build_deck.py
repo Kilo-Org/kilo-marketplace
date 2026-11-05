@@ -364,11 +364,45 @@ class DeckBuilder:
             pass
         return shp
 
+    def _available_fonts(self):
+        if getattr(self, "_font_cache", None) is None:
+            self._font_cache = set()
+            try:
+                import subprocess
+
+                out = subprocess.check_output(
+                    ["fc-list", ":", "family"], text=True, stderr=subprocess.DEVNULL,
+                    timeout=5,
+                )
+                for line in out.splitlines():
+                    for part in line.split(","):
+                        name = part.strip()
+                        if name:
+                            self._font_cache.add(name.lower())
+            except Exception:
+                self._font_cache = set()
+        return self._font_cache
+
+    def _resolve_font(self, primary, fallbacks=None):
+        fallbacks = fallbacks or []
+        available = self._available_fonts()
+        if not available:
+            return primary
+        for cand in [primary] + list(fallbacks):
+            if cand and str(cand).strip().lower() in available:
+                return cand
+        return primary
+
     def _style_run(self, run, size, color, bold=False, italic=False, font=None):
         run.font.size = Pt(size)
         run.font.bold = bold
         run.font.italic = italic
-        run.font.name = font or self.theme["body_font"]
+        primary = font or self.theme["body_font"]
+        if primary == self.theme.get("title_font"):
+            fallbacks = self.theme.get("title_font_fallbacks", [])
+        else:
+            fallbacks = self.theme.get("body_font_fallbacks", [])
+        run.font.name = self._resolve_font(primary, fallbacks)
         run.font.color.rgb = rgb(color)
 
     def _heading(self, slide, text, size, color, x=None, y=0.45, w=None, h=1.0):
@@ -477,10 +511,15 @@ class DeckBuilder:
             pic = slide.shapes.add_picture(str(path), Inches(0), Inches(y), height=Inches(size))
             actual_w = pic.width / 914400
             actual_h = pic.height / 914400
-            if pos in ("top-right", "bottom-right", "top-right"):
+            if pos in ("top-right", "bottom-right"):
+                x = self.width_in - margin - actual_w
+            elif pos not in ("top-left", "bottom-left"):
+                # unknown positions default to right-aligned with width correction
                 x = self.width_in - margin - actual_w
             if pos in ("bottom-left", "bottom-right"):
                 y = self.height_in - margin - actual_h
+            elif pos not in ("top-left", "top-right"):
+                y = 0.2
             pic.left = Inches(x)
             pic.top = Inches(y)
             opacity = logo.get("opacity", logo.get("alpha"))
@@ -686,7 +725,11 @@ class DeckBuilder:
         if tbl is None:
             tbl = {}
         headers = tbl.get("headers", [])
+        if headers is None:
+            headers = []
         rows = tbl.get("rows", [])
+        if rows is None:
+            rows = []
         n_cols = len(headers) or (len(rows[0]) if rows and isinstance(rows[0], (list, tuple)) else 0)
         if n_cols == 0 and rows:
             n_cols = 1
