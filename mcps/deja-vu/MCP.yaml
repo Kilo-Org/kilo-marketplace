@@ -1,7 +1,7 @@
 id: deja-vu
 name: deja-vu
 description: Searches the coding sessions already written to this machine — Kilo Code, Claude Code, Codex, Cursor, Cline,
-  Roo Code, opencode and thirty-seven more — so the agent can answer from work that was done before it was installed,
+  Roo Code, opencode and thirty-six more — so the agent can answer from work that was done before it was installed,
   including work done in another tool.
 author: vshulcz
 url: https://github.com/vshulcz/deja-vu
