@@ -67,12 +67,16 @@ export function validateContract(contract, schema) {
   for (const event of events) {
     if (event.trigger === 'form-accepted' && (event.successPredicate !== 'accepted' || event.deduplication !== 'conversion')) errors.push('$.events: acceptance needs an accepted outcome and conversion deduplication');
     if (event.trigger !== 'form-accepted' && (event.successPredicate !== 'action' || event.deduplication !== 'action')) errors.push('$.events: action event needs action semantics');
-    if (event.properties.some(property => /email|phone|name|token|secret|password|message|url|query/i.test(property))) errors.push('$.events: sensitive property in allowlist');
+    if (event.properties.some(property => /email|phone|name|token|secret|password|message|url|query|session|address|api_?key|user_?agent|(?:^|[_-])ip(?:$|[_-])/i.test(property))) errors.push('$.events: sensitive property in allowlist');
   }
   if (privacy.analyticsRequiresPermission && !privacy.permissionStates.includes('granted')) errors.push('$.privacy.permissionStates: missing granted state');
   try {
     safeURL(verification.target);
-    if (form.destination.endpoint) safeURL(form.destination.endpoint, verification.target);
+    const permitted = form.destination.permittedOrigin && safeURL(form.destination.permittedOrigin);
+    if (form.destination.endpoint) {
+      const endpoint = safeURL(form.destination.endpoint, verification.target);
+      if (permitted && endpoint.origin !== permitted.origin) errors.push('$.form.destination.permittedOrigin: endpoint is on another origin');
+    }
     if (form.success.redirectPath) safeURL(form.success.redirectPath, verification.target);
   } catch { errors.push('$.verification: use HTTP(S) targets without credentials, queries or fragments'); }
   if (verification.browser) {
@@ -107,7 +111,7 @@ export function parseArgs(argv, permitted) {
 }
 
 export function reportFor(contract, tool, evidenceSource) {
-  return { schemaVersion: '1.0', tool, toolVersion: '0.1.0', pageId: contract.pageId, environment: contract.environment, timestamp: new Date().toISOString(), runtime: process.version, evidenceSource, checks: [], limitations: [] };
+  return { schemaVersion: '1.0', tool, toolVersion: '0.1.1', pageId: contract.pageId, environment: contract.environment, timestamp: new Date().toISOString(), runtime: process.version, evidenceSource, checks: [], limitations: [] };
 }
 
 export function addCheck(report, id, passed, expected, observation) {

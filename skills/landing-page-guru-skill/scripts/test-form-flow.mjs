@@ -3,6 +3,7 @@ import { addCheck, isMain, loadBrowser, loadContract, parseArgs, reportFor, safe
 export async function testFormFlow(contract, { url, browserModule, executablePath, allowRemote = false, browser: suppliedBrowser } = {}) {
   const report = reportFor(contract, 'test-form-flow', 'browser-with-intercepted-responses');
   report.limitations.push('All configured form responses are intercepted. Backend acceptance, storage, delivery, full accessibility, and privacy behavior need separate checks.');
+  report.limitations.push('Cross-origin reads and requests with query strings are blocked, so test a self-contained build. WebSockets are blocked; WebRTC is not intercepted.');
   const target = safeURL(url ?? contract.verification.target);
   if (!['localhost', '127.0.0.1', '[::1]'].includes(target.hostname) && !allowRemote) throw new Error('Remote browsing requires --allow-remote; submissions remain intercepted');
   report.target = `${target.origin}${target.pathname}`;
@@ -21,10 +22,12 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
     addCheck(report, 'browser-available', 'not-tested', 'Existing Playwright and Chromium installation', 'Browser module or browser could not be launched');
     return report;
   }
-  report.browserVersion = browser.version();
-  const adapter = contract.verification.browser;
-  const endpoint = safeURL(contract.form.destination.endpoint, target);
   try {
+    report.browserVersion = browser.version();
+    const adapter = contract.verification.browser;
+    const endpoint = safeURL(contract.form.destination.endpoint, target);
+    // Values this short could match an unrelated request body by chance.
+    const formValues = Object.values(adapter.values).filter(value => typeof value === 'string' && value.length > 3).flatMap(value => [value, encodeURIComponent(value)]);
     for (const scenario of ['invalid', 'accepted', 'rejected', 'duplicate', 'timeout', 'retry']) {
       if (scenario === 'invalid' && !contract.form.fields.some(field => field.required && field.type !== 'hidden')) {
         addCheck(report, scenario, 'not-applicable', 'Required fields prevent empty submission', 'No required visible fields'); continue;
@@ -35,26 +38,41 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
       const context = await browser.newContext({ viewport: report.viewport, serviceWorkers: 'block' });
       let calls = 0;
       let blockedMutations = 0;
+      let unrelatedMutations = 0;
+      let blockedReads = 0;
+      let nativeSubmission = false;
       const identities = [];
-      await context.route('**/*', async route => {
-        const request = route.request();
-        const requestURL = new URL(request.url());
-        if (requestURL.href === endpoint.href && request.method() === contract.form.destination.method) {
-          calls++;
-          if (contract.form.responses.idempotencyHeader) identities.push(request.headers()[contract.form.responses.idempotencyHeader.toLowerCase()] ?? null);
-          if (scenario === 'timeout' || scenario === 'retry' && calls === 1) return route.abort('timedout');
-          const response = contract.form.responses[scenario === 'retry' || scenario === 'invalid' ? 'accepted' : scenario];
-          return route.fulfill({ status: response.status, contentType: 'application/json', body: JSON.stringify(response.body), headers: { 'access-control-allow-origin': target.origin } });
-        }
-        if (!['GET', 'HEAD'].includes(request.method())) { blockedMutations++; return route.abort(); }
-        if (requestURL.origin !== target.origin) return route.abort();
-        // Do not forward query strings from accidental native GET submissions.
-        if (requestURL.search) return route.abort();
-        return route.continue();
-      });
-      const page = await context.newPage();
-      page.setDefaultTimeout(adapter.timeoutMs);
       try {
+        if (!context.routeWebSocket) {
+          addCheck(report, 'browser-available', 'not-tested', 'Playwright 1.48 or later, which can block WebSockets', 'This Playwright cannot block WebSockets, so no scenario ran');
+          return report;
+        }
+        await context.routeWebSocket(/.*/, socket => socket.close());
+        await context.route('**/*', async route => {
+          const request = route.request();
+          const requestURL = new URL(request.url());
+          if (requestURL.href === endpoint.href && request.method() === contract.form.destination.method) {
+            calls++;
+            if (request.isNavigationRequest()) nativeSubmission = true;
+            if (contract.form.responses.idempotencyHeader) identities.push(request.headers()[contract.form.responses.idempotencyHeader.toLowerCase()] ?? null);
+            if (scenario === 'timeout' || scenario === 'retry' && calls === 1) return route.abort('timedout');
+            const response = contract.form.responses[scenario === 'retry' || scenario === 'invalid' ? 'accepted' : scenario];
+            return route.fulfill({ status: response.status, contentType: 'application/json', body: JSON.stringify(response.body), headers: { 'access-control-allow-origin': target.origin } });
+          }
+          if (!['GET', 'HEAD'].includes(request.method())) {
+            // Analytics and similar posts stay blocked; only the form's own data counts against the flow.
+            const body = request.postData() ?? '';
+            if (requestURL.origin === endpoint.origin && requestURL.pathname === endpoint.pathname || formValues.some(value => body.includes(value))) blockedMutations++;
+            else unrelatedMutations++;
+            return route.abort();
+          }
+          if (requestURL.origin !== target.origin) { blockedReads++; return route.abort(); }
+          // Do not forward query strings from accidental native GET submissions.
+          if (requestURL.search) return route.abort();
+          return route.continue();
+        });
+        const page = await context.newPage();
+        page.setDefaultTimeout(adapter.timeoutMs);
         await page.goto(target.href, { waitUntil: 'domcontentloaded' });
         const form = page.locator(adapter.formSelector);
         const button = form.locator(adapter.submitSelector);
@@ -71,7 +89,7 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
         if (scenario === 'invalid') {
           await page.waitForTimeout(150);
           const invalid = await form.evaluate(element => !element.checkValidity());
-          addCheck(report, scenario, invalid && calls === 0 && blockedMutations === 0, 'Empty required fields block submission', `${calls} intercepted requests; native validation ${invalid ? 'blocked' : 'did not block'}`);
+          addCheck(report, scenario, invalid && calls === 0 && blockedMutations === 0, 'Empty required fields block submission', `${calls} intercepted requests; native validation ${invalid ? 'blocked' : 'did not block'}; undeclared form mutations=${blockedMutations}; unrelated mutations blocked=${unrelatedMutations}`);
         } else {
           const failed = ['rejected', 'timeout', 'retry'].includes(scenario);
           const selector = failed ? adapter.errorSelector : adapter.statusSelector;
@@ -100,10 +118,11 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
           }
           const expectedCalls = scenario === 'retry' ? 2 : 1;
           const identityOK = scenario !== 'retry' || identities.length === 2 && Boolean(identities[0]) && identities[0] === identities[1];
-          addCheck(report, scenario, calls === expectedCalls && blockedMutations === 0 && visible && announced && retained && identityOK, 'Expected response state, announced feedback, retained input on failure, and safe retry identity', `${calls} intercepted requests; visible=${visible}; live-region=${announced}; retained=${retained}; retry-identity=${identityOK}; other mutations=${blockedMutations}`);
+          addCheck(report, scenario, calls === expectedCalls && blockedMutations === 0 && visible && announced && retained && identityOK, 'Expected response state, announced feedback, retained input on failure, and safe retry identity', `${calls} intercepted requests; visible=${visible}; live-region=${announced}; retained=${retained}; retry-identity=${identityOK}; undeclared form mutations=${blockedMutations}; unrelated mutations blocked=${unrelatedMutations}`);
         }
       } catch {
-        addCheck(report, scenario, false, 'The declared browser flow completes', `Flow did not meet its contract; ${calls} intercepted requests. Raw page text and values omitted.`);
+        if (nativeSubmission) addCheck(report, scenario, 'not-tested', 'A submission handled by page script', 'The form navigated on submit, which this helper cannot simulate. Raw page text and values omitted.');
+        else addCheck(report, scenario, false, 'The declared browser flow completes', `Flow did not meet its contract; ${calls} intercepted requests; ${blockedReads} cross-origin reads blocked. Raw page text and values omitted.`);
       } finally { await context.close(); }
     }
   } finally { if (!suppliedBrowser) await browser.close(); }
@@ -114,7 +133,7 @@ export async function testFormFlow(contract, { url, browserModule, executablePat
 async function main() {
   const args = parseArgs(process.argv.slice(2), { '--help': 'boolean', '--contract': 'value', '--url': 'value', '--output': 'value', '--browser-module': 'value', '--allow-remote': 'boolean' });
   if (args.help) {
-    console.log('Usage: node test-form-flow.mjs --contract contract.json [--url http://127.0.0.1:4173/page/] [--browser-module /path/to/playwright/index.mjs] [--output report.json] [--allow-remote]\nRequires Node 22+ and existing Playwright/Chromium. Runs isolated mobile contexts with all form responses intercepted. No real submissions. Remote reads need --allow-remote.\nScope: single POST form, native required validation, in-place or redirect success, rejection, duplicate feedback, simulated transport timeout, header-based retry identity. Does not test slow pending responses or the real backend.\nExit: 0 complete within scope, 1 failed check, 2 untested checks remain (including backend/delivery), 3 invalid input.');
+    console.log('Usage: node test-form-flow.mjs --contract contract.json [--url http://127.0.0.1:4173/page/] [--browser-module /path/to/playwright/index.mjs] [--output report.json] [--allow-remote]\nRequires Node 22+ and existing Playwright 1.48+ with Chromium. Runs isolated mobile contexts with all form responses intercepted and WebSockets blocked. No real submissions. Remote reads need --allow-remote.\nScope: single POST form handled by page script, native required validation, in-place or redirect success, rejection, duplicate feedback, simulated transport timeout, header-based retry identity. A form that navigates on submit reports not-tested. Other POSTs stay blocked and fail a check only if they target the destination or carry form values. Cross-origin reads and requests with query strings are blocked, so test a self-contained build. WebRTC is not intercepted. Does not test slow pending responses or the real backend.\nExit: 0 complete within scope, 1 failed check, 2 untested checks remain (including backend/delivery), 3 invalid input.');
     return;
   }
   if (!args.contract) throw new Error('Required: --contract');

@@ -4,7 +4,11 @@ const states = new Set(['granted', 'denied', 'withdrawn', 'not-required']);
 const kinds = new Set(['form-submit', 'cta-click', 'page-view']);
 const outcomes = new Set(['accepted', 'rejected', 'timeout', 'duplicate', 'invalid', 'none']);
 const opaque = value => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(value);
-const personal = value => /@|bearer\s|https?:\/\/|(?:\+?\d[\s().-]*){9,}/i.test(String(value));
+const personal = value => [
+  /@|bearer\s|https?:\/\/|(?:\+?\d[\s().-]*){9,}/i,
+  /\b\d{1,3}(?:\.\d{1,3}){3}\b|(?:[0-9a-f]{0,4}:){3,}[0-9a-f]{0,4}/i, // IP addresses
+  /\b(?:sk|pk|rk|sess|session|api_?key)[_-][a-z0-9]{4,}|\b[a-z0-9]{32,}\b/i // keys and session IDs
+].some(pattern => pattern.test(String(value)));
 
 function permitted(definition, action, contract) {
   return definition.permission === 'none' || !contract.privacy.analyticsRequiresPermission || action.permission === 'granted';
@@ -19,6 +23,7 @@ function matches(definition, action) {
 export function validateEvents(contract, trace) {
   const report = reportFor(contract, 'validate-events', 'supplied-trace');
   report.limitations.push('Checks only the supplied trace. It does not establish live collection, storage, attribution, or causal conversion lift.');
+  report.limitations.push('Personal-data detection is pattern-based and cannot recognize free text such as a postal address, so allowlist only non-personal properties.');
   if (!trace || trace.schemaVersion !== '1.0' || trace.pageId !== contract.pageId || trace.environment !== contract.environment || !['synthetic', 'browser-observed'].includes(trace.source) || !Array.isArray(trace.actions) || !Array.isArray(trace.events)) {
     addCheck(report, 'trace-shape', false, 'Versioned trace matching the contract and declared source', 'Missing or inconsistent trace metadata');
     return report;

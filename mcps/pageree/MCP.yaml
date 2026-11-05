@@ -7,8 +7,6 @@ category: productivity
 prerequisites:
   - Pageree account with a trial or paid plan
   - MCP client with OAuth support
-skills:
-  - landing-page-guru-skill
 content:
   - name: Pageree hosted OAuth server
     content: |

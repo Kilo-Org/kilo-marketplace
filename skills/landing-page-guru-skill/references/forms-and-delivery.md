@@ -61,9 +61,12 @@ that every customer configure their own sending domain.
 `scripts/test-form-flow.mjs --help` describes the optional browser helper. It
 intercepts the configured endpoint and exercises required-field validation,
 acceptance, rejection, duplicate response, simulated transport timeout, and retry.
-It blocks other mutations. It does not validate the backend, actual delivery,
-all accessibility requirements, or consent behavior. Supplement it with available
-manual/browser checks and record unsupported tests honestly.
+It blocks other mutations and WebSockets; a blocked mutation fails a check only when
+it targets the destination or carries form values. It covers forms handled by page
+script, so a form that navigates on submit reports `not-tested`. Cross-origin reads
+are blocked too, so test a self-contained build. It does not validate the backend,
+actual delivery, all accessibility requirements, or consent behavior. Supplement it
+with available manual/browser checks and record unsupported tests honestly.
 
 Use `assets/browser-form-template.json` as the adapter shape inside the contract's
 `verification.browser` field. Synthetic values belong only in test inputs. Keep
