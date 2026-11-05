@@ -1,0 +1,31 @@
+id: crakseo-seo
+name: CrakSEO SEO Tools
+description: Hosted MCP server with live SEO data for keyword research (volume, difficulty, CPC), Google and Bing results with AI Overview sources, rank tracking and competitor keyword gaps, backlinks and referring domains, site audits with Core Web Vitals, Google Maps rankings and AI search visibility in ChatGPT and Perplexity.
+author: CrakSEO
+url: https://github.com/CrakSEO/crakseo-mcp-plugins
+category: search
+prerequisites:
+  - A CrakSEO account (https://crakseo.com); paid tools use prepaid credits from $5, and the price is shown before each call
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://crakseo.com/mcp/seo"
+      }
+  - name: Remote (API key)
+    prerequisites:
+      - An API key from https://crakseo.com/app/api/keys
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://crakseo.com/mcp/seo",
+        "headers": {
+          "Authorization": "Bearer {{CRAKSEO_API_KEY}}"
+        }
+      }
+parameters:
+  - name: CrakSEO API Key
+    key: CRAKSEO_API_KEY
+    placeholder: your_crakseo_api_key
+    optional: true
