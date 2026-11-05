@@ -1,6 +1,6 @@
 id: onesimpleapi
 name: OneSimpleAPI
-description: Generate PDFs, capture screenshots, convert and optimize images, create QR codes, and use web and data utilities through OneSimpleAPI. Hosted Streamable HTTP with OAuth sign-in or a Bearer API key; a OneSimpleAPI account is required and API usage is metered.
+description: Generate PDFs, capture screenshots, convert and optimize images, create QR codes, and use web and data utilities through OneSimpleAPI. Hosted Streamable HTTP with OAuth sign-in; a OneSimpleAPI account is required and API usage is metered.
 author: OneSimpleAPI
 url: https://onesimpleapi.com/docs/mcp
 category: development
