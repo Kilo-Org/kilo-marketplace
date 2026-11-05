@@ -73,66 +73,33 @@ diff -rN -U0 --ignore-trailing-space a/presentation-creator/scripts/build_deck.p
 +        if cand.exists():
 +            return cand
 +        return p
-@@ -341,0 +367,24 @@
-+    def _available_fonts(self):
-+        if getattr(self, "_font_cache", None) is None:
-+            self._font_cache = set()
-+            try:
-+                import subprocess
-+
-+                out = subprocess.check_output(
-+                    ["fc-list", ":", "family"], text=True, stderr=subprocess.DEVNULL,
-+                    timeout=5,
-+                )
-+                for line in out.splitlines():
-+                    for part in line.split(","):
-+                        name = part.strip()
-+                        if name:
-+                            self._font_cache.add(name.lower())
-+            except Exception:
-+                self._font_cache = set()
-+        return self._font_cache
-+
-+    def _resolve_font(self, primary, fallbacks=None):
-+        # Deterministic: always write the theme's primary typeface and let
-+        # PowerPoint substitute missing fonts. Do not probe the build host.
-+        return primary
-+
-@@ -346 +395,6 @@
--        run.font.name = font or self.theme["body_font"]
-+        primary = font or self.theme["body_font"]
-+        if primary == self.theme.get("title_font"):
-+            fallbacks = self.theme.get("title_font_fallbacks", [])
-+        else:
-+            fallbacks = self.theme.get("body_font_fallbacks", [])
-+        run.font.name = self._resolve_font(primary, fallbacks)
-@@ -381,0 +436,2 @@
+@@ -381,0 +407,2 @@
 +        if items is None:
 +            items = []
-@@ -426 +482 @@
+@@ -426 +453 @@
 -        if not path or not Path(path).is_file():
 +        if not path:
-@@ -427,0 +484,5 @@
+@@ -427,0 +455,5 @@
 +        path = self._resolve_path(path)
 +        if not Path(path).is_file():
 +            raise FileNotFoundError(f"logo not found: {logo.get('path')}")
 +        logo = dict(logo)
 +        logo["path"] = str(path)
-@@ -432,0 +494 @@
+@@ -432,0 +465 @@
 +        # placeholder x; final x depends on actual rendered width
-@@ -436 +498 @@
+@@ -436 +469 @@
 -            x, y = self.width_in - margin - size, 0.2
 +            x, y = self.width_in - margin, 0.2
-@@ -438 +500 @@
+@@ -438 +471 @@
 -            x, y = self.margin, self.height_in - margin - size
 +            x, y = self.margin, self.height_in - margin
-@@ -440 +502 @@
+@@ -440 +473 @@
 -            x, y = self.width_in - margin - size, self.height_in - margin - size
 +            x, y = self.width_in - margin, self.height_in - margin
-@@ -442 +504 @@
+@@ -442 +475 @@
 -            x, y = self.width_in - margin - size, 0.2
 +            x, y = self.width_in - margin, 0.2
-@@ -444 +506,14 @@
+@@ -444 +477,14 @@
 -            pic = slide.shapes.add_picture(str(path), Inches(x), Inches(y), height=Inches(size))
 +            pic = slide.shapes.add_picture(str(path), Inches(0), Inches(y), height=Inches(size))
 +            actual_w = pic.width / 914400
@@ -148,82 +115,82 @@ diff -rN -U0 --ignore-trailing-space a/presentation-creator/scripts/build_deck.p
 +                y = 0.2
 +            pic.left = Inches(x)
 +            pic.top = Inches(y)
-@@ -570,0 +646,2 @@
+@@ -570,0 +617,2 @@
 +        if items is None:
 +            items = []
-@@ -587,0 +665,2 @@
+@@ -587,0 +636,2 @@
 +        if columns is None:
 +            columns = [[], []]
-@@ -606 +685 @@
+@@ -606 +656 @@
 -        path = Path(img)
 +        path = self._resolve_path(img)
-@@ -608,0 +688 @@
+@@ -608,0 +659 @@
 +        path = str(path)
-@@ -617 +697 @@
+@@ -617 +668 @@
 -            str(path), Inches(self.margin), Inches(top), width=Inches(self.content_w)
 +            path, Inches(self.margin), Inches(top), width=Inches(self.content_w)
-@@ -633 +713 @@
+@@ -633 +684 @@
 -            self._style_run(run, self.sizes["caption"], self.theme["muted"])
 +            self._style_run(run, max(self.sizes["caption"], 14), self.theme["muted"])
-@@ -639,0 +720,2 @@
+@@ -639,0 +691,2 @@
 +        if tbl is None:
 +            tbl = {}
-@@ -640,0 +723,2 @@
+@@ -640,0 +694,2 @@
 +        if headers is None:
 +            headers = []
-@@ -641,0 +726,2 @@
+@@ -641,0 +697,2 @@
 +        if rows is None:
 +            rows = []
-@@ -720,0 +807,2 @@
+@@ -720,0 +778,2 @@
 +        if chart is None:
 +            chart = {}
-@@ -844,0 +933,2 @@
+@@ -844,0 +904,2 @@
 +        if series_list is None:
 +            series_list = []
-@@ -846,0 +937,4 @@
+@@ -846,0 +908,4 @@
 +        if ctype in ("pie", "doughnut") and len(series_list) != 1:
 +            raise ValueError("pie/doughnut charts require exactly one series")
 +        if not series_list:
 +            raise ValueError("chart layout requires at least one series")
-@@ -860,0 +955,4 @@
+@@ -860,0 +926,4 @@
 +            if not getattr(self, "allow_chart_code", False):
 +                raise ValueError(
 +                    "chart.code requires --allow-chart-code; refusing to exec spec-supplied code"
 +                )
-@@ -866 +964 @@
+@@ -866 +935 @@
 -            exec(code, ns)
 +            exec(code, ns)  # noqa: S102 - gated behind explicit CLI flag
-@@ -885,0 +984,2 @@
+@@ -885,0 +955,2 @@
 +                if not series_list:
 +                    raise ValueError("pie/doughnut charts require exactly one series")
-@@ -887,0 +988,2 @@
+@@ -887,0 +959,2 @@
 +                if not vals:
 +                    raise ValueError("pie/doughnut charts require non-empty values")
-@@ -896,0 +999,2 @@
+@@ -896,0 +970,2 @@
 +            else:
 +                raise ValueError(f"unknown chart type {ctype!r}; choose from bar, line, pie, doughnut, scatter")
-@@ -1170 +1274 @@
+@@ -1170 +1245 @@
 -            _, tf = self._textbox(slide, cx + pad, yy + 0.15, cw - 2 * pad, 0.5)
 +            _, tf = self._textbox(slide, cx + pad, yy + 0.12, cw - 2 * pad, 0.42)
-@@ -1174 +1278,2 @@
+@@ -1174 +1249,2 @@
 -            _, tf = self._textbox(slide, cx + pad, yy + 0.65, cw - 2 * pad, card_h - 0.75)
 +            body_h = max(0.1, card_h - 0.58)
 +            _, tf = self._textbox(slide, cx + pad, yy + 0.56, cw - 2 * pad, body_h)
-@@ -1186,0 +1292,2 @@
+@@ -1186,0 +1263,2 @@
 +        if columns is None:
 +            columns = []
-@@ -1196 +1303,4 @@
+@@ -1196 +1274,4 @@
 -        n = max(1, min(4, max(len(headers), len(columns))))
 +        n = max(len(headers) if isinstance(headers, (list, tuple)) else 0,
 +                len(columns) if isinstance(columns, (list, tuple)) else 0)
 +        if n < 1:
 +            n = 1
-@@ -1473,0 +1584 @@
+@@ -1473,0 +1555 @@
 +    parser.add_argument("--allow-chart-code", action="store_true", help="allow exec() of chart.code (unsafe)")
-@@ -1495 +1606 @@
+@@ -1495 +1577 @@
 -        builder = DeckBuilder(spec)
 +        builder = DeckBuilder(spec, base_dir=spec_path.parent, allow_chart_code=args.allow_chart_code)
-@@ -1498,2 +1609,13 @@
+@@ -1498,2 +1580,13 @@
 -        builder.prs.save(str(out_path))
 -    except (ValueError, FileNotFoundError) as exc:
 +        fd, tmp_name = tempfile.mkstemp(prefix=out_path.name + ".", suffix=".tmp", dir=str(out_path.parent))

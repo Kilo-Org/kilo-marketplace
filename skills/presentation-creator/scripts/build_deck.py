@@ -364,40 +364,11 @@ class DeckBuilder:
             pass
         return shp
 
-    def _available_fonts(self):
-        if getattr(self, "_font_cache", None) is None:
-            self._font_cache = set()
-            try:
-                import subprocess
-
-                out = subprocess.check_output(
-                    ["fc-list", ":", "family"], text=True, stderr=subprocess.DEVNULL,
-                    timeout=5,
-                )
-                for line in out.splitlines():
-                    for part in line.split(","):
-                        name = part.strip()
-                        if name:
-                            self._font_cache.add(name.lower())
-            except Exception:
-                self._font_cache = set()
-        return self._font_cache
-
-    def _resolve_font(self, primary, fallbacks=None):
-        # Deterministic: always write the theme's primary typeface and let
-        # PowerPoint substitute missing fonts. Do not probe the build host.
-        return primary
-
     def _style_run(self, run, size, color, bold=False, italic=False, font=None):
         run.font.size = Pt(size)
         run.font.bold = bold
         run.font.italic = italic
-        primary = font or self.theme["body_font"]
-        if primary == self.theme.get("title_font"):
-            fallbacks = self.theme.get("title_font_fallbacks", [])
-        else:
-            fallbacks = self.theme.get("body_font_fallbacks", [])
-        run.font.name = self._resolve_font(primary, fallbacks)
+        run.font.name = font or self.theme["body_font"]
         run.font.color.rgb = rgb(color)
 
     def _heading(self, slide, text, size, color, x=None, y=0.45, w=None, h=1.0):
