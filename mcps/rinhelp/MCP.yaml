@@ -1,0 +1,23 @@
+id: rinhelp
+name: Rinhelp
+description: "Help desk for small teams and AI agents: reply to, note, assign, triage, close and reopen conversations, search knowledge, write and publish help center articles, manage saved replies, and find Shopify orders and Stripe customers. Acts as the teammate who connected it, with their role; refunds and anything that can't be undone wait for a teammate's approval."
+author: Rinhelp
+url: https://docs.rinhelp.com/articles/98a0def1-a07d-4c34-9f19-4d168626b40c-connect-your-ai-agent
+category: productivity
+prerequisites:
+  - "Rinhelp account (free plan for up to 3 teammates at https://rinhelp.com)"
+  - "Rinhelp API key, created under Settings > AI agents > API keys"
+content:
+  - name: Rinhelp (hosted)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.rinhelp.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{RINHELP_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Rinhelp API Key
+    key: RINHELP_API_KEY
+    placeholder: rhk_your_key
