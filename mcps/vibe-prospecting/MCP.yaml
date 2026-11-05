@@ -1,0 +1,16 @@
+id: vibe-prospecting
+name: Vibe Prospecting
+description: Power your chat with live B2B data to create lead lists, research companies, enrich contacts, personalize outreach, and inspect business signals, technology stacks, events, and website changes.
+author: vibeprospecting.ai
+url: https://github.com/explorium-ai/vibeprospecting-mcp
+category: business
+prerequisites:
+  - Vibe Prospecting account
+  - MCP client with OAuth support
+content:
+  - name: Remote Connector
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://vibeprospecting.explorium.ai/mcp"
+      }
