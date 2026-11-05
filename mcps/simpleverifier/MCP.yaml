@@ -1,0 +1,30 @@
+id: simpleverifier
+name: SimpleVerifier
+description: Verify email addresses with a live SMTP mailbox check (valid, risky or invalid with the mail server's reason, up to 100 per call), check a domain's MX, SPF, DMARC, disposable and catch-all status, and check phone number formats. Hosted Streamable HTTP with OAuth sign-in or an API key; MCP access needs a SimpleVerifier Pro, Business or Agency plan.
+author: SimpleVerifier
+url: https://simpleverifier.com/docs/mcp
+category: productivity
+prerequisites:
+  - SimpleVerifier account on a Pro, Business or Agency plan
+content:
+  - name: Hosted Streamable HTTP (OAuth)
+    prerequisites:
+      - MCP client supporting OAuth for remote servers
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://simpleverifier.com/api/mcp"
+      }
+  - name: Hosted Streamable HTTP (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://simpleverifier.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SIMPLEVERIFIER_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: SimpleVerifier API Key
+        key: SIMPLEVERIFIER_API_KEY
+        placeholder: sv_live_...
