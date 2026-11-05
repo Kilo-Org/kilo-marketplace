@@ -1,0 +1,7 @@
+id: opencode-deja
+name: deja-vu
+description: Recall over the session history Kilo and other coding agents already keep on disk. Each session opens with a short digest of related past work and every prompt arrives with the matching history, from a local index with no LLM and no network.
+category: productivity
+author: vshulcz
+url: https://github.com/vshulcz/deja-vu/tree/main/extensions/opencode
+content: opencode-deja
