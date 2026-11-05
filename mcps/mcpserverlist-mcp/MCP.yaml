@@ -1,0 +1,14 @@
+{
+  "id": "mcpserverlist-mcp",
+  "name": "mcpserverlist-mcp",
+  "description": "Check if your MCP server is ready for MCP directories, then get it submitted.",
+  "author": "sudomichael",
+  "url": "https://github.com/sudomichael/mcpserverlist-mcp",
+  "category": "development",
+  "content": [
+    {
+      "name": "Remote",
+      "content": "{\"type\":\"streamable-http\",\"url\":\"https://mcpserverlist.io/mcp\"}"
+    }
+  ]
+}
