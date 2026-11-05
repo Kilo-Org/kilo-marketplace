@@ -1,0 +1,31 @@
+id: scrapely
+name: Scrape.ly
+description: Search 500+ ready-made web scrapers, run them in the cloud and read structured results from datasets, key-value
+  stores and logs.
+author: Scrape.ly
+url: https://github.com/scrapely-app/scrapely-mcp
+category: web-automation
+prerequisites:
+  - Scrape.ly account
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.scrape.ly"
+      }
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "scrapely-mcp", "scrapely-mcp-server"],
+        "env": {
+          "SCRAPELY_TOKEN": "{{SCRAPELY_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Scrape.ly API Token
+        key: SCRAPELY_TOKEN
+        placeholder: your_scrapely_api_token
