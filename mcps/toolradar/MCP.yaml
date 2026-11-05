@@ -1,0 +1,29 @@
+id: toolradar
+name: Toolradar
+description: Search, compare and price 10,000+ software tools from your AI assistant, with verified, dated prices.
+author: Toolradar
+url: https://github.com/Nadeus/toolradar-mcp
+category: search
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "toolradar-mcp"],
+        "env": {
+          "TOOLRADAR_API_KEY": "{{TOOLRADAR_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Toolradar API Key
+        key: TOOLRADAR_API_KEY
+        placeholder: your_toolradar_api_key_here
+        optional: true
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://toolradar.com/api/mcp"
+      }
