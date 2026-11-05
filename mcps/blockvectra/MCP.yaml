@@ -1,0 +1,28 @@
+id: blockvectra
+name: BlockVectra
+description: Search and read BlockVectra documentation for multi-chain EVM RPC and indexed blockchain data. Documentation, chain discovery, pricing and status need no API key; indexed data and account tools require a BlockVectra API key, and keyless RPC follows each chain's public policy.
+author: BlockVectra
+url: https://github.com/blockvectra/mcp
+category: search
+content:
+  - name: Keyless connection
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://docs.blockvectra.com/mcp"
+      }
+  - name: Authenticated connection
+    prerequisites:
+      - A BlockVectra API key for indexed data and account tools
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://docs.blockvectra.com/mcp",
+        "headers": {
+          "x-api-key": "{{BLOCKVECTRA_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: BlockVectra API key
+        key: BLOCKVECTRA_API_KEY
+        placeholder: your_blockvectra_api_key
