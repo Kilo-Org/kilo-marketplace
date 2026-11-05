@@ -1,0 +1,13 @@
+id: destava
+name: Destava Job Search
+description: Search current job postings from companies' own career sites. Free, no sign-in.
+author: destava
+url: https://github.com/askdestava/destava-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://destava.com/mcp"
+      }
