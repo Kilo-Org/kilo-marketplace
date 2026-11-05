@@ -1,0 +1,31 @@
+id: imageat
+name: imageat
+description: AI image generation and editing, video, and 20+ image-edit tools from your agent. Requires an imageat account; generations use account credits.
+author: imageat
+url: https://github.com/incendies/imageat-mcp
+category: productivity
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+      - imageat API key (created on the imageat Projects page)
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@imageat/mcp"],
+        "env": {
+          "IMAGEAT_API_KEY": "{{IMAGEAT_API_KEY}}"
+        }
+      }
+  - name: Remote MCP - Streamable HTTP
+    prerequisites:
+      - imageat account (OAuth sign-in on first connection)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.imageat.com/mcp"
+      }
+parameters:
+  - name: imageat API Key
+    key: IMAGEAT_API_KEY
+    placeholder: iat_live_xxxxxxxxxxxx
