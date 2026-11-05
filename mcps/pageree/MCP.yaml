@@ -1,0 +1,16 @@
+id: pageree
+name: Pageree
+description: Publishes landing pages with working lead forms from the assistant, then reads visitor analytics section by section to propose page changes, through Pageree's hosted OAuth server.
+author: Pageree
+url: https://github.com/Pageree/mcp-server
+category: productivity
+prerequisites:
+  - Pageree account with a trial or paid plan
+  - MCP client with OAuth support
+content:
+  - name: Pageree hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.pageree.com/"
+      }
