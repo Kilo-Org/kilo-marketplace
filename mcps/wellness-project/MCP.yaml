@@ -1,0 +1,15 @@
+id: wellness-project
+name: Wellness Project
+description: Connects health, fitness, nutrition, sleep, recovery, body metrics, goals, labs, and wearable data to AI assistants through Wellness Project's hosted OAuth MCP endpoint, scoped to the signed-in account.
+author: Wellness Project
+url: https://github.com/turnnoblindeye/wellness-project-mcp
+category: productivity
+prerequisites:
+  - Wellness Project account
+content:
+  - name: Wellness Project hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://wellnessproject.ai/api/mcp"
+      }
