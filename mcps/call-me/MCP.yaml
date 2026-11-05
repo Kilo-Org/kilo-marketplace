@@ -1,0 +1,16 @@
+id: call-me
+name: /call-me
+description: Lets the agent ring your iPhone, read a question or update aloud and return your spoken answer as text, or send
+  you a text and wait for your reply. Useful when a long task needs a decision and you are away from the keyboard.
+author: radres
+url: https://github.com/radres/call-me
+category: productivity
+prerequisites:
+  - iPhone with the /call-me app (gives you the 10-digit number the agent calls)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://callmemcp.com/mcp"
+      }
