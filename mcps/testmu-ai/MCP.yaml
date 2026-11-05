@@ -1,0 +1,19 @@
+id: testmu-ai
+name: TestMu AI (formerly LambdaTest)
+description: Runs, debugs and triages tests on the TestMu AI cloud through its official hosted OAuth server. Orchestrates
+  HyperExecute jobs and generates their YAML, triages automation failures from command, network and console logs,
+  analyzes SmartUI visual regressions, reports flaky tests, runs accessibility audits, and manages Test Manager cases
+  and runs.
+author: TestMu AI
+url: https://github.com/LambdaTest/mcp-server-guide
+category: web-automation
+prerequisites:
+  - TestMu AI account
+  - MCP client with OAuth support
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.lambdatest.com/mcp"
+      }
