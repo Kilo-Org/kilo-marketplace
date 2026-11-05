@@ -1,0 +1,13 @@
+id: metaintro-job-search
+name: Metaintro Job Search
+description: Search live jobs pulled straight from employer career sites, read postings, and see how employers hire and pay. Free, no sign-in.
+author: metaintro
+url: https://www.metaintro.com/developers/mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.metaintro.com/api/mcp/public"
+      }
