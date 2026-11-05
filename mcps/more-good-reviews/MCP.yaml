@@ -1,0 +1,17 @@
+id: more-good-reviews
+name: More Good Reviews
+description: Manages customers, review requests, reviews, and Google and Facebook review replies in a More Good Reviews
+  project, the review and reputation platform for local service businesses and agencies.
+author: More Good Reviews
+url: https://docs.moregoodreviews.com/platform/mcp-server
+category: business
+prerequisites:
+  - More Good Reviews account (Business or Agency plan)
+  - MCP client with OAuth support
+content:
+  - name: More Good Reviews hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.moregoodreviews.com/mcp"
+      }
