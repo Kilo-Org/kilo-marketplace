@@ -28,3 +28,4 @@ parameters:
   - name: CrakSEO API Key
     key: CRAKSEO_API_KEY
     placeholder: your_crakseo_api_key
+    optional: true
