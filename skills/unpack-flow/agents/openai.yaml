@@ -1,0 +1,6 @@
+interface:
+  display_name: "UnpackFlow / 智能解压编排器"
+  short_description: "跨平台多层、分卷和批量归档智能解压"
+  default_prompt: "使用 $unpack-flow 分析并安全解压多层或分卷归档，持续报告阶段、层数和耗时。"
+policy:
+  allow_implicit_invocation: true
