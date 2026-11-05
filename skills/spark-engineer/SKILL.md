@@ -8,7 +8,7 @@ description: >-
   configure executor memory, process .parquet files, handle data partitioning,
   or build structured streaming analytics.
 metadata:
-  author: 'https://github.com/Jeffallan'
+  author: Jeffallan
   version: 1.1.0
   domain: data-ml
   triggers: >-
