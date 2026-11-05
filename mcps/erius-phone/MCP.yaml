@@ -1,0 +1,30 @@
+id: erius-phone
+name: ERIUS PHONE
+description: Drives a hosted ERIUS PHONE Android phone or tablet. Reads the screen as an accessibility tree or screenshot, taps, types, swipes, launches apps, installs APKs, and pulls crash logs.
+author: ERIUS
+url: https://github.com/Protremix/erius-phone-mcp
+category: development
+prerequisites:
+  - Python and uv
+  - ERIUS PHONE API key (early access, requested at https://eriusphone.com)
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["erius-phone-mcp"],
+        "env": {
+          "ERIUS_PHONE_API_KEY": "{{ERIUS_PHONE_API_KEY}}",
+          "ERIUS_PHONE_DEFAULT_DEVICE": "{{ERIUS_PHONE_DEFAULT_DEVICE}}"
+        }
+      }
+parameters:
+  - name: ERIUS PHONE API key
+    key: ERIUS_PHONE_API_KEY
+    placeholder: your_erius_phone_api_key
+  - name: Default device id
+    key: ERIUS_PHONE_DEFAULT_DEVICE
+    placeholder: your_device_id
+    optional: true
