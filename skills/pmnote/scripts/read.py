@@ -12,7 +12,18 @@ import urllib.request
 from urllib.parse import parse_qs, urlsplit
 
 BASE = 'https://pmnote.ai'
+COMMUNITY_ORIGIN = 'https://thilhtqbtpxbgszpnlwn.supabase.co'
 UUID = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+
+
+class SameOriginRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        old, new = urlsplit(req.full_url), urlsplit(newurl)
+        old_origin = (old.scheme.lower(), old.hostname, old.port)
+        new_origin = (new.scheme.lower(), new.hostname, new.port)
+        if old_origin != new_origin:
+            raise urllib.error.HTTPError(req.full_url, code, 'Cross-origin redirect blocked', headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
 def request(url, payload=None, headers=None):
@@ -24,7 +35,7 @@ def request(url, payload=None, headers=None):
     for attempt in range(2):
         try:
             req = urllib.request.Request(url, data=data, headers=options)
-            with urllib.request.urlopen(req, timeout=25) as response:
+            with urllib.request.build_opener(SameOriginRedirect()).open(req, timeout=25) as response:
                 raw = response.read(10_000_001)
             if len(raw) > 10_000_000:
                 raise ValueError('Public response exceeds 10 MB; nothing truncated')
@@ -62,7 +73,7 @@ class Interviews:
         parser.feed(request(BASE + '/community/experiences/'))
         attrs = getattr(parser, 'values', {})
         url, key = attrs.get('data-community-url', ''), attrs.get('data-community-key', '')
-        if not re.fullmatch(r'https://[a-z0-9-]+\.supabase\.co', url) or not key:
+        if url != COMMUNITY_ORIGIN or not key:
             raise ValueError('Public interview connection missing; use the website browser')
         # Only the publishable value already shipped to anonymous website visitors.
         # It stays in memory; no account token, cookie or private configuration is read.

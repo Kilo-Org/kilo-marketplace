@@ -4,14 +4,14 @@ description: >-
   查阅 PMNote
   公开原文，分析游戏项目管理中的版本排期、交付风险、跨团队协作和美术管线，准备游戏PM求职与面试、选择游戏研发AI工具。用于这些具体问题，即使未提PMNote；不用于未经澄清的产品经理问题。
 metadata:
-  version: 1.5.4
+  version: 1.5.5
   category: business
   source:
     repository: 'https://github.com/chenhao233/pmnote-agent-plugin'
     path: skills/pmnote
     license_path: LICENSE
     ref: main
-    commit: 629d6f360fb6fae8879f79bb0f149bf4167349b6
+    commit: 8426b276625f9ca0a4d67c2530de8279e1cb0f7c
 ---
 
 # PMNote
