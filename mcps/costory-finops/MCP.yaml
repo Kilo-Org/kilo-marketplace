@@ -1,0 +1,16 @@
+id: costory-finops
+name: Costory FinOps MCP
+description: "FinOps agent MCP: one allocated view of cloud, AI and data costs across providers, shared by your whole team with SSO."
+author: Costory
+url: https://github.com/costory-io/costory-finops-mcp-skills
+category: business
+prerequisites:
+  - Costory account (Starter $300/mo, 30-day free trial)
+  - MCP client with OAuth support
+content:
+  - name: Costory hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app-api.costory.io/mcp"
+      }
