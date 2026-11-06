@@ -1,13 +1,13 @@
 id: folklore
 name: Folklore MCP
-description: ACMG/AMP germline variant classification, gene profiles, disease associations and literature.
+description: Folklore MCP 2.0.0 for germline classification, gene profiles, disease associations and literature. Eleven public tools and eighteen additional tools with a Folklore API key.
 author: Helena Bioinformatics
 url: https://github.com/helena-bioinformatics/folklore-mcp
 category: search
 prerequisites:
-  - Internet access to the free public hosted endpoint; no account or API key required.
-  - Public GRCh38 nuclear germline SNVs and simple indels shorter than 50 bp only; no patient, phenotype, family or private-case data or genomic uploads.
-  - Results require qualified professional review. Setup and scope https://folklore.helena.bio/integrations/mcp
+  - The configured public connection offers 11 tools without an account or API key.
+  - Public classification covers GRCh38 nuclear germline SNVs and simple indels shorter than 50 bp. Keep private case data out of the public connection.
+  - A client configured with a Folklore Bearer API key can access 18 additional case, source and report tools at the same endpoint. Results require qualified professional review. Setup and scope https://folklore.helena.bio/integrations/mcp
 content:
   - name: Streamable HTTP
     content: |
