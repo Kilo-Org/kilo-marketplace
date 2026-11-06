@@ -1,0 +1,25 @@
+id: socialdatax-kuaishou
+name: SocialDataX 快手 Kuaishou MCP
+description: "Kuaishou video and creator search, details, comments, profiles and transcripts. Hosted
+  by SocialDataX; business calls consume credits. Setup and API Key:
+  https://socialdatax.com/ai?from=kilo"
+author: SocialDataX
+url: https://github.com/DevinChen2014/kuaishou-mcp
+category: search
+prerequisites:
+  - "SocialDataX account and your own API Key: https://socialdatax.com/ai?from=kilo"
+  - Business tool calls consume SocialDataX credits; the account points-balance tool is free.
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.socialdatax.com/kuaishou/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SOCIALDATAX_API_KEY}}"
+        }
+      }
+parameters:
+  - name: SocialDataX API Key
+    key: SOCIALDATAX_API_KEY
+    placeholder: your_socialdatax_api_key
