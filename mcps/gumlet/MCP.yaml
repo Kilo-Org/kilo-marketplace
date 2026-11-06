@@ -1,0 +1,24 @@
+id: gumlet
+name: Gumlet
+description: Manage Gumlet video assets, live streams, images, playlists, subtitles, webhooks, folders, analytics, and
+  workspaces from an MCP client.
+author: Gumlet
+url: https://github.com/gumlet/gumlet-mcp
+category: development
+prerequisites:
+  - Gumlet account
+  - API key from the Gumlet dashboard under Developer, API keys
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.gumlet.com/mcp/v1",
+        "headers": {
+          "GUMLET_API_KEY": "{{GUMLET_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Gumlet API Key
+    key: GUMLET_API_KEY
+    placeholder: your_gumlet_api_key
