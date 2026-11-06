@@ -12,6 +12,7 @@ compatibility: >-
   and package changes require separate tools.
 metadata:
   category: development
+  author: Anaconda
   source:
     repository: 'https://github.com/Kilo-Org/skills'
     path: skills/anaconda-intelligence
