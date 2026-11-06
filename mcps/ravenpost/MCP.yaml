@@ -1,0 +1,30 @@
+id: ravenpost
+name: Ravenpost
+description: "Schedule and publish social media posts to Instagram, TikTok, X, LinkedIn, Threads, Bluesky, YouTube, Pinterest and Telegram: preview each network's version, then draft, schedule, queue or publish, and read followers and engagement where a network reports them."
+author: Ravenpost
+url: https://github.com/target1m/ravenpost-mcp
+category: productivity
+prerequisites:
+  - "A Ravenpost account (there is a free plan) with the social accounts to post to connected at https://ravenpo.st/dashboard/accounts"
+  - "An MCP client with remote OAuth support, or a Ravenpost personal access token from https://ravenpo.st/dashboard/mcp"
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.ravenpo.st/mcp"
+      }
+  - name: Remote Personal Access Token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.ravenpo.st/mcp",
+        "headers": {
+          "Authorization": "Bearer {{RAVENPOST_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Ravenpost Personal Access Token
+    key: RAVENPOST_TOKEN
+    placeholder: rvp_your_token
+    optional: true
