@@ -1,0 +1,30 @@
+id: monito
+name: Monito
+description: Checks a deployed URL against a plain-English expectation in a cloud browser and returns passed, failed or cannot verify with screenshots, network and console logs. Checks can be saved as reusable tests. Runs use Monito credits.
+author: Monito
+url: https://www.monito.dev/docs/mcp
+category: web-automation
+prerequisites:
+  - Monito account
+content:
+  - name: Monito hosted OAuth server
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.monito.dev/api/mcp"
+      }
+  - name: Monito hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.monito.dev/api/mcp",
+        "headers": {
+          "x-api-key": "{{MONITO_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Monito API Key
+        key: MONITO_API_KEY
+        placeholder: monito_...
