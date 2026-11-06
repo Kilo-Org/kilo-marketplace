@@ -1,30 +1,13 @@
 id: datacircle
 name: Datacircle
-description: Datacircle is a data co-op. Query your favorite B2B data APIs through us. Same request, same price, no markup. Every morning, you get the flat file of your data plus everyone else's.
+description: Find the best GTM APIs. Our MCP server is open to anyone, with no key. list_apis lists the GTM APIs on it, and search_plans finds their plans by API, provider or price.
 author: Datacircle
-url: https://docs.datacircle.dev/mcp-server
+url: https://datacircle.dev/docs/mcp
 category: search
-prerequisites:
-  - Datacircle account (sign up with a work email; a new account gets a $5 credit)
 content:
-  - name: Datacircle hosted OAuth server
-    prerequisites:
-      - MCP client with OAuth support
+  - name: Datacircle hosted remote server
     content: |
       {
         "type": "streamable-http",
         "url": "https://api.datacircle.dev/mcp"
       }
-  - name: Datacircle hosted server with an API key
-    content: |
-      {
-        "type": "streamable-http",
-        "url": "https://api.datacircle.dev/mcp",
-        "headers": {
-          "Authorization": "Bearer {{DATACIRCLE_API_KEY}}"
-        }
-      }
-    parameters:
-      - name: Datacircle API Key
-        key: DATACIRCLE_API_KEY
-        placeholder: your_datacircle_api_key
