@@ -26,3 +26,4 @@ parameters:
   - name: QR Cloud API key
     key: QR_CLOUD_API_KEY
     placeholder: your_qr_cloud_api_key
+    optional: true
