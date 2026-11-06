@@ -1,0 +1,22 @@
+id: skycloak
+name: Skycloak
+description: Manage SSO, users, roles and applications on Skycloak from any MCP client.
+author: Skycloak
+url: https://github.com/sky-cloak/skycloak-mcp
+category: development
+prerequisites:
+  - Skycloak account
+  - MCP client with OAuth support
+content:
+  - name: Skycloak hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.skycloak.io"
+      }
+  - name: Skycloak hosted OAuth server (read-only)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.skycloak.io?readonly=true"
+      }
