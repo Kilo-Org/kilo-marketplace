@@ -1,0 +1,15 @@
+id: back4app
+name: Back4app
+description: Deploys web apps, websites, APIs and backends that run in a container and gives them a public HTTPS address, through Back4app's hosted MCP server. Follows builds, reads logs, sets environment variables, deploys new versions and rolls back after confirmation.
+author: Back4app
+url: https://github.com/back4app/back4app-plugin
+category: development
+prerequisites:
+  - MCP client with OAuth support
+content:
+  - name: Back4app hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.back4app.com/mcp"
+      }
