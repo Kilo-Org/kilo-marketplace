@@ -5,7 +5,12 @@ description: >-
   links and quantities, compare HVAC specifications and measured power, and submit
   user-confirmed B2B inquiries. Overseas B2C delivery requires consultation.
   No API key required. Personal data can be stored by inquiry/CRM tools;
-  review the linked repository's data-handling guidance before use.
+  operator Cigo Co., Ltd., contact cigo240920@gmail.com. Data handling and deletion:
+  https://github.com/cigo240920/cigo-aircare-connector/blob/main/DATA_HANDLING.md .
+  Retention targets: completed inquiries 3 months after completion, lookup records
+  3 months after collection, uncompleted inquiries 1 year after last customer contact,
+  CRM records 1 year after registration. Automatic deletion enforcement is not yet
+  verified; records may remain pending operator deletion. Review the linked limitations.
 author: cigo240920
 url: https://github.com/cigo240920/cigo-aircare-connector
 category: business
