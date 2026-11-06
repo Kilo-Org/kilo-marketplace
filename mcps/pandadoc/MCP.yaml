@@ -1,0 +1,21 @@
+id: pandadoc
+name: PandaDoc
+description: >-
+  Official PandaDoc remote MCP server for creating, sending, signing, and tracking
+  documents, proposals, contracts, and quotes with your PandaDoc account.
+author: PandaDoc
+url: https://github.com/PandaDoc/mcp-server-guide
+category: business
+prerequisites:
+  - A PandaDoc account with access to the documents you want to manage
+  - >-
+    After adding the server, connect your PandaDoc account through the browser
+    OAuth flow. Click Allow access, then Authorize, and return to Kilo.
+    Setup guide: https://developers.pandadoc.com/docs/how-to-use-the-pandadoc-mcp-server
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.pandadoc.com/v1/mcp"
+      }
