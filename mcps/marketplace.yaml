@@ -2071,7 +2071,8 @@ items:
             "url": "https://mcp.gumlet.com/mcp/v1",
             "headers": {
               "GUMLET_API_KEY": "{{GUMLET_API_KEY}}"
-            }
+            },
+            "oauth": false
           }
     parameters:
       - name: Gumlet API Key
