@@ -1,13 +1,17 @@
 id: fairvalid
 name: FairValid
-description: Verify email addresses, monitor asynchronous verification jobs, read results and check workspace credits with FairValid.
+description: Verify email addresses, discover FairMatch business leads, quote and unlock verified work emails after explicit credit-limit approval, read results and check workspace credits.
 author: FairValid
 url: https://github.com/moonlitnayeem/fairvalid-ai
 category: business
 prerequisites:
   - A FairValid account and workspace at https://fairvalid.com.
-  - A FairValid API key with only the scopes needed by your workflow. Use a live key for real verification and set a spending cap.
+  - A FairValid API key with only the scopes needed by your workflow. Use a Live key for real operations and set a lifetime credit cap. Existing keys do not gain permissions from a catalog update.
   - Live submissions may reserve credits; completed Valid and Invalid checks cost one credit. Genuine Unknown and unresolved catch-all outcomes have zero net cost.
+  - FairMatch filter discovery, search, quote and retrieval require leads:read; unlock requires leads:acquire. The complete workflow needs both.
+  - FairMatch costs four credits per newly acquired verified work email; already-owned and unavailable contacts cost zero. A quote reserves no credits.
+  - Quote the exact selected IDs and obtain explicit approval of a numerical maximum before unlock. Send maximumCredits, confirm true and a stable idempotency_key; preserve the same key identity and unchanged input on retries.
+  - Setup and current tool contracts at https://fairvalid.com/help/mcp and https://github.com/moonlitnayeem/fairvalid-ai/blob/f5f04f4354a5c2fe075728f0d664b90d8848640d/docs/fairmatch.md.
   - Store your API key only in client credential configuration, never in prompts, source control, screenshots or tool arguments.
 content:
   - name: Remote Streamable HTTP
