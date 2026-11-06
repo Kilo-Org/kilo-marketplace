@@ -1,0 +1,16 @@
+id: schedchie
+name: Schedchie
+description: Schedules, publishes and tracks social media posts on 13 networks (Instagram, Facebook, TikTok, LinkedIn, Pinterest, YouTube, Threads, Bluesky, Mastodon, Telegram, Google Business Profile, Discord, X) through Schedchie's hosted MCP server. Reads analytics and runs team approvals. Posting to X is a paid add-on.
+author: Schedchie
+url: https://www.schedchie.com/ai
+category: productivity
+prerequisites:
+  - Schedchie account with an active plan or trial
+  - MCP client with OAuth support
+content:
+  - name: Schedchie hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.schedchie.com/mcp"
+      }
