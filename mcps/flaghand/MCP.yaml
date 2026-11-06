@@ -1,6 +1,6 @@
 id: flaghand
 name: Flaghand
-description: Your agent starts at flaghand.com/llms.txt, signs you up, drafts X, LinkedIn, Bluesky and TikTok posts; you approve.
+description: Agents draft and schedule future social posts over MCP; immediate posting needs your passkey.
 author: Flaghand
 url: https://github.com/flaghand/flaghand
 category: productivity

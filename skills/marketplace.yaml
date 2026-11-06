@@ -1793,9 +1793,9 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
   - id: flaghand
     description: >-
-      Draft, check and request approval for X, LinkedIn, Bluesky and TikTok posts through Flaghand. Use when the user
-      asks to write, schedule or publish social content. Only the owner approves with a passkey; agents never approve,
-      schedule or post.
+      Draft, check, schedule future posts and request approval for X, LinkedIn, Bluesky and TikTok posts through
+      Flaghand. Use when the user asks to write, schedule or publish social content. Only the owner approves with a
+      passkey; agents never approve or post immediately.
     category: productivity
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/flaghand
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/flaghand/SKILL.md

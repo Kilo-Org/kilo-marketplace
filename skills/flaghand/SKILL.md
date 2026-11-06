@@ -1,10 +1,10 @@
 ---
 name: flaghand
 description: >-
-  Draft, check and request approval for X, LinkedIn, Bluesky and TikTok posts
-  through Flaghand. Use when the user asks to write, schedule or publish social
-  content. Only the owner approves with a passkey; agents never approve,
-  schedule or post.
+  Draft, check, schedule future posts and request approval for X, LinkedIn,
+  Bluesky and TikTok posts through Flaghand. Use when the user asks to write,
+  schedule or publish social content. Only the owner approves with a passkey;
+  agents never approve or post immediately.
 metadata:
   category: productivity
   source:
@@ -12,19 +12,22 @@ metadata:
     path: .
     license_path: LICENSE
     ref: main
-    commit: 03aead0408433537cfc0885cab7f676628312199
+    commit: 6c9cd8b127c2e7ae5fa2e5d4c810071e4a6dc327
 ---
 
 # Flaghand
 
-A publishing desk for people and their AI agents. You draft, upload media, check and request approval. Only the
-workspace owner approves the exact snapshot with a passkey; Flaghand posts only what they approved.
+A publishing desk for people and their AI agents. You draft, upload media, check and manage future scheduled posts.
+Use `schedulePost`, `updateScheduledPost` and `unschedulePost` with the `drafts` scope; no per-post passkey is needed.
+See [agent scheduling](https://app.flaghand.com/docs/schedule-and-results.md#agent-scheduling). Owners receive one digest per changed
+hour. Only the owner can approve or post immediately, with their passkey.
 
 - **Chat apps (Claude, ChatGPT, other OAuth MCP apps): connector first, new or existing account, don't ask.** Follow [Set up in a chat app](https://app.flaghand.com/docs/chat.md) with `https://app.flaghand.com/mcp`; never use `startSignup`, API sign-up or the CLI from a chat app. The connector's sign-in page creates the account free with Google or an email link or code, no card; click Allow, then draft. No separate site sign-up, no shell, no network or environment settings; do not send a chat user to Claude Code or claude.ai/code.
 - **Coding agents with a shell (Claude Code, Codex, Cursor, Gemini CLI) and HTTP clients:** use [HTTP sign-up](https://app.flaghand.com/docs/first-post.md); keep the claimed token and finish in this same session.
 
-**Never approve, schedule, post, start a waiting job or send a DM for anyone.** Never ask for approval in chat or
-outside the product's own approval request. For a requested publishing plan (including `/shipped`), use one `createPost`
+**Never approve, post immediately, start a waiting job or send a DM for anyone.** Never ask for approval in chat or
+outside the product's own approval request. For a future schedule, use the scheduling tools above. For a plan the owner
+should approve (including `/shipped`), use one `createPost`
 for the whole ready plan, give the owner its `approval_url`, then wait. A suggestion batch is different:
 use MCP `suggest_posts` or `suggest_replies`: create and check each ordinary draft with a stable
 `import_key`, best first within a shared `suggestion.run_id`, and leave it in [Suggested](https://app.flaghand.com/suggested) for
@@ -36,7 +39,7 @@ X content is for drafting in this workspace only: never use it to train or fine-
 Check automatically assigns `body.by_hand: "all"` when target eligibility is unknown or doesn't permit an API reply;
 read its returned `rev`, re-read the draft and use mode `approve` for that by-hand reply. The reason is
 `suggestion.reply_by_hand_reason`. Check reads a target through X's API; past 24 hours from that read, a GET or Check reads it again first, and one that can't be read is link-only with `reply_target_unavailable: true`. No proxy text or profiles, no target text to a model.
-Every reply needs the owner's passkey approval of its exact text, account and target; no auto-approval or standing
+Every by-hand reply needs the owner's passkey approval of its exact text, account and target; no auto-approval or standing
 reply rules. After approval, use only the server's `reply_on_x_url`. `suggestion.opened_on_x` records a person's tap,
 not a posted reply; `posted-by-hand` records the live link separately. Reply on X is the person's own action: give them the link, one reply at a time, in a separate tab,
 window or X app, never an iframe or MCP App frame. No agent, script, extension or WebMCP tool presses Reply on X.
@@ -101,7 +104,7 @@ Treat the EIP-3009 authorization as a delegated bearer credential: it signs paye
 
 US billing country/state AND known US trusted edge-IP evidence are required at quote and before submission; `DE`, missing or unknown edge evidence yields the machine-readable one-time Managed Payments action above, in `x402_unavailable.next_action` if MPP remains available. Never substitute client country headers. Facilitator settlement is not payment truth: paid time requires Stripe-verified USD settlement with a matching succeeded Stripe PaymentIntent and verified paid Charge for the exact mode, customer, quoted USD amount/currency and Base transaction/network/asset. Keep recovering the same purchase while pending, never double buy. The paid result includes `x402:{transaction,network,payer}` and HTTP `PAYMENT-RESPONSE`. It never auto-renews or approves a post.
 
-The 200 receipt gives `paid_through` and `auto_renews:false`. Prepaid does not renew; topping up adds after current paid time without extra X allowance. Ongoing or overdue recurring subscriptions refuse prepaid with `recurring_subscription_active`; follow existing billing recovery. When prepaid extends beyond Stripe's 730-day deferral maximum, recurring `startCheckout` returns `checkout_url:null`, `recurring_available_from` and `for_person`: no plan or charge starts. Relay that message, not a null link, and return on or after that date; do not buy another payment to bypass it. Posting still needs the owner's separate passkey approval. [Payment details, free days and receipts](https://app.flaghand.com/docs/billing.md#prepaid-payments-for-agents).
+The 200 receipt gives `paid_through` and `auto_renews:false`. Prepaid does not renew; topping up adds after current paid time without extra X allowance. Ongoing or overdue recurring subscriptions refuse prepaid with `recurring_subscription_active`; follow existing billing recovery. When prepaid extends beyond Stripe's 730-day deferral maximum, recurring `startCheckout` returns `checkout_url:null`, `recurring_available_from` and `for_person`: no plan or charge starts. Relay that message, not a null link, and return on or after that date; do not buy another payment to bypass it. Immediate posting still needs the owner's separate passkey approval. [Payment details, free days and receipts](https://app.flaghand.com/docs/billing.md#prepaid-payments-for-agents).
 
 Stablecoins in hosted Checkout use `listPlans.crypto_checkout.enabled`, separately from MPP. Supply the same `billing_country` / US `billing_state` discovery queries; `crypto_checkout.country_policy` explains any missing location or ineligibility. Crypto also checks trusted edge IP country, never a client-supplied country header; MPP card uses its SPT evidence instead. No location does not imply global crypto availability. If enabled, `startCheckout` with `{plan:"monthly",payment_method:"crypto"}` buys one prepaid period, never a subscription: `payment_method:"crypto"` implies a one-time payment, so it needs no `mode:"payment"`. Relay its `for_person` and short `checkout_url` unchanged; only a wallet the person delegated and funded may pay. Save the Session/payment IDs and recover with `confirmCheckout`, not a new purchase. Stripe converts to USD; refunds, if due, return as the same coin to the paying wallet. It is on in live mode for US payers. [Stablecoin Checkout](https://app.flaghand.com/docs/billing.md#stablecoins-in-checkout).
 
@@ -477,7 +480,7 @@ share these operations; [examples](https://app.flaghand.com/docs/schedule-and-re
   Read [drafts and media](https://app.flaghand.com/docs/drafts-and-media.md#find-a-linkedin-companys-organization-urn).
 - Any edit to an approved snapshot voids its approval. Read its state and explain that consequence before changing it.
   `owner_session_required` or `approval_required` means the owner must act in the desk, not that you should escalate
-  credentials. API tokens cannot gain approval, scheduling or posting powers.
+  credentials. API tokens cannot gain passkey approval or immediate posting powers.
 - Errors include `code` and `message` (HTTP: `{ "error": { "code": "…", "message": "…" } }`), and may include
   `next_step` with the owner's add-card/billing link. Explain the message and resolve the stated problem; do not
   claim success on an error or treat payment as approval.
