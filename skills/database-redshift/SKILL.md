@@ -9,7 +9,7 @@ description: >-
   sharing Redshift".
 metadata:
   version: 1.0.0
-  author: christopher huffman
+  author: Christopher Huffman
   category: data
   source:
     repository: 'https://github.com/chrishuffman5/domain-expert'
