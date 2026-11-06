@@ -1,0 +1,16 @@
+id: fal
+name: fal
+description: Generate and edit images, videos, audio, and 3D with fal. Discover models and pricing for product ads, game assets, short films, and localized media.
+author: fal.ai
+url: https://fal.ai/mcp
+category: development
+prerequisites:
+  - A fal account; sign in through the browser when prompted
+  - fal credits for generation; check model pricing before running a request
+content:
+  - name: Hosted MCP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fal.ai/mcp-relay"
+      }
