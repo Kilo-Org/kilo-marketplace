@@ -1,0 +1,22 @@
+id: court-rules
+name: Court Rules
+description: Answers U.S. court rule questions from federal and local rules, judge standing orders, and court holiday calendars, with a source citation for every rule.
+author: Court Rules
+url: https://github.com/foklepoint/court-rules-mcp
+category: search
+prerequisites:
+  - Court Rules API key (free developer tier) or OAuth sign-in
+content:
+  - name: Court Rules remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.courtrules.app/mcp",
+        "headers": {
+          "Authorization": "Bearer {{COURT_RULES_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Court Rules API key
+    key: COURT_RULES_API_KEY
+    placeholder: crm_prod_your_api_key
