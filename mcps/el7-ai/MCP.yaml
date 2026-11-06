@@ -1,0 +1,30 @@
+id: el7-ai
+name: EL7.AI
+description: Financial market intelligence for your AI - markets news, economic calendar, 8 central banks, COT
+  positioning, stocks, earnings, gold and oil, with sources and dates. 85 read-only tools; English first with full
+  Arabic support.
+author: EL7.AI
+url: https://github.com/walidelhelw/el7-mcp
+category: business
+prerequisites:
+  - EL7 account (paid membership for full access; free accounts get EL7 Wire)
+content:
+  - name: Remote MCP - OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.el7.ai/mcp"
+      }
+  - name: Remote MCP - API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.el7.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{EL7_MCP_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: EL7 MCP API Key
+        key: EL7_MCP_API_KEY
+        placeholder: your_el7_mcp_api_key
