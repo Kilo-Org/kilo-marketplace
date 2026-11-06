@@ -1,0 +1,19 @@
+id: dejo
+name: Dejo
+description: A browser your AI agent remembers. It learns a website task once, then replays it in one tool call with
+  zero model calls, and re-learns only the step that moved when a site changes.
+author: dejohq
+url: https://github.com/dejohq/dejo-mcp
+category: web-automation
+prerequisites:
+  - Python 3.11+ and uv
+  - Google Chrome, or Chromium from `playwright install chromium`
+content:
+  - name: UVX
+    prerequisites:
+      - Python 3.11+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["dejo-mcp"]
+      }
