@@ -1,0 +1,33 @@
+id: rapid-indexer
+name: Rapid Indexer
+description: Send new URLs and backlinks to Googlebot and check Google index status.
+author: Rollo Unden
+url: https://github.com/rollounden/rapid-indexer-mcp
+category: search
+prerequisites:
+  - Rapid Indexer account and API key (https://rapid-indexer.com/mcp/)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "rapid-indexer-mcp"],
+        "env": {
+          "RAPID_INDEXER_API_KEY": "{{RAPID_INDEXER_API_KEY}}"
+        }
+      }
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.rapid-indexer.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{RAPID_INDEXER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Rapid Indexer API Key
+    key: RAPID_INDEXER_API_KEY
+    placeholder: your_rapid_indexer_api_key_here
