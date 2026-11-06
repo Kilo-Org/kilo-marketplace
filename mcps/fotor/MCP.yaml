@@ -1,0 +1,17 @@
+id: fotor
+name: Fotor
+description: Create images, video and audio with Fotor.
+author: Fotor
+url: https://github.com/fotor-ai/fotor-mcp
+category: productivity
+prerequisites:
+  - A Fotor account
+  - A Kilo client with remote MCP OAuth support
+  - Media operations may consume your Fotor account credits
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fotor.com/mcp"
+      }
