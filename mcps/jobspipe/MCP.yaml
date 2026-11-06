@@ -1,0 +1,15 @@
+id: jobspipe
+name: JobsPipe
+description: Hosted remote MCP for live job search across 30+ ATS feeds and job boards. Agents search normalized postings by title, skill, country, remote, and seniority; free JobsPipe account via OAuth.
+author: JobsPipe
+url: https://jobspipe.dev
+category: search
+prerequisites:
+  - Free JobsPipe account (https://jobspipe.dev/signup)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.jobspipe.dev/mcp"
+      }
