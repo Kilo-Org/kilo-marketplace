@@ -2,9 +2,9 @@ id: unione
 name: UniOne
 description: Official UniOne MCP server. AI agents send transactional email, set up and verify sending domains (DNS
   records, DKIM, SPF), manage templates, webhooks and suppressions, validate addresses and export delivery events.
-  Hosted; a sandbox domain lets you send test emails without DNS setup.
+  Hosted with OAuth sign-in, or run locally with an API key; a sandbox domain lets you send test emails without DNS setup.
 author: UniOne
-url: https://docs.unione.io/en/mcp
+url: https://github.com/unione-repo/unione-mcp
 category: productivity
 prerequisites:
   - UniOne account (Free plan works, no credit card)
@@ -22,6 +22,17 @@ content:
         "url": "https://mcp.unione.io/mcp",
         "headers": {
           "Authorization": "Bearer {{UNIONE_API_KEY}}"
+        }
+      }
+  - name: NPX (local)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "unione-mcp"],
+        "env": {
+          "UNIONE_API_KEY": "{{UNIONE_API_KEY}}"
         }
       }
 parameters:
