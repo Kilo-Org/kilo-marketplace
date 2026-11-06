@@ -671,7 +671,7 @@ items:
             placeholder: contoso
   - id: bankbridge
     name: BankBridge
-    description: Gives agents read-only access to your connected bank accounts, transactions, recurring charges, cashflow,
+    description: Works in any MCP agent, including local models. Gives agents read-only access to your connected bank accounts, transactions, recurring charges, cashflow,
       and investment holdings through BankBridge's hosted OAuth 2.1 server, fetched live from your banks.
     author: Great Work
     url: https://bankbridge.money/docs
