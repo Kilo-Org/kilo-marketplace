@@ -1,0 +1,16 @@
+id: merageo
+name: meraGEO
+description: Remote MCP server for meraGEO AI-visibility reports. Ask how often ChatGPT, Claude and Gemini mention a
+  site, read its latest score and main issues, start a new scan, and check whether a scan has finished.
+author: meraGEO
+url: https://merageo.com/guides/connect-your-coding-agent
+category: business
+prerequisites:
+  - meraGEO account (you sign in and approve access in the browser the first time you connect)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://merageo.com/api/mcp/agent"
+      }
