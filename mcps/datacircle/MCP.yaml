@@ -1,0 +1,13 @@
+id: datacircle
+name: Datacircle
+description: Find the best GTM APIs. Our MCP server is open to anyone, with no key. list_apis lists the GTM APIs on it, and search_plans finds their plans by API, provider or price.
+author: Datacircle
+url: https://datacircle.dev/docs/mcp
+category: search
+content:
+  - name: Datacircle hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.datacircle.dev/mcp"
+      }
