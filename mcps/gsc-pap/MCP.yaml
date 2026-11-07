@@ -5,10 +5,11 @@ description: Read-only Google Search Console, Google Analytics 4 and PageSpeed I
   pages joined to GA4 conversions and real-user Core Web Vitals, with a Search Console archive kept past Google's 16-month
   limit.
 author: GSC PAP
-url: https://gscpap.com
+url: https://github.com/aliarifsoydas/gsc-pap-claude-plugin
 category: data
 prerequisites:
   - Google account with Search Console access
+  - Google Analytics 4 property access (for the GA4 tools)
   - MCP client with OAuth support
 content:
   - name: GSC PAP hosted OAuth server
