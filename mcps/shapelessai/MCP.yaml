@@ -1,0 +1,16 @@
+id: shapelessai
+name: ShapelessAI
+description: Makes and publishes social media content from your editor. Plan posts, edit video, generate images and clips, design carousels, and publish or schedule to LinkedIn, X, Instagram, TikTok, YouTube, Facebook, Threads, Bluesky and more, with drafts that wait for your approval.
+author: ShapelessAI
+url: https://shapelessai.com
+category: productivity
+prerequisites:
+  - ShapelessAI account (free plan, no card)
+  - MCP client with OAuth support
+content:
+  - name: ShapelessAI hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://shapelessai.com/mcp"
+      }
