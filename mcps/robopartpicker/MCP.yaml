@@ -1,0 +1,15 @@
+id: robopartpicker
+name: RoboPartPicker
+description: Search source-linked open robotics projects, their bills of materials and components, compare parts, and validate RPPS documents. Read-only public data, no API key.
+author: RoboPartPicker
+url: https://github.com/brainbook0/robopartpicker-mcp
+category: search
+prerequisites:
+  - An MCP client with streamable-http support
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://robopartpicker.com/mcp"
+      }
