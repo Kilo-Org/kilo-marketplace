@@ -1,0 +1,15 @@
+id: modulit-pro-av-finder
+name: Modulit Pro AV Finder
+description: Search Modulit EU and PL pro AV equipment and installation guides, compare alternatives, calculate cable runs and configure AV hardware. Read-only guest access; public commercial visibility follows the storefront.
+author: UAB Modulit Solutions
+url: https://www.modulit.eu/mcp-guide/
+category: search
+prerequisites:
+  - Internet access and an MCP client supporting Streamable HTTP. No Modulit account or API key is needed.
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.modulit.eu/mcp"
+      }
