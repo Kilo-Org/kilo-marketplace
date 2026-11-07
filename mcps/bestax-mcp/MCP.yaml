@@ -1,0 +1,17 @@
+id: bestax-mcp
+name: Bestax
+description: Build Bulma v1 React apps with Bestax. Gives the agent the component props, examples, CSS variables and
+  Agent Skills for @allxsmith/bestax-bulma from an index that ships in the npm package, so it works offline and needs no
+  API key.
+author: allxsmith
+url: https://github.com/allxsmith/bestax/tree/main/bestax-mcp
+category: development
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "bestax-mcp@1"]
+      }
