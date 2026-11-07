@@ -6,11 +6,12 @@ description: >-
   user-confirmed B2B inquiries. Overseas B2C delivery requires consultation.
   No API key required. Personal data can be stored by inquiry/CRM tools;
   operator Cigo Co., Ltd., contact cigo240920@gmail.com. Data handling and deletion:
-  https://github.com/cigo240920/cigo-aircare-connector/blob/main/DATA_HANDLING.md .
-  Retention targets: completed inquiries 3 months after completion, lookup records
+  https://github.com/cigo240920/cigo-aircare-connector/blob/main/DATA_HANDLING.md
+  Retention policy: completed inquiries 3 months after completion, lookup records
   3 months after collection, uncompleted inquiries 1 year after last customer contact,
-  CRM records 1 year after registration. Automatic deletion enforcement is not yet
-  verified; records may remain pending operator deletion. Review the linked limitations.
+  CRM records 1 year after registration. Database cleanup runs daily; local CRM
+  cleanup runs at startup and hourly while awake. Unknown-date legacy records are
+  preserved. Email copies and backups are excluded; see the linked limitations.
 author: cigo240920
 url: https://github.com/cigo240920/cigo-aircare-connector
 category: business
