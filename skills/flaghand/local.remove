@@ -1,0 +1,10 @@
+# The root skill has no relative resources. Keep only SKILL.md and its licence;
+# repository READMEs and other clients' integration descriptors are not skill assets.
+GEMINI.md
+README.md
+gemini-extension.json
+server.json
+.cursor-plugin
+CURSOR.md
+claude-plugin
+mcp.json
