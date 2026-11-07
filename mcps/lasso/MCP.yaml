@@ -1,0 +1,23 @@
+id: lasso
+name: Lasso
+description: Find unpaid Amazon links, dry-run higher-rate hops, and report clicks for one site.
+author: lassoanalytics
+url: https://github.com/lassoanalytics/lasso-mcp
+category: business
+prerequisites:
+  - Free Lasso account
+  - Hub Website license key from https://app.getlasso.co/websites
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://lasso.link/mcp",
+        "headers": {
+          "Authorization": "Bearer {{LASSO_LICENSE_KEY}}"
+        }
+      }
+parameters:
+  - name: Hub license key
+    key: LASSO_LICENSE_KEY
+    placeholder: your_license_key
