@@ -1793,9 +1793,11 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
   - id: flaghand
     description: >-
-      Draft, check and schedule X, LinkedIn, Bluesky and TikTok posts through Flaghand; a scheduled post publishes at
-      its time with no approval step. Use when the user asks to write, schedule or publish social content. Only the
-      owner posts immediately; agents never approve or post right now.
+      Draft, check and schedule X, LinkedIn, Bluesky and TikTok posts through Flaghand. Use when the user asks to write,
+      schedule or publish social content. Ordinary future social posts need no per-post approval. TikTok uploads and
+      YouTube videos need owner confirmation for each schedule or change. Each Pinterest Pin, email campaign, by-hand
+      post, unpicked option and a new workspace's first plan also need owner confirmation. Only the owner posts
+      immediately; agents never approve or post right now.
     category: productivity
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/flaghand
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/flaghand/SKILL.md
