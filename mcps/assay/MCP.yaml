@@ -1,0 +1,18 @@
+id: assay
+name: Assay
+description: Gives agents ranked, cited go-to-market context (positioning, proof points, brand voice, personas) from one
+  governed source of truth, checks drafts against approved facts before they ship, and runs governed writes that
+  preview first and need explicit confirmation.
+author: Assay
+url: https://assay.wiki/mcp/
+category: business
+prerequisites:
+  - Assay account (free sign-up at https://app.assay.wiki)
+  - MCP client with OAuth support
+content:
+  - name: Assay hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.assay.wiki/api/mcp/v2/mcp"
+      }
