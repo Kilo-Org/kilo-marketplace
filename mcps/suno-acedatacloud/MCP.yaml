@@ -1,0 +1,39 @@
+id: suno-acedatacloud
+name: Suno by Ace Data Cloud
+description: >-
+  Generate Suno music and lyrics through Ace Data Cloud, then retrieve the same task for audio results. An Ace-provided integration, not an official Suno plugin.
+author: Ace Data Cloud
+url: https://github.com/AceDataCloud/MCPs/blob/b217952/suno/kilo/README.md
+category: productivity
+prerequisites:
+  - Ace Data Cloud account with access to Suno; generation may incur usage charges
+  - An Ace Data Cloud application API token, not a platform management token
+  - Use global installation for credentials; do not commit tokens to project configuration
+content:
+  - name: Hosted (API token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://suno.mcp.acedata.cloud/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ACEDATACLOUD_API_TOKEN}}"
+        },
+        "oauth": false
+      }
+  - name: Local (UVX, pinned)
+    prerequisites:
+      - Python 3.10 or later and uv with uvx available on PATH
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "mcp-suno==2026.10.12.1"
+        ],
+        "env": {
+          "ACEDATACLOUD_API_TOKEN": "{{ACEDATACLOUD_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Ace Data Cloud API Token
+    key: ACEDATACLOUD_API_TOKEN
+    placeholder: Paste only your application API token
