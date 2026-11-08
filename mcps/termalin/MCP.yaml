@@ -5,7 +5,9 @@ author: termalinapp
 url: https://github.com/termalinapp/termalin-plugin
 category: development
 prerequisites:
-  - Termalin account (https://termal.in/account) with at least one server enrolled through its Connector
+  - Termalin account (https://termal.in/account) on the Pro plan or the 14-day Pro trial (the Free plan covers one enrolled server but not the hosted MCP server)
+  - At least one Linux server enrolled through a Termalin Connector (one-line install, outbound only)
+  - An MCP client that supports OAuth 2.1 sign-in for remote servers (Kilo Code and Kilo CLI do); clients without OAuth can use a Termalin API key as a Bearer token
 content:
   - name: Remote Server
     content: |
@@ -14,4 +16,4 @@ content:
         "url": "https://termal.in/mcp"
       }
     prerequisites:
-      - Termalin account with an enrolled server; sign in with OAuth on first use
+      - Termalin account (Pro plan or 14-day trial) with at least one enrolled server; sign in with OAuth on first use
