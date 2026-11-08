@@ -1824,6 +1824,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/troubleshoot-cassandra
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/troubleshoot-cassandra/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
+  - id: flaghand
+    description: >-
+      Draft, check and schedule X, LinkedIn, Bluesky, TikTok, YouTube and Pinterest posts, and by-hand Patreon handoffs,
+      through Flaghand. Use when the user asks to write, schedule or publish social content. Ordinary future social
+      posts need no per-post approval. TikTok uploads and YouTube videos need owner confirmation for each schedule or
+      change. Each Pinterest Pin, email campaign, by-hand post, unpicked option and a new workspace's first plan also
+      need owner confirmation. Only the owner posts immediately; agents never approve or post right now.
+    category: productivity
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/flaghand
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/flaghand/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/flaghand.tar.gz
   - id: integrate-anything
     description: >-
       This skill should be used only when an external-app action must be executed through the Membrane CLI and an
