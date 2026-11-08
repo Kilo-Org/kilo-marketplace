@@ -1,13 +1,14 @@
 ---
 name: flaghand
 description: >-
-  Draft, check and schedule X, LinkedIn, Bluesky and TikTok posts through
-  Flaghand. Use when the user asks to write, schedule or publish social content.
-  Ordinary future social posts need no per-post approval. TikTok uploads and
-  YouTube videos need owner confirmation for each schedule or change. Each
-  Pinterest Pin, email campaign, by-hand post, unpicked option and a new
-  workspace's first plan also need owner confirmation. Only the owner posts
-  immediately; agents never approve or post right now.
+  Draft, check and schedule X, LinkedIn, Bluesky, TikTok, YouTube and Pinterest
+  posts, and by-hand Patreon handoffs, through Flaghand. Use when the user asks
+  to write, schedule or publish social content. Ordinary future social posts
+  need no per-post approval. TikTok uploads and YouTube videos need owner
+  confirmation for each schedule or change. Each Pinterest Pin, email campaign,
+  by-hand post, unpicked option and a new workspace's first plan also need owner
+  confirmation. Only the owner posts immediately; agents never approve or post
+  right now.
 metadata:
   category: productivity
   source:
@@ -15,7 +16,7 @@ metadata:
     path: .
     license_path: LICENSE
     ref: main
-    commit: d3cb327cd640fb3aa32ff9efd97302c414f8ff2c
+    commit: 5a60338cb629b599be92b654dfe33ba80a344345
 ---
 
 # Flaghand
