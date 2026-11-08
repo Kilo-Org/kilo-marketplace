@@ -1,10 +1,7 @@
 id: arcmira
 name: 'Arcmira: YouTube Transcript Search'
 description: >-
-  Search indexed YouTube transcripts for timestamped quotes, speaker appearances,
-  mentions, sponsors, and organic recommendations. Follow new mentions with
-  monitors. A Premium read uses credits from your plan, then your on-demand budget. Monitor changes require authorized write
-  access. Coverage and research access depend on your account.
+  YouTube transcript search and monitoring for your AI: exact quotes, full transcripts and speakers.
 author: arcmira
 url: https://github.com/arcmira/mcp
 category: search
@@ -12,7 +9,6 @@ prerequisites:
   - Arcmira https://arcmira.com
   - API documentation https://arcmira.com/docs
   - An Arcmira account and API key from https://arcmira.com/dashboard/api
-  - Premium transcripts and commercial intelligence depend on account entitlements
 content:
   - name: Remote
     content: |
