@@ -1,0 +1,23 @@
+id: patchwell
+name: Patchwell
+description: Pay-per-call tools for agents. Web research that cites a source for each sentence, transcription of audio
+  and video with word timestamps and speaker labels, and CSV or Excel cleaning with a log of every change.
+author: patchwell
+url: https://github.com/aidan-mccollum/patchwell
+category: search
+prerequisites:
+  - Patchwell API key (a free key with $1 of credit takes one email at https://patchwell.io/quickstart)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://patchwell.io/mcp/",
+        "headers": {
+          "Authorization": "Bearer {{PATCHWELL_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Patchwell API Key
+    key: PATCHWELL_API_KEY
+    placeholder: pw_live_...
