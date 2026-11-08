@@ -1,0 +1,16 @@
+id: runcrate
+name: Runcrate
+description: Lets your coding agent use Runcrate, an AI cloud. Launch and delete GPU instances, run commands over SSH, move files, manage volumes, SSH keys and secrets, call open models through one OpenAI-compatible API and track spend. Sign in through the browser with OAuth, no API key in config.
+author: Runcrate
+url: https://github.com/runcrateai/runcrate-mcp
+category: development
+prerequisites:
+  - Runcrate account
+  - MCP client with OAuth support
+content:
+  - name: Runcrate hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.runcrate.ai/mcp"
+      }
