@@ -1,0 +1,16 @@
+id: imagera
+name: Imagera MCP
+description: Generates and edits images, video, voiceovers and music, and runs multi-step jobs such as product photos, ads and reels, with saved Character IDs that keep a face or product consistent. Each call is quoted in credits before it runs.
+author: Imagera
+url: https://imagera.ai/mcp
+category: productivity
+prerequisites:
+  - Paid Imagera account (MCP access is part of the Pro plan)
+  - MCP client with OAuth support
+content:
+  - name: Imagera hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.imagera.ai/mcp"
+      }
