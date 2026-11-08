@@ -1,0 +1,25 @@
+id: mailveri
+name: MailVeri
+description: Verify single emails and bulk lists via the MailVeri API, including SMTP, catch-all, disposable and role
+  checks, without sending any email.
+author: MailVeri
+url: https://github.com/mailveri/mailveri-mcp
+category: productivity
+prerequisites:
+  - A MailVeri API key (1,000 free credits on signup, no card required)
+content:
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "git+https://github.com/mailveri/mailveri-mcp", "mailveri-mcp"],
+        "env": {
+          "MAILVERI_API_KEY": "{{MAILVERI_API_KEY}}"
+        }
+      }
+parameters:
+  - name: MailVeri API Key
+    key: MAILVERI_API_KEY
+    placeholder: your_mailveri_api_key
