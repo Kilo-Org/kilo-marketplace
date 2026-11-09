@@ -1,0 +1,13 @@
+id: close-knit
+name: Close Knit
+description: Evidence about neighbourhoods and homes in London and England from official open data, with sources on every answer. Covers sale prices (HM Land Registry), rents (ONS), crime (police.uk), schools (Ofsted/DfE), flood risk, noise and commute times on TfL timetables. 24 read-only tools plus send_feedback; free, no sign-in.
+author: Close Knit
+url: https://github.com/bmsdave/close-knit-mcp
+category: search
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://getcloseknit.com/mcp"
+      }
