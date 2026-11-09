@@ -1,0 +1,16 @@
+id: billstride
+name: Billstride
+description: Creates, sends and tracks invoices from a conversation, reuses last month's invoice, chases overdue payments, reports revenue, and exports e-invoices (ZUGFeRD, XRechnung) and DATEV through Billstride's hosted OAuth server. New invoices are drafts; invoices and payment reminders are emailed to clients only when you ask.
+author: Billstride
+url: https://billstride.com/mcp
+category: business
+prerequisites:
+  - Billstride account (open sign-up; the first invoice is free, then each finalized invoice is paid from prepaid credit, no subscription)
+  - MCP client with OAuth support
+content:
+  - name: Billstride hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://billstride.com/api/mcp"
+      }
