@@ -1,0 +1,16 @@
+interface:
+  display_name: "Find stock photos"
+  short_description: "Free photos for your article, page, slide or post"
+  default_prompt: "Find photos of "
+  icon_small: "./assets/pexafy-icon-48.png"
+  icon_large: "./assets/pexafy-icon-256.png"
+  brand_color: "#7c3aed"
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "pexafy"
+      description: "Pexafy Stock Photos: free stock photo search"
+      transport: "streamable_http"
+      url: "https://mcp.pexafy.com/mcp"
