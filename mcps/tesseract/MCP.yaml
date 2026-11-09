@@ -1,0 +1,15 @@
+id: tesseract
+name: Tesseract
+description: Makes video ads, short clips, multi-scene videos, 250+ photo and video effects, and pictures from your conversation, charged to your own Tesseract plan (free media each month, then paid). Each job takes a max_usd price ceiling.
+author: Eightcell Labs
+url: https://github.com/opentech-dev/tesseract-claude-plugin
+category: productivity
+prerequisites:
+  - Tesseract account (sign in with OAuth in the browser when the client connects)
+content:
+  - name: Tesseract hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.tesseract.dev/api/core/tesseract/mcp"
+      }
