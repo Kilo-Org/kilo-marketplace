@@ -1,0 +1,32 @@
+id: ball-ranks
+name: Ball Ranks Fantasy Sports
+description: Read-only NFL and NBA fantasy rankings and player projections through REST-backed MCP tools.
+author: Ball Ranks
+url: https://github.com/Ollynov/ball-ranks-plugin
+category: data
+content:
+  - name: Anonymous Model Zero
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ballranks.com/api/mcp"
+      }
+    prerequisites:
+      - Anonymous access is limited to 10 requests per day per public IP
+  - name: API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ballranks.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BALL_RANKS_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Ball Ranks API Key
+        key: BALL_RANKS_API_KEY
+        placeholder: brk_your_key
+    prerequisites:
+      - Free Ball Ranks account for higher Model Zero limits
+      - Create an API key at https://ballranks.com/account#developer-access
+      - Active Premium membership for Model One access
