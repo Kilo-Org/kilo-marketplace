@@ -1,0 +1,30 @@
+id: zabbix-initmax
+name: Zabbix MCP Server by initMAX
+description: >-
+  Connect AI assistants to the complete Zabbix API for infrastructure monitoring
+  and management, metric graphs, anomaly detection, capacity forecasts and PDF reports.
+author: initMAX
+url: https://github.com/initMAX/zabbix-mcp-server
+category: observability
+prerequisites:
+  - A self-hosted initMAX Zabbix MCP Server installed using the repository installation guide
+  - A Zabbix instance and API token configured on that MCP server
+  - The HTTPS MCP endpoint URL reachable from Kilo Code
+  - A scoped MCP bearer token; read-only access is recommended for monitoring
+content:
+  - name: Self-hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{MCP_SERVER_URL}}",
+        "headers": {
+          "Authorization": "Bearer {{MCP_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Self-hosted MCP endpoint URL
+    key: MCP_SERVER_URL
+    placeholder: https://your-zabbix-mcp.example.com/mcp
+  - name: MCP bearer token (not the Zabbix API token)
+    key: MCP_TOKEN
+    placeholder: your_scoped_mcp_token
