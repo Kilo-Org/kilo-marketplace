@@ -1,0 +1,31 @@
+id: postmately
+name: Postmately
+description: Make carousels and short videos from a website or topic, then draft, schedule and publish social posts to
+  TikTok, YouTube, Instagram, Facebook, Threads, Pinterest, Telegram, VK, Bluesky and Mastodon, and read post metrics,
+  through Postmately's official hosted MCP endpoint.
+author: Postmately
+url: https://github.com/YakovlevCoded/postmately-smm-autopilot
+category: productivity
+prerequisites:
+  - Postmately account with at least one social channel connected
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.postmately.com/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.postmately.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{POSTMATELY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Postmately API Key
+    key: POSTMATELY_API_KEY
+    placeholder: your_postmately_api_key
+    optional: true
