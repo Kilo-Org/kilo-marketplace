@@ -1,0 +1,21 @@
+id: noonlaunch
+name: Noonlaunch
+description: "Launch a product on Noonlaunch, search its product directory and weekly winners, check plans and submission status, and find 333 startup launch directories filtered by category, cost and domain authority."
+author: Noonlaunch
+url: https://github.com/mukund1158/noonlaunch-mcp
+category: business
+content:
+  - name: Noonlaunch (hosted, no auth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://noonlaunch.com/mcp"
+      }
+  - name: mcp-remote (stdio)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://noonlaunch.com/mcp"]
+      }
