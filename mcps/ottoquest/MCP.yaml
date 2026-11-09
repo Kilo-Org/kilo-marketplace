@@ -1,0 +1,16 @@
+id: ottoquest
+name: OttoQuest
+description: Search US used-car listings with market values, look up VINs and recalls, research prices, and manage your deal alerts.
+author: OttoQuest
+url: https://ottoquest.com/mcp
+category: search
+prerequisites:
+  - Free OttoQuest account
+  - Kilo client with OAuth Client ID Metadata Documents (CIMD) support
+content:
+  - name: Hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ottoquest.com/api/mcp"
+      }
