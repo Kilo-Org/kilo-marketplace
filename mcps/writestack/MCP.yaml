@@ -1,0 +1,30 @@
+id: writestack
+name: WriteStack
+description: Official hosted MCP server for WriteStack. Draft and schedule Substack Notes, manage articles, and read statistics in a writer's WriteStack account.
+author: WriteStack
+url: https://github.com/WriteStack/mcp
+category: productivity
+prerequisites:
+  - WriteStack account (https://www.writestack.io)
+content:
+  - name: OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.writestack.io/api/mcp/mcp"
+      }
+  - name: API key
+    prerequisites:
+      - WriteStack API key from Settings → MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.writestack.io/api/mcp/mcp",
+        "headers": {
+          "Authorization": "Bearer {{WRITESTACK_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: WriteStack API Key
+        key: WRITESTACK_API_KEY
+        placeholder: ws_your_api_key
