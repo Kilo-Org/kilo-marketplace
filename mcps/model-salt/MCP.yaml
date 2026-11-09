@@ -1,0 +1,18 @@
+id: model-salt
+name: Model Salt
+description: One tool, model_salt. Before a creative task the model calls it and gets back a few choices to settle
+  this time (a palette, a pose, a name, an opening line), drawn from randomness outside the model (random.org
+  atmospheric noise, a quantum random number generator and the drand beacon), so one prompt gives different answers
+  that still do what was asked.
+author: modelsalt
+url: https://github.com/modelsalt/model-salt
+category: development
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@modelsalt/model-salt"]
+      }
