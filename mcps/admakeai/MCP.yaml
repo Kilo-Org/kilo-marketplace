@@ -1,0 +1,16 @@
+id: admakeai
+name: AdMakeAI
+description: Generates Meta and TikTok ad images and UGC-style video ads, pulls competitors' live ads from the Meta Ad Library, and drafts and reports on Meta campaigns through AdMakeAI's hosted OAuth server. Generation spends account credits.
+author: AdMakeAI
+url: https://github.com/mesmerlord/admakeai-mcp
+category: business
+prerequisites:
+  - "AdMakeAI account, created during sign-in at https://admakeai.com/register (30 free credits, no card)"
+  - MCP client with OAuth support
+content:
+  - name: AdMakeAI hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://admakeai.com/api/mcp"
+      }
