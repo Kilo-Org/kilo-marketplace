@@ -1,0 +1,36 @@
+id: dreamtune
+name: Dreamtune
+description: Run model requests, tool APIs and GPU jobs, and inspect request logs through a Dreamtune workspace.
+author: Dreamtune Labs
+url: https://docs.dreamtunelabs.com/connect/mcp
+category: development
+prerequisites:
+  - A Dreamtune account and workspace API key with the required permissions
+  - Prepaid workspace credit for paid model, tool and compute operations
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 22.20 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "--package=@dreamtune/sdk@0.1.1", "dreamtune", "mcp"],
+        "env": {
+          "DREAMTUNE_API_KEY": "{{DREAMTUNE_API_KEY}}",
+          "DREAMTUNE_API_ORIGIN": "https://api.dreamtunelabs.com",
+          "DREAMTUNE_REQUEST_TIMEOUT_MS": "120000"
+        }
+      }
+  - name: Hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.dreamtunelabs.com/mcp",
+        "headers": {
+          "X-Dreamtune-API-Key": "{{DREAMTUNE_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Dreamtune workspace API key
+    key: DREAMTUNE_API_KEY
+    placeholder: your_dreamtune_workspace_api_key
