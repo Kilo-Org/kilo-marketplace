@@ -1,0 +1,25 @@
+id: webprompter
+name: Webprompter.ai MCP
+description: Deploys static sites built by coding agents through staging to production on S3 and CloudFront, keeps five previous deployment versions per environment for instant rollback, and connects custom domains with ACM DNS validation, using an API key from a free webprompter.ai account.
+author: webprompter.ai
+url: https://webprompter.ai
+category: development
+prerequisites:
+  - Free webprompter.ai account (signup at https://webprompter.ai/console#signup)
+  - API key created in the console API keys panel (wpk_live_...)
+content:
+  - name: Webprompter Remote
+    prerequisites:
+      - webprompter.ai account with an API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.webprompter.ai/mcp",
+        "headers": {
+          "X-Api-Key": "{{WEBPROMPTER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Webprompter API Key
+    key: WEBPROMPTER_API_KEY
+    placeholder: wpk_live_xxxxxxxxxxxx
