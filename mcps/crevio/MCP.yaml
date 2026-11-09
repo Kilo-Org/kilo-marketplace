@@ -1,0 +1,30 @@
+id: crevio
+name: Crevio
+description: Delegate work to an AI agent that runs your small business (products, orders, customers, email, sites), or
+  run scripts against the Crevio API and 3,000+ connected apps.
+author: Crevio
+url: https://crevio.co/docs/developer/mcp
+category: business
+prerequisites:
+  - Crevio account (free at https://crevio.co, no card)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.crevio.co/mcp"
+      }
+  - name: Remote API Token (Business plan)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.crevio.co/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CREVIO_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Crevio API Token
+    key: CREVIO_API_TOKEN
+    placeholder: your_crevio_api_token
+    optional: true
