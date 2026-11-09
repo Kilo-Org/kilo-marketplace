@@ -1,0 +1,24 @@
+id: local-commander
+name: Local Commander
+description: Use Kilo Code to read and edit files, inspect Git repositories, run approved commands and checks, and inspect local services on paired computers. Connections are relayed through Local Commander's hosted third-party MCP server at https://localcmd.app/mcp with OAuth 2.0 browser sign-in. Work is limited to user-authorized projects, commands and checks. If you enable full access, it can act with your local user account's permissions.
+author: Peter Mamrukov
+url: https://github.com/netbka/local-commander-plugins
+category: development
+prerequisites:
+  - A Local Commander account at https://localcmd.app
+  - A computer (Windows 11 x64, macOS 14+ on Apple Silicon, or Linux with a systemd user session) with the Local Commander agent paired (npx local-commander-agent@latest)
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://localcmd.app/mcp"
+      }
+  - name: NPX bridge (mcp-remote)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-remote@0.15.1", "https://localcmd.app/mcp"]
+      }
