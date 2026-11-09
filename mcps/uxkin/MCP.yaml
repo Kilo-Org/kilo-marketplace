@@ -1,0 +1,31 @@
+id: uxkin
+name: UXKIN
+description: Real UI references for coding agents. Search real iOS app screens and complete user journeys, and website design systems with colors, typography, components and a DESIGN.md, before designing or reviewing a screen. Read-only tools.
+author: UXKIN
+url: https://github.com/uxkin/agent
+category: development
+prerequisites:
+  - A UXKIN account with a Monthly or Lifetime plan
+  - MCP client with OAuth support (or a UXKIN agent token)
+content:
+  - name: Sign in with UXKIN (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://uxkin.com/mcp"
+      }
+  - name: Agent token
+    prerequisites:
+      - A UXKIN agent token from the setup prompt on uxkin.com
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://uxkin.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{UXKIN_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: UXKIN agent token
+        key: UXKIN_TOKEN
+        placeholder: uxkin_your_token
