@@ -1,0 +1,15 @@
+id: flightseatmap
+name: Flight Seatmap
+description: Seat maps, seat ratings, traveller reviews and seat alerts for 100+ airlines.
+author: FlightSeatmap
+url: https://github.com/FlightSeatmap/mcp
+category: search
+prerequisites:
+  - A free FlightSeatmap account for the six seat map tools; flight search and seat alerts need a paid plan
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.flightseatmap.com/mcp"
+      }
