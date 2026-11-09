@@ -1,0 +1,29 @@
+id: guaardvark
+name: Guaardvark
+description: >-
+  Drive a self-hosted Guaardvark AI studio from Kilo on a Linux machine with an NVIDIA card: image renders,
+  instruction edits, outpainting and background cut-outs; text-to-video, image-to-video and clips between a first
+  and a last frame; songs of up to four minutes from ACE-Step and narration with Kokoro or Chatterbox; a five-role
+  Film Crew that turns a screenplay into a short film, and a Director that plans a music video cut to a song; and
+  search over your own indexed documents that returns each passage with its file. Casting, storyboards and renders
+  wait for your approval in the Studio before the GPU starts. Desktop, shell and browser tools stay hidden until
+  you allowlist them.
+author: Guaardvark
+url: https://github.com/guaardvark/guaardvark
+category: productivity
+prerequisites:
+  - Guaardvark installed and running on this machine (Linux with an NVIDIA GPU; https://github.com/guaardvark/guaardvark#quick-start)
+  - uv, for uvx
+content: |
+  {
+    "command": "uvx",
+    "args": ["guaardvark==3.5.0", "mcp", "serve"],
+    "env": {
+      "GUAARDVARK_ROOT": "{{GUAARDVARK_ROOT}}"
+    }
+  }
+parameters:
+  - name: Guaardvark install folder
+    key: GUAARDVARK_ROOT
+    placeholder: /home/you/guaardvark
+    optional: true
