@@ -17,3 +17,19 @@ content:
       }
     prerequisites:
       - Termalin account (Pro plan or 14-day trial) with at least one enrolled server; sign in with OAuth on first use
+  - name: Remote Server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://termal.in/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TERMALIN_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Termalin API Key
+        key: TERMALIN_API_KEY
+        placeholder: tk_live_...
+    prerequisites:
+      - Termalin account (Pro plan or 14-day trial) with at least one enrolled server
+      - An API key created in the account page (API keys & MCP), for clients without OAuth support
