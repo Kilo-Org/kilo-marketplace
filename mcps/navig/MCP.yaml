@@ -1,0 +1,26 @@
+id: navig
+name: NAVIG
+description: Local operator for your own machine - recall across sessions and files, an encrypted vault,
+  SSH to your hosts, and gated shell access. It runs where you point it and hosts nothing.
+author: navig-run
+url: https://github.com/navig-run/core
+category: development
+prerequisites:
+  - Python 3.10+ with uv (or the navig CLI from PyPI)
+content:
+  - name: UVX (no install)
+    prerequisites:
+      - Python 3.10+ with uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "navig==3.27.2", "navig", "mcp", "serve", "--transport", "stdio"]
+      }
+  - name: Installed CLI (pipx or uv tool)
+    prerequisites:
+      - pipx, or uv
+    content: |
+      {
+        "command": "navig",
+        "args": ["mcp", "serve", "--transport", "stdio"]
+      }
