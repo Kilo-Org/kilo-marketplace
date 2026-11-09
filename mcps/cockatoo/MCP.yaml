@@ -1,0 +1,17 @@
+id: cockatoo
+name: Cockatoo
+description: Create, edit and publish hosted business websites with owner-approved access, including templates, images, private previews and publication status.
+author: Cockatoo
+url: https://github.com/louisblythe/cockatoo-mcp
+category: business
+prerequisites:
+  - A Cockatoo account for managing existing websites
+  - An MCP client supporting OAuth with PKCE and dynamic client registration
+  - Owner approval for site read, write or publish permissions
+content:
+  - name: Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.cockatoo.com.au/mcp"
+      }
