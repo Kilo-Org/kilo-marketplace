@@ -1,0 +1,33 @@
+id: watchgoose
+name: Watchgoose
+description: Monitor cron jobs and recurring work through a project-scoped Watchgoose connection. Read-only access is the default; changes require explicit consent.
+author: Watchgoose
+url: https://github.com/bartekrutkowski/watchgoose-mcp
+category: observability
+prerequisites:
+  - "Watchgoose account with access to at least one project (free plan available at https://watchgoose.com)"
+content:
+  - name: Watchgoose hosted OAuth server
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.watchgoose.com/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+      - Project-scoped Watchgoose API key (hcr_ read-only or hcw_ read-write)
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "watchgoose-mcp"],
+        "env": {
+          "WATCHGOOSE_API_KEY": "{{WATCHGOOSE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Watchgoose API Key
+        key: WATCHGOOSE_API_KEY
+        placeholder: hcr_your_project_api_key
