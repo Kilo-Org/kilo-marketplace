@@ -1,0 +1,16 @@
+id: studiomeyer-memory
+name: StudioMeyer Memory
+description: Persistent AI memory with a knowledge graph, semantic search, session continuity, and multi-agent workflows.
+author: StudioMeyer
+url: https://github.com/studiomeyer-io/studiomeyer-memory
+category: data
+prerequisites:
+  - StudioMeyer Memory account (free tier available)
+  - MCP client with OAuth 2.1 support
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://memory.studiomeyer.io/mcp"
+      }
