@@ -1,0 +1,15 @@
+id: leal
+name: Leal
+description: Design and launch Apple Wallet and Google Wallet loyalty stamp cards for shops, cafés and salons. Reads a business's name, colours and logo from its website, previews card designs as real wallet passes, then saves the card, rewards, a QR signup poster and the store location. Hosted server with OAuth sign-in; design previews work without an account.
+author: Leal
+url: https://www.getleal.com/mcp
+category: business
+prerequisites:
+  - A Leal account (free plan available) to save cards; previews work without one
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.getleal.com/mcp"
+      }
