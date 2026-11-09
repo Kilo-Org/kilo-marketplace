@@ -1,0 +1,36 @@
+id: accountsos
+name: AccountsOS
+description: >-
+  AI accounting MCP server: query your live AccountsOS books (balances, transactions, VAT, deadlines,
+  invoices, documents) from any MCP client.
+author: Thrive Venture Labs
+url: https://github.com/thriveventurelabs/accountsos-mcp-server
+category: business
+prerequisites:
+  - AccountsOS account (https://accounts-os.com)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+      - AccountsOS API key from https://accounts-os.com/settings
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@thriveventurelabs/accountsos-mcp"],
+        "env": {
+          "ACCOUNTSOS_API_KEY": "{{ACCOUNTSOS_API_KEY}}"
+        }
+      }
+  - name: Hosted OAuth server (read-only)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://accounts-os.com/api/mcp/plugin"
+      }
+parameters:
+  - name: AccountsOS API Key
+    key: ACCOUNTSOS_API_KEY
+    placeholder: your_accountsos_api_key
+    optional: true
