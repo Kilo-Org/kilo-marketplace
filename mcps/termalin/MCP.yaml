@@ -1,0 +1,35 @@
+id: termalin
+name: Termalin
+description: SSH, SFTP, databases and monitoring for your own Linux servers. Run commands and background jobs, read and write files, query databases, read metrics, alerts and pending security updates on the servers you connected, without handing the agent an SSH key. Hosted remote server with OAuth 2.1 sign-in, per-server command policy (full / allowlist / read-only) and an audit log. 23 tools.
+author: termalinapp
+url: https://github.com/termalinapp/termalin-plugin
+category: development
+prerequisites:
+  - Termalin account (https://termal.in/account) on the Pro plan or the 14-day Pro trial (the Free plan covers one enrolled server but not the hosted MCP server)
+  - At least one Linux server enrolled through a Termalin Connector (one-line install, outbound only)
+  - An MCP client that supports OAuth 2.1 sign-in for remote servers (Kilo Code and Kilo CLI do); clients without OAuth can use a Termalin API key as a Bearer token
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://termal.in/mcp"
+      }
+    prerequisites:
+      - Termalin account (Pro plan or 14-day trial) with at least one enrolled server; sign in with OAuth on first use
+  - name: Remote Server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://termal.in/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TERMALIN_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Termalin API Key
+        key: TERMALIN_API_KEY
+        placeholder: tk_live_...
+    prerequisites:
+      - Termalin account (Pro plan or 14-day trial) with at least one enrolled server
+      - An API key created in the account page (API keys & MCP), for clients without OAuth support
