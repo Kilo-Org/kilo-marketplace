@@ -1,0 +1,26 @@
+id: compartment
+name: Compartment
+description: Encrypted, fully offline long-term memory for AI agents. One vault on the machine is shared by every MCP client, so what an agent learns in one tool is available in the next. Records and vectors are encrypted at rest, embeddings run locally, search is hybrid vector plus keyword, and memories carry importance tiers, expiry dates and supersession. No API key, no account, no network.
+author: MaxFreedomPollard
+url: https://github.com/MaxFreedomPollard/Compartment
+category: data
+prerequisites:
+  - Python 3.11 or newer
+  - Run `compartment init` once to create the encrypted vault and choose its passphrase
+content:
+  - name: pip
+    prerequisites:
+      - Python 3.11 or newer with `pip install compartment && compartment init`
+    content: |
+      {
+        "command": "compartment",
+        "args": ["--caller", "kilo-code", "serve"]
+      }
+  - name: uvx
+    prerequisites:
+      - Python and uv; run `uvx compartment init` once to create the vault
+    content: |
+      {
+        "command": "uvx",
+        "args": ["compartment", "--caller", "kilo-code", "serve"]
+      }
