@@ -1,0 +1,12 @@
+id: terraphim-skills
+name: Terraphim Skills
+description: >-
+  Discover Terraphim skills through the existing public catalog. Search queries
+  are sent to the Terraphim Skills service; this server does not install CLI tools.
+author: terraphim
+url: https://terraphim-skills.md
+category: productivity
+content:
+  - name: Browse public catalog
+    content: |
+      {"type":"streamable-http","url":"https://mcp.terraphim-skills.md/mcp"}
