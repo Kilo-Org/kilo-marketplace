@@ -51,6 +51,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
+  - id: product-design-harness
+    description: >-
+      Use when a product direction, feature, workflow, experiment, launch, feedback signal, automation, or scale
+      decision needs judgment before execution or the next iteration.
+    category: business
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/product-design-harness
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/product-design-harness/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/product-design-harness.tar.gz
   - id: canvas-design
     description: >-
       Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the
