@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish your work"
+  short_description: "Publish your work and get a live link."
+  default_prompt: "Use $spacefast to publish this artifact and check its live link."
