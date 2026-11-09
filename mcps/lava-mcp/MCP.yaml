@@ -1,0 +1,22 @@
+id: lava-mcp
+name: 熔岩 Lava · 消息面热度
+description: >-
+  Read-only A-share stock and concept-board news-flow heat via remote
+  Streamable HTTP MCP and REST, for quant tools and AI Agent market research.
+author: dustinliang666-blip
+url: https://github.com/dustinliang666-blip/lava-mcp
+category: business
+prerequisites:
+  - Docs https://lava.ai-dolphin.com/subscribe/docs
+  - Landing https://lava.ai-dolphin.com/subscribe
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://lava.ai-dolphin.com/subscribe/v1/mcp"
+      }
+
+
+
+
