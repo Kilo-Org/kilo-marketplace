@@ -10,11 +10,11 @@ prerequisites:
 content:
   - name: UVX
     prerequisites:
-      - Python and uv
+      - Python, uv, and git
     content: |
       {
         "command": "uvx",
-        "args": ["--from", "git+https://github.com/mailveri/mailveri-mcp", "mailveri-mcp"],
+        "args": ["--from", "git+https://github.com/mailveri/mailveri-mcp.git@01f1bbd0aa1a454b65d6900937dd42d2876a05d9", "mailveri-mcp"],
         "env": {
           "MAILVERI_API_KEY": "{{MAILVERI_API_KEY}}"
         }
