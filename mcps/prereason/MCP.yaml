@@ -1,0 +1,29 @@
+id: prereason
+name: PreReason
+description: "A financial data MCP server and REST API for AI agents: briefings reasoned in advance, from the economy to listed companies' results. Start at www.prereason.com/agents.md"
+author: PreReason
+url: https://github.com/PreReason/mcp
+category: business
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@prereason/mcp"]
+      }
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.prereason.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{PREREASON_API_KEY}}"
+        }
+      }
+parameters:
+  - name: API Key
+    key: PREREASON_API_KEY
+    placeholder: your_api_key_here
+    optional: true
