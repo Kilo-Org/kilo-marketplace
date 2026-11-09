@@ -3,7 +3,18 @@ import * as path from "path";
 import * as os from "os";
 import * as fs from "fs";
 
-const DEFAULT_PORT = parseInt(process.env.AGY_PROXY_PORT || "52188", 10);
+function resolvePort() {
+  const envVal = process.env.AGY_PROXY_PORT;
+  if (envVal) {
+    const parsed = parseInt(envVal, 10);
+    if (Number.isInteger(parsed) && parsed > 0 && parsed <= 65535) {
+      return parsed;
+    }
+  }
+  return 52188;
+}
+
+const DEFAULT_PORT = resolvePort();
 
 async function checkHealth(port, timeoutMs = 800) {
   try {
@@ -16,13 +27,17 @@ async function checkHealth(port, timeoutMs = 800) {
 
 export const AntigravityPlugin = async (_ctx) => {
   // Ensure the local bridge service is active
-  const isHealthy = await checkHealth(DEFAULT_PORT, 1000);
+  let isHealthy = await checkHealth(DEFAULT_PORT, 1000);
   if (!isHealthy) {
     // If not running, start it via agy-proxy script if executable
     try {
       const proxyScript = path.join(os.homedir(), ".local", "bin", "agy-proxy");
       if (fs.existsSync(proxyScript)) {
-        const child = spawn(proxyScript, ["start"], { detached: true, stdio: "ignore" });
+        const child = spawn(proxyScript, ["start"], {
+          detached: true,
+          stdio: "ignore",
+          env: { ...process.env, AGY_PROXY_PORT: String(DEFAULT_PORT) }
+        });
         child.on("error", (err) => {
           console.warn("[kilo-plugin-antigravity] agy-proxy spawn error:", err);
         });
@@ -32,9 +47,15 @@ export const AntigravityPlugin = async (_ctx) => {
         for (let attempt = 0; attempt < 5; attempt++) {
           await new Promise((r) => setTimeout(r, 300));
           if (await checkHealth(DEFAULT_PORT, 500)) {
+            isHealthy = true;
             break;
           }
         }
+        if (!isHealthy) {
+          console.warn(`[kilo-plugin-antigravity] agy-proxy started but did not respond on port ${DEFAULT_PORT} within timeout.`);
+        }
+      } else {
+        console.warn(`[kilo-plugin-antigravity] agy-proxy script not found at ${proxyScript}. Please ensure the bridge is installed and running.`);
       }
     } catch (e) {
       console.warn("[kilo-plugin-antigravity] Failed to auto-start proxy:", e);

@@ -17,6 +17,23 @@ Provides OpenAI-compatible endpoints with full token usage telemetry, cost model
 - **Thinking Effort**: Models `gemini-4-argon`, `gemini-3.8-flash`, `claude-sonnet-5-5`, and `claude-opus-5-5` support `low`, `medium`, and `high` reasoning variants via `Shift + Tab` in VS Code or `--variant` in CLI.
 - **Auto-Refresh OAuth**: Interfaces with Antigravity's macOS Keychain credentials with automatic token refresh (via `agy-proxy`).
 
+## Prerequisites: Local `agy-proxy` Bridge
+
+This plugin acts as a bridge client connecting Kilo Code to your local Google Antigravity session via an HTTP proxy service (`agy-proxy` running on `http://127.0.0.1:52188`, configurable via `AGY_PROXY_PORT`).
+
+1. **System Requirements**:
+   - macOS with Google Antigravity Desktop or Antigravity CLI installed and logged in (stores OAuth credentials in macOS Keychain under service `gemini`, account `antigravity`).
+   - Python 3.9+ runtime.
+2. **Bridge Executable**:
+   - The plugin expects the executable launcher at `~/.local/bin/agy-proxy` (ensure `chmod +x ~/.local/bin/agy-proxy`).
+   - When Kilo starts, the plugin automatically checks `http://127.0.0.1:52188/health` and attempts to invoke `~/.local/bin/agy-proxy start` if inactive.
+   - You can also start, monitor, or stop the bridge manually:
+     ```bash
+     ~/.local/bin/agy-proxy start
+     ~/.local/bin/agy-proxy status
+     ~/.local/bin/agy-proxy stop
+     ```
+
 ## Installation
 
 Add to your `~/.config/kilo/kilo.json` or project `./kilo.json`:
