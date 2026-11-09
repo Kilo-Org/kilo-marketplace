@@ -1,0 +1,32 @@
+id: weft
+name: Weft
+description: One board for every AI you use. Kilo claims a task with a lease so no other agent duplicates it, reports
+  progress, asks the user only what only they can decide, and finishes with a receipt (artifacts to check and what was
+  not done) that the user accepts or sends back. Projects, sprints and a 30-day trash; 32 tools on a hosted server.
+author: Weft
+url: https://letsweft.com/integrations
+category: productivity
+prerequisites:
+  - Weft account (free plan available at https://letsweft.com/sign-up)
+content:
+  - name: Hosted remote server (OAuth sign-in)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://letsweft.com/api/mcp"
+      }
+  - name: Hosted remote server (access token)
+    prerequisites:
+      - Personal access token from Weft Settings → Access tokens
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://letsweft.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{WEFT_ACCESS_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Weft access token
+        key: WEFT_ACCESS_TOKEN
+        placeholder: wft_your_access_token
