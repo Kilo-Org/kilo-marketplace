@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "entryId": "terraphim-editor",
+  "source": {
+    "repository": "https://github.com/terraphim/terraphim-cursor-plugin",
+    "commit": "11311294ce0d1afb3f1abf491028ffadea3861cd",
+    "release": "v0.2.5",
+    "releaseStatus": "released",
+    "version": "1.0.0",
+    "manifestSha256": "8f97c21971398e496885bc00cfe93276959f60b14d1cc684d0f8986773d89c28",
+    "publisherKey": "261c6820525270bfe2a5daaa5bf3f581bd9bc193e1a0148010e870a3a63ad959",
+    "files": {
+      "SKILL.md": {
+        "sha256": "58ad8d0369c0f0fefb1dad33fa3441ee8540b47ace14eea3f43e14a66de6e9ea",
+        "blake3": "3ff643bbdac98d8f89c69194ac8ea51e640fbb8d39d5a227f93257dfc4b0af88"
+      },
+      "references/command-guide.md": {
+        "sha256": "7092a7849c5143543cd98fc563e0d566be731c13ab5eeadd5bb6d2d9816e9590",
+        "blake3": "94655506c5e2abbdcd9b2c58e2fbe3598d0842438dbad133af0c6ee3e2b055d2"
+      },
+      "references/risk-concern.knowledge-graph.json": {
+        "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+        "blake3": "83f089bacf0236cd3127a2d27272ef4fa39f72b56a83a4134e2c6909a666f153"
+      },
+      "references/workflows.md": {
+        "sha256": "77d840f59c99c502413161985be10eedb09162a6e3dd337caa2a24aceccc0fad",
+        "blake3": "2b4a2146de020ccc210478c26c91be8a83d483aa9c182acd72cf7dd813648a39"
+      }
+    }
+  },
+  "importer": {
+    "repository": "https://github.com/AlexMikhalev/kilo-marketplace",
+    "commit": "e042daafcab97ffa487ce8c7d6e090fc64457e4f",
+    "upstreamBase": "ff51758b06b8249007116184096765d47bdb7505",
+    "pullRequest": "https://github.com/Kilo-Org/kilo-marketplace/pull/395"
+  },
+  "transforms": [
+    "upstream frontmatter/source/category serialization",
+    "upstream text whitespace normalization",
+    "root LICENSE via metadata.source.license_path",
+    "root skill.toml removed via local.remove",
+    "NOTICE, provenance and explanation added via local.patch"
+  ],
+  "signatureScope": "The original signature verifies the immutable source skill, not this transformed Kilo copy."
+}
