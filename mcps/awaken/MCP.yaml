@@ -1,0 +1,27 @@
+id: awaken
+name: Awaken Tax
+description: Review and fix crypto transactions, cost basis, gains, income and 1099-DA reconciliations in your Awaken Tax
+  account, and generate tax reports and CSV exports, through Awaken's hosted MCP server.
+author: Awaken
+url: https://awaken.tax/docs/agents
+category: business
+prerequisites:
+  - Awaken account on a Dolphin or Whale plan (required for API keys)
+  - Awaken API key and portfolio ID from Settings -> API Keys
+content:
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.awaken.tax/mcp",
+        "headers": {
+          "Authorization": "Bearer {{AWAKEN_PORTFOLIO_ID}}:{{AWAKEN_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Awaken Portfolio ID
+    key: AWAKEN_PORTFOLIO_ID
+    placeholder: your_awaken_portfolio_id
+  - name: Awaken API Key
+    key: AWAKEN_API_KEY
+    placeholder: your_awaken_api_key
