@@ -1,0 +1,13 @@
+id: just-domain
+name: Just Domain.
+description: Check a domain name, both prices and whether it can transfer in. You register it on justdomain.ai.
+author: Just Done, LLC
+url: https://github.com/just-done/just-domain-mcp
+category: search
+content:
+  - name: Just Domain hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.justdomain.ai/"
+      }
