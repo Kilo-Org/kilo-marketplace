@@ -1,0 +1,29 @@
+id: didlogic
+name: didlogic
+description: Manage phone numbers, SIP accounts, call routing, SMS, call history and billing through the official didlogic MCP server.
+author: didlogic
+url: https://github.com/didlogic-cy/didlogic-mcp
+category: business
+prerequisites:
+  - didlogic account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.didlogic.com/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.didlogic.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{DIDLOGIC_API_KEY}}"
+        }
+      }
+parameters:
+  - name: didlogic API Key
+    key: DIDLOGIC_API_KEY
+    placeholder: your_didlogic_api_key
+    optional: true
