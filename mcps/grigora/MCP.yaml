@@ -1,0 +1,19 @@
+id: grigora
+name: Grigora
+description: >-
+  Build and manage Grigora websites, CMS posts, directory collections, ecommerce
+  catalogs, assets, SEO, and publishing from an AI assistant. Connect to the
+  hosted server using Streamable HTTP and sign in with OAuth.
+author: Grigora
+url: https://www.grigora.co/mcp/
+category: development
+prerequisites:
+  - A Grigora account with access to the sites and features you want to manage
+  - Complete the OAuth sign-in flow when prompted by the MCP client
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.grigora.co/mcp"
+      }
