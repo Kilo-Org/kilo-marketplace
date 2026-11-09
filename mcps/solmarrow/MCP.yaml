@@ -1,0 +1,17 @@
+id: solmarrow
+name: SolMarrow
+description: Draft, schedule and check social media posts on 19 networks (X, LinkedIn, Instagram, Threads, Bluesky, TikTok and more). Remote server with OAuth sign-in; free plan. Posts are saved as drafts or scheduled at least 5 minutes ahead.
+author: SolMarrow (Samero LLC)
+url: https://github.com/Shakil197/solmarrow-mcp
+category: productivity
+prerequisites:
+  - A free SolMarrow account (https://solmarrow.com)
+  - At least one connected social account
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.solmarrow.com/mcp"
+      }
+parameters: []
