@@ -1,0 +1,23 @@
+id: mysocial
+name: Mysocial
+description: >-
+  Connects AI assistants to a creator's social content, available channel metrics,
+  saved ideas and brand context. Search past work, compare performance and save
+  evidence-backed ideas or drafts. Free workspace and standard MCP connection;
+  paid Content Memory archive analysis starts at USD 49/month. Coverage varies by
+  connected platform, permissions and plan.
+author: Mysocial
+url: https://github.com/mysocialio/mysocial-intelligence
+category: productivity
+prerequisites:
+  - Mysocial account (a continuing Free plan is available)
+  - An MCP client supporting OAuth 2.1, PKCE S256 and dynamic client registration
+  - Connect supported social channels in Mysocial to access their content and analytics
+  - Setup and current plan limits at https://mysocial.io/mcp/ and https://mysocial.io/pricing/
+content:
+  - name: Mysocial Hosted Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.mysocial.io/mcp"
+      }
