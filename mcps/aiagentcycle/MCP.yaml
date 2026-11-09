@@ -1,0 +1,15 @@
+id: aiagentcycle
+name: AIAgentCycle
+description: Search and read sourced Dutch and English information about AIAgentCycle's workflow automation, n8n integrations, AI agents, services, prices, cases, and contact details through read-only tools.
+author: AIAgentCycle
+url: https://github.com/aiagentcycle/aiagentcycle-mcp
+category: productivity
+prerequisites:
+  - Internet access to the public AIAgentCycle MCP endpoint
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.aiagentcycle.com/mcp"
+      }
