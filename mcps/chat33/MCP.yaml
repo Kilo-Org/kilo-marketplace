@@ -1,0 +1,28 @@
+id: chat33
+name: Chat33
+description: Publishes and schedules posts to Instagram, Facebook, Threads, TikTok, YouTube, X, LinkedIn and Bluesky, answers Instagram and Facebook DMs and comments, and builds comment-to-DM automations through a hosted MCP server.
+author: Chat33
+url: https://github.com/chat33-io/chat33-mcp
+category: business
+prerequisites:
+  - Chat33 account with at least one connected social account (https://chat33.io/channels)
+content:
+  - name: Hosted server (OAuth sign-in)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://chat33.io/api/mcp/mcp"
+      }
+  - name: Hosted server (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://chat33.io/api/mcp/mcp",
+        "headers": {
+          "x-api-key": "{{CHAT33_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Chat33 API key (Settings, API Keys)
+        key: CHAT33_API_KEY
+        placeholder: sk_live_your_chat33_api_key
