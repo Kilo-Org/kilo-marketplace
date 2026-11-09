@@ -1,0 +1,30 @@
+id: biver
+name: Biver
+description: Build, edit, and publish Biver landing pages, products, orders, and leads. Sign in with your Biver account in the browser, or use an API key.
+author: Biver
+url: https://github.com/biver-colony/biver-mcp
+category: productivity
+prerequisites:
+  - Biver account
+content:
+  - name: Sign in with Biver (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.biver.id/mcp"
+      }
+  - name: API key
+    prerequisites:
+      - Biver API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.biver.id/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BIVER_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Biver API key
+        key: BIVER_API_KEY
+        placeholder: bvr_live_xxx
