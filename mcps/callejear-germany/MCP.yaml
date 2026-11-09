@@ -1,0 +1,13 @@
+id: callejear-germany
+name: Callejear Germany
+description: Search municipalities and streets, retrieve historical context and compare records across a German street catalogue. Read-only, no authentication; historical data is not a current official register.
+author: Callejear
+url: https://github.com/Habanacasta88/callejear-de-mcp
+category: search
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://callejear.de/api/mcp"
+      }
