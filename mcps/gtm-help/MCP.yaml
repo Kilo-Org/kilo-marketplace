@@ -1,0 +1,15 @@
+id: gtm-help
+name: gtm.help
+description: Read and act on a ranked go-to-market plan of growth plays from gtm.help, update and complete plays, save drafts, and draft replies to Reddit, LinkedIn and X conversations.
+author: MRGN Ventures Ltd
+url: https://github.com/consultilycom-lang/gtm-help-mcp
+category: productivity
+prerequisites:
+  - gtm.help account (sign in with OAuth when prompted)
+content:
+  - name: gtm.help hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://gtm.help/mcp"
+      }
