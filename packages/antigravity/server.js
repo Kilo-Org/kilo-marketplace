@@ -1,24 +1,41 @@
 import { spawn } from "child_process";
 import * as path from "path";
 import * as os from "os";
+import * as fs from "fs";
 
-const DEFAULT_PORT = 52188;
+const DEFAULT_PORT = parseInt(process.env.AGY_PROXY_PORT || "52188", 10);
+
+async function checkHealth(port, timeoutMs = 800) {
+  try {
+    const res = await fetch(`http://127.0.0.1:${port}/health`, { signal: AbortSignal.timeout(timeoutMs) });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
 
 export const AntigravityPlugin = async (_ctx) => {
   // Ensure the local bridge service is active
-  try {
-    const res = await fetch(`http://127.0.0.1:${DEFAULT_PORT}/health`, { signal: AbortSignal.timeout(1000) });
-    if (!res.ok) {
-      throw new Error(`Health check returned status ${res.status}`);
-    }
-  } catch {
-    // If not running, start it via agy-proxy script or launchctl
+  const isHealthy = await checkHealth(DEFAULT_PORT, 1000);
+  if (!isHealthy) {
+    // If not running, start it via agy-proxy script if executable
     try {
       const proxyScript = path.join(os.homedir(), ".local", "bin", "agy-proxy");
-      const child = spawn(proxyScript, ["start"], { detached: true, stdio: "ignore" });
-      child.unref();
-      // Wait a moment for startup
-      await new Promise((r) => setTimeout(r, 1200));
+      if (fs.existsSync(proxyScript)) {
+        const child = spawn(proxyScript, ["start"], { detached: true, stdio: "ignore" });
+        child.on("error", (err) => {
+          console.warn("[kilo-plugin-antigravity] agy-proxy spawn error:", err);
+        });
+        child.unref();
+
+        // Poll for proxy startup with timeout (up to 5 attempts, interval 300ms)
+        for (let attempt = 0; attempt < 5; attempt++) {
+          await new Promise((r) => setTimeout(r, 300));
+          if (await checkHealth(DEFAULT_PORT, 500)) {
+            break;
+          }
+        }
+      }
     } catch (e) {
       console.warn("[kilo-plugin-antigravity] Failed to auto-start proxy:", e);
     }
@@ -88,7 +105,8 @@ export const AntigravityPlugin = async (_ctx) => {
             cost: {
               input: 3.0,
               output: 15.0,
-              cache_read: 0.30
+              cache_read: 0.30,
+              cache_write: 3.75
             },
             variants: {
               low: {},
@@ -111,7 +129,8 @@ export const AntigravityPlugin = async (_ctx) => {
             cost: {
               input: 15.0,
               output: 75.0,
-              cache_read: 1.50
+              cache_read: 1.50,
+              cache_write: 18.75
             },
             variants: {
               low: {},
@@ -154,7 +173,7 @@ export const AntigravityPlugin = async (_ctx) => {
               output: 1.50
             },
             modalities: {
-              input: ["text", "image"],
+              input: ["text"],
               output: ["text"]
             },
             limit: {
