@@ -1,0 +1,19 @@
+id: spritefuse
+name: SpriteFuse
+description: >-
+  Create 2D game characters and animations, revise sprites, inspect owned jobs and
+  assets, adjust frame timing, and export game assets through a hosted OAuth MCP
+  server. Generation uses SpriteFuse account Credits with per-request maximum budgets.
+author: tanchaowen84
+url: https://github.com/tanchaowen84/spritefuse-mcp
+category: development
+prerequisites:
+  - A SpriteFuse account and a client that supports remote MCP with OAuth
+  - Account Credits for generation; trial credits are for personal noncommercial evaluation
+content:
+  - name: Remote Streamable HTTP with OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://spritefuse.com/api/mcp"
+      }
