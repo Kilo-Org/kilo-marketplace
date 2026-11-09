@@ -1,0 +1,15 @@
+id: flare
+name: Flare
+description: Inspects and resolves Laravel and PHP errors, searches logs, and finds slow routes, queries and jobs through Flare's official hosted OAuth server.
+author: Spatie
+url: https://flareapp.io/docs/flare/general/our-mcp-server
+category: observability
+prerequisites:
+  - Flare account
+content:
+  - name: Official hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://flareapp.io/mcp"
+      }
