@@ -1,0 +1,17 @@
+id: remcp
+name: ReMCP by getremcp
+description: Connect MCP clients to computers explicitly paired to your ReMCP account for file operations, terminal commands, browser automation, and desktop UI control.
+author: getremcp
+url: https://github.com/getremcp/remcp
+category: development
+prerequisites:
+  - A ReMCP account authorized via OAuth 2.1 in the MCP client
+  - An online computer explicitly paired to the same ReMCP account
+  - Review tool operations carefully; file, shell, and desktop tools can modify device state
+content:
+  - name: ReMCP hosted MCP server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://remcp.site/mcp"
+      }
