@@ -2,7 +2,7 @@ id: photo2skin
 name: Photo2Skin
 description: AI Minecraft tools, focused on AI skins. Makes and edits Minecraft skins from a photo or a description just by chatting, plus AI builds for Java or Bedrock, real places as playable worlds, AI textures and more. Browsing is free; creations spend Photo2Skin credits, priced before they run.
 author: Photo2Skin
-url: https://app.photo2skin.com/agents
+url: https://github.com/photo2skin/photo2skin-mcp
 category: productivity
 prerequisites:
   - Free Photo2Skin account
