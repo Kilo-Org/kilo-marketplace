@@ -1,0 +1,24 @@
+id: curlshot
+name: CurlShot
+description: Hosted screenshot server that renders a public web page and returns it as a PNG, JPEG, WebP, PDF, or a
+  video of the page scrolling, with device presets, full-page capture, dark mode, and ad and cookie-banner blocking.
+author: CurlShot
+url: https://github.com/SergiuPogor/curlshot-mcp
+category: web-automation
+prerequisites:
+  - A CurlShot account (free plan available at https://curlshot.com/register)
+  - A CurlShot API key with "Require signature" turned off
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://curlshot.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CURLSHOT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: CurlShot API Key
+    key: CURLSHOT_API_KEY
+    placeholder: your_curlshot_api_key
