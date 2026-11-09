@@ -1,0 +1,17 @@
+id: rentreboot
+name: RentReboot
+description: Search NYC apartments and renter guides, explore rent data, and access personal alerts and saved searches with
+  scoped OAuth; website alert plans are separate.
+author: RentReboot
+url: https://github.com/imiraoui/rentreboot-mcp
+category: search
+prerequisites:
+- Public tools work without an account; personal tools require a RentReboot account and scoped OAuth
+- Website apartment alert plans are separate from the free MCP connection
+content:
+- name: Remote HTTP
+  content: |
+    {
+      "type": "streamable-http",
+      "url": "https://rentreboot.com/api/mcp"
+    }
