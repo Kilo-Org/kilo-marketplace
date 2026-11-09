@@ -1,0 +1,18 @@
+id: precision-ai-os
+name: Precision AI OS
+description: Remote MCP server for Precision AI OS. Firm operators set up and manage agents, skills, routines, websites,
+  firm logins, settings and Rules, and check on jobs, signing in with their firm's Precision account through OAuth.
+  Approving work and sending stay with people in the Precision app.
+author: Precision AI LLC
+url: https://getprecision.ai/mcp
+category: business
+prerequisites:
+  - Precision AI OS account with the operator role in your firm (invite-only)
+  - OAuth-capable MCP client registered with Precision (contact hello@getprecision.ai)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.getprecision.ai/v1/mcp"
+      }
