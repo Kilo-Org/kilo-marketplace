@@ -68,6 +68,25 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/image-enhancer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/image-enhancer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/image-enhancer.tar.gz
+  - id: make-a-video-ad
+    description: >-
+      Plan and make a short video ad or promo clip with the Tesseract connector, from a product photo, a logo or a few
+      words. Use when the person asks for a video ad, a promo, a product clip, a reel or a multi-scene video and
+      Tesseract is connected.
+    category: creative-media
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/make-a-video-ad
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/make-a-video-ad/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/make-a-video-ad.tar.gz
+  - id: photo-effects
+    description: >-
+      Apply one of Tesseract's ready-made effects (camera moves, transformations, portraits, seasonal looks, product
+      shots) to the person's own photo or video, or make and edit pictures, with the Tesseract connector. Use when the
+      person asks to animate a photo, put an effect on a picture or clip, or make or change a picture, and Tesseract is
+      connected.
+    category: creative-media
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/photo-effects
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/photo-effects/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/photo-effects.tar.gz
   - id: slack-gif-creator
     description: >-
       Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable
