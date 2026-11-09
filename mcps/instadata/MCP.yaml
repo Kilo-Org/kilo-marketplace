@@ -1,0 +1,22 @@
+id: instadata
+name: Instadata
+description: Public Instagram data API via hosted MCP — profiles, posts, reels, comments, hashtags, ads, reel transcripts. No Meta app. $5/1k credits; 25 free.
+author: Instadata
+url: https://instadata.dev/docs/mcp-server/
+category: data
+prerequisites:
+  - Free Instadata account (https://instadata.dev) for an API key (https://instadata.dev/app/keys)
+content:
+  - name: Remote (streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.instadata.dev",
+        "headers": {
+          "Authorization": "Bearer {{INSTADATA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Instadata API Key
+    key: INSTADATA_API_KEY
+    placeholder: your_instadata_api_key
