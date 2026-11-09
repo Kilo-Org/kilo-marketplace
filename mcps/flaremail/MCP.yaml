@@ -1,0 +1,29 @@
+id: flaremail
+name: FlareMail
+description: Read, search, draft, and send email from a mailbox on your own domain.
+author: FlareMail
+url: https://sendwithflare.com
+category: productivity
+prerequisites:
+  - FlareMail account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://flaremail-api.tcrxx0.workers.dev/mcp"
+      }
+  - name: Remote API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://flaremail-api.tcrxx0.workers.dev/mcp",
+        "headers": {
+          "Authorization": "Bearer {{FLAREMAIL_API_KEY}}"
+        }
+      }
+parameters:
+  - name: FlareMail API key
+    key: FLAREMAIL_API_KEY
+    placeholder: fm_live_...
+    optional: true
