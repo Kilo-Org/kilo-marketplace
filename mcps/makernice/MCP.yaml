@@ -1,0 +1,17 @@
+id: makernice
+name: Makernice
+description: Official remote MCP server for Makernice. Generates AI videos and images with 17 models, and every job is
+  priced in USD before it runs.
+author: Makernice
+url: https://makernice.com/mcp/
+category: productivity
+prerequisites:
+  - Makernice account
+  - MCP client with OAuth support
+content:
+  - name: Makernice hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.makernice.com/mcp"
+      }
