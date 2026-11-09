@@ -1,0 +1,22 @@
+id: orano
+name: ORANO Personal Context
+description: Read-only access to your own ORANO library (projects, context, handoffs, memory) for your own AI agent.
+author: ORANO
+url: https://oranoai.com/mcp
+category: productivity
+prerequisites:
+  - ORANO account and a personal read key (scope orano:read) provisioned in the ORANO app
+content:
+  - name: Remote (personal Bearer key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://orano-ai-backend-1037939693300.us-central1.run.app/mcp/",
+        "headers": {
+          "Authorization": "Bearer {{ORANO_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: ORANO Read Key
+        key: ORANO_API_KEY
+        placeholder: your_orano_read_key
