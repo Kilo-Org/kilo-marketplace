@@ -1,0 +1,16 @@
+id: mobile-joe
+name: Mobile Joe
+description: Manages a mobile app's FAQs, translations, feature plans and in-app alerts in Mobile Joe through its hosted
+  OAuth MCP endpoint, limited to the apps and permissions the developer shares during consent.
+author: Mobile Joe
+url: https://github.com/MobileJoeDev/mobilejoe-plugin
+category: development
+prerequisites:
+  - Mobile Joe account (open sign-up with a 14-day free trial at https://app.mobilejoe.dev)
+content:
+  - name: Mobile Joe hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.mobilejoe.dev/mcp"
+      }
