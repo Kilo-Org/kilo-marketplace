@@ -1,0 +1,30 @@
+id: grupy
+name: Grupy
+description: Summarize, search, and manage the WhatsApp groups on your own account. Read and search group summaries,
+  review join requests, and turn groups on or off from your AI assistant.
+author: Grupy
+url: https://github.com/ai-builders-id/grupy-mcp
+category: productivity
+prerequisites:
+  - Grupy account with a linked WhatsApp number (https://grupy.chat)
+  - MCP client with OAuth support, or a Grupy access key from the MCP page of the Grupy dashboard
+content:
+  - name: Grupy hosted server (sign in with Grupy)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.grupy.chat/mcp"
+      }
+  - name: Grupy hosted server (access key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.grupy.chat/mcp",
+        "headers": {
+          "Authorization": "Bearer {{GRUPY_ACCESS_KEY}}"
+        }
+      }
+    parameters:
+      - name: Grupy access key
+        key: GRUPY_ACCESS_KEY
+        placeholder: your_grupy_access_key
