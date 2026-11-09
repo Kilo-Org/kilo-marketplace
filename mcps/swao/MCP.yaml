@@ -1,0 +1,26 @@
+id: swao
+name: "Sovereign Workload Assessment & Onboarding"
+description: >-
+  Assess application workloads for cloud sovereignty compliance directly from
+  kilo.ai. SWAO analyses source code, infrastructure, and compliance evidence
+  against EU AI Act, BSI IT-Grundschutz 2023, and GDPR; scores landing zone
+  readiness; and generates structured 7R migration recommendations and HTML
+  reports. Self-hosted: start the MCP server locally and connect via HTTP.
+author: Accenture
+url: https://github.com/Accenture/SWAO
+category: development
+prerequisites:
+  - SWAO binary installed (Community, Consultant, or Enterprise edition),
+    download from https://github.com/Accenture/SWAO/releases
+  - MCP server started: swao mcp --http --port 3737
+content:
+  - name: Local HTTP (self-hosted)
+    prerequisites:
+      - SWAO binary on PATH (or provide the full path to the binary)
+      - Start the server: swao mcp --http --port 3737
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "http://localhost:3737/mcp"
+      }
+parameters: []
