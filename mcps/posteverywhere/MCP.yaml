@@ -1,0 +1,16 @@
+id: posteverywhere
+name: PostEverywhere
+description: Social media scheduler for AI agents. Write, schedule and publish posts to Instagram, TikTok, YouTube, LinkedIn, Facebook, X, Threads, Pinterest, Bluesky, Telegram, Discord and WordPress, plan a content calendar, cross-post video and see analytics, via PostEverywhere's hosted OAuth server (https://posteverywhere.ai).
+author: PostEverywhere
+url: https://posteverywhere.ai/mcp
+category: productivity
+prerequisites:
+  - PostEverywhere account, created at https://posteverywhere.ai
+  - MCP client with OAuth support
+content:
+  - name: PostEverywhere hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.posteverywhere.ai/mcp"
+      }
