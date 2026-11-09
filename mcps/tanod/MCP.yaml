@@ -1,0 +1,15 @@
+id: tanod
+name: Tanod
+description: Pay-per-call tools for agents - web page to Markdown, screenshots, web search, PDF, document and image processing, DNS and email checks, chain reads, and contract and MCP-package security scans. Free daily allowance, then USDC per call via x402.
+author: Tanod
+url: https://github.com/tanod-labs/tanod-mcp
+category: web-automation
+prerequisites:
+  - Free daily allowance per IP; further calls are paid in USDC on Base or Polygon via x402
+content:
+  - name: Remote (streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://tanod.dev/mcp"
+      }
