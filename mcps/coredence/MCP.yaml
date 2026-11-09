@@ -1,0 +1,18 @@
+id: coredence
+name: Coredence
+description: Gives your assistant the rules you actually work by, measured from your own sessions, commits and notes,
+  each linked to the moments it came from. Read-only and local; nothing leaves your machine.
+author: coredence
+url: https://github.com/coredence/coredence
+category: productivity
+prerequisites:
+  - Coredence app (https://coredence.com/download), opened once
+content:
+  - name: Coredence app
+    prerequisites:
+      - Coredence app
+    content: |
+      {
+        "command": "coredence",
+        "args": ["mcp"]
+      }
