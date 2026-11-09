@@ -1,0 +1,18 @@
+id: ailinkany
+name: AiLinkAny
+description: Connect to your authorized Windows PCs through OAuth to manage files, run shell commands, use applications, and check task status. Computer execution requires an active AiLinkAny subscription.
+author: AiLinkAny
+url: https://github.com/AiLinkAnyCom/ailinkany
+category: development
+prerequisites:
+  - An AiLinkAny account; sign in through the client's OAuth flow, not by sharing tokens in configuration
+  - The AiLinkAny Windows client installed and a device bound to your account
+  - An active subscription for computer execution; device discovery and connection diagnostics remain available without one
+  - Select the intended computer by device name when multiple devices are bound
+content:
+  - name: Remote MCP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.ailinkany.com/mcp"
+      }
