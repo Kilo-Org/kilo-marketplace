@@ -1,0 +1,16 @@
+id: videobgremover
+name: VideoBGRemover MCP
+description: Remove video backgrounds, manage jobs with credit limits, and download transparent WebM with source audio.
+author: VideoBGRemover
+url: https://github.com/tanchaowen84/videobgremover-mcp
+category: productivity
+prerequisites:
+  - VideoBGRemover account and OAuth authorization in an OAuth-capable MCP client
+  - Existing account credits for processing (1 credit per video second)
+content:
+  - name: Streamable HTTP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://videobgremover.net/api/mcp"
+      }
