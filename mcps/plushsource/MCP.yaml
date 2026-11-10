@@ -1,0 +1,17 @@
+id: plushsource
+name: PlushSource
+description: Search, filter and compare custom plush manufacturers listed in the PlushSource directory. Local stdio server with bundled data and no API key. Unpublished fields are shown as Not stated.
+author: quickman924
+url: https://github.com/quickman924/plushsource-mcp
+category: search
+prerequisites:
+  - Node.js
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "plushsource-mcp"]
+      }
