@@ -1,12 +1,11 @@
 id: tap-giving-mcp
 name: NFC Tap Builder by Tap.Giving
-description: A tool first. Create print-ready NFC artwork proofs with correct vector art for organizations, including churches, nonprofits, restaurants, coffee shops, and local businesses, free to take to any vendor, with no lock-in. Discovery, pricing, product facts, artwork spec, and order questions are keyless; recap and order status are keyed reads. Ordering custom discs through Tap.Giving is an optional next step; order placement uses an organization API key.
+description: A tool first. Create print-ready NFC artwork proofs with correct vector art for organizations, including churches, nonprofits, restaurants, coffee shops, and local businesses, free to take to any vendor, with no lock-in. Discovery, pricing, product facts, the artwork spec, order questions, order status, recaps, and order placement all work with no key and no login, at any point. Ordering custom discs through Tap.Giving is an optional next step.
 author: Tap.Giving
 url: https://github.com/RyanShook/tap-giving-mcp
 category: business
 prerequisites:
-  - No account or key is needed for discovery, pricing, product facts, artwork spec, and order questions
-  - An organization API key from Tap.Giving is required for recap, order status, and placing an order
+  - No account, key, or login is needed at any point, including discovery, pricing, product facts, artwork spec, order questions, recap, order status, and placing an order
 content:
   - name: Hosted (Streamable HTTP)
     content: |
