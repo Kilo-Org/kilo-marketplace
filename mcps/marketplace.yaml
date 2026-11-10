@@ -4496,7 +4496,7 @@ items:
       placement all work with no key and no login, at any point. Ordering custom discs through Tap.Giving is an optional
       next step.
     author: Tap.Giving
-    url: https://github.com/RyanShook/tap-giving-mcp
+    url: https://github.com/Tap-Giving/tap-giving-mcp
     category: business
     tags:
       - business
