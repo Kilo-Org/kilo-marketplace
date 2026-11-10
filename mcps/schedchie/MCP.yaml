@@ -1,0 +1,16 @@
+id: schedchie
+name: Schedchie
+description: Schedules, edits, retries and deletes posts on Instagram, TikTok, LinkedIn, YouTube, Bluesky and more through Schedchie's hosted OAuth 2.1 server, uploads media by link and reads analytics; users pick six permission groups at sign-in, and posting to X is extra.
+author: Schedchie
+url: https://www.schedchie.com/ai
+category: productivity
+prerequisites:
+  - Schedchie account with an active plan or trial
+  - Social accounts connected in the Schedchie web app
+content:
+  - name: Schedchie hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.schedchie.com/mcp"
+      }
