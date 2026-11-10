@@ -1,0 +1,32 @@
+id: openany
+name: OpenAny
+description: One API key for 168+ models and 3,200+ APIs. Search and run APIs or models
+  through a remote MCP server, pay per call, no monthly fee.
+author: openanysi
+url: https://github.com/openanysi/openany-mcp
+category: development
+prerequisites:
+  - An OpenAny account and API key from https://openany.si
+content:
+  - name: Remote (lite)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.openany.si/mcp-lite",
+        "headers": {
+          "Authorization": "Bearer {{OPENANY_API_KEY}}"
+        }
+      }
+  - name: Remote (full)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.openany.si/mcp",
+        "headers": {
+          "Authorization": "Bearer {{OPENANY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: OpenAny API Key
+    key: OPENANY_API_KEY
+    placeholder: your_openany_api_key
