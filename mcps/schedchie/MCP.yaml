@@ -7,6 +7,7 @@ category: productivity
 prerequisites:
   - Schedchie account with an active plan or trial
   - Social accounts connected in the Schedchie web app
+  - An MCP client that supports OAuth sign-in with dynamic client registration for remote servers
 content:
   - name: Schedchie hosted OAuth server
     content: |
