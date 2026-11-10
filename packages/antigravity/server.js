@@ -4,11 +4,11 @@ import * as os from "os";
 import * as fs from "fs";
 
 function resolvePort() {
-  const envVal = process.env.AGY_PROXY_PORT;
+  const envVal = process.env.AGY_PROXY_PORT?.trim();
   if (envVal) {
-    const parsed = parseInt(envVal, 10);
-    if (Number.isInteger(parsed) && parsed > 0 && parsed <= 65535) {
-      return parsed;
+    const num = Number(envVal);
+    if (Number.isInteger(num) && num > 0 && num <= 65535) {
+      return num;
     }
   }
   return 52188;
