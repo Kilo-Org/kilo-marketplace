@@ -73,6 +73,29 @@ export const AntigravityPlugin = async (_ctx) => {
           apiKey: "agy-local"
         },
         models: {
+          "gemini-4-carbon": {
+            name: "Gemini 4 Carbon",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 1.25,
+              output: 5.0,
+              cache_read: 0.3125
+            },
+            variants: {
+              low: {},
+              medium: {},
+              high: {}
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 1000000,
+              output: 65536
+            }
+          },
           "gemini-4-argon": {
             name: "Gemini 4 Argon",
             reasoning: true,
