@@ -1,0 +1,15 @@
+id: usesnippet
+name: Snippet
+description: Helps creators review brand deals, sponsorship rates, brand email, and deal decisions through a connected Snippet account. 13 tools after sign-in.
+author: Snippet Inc.
+url: https://github.com/Snippet-Core/snippet-cursor-plugin
+category: business
+prerequisites:
+  - A Snippet account (https://usesnippet.app)
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://usesnippet.app/api/mcp"
+      }
