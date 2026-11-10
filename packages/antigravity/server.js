@@ -224,6 +224,92 @@ export const AntigravityPlugin = async (_ctx) => {
               context: 131072,
               output: 32768
             }
+          },
+          "gemini-2.5-pro": {
+            name: "Gemini 2.5 Pro",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 1.25,
+              output: 5.0,
+              cache_read: 0.3125
+            },
+            variants: {
+              low: {},
+              medium: {},
+              high: {}
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 1000000,
+              output: 65536
+            }
+          },
+          "gemini-3.5-flash-lite": {
+            name: "Gemini 3.5 Flash Lite",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 0.075,
+              output: 0.30,
+              cache_read: 0.01875
+            },
+            variants: {
+              low: {},
+              medium: {},
+              high: {}
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 1000000,
+              output: 65536
+            }
+          },
+          "gemini-3-flash": {
+            name: "Gemini 3 Flash Preview",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 0.15,
+              output: 0.60,
+              cache_read: 0.0375
+            },
+            variants: {
+              low: {},
+              medium: {},
+              high: {}
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 1000000,
+              output: 65536
+            }
+          },
+          "gpt-oss-120b": {
+            name: "GPT-OSS 120B",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 0.50,
+              output: 1.50
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 131072,
+              output: 32768
+            }
           }
         }
       };
