@@ -1,0 +1,32 @@
+id: screwtape
+name: Screwtape.ai
+description: Spend guardrails for AI agents. Check payments, track budgets, catch duplicates, and issue signed receipts before money moves.
+author: Screwtape.ai
+url: https://screwtape.ai
+category: business
+prerequisites:
+  - Optional Bearer API key from https://screwtape.ai (3 no-key calls per day, or 10 with a free key)
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://screwtape.ai/mcp"
+      }
+  - name: Remote MCP with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://screwtape.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SCREWTAPE_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Screwtape API key
+        key: SCREWTAPE_API_KEY
+        placeholder: your_screwtape_api_key
+parameters:
+  - name: Screwtape API key
+    key: SCREWTAPE_API_KEY
+    placeholder: your_screwtape_api_key
