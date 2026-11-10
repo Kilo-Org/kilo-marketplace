@@ -1,0 +1,16 @@
+id: extensiondash
+name: ExtensionDash
+description: Search Chrome and Firefox extension catalogs and inspect store listings and keyword ranks from an AI agent.
+author: ExtensionDash
+url: https://extensiondash.com/
+category: development
+prerequisites:
+  - ExtensionDash account for tracking and ranking tools
+  - MCP client supporting OAuth 2.1 for account tools
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://extensiondash.com/mcp"
+      }
