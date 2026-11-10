@@ -27,3 +27,4 @@ parameters:
   - name: HandlePilot personal access token
     key: HANDLEPILOT_TOKEN
     placeholder: your_handlepilot_personal_access_token
+    optional: true
