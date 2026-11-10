@@ -1,0 +1,18 @@
+id: a1-gallery
+name: A1 Gallery
+description: Real website design references for AI agents. Search a hand-curated gallery of live websites, sections and
+  full pages by style, font, colour and technology, find font pairings used on real sites, and get design tokens
+  measured from live pages (palette, type scale, spacing, radius, layout).
+author: A1 Gallery
+url: https://github.com/bryntay/a1-mcp
+category: search
+prerequisites:
+  - A1 Gallery account (free)
+  - MCP client with OAuth support
+content:
+  - name: A1 Gallery hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.a1.gallery/api/mcp"
+      }
