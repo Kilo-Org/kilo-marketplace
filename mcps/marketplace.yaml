@@ -1354,11 +1354,11 @@ items:
     prerequisites:
       - Altium Designer on Windows (or KiCad / EasyEDA Pro for those backends)
       - Python 3.11 or later
-      - Run "eda-agent install-scripts" once so Altium can load the bridge scripts
     content:
       - name: uvx
         prerequisites:
           - uv
+          - Run "uvx eda-agent install-scripts" once so Altium can load the bridge scripts
         content: |
           {
             "command": "uvx",
@@ -1370,6 +1370,7 @@ items:
       - name: pip
         prerequisites:
           - python -m pip install eda-agent
+          - Run "eda-agent install-scripts" once so Altium can load the bridge scripts
         content: |
           {
             "command": "eda-agent",
@@ -1379,7 +1380,7 @@ items:
             }
           }
     parameters:
-      - name: EDA backend (altium, kicad, easyeda or both)
+      - name: "EDA backend: altium, kicad, easyeda, or both (Altium and KiCad together)"
         key: EDA_AGENT_BACKEND
         placeholder: altium
   - id: elastic-agent-builder-mcp
