@@ -18,6 +18,8 @@ content:
         "url": "https://mcp.recordhtml.com"
       }
   - name: RecordHTML hosted server with API key
+    prerequisites:
+      - RecordHTML API key (create at https://recordhtml.com/settings/api)
     content: |
       {
         "type": "streamable-http",
@@ -26,8 +28,7 @@ content:
           "Authorization": "Bearer {{RECORDHTML_API_KEY}}"
         }
       }
-parameters:
-  - name: RecordHTML API Key
-    key: RECORDHTML_API_KEY
-    placeholder: your_recordhtml_api_key
-    optional: true
+    parameters:
+      - name: RecordHTML API Key
+        key: RECORDHTML_API_KEY
+        placeholder: your_recordhtml_api_key
