@@ -5,8 +5,6 @@ description: Read-only crypto market data from AlphaGrowth. Look up DeFi project
 author: AlphaGrowth
 url: https://github.com/alphagrowth/alphagrowth-mcp
 category: data
-prerequisites:
-  - No account or API key needed
 content:
   - name: Remote Server
     content: |

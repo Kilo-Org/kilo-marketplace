@@ -117,8 +117,6 @@ items:
     category: data
     tags:
       - data
-    prerequisites:
-      - No account or API key needed
     content:
       - name: Remote Server
         content: |
