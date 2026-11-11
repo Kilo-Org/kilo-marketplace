@@ -3194,20 +3194,11 @@ items:
     prerequisites:
       - An OpenAny account and API key from https://openany.si
     content:
-      - name: Remote (lite)
+      - name: Remote
         content: |
           {
             "type": "streamable-http",
             "url": "https://mcp.openany.si/mcp-lite",
-            "headers": {
-              "Authorization": "Bearer {{OPENANY_API_KEY}}"
-            }
-          }
-      - name: Remote (full)
-        content: |
-          {
-            "type": "streamable-http",
-            "url": "https://mcp.openany.si/mcp",
             "headers": {
               "Authorization": "Bearer {{OPENANY_API_KEY}}"
             }
