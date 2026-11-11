@@ -1,0 +1,16 @@
+id: alphagrowth
+name: AlphaGrowth
+description: Read-only crypto market data from AlphaGrowth. Look up DeFi projects, TVL history, chains, fees and
+  revenue, funding rounds and investors, DAO treasuries, yield pools, token unlocks, grants and X Spaces transcripts.
+author: AlphaGrowth
+url: https://github.com/alphagrowth/alphagrowth-mcp
+category: data
+prerequisites:
+  - No account or API key needed
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://alphagrowth.io/mcp"
+      }
