@@ -1,0 +1,61 @@
+{
+  "title": "New Layouts Demo",
+  "subtitle": "Stats, timeline, comparison, cards",
+  "theme": "clean-light",
+  "aspect": "16:9",
+  "slides": [
+    {
+      "layout": "title",
+      "title": "New Layouts Demo",
+      "subtitle": "Four high-value layouts",
+      "notes": "Intro."
+    },
+    {
+      "layout": "stats",
+      "title": "Key metrics",
+      "stats": [
+        { "value": "99.9%", "label": "Uptime", "delta": "+0.2%" },
+        { "value": "42ms", "label": "Latency", "delta": "-8ms" },
+        { "value": "1.2M", "label": "Requests", "delta": "+12%" }
+      ],
+      "notes": "KPI row."
+    },
+    {
+      "layout": "timeline",
+      "title": "Rollout plan",
+      "steps": [
+        { "title": "Design", "body": "Spec and theme" },
+        { "title": "Build", "body": "Generate deck" },
+        { "title": "QA", "body": "Validate" },
+        { "title": "Ship", "body": "Deliver" }
+      ],
+      "notes": "Process steps."
+    },
+    {
+      "layout": "comparison",
+      "title": "Manual vs automated",
+      "headers": ["Manual", "Automated"],
+      "columns": [
+        ["Hand-tweaked slides", "No QA gate", "Drift over time"],
+        ["JSON spec", "Validator", "Reproducible"]
+      ],
+      "notes": "Comparison."
+    },
+    {
+      "layout": "cards",
+      "title": "Three pillars",
+      "cards": [
+        { "title": "Clarity", "body": "Assertion headlines", "bullets": ["One takeaway"] },
+        { "title": "Consistency", "body": "Shared theme", "bullets": ["Same grid"] },
+        { "title": "Quality", "body": "QA gate", "bullets": ["Zero errors"] }
+      ],
+      "notes": "Cards."
+    },
+    {
+      "layout": "closing",
+      "title": "Done",
+      "subtitle": "All layouts validated",
+      "notes": "Close."
+    }
+  ]
+}
