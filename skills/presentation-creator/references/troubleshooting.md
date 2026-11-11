@@ -41,11 +41,39 @@ widely-available fonts (`Segoe UI`, `Calibri`) with fallbacks. If a brand font i
 exist before building. The skill never downloads remote images; ask the user for a local file
 or approval to fetch one.
 
-## LibreOffice preview unavailable
+## No PDF converter available
 
-`soffice` is optional. If `soffice --version` fails, the PDF preview step is skipped — say so
-in the delivery summary. The deck is still valid; open it in PowerPoint, Keynote, Google
-Slides, or the VS Code PowerPoint viewer.
+PDF export and previews need one of: LibreOffice, OpenOffice (any `soffice`-compatible CLI), or
+Microsoft PowerPoint (Windows COM / macOS AppleScript). Check what this machine has:
+
+```sh
+python3 scripts/office_convert.py --list          # add --json for tooling
+```
+
+If the list is empty, the optional preview prints `skipped: no PDF converter available ...` and
+exits 0, while an explicit `build_deck.py --pdf` or `render_preview.py --pdf-out` exits 3. The
+deck itself is still valid; open it in PowerPoint, Keynote, Google Slides, or the VS Code
+PowerPoint viewer. GUI-only suites (OnlyOffice, WPS) are reported as detected but are not
+automatable — install LibreOffice for headless conversion.
+
+## OpenOffice conversion fails
+
+A stale profile lock makes the converter hang or exit immediately. `office_convert.py`
+automatically retries once with a private `-env:UserInstallation` profile; if that still fails,
+close running office instances and retry, or fall back to LibreOffice.
+
+## PowerPoint export fails
+
+PowerPoint export needs an interactive desktop session — it cannot run from a headless service
+account. Reuse of a running instance is automatic: an existing `PowerPoint.Application` is reused,
+and only a presentation opened by the export is closed. PowerPoint is never quit on your behalf.
+If PowerPoint is installed but COM/AppleScript still fails, use LibreOffice or OpenOffice.
+
+## PDF export requested but no converter
+
+`build_deck.py --pdf` and `render_preview.py --pdf-out` exit 3 when nothing can convert. The
+message lists every converter that was checked and the attempts that failed. The `.pptx` (when the
+build produced one) is untouched and remains valid.
 
 ## Charts fail with a data error
 

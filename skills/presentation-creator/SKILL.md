@@ -2,17 +2,18 @@
 name: presentation-creator
 description: >-
   Builds polished PowerPoint decks (.pptx) from a brief, outline, or source
-  document using python-pptx, with themed layouts, speaker notes, charts, and an
-  automated QA pass for overflow and contrast. Use when the user asks for
-  slides, a deck, a presentation, a pitch, a keynote, or a slide outline.
+  document using python-pptx, with themed layouts, speaker notes, charts, an
+  automated QA pass for overflow and contrast, and an optional PDF export or
+  preview. Use when the user asks for slides, a deck, a presentation, a pitch, a
+  keynote, or a slide outline.
 compatibility: >-
   Requires Python 3.9+ with python-pptx (pip install python-pptx); matplotlib
-  and Pillow are optional for charts and images; LibreOffice is optional for PDF
-  previews.
+  and Pillow are optional for charts and images; LibreOffice, OpenOffice, or
+  PowerPoint (Windows/macOS) is optional for PDF export and previews.
 metadata:
   category: productivity
   author: nitsan57
-  version: 1.3.0
+  version: 1.4.0
   source:
     repository: 'https://github.com/nitsan57/presentation_skill'
     path: skills/presentation-creator
@@ -46,8 +47,10 @@ python3 -c "import pptx; print(pptx.__version__)"
 
 - If it fails, create a venv (`python3 -m venv /tmp/pptx-venv && /tmp/pptx-venv/bin/pip install python-pptx`)
   or `pip install --user python-pptx`. Ask before installing into system site-packages.
-- `matplotlib`/`Pillow` are only needed for chart/image slides; `soffice` (LibreOffice) only
-  for the optional PDF preview. Missing optional pieces downgrade the feature, not the task.
+- `matplotlib`/`Pillow` are only needed for chart/image slides; a PDF converter
+  (LibreOffice, OpenOffice, or PowerPoint) is only needed for the optional PDF
+  export/preview. Missing optional pieces downgrade the feature, not the task.
+- Run `python3 scripts/office_convert.py --list` to see which converter would be used.
 - `references/troubleshooting.md` covers missing-font and preview gaps.
 
 ### 1. Clarify (max 3 questions)
@@ -96,26 +99,36 @@ python3 scripts/validate_deck.py deck.pptx
 Fix every reported error and re-run until it exits 0 (warnings-only also exits 0). The
 validator checks slide-bounds, estimated text overflow, font floors, bullet counts, missing
 titles/notes, duplicate titles, and WCAG contrast. Do not deliver a deck that fails the gate.
+### 6. Optional preview and PDF export
 
-### 6. Optional preview
-
-If LibreOffice is available:
+When the user wants a PDF deliverable, add `--pdf` to the build:
 
 ```sh
-python3 scripts/render_preview.py deck.pptx -o <dir>
-```
-which produces a PDF and, when `pdftoppm` is present, PNG keyframes. Or directly:
-```sh
-soffice --headless --convert-to pdf --outdir <dir> deck.pptx
+python3 scripts/build_deck.py deck.json -o deck.pptx --pdf          # deck.pptx + deck.pdf
+python3 scripts/build_deck.py deck.json -o deck.pptx --pdf exports/deck.pdf --force
 ```
 
-If it is absent, say so explicitly and skip; do not claim a preview was rendered.
+`--force` is required to overwrite an existing `.pptx` or PDF. A PDF request that cannot be
+fulfilled fails with exit 3 and keeps the `.pptx`.
+
+For a deck that already exists:
+
+```sh
+python3 scripts/render_preview.py deck.pptx -o previews                     # PDF + PNG keyframes
+python3 scripts/render_preview.py deck.pptx --pdf-out deck.pdf --no-png     # PDF only
+```
+
+Converters are tried in order: LibreOffice, OpenOffice (`soffice`-compatible CLI), then
+PowerPoint (Windows COM / macOS AppleScript). Check what is available with
+`python3 scripts/office_convert.py --list`. With no converter, an optional preview prints
+`skipped: no PDF converter available ...` and exits 0; an explicit `--pdf`/`--pdf-out` exits 3.
+`--pdf` does not replace the QA gate: still run step 5 before delivering.
 
 ### 7. Deliver
 
-Report the output path, slide count, theme, assumptions made, and any checks that were
-skipped. Confirm before overwriting an existing file, and never download remote images
-without approval.
+Report the output path, slide count, theme, assumptions made, any checks that were skipped,
+and the PDF path plus the converter used when a PDF was produced. Confirm before overwriting an
+existing file, and never download remote images without approval.
 
 ## JSON deck spec contract
 

@@ -1,0 +1,88 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/nitsan57/Documents/kilo-marketplace/skills/kafka-schema-registry/evals/mock-repos/notification-service/NotificationService.csproj": {}
+  },
+  "projects": {
+    "/home/nitsan57/Documents/kilo-marketplace/skills/kafka-schema-registry/evals/mock-repos/notification-service/NotificationService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/nitsan57/Documents/kilo-marketplace/skills/kafka-schema-registry/evals/mock-repos/notification-service/NotificationService.csproj",
+        "projectName": "NotificationService",
+        "projectPath": "/home/nitsan57/Documents/kilo-marketplace/skills/kafka-schema-registry/evals/mock-repos/notification-service/NotificationService.csproj",
+        "packagesPath": "/home/nitsan57/.nuget/packages/",
+        "outputPath": "/home/nitsan57/Documents/kilo-marketplace/skills/kafka-schema-registry/evals/mock-repos/notification-service/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/nitsan57/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "/usr/lib64/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.13.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.32, 8.0.32]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.32, 8.0.32]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/10.0.113/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

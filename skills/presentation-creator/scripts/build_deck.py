@@ -34,6 +34,8 @@ except ModuleNotFoundError:  # pragma: no cover - environment guard
     )
     raise SystemExit(2)
 
+from office_convert import ConversionError, convert_to_pdf  # noqa: E402
+
 
 THEMES: dict[str, dict] = {
     "clean-light": {
@@ -1552,6 +1554,15 @@ def main(argv=None) -> int:
     parser.add_argument("spec", help="path to the JSON deck spec")
     parser.add_argument("-o", "--output", required=True, help="output .pptx path")
     parser.add_argument("--force", action="store_true", help="overwrite an existing file")
+    parser.add_argument(
+        "--pdf",
+        nargs="?",
+        const="",
+        default=None,
+        metavar="PATH",
+        help="also export a PDF (default: <output>.pdf)",
+    )
+    parser.add_argument("--timeout", type=float, default=300.0, help="PDF converter timeout (seconds)")
     parser.add_argument("--allow-chart-code", action="store_true", help="allow exec() of chart.code (unsafe)")
     args = parser.parse_args(argv)
 
@@ -1566,6 +1577,15 @@ def main(argv=None) -> int:
             file=sys.stderr,
         )
         return 2
+
+    pdf_path = None
+    if args.pdf is not None:
+        pdf_path = Path(args.pdf) if args.pdf else out_path.with_suffix(".pdf")
+        if pdf_path.suffix.lower() != ".pdf":
+            pdf_path = pdf_path.with_suffix(".pdf")
+        if pdf_path.exists() and not args.force:
+            print(f"error: {pdf_path} exists; pass --force to overwrite", file=sys.stderr)
+            return 2
 
     try:
         spec = json.loads(spec_path.read_text(encoding="utf-8"))
@@ -1595,6 +1615,15 @@ def main(argv=None) -> int:
 
     n = len(builder.prs.slides._sldIdLst)  # noqa: SLF001 - documented slide count
     print(f"Wrote {n} slides to {out_path} (theme: {builder.theme_name}, {spec.get('aspect', '16:9')})")
+
+    if pdf_path is not None:
+        try:
+            result = convert_to_pdf(out_path, pdf_path, timeout=args.timeout)
+        except ConversionError as exc:
+            print(str(exc), file=sys.stderr)
+            print(f"The .pptx was written to {out_path}.", file=sys.stderr)
+            return 3
+        print(f"Rendered PDF: {result.pdf} (via {result.label})")
     return 0
 
 

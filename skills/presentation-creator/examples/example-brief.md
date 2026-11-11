@@ -70,4 +70,7 @@ validate again - it exits 1 with an `estimated text overflow` error.
 ## 8. Deliver
 
 Report the output path, slide count, theme, the `clean-light` assumption, and that the QA
-gate passed. A LibreOffice PDF preview is optional and skipped when `soffice` is absent.
+gate passed. A PDF deliverable is optional: `python3 ../scripts/build_deck.py deck.json -o
+/tmp/kilo/sample.pptx --pdf` exports it with LibreOffice, OpenOffice, or PowerPoint (the first
+available converter, via `python3 ../scripts/office_convert.py --list`). If no converter exists,
+the optional preview is skipped and an explicit `--pdf` exits 3 — say so in the summary.
