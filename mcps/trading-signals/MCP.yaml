@@ -1,0 +1,26 @@
+id: trading-signals
+name: Trading Signals Toolkit
+description: Event-risk flags for ES futures, SEC Form 4 insider-buy alerts and short AI trade briefs. Free tier of 100 calls per month, then pay-per-call USDC via x402.
+author: gdietsch
+url: https://github.com/gdietsch/trading-signals-mcp
+category: business
+prerequisites:
+  - Node.js
+  - Optional after the free tier: a dedicated low-balance Base wallet private key for pay-per-call USDC (x402)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "x402-trading-signals-mcp@0.1.12"],
+        "env": {
+          "X402_PRIVATE_KEY": "{{X402_PRIVATE_KEY}}"
+        }
+      }
+parameters:
+  - name: x402 Wallet Private Key
+    key: X402_PRIVATE_KEY
+    placeholder: dedicated_low_balance_base_wallet_private_key
+    optional: true
