@@ -19,7 +19,7 @@ metadata:
     path: skills/presentation-creator
     license_path: skills/presentation-creator/LICENSE
     ref: main
-    commit: 0adbd766d94a1262beb58a613b24caca0ea214bb
+    commit: 6ccb981ec3a8ec300e8d9b74779fdb186b418122
 ---
 
 # Presentation Creator
