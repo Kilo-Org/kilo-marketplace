@@ -1,6 +1,6 @@
 id: mnemoverse
 name: Mnemoverse Memory
-description: Long-term memory for AI agents that persists across sessions and across every tool connected to the same account. Save preferences, decisions and lessons, recall them by natural-language search, rate a recalled memory as helpful or misleading to re-rank what comes back next, and share memory through shared rooms (beta).
+description: Long-term memory for AI agents that persists across sessions and across every tool connected to the same account. Save preferences, decisions and lessons, recall them by natural-language search, rate a recalled memory as helpful or misleading to re-rank what comes back next, and share memory through shared rooms.
 author: Mnemoverse
 url: https://github.com/mnemoverse/mcp-memory-server
 category: data
