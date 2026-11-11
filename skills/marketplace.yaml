@@ -1833,6 +1833,204 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/integrate-anything
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/integrate-anything/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/integrate-anything.tar.gz
+  - id: govisit-get-category-overview
+    description: >-
+      Read the published overview for the selected destination category page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-category-overview
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-category-overview/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-category-overview.tar.gz
+  - id: govisit-get-category-section
+    description: >-
+      Read one published section for the selected destination category page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-category-section
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-category-section/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-category-section.tar.gz
+  - id: govisit-get-collection-overview
+    description: >-
+      Read the published overview for the selected destination collection page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-collection-overview
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-collection-overview/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-collection-overview.tar.gz
+  - id: govisit-get-collection-section
+    description: >-
+      Read one published section for the selected destination collection page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-collection-section
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-collection-section/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-collection-section.tar.gz
+  - id: govisit-get-destination-overview
+    description: >-
+      Read the published overview fields for the selected destination. Use when an agent needs this published GoVisit
+      evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-destination-overview
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-destination-overview/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-destination-overview.tar.gz
+  - id: govisit-get-destination-section
+    description: >-
+      Read one published section of the selected destination. Use when an agent needs this published GoVisit evidence
+      through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-destination-section
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-destination-section/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-destination-section.tar.gz
+  - id: govisit-get-documentation-page
+    description: >-
+      Read bounded structured content from the selected published article. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-documentation-page
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-documentation-page/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-documentation-page.tar.gz
+  - id: govisit-get-page-faq
+    description: >-
+      Read the published questions and answers on the selected blog or documentation article. Use when an agent needs
+      this published GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-page-faq
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-page-faq/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-page-faq.tar.gz
+  - id: govisit-get-place-overview
+    description: >-
+      Read the published overview fields for the selected place. Use when an agent needs this published GoVisit evidence
+      through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-place-overview
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-place-overview/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-place-overview.tar.gz
+  - id: govisit-get-place-section
+    description: >-
+      Read one published section of the selected place, including spatial details when requested. Use when an agent
+      needs this published GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-place-section
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-place-section/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-place-section.tar.gz
+  - id: govisit-get-place-visit-facts
+    description: >-
+      Read compact, normalized visit facts for the selected place. Use when an agent needs this published GoVisit
+      evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-place-visit-facts
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-place-visit-facts/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-place-visit-facts.tar.gz
+  - id: govisit-get-statistics
+    description: >-
+      Use when an agent needs exact GoVisit catalog coverage counts for the physical World or a selected Destination,
+      with observation dates and provenance.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-get-statistics
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-get-statistics/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-get-statistics.tar.gz
+  - id: govisit-list-category-places
+    description: >-
+      Filter the published place cards shown on the selected destination category page. Use when an agent needs this
+      published GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-category-places
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-category-places/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-category-places.tar.gz
+  - id: govisit-list-collection-places
+    description: >-
+      Filter the published place cards shown on the selected destination collection page. Use when an agent needs this
+      published GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-collection-places
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-collection-places/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-collection-places.tar.gz
+  - id: govisit-list-destination-activities
+    description: >-
+      Read the bounded published activities shown on the destination page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-destination-activities
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-destination-activities/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-destination-activities.tar.gz
+  - id: govisit-list-destination-categories
+    description: >-
+      Read the published category projection shown on the destination page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-destination-categories
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-destination-categories/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-destination-categories.tar.gz
+  - id: govisit-list-destination-highlights
+    description: >-
+      Read the bounded published highlights shown on the destination page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-destination-highlights
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-destination-highlights/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-destination-highlights.tar.gz
+  - id: govisit-list-destination-places
+    description: >-
+      Filter the published place cards already present on the destination page. Use when an agent needs this published
+      GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-destination-places
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-destination-places/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-destination-places.tar.gz
+  - id: govisit-list-related-places
+    description: >-
+      Find bounded, page-local related place cards using optional published-field filters. Use when an agent needs this
+      published GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-list-related-places
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-list-related-places/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-list-related-places.tar.gz
+  - id: govisit-search-destinations
+    description: >-
+      Search GoVisit destinations by name or traveler intent and return canonical destination codes and URLs. Use when a
+      traveler needs to identify or explore a country, region, district, city, or highlight.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-search-destinations
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-search-destinations/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-search-destinations.tar.gz
+  - id: govisit-search-documentation
+    description: >-
+      Search the published documentation links rendered on the selected documentation index page. Use when an agent
+      needs this published GoVisit evidence through HTTP for an integration or travel decision.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-search-documentation
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-search-documentation/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-search-documentation.tar.gz
+  - id: govisit-search-places
+    description: >-
+      Search GoVisit places by name or traveler intent, optionally constrained by country, destination, or proximity.
+      Use when a traveler needs candidate places and canonical profile URLs.
+    category: search
+    author: GoVisit.ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/govisit-search-places
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/govisit-search-places/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/govisit-search-places.tar.gz
   - id: microsoft-code-reference
     description: >-
       Find working code samples, verify API signatures, and fix Microsoft SDK errors using official docs. Use whenever
