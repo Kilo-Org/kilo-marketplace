@@ -1,0 +1,15 @@
+id: wavegrain
+name: Wavegrain
+description: Curated TikTok slideshows and Instagram carousels for your brand on autopilot. Read brands and slideshows, make new slideshows in the brand's voice with its own photos, edit slide text, schedule them on the Wavegrain calendar and export them, through the hosted Wavegrain server with OAuth sign-in.
+author: Wavegrain
+url: https://wavegrain.com/mcp?utm_source=kilo
+category: business
+prerequisites:
+  - A Wavegrain account; sign in through OAuth when the client connects
+content:
+  - name: Wavegrain (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://wavegrain.com/api/mcp"
+      }
