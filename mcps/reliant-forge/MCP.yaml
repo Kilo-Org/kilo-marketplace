@@ -1,0 +1,17 @@
+id: reliant-forge
+name: Reliant Forge
+description: Deploys a Vite or Next.js static app to a live HTTPS URL with no account and returns a claim link the user
+  opens to keep it; unclaimed deploys stay live for 72 hours. The same server lints, generates and introspects forge
+  projects and loads forge's skills.
+author: reliant-labs
+url: https://github.com/reliant-labs/forge
+category: development
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@reliantlabs/forge", "mcp"]
+      }
