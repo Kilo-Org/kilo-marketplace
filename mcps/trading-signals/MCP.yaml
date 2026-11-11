@@ -14,7 +14,7 @@ content:
     content: |
       {
         "command": "npx",
-        "args": ["-y", "x402-trading-signals-mcp@0.1.12", "--hash", "sha512:aWOzuio8+nF3kh5rQSY129Ji+pRsoJoXQn0LJuGQIkyQuNaOoi2s26iMrPnBiRX2Vj8NVONwqAy22Ge6CtFmiA=="],
+        "args": ["-y", "x402-trading-signals-mcp@0.1.12"],
         "env": {
           "X402_PRIVATE_KEY": "{{X402_PRIVATE_KEY}}"
         }
