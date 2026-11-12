@@ -8,7 +8,7 @@ metadata:
     repository: https://github.com/founder-sweep/data-quality-gate-examples
     path: skills/contentsweep-quality
     ref: main
-    commit: 5e85a03f2ad22eba826add215be9331af1df33d6
+    commit: c963394dbffdf24417be5f3ee4d46884c04031ff
     license_path: LICENSE
   author: founder-sweep
 ---
