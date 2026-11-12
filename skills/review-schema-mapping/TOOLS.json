@@ -1,0 +1,147 @@
+{
+  "source_sha256": "c15dd60ce8879178e9a67a94ca4ebad3c847e2b2bf27bc23321cec15f0b9958f",
+  "tools": [
+    {
+      "name": "infer_schema",
+      "description": "Infer flat schema from a bounded local CSV/JSON/JSONL file.",
+      "parameters": {
+        "source": "str"
+      },
+      "returns": "str",
+      "task": "Inspect the supplied original file",
+      "prerequisites": "Explicit permission to read the source; remote upload also needs permission to transmit it",
+      "outputs": "Upload identity/fingerprint or bounded inferred schema",
+      "approval": "Source-file access/upload authorization",
+      "credits": "No credits consumed",
+      "retry": "Uploads create new identities; reuse the successful upload rather than uploading again"
+    },
+    {
+      "name": "map_to_schema",
+      "description": "Propose correspondence; strict JSON strings preserve decimal precision.",
+      "parameters": {
+        "source_schema_json": "str",
+        "target_schema_json": "str"
+      },
+      "returns": "str",
+      "task": "Prepare decisions for review",
+      "prerequisites": "Owned source plus explicit target rules/decisions",
+      "outputs": "Unapproved proposal, version or sampled preview; not approval or full validation",
+      "approval": "Do not infer business meanings; obtain missing decisions",
+      "credits": "No credits consumed",
+      "retry": "Reads/previews may repeat; saved drafts/versions can create new identities"
+    },
+    {
+      "name": "review_mapping",
+      "description": "Inspect exact proposal, evidence, alternatives and approval state.",
+      "parameters": {
+        "mapping_json": "str"
+      },
+      "returns": "str",
+      "task": "Review validity, drift or correspondences",
+      "prerequisites": "Exact proposed/approved mapping, explicit target/source and matching scope where required",
+      "outputs": "Validation/review/drift report; stop on unsupported or mismatched inputs",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Safe to repeat unchanged validation; changed decisions need review"
+    },
+    {
+      "name": "resolve_mapping",
+      "description": "Explicit target:source decisions; null skips an optional target.",
+      "parameters": {
+        "mapping_json": "str",
+        "decisions_json": "str"
+      },
+      "returns": "str",
+      "task": "Prepare decisions for review",
+      "prerequisites": "Owned source plus explicit target rules/decisions",
+      "outputs": "Unapproved proposal, version or sampled preview; not approval or full validation",
+      "approval": "Do not infer business meanings; obtain missing decisions",
+      "credits": "No credits consumed",
+      "retry": "Reads/previews may repeat; saved drafts/versions can create new identities"
+    },
+    {
+      "name": "approve_mapping",
+      "description": "Record user-authorized review of an exact mapping for a named scope.",
+      "parameters": {
+        "mapping_json": "str",
+        "expected_fingerprint": "str",
+        "reviewer": "str",
+        "user": "str",
+        "vendor": "str",
+        "domain": "str"
+      },
+      "returns": "str",
+      "task": "Record exact reviewed approval",
+      "prerequisites": "Exact reviewed hash/fingerprint and scope, with all unresolved choices settled",
+      "outputs": "Approval bound to that exact version",
+      "approval": "Explicit authorized reviewer approval; fixture permission covers only owned fixtures",
+      "credits": "No credits consumed",
+      "retry": "Reuse only the same reviewed version and scope; edits invalidate approval"
+    },
+    {
+      "name": "validate_schema_mapping",
+      "description": "Check schema, completeness, exact fingerprints, decisions and approval.",
+      "parameters": {
+        "mapping_json": "str",
+        "target_schema_json": "str"
+      },
+      "returns": "str",
+      "task": "Review validity, drift or correspondences",
+      "prerequisites": "Exact proposed/approved mapping, explicit target/source and matching scope where required",
+      "outputs": "Validation/review/drift report; stop on unsupported or mismatched inputs",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Safe to repeat unchanged validation; changed decisions need review"
+    },
+    {
+      "name": "check_schema_drift",
+      "description": "Compare a local input schema against approved scope and schema version.",
+      "parameters": {
+        "mapping_json": "str",
+        "source": "str",
+        "user": "str",
+        "vendor": "str",
+        "domain": "str"
+      },
+      "returns": "str",
+      "task": "Review validity, drift or correspondences",
+      "prerequisites": "Exact proposed/approved mapping, explicit target/source and matching scope where required",
+      "outputs": "Validation/review/drift report; stop on unsupported or mismatched inputs",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Safe to repeat unchanged validation; changed decisions need review"
+    },
+    {
+      "name": "transform_file",
+      "description": "Transform an approved local snapshot; return exact JSON and receipt.",
+      "parameters": {
+        "mapping_json": "str",
+        "source": "str",
+        "user": "str",
+        "vendor": "str",
+        "domain": "str"
+      },
+      "returns": "str",
+      "task": "Create a reusable local output",
+      "prerequisites": "Reviewed approved mapping with matching fingerprint/scope; validate first",
+      "outputs": "Exact transformed records and receipt, or matching-runtime Python wrapper text; MCP does not save an output file",
+      "approval": "Explicit mapping approval and read access; saving output or executing a generated wrapper requires its own authorization",
+      "credits": "No credits consumed",
+      "retry": "Repeat only for the same approved mapping and scope; the caller must deliberately save returned data if requested"
+    },
+    {
+      "name": "generate_transformation",
+      "description": "Emit approved runtime-dependent Python; never executes supplied code.",
+      "parameters": {
+        "mapping_json": "str"
+      },
+      "returns": "str",
+      "task": "Create a reusable local output",
+      "prerequisites": "Reviewed approved mapping with matching fingerprint/scope; validate first",
+      "outputs": "Exact transformed records and receipt, or matching-runtime Python wrapper text; MCP does not save an output file",
+      "approval": "Explicit mapping approval and read access; saving output or executing a generated wrapper requires its own authorization",
+      "credits": "No credits consumed",
+      "retry": "Repeat only for the same approved mapping and scope; the caller must deliberately save returned data if requested"
+    }
+  ]
+}

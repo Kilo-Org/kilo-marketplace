@@ -1,0 +1,20 @@
+{
+  "source_sha256": "b0383f4b623addb710f15bbf9123a70bc88ef2fa9e2f0235541f66cc392b0e67",
+  "tools": [
+    {
+      "name": "inspect_repository",
+      "description": "Inspect local Python/FastAPI, Docker and Actions evidence under the configured root.\n\nPaths are relative. No target code runs; no network, uploads or remote\nrepositories. A ready result covers only shipped static rules. Check\ncomplete, issues, coverage and findings before declaring a release ready.",
+      "parameters": {
+        "path": "str",
+        "baseline": "dict[str, Any] | None"
+      },
+      "returns": "dict[str, Any]",
+      "task": "Inspect local release evidence",
+      "prerequisites": "Explicit configured root, relative contained path, compatible baseline if used",
+      "outputs": "Bounded static findings, complete flag, issues and coverage",
+      "approval": "Authorized read-only scan; no upload or target-code execution",
+      "credits": "No credits consumed",
+      "retry": "Safe unchanged read; timestamps can differ; ready is not runtime certification"
+    }
+  ]
+}

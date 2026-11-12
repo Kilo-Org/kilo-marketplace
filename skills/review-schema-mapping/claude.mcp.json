@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "review-schema-mapping": {
+      "type": "stdio",
+      "command": "/ABSOLUTE/TO/REVIEWED/ENV/bin/python",
+      "args": [
+        "-m",
+        "mcp_products.schema_mapper.mcp"
+      ]
+    }
+  }
+}

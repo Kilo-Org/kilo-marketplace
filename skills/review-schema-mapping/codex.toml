@@ -1,0 +1,4 @@
+[mcp_servers."review-schema-mapping"]
+command = "/ABSOLUTE/TO/REVIEWED/ENV/bin/python"
+args = ["-m", "mcp_products.schema_mapper.mcp"]
+cwd = "/ABSOLUTE/TO/TRUSTED/WORKSPACE"

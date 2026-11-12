@@ -1001,6 +1001,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/qlik-load-script
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/qlik-load-script/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/qlik-load-script.tar.gz
+  - id: quality-preflight
+    description: >-
+      Check every row of a lead CSV before a CRM or database write. Use only when this workflow fits the user's request;
+      review unsupported inputs before proceeding.
+    category: data
+    author: founder-sweep
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/quality-preflight
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/quality-preflight/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/quality-preflight.tar.gz
   - id: query-tableau-data
     description: >-
       A skill to query Tableau data sources, the "last mile" of analytics in an organization. When business users think
@@ -1028,6 +1037,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redshift
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redshift/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redshift.tar.gz
+  - id: review-schema-mapping
+    description: >-
+      Review vendor CSV field correspondences and validate a reusable mapping. Use only when this workflow fits the
+      user's request; review unsupported inputs before proceeding.
+    category: data
+    author: founder-sweep
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/review-schema-mapping
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/review-schema-mapping/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/review-schema-mapping.tar.gz
   - id: scikit-learn
     description: >-
       Machine learning in Python with scikit-learn. Use when working with supervised learning (classification,
@@ -1111,6 +1129,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/supabase-postgres-best-practices
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/supabase-postgres-best-practices/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/supabase-postgres-best-practices.tar.gz
+  - id: supplier-feed-import
+    description: >-
+      Review recurring supplier CSV/JSONL imports using an approved mapping, validate every record, and stop on
+      structural drift. Use only when this workflow fits the user's request; review unsupported inputs before
+      proceeding.
+    category: data
+    author: founder-sweep
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/supplier-feed-import
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/supplier-feed-import/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/supplier-feed-import.tar.gz
   - id: tableau-dashboard-creator
     description: >-
       Guides data analysts through a multi-step Tableau dashboard creation workflow - brand setup, data exploration,
@@ -1450,6 +1478,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/deploy-to-vercel
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/deploy-to-vercel/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/deploy-to-vercel.tar.gz
+  - id: diagnose-airflow-exports
+    description: >-
+      Review Airflow 3.2/3.3 DAG source and diagnose exported task incidents with DAG Doctor. Use for exported logs,
+      pool waits, upstream failures or executor mismatch; live Airflow access and automatic fixes are outside this
+      workflow.
+    category: development
+    author: founder-sweep
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/diagnose-airflow-exports
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/diagnose-airflow-exports/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/diagnose-airflow-exports.tar.gz
   - id: entra-agent-id
     description: >-
       Provision Microsoft Entra Agent Identity Blueprints, BlueprintPrincipals, and per-instance Agent Identities via
@@ -1569,6 +1607,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grilling
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grilling/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grilling.tar.gz
+  - id: inspect-release
+    description: >-
+      Inspect local Python/FastAPI, Docker and Actions evidence before a release handoff. Use only when this workflow
+      fits the user's request; review unsupported inputs before proceeding.
+    category: development
+    author: founder-sweep
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/inspect-release
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/inspect-release/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/inspect-release.tar.gz
   - id: jupyter-notebook
     description: >-
       Use whenever the user works with Jupyter notebooks (`.ipynb`), including creating, inspecting, editing, executing,
@@ -1621,6 +1668,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/ponytail
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/ponytail/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/ponytail.tar.gz
+  - id: review-fastapi-deployment
+    description: >-
+      Assess a stateless FastAPI container's source and configuration with Deployment Fixer and prepare an advisory ECS
+      Express plan. Use before a cloud deployment review; this skill performs no builds, AWS actions or automatic fixes.
+    category: development
+    author: founder-sweep
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/review-fastapi-deployment
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/review-fastapi-deployment/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/review-fastapi-deployment.tar.gz
   - id: secrets-vault-manager
     description: >-
       Use when the user asks to set up secret management infrastructure, integrate HashiCorp Vault, configure cloud
