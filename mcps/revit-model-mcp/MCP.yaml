@@ -1,7 +1,7 @@
 id: revit-model-mcp
 name: Model MCP
 description: >-
-  Open-source MCP server for Autodesk Revit 2022 to 2027: read, audit and edit live models with 89 tools, one Undo entry per change, and a workstation read-only lock.
+  Open-source MCP server for Autodesk Revit 2022 to 2027: read, audit and edit live models with 89 tools, one Undo entry per transactional model edit, and a workstation read-only lock.
 suggest_for:
   filename:
     - "*.rvt"
@@ -12,7 +12,7 @@ category: productivity
 prerequisites:
   - Autodesk Revit 2022 to 2027 on Windows with the matching Model MCP add-in installed and a model open
   - Install the per-user MSI from https://github.com/sharafutdinovdi/revit-model-mcp/releases/latest
-  - Model edits are enabled by default and write to the open model; each change is one named Undo entry. Turn on the
+  - Model edits are enabled by default and write to the open model; transactional model edits get one named Undo entry. Turn on the
     workstation read-only lock with the Read-only button on the Model MCP ribbon panel to refuse every model change
 content:
   - name: UVX on Windows
@@ -30,8 +30,10 @@ content:
       }
   - name: SSH from macOS or Linux
     prerequisites:
-      - OpenSSH access to the Revit workstation as the Windows user that runs Revit
+      - OpenSSH key-based access to the Revit workstation as the Windows user that runs Revit; see https://sharafutdinovdi.github.io/revit-model-mcp/install/ and https://sharafutdinovdi.github.io/revit-model-mcp/transport/#remote-setups
       - revit-model-mcp installed on the workstation with `uv tool install revit-model-mcp`
+      - Add the uv tool executable directory (normally `%USERPROFILE%\.local\bin`) to the PATH visible to the Windows OpenSSH Server service, then restart that service
+      - Verify that `ssh <host> revit-model-mcp --version` succeeds from the client before using this configuration
     content: |
       {
         "command": "ssh",
