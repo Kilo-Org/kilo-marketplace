@@ -1,0 +1,32 @@
+id: sightradar
+name: SightRadar Face Recognition API MCP
+description: Official MCP server for the SightRadar face recognition API to index, search, compare and detect faces.
+author: SightRadar team
+url: https://github.com/sightradar-hq/sightradar-mcp
+category: search
+prerequisites:
+  - SightRadar account
+content:
+  - name: Remote (OAuth sign-in)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.sightradar.com/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "sightradar-mcp"],
+        "env": {
+          "SIGHTRADAR_API_KEY": "{{SIGHTRADAR_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: SightRadar API Key
+        key: SIGHTRADAR_API_KEY
+        placeholder: your_sightradar_api_key
