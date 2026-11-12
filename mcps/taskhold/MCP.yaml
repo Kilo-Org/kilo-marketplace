@@ -1,0 +1,16 @@
+id: taskhold
+name: Taskhold
+description: For developers who hand work to Claude Code, Cursor or Codex, Taskhold is a hosted task list that you and your agents share. Agents pick up the next task, plan it in steps, report progress on a live board and block with a question when they need you.
+author: Taskhold
+url: https://github.com/gettaskhold/taskhold-plugin
+category: productivity
+prerequisites:
+  - Taskhold account (7-day trial, then $12/month)
+  - MCP client with OAuth support
+content:
+  - name: Taskhold hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://taskhold.com/api/mcp"
+      }
