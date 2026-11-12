@@ -1,5 +1,5 @@
 id: excession-labs-cve
-name: Excession Labs CVE intelligence
+name: Excession Labs CVE Intelligence
 description: Free hosted CVE search and source software/version evidence with available CISA KEV and dated EPSS data. Six read-only tools; version assertions are not installed-version range evaluations.
 author: Excession Labs
 url: https://github.com/Excession-Labs/mcp-servers
