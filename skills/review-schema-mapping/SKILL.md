@@ -1,17 +1,18 @@
 ---
 name: review-schema-mapping
-description: Review vendor CSV field correspondences and validate a reusable mapping.
-  Use only when this workflow fits the user's request; review unsupported inputs before
-  proceeding.
+description: >-
+  Review vendor CSV field correspondences and validate a reusable mapping. Use
+  only when this workflow fits the user's request; review unsupported inputs
+  before proceeding.
 metadata:
   category: data
-  source:
-    repository: https://github.com/founder-sweep/contentsweep-schema-mapper
-    path: skills/contentsweep-schema-mapper
-    ref: main
-    commit: 3e38dc0762c35b557d8b0d3d13839316d7a89700
-    license_path: LICENSE
   author: founder-sweep
+  source:
+    repository: 'https://github.com/founder-sweep/contentsweep-schema-mapper'
+    path: skills/contentsweep-schema-mapper
+    license_path: LICENSE
+    ref: main
+    commit: 58d19eac8d3c08cc5e6b3fc220249d1d6374c560
 ---
 
 # Schema Mapper

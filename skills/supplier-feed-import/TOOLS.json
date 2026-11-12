@@ -116,7 +116,7 @@
       },
       "returns": "dict",
       "task": "Quote an approved complete-file evaluation",
-      "prerequisites": "Owned upload and approved matching profile/contract/baseline",
+      "prerequisites": "Owned upload and approved matching supplier profile",
       "outputs": "Quote, expiry, exact fingerprints and funding; drift can return review_required",
       "approval": "Approval required before quoting; quote does not start work",
       "credits": "No credits consumed",
@@ -134,7 +134,7 @@
       "prerequisites": "Unexpired funded quote and stable idempotency key",
       "outputs": "Durable job identity and status",
       "approval": "Explicit credit/spending authorization",
-      "credits": "Reserves one product credit; supported completion (including rejection/block/warning) consumes one; platform failures release it",
+      "credits": "Reserves one evaluation; completed passed or rejected jobs consume one; review_required stops before start without consuming an evaluation; platform failures release the reservation",
       "retry": "Original quote AND original key; changed requests need a new quote/key; never start twice after a timeout"
     },
     {

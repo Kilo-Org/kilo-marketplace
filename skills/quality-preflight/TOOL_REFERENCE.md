@@ -103,11 +103,11 @@ Read owned baseline reference-file fingerprint, row count and approval/version.
 
 ## quote_quality_check
 
-Quote one entire-file check with exact approved versions and original SHA256, expiring in 10 minutes. Completed blocks/warnings cost one quality credit ($20/100); errors/platform failures are free. Does not start work.
+Quote one entire-file check with exact approved versions and original SHA256, expiring in 10 minutes. Completed continue, block and continue_with_warnings outcomes each cost one quality credit ($20/100); errors/platform failures are free. Quoting consumes no credit and does not start work.
 
 - Task: Quote an approved complete-file evaluation
-- Prerequisites: Owned upload and approved matching profile/contract/baseline
-- Outputs: Quote, expiry, exact fingerprints and funding; drift can return review_required
+- Prerequisites: Owned upload, approved matching contract and any approved baseline
+- Outputs: Quote, expiry, exact fingerprints and funding
 - Approval: Approval required before quoting; quote does not start work
 - Credits: No credits consumed
 - Retry: Reuse the original quote/key for an uncertain started request; only quote anew for genuinely new work
@@ -120,7 +120,7 @@ Authorize a quoted full-file preflight and reserve one QUALITY credit under the 
 - Prerequisites: Unexpired funded quote and stable idempotency key
 - Outputs: Durable job identity and status
 - Approval: Explicit credit/spending authorization
-- Credits: Reserves one product credit; supported completion (including rejection/block/warning) consumes one; platform failures release it
+- Credits: Reserves one check; completed continue, block or continue_with_warnings outcomes consume one; platform failures release the reservation
 - Retry: Original quote AND original key; changed requests need a new quote/key; never start twice after a timeout
 
 ## get_quality_check
@@ -188,4 +188,3 @@ Read owned quality purchase snapshots, settlement mode and refund state. A pack 
 - Approval: Read access within the user's task
 - Credits: No credits consumed
 - Retry: Read again using the same resource identity
-

@@ -140,7 +140,7 @@
     },
     {
       "name": "quote_quality_check",
-      "description": "Quote one entire-file check with exact approved versions and original SHA256, expiring in 10 minutes. Completed blocks/warnings cost one quality credit ($20/100); errors/platform failures are free. Does not start work.",
+      "description": "Quote one entire-file check with exact approved versions and original SHA256, expiring in 10 minutes. Completed continue, block and continue_with_warnings outcomes each cost one quality credit ($20/100); errors/platform failures are free. Quoting consumes no credit and does not start work.",
       "parameters": {
         "upload_id": "str",
         "contract_id": "str",
@@ -148,8 +148,8 @@
       },
       "returns": "dict",
       "task": "Quote an approved complete-file evaluation",
-      "prerequisites": "Owned upload and approved matching profile/contract/baseline",
-      "outputs": "Quote, expiry, exact fingerprints and funding; drift can return review_required",
+      "prerequisites": "Owned upload, approved matching contract and any approved baseline",
+      "outputs": "Quote, expiry, exact fingerprints and funding",
       "approval": "Approval required before quoting; quote does not start work",
       "credits": "No credits consumed",
       "retry": "Reuse the original quote/key for an uncertain started request; only quote anew for genuinely new work"
@@ -166,7 +166,7 @@
       "prerequisites": "Unexpired funded quote and stable idempotency key",
       "outputs": "Durable job identity and status",
       "approval": "Explicit credit/spending authorization",
-      "credits": "Reserves one product credit; supported completion (including rejection/block/warning) consumes one; platform failures release it",
+      "credits": "Reserves one check; completed continue, block or continue_with_warnings outcomes consume one; platform failures release the reservation",
       "retry": "Original quote AND original key; changed requests need a new quote/key; never start twice after a timeout"
     },
     {

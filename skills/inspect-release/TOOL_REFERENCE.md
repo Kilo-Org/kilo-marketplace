@@ -16,4 +16,3 @@ complete, issues, coverage and findings before declaring a release ready.
 - Approval: Authorized read-only scan; no upload or target-code execution
 - Credits: No credits consumed
 - Retry: Safe unchanged read; timestamps can differ; ready is not runtime certification
-

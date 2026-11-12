@@ -1,17 +1,18 @@
 ---
 name: inspect-release
-description: Inspect local Python/FastAPI, Docker and Actions evidence before a release
-  handoff. Use only when this workflow fits the user's request; review unsupported
-  inputs before proceeding.
+description: >-
+  Inspect local Python/FastAPI, Docker and Actions evidence before a release
+  handoff. Use only when this workflow fits the user's request; review
+  unsupported inputs before proceeding.
 metadata:
   category: development
-  source:
-    repository: https://github.com/founder-sweep/production-readiness-inspector
-    path: skills/contentsweep-inspector
-    ref: main
-    commit: 4089f83947a5db0ae79e1e158b2409b0580ce4bc
-    license_path: LICENSE
   author: founder-sweep
+  source:
+    repository: 'https://github.com/founder-sweep/production-readiness-inspector'
+    path: skills/contentsweep-inspector
+    license_path: LICENSE
+    ref: main
+    commit: 0d51cdc09ee71335b6cfe11a791771250194e130
 ---
 
 # Inspector

@@ -34,7 +34,7 @@ env_http_headers = { "X-API-Key" = "QUALITY_API_KEY" }
 
 ## Synthetic first task
 
-Use the repository-owned leads.csv and leads.contract.json. Compare the passing fixture with the duplicate-near-end and warning guides at /quality/guides. Never substitute a profile or sampled summary for the original file.
+Use the repository-owned leads.csv and leads.contract.json. Compare the passing fixture with the duplicate-near-end and warning guides at https://mcp.contentsweep.ai/quality/guides. Never substitute a profile or sampled summary for the original file.
 
 ## Workflow
 

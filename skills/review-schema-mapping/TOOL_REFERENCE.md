@@ -100,4 +100,3 @@ Emit approved runtime-dependent Python; never executes supplied code.
 - Approval: Explicit mapping approval and read access; saving output or executing a generated wrapper requires its own authorization
 - Credits: No credits consumed
 - Retry: Repeat only for the same approved mapping and scope; the caller must deliberately save returned data if requested
-

@@ -1,16 +1,18 @@
 ---
 name: quality-preflight
-description: Check every row of a lead CSV before a CRM or database write. Use only
-  when this workflow fits the user's request; review unsupported inputs before proceeding.
+description: >-
+  Check every row of a lead CSV before a CRM or database write. Use only when
+  this workflow fits the user's request; review unsupported inputs before
+  proceeding.
 metadata:
   category: data
-  source:
-    repository: https://github.com/founder-sweep/data-quality-gate-examples
-    path: skills/contentsweep-quality
-    ref: main
-    commit: c963394dbffdf24417be5f3ee4d46884c04031ff
-    license_path: LICENSE
   author: founder-sweep
+  source:
+    repository: 'https://github.com/founder-sweep/data-quality-gate-examples'
+    path: skills/contentsweep-quality
+    license_path: LICENSE
+    ref: main
+    commit: 7186488320c4ad44d81ab50bde5eb611fc3d623b
 ---
 
 # Data Quality Gate
@@ -39,7 +41,7 @@ Five trials once per verified organization; $20 plus applicable tax for 100 comp
 
 ## First example
 
-Use the repository-owned leads.csv and leads.contract.json. Compare the passing fixture with the duplicate-near-end and warning guides at /quality/guides. Never substitute a profile or sampled summary for the original file.
+Use the repository-owned leads.csv and leads.contract.json. Compare the passing fixture with the duplicate-near-end and warning guides at https://mcp.contentsweep.ai/quality/guides. Never substitute a profile or sampled summary for the original file.
 
 ## Optional account and funding workflow
 

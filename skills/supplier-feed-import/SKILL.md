@@ -1,17 +1,18 @@
 ---
 name: supplier-feed-import
-description: Review recurring supplier CSV/JSONL imports using an approved mapping,
-  validate every record, and stop on structural drift. Use only when this workflow
-  fits the user's request; review unsupported inputs before proceeding.
+description: >-
+  Review recurring supplier CSV/JSONL imports using an approved mapping,
+  validate every record, and stop on structural drift. Use only when this
+  workflow fits the user's request; review unsupported inputs before proceeding.
 metadata:
   category: data
-  source:
-    repository: https://github.com/founder-sweep/contentsweep-supplier-feed-examples
-    path: skills/contentsweep-supplier-feeds
-    ref: main
-    commit: 534e4ae1c3b37438126cf0d522217d20e6323ba0
-    license_path: LICENSE
   author: founder-sweep
+  source:
+    repository: 'https://github.com/founder-sweep/contentsweep-supplier-feed-examples'
+    path: skills/contentsweep-supplier-feeds
+    license_path: LICENSE
+    ref: main
+    commit: 78b194fe6ee75d9a98602bc88cacb9f096e6d979
 ---
 
 # Supplier Feeds

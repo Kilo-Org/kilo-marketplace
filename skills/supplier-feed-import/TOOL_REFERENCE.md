@@ -84,7 +84,7 @@ Persist an explicit approval of the exact profile after the operator has resolve
 Quote one full-file evaluation against an approved profile. Detects source drift. Does not charge or start work.
 
 - Task: Quote an approved complete-file evaluation
-- Prerequisites: Owned upload and approved matching profile/contract/baseline
+- Prerequisites: Owned upload and approved matching supplier profile
 - Outputs: Quote, expiry, exact fingerprints and funding; drift can return review_required
 - Approval: Approval required before quoting; quote does not start work
 - Credits: No credits consumed
@@ -98,7 +98,7 @@ Start the quoted evaluation using one funded credit under the account cap. A com
 - Prerequisites: Unexpired funded quote and stable idempotency key
 - Outputs: Durable job identity and status
 - Approval: Explicit credit/spending authorization
-- Credits: Reserves one product credit; supported completion (including rejection/block/warning) consumes one; platform failures release it
+- Credits: Reserves one evaluation; completed passed or rejected jobs consume one; review_required stops before start without consuming an evaluation; platform failures release the reservation
 - Retry: Original quote AND original key; changed requests need a new quote/key; never start twice after a timeout
 
 ## get_supplier_import
@@ -133,4 +133,3 @@ Read validated JSONL in pages of up to 500 records / 64 KiB for an owned passed 
 - Approval: Downstream writes require separate authorization
 - Credits: No credits consumed
 - Retry: Read again using the same resource identity
-
