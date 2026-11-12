@@ -1,0 +1,16 @@
+id: upapi
+name: upAPI
+description: "Call a catalog of ready-to-use APIs through one upAPI account and key, without signing up for each upstream service. Official hosted server operated by Devino Solutions; sign in with your upAPI account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/upapi
+category: development
+prerequisites:
+  - upAPI account
+  - MCP client with OAuth support
+content:
+  - name: upAPI hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.upapi.io/api/mcp"
+      }

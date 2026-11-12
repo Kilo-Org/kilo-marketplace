@@ -1,0 +1,16 @@
+id: shorty
+name: Shorty
+description: "Summarize and transcribe videos, audio files, documents and web pages with Shorty. Official hosted server operated by Devino Solutions; sign in with your Shorty account via OAuth."
+author: Devino Solutions
+url: https://github.com/DevinoSolutions/mcp-servers/tree/main/shorty
+category: productivity
+prerequisites:
+  - Shorty account
+  - MCP client with OAuth support
+content:
+  - name: Shorty hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://aishorty.com/api/mcp"
+      }
