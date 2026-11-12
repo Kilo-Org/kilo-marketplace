@@ -1,7 +1,7 @@
 id: embarko
 name: Embarko
 description: Deploy and host AI-built apps and websites, and get a live URL without any DevOps setup. Embarko runs the app at https://<app-name>.embarko.app.
-author: Embarko
+author: Walkover
 url: https://github.com/walkover-mcp/embarko
 category: development
 
