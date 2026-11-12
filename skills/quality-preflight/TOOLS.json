@@ -1,0 +1,251 @@
+{
+  "source_sha256": "611a37a4d4442c9538d8138baa673bd490698c2021f048fa7e62a05a51aec371",
+  "tools": [
+    {
+      "name": "upload_quality_file",
+      "description": "Upload the ACTUAL original UTF-8 flat csv/jsonl file, at most 10 MiB/50,000 records/100 fields. Stored 24h. A profile/summary/URL/server path cannot stand in for a complete file.",
+      "parameters": {
+        "content": "str",
+        "format": "str"
+      },
+      "returns": "dict",
+      "task": "Inspect the supplied original file",
+      "prerequisites": "Explicit permission to read the source; remote upload also needs permission to transmit it",
+      "outputs": "Upload identity/fingerprint or bounded inferred schema",
+      "approval": "Source-file access/upload authorization",
+      "credits": "No credits consumed",
+      "retry": "Uploads create new identities; reuse the successful upload rather than uploading again"
+    },
+    {
+      "name": "draft_quality_contract",
+      "description": "Save a new unapproved contract version with explicit field types, numeric locale, null decisions and stable rule IDs/actions. Supported: not_null, unique, accepted_values, null_rate, row_count, range. Review before approval.",
+      "parameters": {
+        "upload_id": "str",
+        "contract": "dict",
+        "parent_id": "str | None"
+      },
+      "returns": "dict",
+      "task": "Prepare decisions for review",
+      "prerequisites": "Owned source plus explicit target rules/decisions",
+      "outputs": "Unapproved proposal, version or sampled preview; not approval or full validation",
+      "approval": "Do not infer business meanings; obtain missing decisions",
+      "credits": "No credits consumed",
+      "retry": "Reads/previews may repeat; saved drafts/versions can create new identities"
+    },
+    {
+      "name": "get_quality_contract",
+      "description": "Read an owned contract's exact decisions and approval hash/version before reuse.",
+      "parameters": {
+        "contract_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "list_quality_contracts",
+      "description": "List owned contract identities in pages of 50; read the full contract before reviewing or approving it.",
+      "parameters": {
+        "offset": "int"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "delete_quality_decision",
+      "description": "Delete an owned contract or baseline after explicit operator instruction. kind is quality_contract or quality_baseline. Pending checks using it fail safely. Does not start a check or consume credits.",
+      "parameters": {
+        "resource_id": "str",
+        "kind": "str",
+        "confirm_delete": "bool"
+      },
+      "returns": "dict",
+      "task": "Delete a saved decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Deletion status; dependent pending jobs can fail safely",
+      "approval": "Explicit deletion instruction and confirmation",
+      "credits": "No credits consumed",
+      "retry": "Read current state before retry; do not delete another version"
+    },
+    {
+      "name": "approve_quality_contract",
+      "description": "Approve this exact contract hash only after operator authorization and review of destination meanings, locale, nulls, actions and disclosed coverage.",
+      "parameters": {
+        "contract_id": "str",
+        "expected_hash": "str",
+        "approve": "bool"
+      },
+      "returns": "dict",
+      "task": "Record exact reviewed approval",
+      "prerequisites": "Exact reviewed hash/fingerprint and scope, with all unresolved choices settled",
+      "outputs": "Approval bound to that exact version",
+      "approval": "Explicit authorized reviewer approval; fixture permission covers only owned fixtures",
+      "credits": "No credits consumed",
+      "retry": "Reuse only the same reviewed version and scope; edits invalidate approval"
+    },
+    {
+      "name": "draft_quality_baseline",
+      "description": "Draft a versioned row-count baseline from the actual owned reference file for an approved contract declaring a threshold/action. Never replaces a baseline automatically.",
+      "parameters": {
+        "contract_id": "str",
+        "upload_id": "str",
+        "parent_id": "str | None"
+      },
+      "returns": "dict",
+      "task": "Prepare decisions for review",
+      "prerequisites": "Owned source plus explicit target rules/decisions",
+      "outputs": "Unapproved proposal, version or sampled preview; not approval or full validation",
+      "approval": "Do not infer business meanings; obtain missing decisions",
+      "credits": "No credits consumed",
+      "retry": "Reads/previews may repeat; saved drafts/versions can create new identities"
+    },
+    {
+      "name": "approve_quality_baseline",
+      "description": "Approve the reviewed exact baseline hash for its specific contract after operator authorization.",
+      "parameters": {
+        "baseline_id": "str",
+        "expected_hash": "str",
+        "approve": "bool"
+      },
+      "returns": "dict",
+      "task": "Record exact reviewed approval",
+      "prerequisites": "Exact reviewed hash/fingerprint and scope, with all unresolved choices settled",
+      "outputs": "Approval bound to that exact version",
+      "approval": "Explicit authorized reviewer approval; fixture permission covers only owned fixtures",
+      "credits": "No credits consumed",
+      "retry": "Reuse only the same reviewed version and scope; edits invalidate approval"
+    },
+    {
+      "name": "get_quality_baseline",
+      "description": "Read owned baseline reference-file fingerprint, row count and approval/version.",
+      "parameters": {
+        "baseline_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "quote_quality_check",
+      "description": "Quote one entire-file check with exact approved versions and original SHA256, expiring in 10 minutes. Completed blocks/warnings cost one quality credit ($20/100); errors/platform failures are free. Does not start work.",
+      "parameters": {
+        "upload_id": "str",
+        "contract_id": "str",
+        "baseline_id": "str | None"
+      },
+      "returns": "dict",
+      "task": "Quote an approved complete-file evaluation",
+      "prerequisites": "Owned upload and approved matching profile/contract/baseline",
+      "outputs": "Quote, expiry, exact fingerprints and funding; drift can return review_required",
+      "approval": "Approval required before quoting; quote does not start work",
+      "credits": "No credits consumed",
+      "retry": "Reuse the original quote/key for an uncertain started request; only quote anew for genuinely new work"
+    },
+    {
+      "name": "start_quality_check",
+      "description": "Authorize a quoted full-file preflight and reserve one QUALITY credit under the quality cap. Reuse this quote/key on retries. Completed continue/warning/block consumes one; errors release it. Feed credits cannot fund this.",
+      "parameters": {
+        "quote_id": "str",
+        "idempotency_key": "str"
+      },
+      "returns": "dict",
+      "task": "Start one authorized complete-file evaluation",
+      "prerequisites": "Unexpired funded quote and stable idempotency key",
+      "outputs": "Durable job identity and status",
+      "approval": "Explicit credit/spending authorization",
+      "credits": "Reserves one product credit; supported completion (including rejection/block/warning) consumes one; platform failures release it",
+      "retry": "Original quote AND original key; changed requests need a new quote/key; never start twice after a timeout"
+    },
+    {
+      "name": "get_quality_check",
+      "description": "Read an owned job and operational receipt; does not start another check. Downstream writes proceed only on continue by default.",
+      "parameters": {
+        "job_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "get_quality_report",
+      "description": "Read the completed full-file report for seven days: record count, rules, redacted failure counts and bounded record references. This report is NOT the original dataset.",
+      "parameters": {
+        "job_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "get_checked_original_download",
+      "description": "Get the authenticated original-data download path after continue, while the 24h source retention remains. SHA256 identifies the actual checked bytes; never forward report JSON as customer data.",
+      "parameters": {
+        "job_id": "str"
+      },
+      "returns": "dict",
+      "task": "Fetch the checked original",
+      "prerequisites": "Owned continue job and original still within 24-hour retention",
+      "outputs": "Authenticated download path and original SHA256; verify downloaded bytes",
+      "approval": "Only continue permits downstream writes by default; separate destination authorization",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "quality_wallet",
+      "description": "Read separate quality credits, cap, low balance and funding link. Five trials once per verified organization; $20/100 prepaid checks, no subscription/automatic replenishment.",
+      "parameters": {},
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "quality_billing_status",
+      "description": "Read payment activation state for quality. Sandbox/internal qualification does not establish live activation or customer purchases.",
+      "parameters": {},
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "quality_purchase_history",
+      "description": "Read owned quality purchase snapshots, settlement mode and refund state. A pack sale is one purchase of 100 credits; sandbox purchases do not establish live revenue.",
+      "parameters": {},
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    }
+  ]
+}

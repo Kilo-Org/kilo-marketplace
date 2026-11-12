@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "quality-preflight": {
+      "type": "http",
+      "url": "https://mcp.contentsweep.ai/v1/quality/mcp/",
+      "headers": {
+        "X-API-Key": "${QUALITY_API_KEY}"
+      }
+    }
+  }
+}

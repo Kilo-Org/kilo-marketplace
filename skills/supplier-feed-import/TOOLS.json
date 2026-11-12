@@ -1,0 +1,185 @@
+{
+  "source_sha256": "608895640216d764adaac65fe8cd31919acf68e151abc0c612b7b5fda83a9bbf",
+  "tools": [
+    {
+      "name": "upload_supplier_feed",
+      "description": "Upload explicitly supplied UTF-8 CSV or JSONL (10 MiB, 50,000 records maximum). Stores it for 24 hours. No URL or local file paths.",
+      "parameters": {
+        "content": "str",
+        "format": "str"
+      },
+      "returns": "dict",
+      "task": "Inspect the supplied original file",
+      "prerequisites": "Explicit permission to read the source; remote upload also needs permission to transmit it",
+      "outputs": "Upload identity/fingerprint or bounded inferred schema",
+      "approval": "Source-file access/upload authorization",
+      "credits": "No credits consumed",
+      "retry": "Uploads create new identities; reuse the successful upload rather than uploading again"
+    },
+    {
+      "name": "preview_supplier_feed",
+      "description": "Propose field mappings for an uploaded flat feed. Preview is not full validation or semantic approval.",
+      "parameters": {
+        "upload_id": "str",
+        "target_schema": "dict"
+      },
+      "returns": "dict",
+      "task": "Prepare decisions for review",
+      "prerequisites": "Owned source plus explicit target rules/decisions",
+      "outputs": "Unapproved proposal, version or sampled preview; not approval or full validation",
+      "approval": "Do not infer business meanings; obtain missing decisions",
+      "credits": "No credits consumed",
+      "retry": "Reads/previews may repeat; saved drafts/versions can create new identities"
+    },
+    {
+      "name": "create_supplier_feed_profile",
+      "description": "Save an unapproved versioned profile with explicit mapping, decimal locale, and quality rules.",
+      "parameters": {
+        "upload_id": "str",
+        "target_schema": "dict",
+        "mapping": "list[dict]",
+        "contract": "dict",
+        "parent_id": "str | None"
+      },
+      "returns": "dict",
+      "task": "Prepare decisions for review",
+      "prerequisites": "Owned source plus explicit target rules/decisions",
+      "outputs": "Unapproved proposal, version or sampled preview; not approval or full validation",
+      "approval": "Do not infer business meanings; obtain missing decisions",
+      "credits": "No credits consumed",
+      "retry": "Reads/previews may repeat; saved drafts/versions can create new identities"
+    },
+    {
+      "name": "list_supplier_feed_profiles",
+      "description": "List owned saved profile identities in pages of 50. Read a specific profile before reusing or approving it.",
+      "parameters": {
+        "offset": "int"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "get_supplier_feed_profile",
+      "description": "Read an owned profile's exact destination schema, approved decisions, contract, and version identity.",
+      "parameters": {
+        "profile_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "delete_supplier_feed_profile",
+      "description": "Permanently delete an owned saved profile after explicit operator instruction. This does not start an evaluation or use credits.",
+      "parameters": {
+        "profile_id": "str"
+      },
+      "returns": "dict",
+      "task": "Delete a saved decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Deletion status; dependent pending jobs can fail safely",
+      "approval": "Explicit deletion instruction and confirmation",
+      "credits": "No credits consumed",
+      "retry": "Read current state before retry; do not delete another version"
+    },
+    {
+      "name": "approve_supplier_feed_profile",
+      "description": "Persist an explicit approval of the exact profile after the operator has resolved its field meanings and rules.",
+      "parameters": {
+        "profile_id": "str",
+        "expected_profile_hash": "str",
+        "approve": "bool"
+      },
+      "returns": "dict",
+      "task": "Record exact reviewed approval",
+      "prerequisites": "Exact reviewed hash/fingerprint and scope, with all unresolved choices settled",
+      "outputs": "Approval bound to that exact version",
+      "approval": "Explicit authorized reviewer approval; fixture permission covers only owned fixtures",
+      "credits": "No credits consumed",
+      "retry": "Reuse only the same reviewed version and scope; edits invalidate approval"
+    },
+    {
+      "name": "quote_supplier_import",
+      "description": "Quote one full-file evaluation against an approved profile. Detects source drift. Does not charge or start work.",
+      "parameters": {
+        "upload_id": "str",
+        "profile_id": "str"
+      },
+      "returns": "dict",
+      "task": "Quote an approved complete-file evaluation",
+      "prerequisites": "Owned upload and approved matching profile/contract/baseline",
+      "outputs": "Quote, expiry, exact fingerprints and funding; drift can return review_required",
+      "approval": "Approval required before quoting; quote does not start work",
+      "credits": "No credits consumed",
+      "retry": "Reuse the original quote/key for an uncertain started request; only quote anew for genuinely new work"
+    },
+    {
+      "name": "start_supplier_import",
+      "description": "Start the quoted evaluation using one funded credit under the account cap. A completed rejection report is billable; platform failures release the credit.",
+      "parameters": {
+        "quote_id": "str",
+        "idempotency_key": "str"
+      },
+      "returns": "dict",
+      "task": "Start one authorized complete-file evaluation",
+      "prerequisites": "Unexpired funded quote and stable idempotency key",
+      "outputs": "Durable job identity and status",
+      "approval": "Explicit credit/spending authorization",
+      "credits": "Reserves one product credit; supported completion (including rejection/block/warning) consumes one; platform failures release it",
+      "retry": "Original quote AND original key; changed requests need a new quote/key; never start twice after a timeout"
+    },
+    {
+      "name": "get_supplier_import",
+      "description": "Read an owned job's status and receipt. Does not initiate or repeat evaluation.",
+      "parameters": {
+        "job_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "get_supplier_import_report",
+      "description": "Read the complete-file validation report for an owned completed job during its seven-day result retention.",
+      "parameters": {
+        "job_id": "str"
+      },
+      "returns": "dict",
+      "task": "Read an owned result or decision",
+      "prerequisites": "Existing owned resource and current account authorization",
+      "outputs": "Structured result; inspect disclosed coverage and errors",
+      "approval": "Read access within the user's task",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    },
+    {
+      "name": "get_supplier_import_output",
+      "description": "Read validated JSONL in pages of up to 500 records / 64 KiB for an owned passed job within seven days. Follow next_offset. Oversized records require an authenticated download of download_path.",
+      "parameters": {
+        "job_id": "str",
+        "offset": "int",
+        "limit": "int"
+      },
+      "returns": "dict",
+      "task": "Read validated JSONL",
+      "prerequisites": "Passed owned job within seven-day output retention",
+      "outputs": "Paged validated records; follow pagination to completion",
+      "approval": "Downstream writes require separate authorization",
+      "credits": "No credits consumed",
+      "retry": "Read again using the same resource identity"
+    }
+  ]
+}

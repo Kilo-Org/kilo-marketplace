@@ -1,0 +1,4 @@
+[mcp_servers."inspect-release"]
+command = "/ABSOLUTE/TO/REVIEWED/ENV/bin/python"
+args = ["-m", "mcp_products.inspector.mcp", "--root", "/ABSOLUTE/TO/AUTHORIZED/REPOSITORY"]
+cwd = "/ABSOLUTE/TO/TRUSTED/WORKSPACE"

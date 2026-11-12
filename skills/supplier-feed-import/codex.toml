@@ -1,0 +1,3 @@
+[mcp_servers."supplier-feed-import"]
+url = "https://mcp.contentsweep.ai/v1/feeds/mcp/"
+env_http_headers = { "X-API-Key" = "CONTENTSWEEP_API_KEY" }
