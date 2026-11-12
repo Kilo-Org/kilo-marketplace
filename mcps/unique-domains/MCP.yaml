@@ -1,0 +1,21 @@
+id: unique-domains
+name: Unique Domains
+description: Ask if a domain name is taken, what nine registrars charge for it and what similar names sold for. 51 read-only tools over a daily record of 37 million names. No key.
+author: Unique Domains
+url: https://github.com/UniqueDomains/mcp-server
+category: search
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.unique.domains/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@uniquedomains/mcp-server"]
+      }
