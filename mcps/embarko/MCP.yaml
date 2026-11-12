@@ -1,0 +1,18 @@
+id: embarko
+name: Embarko
+description: Deploy and host AI-built apps and websites, and get a live URL without any DevOps setup. Embarko runs the app at https://<app-name>.embarko.app.
+author: Walkover
+url: https://github.com/walkover-mcp/embarko
+category: development
+
+prerequisites:
+  - An Embarko account at https://embarko.ai
+  - Sign in to Embarko via the sign-in button in your MCP client after adding the server
+
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.embarko.ai/mcp"
+      }
