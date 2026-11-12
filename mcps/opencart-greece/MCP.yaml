@@ -1,0 +1,15 @@
+id: opencart-greece
+name: OpenCart Greece
+description: Search the OpenCart Greece catalog of OpenCart extensions, themes and services and read each product's full
+  offers, option groups, availability, categories and the store's contact details. Read-only; no account or API key.
+author: OpenCart Greece
+url: https://eshop.opencartgreece.gr/mcp
+category: business
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://eshop.opencartgreece.gr/mcp"
+      }
+
