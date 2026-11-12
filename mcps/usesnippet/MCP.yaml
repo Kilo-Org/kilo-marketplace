@@ -1,0 +1,17 @@
+id: usesnippet
+name: Snippet
+description: Manage brand deals and inbox replies, estimate sponsorship rates, and review contracts and disclosures through Snippet.
+author: Snippet-Core
+url: https://github.com/Snippet-Core/snippet-cursor-plugin
+category: business
+prerequisites:
+  - A Snippet account (https://usesnippet.app)
+  - A Kilo Code client with remote Streamable HTTP and OAuth support
+  - Complete Snippet OAuth sign-in in the client when prompted; no API key or client secret is required
+content:
+  - name: Remote Server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://usesnippet.app/api/mcp"
+      }
