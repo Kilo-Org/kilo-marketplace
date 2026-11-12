@@ -1,0 +1,18 @@
+id: liliphant
+name: Liliphant
+description: Ask questions about your meetings and get answers quoted from what people actually said. Liliphant joins your calls, transcribes them, and pulls out decisions, promises, open questions and risks.
+author: Walkover
+url: https://github.com/walkover-mcp/liliphant
+category: productivity
+
+prerequisites:
+  - A Liliphant account at https://liliphant.com
+  - Sign in to Liliphant via the sign-in button in your MCP client after adding the server
+
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.liliphant.com/mcp"
+      }
