@@ -1,0 +1,16 @@
+id: deal-ai
+name: Deal.ai
+description: Compares every US store's price for the same product with its price history, checks whether a deal is real, asks Deal.ai's shopping agent what to buy, and watches prices with an e-mail when one drops.
+author: Deal.ai
+url: https://github.com/Famous-Labs/deal-ai-mcp
+category: search
+prerequisites:
+  - Free Deal.ai account
+  - MCP client with OAuth support
+content:
+  - name: Deal.ai hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://deal.ai/mcp"
+      }
