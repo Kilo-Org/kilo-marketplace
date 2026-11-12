@@ -1,0 +1,22 @@
+id: gridzen-verification
+name: GridZen Verification
+description: Research and synthetic MCP tools for planning identity-verification coverage and exercising sandbox decision results. Not live identity verification.
+author: immurray
+url: https://github.com/immurray/gridzen-developer-kit
+category: development
+prerequisites:
+  - Python 3.11+ for the local stdio server, or any MCP client that can call a Streamable HTTP endpoint
+content:
+  - name: Pip
+    prerequisites:
+      - Python 3.11+
+    content: |
+      {
+        "command": "gridzen-mcp"
+      }
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://gridzen.ai/developers/mcp"
+      }
