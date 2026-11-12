@@ -1,0 +1,58 @@
+id: tapetide
+name: Tapetide Indian Stock Market
+description: NSE and BSE stock market data, with financials, screener, technicals, FII/DII flows and option chains.
+author: Tapetide
+url: https://github.com/Tapetide-hq/nse-bse-indian-stock-market-data-mcp
+category: business
+prerequisites:
+  - Tapetide account (free plan available; Google sign-in or a personal token)
+content:
+  - name: Remote MCP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.tapetide.com/mcp"
+      }
+  - name: Remote MCP (Personal Token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.tapetide.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TAPETIDE_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Tapetide Personal Token
+        key: TAPETIDE_TOKEN
+        placeholder: your_tapetide_token
+  - name: NPX
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "tapetide-mcp"],
+        "env": {
+          "TAPETIDE_TOKEN": "{{TAPETIDE_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Tapetide Personal Token
+        key: TAPETIDE_TOKEN
+        placeholder: your_tapetide_token
+  - name: UVX
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["tapetide-mcp"],
+        "env": {
+          "TAPETIDE_TOKEN": "{{TAPETIDE_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Tapetide Personal Token
+        key: TAPETIDE_TOKEN
+        placeholder: your_tapetide_token
