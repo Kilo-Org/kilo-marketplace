@@ -1,0 +1,17 @@
+id: hireseeker
+name: HireSeeker
+description: >-
+  Поиск IT-вакансий из Telegram и карьерных сайтов компаний.
+  Профессии, города и страны, поиск по поддерживаемым фильтрам,
+  подробности вакансий. Четыре инструмента только для чтения;
+  без регистрации и API-ключей.
+author: hireseeker
+url: https://github.com/hireseeker/hireseeker-cli
+category: search
+content:
+  - name: Streamable HTTP
+    content: |-
+      {
+        "type": "streamable-http",
+        "url": "https://hireseeker.ru/mcp"
+      }
