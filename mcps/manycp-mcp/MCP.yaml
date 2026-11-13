@@ -1,0 +1,21 @@
+id: manycp-mcp
+name: ManyCP MCP server
+description: >-
+  Submit an MCP server to many MCP directories and track each listing from an AI
+  assistant
+author: dayyad
+url: https://github.com/dayyad/manycp-mcp
+category: development
+content:
+  - name: Remote
+    prerequisites:
+      - An MCP client that supports remote servers
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://manycp.com/mcp"
+      }
+parameters:
+  - name: Manycp Auth
+    key: MANYCP_AUTH
+    placeholder: your_manycp_auth
