@@ -1,0 +1,7 @@
+id: brethof-brain-opencode
+name: brethof-brain
+description: Long-term memory for Kilo and OpenCode. Each session opens with a brief from your brethof-brain memory, every prompt arrives with the records that bear on it, and every exchange is archived and searchable. One memory shared with your other agents. Needs a brethof-brain account (free plan available).
+category: productivity
+author: BrethofAI
+url: https://github.com/BrethofAI/brethof-brain-client/tree/main/adapters/opencode
+content: brethof-brain-opencode
