@@ -1,0 +1,16 @@
+id: ay-listicle
+name: AY Listicle
+description: Find best-of listicles with open spots, request editorial inclusion, propose swaps and answer requests. Previews before any credits are spent.
+author: AY Automate
+url: https://github.com/tahalatif-cmd/aylistcle-mcp
+category: business
+prerequisites:
+  - AY Listicle account (credits come with a paid plan)
+  - MCP client with OAuth support
+content:
+  - name: AY Listicle hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.aylistcle.com/api/mcp/mcp"
+      }
