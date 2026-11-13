@@ -1,0 +1,16 @@
+id: tablejourney
+name: TableJourney Food Travel
+description: Read-only food travel data for 200+ cities. Search editorially verified restaurants, cafes, markets and
+  street food, food festivals with resolved dates, signature dishes, itineraries, and bookable tours and stays. Every
+  result links to a page that shows its source URL, the date it was checked and its open status. Public remote server,
+  no API key.
+author: tablejourney
+url: https://github.com/lewismvaughan/tablejourney-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://tablejourney.com/mcp"
+      }
