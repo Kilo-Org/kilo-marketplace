@@ -1,0 +1,16 @@
+id: video-background-remover
+name: Video Background Remover (.ai)
+description: Official hosted MCP for videobackgroundremover.ai. Connect over Streamable HTTP, authorize with OAuth, and remove video backgrounds using paid credits.
+author: Video Background Remover (.ai)
+url: https://github.com/biggersun/videobackgroundremover-ai-mcp
+category: development
+prerequisites:
+  - videobackgroundremover.ai account
+  - MCP client with OAuth 2.1 support
+content:
+  - name: Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://videobackgroundremover.ai/mcp"
+      }
