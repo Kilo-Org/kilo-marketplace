@@ -1,0 +1,18 @@
+id: mymusik
+name: MyMusik
+description: Play music from your own MyMusik library, control the queue, organize playlists and tags, and import or trim audio with the permissions you choose.
+author: Shaggai GmbH
+url: https://github.com/shagg-ai/mymusik-mcp
+category: productivity
+prerequisites:
+  - Keep the MyMusik app running and reachable from the computer running Kilo.
+  - Install the Python 3.10+ connector on that computer and put mymusik-mcp on PATH. See https://github.com/shagg-ai/mymusik-mcp#pair-and-find-your-first-albums for the release wheel and install command.
+  - In MyMusik, open Insights → Connect a device, choose Read only and a duration, then copy the agent prompt. Run mymusik-mcp pair and paste only the invitation URL into the hidden input.
+  - Ask Kilo to list three albums from your MyMusik library. For playback, pair with Remote playback access.
+content:
+  - name: Local connector
+    content: |
+      {
+        "command": "mymusik-mcp",
+        "args": ["stdio"]
+      }
