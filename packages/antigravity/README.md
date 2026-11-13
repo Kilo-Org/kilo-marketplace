@@ -7,6 +7,8 @@ Provides OpenAI-compatible endpoints with full token usage telemetry, cost model
 
 - **Models Included**:
   - `agy/gemini-4-hydrogen`: Google Flagship Coding Model with XHigh reasoning (1M context)
+  - `agy/gemini-pro-orchestrator`: Google Orchestrator Model (Carbon, 1M context)
+  - `agy/gemini-pro-orchestrator-argon`: Google Orchestrator Model (Argon, 1M context)
   - `agy/gemini-4-carbon`: Google Flagship Coding Model (1M context)
   - `agy/gemini-4-argon`: Google Advanced Coding Model (1M context)
   - `agy/gemini-3.8-flash`: Fast & Efficient Coding Model (1M context)

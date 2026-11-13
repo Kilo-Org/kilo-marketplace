@@ -1,6 +1,6 @@
 id: git/github.com/Kilo-Org/kilo-marketplace/packages/antigravity
 name: Antigravity (AGY)
-description: Connects to local Antigravity (AGY) credentials to provide Gemini 4 Hydrogen, Gemini 4 Carbon, Gemini 4 Argon, Gemini 3.8 Flash, Gemini 2.5 Flash Thinking, Claude, and GPT-OSS 120B models with token and cost telemetry.
+description: Connects to local Antigravity (AGY) credentials to provide Gemini 4 Hydrogen, Gemini Pro Orchestrator, Gemini 4 Carbon, Gemini 4 Argon, Gemini 3.8 Flash, Gemini 2.5 Flash Thinking, Claude, and GPT-OSS 120B models with token and cost telemetry.
 category: providers
 author: Phenol1145
 url: https://github.com/Kilo-Org/kilo-marketplace/tree/main/packages/antigravity

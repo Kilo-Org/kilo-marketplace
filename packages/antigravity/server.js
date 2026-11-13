@@ -97,6 +97,42 @@ export const AntigravityPlugin = async (_ctx) => {
               output: 65536
             }
           },
+          "gemini-pro-orchestrator": {
+            name: "Gemini Pro Orchestrator (Carbon)",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 1.25,
+              output: 5.0,
+              cache_read: 0.3125
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 1000000,
+              output: 65536
+            }
+          },
+          "gemini-pro-orchestrator-argon": {
+            name: "Gemini Pro Orchestrator (Argon)",
+            reasoning: true,
+            tool_call: true,
+            cost: {
+              input: 1.25,
+              output: 5.0,
+              cache_read: 0.3125
+            },
+            modalities: {
+              input: ["text", "image"],
+              output: ["text"]
+            },
+            limit: {
+              context: 1000000,
+              output: 65536
+            }
+          },
           "gemini-4-carbon": {
             name: "Gemini 4 Carbon",
             reasoning: true,
