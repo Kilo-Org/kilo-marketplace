@@ -1,0 +1,32 @@
+id: clickhouse-loom
+name: ClickHouse Loom
+description: Shared long-term memory, document search and a code index for coding agents, from a self-hosted
+  Loom server on ClickHouse; memories one agent saves are found by later sessions and other agents.
+author: ClickHouse
+url: https://github.com/ClickHouse/loom
+category: data
+prerequisites:
+  - "A running Loom server. On one machine: curl -fsSL https://github.com/ClickHouse/loom/releases/latest/download/install.sh -o loom-install.sh && sh loom-install.sh (Docker)"
+content:
+  - name: Local server (single user)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "http://localhost:7777/mcp?toolset=coding"
+      }
+  - name: Team server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "{{LOOM_URL}}/mcp?toolset=coding",
+        "headers": {
+          "Authorization": "Bearer {{LOOM_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Loom server URL
+        key: LOOM_URL
+        placeholder: https://loom.example.com
+      - name: Loom token
+        key: LOOM_API_KEY
+        placeholder: your_loom_token
