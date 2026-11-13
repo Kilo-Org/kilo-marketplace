@@ -1,0 +1,26 @@
+id: localcloud
+name: LocalCloud
+description: >-
+  Give your coding agent a local cloud environment to build, test, and debug
+  Google Cloud applications with zero Google Cloud service charges. Discover
+  services, configure standard SDKs, inspect resources, query test data, and
+  diagnose failures through MCP.
+author: LocalCloud
+url: https://github.com/LocalGCloud/localcloud-cli
+category: development
+prerequisites:
+  - macOS or Linux
+  - A running Docker engine
+  - LocalCloud CLI and its Docker image; setup at https://github.com/LocalGCloud/localcloud-cli/blob/main/docs/mcp.md
+  - Run lc start --local-only before connecting; first startup can download the image
+content:
+  - name: Native LocalCloud CLI (stdio)
+    content: |
+      {
+        "command": "{{LOCALCLOUD_BIN}}",
+        "args": ["mcp"]
+      }
+parameters:
+  - name: LocalCloud executable path (run command -v localcloud)
+    key: LOCALCLOUD_BIN
+    placeholder: /absolute/path/to/localcloud
