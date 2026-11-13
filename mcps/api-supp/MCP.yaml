@@ -1,0 +1,15 @@
+id: api-supp
+name: API-Supp
+description: WhatsApp REST API and OAuth MCP for your existing number. Connects existing WhatsApp numbers by QR through an unofficial bridge, not Meta's official Cloud API. Supports multiple numbers, text messaging and chat context. Paid ($7.50 per number/month); adding a number requires a sales-issued activation code.
+author: API-Supp
+url: https://api-supp.com/docs/mcp-server
+category: productivity
+prerequisites:
+  - An API-Supp account with a connected WhatsApp number (paid; adding a number requires a sales-issued activation code)
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.api-supp.com/api/mcp"
+      }
