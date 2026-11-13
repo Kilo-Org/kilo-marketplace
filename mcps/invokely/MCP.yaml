@@ -1,0 +1,27 @@
+id: invokely
+name: Invokely
+description: >-
+  Connects clients to Invokely's hosted official statistics service through six tools. They search
+  indicators and resolve places, retrieve cited values and time series, compare places, and rank
+  regions; results include the period, unit, and official source citation.
+author: Invokely
+url: https://github.com/estevecastells/invokely-mcp-connector
+category: data
+content:
+  - name: Local stdio (GitHub source)
+    prerequisites:
+      - Node.js 22 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "github:estevecastells/invokely-mcp-connector"]
+      }
+  - name: Hosted trial (Streamable HTTP)
+    prerequisites:
+      - Public internet access
+      - No account or API key; limited to 25 calls per day per IP address
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://invokely.ai/mcp/trial"
+      }
