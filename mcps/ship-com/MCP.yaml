@@ -1,0 +1,24 @@
+id: ship-com
+name: Ship.com
+description: Connect AI assistants to shipping rates, order management and tracking for shipments originating in the United States. Label purchasing requires an access-token connection.
+author: Ship.com
+url: https://github.com/AtlasGrunch/ship-com-mcp
+category: business
+prerequisites:
+  - A Ship.com account with MCP access
+  - A Ship.com access token
+  - Supported shipments must originate in the United States
+content:
+  - name: Remote with Ship.com access token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.ship.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SHIP_COM_ACCESS_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Ship.com access token
+    key: SHIP_COM_ACCESS_TOKEN
+    placeholder: your_ship_com_access_token
