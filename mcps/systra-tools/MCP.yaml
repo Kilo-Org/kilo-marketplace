@@ -1,0 +1,17 @@
+id: systra-tools
+name: Systra Tools
+description: >-
+  Gives AI coding agents a growing library of production-ready React and
+  Tailwind UI sections, components and templates. Search and pull implementation
+  code directly into your projects. Free components work without an API key;
+  Premium access is optional.
+author: systra-tools
+url: https://github.com/systra-tools/systra-tools-plugin
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://systra.tools/api/mcp"
+      }
