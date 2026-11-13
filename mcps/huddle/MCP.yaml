@@ -1,0 +1,23 @@
+id: huddle
+name: Huddle
+description: Supervised multi-agent sessions — route @mentions to Claude, Codex and Gemini guests sharing one transcript inside your agent session, with AI-watches-AI audits, read-only advise / workspace-write act modes and one-command undo. Zero dependencies.
+author: Jazzfer-2003
+url: https://github.com/Jazzfer-2003/huddle
+category: development
+prerequisites:
+  - Node.js 22+
+  - One MCP-capable host (opencode, Claude Code)
+  - Guest agent CLIs installed and logged in
+content:
+  - name: Local
+    prerequisites:
+      - Node.js 22+
+    content: |
+      {
+        "command": "node",
+        "args": ["--experimental-strip-types", "<PATH-TO-HUDDLE>/src/server.ts"],
+        "env": {
+          "HUDDLE_GUESTS": "codex,gemini",
+          "HUDDLE_HOST": "opencode"
+        }
+      }
