@@ -1,0 +1,22 @@
+id: customermates
+name: Customermates
+description: Open-source CRM that your AI client reads and writes over MCP. Contacts, companies, deals, conversations and next steps in one workspace, on the hosted app or self-hosted.
+author: customermates
+url: https://github.com/customermates/customermates
+category: productivity
+prerequisites:
+  - Customermates workspace (hosted at customermates.com or self-hosted) and an API key created in it
+content:
+  - name: Remote API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://customermates.com/api/v1/mcp",
+        "headers": {
+          "x-api-key": "{{CUSTOMERMATES_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Customermates API Key
+    key: CUSTOMERMATES_API_KEY
+    placeholder: your_64_character_api_key
