@@ -86,6 +86,111 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/theme-factory
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/theme-factory/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/theme-factory.tar.gz
+  - id: wazza-3d
+    description: >-
+      Make a textured 3D model from an image (or several views, or a text prompt) with Wazza, clean its topology and
+      UVs, and bring it into Blender, Unity, Unreal Engine or Godot. Use when the user wants a 3D asset, a prop, a
+      character mesh, a game-ready or low-poly model, a GLB, retopology or new UVs from a picture or a concept.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-3d
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-3d/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-3d.tar.gz
+  - id: wazza-check
+    description: >-
+      Measure a rendered video, frame sequence or audio file against delivery rules with Wazza, then fix what fails and
+      check again. Use after rendering video (Remotion, HyperFrames, ffmpeg, Blender or any other tool), before posting
+      or delivering it, or when the user asks whether a video is loud enough, has flashing that may trigger
+      photosensitive seizures, has illegal colour levels, or meets a delivery spec.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-check
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-check/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-check.tar.gz
+  - id: wazza-deliver
+    description: >-
+      Conform and master a finished film, episode or shot to a delivery spec with Wazza - ProRes 422 HQ, ProRes 4444,
+      DNxHR HQX, 16-bit PNG or EXR frames, HD, UHD or DCI 4K - after measuring it with the delivery check first, then
+      checking the master. Use when the user must hand a master to a platform, a broadcaster, a distributor or a VFX
+      vendor, or asks for a ProRes, DNxHR or EXR deliverable that passes QC.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-deliver
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-deliver/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-deliver.tar.gz
+  - id: wazza-dub
+    description: >-
+      Dub a video into other languages with Wazza and add translated subtitles, one version per language, then check
+      each version. Use when the user wants a video in another language, a multi-language version for international
+      audiences, or translated subtitles or captions.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-dub
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-dub/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-dub.tar.gz
+  - id: wazza-generate
+    description: >-
+      Generate video clips and images with Wazza's generation models, with the price shown before each run. Use when the
+      user asks for a generated shot, a clip from a prompt, an animated still (start frame, optional end frame), a clip
+      that follows reference images, clips or audio, or a generated or edited image. Picks the model by need - draft or
+      final, resolution, length, sound, start frame or references.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-generate
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-generate/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-generate.tar.gz
+  - id: wazza-shorts
+    description: >-
+      Turn a long video (podcast, stream, interview, talk, vlog) into vertical 9:16 shorts with burned-in captions,
+      using Wazza. Use when the user wants clips, shorts, reels or TikToks cut from a longer video, or asks for the best
+      moments of a recording.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-shorts
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-shorts/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-shorts.tar.gz
+  - id: wazza-sound
+    description: >-
+      Add sound to a silent or rough video with Wazza - foley written to the picture, sound effects at cue points, and a
+      music track - then mix it with ffmpeg. Use after rendering video from code (Remotion, HyperFrames, ffmpeg,
+      Blender, generated shots) that has no sound, or when the user asks for sound design, SFX, ambience or background
+      music.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-sound
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-sound/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-sound.tar.gz
+  - id: wazza-storyboard
+    description: >-
+      Pre-production with Wazza - from a script or a brief to a shot list, storyboard frames with consistent characters,
+      a timed animatic with temp voices and music, and a pitch deck your agent lays out. Use when the user wants boards,
+      a storyboard, an animatic, a previz pass or a pitch deck for a film, an ad, a music video or a game cinematic.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-storyboard
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-storyboard/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-storyboard.tar.gz
+  - id: wazza-unslop
+    description: >-
+      Make AI-generated video shots stop reading as generated, using Wazza's unslop workflow. Use when the user has
+      shots from a video model (Veo, Kling, Seedance, Runway, Higgsfield or others) that look synthetic, plasticky or
+      "AI", or asks to make generated footage look more natural before editing it in.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-unslop
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-unslop/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-unslop.tar.gz
+  - id: wazza-voice
+    description: >-
+      Text to speech with Wazza - narration, voice-over and dialogue in the workspace's voices, a scene read in several
+      voices as one take, a new voice designed from a description, or a recording performed again in another voice. Use
+      when the user wants a voice-over, narration, a read of a script, temp or final dialogue, a new character voice, or
+      a line re-voiced.
+    category: creative-media
+    author: Wazza-AI
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/wazza-voice
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/wazza-voice/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/wazza-voice.tar.gz
   - id: youtube-downloader
     description: >-
       Download YouTube videos with customizable quality and format options. Use this skill when the user asks to

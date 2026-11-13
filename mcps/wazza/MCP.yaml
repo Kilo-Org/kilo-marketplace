@@ -1,0 +1,33 @@
+id: wazza
+name: Wazza
+description: QC, conform and AI video, image and sound generation for film and video, through Wazza's official hosted
+  MCP endpoint. Measures loudness, flashing and colour levels against delivery specs, masters ProRes, DNxHR and EXR,
+  dubs, voices and generates shots. Each run is priced before it starts and billed in prepaid credits.
+author: Wazza
+url: https://api-pro.wazza.ai/docs/guide
+category: development
+prerequisites:
+  - Wazza account (https://app.wazza.ai)
+content:
+  - name: Remote OAuth
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api-pro.wazza.ai/v1/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api-pro.wazza.ai/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{WAZZA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Wazza API Key
+    key: WAZZA_API_KEY
+    placeholder: wz_live_your_api_key
+    optional: true
