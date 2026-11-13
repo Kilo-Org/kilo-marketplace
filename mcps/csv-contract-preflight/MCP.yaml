@@ -1,8 +1,9 @@
 id: csv-contract-preflight
 name: CSV Contract Preflight MCP
 description: >-
-  Local engineering-preview tools for CSV contract templates, explicit drafting
-  review, buyer-authorized validation and report summaries. MIT adapter;
+  Agent tools for CSV contract templates, explicit drafting review,
+  buyer-authorized validation and report summaries. Paid validation sends CSV
+  text and contract to Apify for processing and storage. MIT adapter;
   completed Apify pass and findings reports each cost $0.01.
 author: anytine123
 url: https://github.com/anytine123/csv-contract-preflight-mcp
