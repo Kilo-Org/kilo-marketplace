@@ -1,0 +1,17 @@
+id: var2
+name: VAR2
+description: Creates images, videos, music, voice, and 3D assets through VAR2's hosted OAuth MCP server. Generation uses paid VAR2 credits.
+author: VAR2
+url: https://www.var2.ai/api/mcp
+category: productivity
+prerequisites:
+  - VAR2 account
+  - MCP client with OAuth support
+  - Paid VAR2 credits for generation
+content:
+  - name: VAR2 hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.var2.ai/api/mcp"
+      }
