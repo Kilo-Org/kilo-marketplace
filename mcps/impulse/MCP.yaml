@@ -1,0 +1,21 @@
+id: impulse
+name: Impulse
+description: >-
+  Hosted MCP for Impulse event pages, emails, guests, and check-in. Run your
+  events by asking AI: create events, registration and invitation pages, emails,
+  guest lists, and check-in in one chat. Impulse is a next-gen, AI-native event
+  platform. Page and email edits stay in private drafts until you ask to publish
+  or send.
+author: Impulse Interactive
+url: https://github.com/impul-co/impulse-mcp
+category: productivity
+prerequisites:
+  - An Impulse account (MCP is included on Free)
+  - An MCP client that supports remote HTTP servers with OAuth
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.impul.co/mcp"
+      }
