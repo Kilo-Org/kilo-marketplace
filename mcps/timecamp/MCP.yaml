@@ -1,0 +1,15 @@
+id: timecamp
+name: TimeCamp
+description: Official TimeCamp hosted OAuth server to track time, start and stop timers, manage tasks, tags, and time entries, and build timesheet and computer usage reports.
+author: TimeCamp
+url: https://docs.timecamp.com/mcp-server
+category: productivity
+prerequisites:
+  - TimeCamp account, created at https://www.timecamp.com
+content:
+  - name: TimeCamp MCP (hosted OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.timecamp.com/mcp"
+      }

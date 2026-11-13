@@ -7,7 +7,7 @@
 # - development: 27
 # - search: 15
 # - observability: 13
-# - productivity: 11
+# - productivity: 12
 # - web-automation: 7
 # - business: 3
 #
@@ -4591,6 +4591,24 @@ items:
           - name: Local Timezone
             key: LOCAL_TIMEZONE
             placeholder: America/New_York
+  - id: timecamp
+    name: TimeCamp
+    description: Official TimeCamp hosted OAuth server to track time, start and stop timers, manage tasks, tags, and time
+      entries, and build timesheet and computer usage reports.
+    author: TimeCamp
+    url: https://docs.timecamp.com/mcp-server
+    category: productivity
+    tags:
+      - productivity
+    prerequisites:
+      - TimeCamp account, created at https://www.timecamp.com
+    content:
+      - name: TimeCamp MCP (hosted OAuth)
+        content: |
+          {
+            "type": "streamable-http",
+            "url": "https://mcp.timecamp.com/mcp"
+          }
   - id: transform-mcp
     name: Unstructured Transform MCP
     description: "Production-grade document processing your AI agents call as MCP tools: parse PDFs, spreadsheets, and
