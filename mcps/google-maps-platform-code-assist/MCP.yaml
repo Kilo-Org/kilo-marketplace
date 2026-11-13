@@ -6,11 +6,16 @@ author: googlemaps
 url: https://github.com/googlemaps/platform-ai
 category: development
 content:
-  - name: NPX
-    prerequisites:
-      - Node.js
+  - name: Kilo Code (Streamable HTTP)
+    prerequisites: []
     content: |
       {
-        "command": "npx",
-        "args": ["-y", "@googlemaps/code-assist-mcp@0.2.0"]
+        "httpUrl": "https://mapscodeassist.googleapis.com/mcp"
+      }
+  - name: Kilo CLI (Remote)
+    prerequisites: []
+    content: |
+      {
+        "type": "remote",
+        "url": "https://mapscodeassist.googleapis.com/mcp"
       }
