@@ -1,0 +1,51 @@
+id: darkmoon
+name: Darkmoon
+description: Starts and monitors autonomous AI penetration tests on a self-hosted Darkmoon Pro instance. Exposes run_pentest, get_run_status, list_campaigns and get_findings so an assistant can launch an authorized assessment, poll its status and read the resulting findings with severity statistics.
+author: ASCIT31
+url: https://github.com/ASCIT31/darkmoon-mcp-server
+category: development
+prerequisites:
+  - A self-hosted Darkmoon Pro instance (the Darkmoon Dashboard API is part of Darkmoon Pro and has no public hosted endpoint)
+  - Written authorization to test every target you run an assessment against
+content:
+  - name: NPX (username and password)
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@darkmoon_ai/mcp-server"],
+        "env": {
+          "DARKMOON_BASE_URL": "{{DARKMOON_BASE_URL}}",
+          "DARKMOON_USERNAME": "{{DARKMOON_USERNAME}}",
+          "DARKMOON_PASSWORD": "{{DARKMOON_PASSWORD}}"
+        }
+      }
+    parameters:
+      - name: Darkmoon Dashboard Username
+        key: DARKMOON_USERNAME
+        placeholder: your-dashboard-user
+      - name: Darkmoon Dashboard Password
+        key: DARKMOON_PASSWORD
+        placeholder: your-dashboard-password
+  - name: NPX (pre-issued token)
+    prerequisites:
+      - Node.js
+      - A JWT issued by your Darkmoon Dashboard
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@darkmoon_ai/mcp-server"],
+        "env": {
+          "DARKMOON_BASE_URL": "{{DARKMOON_BASE_URL}}",
+          "DARKMOON_TOKEN": "{{DARKMOON_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Darkmoon Dashboard Token
+        key: DARKMOON_TOKEN
+        placeholder: your-dashboard-jwt
+parameters:
+  - name: Darkmoon Base URL
+    key: DARKMOON_BASE_URL
+    placeholder: https://darkmoon.example.internal
