@@ -1,0 +1,13 @@
+id: httpfy
+name: HTTPfy Network & DNS Tools
+description: Free, read-only DNS, SPF/DKIM/DMARC/BIMI/MTA-STS, TLS certificate, WHOIS, IP/ASN, blocklist, ping, traceroute and port checks run from httpfy.io servers. 24 tools, no API key; every result links to a full report.
+author: Cloudaid
+url: https://github.com/cloudaidnet/httpfy.io
+category: development
+content:
+  - name: HTTPfy hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://httpfy.io/mcp"
+      }
