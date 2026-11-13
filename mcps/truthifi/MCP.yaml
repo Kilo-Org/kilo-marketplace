@@ -1,0 +1,16 @@
+id: truthifi
+name: Truthifi
+description: "One verified household record for your AI: accounts, activity, holdings, fees, performance, cash flow, the advisors on your accounts, financial diagnostics, and your Truthifi Score with the findings behind it. Can't move money."
+author: Truthifi
+url: https://github.com/Truthifi/truthifi-mcp
+category: business
+prerequisites:
+  - Truthifi account (free plan available)
+  - MCP client with OAuth support (browser sign-in, dynamic client registration)
+content:
+  - name: Truthifi Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.truthifi.com/mcp"
+      }
