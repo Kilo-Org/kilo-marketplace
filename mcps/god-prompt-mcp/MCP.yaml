@@ -1,0 +1,17 @@
+id: god-prompt-mcp
+name: GodPrompt MCP
+description: Provides software-engineering workflow guidance through MCP tools for task classification, TDD, debugging protocols, verification gates, anti-pattern checks, and progressive disclosure.
+author: Tomi Šeregi
+url: https://github.com/AKzar1el/god-prompt-mcp
+category: development
+prerequisites:
+  - Node.js 20 or newer
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "god-prompt-mcp"]
+      }
