@@ -2679,19 +2679,40 @@ items:
       - productivity
     prerequisites:
       - Keep the MyMusik app running and reachable from the computer running Kilo.
-      - Install the Python 3.10+ connector on that computer and put mymusik-mcp on PATH. See
-        https://github.com/shagg-ai/mymusik-mcp#pair-and-find-your-first-albums for the release wheel and install
+      - Install the Python 3.10+ connector on that computer. Use mymusik-mcp from PATH or choose Absolute Path below.
+        See https://github.com/shagg-ai/mymusik-mcp#pair-and-find-your-first-albums for the release wheel and install
         command.
-      - In MyMusik, open Insights → Connect a device, choose Read only and a duration, then copy the agent prompt. Run
-        mymusik-mcp pair and paste only the invitation URL into the hidden input.
-      - Ask Kilo to list three albums from your MyMusik library. For playback, pair with Remote playback access.
+      - In MyMusik, open the profile menu → Insights → Connect a device and select the shield to open QR code access.
+        Choose Read only to browse, Remote playback to control playback, Library editor to organize playlists and tags,
+        or Import manager to import or trim audio. Set the duration, select Apply, then Copy agent prompt. Run
+        mymusik-mcp pair (or invoke the installed executable by its absolute path with the pair argument) and paste only
+        the invitation URL into the hidden input.
+      - Ask Kilo to list three albums from your MyMusik library. Imports need a source MyMusik can read, and trimming
+        needs editable local audio. To change access later, apply the new permissions in MyMusik, copy a fresh
+        invitation, pair again, and reconnect Kilo.
     content:
       - name: Local connector
+        prerequisites:
+          - mymusik-mcp is available on the PATH inherited by Kilo.
         content: |
           {
             "command": "mymusik-mcp",
             "args": ["stdio"]
           }
+      - name: Absolute Path
+        description: Runs the installed connector by its absolute path when Kilo does not inherit the installation environment's
+          PATH.
+        prerequisites:
+          - You know the full path to the installed mymusik-mcp executable (mymusik-mcp.exe on Windows).
+        content: |
+          {
+            "command": "{{MYMUSIK_MCP_PATH}}",
+            "args": ["stdio"]
+          }
+    parameters:
+      - name: MyMusik connector absolute path
+        key: MYMUSIK_MCP_PATH
+        placeholder: /absolute/path/to/mymusik-mcp or C:/path/to/mymusik-mcp.exe
   - id: n8n-mcp
     name: n8n-MCP
     description: A Model Context Protocol (MCP) server that provides AI assistants with comprehensive access to n8n node
