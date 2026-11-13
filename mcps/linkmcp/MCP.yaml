@@ -1,0 +1,32 @@
+id: linkmcp
+name: LinkMCP
+description: Use your own LinkedIn account from Kilo through the hosted LinkMCP server. Look up profiles and companies,
+  search people, jobs and Sales Navigator (with your own seat), read and answer LinkedIn messages, write posts, comments
+  and reactions, manage connection requests, and find work emails. Not affiliated with LinkedIn.
+author: LinkMCP
+url: https://github.com/linkmcp-io/linkmcp
+category: productivity
+prerequisites:
+  - LinkMCP account (7-day free trial; connecting a LinkedIn account needs a paid plan)
+content:
+  - name: Remote (OAuth sign-in)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.linkmcp.io/api/mcp?ref=kilo"
+      }
+  - name: Remote (LinkMCP API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.linkmcp.io/api/mcp?ref=kilo",
+        "headers": {
+          "Authorization": "Bearer {{LINKMCP_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: LinkMCP API key
+        key: LINKMCP_API_KEY
+        placeholder: your_linkmcp_api_key
