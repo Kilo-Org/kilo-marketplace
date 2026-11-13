@@ -1,0 +1,14 @@
+id: pocket-drives
+name: Pocket Drives
+description: Search peer-to-peer luxury, exotic, and EV rentals from independent hosts via
+  a public remote MCP. No authentication required.
+author: RevList
+url: https://github.com/RevList/pocket-drives-mcp
+category: business
+content:
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://pocketdrives.ai/mcp"
+      }
