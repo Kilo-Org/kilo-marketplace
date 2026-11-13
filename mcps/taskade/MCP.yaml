@@ -1,0 +1,30 @@
+id: taskade
+name: Taskade
+description: Official Taskade MCP server for projects, tasks, AI agents and automations. Remote server with OAuth. The
+  hosted server needs a paid Taskade plan.
+author: Taskade
+url: https://github.com/taskade/mcp
+category: productivity
+prerequisites:
+  - Taskade account on a paid plan
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.taskade.com/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.taskade.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TASKADE_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Taskade Personal Access Token
+    key: TASKADE_API_KEY
+    placeholder: your_taskade_personal_access_token
+    optional: true
