@@ -4,8 +4,10 @@ description: Free, read-only DNS, SPF/DKIM/DMARC/BIMI/MTA-STS, TLS certificate, 
 author: Cloudaid
 url: https://github.com/cloudaidnet/httpfy.io
 category: development
-content: |
-  {
-    "type": "streamable-http",
-    "url": "https://httpfy.io/mcp"
-  }
+content:
+  - name: HTTPfy hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://httpfy.io/mcp"
+      }
