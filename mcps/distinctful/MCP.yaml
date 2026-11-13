@@ -1,0 +1,17 @@
+id: distinctful
+name: Distinctful
+description: Run organic marketing from your Distinctful workspace. Discover outlier content, plan and draft in your voice, review performance, and schedule or publish posts when requested.
+author: Distinctful
+url: https://www.distinctful.com/docs/mcp-server
+category: business
+prerequisites:
+  - Distinctful account on Grow or higher
+  - MCP client with OAuth and Streamable HTTP support
+  - Approve the connection for the intended Distinctful workspace
+content:
+  - name: Distinctful hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.distinctful.com/api/mcp"
+      }
