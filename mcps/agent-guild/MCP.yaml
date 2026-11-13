@@ -1,0 +1,35 @@
+id: agent-guild
+name: Agent Guild
+description: >-
+  Endpoint observations, signed reputation credentials, and trust decisions for agent-to-agent work.
+  Before connecting to an unfamiliar public agent service, guild_preflight(url) provides free
+  reachability and protocol observations while preserving unknowns. Results are advisory evidence,
+  not a safety guarantee or permission to delegate. The connection exposes the full MCP catalog,
+  including paid decisions and write tools.
+author: AgentTanuki
+url: https://github.com/AgentTanuki/agent-guild
+category: development
+prerequisites:
+  - A client with Streamable HTTP MCP support and network access to the hosted service.
+  - >-
+    No Agent Guild account, API key, wallet, or payment is required to connect or use guild_preflight.
+    The host's own model or service charges are separate.
+  - >-
+    Use guild_preflight only with a public HTTPS endpoint the caller has chosen and is authorized
+    to share and probe. Agent Guild receives the complete URL, actively probes the endpoint, and
+    records the target and result. Never include credentials, private URLs, or confidential task data.
+  - >-
+    Preserve the target, checks, verdict, and unknowns. A card-signature presence check is not
+    signature verification; an HTTP 402 challenge is not proof of payment or settlement. Results
+    do not establish endpoint ownership, content safety, or permission for subsequent actions.
+  - >-
+    Review available tools and apply the host's permissions before use. This configuration does
+    not filter tools or enable automatic approval. Paid decisions, monitoring, registration,
+    collaboration records, escrow, and other writes need separate caller authorization.
+content:
+  - name: Hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://agent-guild-5d5r.onrender.com/mcp"
+      }
