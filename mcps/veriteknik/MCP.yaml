@@ -1,0 +1,18 @@
+id: veriteknik
+name: VeriTeknik
+description: Manages VeriTeknik hosting infrastructure, including live server health, logs and backup status, DNS records,
+  support tickets, and VPS lifecycle, under the permission groups and monthly spend cap the user approves on VeriTeknik's
+  OAuth consent screen.
+author: VeriTeknik
+url: https://github.com/VeriTeknik/veriteknik-mcp-plugin
+category: development
+prerequisites:
+  - VeriTeknik customer account
+  - MCP client with OAuth support
+content:
+  - name: VeriTeknik hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://veriteknik.com/api/mcp"
+      }
