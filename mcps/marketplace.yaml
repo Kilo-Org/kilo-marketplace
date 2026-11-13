@@ -805,9 +805,10 @@ items:
     tags:
       - data
     prerequisites:
+      - Docker with the Compose v2 plugin (2.20 or later)
       - "A running Loom server. On one machine: curl -fsSL
-        https://github.com/ClickHouse/loom/releases/latest/download/install.sh -o loom-install.sh && sh loom-install.sh
-        (Docker)"
+        https://github.com/ClickHouse/loom/releases/download/v1.2.0/install.sh -o loom-install.sh && sh loom-install.sh
+        (the installer checks the stack bundle against the release's published SHA-256)"
     content:
       - name: Local server (single user)
         content: |
@@ -825,7 +826,7 @@ items:
             }
           }
         parameters:
-          - name: Loom server URL
+          - name: Loom base URL (origin only, no trailing slash or path)
             key: LOOM_URL
             placeholder: https://loom.example.com
           - name: Loom token
