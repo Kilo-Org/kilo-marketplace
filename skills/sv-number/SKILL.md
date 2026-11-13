@@ -20,7 +20,7 @@ metadata:
     repository: https://github.com/sv-number/skills
     path: sv-number
     license_path: LICENSE
-    commit: b3a00081577dd7c8bd85dcc30e92a09b85b81930
+    commit: 74e92e65d6e6af6912c5227bfc4f9f11c9a99687
 ---
 
 # SV Number
@@ -30,7 +30,7 @@ takes. You pick the country and the service, the number is yours alone, the veri
 code arrives through the API, and you hand the number back. If the code never arrives,
 you cancel and the money returns to your balance.
 
-Free start: promo code SVFREE gives one free number per account. Enter it in the promo code field on your profile page (sms-verification-number.com/en/user/profile/), next to the API key, and click Apply. The code works for the first 1000 activations.
+Free start: promo code SVFREE gives one free number per account. Enter it in the promo code field on [your profile page](https://sms-verification-number.com/en/user/profile/), next to the API key, and click Apply. The code works for the first 1000 activations.
 
 - Base URL: `https://sms-verification-number.com/stubs/handler_api`
 - Docs: [sms-verification-number.com/en/api-sms-activate](https://sms-verification-number.com/en/api-sms-activate/)
