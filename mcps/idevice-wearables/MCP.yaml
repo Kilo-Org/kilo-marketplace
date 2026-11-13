@@ -1,0 +1,13 @@
+id: idevice-wearables
+name: iDevice Buyer's Guide
+description: Independent buyer's guide for wearables and phones. Answers whether to buy now or wait, what a product works with, prices and price history, specs, release dates and pre-release reports, each with a source link. Free, read-only hosted server.
+author: iDevice
+url: https://idevice.com/mcp
+category: search
+content:
+  - name: iDevice hosted server (no sign-in, no API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://idevice.com/api/mcp"
+      }
