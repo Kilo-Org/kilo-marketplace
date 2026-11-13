@@ -1,0 +1,18 @@
+id: rea
+name: REA (Reverse Engineer Anything)
+description: Inspects local native binaries, managed code, and packaged JavaScript applications through evidence-backed reverse-engineering tools. Returns artifact identity, observations, inferences, and limitations; supports explicitly requested runtime capture where the host and target allow it.
+author: morluto
+url: https://github.com/morluto/rea
+category: development
+prerequisites:
+  - Node.js matching ^22.19.0 || ^24.11.0 || >=26.0.0, with npm
+  - A local artifact or runtime target selected by the user
+  - For deep native analysis, a separately installed and configured Hopper, Ghidra, or IDA provider with its own host and licensing requirements
+  - Other provider-dependent tasks may require bring-your-own tools and host permissions; static JavaScript inspection does not require a native engine
+content:
+  - name: NPX
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "rea-agents@6.1.0", "mcp"]
+      }
