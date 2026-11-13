@@ -1,0 +1,15 @@
+id: clino
+name: Clino Swiss Household Employment
+description: Swiss household employment rules for all 26 cantons (cleaners, nannies, carers). Employer cost, net wage,
+  minimum wage at the workplace postcode, registration deadlines and sick-pay duties, with the official source of
+  every figure. Free and read-only, no account or API key.
+author: salvador-creator
+url: https://github.com/salvador-creator/clino-mcp
+category: business
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://clino.ch/mcp"
+      }
