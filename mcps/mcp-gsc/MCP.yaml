@@ -1,0 +1,15 @@
+id: mcp-gsc
+name: Google Search Console MCP
+description: Connects AI assistants to Google Search Console for organic-search analytics, URL inspection, sitemap management, indexing requests, and SEO insights.
+author: DigestSEO
+url: https://github.com/AKzar1el/mcp-gsc
+category: search
+prerequisites:
+  - Google account with access to the Search Console properties you want to use
+content:
+  - name: Hosted Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp-gsc.digestseo.com/mcp"
+      }
