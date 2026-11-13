@@ -1,0 +1,16 @@
+id: dodopayments-api
+name: Dodo Payments API MCP
+description: Gives the agent live access to the Dodo Payments API for payments, subscriptions, customers, products, refunds, license keys, and usage-based billing, authenticated through browser OAuth.
+author: Dodo Payments
+url: https://docs.dodopayments.com/developer-resources/mcp-server
+category: business
+prerequisites:
+  - Dodo Payments account
+  - MCP client with OAuth support
+content:
+  - name: Dodo Payments hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.dodopayments.com/mcp"
+      }
