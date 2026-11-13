@@ -1,0 +1,29 @@
+# Generated from server.json and distribution/targets.yaml. Do not edit.
+id: d2mcp
+name: D2 MCP Server
+description: Create, edit, validate, render, and export D2 diagrams with confined workspace access.
+author: RecursiveFunctions
+url: https://github.com/recursivefunctions/d2mcp
+category: development
+prerequisites:
+    - Docker
+content:
+    - name: Docker
+      prerequisites:
+        - Docker
+      content: |
+        {
+          "command": "docker",
+          "args": [
+            "run",
+            "--rm",
+            "-i",
+            "--mount",
+            "type=bind,src={{WORKSPACE_PATH}},dst=/workspace",
+            "ghcr.io/recursivefunctions/d2mcp:0.5.0"
+          ]
+        }
+parameters:
+    - name: Workspace path
+      key: WORKSPACE_PATH
+      placeholder: /absolute/path/to/workspace
