@@ -1,0 +1,7 @@
+id: git/github.com/cerredz/vidbyte-memory/integrations/opencode
+name: vidbyte-memory turn-end gate
+description: Keeps the agent working in vidbyte-memory repositories until tests pass, feedback is handled and changes are committed, by re-prompting the session when it goes idle. Does nothing in repositories without memory/MAP.md.
+category: development
+author: cerredz
+url: https://github.com/cerredz/vidbyte-memory/tree/main/integrations/opencode
+content: git:github.com/cerredz/vidbyte-memory@v0.2.1#integrations/opencode
