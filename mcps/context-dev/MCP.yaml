@@ -1,0 +1,16 @@
+id: context-dev
+name: Context.dev
+description: Gives AI agents live web and company data through search, company news, scraping, crawling, structured
+  extraction, document parsing, brand intelligence, screenshots, change monitoring, and asynchronous batches.
+author: Context.dev
+url: https://docs.context.dev/install-mcp
+category: web-automation
+prerequisites:
+  - Context.dev account
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.context.dev/mcp"
+      }
