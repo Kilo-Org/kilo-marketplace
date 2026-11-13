@@ -1,0 +1,23 @@
+{
+  "name": "shipping_update_bad_v1",
+  "language": "en_US",
+  "category": "UTILITY",
+  "components": [
+    {
+      "type": "BODY",
+      "text": "Hi {{2}}, your package #{{1}} is on the way. Buy now — limited time!",
+      "example": { "body_text": [["A1029", "Jordan"]] }
+    },
+    {
+      "type": "BUTTONS",
+      "buttons": [
+        {
+          "type": "URL",
+          "text": "Shop now",
+          "url": "https://example.com/sale",
+          "example": ["https://example.com/sale"]
+        }
+      ]
+    }
+  ]
+}
