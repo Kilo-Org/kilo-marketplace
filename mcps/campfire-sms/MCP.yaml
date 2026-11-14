@@ -1,0 +1,22 @@
+id: campfire-sms
+name: Campfire SMS
+description: Hosted two-way SMS bridge so your coding agent can text you when it needs an answer and read your SMS replies.
+author: campfiresms
+url: https://github.com/campfiresms/campfire-mcp
+category: productivity
+prerequisites:
+  - A Campfire SMS account and installation credential from https://campfiresms.com
+content:
+  - name: Hosted (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.campfiresms.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{CAMPFIRE_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Campfire token
+    key: CAMPFIRE_TOKEN
+    placeholder: your_campfire_token
