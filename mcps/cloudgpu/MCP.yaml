@@ -1,0 +1,42 @@
+id: cloudgpu
+name: CloudGPU
+description: Lets an AI agent discover CloudGPU GPUs, get a billed-cost quote, rent an RTX 4090, RTX 5090 or other GPU, run jobs, fetch results and shut the instance down, with spend, time and idle limits enforced server-side.
+author: CloudGPU
+url: https://github.com/cloudgpu-app/cloudgpu-mcp
+category: development
+prerequisites:
+  - A CloudGPU account
+  - The API key is optional; the agent can call connect_account and the owner approves a budgeted key
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "cloudgpu-mcp"]
+      }
+  - name: NPX with API key
+    prerequisites:
+      - Node.js 18 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "cloudgpu-mcp"],
+        "env": {
+          "CLOUDGPU_API_KEY": "{{CLOUDGPU_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: CloudGPU API Key
+        key: CLOUDGPU_API_KEY
+        placeholder: your_cloudgpu_api_key
+        optional: true
+  - name: Remote Server
+    prerequisites:
+      - A CloudGPU account; the remote endpoint uses OAuth, not a pasted bearer token
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://cloudgpu.app/mcp"
+      }
