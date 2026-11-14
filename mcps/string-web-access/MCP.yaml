@@ -12,7 +12,7 @@ content:
     content: |
       {
         "type": "streamable-http",
-        "url": "https://mcp.usestring.ai/v3/mcp",
+        "url": "https://mcp.usestring.ai?login",
         "headers": {
           "Authorization": "Bearer {{STRING_API_KEY}}"
         }
