@@ -1,6 +1,7 @@
 id: csv-contract-preflight
 name: CSV Contract Preflight MCP
 description: >-
+  Linux-only engineering preview; requires Python 3.11+ and manual MCPB setup.
   Agent tools for CSV contract templates, explicit drafting review,
   buyer-authorized validation and report summaries. Paid validation sends CSV
   text and contract to Apify for processing and storage. MIT adapter;
