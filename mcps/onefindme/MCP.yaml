@@ -2,7 +2,7 @@ id: onefindme
 name: OneFindMe
 description: Searches AliExpress in 21 languages and returns real listings with prices in the buyer's currency,
   ratings, order counts and links for the delivery country, and builds a basket of listings that fits a total budget.
-  Read-only, no account or API key.
+  Read-only, no account or API key. Product links are affiliate links.
 author: skazi1976
 url: https://github.com/skazi1976/onefindme-plugin
 category: search
