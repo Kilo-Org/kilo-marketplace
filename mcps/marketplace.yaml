@@ -4329,15 +4329,15 @@ items:
         optional: true
   - id: specstream
     name: SpecStream
-    description: Gives agents finished lists from the live web. Describe the list in plain words and get every matching row
-      with the page it came from, priced per match after a quoted ceiling.
+    description: Gives agents live web data. Search the web, read pages and get structured rows for a request in plain
+      words, every value with the page it came from. A paid run shows its price before it starts.
     author: SpecStream
     url: https://github.com/specstream/specstream-tools
     category: search
     tags:
       - search
     prerequisites:
-      - SpecStream account (new accounts start with $10 of work free for 30 days, no card)
+      - SpecStream account (new accounts start with $10 of credit, no card)
       - MCP client with OAuth support, or a SpecStream API key
     skills:
       - id: specstream-compile

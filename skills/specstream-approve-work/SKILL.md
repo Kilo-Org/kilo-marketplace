@@ -11,7 +11,7 @@ metadata:
     repository: 'https://github.com/specstream/specstream-tools'
     path: integrations/kilo/skills/specstream-approve-work
     ref: main
-    commit: 899bb63328dd72ba7613f66c7dc36dd59d1bf188
+    commit: 86c4ee0f0ba072a5c065a4d639429fb8d17dd360
 ---
 
 # Approve a price
