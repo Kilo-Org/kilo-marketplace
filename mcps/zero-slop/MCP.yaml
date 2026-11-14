@@ -1,12 +1,13 @@
 id: zero-slop
 name: Zero Slop
-description: Edit AI-assisted prose in your agent with one hosted deslop tool. Returns revised text, before-and-after writing scores, and tracked-source checks. Shared free capacity; review the returned status before using an edit.
+description: Edit AI-assisted drafts and check source details with the hosted Zero Slop deslop tool. The result includes revised text, writing scores, and a review status.
 author: Manav Mishra
 url: https://github.com/manavmishra/ZeroSlop
 category: productivity
 prerequisites:
   - Internet access; drafts sent to this hosted endpoint are processed remotely.
-  - No account or API key required. Shared free capacity may be exhausted.
+  - No account or API key required. Free usage limits apply.
+  - Review https://zero-slop.ai/privacy/ before sharing a draft. A fallback model provider may retain the draft and edit or use them to train models.
 content:
   - name: Remote Server
     content: |
