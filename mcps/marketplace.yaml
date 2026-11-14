@@ -3184,14 +3184,16 @@ items:
         placeholder: okta.users.read okta.groups.read okta.apps.read okta.logs.read
   - id: openany
     name: OpenAny
-    description: The B2A (business to agent) marketplace. One MCP endpoint for 3,200+ APIs and 168+ AI models. Browse free; pay per call.
+    description: OpenAny is the B2A (business to agent) marketplace. Give your agent 3,200+ APIs and 168+ AI models with one
+      key and pay-per-call pricing. openany.si
     author: openanysi
     url: https://github.com/openanysi/openany-mcp
     category: development
     tags:
       - development
     prerequisites:
-      - Searching and checking prices is free with no key. You only need an OpenAny API key to run a call, and you pay per call.
+      - An OpenAny API key from https://openany.si is required. No top-up or balance is needed to call the many free
+        data APIs; paid APIs are charged per call.
     content:
       - name: Remote
         content: |
