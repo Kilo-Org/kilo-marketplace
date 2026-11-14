@@ -1,0 +1,34 @@
+id: specstream
+name: SpecStream
+description: Gives agents live web data. Search the web, read pages and get structured rows for a request in plain words, every value with the page it came from. A paid run shows its price before it starts.
+author: SpecStream
+url: https://github.com/specstream/specstream-tools
+category: search
+prerequisites:
+  - SpecStream account (new accounts start with $10 of credit, no card)
+  - MCP client with OAuth support, or a SpecStream API key
+skills:
+  - specstream-compile
+  - specstream-review-work
+  - specstream-approve-work
+  - specstream-continue-work
+content:
+  - name: SpecStream hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.specstream.ai/mcp"
+      }
+  - name: SpecStream hosted server with an API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.specstream.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SPECSTREAM_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: SpecStream API Key
+        key: SPECSTREAM_API_KEY
+        placeholder: ss_live_your_key_here
