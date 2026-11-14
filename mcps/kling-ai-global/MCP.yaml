@@ -1,0 +1,17 @@
+id: kling-ai-global
+name: Kling AI Global
+description: Generate images and video through Kling AI's hosted MCP service; generation uses paid personal-workspace credits.
+author: Kling AI
+url: https://github.com/klingai-tech/claude-plugin
+category: productivity
+prerequisites:
+  - Global Kling AI account; OAuth authorization in a compatible client
+  - Paid personal-workspace credits for generation
+  - Global and China accounts, credits, and tasks are separate
+content:
+  - name: Remote OAuth (Global)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://kling.ai/mcp/plugin"
+      }
