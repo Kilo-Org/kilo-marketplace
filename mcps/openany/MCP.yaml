@@ -1,18 +1,17 @@
 id: openany
 name: OpenAny
-description: One API key for 168+ models and 3,200+ APIs. Search and run APIs or models
-  through a remote MCP server, pay per call, no monthly fee.
+description: The B2A (business to agent) marketplace. One MCP endpoint for 3,200+ APIs and 168+ AI models. Browse free; pay per call.
 author: openanysi
 url: https://github.com/openanysi/openany-mcp
 category: development
 prerequisites:
-  - An OpenAny account and API key from https://openany.si
+  - Searching and checking prices is free with no key. You only need an OpenAny API key to run a call, and you pay per call.
 content:
   - name: Remote
     content: |
       {
         "type": "streamable-http",
-        "url": "https://mcp.openany.si/mcp-lite",
+        "url": "https://mcp.openany.si",
         "headers": {
           "Authorization": "Bearer {{OPENANY_API_KEY}}"
         }
