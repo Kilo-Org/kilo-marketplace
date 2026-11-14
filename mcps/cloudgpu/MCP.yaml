@@ -40,8 +40,3 @@ content:
         "type": "streamable-http",
         "url": "https://cloudgpu.app/mcp"
       }
-parameters:
-  - name: CloudGPU API Key
-    key: CLOUDGPU_API_KEY
-    placeholder: your_cloudgpu_api_key
-    optional: true
