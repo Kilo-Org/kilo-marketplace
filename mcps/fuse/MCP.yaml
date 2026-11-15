@@ -1,0 +1,16 @@
+id: fuse
+name: Fuse
+description: Finds B2B prospects and companies, enriches contacts with verified emails and phone numbers, monitors buying signals such as job changes, hiring and funding, and drafts email and LinkedIn campaigns through Fuse's hosted OAuth server.
+author: FuseAI
+url: https://github.com/fuse-ai-mcp/fuse
+category: business
+prerequisites:
+  - Fuse account (free sign-up at https://fuseai.com)
+  - MCP client with OAuth support
+content:
+  - name: Fuse hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fuseai.com"
+      }
