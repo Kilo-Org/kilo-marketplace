@@ -1,0 +1,32 @@
+id: easyrender
+name: easyrender
+description: Remote image-to-3D MCP. Preview a product photo, then build a textured GLB with account credits.
+author: easyrender
+url: https://github.com/easyrenderai/easyrender.ai
+category: productivity
+prerequisites:
+  - An easyrender account at https://easyrender.ai
+  - An MCP client with OAuth support, or an optional API key
+skills:
+  - easyrender-image-to-3d
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://easyrender.ai/api/mcp"
+      }
+  - name: Hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://easyrender.ai/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{EASYRENDER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: API Key
+    key: EASYRENDER_API_KEY
+    placeholder: er_your_key
+    optional: true
