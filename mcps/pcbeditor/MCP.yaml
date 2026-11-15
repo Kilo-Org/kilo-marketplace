@@ -1,0 +1,16 @@
+id: pcbeditor
+name: PCBEditor
+description: Designs, routes, checks, reviews and exports manufacturable printed circuit boards from plain language, with
+  Gerber, drill, BOM, pick-and-place and KiCad files, and imports existing KiCad boards. Hosted server with OAuth sign-in.
+author: PCBEditor
+url: https://github.com/PCBEditor/pcbeditor-mcp
+category: development
+prerequisites:
+  - PCBEditor account (free, at pcbeditor.com)
+content:
+  - name: PCBEditor hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.pcbeditor.com/mcp"
+      }
