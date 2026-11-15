@@ -1,0 +1,10 @@
+interface:
+  display_name: "easyrender: Photo to 3D"
+  short_description: "Preview product photos and build approved GLB models"
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "easyrender"
+      description: "Authenticated easyrender photo-to-3D tools"
+      transport: "streamable_http"
+      url: "https://easyrender.ai/api/mcp"
