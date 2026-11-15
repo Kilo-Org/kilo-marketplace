@@ -1,0 +1,17 @@
+id: zadojo
+name: zaDojo SEO, GEO and AEO MCP
+description: MCP for Google Search Console and Google Analytics 4, free on the zaDojo Free plan, plus SERP data, keyword research, backlinks, rank tracking with charts, and GEO / AEO AI visibility tracking across ChatGPT, Gemini and Google AI Overviews on paid plans from €10 a month (monthly credits, 1,000 credits = €1). Hosted server with OAuth sign-in; reading Search Console and Analytics asks for read-only Google access. No local installation is required.
+author: zaDojo
+url: https://zadojo.com/docs/mcp
+category: search
+prerequisites:
+  - A zaDojo account (free plan, no card; sign up at https://app.zadojo.com/sign-up)
+  - Access to the Google Search Console property or Google Analytics 4 property you want to read
+  - A paid zaDojo plan for keyword, SERP, backlink, rank tracking and AI visibility data (100 trial credits included)
+content:
+  - name: zaDojo remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.zadojo.com/mcp"
+      }
