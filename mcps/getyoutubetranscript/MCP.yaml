@@ -1,0 +1,22 @@
+id: getyoutubetranscript
+name: GetYouTubeTranscript
+description: Read-only YouTube data for agents. Fetches the transcript of a YouTube video with optional timestamps, searches YouTube, and lists channel uploads and playlist videos, so an agent can summarize, quote or research what was said in videos.
+author: GetYouTubeTranscript
+url: https://github.com/tubeagentkit/youtube-mcp
+category: search
+prerequisites:
+  - GetYouTubeTranscript account and API key (https://getyoutubetranscript.com/dashboard); 100 free credits on sign-up, then paid plans
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://getyoutubetranscript.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{GETYOUTUBETRANSCRIPT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: GetYouTubeTranscript API Key
+    key: GETYOUTUBETRANSCRIPT_API_KEY
+    placeholder: your_getyoutubetranscript_api_key
