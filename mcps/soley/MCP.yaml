@@ -1,0 +1,15 @@
+id: soley
+name: Sóley
+description: "Book licensed Icelandic tours, activities and stays through Sóley's hosted OAuth server: search operators, read cancellation policies, check availability, get quotes in ISK and the traveller's currency, and reserve each leg of a trip, plus live Iceland roads, weather, aurora, earthquakes, buses and flights."
+author: Sóley
+url: https://soley.travel/en/docs/mcp
+category: business
+prerequisites:
+  - MCP client with OAuth support (dynamic client registration; no account or password needed)
+content:
+  - name: Sóley hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.soley.travel/mcp"
+      }
