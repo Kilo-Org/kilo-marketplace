@@ -3,8 +3,8 @@ name: Systra Tools
 description: >-
   Gives AI coding agents a growing library of production-ready React and
   Tailwind UI sections, components and templates. Search and pull implementation
-  code directly into your projects. Free components work without an API key;
-  Premium access is optional.
+  code directly into your projects. This marketplace configuration provides
+  free component access without an API key.
 author: systra-tools
 url: https://github.com/systra-tools/systra-tools-plugin
 category: development
