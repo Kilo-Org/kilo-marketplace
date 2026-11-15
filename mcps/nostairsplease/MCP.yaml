@@ -1,0 +1,13 @@
+id: nostairsplease
+name: No Stairs Please
+description: Search 3,400+ under-400-capacity live music venues across North America with payout terms, stage dimensions, acoustic details, and booking contacts.
+author: No Stairs Please
+url: https://nostairsplease.com/mcp
+category: search
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nostairsplease.com/mcp"
+      }
