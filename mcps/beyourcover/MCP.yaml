@@ -6,6 +6,7 @@ url: https://beyourcover.com/mcp
 category: productivity
 prerequisites:
   - BeYourCover account with an active API or workspace plan (generation tools spend its credits)
+  - MCP client with OAuth support (for the OAuth option)
 content:
   - name: OAuth (hosted remote server)
     content: |
