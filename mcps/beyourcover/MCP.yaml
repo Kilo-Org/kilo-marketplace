@@ -1,0 +1,29 @@
+id: beyourcover
+name: BeYourCover
+description: Designs AI book covers from a title, genre and summary, edits them, makes square audiobook covers and builds complete Amazon KDP print wraps with a print-ready PDF, using BeYourCover's hosted server with OAuth or an API key.
+author: BeYourCover
+url: https://beyourcover.com/mcp
+category: productivity
+prerequisites:
+  - BeYourCover account with an active API or workspace plan (generation tools spend its credits)
+  - MCP client with OAuth support (for the OAuth option)
+content:
+  - name: OAuth (hosted remote server)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://beyourcover.com/api/mcp"
+      }
+  - name: API key (hosted remote server)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://beyourcover.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{BEYOURCOVER_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: BeYourCover API key
+        key: BEYOURCOVER_API_KEY
+        placeholder: byc_sk_...
