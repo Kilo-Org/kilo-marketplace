@@ -8,7 +8,7 @@ category: development
 prerequisites:
   - No API key is needed to connect to the MCP server or to search and browse the docs
   - An MSG91 account and authkey at https://msg91.com, needed only to call MSG91 APIs
-  - To call MSG91 APIs, Node.js 18+ and the official DocStar CLI by Walkover, pinned to a tested version (npx docstar-cli@2.0.1), which asks for your authkey in the terminal. Verify the package (https://www.npmjs.com/package/docstar-cli/v/2.0.1) and its source (https://github.com/swayammaheshwari/docstar-cli) before entering a credential
+  - To call MSG91 APIs, Node.js 18+ and the official DocStar CLI by Walkover, pinned to a tested version (npx docstar-cli@2.0.1, https://www.npmjs.com/package/docstar-cli/v/2.0.1), which asks for your authkey in the terminal.
 
 content:
   - name: Remote
