@@ -1,0 +1,46 @@
+id: companyenrich
+name: CompanyEnrich
+description: Gives agents live B2B company and people data. Enrich a company by domain, name, or social profile, search
+  companies and people, find similar companies, and look up a person from an email address.
+author: CompanyEnrich
+url: https://github.com/CompanyEnrich/mcp-server
+category: search
+prerequisites:
+  - CompanyEnrich account (tool calls use account credits)
+content:
+  - name: Remote server (sign in)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.companyenrich.com/mcp"
+      }
+  - name: Remote server (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.companyenrich.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{COMPANYENRICH_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: CompanyEnrich API Key
+        key: COMPANYENRICH_API_KEY
+        placeholder: your-api-key
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@companyenrich/mcp"],
+        "env": {
+          "COMPANYENRICH_API_KEY": "{{COMPANYENRICH_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: CompanyEnrich API Key
+        key: COMPANYENRICH_API_KEY
+        placeholder: your-api-key
