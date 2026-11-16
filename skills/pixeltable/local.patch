@@ -1,0 +1,1297 @@
+diff -rN -U0 --ignore-trailing-space a/pixeltable/agents/openai.yaml b/pixeltable/agents/openai.yaml
+--- a/pixeltable/agents/openai.yaml	2000-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/agents/openai.yaml	1970-01-01 00:00:00.000000000 +0000
+@@ -1,4 +0,0 @@
+-interface:
+-  display_name: "Pixeltable"
+-  short_description: "Multimodal RAG, video/image/audio search, and agent memory"
+-  default_prompt: "Use $pixeltable for multimodal RAG, video search, image similarity, agent memory, or embeddings stored with your data."
+diff -rN -U0 --ignore-trailing-space a/pixeltable/references/agentic-patterns.md b/pixeltable/references/agentic-patterns.md
+--- a/pixeltable/references/agentic-patterns.md	1970-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/references/agentic-patterns.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,370 @@
++# Agentic Patterns
++
++This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
++
++Six architectural patterns and two reasoning strategies for building AI agents with Pixeltable. Every pattern uses declarative computed columns — no async code, no orchestration framework, no loop management.
++
++**Core principle**: Your agent _is_ a table. Each step is a computed column. The engine resolves dependencies, parallelizes independent columns, caches results, and persists every intermediate step automatically.
++
++## Contents
++
++- [Prompt Chaining](#prompt-chaining) — sequential multi-step generation
++- [Routing](#routing) — classify intent, dispatch to specialized handlers
++- [Parallelization](#parallelization) — independent analyses on same input
++- [Tool Use](#tool-use) — LLM selects and calls external functions
++- [Evaluator-Optimizer](#evaluator-optimizer) — generate, judge, refine
++- [Orchestrator-Worker](#orchestrator-worker) — decompose, delegate, synthesize
++- [ReAct](#react-reasoning--acting) — reason-act-observe loop
++- [Planning](#planning) — plan upfront, then execute
++
++---
++
++## Prompt Chaining
++
++Sequential steps where each output feeds into the next.
++
++```python
++import pixeltable as pxt
++from pixeltable.functions.openai import chat_completions
++
++chain = pxt.create_table('demo.chain', {'topic': pxt.String}, if_exists='ignore')
++
++# Step 1: Generate outline
++chain.add_computed_column(
++    outline=chat_completions(
++        messages=[{'role': 'user', 'content': 'Create a 3-point outline about: ' + chain.topic}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++# Step 2: Write draft from outline (depends on step 1)
++chain.add_computed_column(
++    draft=chat_completions(
++        messages=[{'role': 'user', 'content': 'Write article based on outline:\n\n' + chain.outline}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++# Step 3: Polish draft (depends on step 2)
++chain.add_computed_column(
++    final=chat_completions(
++        messages=[{'role': 'user', 'content': 'Edit for clarity and conciseness:\n\n' + chain.draft}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++chain.insert([{'topic': 'benefits of declarative AI pipelines'}])
++```
++
++**When to use**: Content generation, data transformation pipelines, multi-step extraction.
++
++## Routing
++
++Classify input and dispatch to specialized handlers.
++
++```python
++router = pxt.create_table('demo.router', {'query': pxt.String}, if_exists='ignore')
++
++# Classify intent
++router.add_computed_column(
++    intent=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': 'Classify into exactly one word — technical, billing, or general:\n\n' + router.query
++        }],
++        model='gpt-4o-mini'
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++# Route to specialized prompt
++@pxt.udf
++def route_prompt(intent: str, query: str) -> list[dict]:
++    prompts = {
++        'technical': 'You are a senior technical support engineer.',
++        'billing': 'You are a billing specialist. Be empathetic.',
++        'general': 'You are a friendly customer service representative.',
++    }
++    system = prompts.get(intent.strip().lower(), prompts['general'])
++    return [{'role': 'system', 'content': system}, {'role': 'user', 'content': query}]
++
++router.add_computed_column(
++    routed_messages=route_prompt(router.intent, router.query),
++    if_exists='ignore')
++
++router.add_computed_column(
++    response=chat_completions(
++        messages=router.routed_messages, model='gpt-4o-mini'
++    ).choices[0].message.content,
++    if_exists='ignore')
++```
++
++**When to use**: Customer support, multi-domain Q&A, content moderation.
++
++## Parallelization
++
++Multiple independent analyses on the same input — auto-parallelized by the engine.
++
++```python
++parallel = pxt.create_table('demo.parallel', {'text': pxt.String}, if_exists='ignore')
++
++# Three independent columns (no dependencies → run concurrently)
++parallel.add_computed_column(
++    sentiment=chat_completions(
++        messages=[{'role': 'user', 'content': 'Sentiment (positive/negative/neutral):\n\n' + parallel.text}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++parallel.add_computed_column(
++    entities=chat_completions(
++        messages=[{'role': 'user', 'content': 'Extract named entities as JSON:\n\n' + parallel.text}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++parallel.add_computed_column(
++    summary=chat_completions(
++        messages=[{'role': 'user', 'content': 'Summarize in one sentence:\n\n' + parallel.text}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++# Merge results (depends on all three → runs after they complete)
++@pxt.udf
++def merge(sentiment: str, entities: str, summary: str) -> dict:
++    return {'sentiment': sentiment.strip(), 'entities': entities.strip(), 'summary': summary.strip()}
++
++parallel.add_computed_column(
++    report=merge(parallel.sentiment, parallel.entities, parallel.summary),
++    if_exists='ignore')
++```
++
++**When to use**: Document analysis, multi-aspect evaluation, feature extraction.
++
++## Tool Use
++
++LLM chooses which tools to call; Pixeltable executes them automatically.
++
++```python
++from pixeltable.functions.openai import chat_completions, invoke_tools
++
++@pxt.udf
++def get_weather(city: str) -> str:
++    """Get current weather for a city."""
++    data = {'tokyo': 'Rainy, 65F', 'london': 'Cloudy, 58F', 'paris': 'Sunny, 72F'}
++    return data.get(city.lower(), f'No data for {city}')
++
++@pxt.udf
++def get_stock_price(symbol: str) -> str:
++    """Get current stock price."""
++    prices = {'AAPL': '$178.50', 'GOOGL': '$141.25', 'MSFT': '$378.90'}
++    return prices.get(symbol.upper(), f'No data for {symbol}')
++
++tools = pxt.tools(get_weather, get_stock_price)
++
++agent = pxt.create_table('demo.tool_agent', {'query': pxt.String}, if_exists='ignore')
++
++agent.add_computed_column(
++    response=chat_completions(
++        messages=[{'role': 'user', 'content': agent.query}],
++        model='gpt-4o-mini', tools=tools,
++    ), if_exists='ignore')
++
++agent.add_computed_column(
++    tool_output=invoke_tools(tools, agent.response),
++    if_exists='ignore')
++
++agent.insert([
++    {'query': "What's the weather in Tokyo?"},
++    {'query': "What's Apple's stock price?"},
++])
++```
++
++**When to use**: Any agent that needs external data or actions. See also [agents-memory-mcp.md](agents-memory-mcp.md) for memory and MCP integration.
++
++## Evaluator-Optimizer
++
++Generate → judge → refine loop as three chained columns.
++
++```python
++evaluator = pxt.create_table('demo.evaluator', {'brief': pxt.String}, if_exists='ignore')
++
++# Generate first draft
++evaluator.add_computed_column(
++    draft=chat_completions(
++        messages=[{'role': 'user', 'content': 'Write a marketing tagline for:\n\n' + evaluator.brief}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++# LLM-as-judge evaluates the draft
++evaluator.add_computed_column(
++    evaluation=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': 'Rate clarity and creativity (1-10) with feedback:\n\nTagline: ' + evaluator.draft
++        }],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++# Refine based on feedback
++evaluator.add_computed_column(
++    refined=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': 'Improve based on feedback:\n\nOriginal: ' + evaluator.draft + '\n\nFeedback: ' + evaluator.evaluation
++        }],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++```
++
++**When to use**: Content quality control, code review pipelines, iterative refinement.
++
++## Orchestrator-Worker
++
++Central agent decomposes tasks, specialized worker tables handle sub-tasks.
++
++```python
++# Worker A: Summarizer (reusable table-as-UDF)
++summarizer = pxt.create_table('demo.summarizer', {'text': pxt.String}, if_exists='ignore')
++summarizer.add_computed_column(
++    summary=chat_completions(
++        messages=[{'role': 'user', 'content': 'Summarize:\n\n' + summarizer.text}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++# Worker B: Fact-checker
++checker = pxt.create_table('demo.checker', {'claim': pxt.String}, if_exists='ignore')
++checker.add_computed_column(
++    assessment=chat_completions(
++        messages=[{'role': 'user', 'content': 'Is this plausible? Reply PLAUSIBLE or DUBIOUS:\n\n' + checker.claim}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++# Wrap worker tables as callable UDFs
++summarize_fn = pxt.udf(summarizer, return_value=summarizer.summary)
++fact_check_fn = pxt.udf(checker, return_value=checker.assessment)
++
++# Orchestrator: calls workers in parallel, then synthesizes
++orchestrator = pxt.create_table('demo.orchestrator', {'article': pxt.String}, if_exists='ignore')
++orchestrator.add_computed_column(summary=summarize_fn(text=orchestrator.article), if_exists='ignore')
++orchestrator.add_computed_column(fact_check=fact_check_fn(claim=orchestrator.article), if_exists='ignore')
++
++orchestrator.add_computed_column(
++    briefing=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': 'Write editorial note:\n\nSummary: ' + orchestrator.summary + '\n\nFact-check: ' + orchestrator.fact_check
++        }],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++```
++
++**Key technique**: `pxt.udf(table, return_value=table.col)` wraps an entire table pipeline as a callable function. Workers are reusable across multiple orchestrators.
++
++**When to use**: Research assistants, report generation, multi-agent systems.
++
++## ReAct (Reasoning + Acting)
++
++Agent alternates between reasoning and acting in a loop. Each step is a row.
++
++```python
++@pxt.udf
++def lookup_population(country: str) -> str:
++    """Look up country population."""
++    populations = {'united states': '331 million', 'brazil': '214 million', 'germany': '84 million'}
++    return populations.get(country.lower(), 'Not available')
++
++react_tools = pxt.tools(lookup_population)
++
++react = pxt.create_table('demo.react', {
++    'step': pxt.Int, 'prompt': pxt.String, 'system_prompt': pxt.String,
++}, if_exists='ignore')
++
++react.add_computed_column(
++    response=chat_completions(
++        messages=[
++            {'role': 'system', 'content': react.system_prompt},
++            {'role': 'user', 'content': react.prompt}
++        ],
++        model='gpt-4o-mini', tools=react_tools,
++    ), if_exists='ignore')
++
++react.add_computed_column(
++    answer=react.response.choices[0].message.content,
++    if_exists='ignore')
++
++react.add_computed_column(
++    tool_output=invoke_tools(react_tools, react.response),
++    if_exists='ignore')
++
++# Reasoning loop — each iteration is a new row
++SYSTEM = "Answer step by step. Use tools when needed. Say FINAL ANSWER when done."
++question = "Which has a larger population, Brazil or Germany?"
++history = []
++
++for step in range(1, 5):
++    prompt = question + ('\n\nObservations so far:\n' + '\n'.join(history) if history else '')
++    react.insert([{'step': step, 'prompt': prompt, 'system_prompt': SYSTEM}])
++
++    row = react.where(react.step == step).select(react.answer, react.tool_output).collect()[0]
++    if row['tool_output']:
++        history.append(f'Step {step}: {row["tool_output"]}')
++    if row['answer'] and 'FINAL' in row['answer'].upper():
++        break
++```
++
++**When to use**: Multi-step research, complex reasoning requiring external data.
++
++## Planning
++
++Generate a complete plan upfront, then execute all steps.
++
++```python
++import json
++
++planner = pxt.create_table('demo.planner', {'question': pxt.String}, if_exists='ignore')
++
++# Generate plan as JSON
++planner.add_computed_column(
++    plan_text=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': 'Break into 2-3 research steps. Return JSON: {"steps": ["step1", "step2"]}\n\n' + planner.question
++        }],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++
++# Format plan into execution prompt
++@pxt.udf
++def format_plan(plan_json: str, question: str) -> str:
++    try:
++        data = json.loads(plan_json)
++        steps = data if isinstance(data, list) else data.get('steps', [])
++        step_list = '\n'.join(f'{i+1}. {s}' for i, s in enumerate(steps))
++    except Exception:
++        step_list = '1. ' + question
++    return f'Answer each sub-question, then synthesize:\n\nOriginal: {question}\n\n{step_list}'
++
++planner.add_computed_column(
++    exec_prompt=format_plan(planner.plan_text, planner.question),
++    if_exists='ignore')
++
++planner.add_computed_column(
++    answer=chat_completions(
++        messages=[{'role': 'user', 'content': planner.exec_prompt}],
++        model='gpt-4o-mini'
++    ).choices[0].message.content, if_exists='ignore')
++```
++
++**When to use**: Complex questions, multi-step research, structured problem solving.
++
++## Comparison with Traditional Frameworks
++
++| Concept | Pixeltable | LangChain / CrewAI / LangGraph |
++|---------|-----------|-------------------------------|
++| Pipeline step | Computed column | Function in a chain/loop |
++| Parallel execution | Independent columns (automatic) | `asyncio.gather` / explicit |
++| Persistence | Built-in — every intermediate stored | Separate logging/DB layer |
++| Caching | Automatic — same input never recomputed | Manual memoization |
++| Reusable sub-agent | `pxt.udf(table, return_value=...)` | Agent class with `.run()` |
++| Error recovery | `t.recompute_columns('col', errors_only=True)` | Re-run entire pipeline |
++| Observability | Query any column on any row | Attach tracing callbacks |
++
++Patterns compose naturally — an orchestrator can use routing in its dispatch, tool use within workers, and ReAct reasoning inside tool loops, all without special glue code.
+diff -rN -U0 --ignore-trailing-space a/pixeltable/references/agents-memory-mcp.md b/pixeltable/references/agents-memory-mcp.md
+--- a/pixeltable/references/agents-memory-mcp.md	1970-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/references/agents-memory-mcp.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,290 @@
++# Agent with Memory and MCP Tools
++
++This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
++
++A production recipe combining a tool-calling agent with persistent memory (chat history + knowledge bank) and external MCP server integration. The agent remembers past conversations, retrieves stored facts, and can call both local tools and remote MCP tools.
++
++## Workflow
++
++1. Create a chat history table with embedding index for semantic recall
++2. Create a memory bank table for long-lived facts and preferences
++3. Write `@pxt.query` retrieval functions for both (filtered by `user_id`)
++4. Write local `@pxt.udf` tools (including a `save_memory` tool for the LLM to store facts)
++5. (Optional) Load MCP tools with `pxt.mcp_udfs()` and combine with local tools
++6. Bundle all tools with `pxt.tools()`
++7. Create agent table with computed column chain: LLM -> invoke_tools -> context assembly -> final answer
++8. After each agent response, save the conversation to chat history for future recall
++
++## Full Pipeline
++
++```python
++import pixeltable as pxt
++from pixeltable.functions.openai import chat_completions, embeddings
++from pixeltable.functions.openai import invoke_tools as openai_invoke_tools
++from pixeltable.functions.huggingface import sentence_transformer
++from datetime import datetime
++
++pxt.create_dir('agent_app', if_exists='ignore')
++
++# ── 1. Memory: Chat History ─────────────────────────────────────────
++# Stores every user and assistant message with embeddings for recall.
++
++chat_history = pxt.create_table('agent_app.chat_history', {
++    'role': pxt.String,         # 'user' or 'assistant'
++    'content': pxt.String,
++    'timestamp': pxt.Timestamp,
++    'user_id': pxt.String,
++}, if_exists='ignore')
++
++embed_fn = sentence_transformer.using(model_id='all-MiniLM-L6-v2')
++chat_history.add_embedding_index('content', string_embed=embed_fn, if_exists='ignore')
++
++@pxt.query
++def recall_chat_history(query_text: str, user_id: str, top_k: int = 5):
++    """Retrieve past conversation turns relevant to the current query."""
++    sim = chat_history.content.similarity(string=query_text)
++    return (
++        chat_history
++        .where((chat_history.user_id == user_id) & (sim > 0.5))
++        .order_by(sim, asc=False)
++        .limit(top_k)
++        .select(chat_history.role, chat_history.content, score=sim)
++    )
++
++# ── 2. Memory: Knowledge Bank ───────────────────────────────────────
++# Stores user preferences, facts, and persistent notes.
++
++memory_bank = pxt.create_table('agent_app.memory_bank', {
++    'content': pxt.String,
++    'category': pxt.String,     # 'preference', 'fact', 'note'
++    'user_id': pxt.String,
++    'timestamp': pxt.Timestamp,
++}, if_exists='ignore')
++
++memory_bank.add_embedding_index('content', string_embed=embed_fn, if_exists='ignore')
++
++@pxt.query
++def recall_memories(query_text: str, user_id: str, top_k: int = 3):
++    """Retrieve relevant stored memories for a user."""
++    sim = memory_bank.content.similarity(string=query_text)
++    return (
++        memory_bank
++        .where((memory_bank.user_id == user_id) & (sim > 0.5))
++        .order_by(sim, asc=False)
++        .limit(top_k)
++        .select(memory_bank.content, memory_bank.category, score=sim)
++    )
++
++# Seed memories
++memory_bank.insert([
++    {'content': 'User prefers concise answers with code examples.',
++     'category': 'preference', 'user_id': 'user_1', 'timestamp': datetime.now()},
++    {'content': 'Project uses FastAPI with Python 3.12.',
++     'category': 'fact', 'user_id': 'user_1', 'timestamp': datetime.now()},
++])
++
++# ── 3. Local tools ──────────────────────────────────────────────────
++
++@pxt.udf
++def get_weather(city: str) -> str:
++    """Get current weather for a city."""
++    weather_data = {
++        'new york': 'Sunny, 72F', 'london': 'Cloudy, 58F',
++        'tokyo': 'Rainy, 65F',    'paris': 'Partly cloudy, 68F',
++    }
++    return weather_data.get(city.lower(), f'Weather data not available for {city}')
++
++@pxt.udf
++def save_memory(content: str, category: str, user_id: str) -> str:
++    """Save a new fact or preference to the user's memory bank."""
++    memory_bank.insert([{
++        'content': content, 'category': category,
++        'user_id': user_id, 'timestamp': datetime.now(),
++    }])
++    return f'Saved to memory: {content}'
++
++# ── 4. MCP tools (optional) ─────────────────────────────────────────
++# Load tools from any MCP-compliant server and combine with local tools.
++
++# mcp_tools = pxt.mcp_udfs('http://localhost:8000/mcp')
++# tools = pxt.tools(get_weather, save_memory, recall_memories, *mcp_tools)
++
++# Without MCP:
++tools = pxt.tools(get_weather, save_memory, recall_memories)
++
++# ── 5. Context assembly ─────────────────────────────────────────────
++
++@pxt.udf
++def build_prompt(
++    question: str,
++    tool_outputs: dict | None,
++    chat_context: list | None,
++    memory_context: list | None,
++) -> str:
++    parts = [f"USER QUESTION: {question}"]
++
++    if memory_context:
++        mem_str = '\n'.join(
++            f"- [{item.get('category', '?')}] {item.get('content', '')}"
++            for item in memory_context if isinstance(item, dict)
++        )
++        parts.append(f"\n[USER MEMORIES]\n{mem_str}")
++
++    if chat_context:
++        chat_str = '\n'.join(
++            f"- {item.get('role', '?')}: {item.get('content', '')}"
++            for item in chat_context if isinstance(item, dict)
++        )
++        parts.append(f"\n[RECENT CONVERSATION]\n{chat_str}")
++
++    if tool_outputs:
++        parts.append(f"\n[TOOL RESULTS]\n{tool_outputs}")
++
++    return '\n'.join(parts)
++
++# ── 6. Agent pipeline ───────────────────────────────────────────────
++
++agent = pxt.create_table('agent_app.agent', {
++    'prompt': pxt.String,
++    'user_id': pxt.String,
++    'timestamp': pxt.Timestamp,
++    'system_prompt': pxt.String,
++    'max_tokens': pxt.Int,
++    'temperature': pxt.Float,
++}, if_exists='ignore')
++
++# Step 1: Tool selection
++agent.add_computed_column(
++    initial_response=chat_completions(
++        messages=[{'role': 'user', 'content': agent.prompt}],
++        model='gpt-4o-mini',
++        tools=tools,
++    ), if_exists='ignore')
++
++# Step 2: Execute tools
++agent.add_computed_column(
++    tool_output=openai_invoke_tools(tools, agent.initial_response),
++    if_exists='ignore')
++
++# Step 3: Retrieve memory context (runs in parallel as separate computed columns)
++agent.add_computed_column(
++    chat_context=recall_chat_history(agent.prompt, agent.user_id),
++    if_exists='ignore')
++
++agent.add_computed_column(
++    memory_context=recall_memories(agent.prompt, agent.user_id),
++    if_exists='ignore')
++
++# Step 4: Assemble prompt
++agent.add_computed_column(
++    context=build_prompt(
++        agent.prompt, agent.tool_output,
++        agent.chat_context, agent.memory_context),
++    if_exists='ignore')
++
++# Step 5: Final response
++agent.add_computed_column(
++    final_response=chat_completions(
++        messages=[
++            {'role': 'system', 'content': agent.system_prompt},
++            {'role': 'user', 'content': agent.context},
++        ],
++        model='gpt-4o-mini',
++        model_kwargs={'max_tokens': agent.max_tokens, 'temperature': agent.temperature},
++    ), if_exists='ignore')
++
++agent.add_computed_column(
++    answer=agent.final_response.choices[0].message.content,
++    if_exists='ignore')
++```
++
++## Usage
++
++```python
++# Ask a question — memory and tools are used automatically
++agent.insert([{
++    'prompt': 'What is the weather in Tokyo? Remember that I like brief answers.',
++    'user_id': 'user_1',
++    'timestamp': datetime.now(),
++    'system_prompt': 'You are a helpful assistant. Use tools and memories to personalize your response.',
++    'max_tokens': 512,
++    'temperature': 0.7,
++}])
++
++result = agent.order_by(agent.timestamp, asc=False).limit(1).select(agent.answer).collect()
++
++# Save the conversation to chat history for future recall
++agent_row = agent.order_by(agent.timestamp, asc=False).limit(1).select(
++    agent.prompt, agent.answer, agent.user_id, agent.timestamp).collect()
++row = agent_row[0]
++
++chat_history.insert([
++    {'role': 'user', 'content': row['prompt'],
++     'user_id': row['user_id'], 'timestamp': row['timestamp']},
++    {'role': 'assistant', 'content': row['answer'],
++     'user_id': row['user_id'], 'timestamp': datetime.now()},
++])
++```
++
++## Adding MCP Tools
++
++Connect to any MCP-compliant server to extend the agent with external tools:
++
++```python
++# Load tools from an MCP server (streamable HTTP). Tools that return images or audio are not supported.
++mcp_tools = pxt.mcp_udfs('http://localhost:8000/mcp')
++
++# Inspect available tools
++for tool in mcp_tools:
++    print(f'- {tool.name}: {tool.comment()}')
++
++# Combine with local tools
++tools = pxt.tools(get_weather, save_memory, recall_memories, *mcp_tools)
++```
++
++MCP tools are called via `invoke_tools()` exactly like local UDFs — no special handling needed.
++
++## Multi-Provider invoke_tools
++
++The agent pipeline works with any provider that supports tool calling:
++
++| Provider | Import | invoke_tools |
++|----------|--------|-------------|
++| OpenAI | `from pixeltable.functions.openai import invoke_tools as openai_invoke_tools` | `openai_invoke_tools(tools, response)` |
++| Anthropic | `from pixeltable.functions.anthropic import invoke_tools as anthropic_invoke_tools` | `anthropic_invoke_tools(tools, response)` |
++| Groq | `from pixeltable.functions.groq import invoke_tools as groq_invoke_tools` | `groq_invoke_tools(tools, response)` |
++| Gemini | `from pixeltable.functions.gemini import invoke_tools as gemini_invoke_tools` | `gemini_invoke_tools(tools, response)` |
++| Bedrock | `from pixeltable.functions.bedrock import invoke_tools as bedrock_invoke_tools` | `bedrock_invoke_tools(tools, response)` |
++
++To switch providers, change the import and the LLM call function. The `tools` object and `invoke_tools()` pattern stay the same.
++
++## How It Works
++
++1. **Chat history** — Every conversation is stored in a table with an embedding index. The `recall_chat_history` query retrieves semantically relevant past turns for the current user.
++
++2. **Memory bank** — Long-lived facts and preferences are stored separately. The `recall_memories` query retrieves relevant memories. The `save_memory` tool lets the LLM itself save new facts during conversation.
++
++3. **User scoping** — All queries filter by `user_id`, so multiple users can share the same tables without seeing each other's data.
++
++4. **MCP integration** — `pxt.mcp_udfs(url)` loads streamable-HTTP tools as Pixeltable UDFs. Tools that return images or audio are not supported. Bundle the rest with `pxt.tools()` and run them with that provider's `invoke_tools`.
++
++## Adapting This Recipe
++
++- **Add document RAG**: Create a document chunking view and add a `search_documents` query to the tools list
++- **Add image memory**: Use CLIP embeddings on an image column for visual memory recall
++- **Serve via API**: Declare a `FastAPIRouter` in `app.py` — see [workflows.md](workflows.md)
++- **Use Anthropic instead**: Swap `chat_completions` → `messages` (`max_tokens=` stays a top-level argument) and `openai_invoke_tools` → `anthropic_invoke_tools` — see [providers.md → Quick reference](providers.md#quick-reference)
++
++## Agent with Memory Checklist
++
++- [ ] Chat history table created with `user_id`, `role`, `content`, `timestamp` columns
++- [ ] Embedding index added on chat history `content` column
++- [ ] Memory bank table created with `user_id`, `content`, `category` columns
++- [ ] Embedding index added on memory bank `content` column
++- [ ] Recall queries filter by `user_id` (multi-tenant safety)
++- [ ] Recall queries use `.similarity(string=...)` with keyword argument and a minimum threshold
++- [ ] `save_memory` tool has a clear docstring so the LLM knows when to store facts
++- [ ] Tools bundled with `pxt.tools()` — includes both local UDFs and MCP tools if any
++- [ ] `invoke_tools()` import matches the LLM provider used
++- [ ] Agent response saved to chat history after each interaction (both user and assistant turns)
++- [ ] Tested with multiple user IDs to verify scoping works
+diff -rN -U0 --ignore-trailing-space a/pixeltable/references/core-api.md b/pixeltable/references/core-api.md
+--- a/pixeltable/references/core-api.md	2000-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/references/core-api.md	2000-01-01 00:00:00.000000000 +0000
+@@ -115 +115 @@
+-Every insert, update, delete, and schema change adds a version. `t.history()` lists them. `pxt.get_table('my_app.products:1')` is a read-only handle of that version. `pxt.create_snapshot('my_app.products_baseline', t, if_exists='ignore')` stores a named frozen copy; later inserts, updates, and deletes on `t` leave it unchanged. `t.revert()` and `pxt revert` permanently drop the latest version, so run `pxt history` first. Revert cannot pass version 0, and it refuses while a snapshot still references the current version. `is_snapshot=True` on `create_view` freezes a filtered view at creation; that is not a named snapshot.
++Every insert, update, delete, and schema change adds a version. `t.history()` lists them. `pxt.get_table('my_app.products:1')` is a read-only handle of that version. `pxt.create_snapshot('my_app.products_baseline', t, if_exists='ignore')` stores a named frozen copy; later inserts, updates, and deletes on `t` leave it unchanged. `t.revert()` and `pxt revert` permanently drop the latest version, so run `pxt history` first. Revert cannot pass version 0, and it refuses while a snapshot still references the current version. `is_snapshot=True` on `create_view` is the same as `create_snapshot`: it freezes that view at creation.
+diff -rN -U0 --ignore-trailing-space a/pixeltable/references/ml-data-pipeline.md b/pixeltable/references/ml-data-pipeline.md
+--- a/pixeltable/references/ml-data-pipeline.md	1970-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/references/ml-data-pipeline.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,287 @@
++# ML Data Wrangling Pipeline
++
++This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
++
++A complete recipe for processing multimodal data (video, audio, images, documents) into training-ready datasets. Covers ingestion, enrichment with AI models, dataset versioning, and export to PyTorch, Parquet, and pandas.
++
++## Ingest Raw Data
++
++```python
++import pixeltable as pxt
++from pixeltable.functions.video import frame_iterator
++from pixeltable.functions.openai import chat_completions
++from pixeltable.functions.huggingface import clip, detr_for_object_detection
++from pixeltable.functions import image as pxt_image
++
++pxt.create_dir('ml_data', if_exists='ignore')
++
++# From local files, URLs, or cloud storage (S3, GCS, Azure)
++images = pxt.create_table('ml_data.images', {
++    'image': pxt.Image,
++    'filename': pxt.String,
++    'split': pxt.String,        # 'train', 'val', 'test'
++}, if_exists='ignore')
++
++images.insert([
++    {'image': 'path/to/cat_01.jpg', 'filename': 'cat_01.jpg', 'split': 'train'},
++    {'image': 'path/to/dog_01.jpg', 'filename': 'dog_01.jpg', 'split': 'train'},
++    {'image': 's3://bucket/images/bird.jpg', 'filename': 'bird.jpg', 'split': 'val'},
++])
++
++# From CSV with schema overrides for media columns
++labeled_data = pxt.create_table('ml_data.labeled',
++    source='annotations.csv',
++    schema_overrides={'image_path': pxt.Image},
++    if_exists='ignore')
++
++# From Hugging Face datasets
++from pixeltable.io import import_huggingface_dataset
++import datasets
++ds = datasets.load_dataset('cifar10', split='train[:500]')
++cifar = import_huggingface_dataset('ml_data.cifar', ds)
++```
++
++## Explore and Sample
++
++```python
++# Quick look at the data
++first_5 = images.head(5)
++total = images.count()
++train_count = images.where(images.split == 'train').count()
++
++# Random sample for exploration
++sample = images.sample(n=10, seed=42).select(images.image, images.filename).collect()
++```
++
++## Enrich with AI Models
++
++```python
++# Resize images for consistent training input (thumbnail preserves aspect ratio)
++images.add_computed_column(
++    resized=pxt_image.thumbnail(images.image, size=(224, 224)),
++    if_exists='ignore')
++
++# Auto-classify with a vision LLM
++images.add_computed_column(
++    label=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': [
++                {'type': 'text', 'text': 'Classify this image into exactly one word: cat, dog, bird, or other.'},
++                {'type': 'image_url', 'image_url': images.image}
++            ]
++        }],
++        model='gpt-4o-mini',
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++# Object detection for bounding boxes
++detect = detr_for_object_detection.using(model_id='facebook/detr-resnet-50')
++images.add_computed_column(
++    detections=detect(images.image, threshold=0.8),
++    if_exists='ignore')
++
++# Visualize detections (draw bounding boxes on images)
++from pixeltable.functions.vision import bboxes_draw
++images.add_computed_column(
++    annotated=bboxes_draw(
++        images.image, boxes=images.detections.boxes, labels=images.detections.label_text
++    ),
++    if_exists='ignore')
++
++# Generate captions
++images.add_computed_column(
++    caption=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': [
++                {'type': 'text', 'text': 'Describe this image in one sentence.'},
++                {'type': 'image_url', 'image_url': images.image}
++            ]
++        }],
++        model='gpt-4o-mini',
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++# Add CLIP embeddings for similarity search and deduplication
++embed_fn = clip.using(model_id='openai/clip-vit-base-patch32')
++images.add_embedding_index('image', embedding=embed_fn, if_exists='ignore')
++```
++
++## Curate: Filter, Deduplicate, Quality Check
++
++```python
++# Test on a small sample first (recommended workflow)
++sample = images.limit(5).select(images.image, images.label, images.caption).collect()
++
++# Filter by label
++cats = images.where(images.label == 'cat').select(images.image, images.caption).collect()
++
++# Find near-duplicates via similarity
++sim = images.image.similarity(image='path/to/reference.jpg')
++near_dupes = images.where(sim > 0.95).select(images.filename, sim).collect()
++
++# Review errors from computed columns
++errors = images.where(images.label.errortype != None).select(
++    images.filename, images.label.errormsg).collect()
++
++# OpenAI already retried the call. Recompute only the cells that still failed.
++images.recompute_columns('label', errors_only=True)
++```
++
++## Video Frame Extraction
++
++```python
++videos = pxt.create_table('ml_data.videos', {
++    'video': pxt.Video,
++    'category': pxt.String,
++}, if_exists='ignore')
++
++frames = pxt.create_view('ml_data.frames', videos,
++    iterator=frame_iterator(videos.video, fps=1.0),
++    if_exists='ignore')
++
++frames.add_computed_column(
++    resized=pxt_image.thumbnail(frames.frame, size=(224, 224)),
++    if_exists='ignore')
++```
++
++## Retrieval UDFs for Structured Data Lookup
++
++```python
++# Create a lookup function for enrichment across tables
++products = pxt.create_table('ml_data.products', {
++    'sku': pxt.String,
++    'name': pxt.String,
++    'category': pxt.String,
++}, if_exists='ignore')
++
++get_product = pxt.retrieval_udf(
++    products,
++    name='get_product',
++    description='Look up a product by SKU',
++    parameters=['sku'],
++    limit=1,
++)
++
++# Use as a computed column for cross-table enrichment
++# orders.add_computed_column(product_info=get_product(sku=orders.product_sku), if_exists='ignore')
++```
++
++## Version with Snapshots
++
++```python
++# Take a point-in-time snapshot before exporting
++snap_v1 = pxt.create_snapshot('ml_data.images_v1', images, if_exists='ignore')
++
++# Later, take another snapshot after adding more data
++# snap_v2 = pxt.create_snapshot('ml_data.images_v2', images, if_exists='ignore')
++
++# Query any snapshot like a regular table
++snap_v1.select(snap_v1.filename, snap_v1.label).limit(5).collect()
++```
++
++## Export for Training
++
++```python
++# To PyTorch Dataset (recommended for training loops)
++train_query = images.where(images.split == 'train').select(
++    images.resized, images.label)
++
++pytorch_ds = train_query.to_pytorch_dataset(image_format='pt')
++
++from torch.utils.data import DataLoader
++dataloader = DataLoader(pytorch_ds, batch_size=32, num_workers=4)
++
++# Iterate in a training loop
++for batch in dataloader:
++    imgs, labels = batch  # imgs: (32, 3, 224, 224) tensor
++    # ... training step ...
++    break
++
++# To Parquet (for Spark, DuckDB, or cross-platform sharing)
++from pathlib import Path
++from pixeltable.io import export_parquet
++
++export_parquet(
++    images.where(images.split == 'train').select(
++        images.filename, images.label, images.caption),
++    Path('output/train'))
++
++export_parquet(
++    images.where(images.split == 'val').select(
++        images.filename, images.label, images.caption),
++    Path('output/val'))
++
++# To pandas (for quick analysis or CSV export)
++df = images.select(
++    images.filename, images.label, images.caption
++).collect().to_pandas()
++df.to_csv('output/annotations.csv', index=False)
++```
++
++## Key Patterns
++
++### Test Before Deploying
++
++Always test transformations on a small sample before committing:
++
++```python
++# 1. Test the expression inline
++result = images.limit(5).select(
++    images.image, label=chat_completions(...).choices[0].message.content
++).collect()
++
++# 2. Review results, then deploy as a computed column
++images.add_computed_column(label=chat_completions(...).choices[0].message.content, if_exists='ignore')
++```
++
++### Error Handling and Recomputation
++
++```python
++# Insert with error tolerance
++status = images.insert(rows, on_error='ignore')
++print(f'Inserted: {status.num_rows}, Errors: {status.num_excs}')
++
++# Find and inspect failed rows
++errors = images.where(images.label.errortype != None).select(
++    images.filename, images.label.errormsg).collect()
++
++# Retry cells that still failed after the provider's own retries
++images.recompute_columns('label', errors_only=True)
++```
++
++### PyTorch Dataset Options
++
++| Parameter | Values | Description |
++|-----------|--------|-------------|
++| `image_format` | `'pt'` | CxHxW float tensors in [0, 1] |
++| `image_format` | `'np'` | HxWxC uint8 arrays in [0, 255] |
++
++Data is cached to disk for efficient repeated loading. Use `num_workers > 0` in DataLoader for parallel loading.
++
++## Building Blocks
++
++| Step | Function | Purpose |
++|------|----------|---------|
++| Ingest | `create_table(path, source='file.csv')` | Load from CSV, Parquet, URLs, S3 |
++| Ingest | `import_huggingface_dataset()` | Load from Hugging Face Hub |
++| Explore | `t.head(5)`, `t.count()`, `t.sample(n)` | Quick data inspection |
++| Enrich | `add_computed_column(label=...)` | Auto-label with AI models |
++| Enrich | `detr_for_object_detection()` | Bounding box detection |
++| Visualize | `bboxes_draw(image, boxes=..., labels=...)` | Overlay detections on images |
++| Search | `add_embedding_index()` + `.similarity()` | Find similar / deduplicate |
++| Curate | `.where(col.errortype != None)` | Review failed transformations |
++| Retry | `recompute_columns('col', errors_only=True)` | Re-run cells that still failed after the provider's own retries |
++| Version | `create_snapshot('name', table)` | Point-in-time dataset copy |
++| Export | `to_pytorch_dataset(image_format='pt')` | PyTorch DataLoader-ready |
++| Export | `export_parquet(query, Path('dir'))` | Parquet files for sharing |
++| Export | `.collect().to_pandas()` | pandas DataFrame |
++| Lookup | `pxt.retrieval_udf(table, ...)` | Structured data enrichment |
++
++## Adapting This Recipe
++
++- **Audio data**: Use `audio_splitter` and `transcriptions` to create labeled audio datasets — see [core-api.md → Built-in functions](core-api.md#built-in-functions)
++- **Document data**: Use `document_splitter` to chunk PDFs into training examples — see [workflows.md](workflows.md)
++- **Add human labels**: Export to Label Studio, annotate, then re-import
++- **Multi-GPU training**: The PyTorch dataset supports `DistributedSampler` with standard PyTorch patterns
+diff -rN -U0 --ignore-trailing-space a/pixeltable/references/providers.md b/pixeltable/references/providers.md
+--- a/pixeltable/references/providers.md	2000-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/references/providers.md	2000-01-01 00:00:00.000000000 +0000
+@@ -40 +40 @@
+-A computed column that calls a provider retries on its own. OpenAI, Anthropic and Gemini models report their rate limits and retry up to 10 times; the other providers retry up to 3 times, paced by `rate_limit` in their config section (600 requests a minute when unset). HTTP 429, 503, 408 and 504, connection errors and timeouts are retried, with a backoff that honors `Retry-After`. A cell that still fails holds the error: `pxt errors PATH` lists it, and `pxt recompute PATH COLUMN --errors-only -f` runs it again. Do not add a retry loop, `tenacity`, or a second client around the call.
++A computed column that calls a provider retries on its own when that provider has a scheduler. OpenAI `chat_completions`, `responses`, and `embeddings`, plus Anthropic and Gemini, report their rate limits and retry up to 10 times (`RateLimitsScheduler`). Other OpenAI calls (`decisions`, `speech`, `transcriptions`, `translations`, image calls, `moderations`), and Groq, Together, Mistral, Nebius, Fireworks, DeepSeek, OpenRouter, Fabric, Jina, Voyage, Twelve Labs, BFL, fal, Replicate, RunwayML, and Bedrock, retry up to 3 times, paced by `rate_limit` or per-model `rate_limits` (600 requests a minute when unset). Hugging Face, Whisper, Ollama, llama.cpp, and vLLM have no resource pool, so a failed cell stays failed until recompute. HTTP 429, 503, 408, and 504, connection errors, and timeouts are retried, with a backoff that honors `Retry-After`. A cell that still fails holds the error: `pxt errors PATH` lists it, and `pxt recompute PATH COLUMN --errors-only -f` runs it again. Do not add a retry loop, `tenacity`, or a second client around the call.
+diff -rN -U0 --ignore-trailing-space a/pixeltable/references/video-rag-agents.md b/pixeltable/references/video-rag-agents.md
+--- a/pixeltable/references/video-rag-agents.md	1970-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/references/video-rag-agents.md	2000-01-01 00:00:00.000000000 +0000
+@@ -0,0 +1,255 @@
++# Video RAG Agent
++
++This file is notebook form: `pxt.create_table()` and `add_computed_column()`. An application uses `app.py` with `TableModel`, then `pxt schema update` and `pxt service update` ([SKILL.md](../SKILL.md)).
++
++A complete recipe that combines video processing, document/transcript retrieval, and a tool-calling agent into one pipeline. Insert a video and a question — the agent automatically searches frames, transcripts, and documents to answer it.
++
++## Full Pipeline
++
++```python
++import pixeltable as pxt
++from pixeltable.functions.video import frame_iterator, extract_audio
++from pixeltable.functions.audio import audio_splitter
++from pixeltable.functions.string import string_splitter
++from pixeltable.functions.openai import chat_completions, transcriptions
++from pixeltable.functions.huggingface import clip, sentence_transformer
++from pixeltable.functions.anthropic import messages, invoke_tools
++from pixeltable.functions import image as pxt_image
++from datetime import datetime
++
++pxt.create_dir('vrag', if_exists='ignore')
++
++# ── 1. Video ingestion ──────────────────────────────────────────────
++
++videos = pxt.create_table('vrag.videos', {
++    'video': pxt.Video,
++    'title': pxt.String,
++}, if_exists='ignore')
++
++# ── 2. Keyframe extraction + CLIP visual search ─────────────────────
++
++frames = pxt.create_view('vrag.frames', videos,
++    iterator=frame_iterator(videos.video, keyframes_only=True),
++    if_exists='ignore')
++
++frames.add_computed_column(
++    thumbnail=pxt_image.b64_encode(
++        pxt_image.thumbnail(frames.frame, size=(320, 320))),
++    if_exists='ignore')
++
++frames.add_embedding_index('frame',
++    embedding=clip.using(model_id='openai/clip-vit-base-patch32'),
++    if_exists='ignore')
++
++# Describe each frame with a vision LLM
++frames.add_computed_column(
++    description=chat_completions(
++        messages=[{
++            'role': 'user',
++            'content': [
++                {'type': 'text', 'text': 'Describe this video frame in one sentence.'},
++                {'type': 'image_url', 'image_url': frames.frame}
++            ]
++        }],
++        model='gpt-4o-mini'
++    ).choices[0].message.content,
++    if_exists='ignore')
++
++# ── 3. Audio extraction → transcription → sentence embedding ────────
++
++videos.add_computed_column(
++    audio=extract_audio(videos.video, format='mp3'),
++    if_exists='ignore')
++
++audio_segments = pxt.create_view('vrag.audio_segments', videos,
++    iterator=audio_splitter(
++        audio=videos.audio, duration=30.0, min_silence_len=0.3, trim_leading_silence=True
++    ),
++    if_exists='ignore')
++
++audio_segments.add_computed_column(
++    transcription=transcriptions(
++        audio=audio_segments.audio_segment, model='whisper-1'),
++    if_exists='ignore')
++
++sentences = pxt.create_view('vrag.sentences',
++    audio_segments.where(audio_segments.transcription != None),
++    iterator=string_splitter(
++        text=audio_segments.transcription.text, separators='sentence'),
++    if_exists='ignore')
++
++embed_fn = sentence_transformer.using(model_id='all-MiniLM-L6-v2')
++sentences.add_embedding_index('text', string_embed=embed_fn, if_exists='ignore')
++
++# ── 4. Query functions (become agent tools) ──────────────────────────
++
++@pxt.query
++def search_video_frames(query_text: str):
++    """Search video frames by visual similarity using CLIP."""
++    sim = frames.frame.similarity(string=query_text)
++    return frames.order_by(sim, asc=False).limit(10).select(
++        frames.description, frames.thumbnail, score=sim)
++
++@pxt.query
++def search_transcripts(query_text: str):
++    """Search video transcripts by semantic similarity."""
++    sim = sentences.text.similarity(string=query_text)
++    return sentences.where(sim > 0.5).order_by(sim, asc=False).select(
++        sentences.text, score=sim).limit(20)
++
++@pxt.udf
++def web_search(keywords: str) -> str:
++    """Search the web for additional context."""
++    from duckduckgo_search import DDGS
++    with DDGS() as ddgs:
++        results = list(ddgs.news(keywords=keywords, max_results=5))
++        return '\n'.join(
++            f"{r['title']}: {r['body']}" for r in results
++        ) if results else 'No results.'
++
++# ── 5. Context assembly ─────────────────────────────────────────────
++
++@pxt.udf
++def assemble_context(
++    question: str,
++    tool_outputs: dict | None,
++    transcript_context: list | None,
++    frame_context: list | None,
++) -> str:
++    parts = [f"QUESTION: {question}"]
++
++    tool_str = str(tool_outputs) if tool_outputs else 'N/A'
++    parts.append(f"\n<tool_results>\n{tool_str}\n</tool_results>")
++
++    if transcript_context:
++        transcript_str = '\n'.join(
++            f"- {item.get('text', '')}"
++            for item in transcript_context if isinstance(item, dict)
++        ) or 'N/A'
++    else:
++        transcript_str = 'N/A'
++    parts.append(f"\n<transcript_excerpts>\n{transcript_str}\n</transcript_excerpts>")
++
++    if frame_context:
++        frame_str = '\n'.join(
++            f"- {item.get('description', '')}"
++            for item in frame_context if isinstance(item, dict)
++        ) or 'N/A'
++    else:
++        frame_str = 'N/A'
++    parts.append(f"\n<visual_descriptions>\n{frame_str}\n</visual_descriptions>")
++
++    return '\n'.join(parts)
++
++# ── 6. Agent pipeline ───────────────────────────────────────────────
++
++tools = pxt.tools(web_search, search_transcripts, search_video_frames)
++
++agent = pxt.create_table('vrag.agent', {
++    'prompt': pxt.String,
++    'timestamp': pxt.Timestamp,
++    'system_prompt': pxt.String,
++    'max_tokens': pxt.Int,
++    'temperature': pxt.Float,
++}, if_exists='ignore')
++
++# Step 1: Initial LLM call — tool selection
++agent.add_computed_column(
++    initial_response=messages(
++        model='claude-sonnet-4-20250514',
++        messages=[{'role': 'user', 'content': [{'type': 'text', 'text': agent.prompt}]}],
++        tools=tools,
++        tool_choice=tools.choice(required=True),
++        max_tokens=agent.max_tokens,
++        model_kwargs={'system': agent.system_prompt, 'temperature': agent.temperature},
++    ), if_exists='ignore')
++
++# Step 2: Execute the tools the LLM selected
++agent.add_computed_column(
++    tool_output=invoke_tools(tools, agent.initial_response),
++    if_exists='ignore')
++
++# Step 3: RAG context from transcripts and frames
++agent.add_computed_column(
++    transcript_context=search_transcripts(agent.prompt),
++    if_exists='ignore')
++
++agent.add_computed_column(
++    frame_context=search_video_frames(agent.prompt),
++    if_exists='ignore')
++
++# Step 4: Assemble all context
++agent.add_computed_column(
++    context=assemble_context(
++        agent.prompt, agent.tool_output,
++        agent.transcript_context, agent.frame_context),
++    if_exists='ignore')
++
++# Step 5: Final LLM call with full context
++agent.add_computed_column(
++    final_response=messages(
++        model='claude-sonnet-4-20250514',
++        messages=[{'role': 'user', 'content': [{'type': 'text', 'text': agent.context}]}],
++        max_tokens=agent.max_tokens,
++        model_kwargs={
++            'system': 'Answer based on the video transcripts, visual descriptions, and tool results. Cite timestamps when possible.',
++            'temperature': agent.temperature,
++        },
++    ), if_exists='ignore')
++
++# Step 6: Extract answer
++agent.add_computed_column(
++    answer=agent.final_response.content[0].text,
++    if_exists='ignore')
++```
++
++## Usage
++
++```python
++# Insert videos
++videos.insert([
++    {'video': 'lecture.mp4', 'title': 'ML Lecture'},
++    {'video': 'https://example.com/demo.mp4', 'title': 'Product Demo'},
++])
++
++# Ask a question — the full pipeline runs automatically
++agent.insert([{
++    'prompt': 'What visual examples does the lecturer use to explain gradient descent?',
++    'timestamp': datetime.now(),
++    'system_prompt': 'Use search_video_frames for visual content and search_transcripts for spoken content.',
++    'max_tokens': 1024,
++    'temperature': 0.7,
++}])
++
++result = agent.order_by(agent.timestamp, asc=False).limit(1).select(agent.answer).collect()
++```
++
++## How It Works
++
++The pipeline is a chain of computed columns. Inserting a row into `agent` triggers these steps automatically:
++
++1. **Initial LLM call** — Claude selects which tools to call (transcript search, frame search, web search)
++2. **Tool execution** — `invoke_tools()` runs the selected `@pxt.query` / `@pxt.udf` functions
++3. **RAG retrieval** — Transcript and frame similarity searches run in parallel as computed columns
++4. **Context assembly** — A UDF merges tool outputs, transcript excerpts, and visual descriptions
++5. **Final LLM call** — Claude synthesizes everything into a grounded answer
++
++### Key building blocks
++
++| Concept | Function | Purpose |
++|---------|----------|---------|
++| `frame_iterator` | `pxt.create_view(..., iterator=frame_iterator(...))` | Extract video keyframes |
++| `audio_splitter` | `pxt.create_view(..., iterator=audio_splitter(...))` | Split audio into chunks |
++| `transcriptions` | `t.add_computed_column(transcription=transcriptions(...))` | Transcribe audio chunks |
++| `string_splitter` | `pxt.create_view(..., iterator=string_splitter(...))` | Split transcript into sentences |
++| `add_embedding_index` | `t.add_embedding_index('col', embedding=fn)` | Enable similarity search |
++| `@pxt.query` | `def search_transcripts(query_text: str): ...` | Reusable retrieval + agent tool |
++| `pxt.tools()` | `tools = pxt.tools(fn1, fn2)` | Bundle functions as LLM tools |
++| `invoke_tools()` | `invoke_tools(tools, response)` | Execute the tools the LLM chose |
++
++## Adapting This Recipe
++
++- **Swap providers**: Replace `messages` (Anthropic) with `chat_completions` (OpenAI/Together/etc.) — see [providers.md](providers.md#quick-reference) for import and output shapes
++- **Add document RAG**: Add a `document_splitter` view and a `search_documents` query function to the tools list
++- **Use local models**: Replace OpenAI transcription with `transcribe()` (`from pixeltable.functions.whisper import transcribe`) and use `chat` (`from pixeltable.functions.ollama import chat`) for the LLM — see [providers.md](providers.md#quick-reference). Those local calls do not retry on their own.
++- **Serve via API**: Declare a `FastAPIRouter` in `app.py` — see [workflows.md](workflows.md)
+diff -rN -U0 --ignore-trailing-space a/pixeltable/SKILL.md b/pixeltable/SKILL.md
+--- a/pixeltable/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/pixeltable/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3,12 +3,6 @@
+-description: >-
+-  Multimodal RAG over PDFs, web pages, Office files, images, and video; video
+-  search; image similarity search; frames, detection, captions; embeddings and
+-  vector search stored with your data; audio transcription, podcast summaries; a
+-  multimodal agent with tools; agent memory; incremental ML and data pipelines;
+-  dataset versioning. One Python backend: tables, computed columns that call
+-  models, embedding indexes, incremental updates, versioning, and HTTP. Create
+-  tables with pxt schema update. Serve with pxt service update. Use instead of
+-  LangChain, pandas-as-store, or a separate vector DB. Use when building RAG or
+-  a multimodal agent with tools, processing images/video/audio/documents, or
+-  serving an API. Do NOT use for general Python or direct PostgreSQL
+-  administration.
++description: >
++  This skill should be used when the task imports pixeltable, runs the pxt CLI,
++  edits TableModel classes, or changes pixeltable.toml. It documents Pixeltable
++  tables, computed columns, views, embedding indexes, and the pxt schema update
++  and pxt service update commands. Do not use it for general Python or direct
++  PostgreSQL administration.
+@@ -16 +9,0 @@
+-allowed-tools: []
+@@ -55,14 +48 @@
+-      - multimodal rag
+-      - pdf rag
+-      - video search
+-      - image similarity
+-      - image semantic search
+-      - audio transcription search
+-      - agent memory
+-      - vector database
+-      - embeddings with your data
+-      - incremental pipeline
+-      - dataset versioning
+-      - computed column
+-      - embedding index
+-      - add_embedding_index
++      - pxt
+@@ -70 +50,2 @@
+-      - create_view
++      - pixeltable.toml
++      - add_embedding_index
+@@ -72 +52,0 @@
+-      - invoke_tools
+@@ -135 +115 @@
+-Provider calls retry on their own (rate limits, 503s, timeouts, with backoff) and reach a proxy through `OPENAI_BASE_URL`: do not wrap a model call in your own retry loop or client ([providers.md](references/providers.md#retries-and-proxies)). Under a coding agent, ask the user to run `pxt login` in their own terminal, and never ask for a secret's value in the chat.
++OpenAI, Anthropic, Gemini, Bedrock, and the other request-rate providers retry on their own (rate limits, 503s, timeouts, with backoff). Local models do not. OpenAI-compatible calls reach a proxy through `OPENAI_BASE_URL`. Do not wrap a model call in your own retry loop or client ([providers.md](references/providers.md#retries-and-proxies)). Under a coding agent, ask the user to run `pxt login` in their own terminal, and never ask for a secret's value in the chat.
+@@ -197,0 +178,6 @@
++| PDF documents: split and search | [workflows.md](references/workflows.md) |
++| Video frames, transcripts, and search | [video-rag-agents.md](references/video-rag-agents.md) |
++| Image similarity, detection, captions, dataset snapshots | [ml-data-pipeline.md](references/ml-data-pipeline.md) |
++| Agent memory (chat history and a memory bank) | [agents-memory-mcp.md](references/agents-memory-mcp.md) |
++| Tool-calling agent patterns | [agentic-patterns.md](references/agentic-patterns.md) |
++| Audio transcription | [providers.md](references/providers.md), [core-api.md](references/core-api.md#built-in-functions) |
+@@ -198,0 +185,2 @@
++
++Notebook recipes kept in this copy: [agents-memory-mcp.md](references/agents-memory-mcp.md), [video-rag-agents.md](references/video-rag-agents.md), [ml-data-pipeline.md](references/ml-data-pipeline.md), [agentic-patterns.md](references/agentic-patterns.md). Apps still start from `app.py`.
