@@ -1,0 +1,16 @@
+id: joyrise
+name: Joyrise
+description: Official Joyrise MCP server. Set up a website, read SEO articles and search results, change how articles are written, and pause or publish, for the Joyrise account that writes and publishes articles on your site.
+author: Joyrise
+url: https://joyrise.ai/docs/mcp
+category: business
+prerequisites:
+  - Joyrise account (can be created during the first sign-in)
+  - MCP client with OAuth support
+content:
+  - name: Joyrise hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.joyrise.ai/mcp"
+      }
