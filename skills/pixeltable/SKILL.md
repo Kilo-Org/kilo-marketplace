@@ -9,7 +9,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Pixeltable
-  version: 2.14.0
+  version: 2.14.1
   type: documentation
   executes-code: false
   category: data
@@ -60,7 +60,7 @@ metadata:
     repository: 'https://github.com/pixeltable/pixeltable-skill'
     path: skills/pixeltable-skill
     ref: main
-    commit: 9296e22ad083307ac983217eef8e62f488409c67
+    commit: 5e642cbe3bbe0cb8b82d9aa721714140522bd29c
 ---
 
 ## STOP
