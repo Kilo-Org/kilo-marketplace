@@ -1,0 +1,16 @@
+id: sprout
+name: "Sprout: AI Finance & Cash Flow"
+description: "Read-only cash flow, spending, subscriptions and transaction search from your US and Canadian banks, connected through Plaid. Exact posted amounts, USD and CAD kept separate, transfers between your own accounts excluded. Cannot move money, pay bills or cancel anything."
+author: MindCrafters LLC
+url: https://github.com/MindCraftersGroup/sprout-claude-plugin
+category: business
+prerequisites:
+  - Sprout account with a linked bank (Sprout Plus subscription, 3-day free trial if eligible)
+  - MCP client with OAuth support
+content:
+  - name: Sprout hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api-sprout.mindcrafters.group/mcp"
+      }
