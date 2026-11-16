@@ -959,7 +959,7 @@ items:
     description: Gives agents live B2B company and people data. Enrich a company by domain, name, or social profile, search
       companies and people, find similar companies, and look up a person from an email address.
     author: CompanyEnrich
-    url: https://docs.companyenrich.com/docs/mcp-server
+    url: https://github.com/CompanyEnrich/mcp-server
     category: search
     tags:
       - search
