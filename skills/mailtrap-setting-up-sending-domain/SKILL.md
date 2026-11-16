@@ -38,8 +38,10 @@ Mailtrap generates 5 DNS records to add at your domain registrar when you add a 
 
 **Custom Tracking Domain** (CNAME, optional) — enables click/open tracking under your own domain.
 
-Exact values are generated per-account — don't hardcode these. Retrieve them via the API:
-`POST https://mailtrap.io/api/accounts/{account_id}/sending_domains`
+To add a new sending domain, send `POST https://mailtrap.io/api/accounts/{account_id}/sending_domains` with the domain name. The response includes the DNS records in `dns_records`.
+
+To retrieve the DNS records for an existing domain, send `GET https://mailtrap.io/api/accounts/{account_id}/sending_domains/{domain_id}` and read `dns_records` from the response.
+
 ## Verification Steps
 
 1. Add your domain in Mailtrap → Sending → Domains
