@@ -1,0 +1,17 @@
+id: msg91
+name: MSG91
+description: MSG91 is a cloud communication platform that helps businesses integrate SMS, WhatsApp, Email, Voice and OTP verification into their products. This MCP lets AI assistants search MSG91 docs, browse API endpoints by module, and run any MSG91 API operation through natural-language requests.
+author: Walkover
+url: https://github.com/walkover-mcp/msg91
+category: development
+
+prerequisites:
+  - A MSG91 account and authkey at https://msg91.com
+
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.msg91.com/mcp"
+      }
