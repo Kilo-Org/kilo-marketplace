@@ -1,0 +1,18 @@
+id: viasocket
+name: viaSocket
+description: Use your apps through viaSocket — send emails, post to Slack, add sheet rows, read a CRM, and automate across 2,300+ apps. Build and manage plugins in the Developer Hub and connect your product to other apps with the viaSocket SDK.
+author: Walkover
+url: https://github.com/walkover-mcp/viasocket
+category: productivity
+
+prerequisites:
+  - A viaSocket account at https://viasocket.com
+  - Sign in to viaSocket via the sign-in button in your MCP client after adding the server
+
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://connect.viasocket.com/mcp"
+      }
