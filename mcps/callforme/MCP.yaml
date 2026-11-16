@@ -1,0 +1,16 @@
+id: callforme
+name: CallForMe
+description: Gives your AI agent a phone. It calls businesses in the US and Canada, works the phone menu, waits on hold, asks your agent mid-call when the business needs something and returns answers plus a transcript.
+author: CallForMe
+url: https://github.com/callforme-tel/callforme
+category: productivity
+prerequisites:
+  - CallForMe account (created on connect; prepaid credit, $1 per answered call)
+  - MCP client with OAuth support
+content:
+  - name: CallForMe hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://callforme.tel/mcp"
+      }
