@@ -25,7 +25,7 @@ This skill covers managing email contacts, lists, and segments via the Mailtrap 
 ## Creating a Contact
 
 ```javascript
-const response = await fetch("https://mailtrap.io/api/accounts/{account_id}/contacts", {
+const response = await fetch(`https://mailtrap.io/api/accounts/${process.env.MAILTRAP_ACCOUNT_ID}/contacts`, {
   method: "POST",
   headers: {
     "Authorization": `Bearer ${process.env.MAILTRAP_API_TOKEN}`,
