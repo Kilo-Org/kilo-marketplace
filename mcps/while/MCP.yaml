@@ -1,0 +1,16 @@
+id: while
+name: while.sh
+description: Deploys apps with their PostgreSQL databases, caches, S3 storage and scheduled jobs on a French PaaS built for AI agents, and reads their logs, metrics and errors. Sensitive actions wait for a person's approval.
+author: Nextmap
+url: https://github.com/while-sh/while
+category: development
+prerequisites:
+  - while.sh account
+  - MCP client with OAuth support
+content:
+  - name: while.sh hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.while.sh/mcp"
+      }
