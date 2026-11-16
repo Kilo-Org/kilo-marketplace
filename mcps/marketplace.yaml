@@ -4329,8 +4329,9 @@ items:
         optional: true
   - id: specstream
     name: SpecStream
-    description: Gives agents live web data. Search the web, read pages and get structured rows for a request in plain
-      words, every value with the page it came from. A paid run shows its price before it starts.
+    description: Live web search ($0.005 per search, $0.001 fast tier in about a second) and page or document extraction
+      ($0.0008 per page, free when empty), plus Deep Search for structured rows with source URLs where paid runs quote
+      their price before starting.
     author: SpecStream
     url: https://github.com/specstream/specstream-tools
     category: search
@@ -4339,15 +4340,6 @@ items:
     prerequisites:
       - SpecStream account (new accounts start with $10 of credit, no card)
       - MCP client with OAuth support, or a SpecStream API key
-    skills:
-      - id: specstream-compile
-        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-compile.tar.gz
-      - id: specstream-review-work
-        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-review-work.tar.gz
-      - id: specstream-approve-work
-        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-approve-work.tar.gz
-      - id: specstream-continue-work
-        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-continue-work.tar.gz
     content:
       - name: SpecStream hosted OAuth server
         content: |

@@ -1,17 +1,12 @@
 id: specstream
 name: SpecStream
-description: Gives agents live web data. Search the web, read pages and get structured rows for a request in plain words, every value with the page it came from. A paid run shows its price before it starts.
+description: Live web search ($0.005 per search, $0.001 fast tier in about a second) and page or document extraction ($0.0008 per page, free when empty), plus Deep Search for structured rows with source URLs where paid runs quote their price before starting.
 author: SpecStream
 url: https://github.com/specstream/specstream-tools
 category: search
 prerequisites:
   - SpecStream account (new accounts start with $10 of credit, no card)
   - MCP client with OAuth support, or a SpecStream API key
-skills:
-  - specstream-compile
-  - specstream-review-work
-  - specstream-approve-work
-  - specstream-continue-work
 content:
   - name: SpecStream hosted OAuth server
     content: |

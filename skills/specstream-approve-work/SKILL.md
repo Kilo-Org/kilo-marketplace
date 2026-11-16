@@ -3,22 +3,22 @@ name: specstream-approve-work
 description: >-
   Approve an exact SpecStream price, up to the maximum the person set. This
   starts paid work.
-license: MIT
 metadata:
   category: search
   author: SpecStream
   source:
     repository: 'https://github.com/specstream/specstream-tools'
     path: integrations/kilo/skills/specstream-approve-work
+    license_path: LICENSE
     ref: main
-    commit: 86c4ee0f0ba072a5c065a4d639429fb8d17dd360
+    commit: 244a36662f0b2b441113741a4c9c9b4dd2a71f29
 ---
 
 # Approve a price
 
-SpecStream is the live web data engine for teams and agents. Use the configured MCP server at `https://api.specstream.ai/mcp`.
+SpecStream provides live web search, page extraction and Deep Search over the configured MCP server at `https://api.specstream.ai/mcp`. `search_web` ($0.005 per search, or $0.001 on the `fast` tier in about a second) and `read_pages` ($0.0008 a page, free when empty) need no quote or approval; Deep Search runs use the reviewed approval flow below.
 
-`authorize_capacity_work` starts paid work, so treat it as a write. It needs the reviewed `quote_id` and `quote_hash`, the approved maximum as an integer in `confirm_max_cents`, and a stable `idempotency_key`. A standing project or agent authority must cover this exact scope and limit. A funded account is not enough.
+`authorize_capacity_work` starts paid Deep Search work, so treat it as a write. It needs the reviewed `quote_id` and `quote_hash`, the approved maximum as an integer in `confirm_max_cents`, and a stable `idempotency_key`. A standing project or agent authority must cover this exact scope and limit. A funded account is not enough.
 
 Save the same key before you send the call. If the response is unclear, recover the same work with `get_capacity_request` or `get_capacity_quote`. Never create a new key, price or run just to recover a lost response. A price that expired or changed needs a new approval.
 

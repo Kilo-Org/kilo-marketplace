@@ -1,0 +1,12 @@
+diff -rN -U0 --ignore-trailing-space a/specstream-review-work/SKILL.md b/specstream-review-work/SKILL.md
+--- a/specstream-review-work/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/specstream-review-work/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -3 +3 @@
+-description: Get the real SpecStream price for the exact request. Nothing runs.
++description: Get the real SpecStream price for a Deep Search request. Nothing runs.
+@@ -17 +17 @@
+-SpecStream is the live web data engine for teams and agents. Use the configured MCP server at `https://api.specstream.ai/mcp`.
++SpecStream provides live web search, page extraction and Deep Search over the configured MCP server at `https://api.specstream.ai/mcp`. `search_web` ($0.005 per search, or $0.001 on the `fast` tier in about a second) and `read_pages` ($0.0008 a page, free when empty) run directly without a quote; Deep Search runs require a reviewed quote first.
+@@ -21 +21 @@
+-Say the scope, the conditions, the maximum price and the expiry in text. Results cost 5 cents, 15 cents or $1 each, plus 5 cents for a person's email and 15 cents for a phone, and nothing when nothing matches. A price lasts 30 minutes. The price does not spend any balance and does not start a job.
++Say the scope, the conditions, the maximum price and the expiry in text. Deep Search results cost 5 cents, 15 cents or $1 each, plus 5 cents for a person's email and 15 cents for a phone, and nothing when nothing matches on a new find. A price lasts 30 minutes. The price does not spend any balance and does not start a job.
