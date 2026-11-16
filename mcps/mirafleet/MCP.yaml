@@ -1,0 +1,26 @@
+id: mirafleet
+name: mirafleet
+description: Let an AI agent operate a fleet of servers through a central mirafleet server. Runners dial out over SSH, actions pass an allowlist guard (argv only, no shell, regex-validated parameters), and every call is audited. Open source, no telemetry.
+author: MIRASTACK LABS
+url: https://github.com/mirastacklabs-ai/mirafleet
+category: development
+prerequisites:
+  - A running mirafleet central server and its fleet runners (see https://github.com/mirastacklabs-ai/mirafleet/blob/main/docs/QUICKSTART.md)
+  - "One-time login from a terminal: mirafleet mcp login ADDR -name NAME -code - (the operator key is stored in mirafleet's own config directory, not in this configuration)"
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@mirastacklabs/mirafleet", "mcp", "-project-dir", "."]
+      }
+  - name: Local binary
+    prerequisites:
+      - mirafleet on your PATH (brew install mirastacklabs-ai/tap/mirafleet, the install.sh or install.ps1 script, or a release archive from https://github.com/mirastacklabs-ai/mirafleet/releases)
+    content: |
+      {
+        "command": "mirafleet",
+        "args": ["mcp", "-project-dir", "."]
+      }
