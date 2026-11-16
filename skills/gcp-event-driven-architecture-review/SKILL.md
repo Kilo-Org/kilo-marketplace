@@ -6,7 +6,7 @@ description: >-
   radius, schema registry, and retry storm risk.
 allowed-tools: Read Grep Glob
 metadata:
-  author: 'github: Raishin'
+  author: Raishin
   version: 0.1.0
   updated: '2026-05-09'
   category: development

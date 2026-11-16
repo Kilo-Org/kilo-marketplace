@@ -157,6 +157,7 @@ items:
       developers use Arrow for high-performance data interchange between systems, zero-copy reads, and efficient
       columnar processing in Python (PyArrow) and JavaScript (Arrow JS).
     category: data
+    author: terminal-skills
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/apache-arrow
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/apache-arrow/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/apache-arrow.tar.gz
@@ -231,6 +232,7 @@ items:
 
       Triggers: "event hubs", "EventHubProducerClient", "EventHubConsumerClient", "streaming", "partitions".
     category: data
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-eventhub-py
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-eventhub-py/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-eventhub-py.tar.gz
@@ -256,6 +258,7 @@ items:
       when to use storage tiers, lifecycle management, Azure Storage concepts. DO NOT USE FOR: SQL databases, Cosmos DB
       (use azure-prepare), messaging with Event Hubs or Service Bus (use azure-messaging).
     category: data
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-storage
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-storage/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-storage.tar.gz
@@ -323,6 +326,7 @@ items:
 
       and integration with Node.js using the DataStax driver.
     category: data
+    author: terminal-skills
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cassandra
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cassandra/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cassandra.tar.gz
@@ -380,6 +384,7 @@ items:
       programming, local file operations, non-Snowflake databases, web development, or infrastructure tasks unrelated to
       Snowflake.
     category: data
+    author: Snowflake Integration Team
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cortex-code
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cortex-code/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cortex-code.tar.gz
@@ -417,6 +422,7 @@ items:
 
       building maintainable data platforms.
     category: data
+    author: terminal-skills
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dagster
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dagster/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dagster.tar.gz
@@ -453,6 +459,7 @@ items:
       used when investigating a business question, explaining a metric anomaly, validating a hypothesis, performing root
       cause analysis, or preparing a one-off investigation dashboard or memo.
     category: data
+    author: Pedro
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/data-investigation
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/data-investigation/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/data-investigation.tar.gz
@@ -471,6 +478,7 @@ items:
       Serverless", "Redshift Spectrum", "distribution key", "sort key", "DISTKEY", "SORTKEY", "DISTSTYLE", "WLM",
       "Redshift ML", "STL_", "SVL_", "SYS_", "data sharing Redshift".
     category: data
+    author: Christopher Huffman
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/database-redshift
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/database-redshift/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/database-redshift.tar.gz
@@ -607,6 +615,7 @@ items:
       results with dbt show. Use when doing any dbt work - building or modifying models, debugging errors, exploring
       unfamiliar data sources, writing tests, or evaluating impact of changes.
     category: data
+    author: dbt-labs
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-analytics-engineering
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-analytics-engineering/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-analytics-engineering.tar.gz
@@ -640,6 +649,7 @@ items:
       building data pipelines with automatic refresh, incremental processing, and CDC patterns. Use when the user wants
       to learn dynamic tables, build a DT pipeline, or understand DT vs streams/tasks/materialized views.
     category: data
+    author: Snowflake
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dynamic-tables-tutorial
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dynamic-tables-tutorial/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dynamic-tables-tutorial.tar.gz
@@ -943,6 +953,7 @@ items:
 
       create deployments, and monitor via the Prefect UI.
     category: data
+    author: terminal-skills
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/prefect
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/prefect/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/prefect.tar.gz
@@ -953,6 +964,7 @@ items:
       products, and curation. WHEN: Purview data catalog, unified catalog, data products, governance domain, business
       glossary, data quality, data discovery for analysts, curate data assets, data stewardship.
     category: data
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/purview-data-catalog
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/purview-data-catalog/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/purview-data-catalog.tar.gz
@@ -964,6 +976,7 @@ items:
       scan data sources, register data source, data discovery, integration runtime, map enterprise data, multicloud data
       scanning, classification scan, collections, glossary.
     category: data
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/purview-data-map
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/purview-data-map/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/purview-data-map.tar.gz
@@ -1004,6 +1017,7 @@ items:
       deciding between Hash and JSON, building counters, leaderboards, membership sets, or session stores, or when
       reviewing/cleaning up Redis key naming.
     category: data
+    author: Redis, Inc.
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redis-core
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redis-core/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redis-core.tar.gz
@@ -1075,6 +1089,7 @@ items:
       transformations, optimize Spark SQL queries, implement RDD pipelines, tune shuffle operations, configure executor
       memory, process .parquet files, handle data partitioning, or build structured streaming analytics.
     category: data
+    author: Jeffallan
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/spark-engineer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/spark-engineer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/spark-engineer.tar.gz
@@ -1092,6 +1107,7 @@ items:
       Postgres performance optimization and best practices from Supabase. Use this skill when writing, reviewing, or
       optimizing Postgres queries, schema designs, or database configurations.
     category: data
+    author: supabase
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/supabase-postgres-best-practices
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/supabase-postgres-best-practices/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/supabase-postgres-best-practices.tar.gz
@@ -1143,6 +1159,7 @@ items:
       choosing dependencies, preparing conda environment changes, checking organization-approved channels or package
       policies, investigating package vulnerabilities, or diagnosing conda/mamba installation and solver errors.
     category: development
+    author: Anaconda
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/anaconda-intelligence
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/anaconda-intelligence/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/anaconda-intelligence.tar.gz
@@ -1316,6 +1333,7 @@ items:
       security audit, BEFORE running azqr (compliance cli tool), Azure best practices, Key Vault expiration check,
       expired certificates, expiring secrets, orphaned resources, compliance assessment.
     category: development
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-compliance
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-compliance/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-compliance.tar.gz
@@ -1330,6 +1348,7 @@ items:
       pki-design), entra app credentials only (use entra-id), or PaaS networking topology (use
       azure-network-security-design).
     category: development
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-key-vault
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-key-vault/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-key-vault.tar.gz
@@ -1341,6 +1360,7 @@ items:
       identity, custom role definition, assign role to identity, what role do I need to grant access, permissions to
       assign roles.
     category: development
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/azure-rbac
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/azure-rbac/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/azure-rbac.tar.gz
@@ -1408,6 +1428,7 @@ items:
       Skills for analytics engineering with dbt - building models, writing tests, querying the semantic layer,
       troubleshooting jobs, and more. Use when doing any dbt analytics engineering work.
     category: development
+    author: dbt-labs
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt.tar.gz
@@ -1416,6 +1437,7 @@ items:
       Skills for migrating dbt projects - moving from dbt Core to the Fusion engine or across data platforms. Use when
       migrating dbt projects between platforms or to dbt Fusion.
     category: development
+    author: dbt-labs
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-migration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-migration/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-migration.tar.gz
@@ -1424,6 +1446,7 @@ items:
       Deploy applications and websites to Vercel. Use when the user requests deployment actions like "deploy my app",
       "deploy and give me the link", "push this live", or "create a preview deployment".
     category: development
+    author: vercel
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/deploy-to-vercel
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/deploy-to-vercel/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/deploy-to-vercel.tar.gz
@@ -1447,6 +1470,7 @@ items:
       role assignments (use azure-rbac), Key Vault secrets (use azure-keyvault-expiration-audit), general Azure resource
       security guidance.
     category: development
+    author: Microsoft
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/entra-app-registration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/entra-app-registration/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/entra-app-registration.tar.gz
@@ -1500,6 +1524,7 @@ items:
       Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message
       ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.
     category: development
+    author: Raishin
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcp-event-driven-architecture-review
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcp-event-driven-architecture-review/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcp-event-driven-architecture-review.tar.gz
@@ -1515,6 +1540,7 @@ items:
       Secure secrets in Google Cloud Secret Manager. Configure IAM policies, integrate with GKE, and manage secret
       versions. Use when managing secrets in GCP environments.
     category: development
+    author: devops-skills
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gcp-secret-manager
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gcp-secret-manager/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gcp-secret-manager.tar.gz
@@ -1548,6 +1574,7 @@ items:
       Use whenever the user works with Jupyter notebooks (`.ipynb`), including creating, inspecting, editing, executing,
       or visualizing notebook content for experiments, explorations, or tutorials.
     category: development
+    author: Kilo
     suggest_for:
       filename:
         - "*.ipynb"
@@ -1654,6 +1681,7 @@ items:
       flexible component libraries, or designing reusable APIs. Triggers on tasks involving compound components, render
       props, context providers, or component architecture. Includes React 19 API changes.
     category: development
+    author: vercel
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-composition-patterns
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-composition-patterns/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-composition-patterns.tar.gz
@@ -1663,6 +1691,7 @@ items:
       writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks
       involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.
     category: development
+    author: vercel
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/vercel-react-best-practices
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/vercel-react-best-practices/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/vercel-react-best-practices.tar.gz
@@ -1671,6 +1700,7 @@ items:
       Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility",
       "audit design", "review UX", or "check my site against best practices".
     category: development
+    author: vercel
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/web-design-guidelines
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/web-design-guidelines/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/web-design-guidelines.tar.gz
@@ -1709,6 +1739,7 @@ items:
     description: >-
       Log management - search, archives, metrics, and cost control.
     category: observability
+    author: datadog-labs
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dd-logs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dd-logs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dd-logs.tar.gz
@@ -1716,6 +1747,7 @@ items:
     description: >-
       Datadog CLI (Rust). OAuth2 auth with token refresh.
     category: observability
+    author: datadog-labs
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dd-pup
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dd-pup/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dd-pup.tar.gz
@@ -1754,6 +1786,7 @@ items:
       instance, diagnosing a performance regression, profiling a slow FT.SEARCH query, or wiring Redis metrics into
       Prometheus, Datadog, or similar.
     category: observability
+    author: Redis, Inc.
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redis-observability
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redis-observability/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redis-observability.tar.gz

@@ -228,6 +228,9 @@ function normalizeUpstreamSkillMd(
   if (skill.frontmatter?.metadata?.suggest_for) {
     fm.metadata.suggest_for = skill.frontmatter.metadata.suggest_for;
   }
+  if (skill.frontmatter?.metadata?.author) {
+    fm.metadata.author = skill.frontmatter.metadata.author;
+  }
   if (!skill.source.license_path && skill.frontmatter?.license && !fm.license) {
     fm.license = skill.frontmatter.license;
   }

@@ -57,6 +57,7 @@ generateMarketplace({
       id: dirName,
       description: foldedScalar(data.description),
       category: data.metadata?.category || undefined,
+      author: data.metadata?.author || undefined,
       suggest_for: validateSuggestFor(data.metadata?.suggest_for, dirName, {
         fieldName: "metadata.suggest_for",
         filenameExample: "*.rb",
