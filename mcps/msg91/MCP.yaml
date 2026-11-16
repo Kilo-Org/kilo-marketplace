@@ -1,12 +1,13 @@
 id: msg91
 name: MSG91
-description: MSG91 is a cloud communication platform that helps businesses integrate SMS, WhatsApp, Email, Voice and OTP verification into their products. This MCP lets AI assistants search MSG91 docs, browse API endpoints by module, and run any MSG91 API operation through natural-language requests.
+description: MSG91 is a cloud communication platform that helps businesses integrate SMS, WhatsApp, Email, Voice and OTP verification into their products. This MCP lets AI assistants search MSG91 docs, browse API endpoints module by module, and work out how to call the right MSG91 API. The MCP server itself needs no API key; calling an MSG91 API is done from the terminal with the DocStar CLI, which asks for your MSG91 authkey locally.
 author: Walkover
 url: https://github.com/walkover-mcp/msg91
 category: development
 
 prerequisites:
-  - A MSG91 account and authkey at https://msg91.com
+  - No API key is needed to connect to the MCP server or to search and browse the docs
+  - To call MSG91 APIs, an MSG91 account and authkey from https://msg91.com, entered when the DocStar CLI (npx docstar-cli) asks for it in the terminal, plus Node.js 18+
 
 content:
   - name: Remote
