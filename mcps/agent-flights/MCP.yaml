@@ -1,0 +1,21 @@
+id: agent-flights
+name: Agent Flights
+description: Finds the cheapest flights worldwide, strong on Africa. Compares Kiwi.com, Duffel and Aviasales fares with nearby airports and self-transfer combinations, and returns the cheapest and a cheapest-sensible fare, price calendars, cheap destinations and booking links. Free, no API key required.
+author: lomi.
+url: https://github.com/lomiafrica/agent-flights-mcp
+category: search
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://lowest.flights/mcp"
+      }
+  - name: NPX (stdio bridge)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://lowest.flights/mcp"]
+      }
