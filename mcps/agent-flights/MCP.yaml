@@ -17,5 +17,5 @@ content:
     content: |
       {
         "command": "npx",
-        "args": ["-y", "mcp-remote", "https://lowest.flights/mcp"]
+        "args": ["-y", "mcp-remote@0.1.29", "https://lowest.flights/mcp"]
       }
