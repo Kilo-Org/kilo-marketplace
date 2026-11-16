@@ -1,0 +1,29 @@
+id: runlater
+name: RunLater
+description: Schedule HTTP requests from your agent. Call a public URL once at an exact time or on a cron schedule, with retries and a log of every run, through RunLater's hosted OAuth 2.1 server.
+author: Great Work
+url: https://runlater.app/docs/mcp
+category: development
+prerequisites:
+  - RunLater account with a plan (from $15/month, 14-day trial), created at https://runlater.app
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://runlater.app/api/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://runlater.app/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{RUNLATER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: RunLater API Key
+    key: RUNLATER_API_KEY
+    placeholder: rl_sk_your_api_key
+    optional: true
