@@ -1,0 +1,15 @@
+id: venom
+name: Venom
+description: Multiplayer AI for the coding agents your team already uses. Kilo and your teammates' agents (Claude Code, Codex, Cursor and others) share projects, tasks, decisions and skills through one remote MCP server, so anyone can pick up where another left off.
+author: Venom Labs
+url: https://github.com/venomlabs-dev/plugin
+category: productivity
+prerequisites:
+  - A Venom account (free sign-up at https://app.venomlabs.dev/signup). Kilo opens Venom's OAuth sign-in on first use; there is no API key.
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.venomlabs.dev/"
+      }
