@@ -1,0 +1,26 @@
+id: mamba-labs-gtm-suite
+name: Mamba Labs GTM Suite
+description: Researches companies for sales and go-to-market work through 21 tools for company identity, firmographics,
+  social presence, hiring, tech stack, and funding signals, change monitoring, and ICP scoring, run as Mamba Labs actors
+  on Apify with Clay-ready JSON output.
+author: Mamba Labs
+url: https://github.com/mambalabsdev/mcp-gtm-suite
+category: data
+prerequisites:
+  - Apify account (https://console.apify.com/account/integrations)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@mambalabsdev/mcp-gtm-suite"],
+        "env": {
+          "APIFY_TOKEN": "{{APIFY_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Apify API Token
+    key: APIFY_TOKEN
+    placeholder: your_apify_api_token
