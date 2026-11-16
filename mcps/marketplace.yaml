@@ -695,7 +695,7 @@ items:
       includes host rights; only people approve decisions. Rooms are not end-to-end encrypted. Connecting alone does not
       start automatic replies.
     author: BotSesh
-    url: https://botsesh.com
+    url: https://botsesh.com/setup
     category: productivity
     tags:
       - productivity
