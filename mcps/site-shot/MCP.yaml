@@ -1,0 +1,25 @@
+id: site-shot
+name: Site-Shot
+description: Website screenshot API for AI agents. Captures public web pages in real Chromium, viewport or full page, as
+  PNG, JPEG or WebP, with ads and cookie banners removed by default and country proxies on paid plans.
+author: site-shot
+url: https://github.com/site-shot/site-shot-mcp
+category: web-automation
+prerequisites:
+  - Site-Shot API key (the free plan has 100 captures a month, no card; https://www.site-shot.com/start/)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "site-shot-mcp"],
+        "env": {
+          "SITESHOT_API_KEY": "{{SITESHOT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Site-Shot API Key
+    key: SITESHOT_API_KEY
+    placeholder: your_site_shot_api_key
