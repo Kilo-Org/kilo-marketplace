@@ -8,3 +8,7 @@ content:
   - name: Remote
     content: |
       {"type": "streamable-http", "url": "https://maru.senpinai.com/mcp"}
+prerequisites:
+  - "No account or API key is required to connect and list tools."
+  - "Human services are paid at the existing prices returned by list_services (Japanese calls JPY 1500; restaurant reservations JPY 3000 plus any deposit at cost). Obtain user authorization before service requests or takeout orders."
+  - "Wallet tools require pairing with a MARU wallet and owner approval. A payment request does not transfer money; payment needs the wallet owner confirmation."

@@ -213,7 +213,8 @@ items:
         placeholder: your_apify_api_token
   - id: ask-japan
     name: Ask Japan
-    description: Japanese company, invoice and postcode data, plus human services in Japan.
+    description: Japanese company, invoice and postcode data, with eight MARU service tools; the standalone MARU endpoint
+      also has wallet tools.
     author: ihouse-corp
     url: https://github.com/ihouse-corp/ask-japan-mcp
     category: business
@@ -223,6 +224,13 @@ items:
       - name: Remote
         content: |
           {"type": "streamable-http", "url": "https://askjapan.senpinai.com/mcp"}
+    prerequisites:
+      - No account or API key is required to connect and list tools.
+      - Public data obtained free is provided free; paid-source data uses market pricing through official agency
+        arrangements plus a small handling fee whose rate is not yet fixed. Check the quoted price before any paid
+        action.
+      - Human services use existing fixed prices returned by list_services. Obtain user authorization before submitting
+        a service request or takeout order; payment is a separate step.
   - id: astronomer-docs-mcp
     name: Astronomer Docs MCP
     description: Searches Astronomer and Astro documentation through Astronomer's public hosted MCP endpoint without
@@ -2341,6 +2349,13 @@ items:
       - name: Remote
         content: |
           {"type": "streamable-http", "url": "https://maru.senpinai.com/mcp"}
+    prerequisites:
+      - No account or API key is required to connect and list tools.
+      - Human services are paid at the existing prices returned by list_services (Japanese calls JPY 1500; restaurant
+        reservations JPY 3000 plus any deposit at cost). Obtain user authorization before service requests or takeout
+        orders.
+      - Wallet tools require pairing with a MARU wallet and owner approval. A payment request does not transfer money;
+        payment needs the wallet owner confirmation.
   - id: matillion
     name: Matillion MCP Server
     description: Monitors Matillion pipelines, executions, lineage, agents, and credit consumption with OAuth client
