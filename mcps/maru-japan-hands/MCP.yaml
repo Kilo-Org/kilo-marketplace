@@ -1,0 +1,10 @@
+id: maru-japan-hands
+name: MARU Japan Hands
+description: "Human services in Japan for AI agents: Japanese phone calls, reservations, shopping and on-site checks."
+author: ihouse-corp
+url: https://github.com/ihouse-corp/maru-japan-hands
+category: business
+content:
+  - name: Remote
+    content: |
+      {"type": "streamable-http", "url": "https://maru.senpinai.com/mcp"}

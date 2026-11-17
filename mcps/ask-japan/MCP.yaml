@@ -1,0 +1,10 @@
+id: ask-japan
+name: Ask Japan
+description: "Japanese company, invoice and postcode data, plus human services in Japan."
+author: ihouse-corp
+url: https://github.com/ihouse-corp/ask-japan-mcp
+category: business
+content:
+  - name: Remote
+    content: |
+      {"type": "streamable-http", "url": "https://askjapan.senpinai.com/mcp"}
