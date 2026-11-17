@@ -1,6 +1,6 @@
 id: while
 name: while.sh
-description: Deploys apps with their PostgreSQL databases, caches, S3 storage and scheduled jobs on a French PaaS built for AI agents, and reads their logs, metrics and errors. Sensitive actions wait for a person's approval.
+description: Deploys the apps an agent builds, for the user's team only or for everyone, with their PostgreSQL databases, scheduled jobs and storage, hosted in France. Reads their logs, metrics and errors; sensitive actions wait for a person's approval.
 author: Nextmap
 url: https://github.com/while-sh/while
 category: development
