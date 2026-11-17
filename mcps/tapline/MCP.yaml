@@ -1,0 +1,15 @@
+id: tapline
+name: Tapline
+description: Structured JSON from YouTube, Airbnb, TikTok, Instagram, Facebook, LinkedIn, Zillow and Google Maps.
+author: Tapline
+url: https://tapline.sh/docs/mcp
+category: web-automation
+prerequisites:
+  - A Tapline account (new accounts get 100 free credits). Sign in with OAuth when the client connects.
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.tapline.sh/mcp"
+      }
