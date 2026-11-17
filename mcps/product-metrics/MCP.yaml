@@ -1,0 +1,18 @@
+id: product-metrics
+name: Product Metrics
+description: >-
+  Profit optimisation for ecommerce ads: server-side tracking, profit bidding,
+  product segmentation and campaign planning across Google Ads, Meta and ChatGPT Ads.
+author: product-metrics
+url: https://www.productmetrics.io/docs/mcp/overview
+category: business
+prerequisites:
+  - Connect your Product Metrics account, or create one when you sign in.
+  - Connecting data is free; paid product features use a subscription.
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.productmetrics.io/mcp"
+      }
