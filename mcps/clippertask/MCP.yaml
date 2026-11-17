@@ -1,0 +1,16 @@
+id: clippertask
+name: ClipperTask
+description: "Gaming creator marketplace: game studios run CPM campaigns (pay per 1,000 views), gaming creators on YouTube, TikTok and Instagram join, post and get paid per view. Creators search and join campaigns and send video links; studios create campaigns, review videos, find and invite creators and order posts directly. Acts on your own account with the website's rules; ClipperTask never handles money."
+author: ClipperTask
+url: https://github.com/photo2skin/clippertask-mcp
+category: business
+prerequisites:
+  - Free ClipperTask account
+  - MCP client with OAuth support
+content:
+  - name: ClipperTask hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.clippertask.com/mcp"
+      }
