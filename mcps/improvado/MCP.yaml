@@ -2,7 +2,7 @@ id: improvado
 name: Improvado
 description: Query the ads, web analytics and CRM data an Improvado account has connected, such as spend and ROAS by channel.
 author: Improvado
-url: https://github.com/tekliner/improvado-mcp
+url: https://improvado.io/docs-section-topic/improvado-mcp
 category: data
 prerequisites:
   - Improvado account
