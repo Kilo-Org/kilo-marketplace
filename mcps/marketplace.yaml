@@ -4845,7 +4845,7 @@ items:
     name: while.sh
     description: Deploys the apps an agent builds, for the user's team only or for everyone, with their PostgreSQL databases,
       scheduled jobs and storage, hosted in France. Reads their logs, metrics and errors; sensitive actions wait for a
-      person's approval.
+      person's approval. Free to try without an account.
     author: Nextmap
     url: https://github.com/while-sh/while
     category: development
