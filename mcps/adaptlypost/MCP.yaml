@@ -1,0 +1,32 @@
+id: adaptlypost
+name: AdaptlyPost
+description: Creates, schedules and publishes social media posts on 14 platforms (Instagram, TikTok, YouTube, X,
+  LinkedIn, Facebook, Pinterest, Threads, Bluesky, Mastodon, Google Business Profile, Tumblr, Telegram, WordPress),
+  reads post analytics, and answers comments, mentions, direct messages and Google reviews from the AdaptlyPost inbox
+  through AdaptlyPost's hosted OAuth server.
+author: AdaptlyPost
+url: https://github.com/adaptlypost/agent
+category: productivity
+prerequisites:
+  - AdaptlyPost account with at least one connected social account
+content:
+  - name: AdaptlyPost hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.adaptlypost.com/mcp"
+      }
+  - name: AdaptlyPost hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.adaptlypost.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ADAPTLYPOST_API_KEY}}"
+        }
+      }
+parameters:
+  - name: AdaptlyPost API Key
+    key: ADAPTLYPOST_API_KEY
+    placeholder: adaptly_your_api_key
+    optional: true
