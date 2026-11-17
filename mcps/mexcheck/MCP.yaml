@@ -1,0 +1,15 @@
+id: mexcheck
+name: MexCheck
+description: Hosted MCP that checks Mexican RFCs with SAT (including the 69 / 69-B lists), CFDI invoice status, CURPs with RENAPO and INE voter IDs against the official registries, and serves the REST API docs for building an integration.
+author: MexCheck
+url: https://mexcheck.com/docs/mcp
+category: business
+prerequisites:
+  - MexCheck account (OAuth sign-in on first tool call; lookups are billed in credits, $5 USD signup bonus)
+content:
+  - name: MexCheck hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mexcheck.com/mcp"
+      }
