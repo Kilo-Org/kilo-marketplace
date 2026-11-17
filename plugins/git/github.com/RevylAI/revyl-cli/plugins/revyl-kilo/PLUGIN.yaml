@@ -1,0 +1,7 @@
+id: git/github.com/RevylAI/revyl-cli/plugins/revyl-kilo
+name: Revyl Device Check
+description: After Kilo pushes a branch or opens a pull request for a mobile app, has it offer to check that change on a Revyl cloud device. It starts nothing itself and pairs with the Revyl MCP server.
+category: development
+author: Revyl
+url: https://github.com/RevylAI/revyl-cli/tree/main/plugins/revyl-kilo
+content: git:github.com/RevylAI/revyl-cli@82df41609175719b9f21e540c98262c7b9cd699e#plugins/revyl-kilo
