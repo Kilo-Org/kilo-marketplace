@@ -1,0 +1,29 @@
+id: specstream
+name: SpecStream
+description: Live web search ($0.005 per search, $0.001 fast tier in about a second) and page or document extraction ($0.0008 per page, free when empty), plus Deep Search for structured rows with source URLs where paid runs quote their price before starting.
+author: SpecStream
+url: https://github.com/specstream/specstream-tools
+category: search
+prerequisites:
+  - SpecStream account (new accounts start with $10 of credit, no card)
+  - MCP client with OAuth support, or a SpecStream API key
+content:
+  - name: SpecStream hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.specstream.ai/mcp"
+      }
+  - name: SpecStream hosted server with an API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.specstream.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SPECSTREAM_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: SpecStream API Key
+        key: SPECSTREAM_API_KEY
+        placeholder: ss_live_your_key_here

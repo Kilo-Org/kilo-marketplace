@@ -1,0 +1,12 @@
+diff -rN -U0 --ignore-trailing-space a/specstream-approve-work/SKILL.md b/specstream-approve-work/SKILL.md
+--- a/specstream-approve-work/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/specstream-approve-work/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -19 +19 @@
+-SpecStream is the live web data engine for teams and agents. Use the configured MCP server at `https://api.specstream.ai/mcp`.
++SpecStream provides live web search, page extraction and Deep Search over the configured MCP server at `https://api.specstream.ai/mcp`. `search_web` ($0.005 per search, or $0.001 on the `fast` tier in about a second) and `read_pages` ($0.0008 a page, free when empty) need no quote or approval; Deep Search runs use the reviewed approval flow below.
+@@ -21 +21 @@
+-`authorize_capacity_work` starts paid work, so treat it as a write. It needs the reviewed `quote_id` and `quote_hash`, the approved maximum as an integer in `confirm_max_cents`, and a stable `idempotency_key`. A standing project or agent authority must cover this exact scope and limit. A funded account is not enough.
++`authorize_capacity_work` starts paid Deep Search work, so treat it as a write. It needs the reviewed `quote_id` and `quote_hash`, the approved maximum as an integer in `confirm_max_cents`, and a stable `idempotency_key`. A standing project or agent authority must cover this exact scope and limit. A funded account is not enough.
+@@ -27 +27 @@
+-Use `get_find` for progress. Rows appear while the run works, and a run can be stopped and keeps what it found. Only delivered matches are charged. Unsure results stay unsure.
++Use `get_find` for progress. Rows appear while the run works, and a run can be stopped and keeps what it found. Only rows the run delivers are charged, and a recheck also charges 1 cent for each row that comes back unchanged. Unsure results stay unsure.
