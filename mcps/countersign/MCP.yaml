@@ -1,0 +1,15 @@
+id: countersign
+name: Countersign
+description: Verify an agent's "done" against the live outcome (URL, PR state, DNS record, TLS certificate) with
+  deterministic public checks and a hash-chained public receipt. Keyless to connect; the start tool issues a key and a
+  verified first claim in one call.
+author: signalry
+url: https://github.com/ethanhawkes-gif/countersign-mcp
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://countersign.signalry.ai/mcp?ref=kilocode"
+      }
