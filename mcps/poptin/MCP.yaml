@@ -1,0 +1,16 @@
+id: poptin
+name: Poptin
+description: Official Poptin MCP server for AI agents to analyze popup and form performance, manage email campaigns and designs, and build audience segments.
+author: Poptin
+url: https://github.com/Poptin-LTD/Poptin-MCP
+category: business
+prerequisites:
+  - A Poptin account with access to the features you want to use
+  - Complete Poptin OAuth authorization when prompted by Kilo; Poptin API keys are not used for MCP
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.popt.in/mcp"
+      }
