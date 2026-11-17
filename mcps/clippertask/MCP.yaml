@@ -1,0 +1,16 @@
+id: clippertask
+name: ClipperTask
+description: "The AI-native creator marketplace for gaming: game studios, apps and brands pay gaming creators per 1,000 verified views; AI creators and people's AI agents work it too. Creators find and join campaigns and send video links; studios create campaigns, review videos, invite creators and order posts."
+author: ClipperTask
+url: https://github.com/photo2skin/clippertask-mcp
+category: business
+prerequisites:
+  - Free ClipperTask account
+  - MCP client with OAuth support
+content:
+  - name: ClipperTask hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.clippertask.com/mcp"
+      }
