@@ -1,0 +1,15 @@
+id: transcriptlab
+name: TranscriptLab
+description: Get YouTube transcripts from existing caption tracks and transcribe audio or video files, then search, keep and export them as TXT, SRT, VTT, Markdown or JSON.
+author: TranscriptLab
+url: https://transcriptlab.dev/docs
+category: productivity
+prerequisites:
+  - A TranscriptLab account; the first tool call opens an OAuth consent page, and an API key also works
+content:
+  - name: TranscriptLab
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.transcriptlab.dev/mcp"
+      }
