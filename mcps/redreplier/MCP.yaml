@@ -1,0 +1,30 @@
+id: redreplier
+name: RedReplier
+description: Monitors Reddit, Hacker News, X, Bluesky and Facebook for your keywords, lists the AI-scored lead mentions
+  for triage, and manages monitored websites, keywords and alert settings through RedReplier's hosted OAuth server.
+author: RedReplier
+url: https://github.com/RedReplier/agent
+category: productivity
+prerequisites:
+  - RedReplier account
+content:
+  - name: RedReplier hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.redreplier.com/mcp"
+      }
+  - name: RedReplier hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.redreplier.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{REDREPLIER_API_KEY}}"
+        }
+      }
+parameters:
+  - name: RedReplier API Key
+    key: REDREPLIER_API_KEY
+    placeholder: redreplier_your_api_key
+    optional: true
