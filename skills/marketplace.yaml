@@ -1872,8 +1872,8 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/specstream-approve-work.tar.gz
   - id: specstream-compile
     description: >-
-      Search the live web, extract pages, or read a plain-English Deep Search request back to the person before paid
-      work runs.
+      Search the live web and read pages with the SpecStream connector, paid per call with no quote, or read a
+      plain-English Deep Search request back to the person before paid Deep Search work runs.
     category: search
     author: SpecStream
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/specstream-compile

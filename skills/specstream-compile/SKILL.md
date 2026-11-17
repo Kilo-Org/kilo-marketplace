@@ -1,8 +1,9 @@
 ---
 name: specstream-compile
 description: >-
-  Search the live web, extract pages, or read a plain-English Deep Search
-  request back to the person before paid work runs.
+  Search the live web and read pages with the SpecStream connector, paid per
+  call with no quote, or read a plain-English Deep Search request back to the
+  person before paid Deep Search work runs.
 metadata:
   category: search
   author: SpecStream

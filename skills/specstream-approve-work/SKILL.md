@@ -24,4 +24,4 @@ Save the same key before you send the call. If the response is unclear, recover 
 
 Do not top up, subscribe, add a seat or open a payment page. If the balance or the authority is missing, say exactly what is missing and keep the request.
 
-Use `get_find` for progress. Rows appear while the run works, and a run can be stopped and keeps what it found. Only delivered matches are charged. Unsure results stay unsure.
+Use `get_find` for progress. Rows appear while the run works, and a run can be stopped and keeps what it found. Only rows the run delivers are charged, and a recheck also charges 1 cent for each row that comes back unchanged. Unsure results stay unsure.
