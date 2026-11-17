@@ -1,0 +1,18 @@
+id: readshore
+name: ReadShore
+description: Find, read and save to your ReadShore read-later library. Search the articles, videos and posts you saved,
+  read ReadShore's summary and analysis or the saved text with numbered passages to cite, and save new links to read
+  later. Cannot delete items or mark them read.
+author: AIthentic LLC
+url: https://readshore.app/connect-ai-assistants/
+category: productivity
+prerequisites:
+  - ReadShore account (sign in with Apple or Google)
+  - MCP client with OAuth support
+content:
+  - name: ReadShore hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://readshore.app/mcp"
+      }
