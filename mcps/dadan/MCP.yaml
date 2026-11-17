@@ -1,0 +1,13 @@
+id: dadan
+name: Dadan
+description: Official Dadan MCP server. Record, edit, transcribe, translate and share videos, plus meeting notes and analytics (70 tools). Sign in with OAuth in the browser; no API keys needed.
+author: Dadan
+url: https://www.dadan.io/dadan-mcp
+category: productivity
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.dadan.io/mcp"
+      }
