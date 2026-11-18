@@ -1,0 +1,18 @@
+id: rocketreach
+name: RocketReach
+description: Searches RocketReach people and company data, looks up emails, phone numbers, and company profiles, and
+  verifies email addresses through RocketReach's official hosted OAuth server. Searches are free; lookups and
+  verifications spend the signed-in account's RocketReach credits.
+author: RocketReach
+url: https://docs.rocketreach.co/reference/mcp
+category: business
+prerequisites:
+  - RocketReach account (free or paid plan)
+  - MCP client with OAuth support
+content:
+  - name: RocketReach hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.rocketreach.co/mcp"
+      }
