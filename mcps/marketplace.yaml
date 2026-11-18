@@ -4103,7 +4103,8 @@ items:
         placeholder: us-east-1
   - id: scalix-cloud
     name: Scalix Cloud
-    description: "The agent-native cloud: database, functions, AI, storage, computers. 53 tools, one API key."
+    description: Provisions and manages Scalix Cloud resources including serverless PostgreSQL, serverless functions, object
+      storage, containers, persistent Linux computers, and AI inference from a single API key.
     author: Scalix World
     url: https://github.com/scalixworld/scalix-cloud-mcp
     category: development
