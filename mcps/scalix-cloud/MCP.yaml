@@ -1,6 +1,6 @@
 id: scalix-cloud
 name: Scalix Cloud
-description: Provisions and manages Scalix Cloud resources including serverless PostgreSQL, serverless functions, object storage, containers, persistent Linux computers, and AI inference from a single API key.
+description: Provisions and manages Scalix Cloud resources including isolated sandboxes, persistent Linux computers, serverless PostgreSQL, serverless functions, object storage, containers, and AI inference from a single API key.
 author: Scalix World
 url: https://github.com/scalixworld/scalix-cloud-mcp
 category: development
