@@ -1,0 +1,15 @@
+id: while
+name: while.sh
+description: "Deploys and hosts the tools you build with your AI agent, and you choose who to share them with: your team, a client or a supplier with a link and a password, or everyone. Each tool has its PostgreSQL database backed up every day, storage and scheduled jobs. Hosted in France. No account needed to try it."
+author: Nextmap
+url: https://github.com/while-sh/while
+category: development
+prerequisites:
+  - MCP client with OAuth support
+content:
+  - name: while.sh hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.while.sh/mcp"
+      }
