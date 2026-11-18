@@ -1,6 +1,6 @@
 id: while
 name: while.sh
-description: Deploys the apps an agent builds, for the user's team only or for everyone, with their PostgreSQL databases, scheduled jobs and storage, hosted in France. Reads their logs, metrics and errors; sensitive actions wait for a person's approval. Free to try without an account.
+description: "Puts the tools you build with your AI online, and you choose who uses them: your colleagues, a client or a supplier with a link and a password, or everyone. Each tool has its PostgreSQL database backed up every day, file storage and scheduled jobs. Hosted in France. No account needed to try it."
 author: Nextmap
 url: https://github.com/while-sh/while
 category: development
