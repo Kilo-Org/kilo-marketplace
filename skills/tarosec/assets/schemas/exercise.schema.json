@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:exercise:v1",
+  "title": "Tarosec purple exercise v1",
+  "description": "Expected defensive observations per emulation step, plus optional recorded results. Never authorization by itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "name", "environment", "attackVersion", "window", "steps"],
+  "properties": {
+    "schemaVersion": {"const": "tarosec.exercise/v1"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "retestOf": {"type": "string", "minLength": 1},
+    "changeSummary": {"type": "string", "minLength": 1},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "engagementRef": {"type": "string"},
+    "environment": {"enum": ["offline", "laboratory", "staging", "production"]},
+    "attackVersion": {"type": "string", "minLength": 1},
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "string", "minLength": 1},
+        "end": {"type": "string", "minLength": 1}
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "targetHost", "expected"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+          "technique": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^T[0-9]{4}(\\.[0-9]{3})?$"},
+              "name": {"type": "string", "minLength": 1}
+            }
+          },
+          "description": {"type": "string", "minLength": 1},
+          "targetHost": {"type": "string", "minLength": 1},
+          "countermeasures": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "name"],
+              "properties": {
+                "id": {"type": "string", "pattern": "^D3-[A-Z0-9]+$"},
+                "name": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "expected": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["telemetrySources", "detections", "maxLatencySeconds"],
+            "properties": {
+              "telemetrySources": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "detections": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "requireTelemetryForDetection": {"type": "boolean"},
+              "maxLatencySeconds": {"type": "integer", "minimum": 0}
+            }
+          },
+          "results": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["execution"],
+            "properties": {
+              "execution": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["status"],
+                "properties": {
+                  "status": {"enum": ["executed", "failed", "blocked", "not_run", "unknown"]},
+                  "startedAt": {"type": "string"},
+                  "endedAt": {"type": "string"},
+                  "prevented": {"type": "boolean"},
+                  "evidenceRefs": {"type": "array", "items": {"type": "string"}}
+                }
+              },
+              "reportedOutcome": {
+                "description": "Optional analyst annotation. The classifier derives its outcome from the observations.",
+                "enum": ["Detected", "Detected (late)", "Partially detected", "Prevented", "Detection gap", "Telemetry gap", "Inconclusive", "Not run"]
+              },
+              "telemetry": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["source", "status"],
+                  "properties": {
+                    "source": {"type": "string", "minLength": 1},
+                    "status": {"enum": ["observed", "absent", "unknown"]},
+                    "sourceHealthy": {"type": "boolean"},
+                    "evidenceRefs": {"type": "array", "items": {"type": "string"}}
+                  }
+                }
+              },
+              "alerts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["ruleId", "status"],
+                  "properties": {
+                    "ruleId": {"type": "string", "minLength": 1},
+                    "status": {"enum": ["fired", "not_fired", "unknown"]},
+                    "firedAt": {"type": "string"},
+                    "host": {"type": "string"},
+                    "evidenceRefs": {"type": "array", "items": {"type": "string"}}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

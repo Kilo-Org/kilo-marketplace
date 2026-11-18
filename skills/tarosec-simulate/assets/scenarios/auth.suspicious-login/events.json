@@ -1,0 +1,22 @@
+[
+  {
+    "offsetSeconds": 0,
+    "type": "auth.failure"
+  },
+  {
+    "offsetSeconds": 5,
+    "type": "auth.failure"
+  },
+  {
+    "offsetSeconds": 10,
+    "type": "auth.success"
+  },
+  {
+    "offsetSeconds": 15,
+    "type": "session.source-changed"
+  },
+  {
+    "offsetSeconds": 20,
+    "type": "session.unusual"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "offsetSeconds": 0,
+    "type": "web.suspicious-pattern"
+  },
+  {
+    "offsetSeconds": 5,
+    "type": "web.access-denied"
+  },
+  {
+    "offsetSeconds": 10,
+    "type": "web.unusual-request"
+  }
+]

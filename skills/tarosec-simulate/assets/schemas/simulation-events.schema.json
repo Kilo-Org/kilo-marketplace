@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:simulation-events:v1",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "offsetSeconds": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "type": {
+        "enum": [
+          "auth.failure",
+          "auth.success",
+          "session.source-changed",
+          "session.unusual",
+          "web.suspicious-pattern",
+          "web.access-denied",
+          "web.unusual-request",
+          "file.changed",
+          "process.unfamiliar",
+          "file.change-burst",
+          "backup.warning"
+        ]
+      },
+      "synthetic": {
+        "const": true,
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "offsetSeconds",
+      "type"
+    ]
+  },
+  "minItems": 1
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:simulation-alerts:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "tarosec.simulation-alerts/v1"
+    },
+    "eventsSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$(?![\\s\\S])"
+    },
+    "windowComplete": {
+      "type": "boolean"
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rule": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,63}$(?![\\s\\S])"
+          },
+          "status": {
+            "enum": [
+              "fired",
+              "not_fired"
+            ]
+          },
+          "offsetSeconds": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "rule",
+          "status"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "eventsSha256",
+    "windowComplete",
+    "alerts"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "tarosec.scenario/v1",
+  "id": "auth.suspicious-login",
+  "version": "1.0.0",
+  "expected": {
+    "events": [
+      "auth.failure",
+      "auth.success",
+      "session.source-changed",
+      "session.unusual"
+    ],
+    "rules": [
+      "login-sequence"
+    ]
+  }
+}

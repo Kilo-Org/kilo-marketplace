@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:engagement:v1",
+  "title": "Tarosec engagement v1",
+  "description": "Describes permitted targets and techniques. It narrows scope; it is never authorization by itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "name", "environment", "authorization", "scope", "techniques", "window", "budgets", "stopConditions"],
+  "properties": {
+    "schemaVersion": {"const": "tarosec.engagement/v1"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "environment": {"enum": ["offline", "laboratory", "staging", "production"]},
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "authorizedBy", "note"],
+      "properties": {
+        "reference": {"type": "string", "minLength": 1},
+        "authorizedBy": {"type": "string", "minLength": 1},
+        "note": {"type": "string", "minLength": 1}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["targets", "exclusions"],
+      "properties": {
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "kind", "value"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+              "kind": {"enum": ["origin", "url-prefix", "host", "ip", "cidr", "repository", "path", "lab-host"]},
+              "value": {"type": "string", "minLength": 1},
+              "allowedAddresses": {"type": "array", "items": {"type": "string", "minLength": 1}}
+            }
+          }
+        },
+        "exclusions": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "techniques": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed", "forbidden"],
+      "properties": {
+        "allowed": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "forbidden": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "timezone"],
+      "properties": {
+        "start": {"type": "string", "minLength": 1},
+        "end": {"type": "string", "minLength": 1},
+        "timezone": {"type": "string", "minLength": 1}
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxRequestsPerSecond": {"type": "number", "minimum": 0},
+        "maxTotalRequests": {"type": "integer", "minimum": 0},
+        "maxDurationMinutes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "stopConditions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "evidenceHandling": {"type": "string", "minLength": 1}
+  }
+}

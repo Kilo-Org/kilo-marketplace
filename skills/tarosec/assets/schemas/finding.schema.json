@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:finding:v1",
+  "title": "Tarosec finding v1",
+  "description": "Shared by audit, red, blue and purple. Severity, confidence and status are independent axes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "producer", "title", "severity", "severityRationale", "confidence", "status", "claimStrength", "location", "invariant", "observed", "impact", "evidenceRefs", "remediation", "regressionCheck"],
+  "properties": {
+    "schemaVersion": {"const": "tarosec.finding/v1"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "producer": {"enum": ["tarosec-audit", "tarosec-red", "tarosec-blue", "tarosec-purple"]},
+    "title": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "createdAt": {"type": "string", "minLength": 1},
+    "updatedAt": {"type": "string", "minLength": 1},
+    "severity": {"enum": ["Critical", "High", "Medium", "Low", "Informational"]},
+    "severityRationale": {"type": "string", "minLength": 1},
+    "confidence": {"enum": ["Confirmed", "Likely", "Unknown"]},
+    "status": {"enum": ["Potential weakness", "Verified vulnerability", "Simulation observation", "Detection gap", "Telemetry gap", "Informational", "False positive"]},
+    "verificationStatus": {"enum": ["unverified", "confirmed", "fixed", "inconclusive"]},
+    "claimStrength": {"enum": ["static-trace", "lab-reproduction", "observed-in-telemetry", "advisory-match", "reported-only"]},
+    "location": {"type": "string", "minLength": 1, "description": "file:line, dependency path, asset ID, or exercise step ID."},
+    "invariant": {"type": "string", "minLength": 1},
+    "observed": {"type": "string", "minLength": 1},
+    "impact": {"type": "string", "minLength": 1},
+    "preconditions": {"type": "string"},
+    "evidenceRefs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "remediation": {"type": "string", "minLength": 1},
+    "regressionCheck": {"type": "string", "minLength": 1},
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["framework", "version", "id"],
+        "properties": {
+          "framework": {"enum": ["CWE", "OWASP-ASVS", "OWASP-Top10", "ATTACK", "D3FEND"]},
+          "version": {"type": "string", "minLength": 1},
+          "id": {"type": "string", "minLength": 1},
+          "name": {"type": "string"}
+        }
+      }
+    }
+  }
+}

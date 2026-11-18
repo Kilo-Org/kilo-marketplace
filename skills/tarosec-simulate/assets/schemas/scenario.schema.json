@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:scenario:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "tarosec.scenario/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]{0,63}$(?![\\s\\S])"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]{1,5}\\.[0-9]{1,5}\\.[0-9]{1,5}$(?![\\s\\S])"
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "auth.failure",
+              "auth.success",
+              "session.source-changed",
+              "session.unusual",
+              "web.suspicious-pattern",
+              "web.access-denied",
+              "web.unusual-request",
+              "file.changed",
+              "process.unfamiliar",
+              "file.change-burst",
+              "backup.warning"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,63}$(?![\\s\\S])"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "events",
+        "rules"
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "expected"
+  ]
+}

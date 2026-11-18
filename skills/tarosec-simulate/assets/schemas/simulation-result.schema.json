@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:simulation-result:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "tarosec.simulation-result/v1"
+    },
+    "engineVersion": {
+      "type": "string",
+      "pattern": "^[0-9]{1,5}\\.[0-9]{1,5}\\.[0-9]{1,5}$"
+    },
+    "scenario": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]{0,63}$"
+    },
+    "scenarioVersion": {
+      "type": "string",
+      "pattern": "^[0-9]{1,5}\\.[0-9]{1,5}\\.[0-9]{1,5}$"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "mode": {
+      "enum": [
+        "synthetic",
+        "replay"
+      ]
+    },
+    "execution": {
+      "enum": [
+        "completed",
+        "failed"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "detected",
+        "not_detected",
+        "partially_detected",
+        "inconclusive",
+        "not_executed"
+      ]
+    },
+    "startedAt": {
+      "type": "string"
+    },
+    "endedAt": {
+      "type": "string"
+    },
+    "eventCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "expectedEvents": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "auth.failure",
+          "auth.success",
+          "session.source-changed",
+          "session.unusual",
+          "web.suspicious-pattern",
+          "web.access-denied",
+          "web.unusual-request",
+          "file.changed",
+          "process.unfamiliar",
+          "file.change-burst",
+          "backup.warning"
+        ]
+      }
+    },
+    "expectedRules": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9._-]{0,63}$"
+      }
+    },
+    "observedEvents": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "auth.failure",
+          "auth.success",
+          "session.source-changed",
+          "session.unusual",
+          "web.suspicious-pattern",
+          "web.access-denied",
+          "web.unusual-request",
+          "file.changed",
+          "process.unfamiliar",
+          "file.change-burst",
+          "backup.warning"
+        ]
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,63}$"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "path",
+          "sha256"
+        ]
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "execution",
+    "outcome",
+    "reasons"
+  ]
+}

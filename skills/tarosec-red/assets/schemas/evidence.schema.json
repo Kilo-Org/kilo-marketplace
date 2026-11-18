@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tarosec:evidence:v1",
+  "title": "Tarosec evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "source", "collectionMethod", "collectedAt", "originalTimezone", "sensitivity", "integrity"],
+  "properties": {
+    "schemaVersion": {"const": "tarosec.evidence/v1"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "source": {"type": "string", "minLength": 1},
+    "collectionMethod": {"type": "string", "minLength": 1},
+    "collectedBy": {"type": "string"},
+    "collectedAt": {"type": "string", "minLength": 1},
+    "originalTimezone": {"type": "string", "minLength": 1, "description": "IANA zone, UTC offset, or 'unknown'."},
+    "artifactPath": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sensitivity": {"enum": ["public", "internal", "confidential", "restricted"]},
+    "redacted": {"type": "boolean"},
+    "integrity": {"enum": ["verified-against-reference", "hash-recorded", "mismatch", "no-artifact", "unknown"]},
+    "limitations": {"type": "string"},
+    "relatedFindings": {"type": "array", "items": {"type": "string"}},
+    "relatedExercises": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "custody": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["at", "actor", "action"],
+        "properties": {
+          "at": {"type": "string", "minLength": 1},
+          "actor": {"type": "string", "minLength": 1},
+          "action": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

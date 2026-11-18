@@ -1,0 +1,22 @@
+[
+  {
+    "offsetSeconds": 0,
+    "type": "file.changed"
+  },
+  {
+    "offsetSeconds": 5,
+    "type": "file.changed"
+  },
+  {
+    "offsetSeconds": 10,
+    "type": "process.unfamiliar"
+  },
+  {
+    "offsetSeconds": 15,
+    "type": "file.change-burst"
+  },
+  {
+    "offsetSeconds": 20,
+    "type": "backup.warning"
+  }
+]

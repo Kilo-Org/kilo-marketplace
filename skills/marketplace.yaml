@@ -1862,3 +1862,59 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: tarosec
+    description: >-
+      Route explicit Tarosec requests and security tasks that span workflows or have unclear scope. Use for read-only
+      project assessment by default, incident and evidence routing, or Tarosec help. Not for general programming or
+      conceptual questions. Prefer a directly named specialist when the user selects one.
+    category: security
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tarosec
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tarosec/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tarosec.tar.gz
+  - id: tarosec-audit
+    description: >-
+      Audit application source, authentication and authorization, dependencies, secrets, CI/CD pipelines, MCP tools and
+      Agent Skills for security weaknesses, and verify remediation of earlier findings. Use for code security reviews,
+      dependency and supply-chain triage, agent/skill/MCP security audits, and fix verification. Not for live target
+      testing (tarosec-red), log investigation (tarosec-blue) or general code review without a security question.
+    category: security
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tarosec-audit
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tarosec-audit/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tarosec-audit.tar.gz
+  - id: tarosec-blue
+    description: >-
+      Investigate supplied security telemetry — hunt for suspicious activity in logs, EDR and system events, triage
+      alerts, correlate indicators, reconstruct timelines and write or tune detection rules (Sigma, KQL, SPL). Use for
+      threat hunting, alert triage, log analysis and detection engineering on authorized data. Not for running attack
+      simulations or measuring detection coverage (tarosec-purple) or auditing source code (tarosec-audit).
+    category: security
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tarosec-blue
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tarosec-blue/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tarosec-blue.tar.gz
+  - id: tarosec-purple
+    description: >-
+      Validate defensive observations from recorded exercises and benign synthetic fixtures. Use for purple-team
+      exercise design, comparing expected versus observed telemetry and alerts, ATT&CK coverage review, and detection
+      retesting. Not for live adversary emulation, vulnerability discovery, or investigating an active incident.
+    category: security
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tarosec-purple
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tarosec-purple/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tarosec-purple.tar.gz
+  - id: tarosec-red
+    description: >-
+      Review security assessment scope and map exposed assets from supplied records. Use for offline reconnaissance,
+      engagement and asset inventory review, supplied scanner-result triage, and sanitized bug bounty report drafts. Not
+      for source code audits, log investigations, detection validation, or active target testing.
+    category: security
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tarosec-red
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tarosec-red/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tarosec-red.tar.gz
+  - id: tarosec-simulate
+    description: >-
+      Generate inert security telemetry fixtures or replay sanitized events offline. Use for Tarosec simulation help and
+      catalog, deterministic evidence generation, and testing defensive result handling. Not for live lab operation,
+      exploitation, scanning, or production detection claims.
+    category: security
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/tarosec-simulate
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/tarosec-simulate/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/tarosec-simulate.tar.gz
