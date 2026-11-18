@@ -1,0 +1,19 @@
+id: stalkchain-data
+name: StalkChain Data
+description: >-
+  Research public crypto trader wallets and portfolio performance, token holders,
+  and on-chain trade flow. Sign in with StalkChain through OAuth. Metered tool
+  calls use account credits.
+author: StalkChain
+url: https://github.com/StalkChain/fomo-mcp-api
+category: business
+prerequisites:
+  - StalkChain account for OAuth sign-in
+  - StalkChain account credits for metered tool calls
+content:
+  - name: Remote Server (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://data.stalkchain.com/mcp/directory"
+      }
