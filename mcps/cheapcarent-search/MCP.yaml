@@ -1,0 +1,13 @@
+id: cheapcarent-search
+name: CheapCarRent Search
+description: Search car rentals at 15,000 pickup points in 46 countries and 19 languages. Hosted Streamable HTTP, no account or API key, read-only tools list_locations and search_cars.
+author: CheapCarRent
+url: https://github.com/aleksandrjefimov4-crypto/cheapcarent-mcp
+category: business
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://cheapcarent.com/mcp"
+      }
