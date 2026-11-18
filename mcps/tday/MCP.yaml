@@ -1,0 +1,32 @@
+id: tday
+name: tday.com
+description: Your coding agent records narrated demo videos of the app you are building, on your machine; tday adds the
+  voice, cursor, captions and your brand, ready to edit and embed in your docs.
+author: tday
+url: https://docs.tday.com/coding-agents
+category: development
+prerequisites:
+  - tday account (free plan available)
+content:
+  - name: NPX (local demo recording)
+    description: Runs on your machine and carries the demo tools. The agent starts a separate copy of your app with
+      throwaway data and records it one narrated line at a time (web apps, Electron apps, terminal tools, iOS Simulator
+      and Android emulator apps). Signs in to tday on first use.
+    prerequisites:
+      - Node.js 18.17+
+      - Chrome and ffmpeg
+    content: |
+      {
+        "command": "npx",
+        "args": ["--prefix", "~/", "-y", "@tday-com/mcp@latest", "serve"]
+      }
+  - name: tday hosted OAuth server
+    description: Account tools only (brands, credits, product screens) over OAuth 2.1; no demo recording. Use the NPX
+      option to record demos.
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://tday.com/api/mcp"
+      }
