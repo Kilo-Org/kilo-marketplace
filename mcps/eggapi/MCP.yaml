@@ -1,0 +1,23 @@
+id: eggapi
+name: EggAPI
+description: >-
+  Remote MCP server for image and video generation with Seedream, Nano Banana, GPT Image, Seedance and Wan.
+author: EggAPI Team
+url: https://eggapi.ai/docs/mcp
+category: development
+prerequisites:
+  - EggAPI account and API key
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.eggapi.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{EGGAPI_API_KEY}}"
+        }
+      }
+parameters:
+  - name: EggAPI API Key
+    key: EGGAPI_API_KEY
+    placeholder: your_eggapi_api_key
