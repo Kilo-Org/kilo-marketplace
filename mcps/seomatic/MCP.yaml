@@ -1,0 +1,16 @@
+id: seomatic
+name: SEOmatic
+description: Answers SEO questions about your own site through SEOmatic's hosted OAuth 2.1 server, covering Google Search Console performance, content decay, backlinks, AI-search visibility tracking, and keyword research; site fixes run only after you approve them.
+author: SEOmatic
+url: https://seomatic.ai/developers/mcp
+category: business
+prerequisites:
+  - SEOmatic account (free plan includes 5 SEO questions a month)
+  - Google Search Console access for the site
+content:
+  - name: SEOmatic hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.seomatic.ai/api/mcp"
+      }
