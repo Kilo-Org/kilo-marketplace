@@ -1,0 +1,22 @@
+id: scalix-cloud
+name: Scalix Cloud
+description: Provisions and manages Scalix Cloud resources including isolated sandboxes, persistent Linux computers, serverless PostgreSQL, serverless functions, object storage, containers, and AI inference from a single API key.
+author: Scalix World
+url: https://github.com/scalixworld/scalix-cloud-mcp
+category: development
+prerequisites:
+  - Scalix Cloud account (https://console.scalix.world)
+content:
+  - name: Remote MCP (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.scalix.world/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SCALIX_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Scalix API Key
+    key: SCALIX_API_KEY
+    placeholder: scalix_at_your_api_key
