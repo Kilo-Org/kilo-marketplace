@@ -11,7 +11,7 @@ content:
     content: |
       {
         "type": "streamable-http",
-        "url": "https://dchub.cloud/mcp"
+        "url": "https://dchub.cloud/mcp?via=directory&src=kilo-marketplace"
       }
   - name: Remote Server (API key)
     prerequisites:
@@ -19,7 +19,7 @@ content:
     content: |
       {
         "type": "streamable-http",
-        "url": "https://dchub.cloud/mcp",
+        "url": "https://dchub.cloud/mcp?via=directory&src=kilo-marketplace",
         "headers": {
           "X-API-Key": "{{DCHUB_API_KEY}}"
         }
