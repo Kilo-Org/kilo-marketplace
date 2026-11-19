@@ -1,0 +1,21 @@
+id: fairvalid
+name: FairValid
+description: Verify email addresses, discover FairMatch business leads, quote and unlock verified work emails after explicit credit-limit approval, read results and check workspace credits.
+author: FairValid
+url: https://github.com/moonlitnayeem/fairvalid-ai
+category: business
+prerequisites:
+  - A FairValid account and workspace at https://fairvalid.com.
+  - Connect the remote server, sign in on FairValid, review the workspace and permissions, and choose Allow connection. FairValid prepares the connection automatically. Email verification and FairMatch use available free credits first.
+  - Live submissions may reserve credits; completed Valid and Invalid checks cost one credit. Genuine Unknown and unresolved catch-all outcomes have zero net cost.
+  - FairMatch filter discovery, search, quote and retrieval require leads:read; unlock requires leads:acquire. The complete workflow needs both.
+  - FairMatch costs four credits per newly acquired verified work email; already-owned and unavailable contacts cost zero. A quote reserves no credits.
+  - Quote the exact selected IDs and obtain explicit approval of a numerical maximum before unlock. Send maximumCredits, confirm true and a stable idempotency_key; preserve the same key identity and unchanged input on retries.
+  - Setup and current tool contracts at https://fairvalid.com/help/mcp and https://github.com/moonlitnayeem/fairvalid-ai/blob/40cac2883dc74f50f7bc8562b380782c4c6a4379/docs/fairmatch.md.
+content:
+  - name: FairValid OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.fairvalid.com/mcp"
+      }
