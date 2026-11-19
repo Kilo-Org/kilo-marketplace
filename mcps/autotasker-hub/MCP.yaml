@@ -1,12 +1,16 @@
 id: autotasker-hub
 name: AutoTasker Hub
-description: Information-retrieval MCP + x402 pay-per-call China social trending data (Weibo, Douban, Zhihu, Bilibili, Tieba), search and 24h digest for AI agents. Per-call USDC price is disclosed in each HTTP 402 challenge; paid tools require an x402-capable client with a Base USDC wallet and a client-side spend cap. 84 MCP tools, no account or API key.
+description: >-
+  Pay-per-call China social trending data (Weibo, Douban, Zhihu, Bilibili), keyword search and 24h digest for AI agents.
+  Each paid call settles on-chain in USDC on Base via x402 (PayAI facilitator) before any data is returned.
+  No account and no API key. Prices: most MCP tool calls $0.01; hotlist/search $0.05; market_scan $0.10; trend_predict $0.15; daily_report $0.25; full export/probe $0.50.
 author: breezesamuel
 url: https://github.com/breezesamuel/autotasker-hub-aevum
 category: search
 prerequisites:
-  - Free discovery tools need no account, API key, or installation
-  - Paid tool calls require an EVM wallet funded with USDC on Base and an x402-capable MCP client; the exact per-call price is returned in the HTTP 402 challenge and the spend cap is enforced client-side
+  - Base mainnet wallet holding USDC (x402 pay-per-call; no signup, no API key)
+  - x402-capable MCP/HTTP client (server signals HTTP 402; client sends PAYMENT-SIGNATURE header per call)
+  - Per-call $0.01-$0.50; discovery https://autotasker.highkingflower.com/.well-known/x402.json; settlement proof https://autotasker.highkingflower.com/api/x402/proof
 content:
   - name: Hosted HTTP MCP
     content: |
