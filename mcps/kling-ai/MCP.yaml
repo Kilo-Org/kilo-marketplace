@@ -1,0 +1,22 @@
+id: kling-ai
+name: Kling AI
+description: Official hosted MCP for Kling AI image and video creation, reusable Elements, motion workflows, task status, and credit balance. Sign in with OAuth and choose the endpoint for your account region; China and Global accounts use separate credits and tasks. Generation consumes Kling credits.
+author: Kling AI
+url: https://kling.ai/app/mcp/guide
+category: productivity
+prerequisites:
+  - Kling AI account for the selected region
+  - MCP client with Streamable HTTP and OAuth support
+content:
+  - name: Global account
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://kling.ai/mcp/plugin"
+      }
+  - name: China account
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://klingai.com/mcp/plugin"
+      }
