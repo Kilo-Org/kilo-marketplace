@@ -1,0 +1,19 @@
+id: brilliant
+name: Brilliant Design
+description: "Design canvas for coding agents: real editable vectors, auto layout, components, export to code."
+author: brilliant-hq
+url: https://github.com/brilliant-hq/brilliant-mcp
+category: development
+content:
+  - name: Local (full editor toolset)
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@brilliant-hq/mcp"]
+      }
+  - name: Hosted (no install, no account)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://brilliant.design/mcp"
+      }
