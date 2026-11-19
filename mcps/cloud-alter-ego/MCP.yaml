@@ -1,0 +1,16 @@
+id: cloud-alter-ego
+name: Alter Ego
+description: Gives every AI chat your rules, profile and work history as one memory, and logs every question automatically. Files are stored as plain files in your own cloud storage (OneDrive, Google Drive, Dropbox, GitHub or Azure DevOps). Works in Claude, ChatGPT, Gemini and any AI chat with MCP.
+author: Cafe Boon
+url: https://cloudalterego.cafeboon.com
+category: productivity
+prerequisites:
+  - Alter Ego account
+  - MCP client with OAuth support
+content:
+  - name: Alter Ego hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://cloudalterego.cafeboon.com/mcp"
+      }
