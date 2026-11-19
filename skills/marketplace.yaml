@@ -1814,6 +1814,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/splunk-spl2-pipeline-kit
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/splunk-spl2-pipeline-kit/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/splunk-spl2-pipeline-kit.tar.gz
+  - id: spooky-checkin
+    description: >-
+      Make every scheduled job watched, so a missed or failed run raises an alert. Adds one check-in line to jobs that
+      run off Vercel. Use when adding a cron job, a GitHub Actions schedule, or any recurring task.
+    category: observability
+    author: banana-intelligence-dot-ai
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/spooky-checkin
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/spooky-checkin/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/spooky-checkin.tar.gz
   - id: troubleshoot-cassandra
     description: >-
       Use when diagnosing issues with Apache Cassandra: gc death spiral, compaction death spiral, tombstone storm, disk
