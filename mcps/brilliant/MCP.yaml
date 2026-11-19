@@ -6,6 +6,8 @@ url: https://github.com/brilliant-hq/brilliant-mcp
 category: development
 content:
   - name: Local (full editor toolset)
+    prerequisites:
+      - Node.js 20 or newer
     content: |
       {
         "command": "npx",
