@@ -1,0 +1,14 @@
+id: sitecomb
+name: Sitecomb
+description: Runs a website quality review of a website you name, across Security, Privacy & legal, Page health, Phone friendly, Contact details, and Online visibility. Read-only; it never changes the site.
+author: Sitecomb
+url: https://github.com/Sahbis-AI/sitecomb-mcp
+category: web-automation
+prerequisites: []
+content:
+  - name: Hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://sitecomb.com/mcp"
+      }
