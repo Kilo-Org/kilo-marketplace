@@ -1,0 +1,15 @@
+id: spica-post
+name: Spica Post
+description: Social media scheduler for small businesses and creators. Your AI assistant drafts a post per network, checks it against each network's rules, and schedules or publishes it once you approve. Remote server with OAuth sign-in (no API key); requires a paid Spica Post account.
+author: ML Apps LLC
+url: https://github.com/unbowedgod/spica-post-mcp
+category: productivity
+prerequisites:
+  - Spica Post account (paid plan)
+content:
+  - name: Spica Post remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.spicapost.com/mcp"
+      }
