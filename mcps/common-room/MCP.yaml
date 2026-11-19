@@ -1,0 +1,13 @@
+id: common-room
+name: Common Room Booking Platform
+description: Finds verified venues in Hong Kong - hourly hotels, party rooms, event venues, restaurants with private rooms and boats - with prices, capacity and hourly hotel availability, linking each result to its Common Room booking page. Read-only, no login needed.
+author: Common Room
+url: https://www.common-room.hk/mcp
+category: search
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.common-room.hk/mcp"
+      }
