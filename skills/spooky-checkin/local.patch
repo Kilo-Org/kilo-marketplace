@@ -1,0 +1,19 @@
+diff -rN -U0 a/spooky-checkin/SKILL.md b/spooky-checkin/SKILL.md
+--- a/spooky-checkin/SKILL.md	2000-01-01 00:00:00.000000000 +0000
++++ b/spooky-checkin/SKILL.md	2000-01-01 00:00:00.000000000 +0000
+@@ -23,0 +24,9 @@
++## Requirements and network calls
++
++- `SPOOKY_API_KEY`: a Spooky Particles key, set in the environment by the person. Never ask for it in chat, print it or write it to a file. Listing jobs needs a read key. Creating a job needs a write key. If it is not set, stop and tell the person to make one on the Agents page at https://spookyparticles.com/app/agents.
++- Every call goes to `spookyparticles.com` over HTTPS. There are no other hosts and nothing is installed except the optional `spooky-checkin` npm package.
++  - `GET https://spookyparticles.com/api/v1/checkins` (or the MCP tool `list_jobs`) reads the job list. It writes nothing.
++  - `POST https://spookyparticles.com/api/v1/checkins` creates one check-in job. This writes to the person's Spooky account.
++  - The job's ping link (`https://spookyparticles.com/api/ping/<token>`) is called by the person's job itself, on each run. A call to it records a run, and a failure ending can alert the owner. Never call it while testing.
++- Ask the person to confirm before each `POST`: the job name, the period and the project it will watch.
++
+@@ -37 +46 @@
+-1. Create a check-in job. This needs a Spooky key with the write scope:
++1. After the person confirms, create a check-in job. This needs a Spooky key with the write scope:
+@@ -61 +70 @@
+-2. Add the package: `npm i spooky-checkin`. If the project avoids new dependencies, copy `packages/checkin/src/index.ts` into it instead, for example as `lib/spooky-checkin.ts`.
++2. Add the package: `npm i spooky-checkin`. If the project avoids new dependencies, copy the single file `packages/checkin/src/index.ts` from https://github.com/banana-intelligence-dot-ai/spookyparticles into it instead, for example as `lib/spooky-checkin.ts`.
