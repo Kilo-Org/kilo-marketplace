@@ -2195,7 +2195,7 @@ items:
         placeholder: cecil
         optional: true
   - id: kling-ai
-    name: Kling AI
+    name: Kling AI Plugin
     description: Official hosted MCP for Kling AI image and video creation, reusable Elements, motion workflows, task
       status, and credit balance. Sign in with OAuth and choose the endpoint for your account region; China and Global
       accounts use separate credits and tasks. Generation consumes Kling credits.
