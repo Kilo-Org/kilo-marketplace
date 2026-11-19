@@ -1,0 +1,15 @@
+id: first-new
+name: First.new
+description: Build, preview, edit, and publish web apps from a prompt with your First.new account.
+author: autorender
+url: https://first.new/docs/get-started/use-first-from-other-tools/first-mcp-server
+category: development
+content:
+  - name: Remote MCP
+    prerequisites:
+      - First.new account (OAuth sign-in)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.first.new/mcp"
+      }
