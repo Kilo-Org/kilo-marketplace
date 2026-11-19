@@ -1,0 +1,17 @@
+id: lemlist
+name: lemlist
+description: Run multichannel sales outreach in lemlist through your lemlist account. List campaigns and their stats, create campaigns with email and LinkedIn sequences, add and search leads, search the lemlist B2B people database, and check the deliverability of sending domains. Write tools can create campaigns and add leads.
+author: lemlist
+url: https://github.com/l3mpire/lemlist-plugin
+category: business
+prerequisites:
+  - lemlist account (the free trial works)
+  - MCP client with OAuth support
+  - "Setup guide (OAuth or API key): https://help.lemlist.com/en/articles/13728466-set-up-the-lemlist-mcp-server-in-your-llm-client-oauth-or-api-key"
+content:
+  - name: lemlist hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.lemlist.com/mcp"
+      }
