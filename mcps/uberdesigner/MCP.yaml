@@ -1,0 +1,15 @@
+id: uberdesigner
+name: uberdesigner
+description: A library of 200+ designed websites, UI components and effects your AI agent builds from. Name a template or describe your product.
+author: uberdesigner
+url: https://uberdesigner.ai/mcp
+category: development
+prerequisites:
+  - An uberdesigner account (free works; Pro opens every template). Sign-in uses OAuth.
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://uberdesigner.ai/api/mcp"
+      }
