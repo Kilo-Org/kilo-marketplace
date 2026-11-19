@@ -1,0 +1,15 @@
+id: autotasker-hub
+name: AutoTasker Hub
+description: Per-call China social trending data (Weibo, Douban, Zhihu, Bilibili), search and 24h digest for AI agents, paid via x402 USDC on Base; 84 MCP tools, no account or API key.
+author: breezesamuel
+url: https://github.com/breezesamuel/autotasker-hub-aevum
+category: data
+prerequisites:
+  - None - hosted HTTP MCP needs no account, API key, or installation
+content:
+  - name: Hosted HTTP MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://autotasker.highkingflower.com/mcp"
+      }
