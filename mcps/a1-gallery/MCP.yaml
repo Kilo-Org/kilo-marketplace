@@ -4,7 +4,7 @@ description: Real website design references for AI agents. Search a hand-curated
   full pages by style, font, colour and technology, find font pairings used on real sites, and get design tokens
   measured from live pages (palette, type scale, spacing, radius, layout).
 author: A1 Gallery
-url: https://github.com/bryntay/a1-mcp
+url: https://github.com/a1-gallery/a1-mcp
 category: search
 prerequisites:
   - A1 Gallery account (free)
