@@ -1,0 +1,16 @@
+id: antevo-wealth
+name: "Antevo Wealth"
+description: "Your own household's balance sheet: net worth, holdings, allocation, exposure to a country or sector, risk, real assets and goals, read over OAuth with your Antevo Wealth account. It can record holdings you already own, only after you confirm; it never trades, moves money or deletes anything."
+author: Antevo
+url: https://antevo.ch/wealth/
+category: data
+prerequisites:
+  - Antevo Wealth account
+  - MCP client with OAuth support
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/wealth/mcp"
+      }

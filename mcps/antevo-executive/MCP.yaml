@@ -1,0 +1,13 @@
+id: antevo-executive
+name: "Antevo Executive Brief"
+description: "Antevo's daily markets, macro and world-events briefing: the market regime, themes and risks, the forward calendar of catalysts, a risk radar and how each risk evolved, per-country world-events drilldowns and macro history series. Every answer names its dated edition. No account."
+author: Antevo
+url: https://antevo.ch/executive/
+category: data
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/executive/mcp"
+      }

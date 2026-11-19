@@ -1,0 +1,13 @@
+id: antevo-0700-brief
+name: "The 07:00 Brief (Antevo)"
+description: "A daily editorial morning read on markets and the world: what moved, what it means, what to watch today and the risks building underneath, with the Market Map, Risk Radar, sector notes and earlier editions by date. No account. Editorial commentary, not investment advice."
+author: Antevo
+url: https://antevo.ch/mcp
+category: data
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/0700/mcp"
+      }
