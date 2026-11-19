@@ -1,12 +1,12 @@
 id: kling-ai-global
 name: Kling AI Global MCP Plugin
-description: Generate images and video through Kling AI's hosted MCP service; generation uses paid personal-workspace credits.
+description: Generate images and video through Kling AI's hosted MCP service; generation uses account credits.
 author: Kling AI
 url: https://kling.ai/app/mcp/guide
 category: productivity
 prerequisites:
   - Global Kling AI account; OAuth authorization in a compatible client
-  - Paid personal-workspace credits for generation
+  - Kling AI account credits for generation
   - Global and China accounts, credits, and tasks are separate
 content:
   - name: Remote OAuth (Global)
