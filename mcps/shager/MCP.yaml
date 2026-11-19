@@ -1,0 +1,16 @@
+id: shager
+name: Shager
+description: Schedules and publishes social media posts to many accounts (YouTube, X, LinkedIn, TikTok, Bluesky, Pinterest and more), checks drafts against each network's rules, sends posts for client approval, answers comments and reports results.
+author: Shager
+url: https://github.com/shagerai/shager-mcp
+category: productivity
+prerequisites:
+  - Shager account (can be created during the OAuth sign-in)
+  - MCP client with OAuth support
+content:
+  - name: Shager hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.shager.ai/api/mcp"
+      }
