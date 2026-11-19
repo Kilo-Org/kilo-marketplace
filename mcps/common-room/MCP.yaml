@@ -1,7 +1,7 @@
 id: common-room
 name: Common Room Booking Platform
-description: Finds verified venues in Hong Kong - hourly hotels, party rooms, event venues, restaurants with private rooms and boats - with prices, capacity and hourly hotel availability, linking each result to its Common Room booking page. Read-only, no login needed.
-author: Common Room
+description: Official MCP server of Common Room Booking Platform (common-room.hk), a Hong Kong venue booking site operated by MT Technology Group Limited. Finds verified venues in Hong Kong - hourly hotels, party rooms, event venues, restaurants with private rooms and boats - with prices, capacity and hourly hotel availability, linking each result to its Common Room booking page. Read-only, no login needed.
+author: MT Technology Group Limited (common-room.hk, Hong Kong)
 url: https://www.common-room.hk/mcp
 category: search
 content:
