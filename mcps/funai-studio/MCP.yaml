@@ -1,0 +1,43 @@
+id: funai-studio
+name: FunAI Studio
+description: Generate images, video, audio, music, voice, 3D and text with hundreds of AI models, run one-click tools and
+  templates, and edit video projects through FunAI Studio's hosted MCP server. Paid tools spend FunAI credits within
+  a spending limit you choose at sign-in, or your developer API balance when you use an API key.
+author: FunAI
+url: https://github.com/fun-aI-studio/funai-mcp
+category: productivity
+prerequisites:
+  - FunAI account, created at https://funai.art
+content:
+  - name: Remote OAuth
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.funai.art"
+      }
+  - name: Remote API Key
+    prerequisites:
+      - Developer API key from https://developers.funai.art/keys (usage bills your developer API balance)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.funai.art",
+        "headers": {
+          "Authorization": "Bearer {{FUNAI_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: FunAI API Key
+        key: FUNAI_API_KEY
+        placeholder: fa_live_your_api_key
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or later
+      - Sign in once from a terminal with npx -y funai-mcp login before first use
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "funai-mcp"]
+      }
