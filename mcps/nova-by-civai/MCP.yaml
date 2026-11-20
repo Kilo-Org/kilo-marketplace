@@ -1,0 +1,375 @@
+id: nova-by-civai
+name: Nova by CIVAI
+description: Selectable hosted MCP servers for the Nova agent catalog by CIVAI TECHNOLOGIES, covering research, documents and slides, spreadsheets, email and messaging, browser automation, code execution, social publishing and lead discovery. Each server is a separate Streamable HTTP endpoint using Nova OAuth or a Nova API key.
+author: CIVAI TECHNOLOGIES
+url: https://nova.civai.co
+category: productivity
+prerequisites:
+  - Nova account at https://nova.civai.co
+  - Sign in with OAuth when prompted, or create an API key at https://nova.civai.co/api-keys
+content:
+  - name: Blogger Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/blogger-agent"
+      }
+  - name: Blogger Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/blogger-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Browser Automation Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/browsergpt-agent"
+      }
+  - name: Browser Automation Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/browsergpt-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Calendar Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/calendar-agent"
+      }
+  - name: Calendar Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/calendar-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Code Interpreter Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/code-interpreter-agent"
+      }
+  - name: Code Interpreter Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/code-interpreter-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Content Calendar Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/content-calendar-agent"
+      }
+  - name: Content Calendar Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/content-calendar-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Content Pipeline Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/content-pipeline-agent"
+      }
+  - name: Content Pipeline Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/content-pipeline-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Gmail Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/gmail-agent"
+      }
+  - name: Gmail Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/gmail-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Google Docs Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/google-docs-agent"
+      }
+  - name: Google Docs Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/google-docs-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Google Sheets Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/google-sheets-agent"
+      }
+  - name: Google Sheets Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/google-sheets-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Instagram Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/instagram-web-agent"
+      }
+  - name: Instagram Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/instagram-web-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Interviewer Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/interviewer-agent"
+      }
+  - name: Interviewer Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/interviewer-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Leads Discovery Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/leads-discovery-agent"
+      }
+  - name: Leads Discovery Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/leads-discovery-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Music Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/music-agent"
+      }
+  - name: Music Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/music-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Nova Inbox Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/nova-inbox-agent"
+      }
+  - name: Nova Inbox Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/nova-inbox-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: OpenClaw Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/openclaw-agent"
+      }
+  - name: OpenClaw Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/openclaw-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: PDF Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/pdf-agent"
+      }
+  - name: PDF Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/pdf-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Product Admin (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/product-admin"
+      }
+  - name: Product Admin (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/product-admin",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Research Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/research-agent"
+      }
+  - name: Research Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/research-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Slidegen Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/slidegen-agent"
+      }
+  - name: Slidegen Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/slidegen-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Support Agent Admin (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/support-agent-admin"
+      }
+  - name: Support Agent Admin (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/support-agent-admin",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Telegram Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/telegram-agent"
+      }
+  - name: Telegram Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/telegram-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Terminal Command Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/terminal-command-agent"
+      }
+  - name: Terminal Command Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/terminal-command-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: Twitter Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/twitter-agent"
+      }
+  - name: Twitter Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/twitter-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+  - name: WhatsApp Web Agent (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/whatsapp-web-agent"
+      }
+  - name: WhatsApp Web Agent (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nova.civai.co/mcp/agents/whatsapp-web-agent",
+        "headers": {
+          "Authorization": "Bearer {{NOVA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Nova API Key
+    key: NOVA_API_KEY
+    placeholder: your_nova_api_key
+    optional: true
