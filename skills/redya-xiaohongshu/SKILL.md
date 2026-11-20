@@ -1,13 +1,13 @@
 ---
 name: redya-xiaohongshu
-description: 用户要求普通图文、商品种草、爆文复刻（复刻这篇）、Live 实况图文、文案敏感词检测或发布已有作品时使用。通过红鸦 API 解析分享口令、生成与交付作品。安装后在红鸦 Skill 对话里问「怎么用」或要指令示例时，直接展示可复制的用法。
+description: 输入一句话，或粘贴图文、文章、视频链接，红鸦 AI 就能生成标题、正文和配图。支持普通图文、商品图文、爆文复刻和 Live 实况图文。可以一步出图，也可以先看大纲再生成，还支持批量创作和敏感词检测。成稿可通过插件同步到小红书、抖音、公众号等平台的编辑器，确认后发布。
 metadata:
   category: business
   source:
     repository: 'https://github.com/rnthking/redya-skills'
     path: skill/redya-xiaohongshu
-    ref: 1913e2384eba818e4b1cd6a0821e8b4980443818
-    commit: 1913e2384eba818e4b1cd6a0821e8b4980443818
+    ref: cea99f739b751d68bc2de5043c07ff0a64557f88
+    commit: cea99f739b751d68bc2de5043c07ff0a64557f88
     license_path: LICENSE
   author: rnthking
 ---
