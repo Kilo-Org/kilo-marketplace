@@ -1,0 +1,15 @@
+id: kling-ai-global-plugin
+name: Kling AI Global Plugin
+description: Connect Kilo-compatible agents to Kling AI's official Global MCP for image and video creation through regional OAuth.
+author: Kling AI
+url: https://github.com/klingai-tech/claude-plugin
+category: productivity
+prerequisites:
+  - A Kling AI Global account; authorization uses OAuth and generation consumes credits from that account.
+content:
+  - name: Kling AI Global Plugin
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://kling.ai/mcp/plugin"
+      }
