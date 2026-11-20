@@ -1,0 +1,14 @@
+id: affogato
+name: Affogato
+description: Generate images, videos and audio for creative and marketing workflows through Affogato's hosted MCP server. OAuth connects your workspace; generations consume paid workspace credits.
+author: affogato-ai
+url: https://affogato.ai/mcp
+category: business
+prerequisites:
+  - Affogato account and workspace connected through OAuth
+  - Paid workspace credits for generations; new credit top-ups require an existing subscription
+content: |
+  {
+    "type": "streamable-http",
+    "url": "https://api.affogato.ai/mcp"
+  }
