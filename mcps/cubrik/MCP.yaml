@@ -1,0 +1,17 @@
+id: cubrik
+name: cubrik
+description: "Build, backtest and run AI trading agents on the brokers and exchanges connected to cubrik (Binance, OKX, Hyperliquid, MetaTrader and others), read your portfolio, results and Analytics, copy ready-made agents from the Library, and place, change and close orders."
+author: cubrik
+url: https://github.com/target1m/cubrik-mcp
+category: business
+prerequisites:
+  - "A cubrik account on the Intermediate plan or above (https://cubrik.ai/en/pricing)"
+  - "An MCP client with remote OAuth support: at sign-in you choose what the connection may do (read, manage agents, trade)"
+  - "For trading: a broker or exchange connected in cubrik on its Brokers page; keys are entered there, never in the client"
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.cubrik.ai/mcp"
+      }
