@@ -7,7 +7,7 @@ category: business
 prerequisites:
   - "A cubrik account on the Intermediate plan or above (https://cubrik.ai/en/pricing)"
   - "An MCP client with remote OAuth support: at sign-in you choose what the connection may do (read, manage agents, trade)"
-  - "For trading: a broker or exchange connected in cubrik on its Brokers page; keys are entered there, never in the client"
+  - "For trading: a broker or exchange connected in cubrik on its Brokers page (keys are entered there, never in the client); orders are real and can lose capital"
 content:
   - name: Remote OAuth
     content: |
