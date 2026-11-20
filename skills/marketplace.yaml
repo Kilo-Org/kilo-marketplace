@@ -53,7 +53,7 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
   - id: redya-xiaohongshu
     description: >-
-      使用红鸦 API 创作小红书图文、制作 Live 实况图片，或检测和修改文案敏感词；支持商品档案及个人词库。
+      用户要求普通图文、商品种草、爆文复刻（复刻这篇）、Live 实况图文、文案敏感词检测或发布已有作品时使用。通过红鸦 API 解析分享口令、生成与交付作品。安装后在红鸦 Skill 对话里问「怎么用」或要指令示例时，直接展示可复制的用法。
     category: business
     author: rnthking
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redya-xiaohongshu
