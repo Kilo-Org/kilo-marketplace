@@ -5,7 +5,7 @@ author: Pageree
 url: https://github.com/Pageree/mcp-server
 category: productivity
 prerequisites:
-  - Pageree account with a trial or paid plan
+  - Pageree account (a limited free plan is available)
   - MCP client with OAuth support
 content:
   - name: Pageree hosted OAuth server
