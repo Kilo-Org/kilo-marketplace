@@ -2,17 +2,18 @@
 name: redya-xiaohongshu
 description: 使用红鸦 AI 创作普通图文、商品图文、爆文复刻和 Live 实况图文，支持一步出图、分步生成和批量创作。用户说「复刻这篇」「复刻爆文」并附上笔记链接或分享口令时，用红鸦 API 解析原文，进入爆文复刻模式；说「用商品图做种草笔记」或「把照片转成实况图」时，分别进入商品图文或实况图文模式。也可单独检测文案敏感词，或通过插件将已有作品同步到目标平台编辑器，由用户确认发布。用户问「怎么用」时，直接给出可复制的指令示例。
 metadata:
+  displayName: "小红书图文与实况图·红鸦 AI"
   category: business
   source:
     repository: 'https://github.com/rnthking/redya-skills'
     path: skill/redya-xiaohongshu
-    ref: cea99f739b751d68bc2de5043c07ff0a64557f88
-    commit: cea99f739b751d68bc2de5043c07ff0a64557f88
+    ref: 73a1529fd3cb9303195b7370d492dbf57a6b7604
+    commit: 73a1529fd3cb9303195b7370d492dbf57a6b7604
     license_path: LICENSE
   author: rnthking
 ---
 
-# 红鸦开放平台:小红书图文生成
+# 小红书图文与实况图·红鸦 AI
 
 通过红鸦(RedYA)开放平台 API,为用户生成完整的小红书图文笔记:标题 + 正文 + 多页配图。支持普通图文、商品图文、逐页爆文复刻和 Live 实况图文。
 
