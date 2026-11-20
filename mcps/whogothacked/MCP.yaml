@@ -1,6 +1,6 @@
 id: whogothacked
 name: Who Got Hacked
-description: Data breach records at companies and organizations, each linked to its source (a US state attorney general or HHS breach notice, an SEC Form 8-K Item 1.05 filing, or Have I Been Pwned). Six read-only tools search organizations, check a domain or name, open an organization's or incident's record, and list recent incidents. No account or API key.
+description: Data breach records at companies and organizations, each linked to its source (a US state attorney general or HHS breach notice, an SEC Form 8-K Item 1.05 filing, or Have I Been Pwned). Six read-only tools search organizations, check a domain or name, open an organization's or incident's record, list recent incidents, and describe the sources and when each was last updated. No account or API key.
 author: Who Got Hacked
 url: https://whogothacked.com/developers
 category: search
