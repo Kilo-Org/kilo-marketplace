@@ -4128,14 +4128,11 @@ items:
               "Authorization": "Bearer {{SCREWTAPE_API_KEY}}"
             }
           }
-        parameters:
-          - name: Screwtape API key
-            key: SCREWTAPE_API_KEY
-            placeholder: your_screwtape_api_key
     parameters:
       - name: Screwtape API key
         key: SCREWTAPE_API_KEY
         placeholder: your_screwtape_api_key
+        optional: true
   - id: sentry
     name: Sentry
     description: Retrieves and analyzes error reports, stacktraces, and debugging information from Sentry.io, enabling AI

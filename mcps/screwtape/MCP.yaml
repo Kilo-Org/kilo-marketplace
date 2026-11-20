@@ -22,11 +22,8 @@ content:
           "Authorization": "Bearer {{SCREWTAPE_API_KEY}}"
         }
       }
-    parameters:
-      - name: Screwtape API key
-        key: SCREWTAPE_API_KEY
-        placeholder: your_screwtape_api_key
 parameters:
   - name: Screwtape API key
     key: SCREWTAPE_API_KEY
     placeholder: your_screwtape_api_key
+    optional: true
