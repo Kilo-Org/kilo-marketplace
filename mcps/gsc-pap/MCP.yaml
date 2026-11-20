@@ -1,15 +1,16 @@
 id: gsc-pap
 name: GSC PAP
-description: Read-only Google Search Console, Google Analytics 4 and PageSpeed Insights for your own sites, plus live Google
-  results. Covers search analytics, URL inspection, sitemaps, quick wins, content decay, cannibalization, Search Console
-  pages joined to GA4 conversions and real-user Core Web Vitals, with a Search Console archive kept past Google's 16-month
-  limit.
+description: Read-only Google Search Console, Google Analytics 4, Bing Webmaster Tools and PageSpeed Insights for your
+  own sites, plus live Google results. Covers search analytics, URL inspection, sitemaps, quick wins, content decay,
+  cannibalization, Search Console pages joined to GA4 conversions, Bing queries, crawl health and backlinks, and real-user
+  Core Web Vitals, with Search Console and Bing archives kept past their 16-month limits.
 author: GSC PAP
 url: https://github.com/aliarifsoydas/gsc-pap-claude-plugin
 category: data
 prerequisites:
   - Google account with Search Console access
   - Google Analytics 4 property access (for the GA4 tools)
+  - Bing Webmaster Tools account (optional, for the Bing tools)
   - MCP client with OAuth support
 content:
   - name: GSC PAP hosted OAuth server
