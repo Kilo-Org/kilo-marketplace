@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Landing Page Guru integration contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "pageId", "environment", "goal", "form", "delivery", "events", "privacy", "capabilities", "verification"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "pageId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
+    "environment": { "enum": ["demo", "test", "live"] },
+    "goal": { "type": "object", "additionalProperties": false, "required": ["businessOutcome", "conversion", "denominator", "window"], "properties": {
+      "businessOutcome": { "$ref": "#/$defs/text" }, "conversion": { "$ref": "#/$defs/text" }, "denominator": { "$ref": "#/$defs/text" }, "window": { "type": ["string", "null"] }
+    } },
+    "form": { "type": "object", "additionalProperties": false, "required": ["mode", "fields", "destination", "responses", "success"], "properties": {
+      "mode": { "enum": ["unconnected", "test", "live"] },
+      "fields": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["name", "type", "required", "purpose", "sensitivity", "validation"], "properties": {
+        "name": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$" }, "type": { "enum": ["text", "email", "tel", "url", "number", "select", "textarea", "checkbox", "hidden"] },
+        "required": { "type": "boolean" }, "purpose": { "$ref": "#/$defs/text" }, "sensitivity": { "enum": ["non-personal", "personal", "sensitive"] }, "validation": { "$ref": "#/$defs/text" }
+      } } },
+      "destination": { "type": "object", "additionalProperties": false, "required": ["endpoint", "method", "permittedOrigin", "secretEnvNames"], "properties": {
+        "endpoint": { "type": ["string", "null"] }, "method": { "const": "POST" }, "permittedOrigin": { "type": ["string", "null"] }, "secretEnvNames": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" } }
+      } },
+      "responses": { "type": "object", "additionalProperties": false, "required": ["accepted", "duplicate", "rejected", "timeout", "retrySafe", "idempotencyHeader"], "properties": {
+        "accepted": { "$ref": "#/$defs/response" }, "duplicate": { "$ref": "#/$defs/response" }, "rejected": { "$ref": "#/$defs/response" }, "timeout": { "$ref": "#/$defs/text" }, "retrySafe": { "type": "boolean" }, "idempotencyHeader": { "type": ["string", "null"] }
+      } },
+      "success": { "type": "object", "additionalProperties": false, "required": ["mode", "redirectPath", "message", "nextStep"], "properties": {
+        "mode": { "enum": ["in-place", "redirect"] }, "redirectPath": { "type": ["string", "null"] }, "message": { "$ref": "#/$defs/text" }, "nextStep": { "$ref": "#/$defs/text" }
+      } }
+    } },
+    "delivery": { "type": "object", "additionalProperties": false, "required": ["destinationRef", "owner", "resourcePath", "observable"], "properties": {
+      "destinationRef": { "type": ["string", "null"] }, "owner": { "type": ["string", "null"] }, "resourcePath": { "type": ["string", "null"] },
+      "observable": { "type": "object", "additionalProperties": false, "required": ["acceptance", "storage", "notification", "receipt"], "properties": { "acceptance": { "type": "boolean" }, "storage": { "type": "boolean" }, "notification": { "type": "boolean" }, "receipt": { "type": "boolean" } } }
+    } },
+    "events": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["name", "trigger", "successPredicate", "deduplication", "properties", "permission", "testSink"], "properties": {
+      "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" }, "trigger": { "enum": ["form-accepted", "submit-attempt", "cta-click", "page-view"] }, "successPredicate": { "enum": ["accepted", "action"] }, "deduplication": { "enum": ["conversion", "action"] }, "properties": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/text" } }, "permission": { "enum": ["analytics", "none"] }, "testSink": { "$ref": "#/$defs/text" }
+    } } },
+    "privacy": { "type": "object", "additionalProperties": false, "required": ["audienceRegions", "noticeRef", "purposes", "retentionDecision", "analyticsRequiresPermission", "permissionStates", "unresolved"], "properties": {
+      "audienceRegions": { "$ref": "#/$defs/strings" }, "noticeRef": { "type": ["string", "null"] }, "purposes": { "$ref": "#/$defs/strings" }, "retentionDecision": { "type": ["string", "null"] }, "analyticsRequiresPermission": { "type": "boolean" }, "permissionStates": { "type": "array", "uniqueItems": true, "items": { "enum": ["denied", "granted", "withdrawn", "not-required"] } }, "unresolved": { "$ref": "#/$defs/strings" }
+    } },
+    "capabilities": { "type": "object", "additionalProperties": false, "required": ["backendAcceptance", "deliveryObservation", "redirects", "exports", "experimentAssignment"], "properties": {
+      "backendAcceptance": { "type": "boolean" }, "deliveryObservation": { "type": "boolean" }, "redirects": { "type": "boolean" }, "exports": { "type": "boolean" }, "experimentAssignment": { "type": "boolean" }
+    } },
+    "verification": { "type": "object", "additionalProperties": false, "required": ["target", "browser", "externalChecks"], "properties": {
+      "target": { "$ref": "#/$defs/text" }, "externalChecks": { "$ref": "#/$defs/strings" },
+      "browser": { "type": ["object", "null"], "additionalProperties": false, "required": ["formSelector", "submitSelector", "statusSelector", "errorSelector", "successText", "duplicateText", "errorText", "values", "timeoutMs"], "properties": {
+        "formSelector": { "$ref": "#/$defs/text" }, "submitSelector": { "$ref": "#/$defs/text" }, "statusSelector": { "$ref": "#/$defs/text" }, "errorSelector": { "$ref": "#/$defs/text" }, "successText": { "$ref": "#/$defs/text" }, "duplicateText": { "$ref": "#/$defs/text" }, "errorText": { "$ref": "#/$defs/text" }, "values": { "type": "object", "additionalProperties": { "type": ["string", "boolean"] } }, "timeoutMs": { "type": "integer", "minimum": 250, "maximum": 30000 }
+      } }
+    } }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "strings": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+    "response": { "type": "object", "additionalProperties": false, "required": ["status", "body", "meaning"], "properties": { "status": { "type": "integer", "minimum": 100, "maximum": 599 }, "body": { "type": "object" }, "meaning": { "$ref": "#/$defs/text" } } }
+  }
+}

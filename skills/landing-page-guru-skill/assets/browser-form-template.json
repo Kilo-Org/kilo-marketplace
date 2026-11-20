@@ -1,0 +1,11 @@
+{
+  "formSelector": "#lead-form",
+  "submitSelector": "button[type=submit]",
+  "statusSelector": "#form-status",
+  "errorSelector": "#form-status",
+  "successText": "Request accepted",
+  "duplicateText": "already",
+  "errorText": "try again",
+  "values": { "email": "visitor@example.test" },
+  "timeoutMs": 5000
+}

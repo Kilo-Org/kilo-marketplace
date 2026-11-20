@@ -1,0 +1,4 @@
+interface:
+  display_name: "Landing Page Guru Skill"
+  short_description: "Build, audit, and improve landing pages"
+  default_prompt: "Use $landing-page-guru-skill to build or improve my landing page and verify its conversion path."

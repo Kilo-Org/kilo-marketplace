@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "pageId": "new-page",
+  "environment": "demo",
+  "goal": { "businessOutcome": "A relevant prospect requests access", "conversion": "lead_accepted", "denominator": "eligible visits", "window": null },
+  "form": {
+    "mode": "unconnected",
+    "fields": [{ "name": "email", "type": "email", "required": true, "purpose": "Respond to the request", "sensitivity": "personal", "validation": "Valid email syntax; validate on server when connected" }],
+    "destination": { "endpoint": null, "method": "POST", "permittedOrigin": null, "secretEnvNames": [] },
+    "responses": {
+      "accepted": { "status": 200, "body": { "accepted": true }, "meaning": "Backend accepted; delivery is separate" },
+      "duplicate": { "status": 409, "body": { "accepted": false, "duplicate": true }, "meaning": "Already received; no new conversion" },
+      "rejected": { "status": 422, "body": { "accepted": false }, "meaning": "Not accepted; preserve input" },
+      "timeout": "Outcome unknown; do not count acceptance",
+      "retrySafe": false,
+      "idempotencyHeader": null
+    },
+    "success": { "mode": "in-place", "redirectPath": null, "message": "Not connected yet; no request has been sent", "nextStep": "Configure a destination before enabling submissions" }
+  },
+  "delivery": { "destinationRef": null, "owner": null, "resourcePath": null, "observable": { "acceptance": false, "storage": false, "notification": false, "receipt": false } },
+  "events": [{ "name": "lead_accepted", "trigger": "form-accepted", "successPredicate": "accepted", "deduplication": "conversion", "properties": ["page_id", "form_id"], "permission": "analytics", "testSink": "window.__landingEvents" }],
+  "privacy": { "audienceRegions": [], "noticeRef": null, "purposes": ["Respond to the requested inquiry"], "retentionDecision": null, "analyticsRequiresPermission": true, "permissionStates": ["denied", "granted", "withdrawn"], "unresolved": ["Audience regions, retention, destination and notice owner"] },
+  "capabilities": { "backendAcceptance": false, "deliveryObservation": false, "redirects": false, "exports": true, "experimentAssignment": false },
+  "verification": { "target": "http://127.0.0.1:4173/", "browser": null, "externalChecks": ["Backend acceptance", "Lead storage", "Notification and receipt"] }
+}
