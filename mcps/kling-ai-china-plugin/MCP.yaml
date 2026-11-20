@@ -5,6 +5,7 @@ author: Kling AI
 url: https://github.com/klingai-tech/claude-plugin-cn
 category: productivity
 prerequisites:
+  - A Kilo-compatible MCP client with OAuth 2.0 support.
   - A Kling AI China account; authorization uses OAuth and generation consumes credits from that account.
 content:
   - name: Kling AI China Plugin
