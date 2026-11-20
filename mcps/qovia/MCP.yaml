@@ -1,0 +1,22 @@
+id: qovia
+name: Qovia
+description: Qovia is a paid, hosted API and remote MCP server for Chinese social media data. 100+ endpoints across 20+ platforms, including Douyin, Xiaohongshu (RedNote), Bilibili and Weibo, return structured JSON.
+author: Qovia
+url: https://github.com/qovia/qovia-mcp
+category: data
+prerequisites:
+  - A Qovia account and API key (new accounts get 50 trial calls)
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.qovia.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer {{QOVIA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Qovia API Key
+    key: QOVIA_API_KEY
+    placeholder: sk-qovia-...
