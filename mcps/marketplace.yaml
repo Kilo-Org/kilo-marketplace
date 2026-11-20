@@ -213,7 +213,8 @@ items:
         placeholder: your_apify_api_token
   - id: arcmira
     name: "Arcmira: YouTube Transcript Search"
-    description: "YouTube transcript search and monitoring for your AI: exact quotes, full transcripts and speakers."
+    description: "YouTube transcript search and monitoring for your AI: exact quotes, full transcripts and speakers. Paid
+      reads use credits from your plan. Monitor tools change your account and need write access."
     author: arcmira
     url: https://github.com/arcmira/mcp
     category: search
