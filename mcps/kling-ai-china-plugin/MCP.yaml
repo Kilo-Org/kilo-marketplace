@@ -1,7 +1,7 @@
 id: kling-ai-china-plugin
 name: Kling AI China Plugin
 description: >-
-  Connect Kilo-compatible agents to Kling AI's official China MCP for image and video creation through regional OAuth. Kling 4.0 supports native 4K and optional 10-bit HDR at 1080p or 4K when exposed by the account's live MCP tools; HDR may incur additional usage charges. China and Global accounts and credits are separate. Official release: https://kling.ai/dev/model-release/kling-4 ; API docs: https://kling.ai/document-api/api/video/4-0. Other clients: npm Plugin https://www.npmjs.com/package/@klingai/plugin-cn and CLI https://www.npmjs.com/package/@klingai/cli-cn.
+  Connect Kilo-compatible agents to Kling AI's official China MCP for image and video creation through regional OAuth. Kling 4.0 supports native 4K and optional 10-bit HDR at 1080p or 4K when exposed by the account's live MCP tools; HDR may incur additional usage charges. China and Global accounts and credits are separate. China setup guide: https://klingai.com/app/mcp/guide. Other clients: npm Plugin https://www.npmjs.com/package/@klingai/plugin-cn and CLI https://www.npmjs.com/package/@klingai/cli-cn.
 author: Kling AI
 url: https://github.com/klingai-tech/claude-plugin-cn
 category: productivity
