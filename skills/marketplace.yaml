@@ -53,7 +53,7 @@ items:
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
   - id: redya-xiaohongshu
     description: >-
-      输入一句话，或粘贴图文、文章、视频链接，红鸦 AI 就能生成标题、正文和配图。支持普通图文、商品图文、爆文复刻和 Live 实况图文。可以一步出图，也可以先看大纲再生成，还支持批量创作和敏感词检测。成稿可通过插件同步到小红书、抖音、公众号等平台的编辑器，确认后发布。
+      使用红鸦 AI 为小红书生成普通图文、商品种草图文、逐页复刻稿和 Live 实况图。支持分步或按篇批量创作、文案敏感词检测，以及将确认的草稿交给发布插件。
     category: business
     author: rnthking
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redya-xiaohongshu
