@@ -7,7 +7,8 @@ url: https://github.com/ClickHouse/loom
 category: data
 prerequisites:
   - Docker with the Compose v2 plugin (2.20 or later)
-  - "A running Loom server. On one machine: curl -fsSL https://github.com/ClickHouse/loom/releases/download/v1.2.0/install.sh -o loom-install.sh && sh loom-install.sh (the installer checks the stack bundle against the release's published SHA-256)"
+  - "Read the released quickstart (https://clickhouse.github.io/loom/getting-started/quickstart/) before adding this entry. The default server is loopback-only; team access requires your own reachable deployment and a scoped token."
+  - "A running Loom server. On one machine: curl -fsSL https://github.com/ClickHouse/loom/releases/download/v1.3.0/install.sh -o loom-install.sh && sh loom-install.sh (the installer checks the stack bundle against the release's published SHA-256)"
 content:
   - name: Local server (single user)
     content: |
