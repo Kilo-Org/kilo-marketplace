@@ -1,0 +1,18 @@
+id: open-agent-api
+name: Open Agent API
+description: Connect to a self-hosted gateway to discover configured coding agents and inspect their background runs.
+author: Open Agent API
+url: https://github.com/jiangxingfan1-coder/Open-Agent-API
+category: development
+prerequisites:
+  - Open Agent API CLI (oaa) on Kilo's process PATH
+  - A running Open Agent API gateway
+  - OAA_TOKEN_FILE set in Kilo's environment to the absolute path of a scoped gateway key file
+  - OAA_GATEWAY_URL set for a non-default gateway origin
+content:
+  - name: Installed Open Agent API CLI
+    content: |
+      {
+        "command": "oaa",
+        "args": ["mcp"]
+      }
