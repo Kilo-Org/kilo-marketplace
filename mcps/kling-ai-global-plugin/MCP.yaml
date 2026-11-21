@@ -1,6 +1,7 @@
 id: kling-ai-global-plugin
 name: Kling AI Global Plugin
-description: Connect Kilo-compatible agents to Kling AI's official Global MCP for image and video creation through regional OAuth.
+description: >-
+  Connect Kilo-compatible agents to Kling AI's official Global MCP for image and video creation through regional OAuth. Kling 4.0 supports native 4K and optional 10-bit HDR at 1080p or 4K when exposed by the account's live MCP tools; HDR may incur additional usage charges. Global and China accounts and credits are separate. Official release: https://kling.ai/dev/model-release/kling-4 ; API docs: https://kling.ai/document-api/api/video/4-0. Other clients: npm Plugin https://www.npmjs.com/package/@klingai/plugin-global and CLI https://www.npmjs.com/package/@klingai/cli-global.
 author: Kling AI
 url: https://github.com/klingai-tech/claude-plugin
 category: productivity
