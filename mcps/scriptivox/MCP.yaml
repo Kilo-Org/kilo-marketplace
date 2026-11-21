@@ -1,0 +1,16 @@
+id: scriptivox
+name: Scriptivox
+description: Transcribes audio and video in 119 languages with speaker labels and timestamps, records Zoom, Google Meet, Teams or Webex calls with a meeting bot, and lets the assistant read, search, correct and export transcripts and subtitles (SRT, VTT, PDF, Word).
+author: Scriptivox
+url: https://www.scriptivox.com/docs/mcp
+category: productivity
+prerequisites:
+  - Scriptivox account (a Free plan is available)
+  - MCP client with OAuth support
+content:
+  - name: Scriptivox Hosted Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://platform.scriptivox.com/mcp"
+      }
