@@ -1,0 +1,16 @@
+id: kling-ai-global-plugin
+name: Kling AI Global Plugin
+description: Connect to Kling AI's official Global remote MCP to create images and videos. Authenticate with a Global Kling account through OAuth; generation uses that account's credits.
+author: Kling AI
+url: https://github.com/klingai-tech/claude-plugin
+category: productivity
+prerequisites:
+  - A Global Kling AI account
+  - Complete OAuth sign-in when prompted by the MCP client
+content:
+  - name: Global Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://kling.ai/mcp/plugin"
+      }

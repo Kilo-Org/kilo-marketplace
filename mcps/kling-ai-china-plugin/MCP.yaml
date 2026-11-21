@@ -1,0 +1,16 @@
+id: kling-ai-china-plugin
+name: Kling AI China Plugin
+description: Connect to Kling AI's official China remote MCP to create images and videos. Authenticate with a China Kling account through OAuth; generation uses that account's credits.
+author: Kling AI
+url: https://github.com/klingai-tech/claude-plugin-cn
+category: productivity
+prerequisites:
+  - A China Kling AI account
+  - Complete OAuth sign-in when prompted by the MCP client
+content:
+  - name: China Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://klingai.com/mcp/plugin"
+      }
