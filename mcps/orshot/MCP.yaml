@@ -1,0 +1,16 @@
+id: orshot
+name: Orshot
+description: Automate Videos, PDFs and Images from templates for marketing, post to social platforms, and track and grow engagement.
+author: Orshot
+url: https://orshot.com/agents
+category: productivity
+prerequisites:
+  - Orshot account (free sign-up)
+  - MCP client with OAuth support
+content:
+  - name: Orshot hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.orshot.com/mcp"
+      }
