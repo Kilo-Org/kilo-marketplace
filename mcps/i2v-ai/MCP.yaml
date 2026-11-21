@@ -1,0 +1,31 @@
+id: i2v-ai
+name: I2v.ai
+description: Generate images and videos with I2v.ai across 12 image models and 16 video models. Estimate cost before spending, submit idempotent jobs with a hard cost ceiling, and poll task status, all from one OAuth-protected endpoint.
+author: i2v.ai
+url: https://github.com/i2v-ai/i2v-mcp
+category: productivity
+prerequisites:
+  - An I2v.ai account for the API key, or OAuth authorization for the remote endpoint
+content:
+  - name: Remote (Streamable HTTP with OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://i2v.ai/api/mcp"
+      }
+  - name: NPX (local stdio)
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@i2v-ai/cli", "mcp"],
+        "env": {
+          "I2V_API_KEY": "{{I2V_API_KEY}}"
+        }
+      }
+parameters:
+  - name: I2v.ai API Key
+    key: I2V_API_KEY
+    placeholder: your_i2v_api_key
+    optional: true
