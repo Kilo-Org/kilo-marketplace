@@ -1,0 +1,16 @@
+id: emero
+name: Emero
+description: Hosted MCP server for making images, video, music and speech from your assistant with models like Kling,
+  Seedance, Nano Banana Pro and GPT Image, plus a brand memory that reuses your look across prompts.
+author: EmeroAI
+url: https://github.com/EmeroAI/emero-mcp
+category: productivity
+prerequisites:
+  - Emero account
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.emero.studio/mcp"
+      }
