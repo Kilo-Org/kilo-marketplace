@@ -1,0 +1,18 @@
+id: "search-console-mcp"
+name: "Search Console MCP"
+description: "Google Search Console for any MCP client - 30-second login, no Google Cloud project. Read-only."
+author: "sudomichael"
+url: "https://github.com/sudomichael/search-console-mcp"
+category: "search"
+content:
+  - name: "NPX"
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": [
+          "-y",
+          "search-console-mcp-server@0.2.3"
+        ]
+      }
