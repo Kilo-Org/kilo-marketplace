@@ -1,0 +1,16 @@
+id: grafizum
+name: Grafizum Command Center
+description: Connects agents to a shared project dashboard where they read projects, tasks and project memory and keep status current as work finishes.
+author: grafizum
+url: https://github.com/grafizum/grafizum
+category: productivity
+prerequisites:
+  - A Grafizum account (free plan available)
+  - An MCP client that supports OAuth
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.grafizum.com/mcp"
+      }
