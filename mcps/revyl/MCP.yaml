@@ -1,0 +1,16 @@
+id: revyl
+name: Revyl
+description: Opens Revyl Atlas maps of an app's screens and flows, finds apps and pull-request builds, runs and writes end-to-end tests, and starts, drives, screenshots and stops cloud iOS and Android devices, web browsers and Mac computers through Revyl's hosted OAuth server.
+author: Revyl
+url: https://docs.revyl.com/agents/mcp
+category: development
+prerequisites:
+  - Revyl account
+  - MCP client with OAuth support
+content:
+  - name: Revyl hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://backend.revyl.ai/api/v1/mcp"
+      }
