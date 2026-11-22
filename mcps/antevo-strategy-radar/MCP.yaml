@@ -1,0 +1,13 @@
+id: antevo-strategy-radar
+name: "Antevo Strategy Radar"
+description: "What changed today for a company's strategy: Antevo's daily business board of risks and opportunities for companies, from trade, regulation, supply, shipping, energy, demand, currencies, funding, labour, technology, cyber, geopolitics and climate, with impact, likelihood and trend in words and possible responses with reasons. The matching to a company happens in the assistant; no tool takes company details. No account."
+author: Antevo
+url: https://antevo.ch/executive/strategy/
+category: business
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/strategy/mcp"
+      }
