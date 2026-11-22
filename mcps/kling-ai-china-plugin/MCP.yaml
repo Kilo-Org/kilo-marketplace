@@ -1,0 +1,16 @@
+id: kling-ai-china-plugin
+name: Kling AI China Plugin
+description: Official Kling AI China OAuth MCP Plugin for image and video generation, Elements, motion control, and task tracking. Available tools and models follow the connected China account.
+author: Kling AI
+url: https://github.com/klingai-tech/claude-plugin-cn
+category: productivity
+prerequisites:
+  - A Kling AI China account. Global and China accounts are separate.
+  - Image and video generation use credits from the connected China account.
+content:
+  - name: China hosted MCP (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://klingai.com/mcp/plugin"
+      }
