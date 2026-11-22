@@ -5,6 +5,7 @@ author: Kling AI
 url: https://github.com/klingai-tech/claude-plugin-cn
 category: productivity
 prerequisites:
+  - An MCP client with OAuth support.
   - A Kling AI China account. Global and China accounts are separate.
   - Image and video generation use credits from the connected China account.
 content:
