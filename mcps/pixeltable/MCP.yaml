@@ -1,0 +1,55 @@
+id: pixeltable
+name: Pixeltable
+description: Local MCP server for building, inspecting, and operating Pixeltable multimodal data apps
+  (catalog and row inspection, inserts and recomputes, app.py scaffolding, schema and service lifecycle).
+  Requires Pixeltable >=0.7.6,<0.8.
+author: pixeltable
+url: https://github.com/pixeltable/mcp-server-pixeltable-developer
+category: data
+prerequisites:
+  - Python 3.11+
+  - uv (https://docs.astral.sh/uv/)
+content:
+  - name: UVX from Git
+    description: Installs and runs the developer MCP server from GitHub (not published to PyPI).
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": [
+          "--from",
+          "git+https://github.com/pixeltable/mcp-server-pixeltable-developer",
+          "mcp-server-pixeltable-developer"
+        ],
+        "env": {
+          "PIXELTABLE_MCP_PROJECT_ROOT": "{{PIXELTABLE_MCP_PROJECT_ROOT}}",
+          "PIXELTABLE_HOME": "{{PIXELTABLE_HOME}}",
+          "OPENAI_API_KEY": "{{OPENAI_API_KEY}}"
+        }
+      }
+  - name: UV tool install
+    description: Install once with uv tool, then run the binary by name.
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "mcp-server-pixeltable-developer",
+        "env": {
+          "PIXELTABLE_MCP_PROJECT_ROOT": "{{PIXELTABLE_MCP_PROJECT_ROOT}}",
+          "PIXELTABLE_HOME": "{{PIXELTABLE_HOME}}",
+          "OPENAI_API_KEY": "{{OPENAI_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Pixeltable App Directory
+    key: PIXELTABLE_MCP_PROJECT_ROOT
+    placeholder: /absolute/path/to/pixeltable-app
+  - name: Pixeltable Home
+    key: PIXELTABLE_HOME
+    placeholder: /path/to/custom/pixeltable/home
+    optional: true
+  - name: OpenAI API Key
+    key: OPENAI_API_KEY
+    placeholder: sk-...
+    optional: true
