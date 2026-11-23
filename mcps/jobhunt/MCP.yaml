@@ -2,7 +2,7 @@ id: jobhunt
 name: JobHunt
 description: "Keeps your job search in one place and lets your AI assistant work in it: save jobs, tailor resumes, track applications and prepare for interviews. Nothing is sent to an employer for you."
 author: JobHunt App, Inc.
-url: https://jobhunt.app/mcp
+url: https://github.com/chrisstroud/jobhunt-connect
 category: productivity
 prerequisites:
   - JobHunt account
