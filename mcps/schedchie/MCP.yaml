@@ -1,6 +1,6 @@
 id: schedchie
 name: Schedchie
-description: Schedules, edits, retries and deletes posts on Instagram, TikTok, LinkedIn, YouTube, Bluesky and more through Schedchie's hosted OAuth 2.1 server, uploads media by link and reads analytics; users pick six permission groups at sign-in, and posting to X is extra.
+description: Schedules, cross-posts, edits, retries and deletes posts on TikTok, Instagram, LinkedIn, Facebook, YouTube, X, Threads, Pinterest, Bluesky and Google Business Profile through Schedchie's hosted OAuth 2.1 server, uploads media by link and reads analytics. Users pick six permission groups at sign-in, listed at https://www.schedchie.com/ai. Posting to X is included in paid plans under fair use.
 author: Schedchie
 url: https://www.schedchie.com/ai
 category: productivity
