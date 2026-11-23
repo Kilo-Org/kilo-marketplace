@@ -1,0 +1,31 @@
+id: flowfeed
+name: FlowFeed
+description: Real-time macro, forex and crypto news for AI agents through FlowFeed's hosted MCP endpoint. Central bank
+  releases, economic data parsed into actual vs forecast, an economic calendar and deduplicated market headlines, each
+  with source, publish time and link. Read-only.
+author: FlowFeed
+url: https://github.com/loyt1/flowfeed-mcp
+category: business
+prerequisites:
+  - FlowFeed subscription (https://flowfeed.cc/start)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.flowfeed.cc/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.flowfeed.cc",
+        "headers": {
+          "Authorization": "Bearer {{FLOWFEED_KEY}}"
+        }
+      }
+parameters:
+  - name: FlowFeed key
+    key: FLOWFEED_KEY
+    placeholder: ff_live_...
+    optional: true
