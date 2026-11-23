@@ -1,0 +1,15 @@
+id: kite
+name: Kite
+description: Official remote MCP server for Kite, a collaborative design tool. Lets agents create and edit real design
+  layers (frames, text, components, auto layout) in a shared file your team edits live, and export frames as HTML,
+  React or Tailwind. Sign in with your Kite account (OAuth) on first connect.
+author: kitedotnew
+url: https://github.com/kitedotnew/kite-agent-plugins
+category: development
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://kite.new/api/mcp"
+      }
