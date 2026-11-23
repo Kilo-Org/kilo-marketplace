@@ -1,0 +1,16 @@
+id: antevo-research
+name: "Antevo Research"
+description: "Ask one of Antevo's eighteen research desks (economy, geopolitics, shipping, rates, equities, ETFs, company results, the Swiss market and more) and get the desk's own written answer, with every fact dated and a note of how recent its reading is. Editorial research, not investment advice: no buy or sell calls, ratings or price targets."
+author: Antevo
+url: https://antevo.ch/research/
+category: data
+prerequisites:
+  - Antevo account with research credits
+  - MCP client with OAuth support
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/research/mcp"
+      }
