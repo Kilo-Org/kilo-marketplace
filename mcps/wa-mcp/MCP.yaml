@@ -1,0 +1,31 @@
+id: wa-mcp
+name: WA MCP
+description: Search messages and voice transcripts from a linked WhatsApp account through a local bridge. Sending is off by default.
+author: tsahospital-beep
+url: https://github.com/tsahospital-beep/wa-mcp
+category: productivity
+prerequisites:
+  - Set up the local WA MCP bridge, link your phone and keep the bridge running. See https://github.com/tsahospital-beep/wa-mcp/blob/main/docs/getting-started.md.
+content:
+  - name: UVX
+    prerequisites:
+      - Install uv and Python 3.11 or newer.
+    content: |
+      {
+        "command": "uvx",
+        "args": ["--from", "wa-mcp-server==0.1.0", "--with", "wa-mcp-sdk[encryption,files]", "wa-mcp"],
+        "env": { "WA_MCP_CONFIG": "{{WA_MCP_CONFIG}}" }
+      }
+  - name: pipx
+    prerequisites:
+      - Run `pipx install wa-mcp-server` with Python 3.11 or newer, then run `pipx inject --force wa-mcp-server 'wa-mcp-sdk[encryption,files]'`.
+    content: |
+      {
+        "command": "wa-mcp",
+        "args": [],
+        "env": { "WA_MCP_CONFIG": "{{WA_MCP_CONFIG}}" }
+      }
+parameters:
+  - name: Bridge config path
+    key: WA_MCP_CONFIG
+    placeholder: Absolute path to the bridge config.json
