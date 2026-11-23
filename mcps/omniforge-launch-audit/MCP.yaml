@@ -1,0 +1,21 @@
+id: omniforge-launch-audit
+name: OmniForge Launch Audit
+description: Audit website security headers and exposed JS bundle secrets, SPF/DKIM/DMARC/BIMI email deliverability, llms.txt AI search readiness, and 78-TLD brand availability via 5 read-only tools.
+author: zColdWater
+url: https://github.com/zColdWater/mcp-launch-audit
+category: development
+content:
+  - name: Streamable HTTP (Zero-Auth Remote)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://omnipulse-x402.appwrite.network/mcp"
+      }
+  - name: NPX (GitHub)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "github:zColdWater/mcp-launch-audit"]
+      }
