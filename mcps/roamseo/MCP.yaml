@@ -1,0 +1,16 @@
+id: roamseo
+name: RoamSEO
+description: Hosted SEO research MCP from RoamSEO for keyword and SERP research, competitor gaps, site audits, rank
+  tracking, backlinks, Google Search Console data and brand mentions in AI answers.
+author: RoamSEO
+url: https://github.com/roamseo/roamseo-plugins
+category: search
+prerequisites:
+  - RoamSEO account (https://roamseo.com)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.roamseo.com/mcp"
+      }
