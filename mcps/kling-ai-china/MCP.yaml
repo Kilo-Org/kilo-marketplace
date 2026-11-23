@@ -1,0 +1,16 @@
+id: kling-ai-china
+name: Kling AI China
+description: Generate and edit AI images and videos with Kling AI through the official China MCP service, using OAuth and China Kling credits.
+author: Kling AI
+url: https://github.com/klingai-tech/claude-plugin-cn
+category: productivity
+prerequisites:
+  - Kling AI China account
+  - Kilo client with support for remote Streamable HTTP MCP and OAuth
+content:
+  - name: Kling AI China (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://klingai.com/mcp/plugin"
+      }
