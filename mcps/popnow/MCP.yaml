@@ -1,0 +1,33 @@
+id: popnow
+name: PopNow
+description: Generate and edit AI images, videos, music, voiceovers, sound effects, 3D models, UGC ads, explainers and browser games through PopNow's hosted remote MCP servers, with upfront price quotes before any paid job starts.
+author: PopNow AI, LLC
+url: https://github.com/popnow-ai/popnow-mcp
+category: productivity
+prerequisites:
+  - PopNow account (OAuth) or PopNow API key
+content:
+  - name: PopNow (OAuth - Website Credits)
+    prerequisites:
+      - PopNow account
+      - Kilo client with support for remote Streamable HTTP MCP and OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.popnow.ai/mcp"
+      }
+  - name: PopNow Developer API (API Key - USD)
+    prerequisites:
+      - PopNow API key (sk-popnow-...) from https://popnow.ai/api/console/keys
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.popnow.ai/api/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{POPNOW_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: PopNow API Key
+        key: POPNOW_API_KEY
+        placeholder: sk-popnow-...
