@@ -4012,7 +4012,7 @@ items:
     tags:
       - business
     prerequisites:
-      - Relaticle account (14-day free trial at https://app.relaticle.com/login, or a self-hosted instance)
+      - Relaticle account (14-day free trial at https://app.relaticle.com/login)
       - MCP client with OAuth support
     content:
       - name: Relaticle hosted OAuth server
