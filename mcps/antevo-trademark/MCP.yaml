@@ -1,0 +1,13 @@
+id: antevo-trademark
+name: "Antevo Trademark"
+description: "Screen a brand name, or a shortlist, against 50+ national and regional trademark registers, with the companies and domains already registered under each name and each office's opposition deadline. Screening needs no account; the watchlist and holder investigations sign in over OAuth. Not legal advice."
+author: Antevo
+url: https://antevo.ch/trademark/
+category: business
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://trademark.antevo.ch/mcp"
+      }

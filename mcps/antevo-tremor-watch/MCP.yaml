@@ -1,0 +1,13 @@
+id: antevo-tremor-watch
+name: "Antevo Tremor Watch"
+description: "How many market relationships stopped behaving this week: the Antevo Tremor Index follows 753 pairs of markets in seven families, with the families, the new breaks, any week's pairs and every reading since 1997. No account. Descriptive, not a forecast."
+author: Antevo
+url: https://antevo.ch/tremor-watch/
+category: data
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/tremor/mcp"
+      }

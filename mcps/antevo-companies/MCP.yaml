@@ -1,0 +1,16 @@
+id: antevo-companies
+name: "Antevo Companies"
+description: "The public record on a Swiss company: register identity from Zefix, the dated changes published in SHAB, the group structure and checks against official sanctions lists, each line with its source and date, and a watch for changes. It supports a KYC file; it is not a KYC check."
+author: Antevo
+url: https://antevo.ch/mcp/companies/
+category: data
+prerequisites:
+  - Antevo account
+  - MCP client with OAuth support
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/companies/mcp"
+      }

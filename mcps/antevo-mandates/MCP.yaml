@@ -1,0 +1,16 @@
+id: antevo-mandates
+name: "Antevo Mandates"
+description: "An advisory firm's own client book: reviews due, meeting briefs, goals, documents and succession gaps. It can record reviews and update client records; irreversible actions return a plan and run only when you confirm. No tool can place a trade or move money."
+author: Antevo
+url: https://antevo.ch/mandate
+category: business
+prerequisites:
+  - Antevo Mandates firm account
+  - MCP client with OAuth support
+content:
+  - name: Antevo hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.antevo.ch/mcp/mandates/mcp"
+      }
