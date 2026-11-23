@@ -1,0 +1,31 @@
+id: pepys-transcribe
+name: Pepys Transcribe
+description: Transcribe audio, video, and podcast episodes, search timestamped transcripts, and export SRT or VTT captions.
+author: Pepys
+url: https://github.com/ankurmans/pepys-mcp
+category: productivity
+prerequisites:
+  - Pepys account
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://pepys.co/api/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 18 or later
+      - Pepys API key
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "pepys-mcp"],
+        "env": {
+          "PEPYS_API_KEY": "{{PEPYS_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Pepys API Key
+        key: PEPYS_API_KEY
+        placeholder: Get an API key from https://pepys.co/developers
