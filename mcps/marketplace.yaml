@@ -3192,7 +3192,7 @@ items:
     tags:
       - development
     content:
-      - name: NPX (Pinned Commit)
+      - name: NPX
         prerequisites:
           - Node.js 18+
           - Git
@@ -3200,15 +3200,6 @@ items:
           {
             "command": "npx",
             "args": ["-y", "github:zColdWater/mcp-launch-audit#ca7f49cf598557f0092646de51cc1c320f885f5c"]
-          }
-      - name: Streamable HTTP (Hosted)
-        prerequisites:
-          - Hosted endpoint verified in Official MCP Registry (io.github.zColdWater/mcp-launch-audit); use NPX above to
-            run locally from pinned source
-        content: |
-          {
-            "type": "streamable-http",
-            "url": "https://omnipulse-x402.appwrite.network/mcp"
           }
   - id: openapi-mcp
     name: OpenAPI MCP Server
