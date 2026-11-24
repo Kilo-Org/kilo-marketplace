@@ -1,0 +1,31 @@
+id: gleann
+name: Gleann Code Intelligence
+description: Local code intelligence over MCP — hybrid semantic and lexical search, dependency graph with
+  callers/callees and blast radius, compact file reading, shell-output compression, and persistent memory
+  across sessions. One Go binary, fully offline, indexes code and docs.
+author: tevfik
+url: https://github.com/tevfik/gleann
+category: development
+suggest_for:
+  filename:
+    - "*.gleannignore"
+prerequisites:
+  - Gleann binary on PATH (install with the one-liner at https://github.com/tevfik/gleann)
+  - At least one indexed codebase (`gleann index build <path>`)
+skills:
+  - gleann-code-intelligence
+content:
+  - name: Local (installed binary)
+    content: |
+      {
+        "type": "local",
+        "command": ["gleann", "mcp"]
+      }
+  - name: Go run (no separate install)
+    prerequisites:
+      - Go toolchain
+    content: |
+      {
+        "type": "local",
+        "command": ["go", "run", "github.com/tevfik/gleann/cmd/gleann", "mcp"]
+      }

@@ -1554,6 +1554,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gemini-api
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gemini-api/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gemini-api.tar.gz
+  - id: gleann-code-intelligence
+    description: >-
+      Answers codebase questions and plans safe changes using Gleann MCP — semantic search, graph impact analysis, and
+      persistent memory. Use when searching or understanding a codebase, before renaming or refactoring a symbol, when a
+      gleann index exists for the project, or when the user mentions gleann, code intelligence, blast radius, or indexed
+      knowledge.
+    category: development
+    author: tevfik
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gleann-code-intelligence
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gleann-code-intelligence/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gleann-code-intelligence.tar.gz
   - id: graphql
     description: >-
       Expert in GraphQL API development with type-safe patterns and optimization
