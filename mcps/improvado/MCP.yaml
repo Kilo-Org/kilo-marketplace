@@ -1,0 +1,16 @@
+id: improvado
+name: Improvado
+description: Query the ads, web analytics and CRM data an Improvado account has connected, such as spend and ROAS by channel.
+author: Improvado
+url: https://improvado.io/docs-section-topic/improvado-mcp
+category: data
+prerequisites:
+  - Improvado account
+  - MCP client with OAuth support
+content:
+  - name: Improvado hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://ai.improvado.io/experimental/agent/api/mcp-customer/v1/invoke/"
+      }
