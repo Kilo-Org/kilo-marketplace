@@ -1,0 +1,16 @@
+id: kling-ai-cn-plugin
+name: Kling AI China MCP Plugin
+description: Connects Kilo to Kling China image and video generation, Elements, motion control, and task tools through the official remote MCP.
+author: KLING AI Pte Ltd
+url: https://github.com/klingai-tech/claude-plugin-cn
+category: productivity
+prerequisites:
+  - Kilo client with Streamable HTTP and OAuth support
+  - China Kling account; generation uses credits from that account
+content:
+  - name: Official China OAuth MCP Plugin
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://klingai.com/mcp/plugin"
+      }

@@ -1,0 +1,16 @@
+id: kling-ai-global-plugin
+name: Kling AI Global MCP Plugin
+description: Connects Kilo to Kling Global image and video generation, Elements, motion control, and task tools through the official remote MCP.
+author: KLING AI Pte Ltd
+url: https://github.com/klingai-tech/claude-plugin
+category: productivity
+prerequisites:
+  - Kilo client with Streamable HTTP and OAuth support
+  - Global Kling account; generation uses credits from that account
+content:
+  - name: Official Global OAuth MCP Plugin
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://kling.ai/mcp/plugin"
+      }
