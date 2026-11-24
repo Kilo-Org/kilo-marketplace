@@ -1,0 +1,33 @@
+id: vidcrawl
+name: VidCrawl
+description: Extract timestamped video transcripts, visual storyboard frames, and cited JSON from YouTube, TikTok, Instagram Reels, and X videos for AI agents.
+author: Arcolabs
+url: https://vidcrawl.com/mcp
+category: data
+prerequisites:
+  - VidCrawl API key (100 free credits on signup at https://vidcrawl.com/dashboard, no card required; keyless remote trial allows 3 scrapes/day)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://vidcrawl.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{VIDCRAWL_API_KEY}}"
+        }
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@vidcrawl/mcp", "mcp"],
+        "env": {
+          "VIDCRAWL_API_KEY": "{{VIDCRAWL_API_KEY}}"
+        }
+      }
+parameters:
+  - name: VidCrawl API Key
+    key: VIDCRAWL_API_KEY
+    placeholder: vc_live_your_api_key
