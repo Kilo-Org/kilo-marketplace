@@ -1,0 +1,41 @@
+id: betadrop
+name: BetaDrop
+description: Publishes iOS (.ipa) and Android (.apk) beta builds and gives each an over-the-air install link. Lets an agent
+  publish a build from an upload link or a public URL, check uploads, list builds, read install stats and tester feedback,
+  re-point standing links, and manage registered iPhone UDIDs, webhooks, and API tokens.
+author: BetaDrop
+url: https://github.com/betadrop-app/betadrop-mcp
+category: development
+prerequisites:
+  - BetaDrop account
+content:
+  - name: Hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.betadrop.app"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@betadrop/mcp"]
+      }
+  - name: NPX with API token
+    prerequisites:
+      - Node.js 20 or newer
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@betadrop/mcp"],
+        "env": {
+          "BETADROP_TOKEN": "{{BETADROP_TOKEN}}"
+        }
+      }
+parameters:
+  - name: BetaDrop API Token
+    key: BETADROP_TOKEN
+    placeholder: bd_live_your_api_token
+    optional: true
