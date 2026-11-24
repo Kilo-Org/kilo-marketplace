@@ -1,0 +1,24 @@
+id: sortance
+name: Sortance
+description: Validates email addresses at signup. Flags disposable domains, domains with no mail server, typo domains and made-up addresses, runs your organisation's block and allow rules, and returns a send, challenge, hold or drop recommendation with a score.
+author: Sortance
+url: https://sortance.com/docs/mcp
+category: business
+prerequisites:
+  - A Sortance account (sign in at https://sortance.com/app); the server signs in with OAuth in the browser
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.sortance.com/mcp"
+      }
+  - name: Remote (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.sortance.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{SORTANCE_API_KEY}}"
+        }
+      }
