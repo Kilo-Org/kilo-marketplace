@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Models"
+  short_description: "Pick, price and check AI/ML API models"
+  default_prompt: "Use $aimlapi-models to find the right AI/ML API model for this task and the parameters it accepts."

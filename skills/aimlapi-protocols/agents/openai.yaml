@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Protocols"
+  short_description: "Any chat model on Chat Completions, Responses or Messages"
+  default_prompt: "Use $aimlapi-protocols to run this model through the Responses or Messages API on AI/ML API."

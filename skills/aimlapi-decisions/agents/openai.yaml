@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Decisions"
+  short_description: "Typed answers with probabilities, and model routers"
+  default_prompt: "Use $aimlapi-decisions to classify, score or route with an AI/ML API decision model or router."

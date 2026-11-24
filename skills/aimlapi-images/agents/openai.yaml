@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Images"
+  short_description: "Generate and edit images"
+  default_prompt: "Use $aimlapi-images to generate an image with AI/ML API."

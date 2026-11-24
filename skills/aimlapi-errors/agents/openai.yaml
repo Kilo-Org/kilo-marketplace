@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Errors"
+  short_description: "Read errors and retry the right ones"
+  default_prompt: "Use $aimlapi-errors to make this AI/ML API integration retry only what is safe to retry."

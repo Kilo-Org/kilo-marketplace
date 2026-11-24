@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Speech"
+  short_description: "Text-to-speech and speech-to-text: synthesize, transcribe"
+  default_prompt: "Use $aimlapi-speech to transcribe an audio file with AI/ML API."

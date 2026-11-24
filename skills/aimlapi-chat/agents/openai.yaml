@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Chat"
+  short_description: "Call text models via OpenAI or Anthropic formats"
+  default_prompt: "Use $aimlapi-chat to call an AI/ML API text model from this code."

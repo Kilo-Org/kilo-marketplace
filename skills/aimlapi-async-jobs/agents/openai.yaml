@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Async Jobs"
+  short_description: "Video, music and speech jobs: submit, poll, download"
+  default_prompt: "Use $aimlapi-async-jobs to generate a video with AI/ML API and wait for it."

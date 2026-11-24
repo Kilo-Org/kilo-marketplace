@@ -1153,6 +1153,122 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/agent-md-refactor
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/agent-md-refactor/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/agent-md-refactor.tar.gz
+  - id: aimlapi-async-jobs
+    description: >-
+      Use when generating video or music, or running a background Responses request through AI/ML API (aimlapi), or when
+      such a job looks stuck, never finishes, or its result URL has expired.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-async-jobs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-async-jobs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-async-jobs.tar.gz
+  - id: aimlapi-batch
+    description: >-
+      Use when many chat-completion requests can wait hours and should cost less on AI/ML API (aimlapi): evaluations,
+      labelling or summarizing a dataset, a JSONL file with input_file_id, the OpenAI Batch API, or a batch that failed,
+      expired or whose results cannot be downloaded.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-batch
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-batch/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-batch.tar.gz
+  - id: aimlapi-chat
+    description: >-
+      Use when calling AI/ML API (aimlapi) text models from code: moving an OpenAI or Anthropic integration to AI/ML
+      API, Chat Completions, Responses or Messages requests, streaming, tool or function calling, JSON schema output,
+      embeddings, or a chatbot, agent or RAG pipeline on AI/ML API.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-chat
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-chat/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-chat.tar.gz
+  - id: aimlapi-costs
+    description: >-
+      Use when someone asks what an AI/ML API (aimlapi) request cost, needs cost per request, customer or feature, wants
+      usage, spend, balance or request logs, or must reconcile AI/ML API charges with their own records.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-costs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-costs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-costs.tar.gz
+  - id: aimlapi-decisions
+    description: >-
+      Use when classifying, routing, moderating, triaging, scoring or extracting values from content with AI/ML API
+      (aimlapi) decision models on /v1/decisions (Jev, d1, HeyGen or Gemini Decision), reading their calibrated
+      probabilities, choosing a decision threshold, or calling a router such as aimlapi/dynamic-router,
+      typesafe/jev-router or liquid/d1-router and reading meta.router.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-decisions
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-decisions/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-decisions.tar.gz
+  - id: aimlapi-errors
+    description: >-
+      Use when an AI/ML API (aimlapi) request fails with a 4xx or 5xx status, times out, is refused for content policy,
+      or gets a Cloudflare 403, and when adding retries, backoff or error handling to an AI/ML API integration.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-errors
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-errors/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-errors.tar.gz
+  - id: aimlapi-images
+    description: >-
+      Use when generating or editing images through AI/ML API (aimlapi): text-to-image, image editing, reference images,
+      logos or product shots, or when an image request is refused for its parameters.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-images
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-images/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-images.tar.gz
+  - id: aimlapi-models
+    description: >-
+      Use when choosing an AI/ML API (aimlapi) model for a task, turning an informal model name into an exact id,
+      comparing models or prices, checking which parameters a model accepts, or when a model id returns 404 or looks
+      retired.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-models
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-models/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-models.tar.gz
+  - id: aimlapi-protocols
+    description: >-
+      Use when a model should be called through a protocol it does not natively speak on AI/ML API (aimlapi): DeepSeek,
+      Gemini, Qwen, Kimi or GPT through the Anthropic Messages API, the Anthropic SDK or Claude Code; Claude, Gemini or
+      DeepSeek through the OpenAI Responses API or Codex; or when such a call fails with previous_response_unavailable,
+      unsupported_parameter, unsupported_tool_type or 'not available on /v1/messages'.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-protocols
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-protocols/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-protocols.tar.gz
+  - id: aimlapi-sandbox
+    description: >-
+      Use when testing, mocking or running CI against AI/ML API (aimlapi) without spending credits, checking that code
+      parses responses, streams and tool calls, or triggering 403, 429, 500 or 503 errors, slow answers or failed jobs
+      on purpose.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-sandbox
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-sandbox/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-sandbox.tar.gz
+  - id: aimlapi-setup
+    description: >-
+      Use when a coding agent (Claude Code, Codex, OpenCode, Cline, OpenClaude, OpenClaw, Hermes Agent, zero, ZCode)
+      should run on AI/ML API (aimlapi) models, when someone wants to sign in to AI/ML API from a terminal, switch an
+      agent's provider to AI/ML API, or undo that setup.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-setup
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-setup/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-setup.tar.gz
+  - id: aimlapi-speech
+    description: >-
+      Use when turning text into speech or transcribing audio through AI/ML API (aimlapi): read text aloud, voice-over
+      or narration, an MP3 of a script, transcribe a meeting, call, podcast or local audio file, subtitles from speech,
+      or when a text-to-speech answer is not JSON or a transcription never finishes.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-speech
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-speech/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-speech.tar.gz
+  - id: aimlapi-webhooks
+    description: >-
+      Use when an AI/ML API (aimlapi) job should notify a server instead of being polled (video, music, speech-to-text,
+      background Responses, some image models, batches), when writing or debugging a webhook receiver, when signature
+      verification fails, when events do not arrive, or when the webhook signing secret must be created, rotated or has
+      leaked.
+    category: development
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/aimlapi-webhooks
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/aimlapi-webhooks/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/aimlapi-webhooks.tar.gz
   - id: anaconda-intelligence
     description: >-
       Guides package selection, security review, and troubleshooting in conda workflows using Anaconda MCP. Use when
