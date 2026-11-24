@@ -1,0 +1,30 @@
+id: finerx
+name: FineRx
+description: Observed US prescription prices by pharmacy chain and nearby stores, the free FineRx discount card, and US equivalents of foreign-brand medicines. 12 languages.
+author: FineRx
+url: https://github.com/andrewfinerx/finerx-mcp
+category: search
+content:
+  - name: Remote MCP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.finerxfinder.com/mcp"
+      }
+  - name: UVX
+    prerequisites:
+      - Python
+      - uv
+      - A free FineRx API key
+    content: |
+      {
+        "command": "uvx",
+        "args": ["finerx-mcp"],
+        "env": {
+          "FINERX_API_KEY": "{{FINERX_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: FineRx API Key
+        key: FINERX_API_KEY
+        placeholder: your_finerx_api_key_here
