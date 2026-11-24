@@ -1,0 +1,29 @@
+id: martina
+name: Martina
+description: >-
+  Nine AI marketing teammates for email outreach, Reddit, LinkedIn, lead scouting,
+  launches and directory submissions, SEO/GEO/AEO, social media, brand design and
+  video, using your connected accounts and a shared Business Brain. Hosted SaaS;
+  an active Martina plan is required. Scheduled workflows require Claude Code or
+  Codex; other compatible MCP clients can request individual marketing tasks.
+author: Martina
+url: https://github.com/eyoussef-builds/martina-mcp
+category: business
+prerequisites:
+  - An active Martina plan and a Martina account
+  - A personal Martina API key from your account; see https://getmartina.com/docs/agent-access
+  - Connected accounts for the marketing channels you want to use
+content:
+  - name: Hosted server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://getmartina.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{MARTINA_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Martina personal API key
+        key: MARTINA_API_KEY
+        placeholder: your_martina_api_key
