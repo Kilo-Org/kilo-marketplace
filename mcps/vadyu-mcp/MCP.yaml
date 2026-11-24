@@ -1,0 +1,38 @@
+id: vadyu-mcp
+name: Vadyu 2.0 AI Video Ad Studio
+description: Preview any Shopify or DTC store URL with zero authentication and render multi-cut 9:16, 4:5, 1:1, and 16:9 commercial AI video ads with 3D studio lighting and voiceover.
+author: Vadyu
+url: https://github.com/crawde/mcp-vadyu
+category: business
+content:
+  - name: Remote Streamable HTTP (Zero-Auth Preview & Catalog)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://vadyu.com/api/mcp"
+      }
+  - name: Remote Streamable HTTP (With Rendering API Key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://vadyu.com/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{VADYU_API_KEY}}"
+        }
+      }
+  - name: NPX (Local Stdio)
+    prerequisites:
+      - Node.js 18+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "github:crawde/mcp-vadyu"],
+        "env": {
+          "VADYU_API_KEY": "{{VADYU_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Vadyu API Key
+    key: VADYU_API_KEY
+    placeholder: vadyu_live_...
+    optional: true
