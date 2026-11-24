@@ -22,7 +22,7 @@ content:
     content: |
       {
         "command": "npx",
-        "args": ["-y", "github:GeminiGeorge22/spotify-play-count-mcp"],
+        "args": ["-y", "github:GeminiGeorge22/spotify-play-count-mcp#v0.1.0"],
         "env": {
           "APIFY_TOKEN": "{{APIFY_TOKEN}}"
         }
