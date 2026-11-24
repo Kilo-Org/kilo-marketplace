@@ -1,0 +1,34 @@
+id: cueston
+name: Cueston
+description: Builds, previews, publishes and measures in-app guidance for SaaS web apps (product tours, tooltips, banners,
+  checklists, surveys and announcements), and reads product analytics, through Cueston's hosted MCP server.
+author: Cueston
+url: https://github.com/andreycretsu/cueston-mcp
+category: productivity
+prerequisites:
+  - Cueston account (free plan at https://app.cueston.com/signup)
+content:
+  - name: Cueston hosted OAuth server
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.cueston.com/api/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js 20+
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "cueston", "mcp"],
+        "env": {
+          "CUESTON_API_KEY": "{{CUESTON_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Cueston secret key (sk_..., NPX only; or run npx cueston login)
+    key: CUESTON_API_KEY
+    placeholder: sk_your_secret_key
+    optional: true
