@@ -1,0 +1,22 @@
+id: enhanciar
+name: Enhanciar
+description: Answers questions from your company's Slack, Gmail, Google Drive, Notion, Jira, Linear and GitHub, with a link to every source.
+author: Enhanciar
+url: https://github.com/enhanciar/enhanciar-mcp
+category: search
+prerequisites:
+  - Enhanciar account with a paid plan (https://enhanciar.in)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://enhanciar.in/enhanciar/mcp/",
+        "headers": {
+          "Authorization": "Bearer {{ENHANCIAR_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Enhanciar API Key
+    key: ENHANCIAR_API_KEY
+    placeholder: dh_your_key
