@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Setup"
+  short_description: "Connect your coding agent to AI/ML API"
+  default_prompt: "Use $aimlapi-setup to connect this agent to AI/ML API with the aimlapi CLI."

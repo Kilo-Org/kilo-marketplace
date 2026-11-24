@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Webhooks"
+  short_description: "Receive results by signed webhook"
+  default_prompt: "Use $aimlapi-webhooks to receive AI/ML API results by webhook and verify them."

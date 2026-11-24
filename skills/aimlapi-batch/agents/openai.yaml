@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Batch"
+  short_description: "Bulk chat completions through the Batch API"
+  default_prompt: "Use $aimlapi-batch to run this dataset through the AI/ML API Batch API."

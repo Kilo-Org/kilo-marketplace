@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Sandbox"
+  short_description: "Test integrations for free"
+  default_prompt: "Use $aimlapi-sandbox to test this AI/ML API integration without spending credits."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI/ML API Costs"
+  short_description: "Cost per call, tracing, usage and spend reports"
+  default_prompt: "Use $aimlapi-costs to record the cost of every AI/ML API call this code makes."
