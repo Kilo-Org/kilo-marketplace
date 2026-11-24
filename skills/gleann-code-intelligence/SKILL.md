@@ -17,8 +17,8 @@ metadata:
   source:
     repository: 'https://github.com/tevfik/gleann'
     path: skills/gleann-code-intelligence
-    ref: feature/companion-skill
-    commit: ca8a133001fe2fae309734e828e0b27430077adc
+    ref: main
+    commit: ddf938446633e1d765c36e9e8f7b6902884cce8b
 ---
 
 # Gleann Code Intelligence
