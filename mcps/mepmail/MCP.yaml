@@ -1,0 +1,37 @@
+id: mepmail
+name: MepMail
+description: Sending API, SMTP and real mailboxes on your domain for apps and AI agents, with official MCP.
+author: JE4NVRG
+url: https://github.com/JE4NVRG/mepmail
+category: productivity
+prerequisites:
+  - A MepMail account (https://mepmail.dev/signup)
+  - A verified sending domain for sending
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.mepmail.dev/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+      - A team API key
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@mepmail/mcp"],
+        "env": {
+          "MEPMAIL_API_KEY": "{{MEPMAIL_API_KEY}}",
+          "MEPMAIL_BASE_URL": "{{MEPMAIL_BASE_URL}}"
+        }
+      }
+parameters:
+  - name: Team API key
+    key: MEPMAIL_API_KEY
+    placeholder: ms_...
+  - name: API origin
+    key: MEPMAIL_BASE_URL
+    placeholder: https://api.mepmail.dev
+    optional: true
