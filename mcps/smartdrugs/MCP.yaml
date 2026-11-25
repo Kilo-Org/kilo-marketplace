@@ -1,0 +1,16 @@
+id: smartdrugs
+name: SmartDrugs
+description: Independent evidence-based information platform on nootropics (PT-BR). Public read-only access, no sign-up. With Google sign-in, users can also join the community (report, comment, react), always with confirmation in the chat.
+author: SmartDrugs
+url: https://github.com/smartdrugs-org/mcp
+category: search
+prerequisites:
+  - None required to read the catalog
+  - Optional Google sign-in on smartdrugs.com.br to join the community
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://smartdrugs.com.br/mcp"
+      }
