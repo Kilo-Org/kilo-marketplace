@@ -1,0 +1,22 @@
+id: knolo
+name: Knolo
+description: Read-only search over a pinned local Knolo Knowledge Image. The server is stdio and does not listen on a port.
+author: HiveForensics-AI
+url: https://github.com/HiveForensics-AI/knolo-core
+category: data
+prerequisites:
+  - Node.js
+  - An absolute knolo-mcp.json that pins a local Knowledge Image
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@knolo/mcp@0.2.4", "--config", "{{KNOLO_MCP_CONFIG}}"]
+      }
+parameters:
+  - name: Knolo MCP config
+    key: KNOLO_MCP_CONFIG
+    placeholder: /absolute/knolo-mcp.json
