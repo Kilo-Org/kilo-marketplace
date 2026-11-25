@@ -1,0 +1,37 @@
+id: acemusic-acedatacloud
+name: ACE Music by Ace Data Cloud
+description: >-
+  Create ACE Music songs and lyrics, import reference audio, cover or blend tracks,
+  and retrieve the original task through Ace Data Cloud.
+author: Ace Data Cloud
+url: https://github.com/AceDataCloud/AceMusicMCP/blob/b1024cd20863b093e819404a580efe2d46099a3f/kilo/README.md
+category: productivity
+prerequisites:
+  - An Ace Data Cloud application API key with ACE Music access; audio and lyrics operations may incur charges
+  - Use a private user configuration for the application API key
+content:
+  - name: Hosted (API token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://acemusic.mcp.acedata.cloud/mcp",
+        "headers": {
+          "Authorization": "Bearer {{ACEDATACLOUD_API_TOKEN}}"
+        },
+        "oauth": false
+      }
+  - name: Local (UVX, pinned)
+    prerequisites:
+      - Python 3.10 or later and uvx available on PATH
+    content: |
+      {
+        "command": "uvx",
+        "args": ["mcp-acemusic==2026.11.24.0"],
+        "env": {
+          "ACEDATACLOUD_API_TOKEN": "{{ACEDATACLOUD_API_TOKEN}}"
+        }
+      }
+parameters:
+  - name: Ace Data Cloud application API key
+    key: ACEDATACLOUD_API_TOKEN
+    placeholder: Paste the raw application API key
