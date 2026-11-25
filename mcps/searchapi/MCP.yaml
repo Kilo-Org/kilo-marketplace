@@ -1,0 +1,31 @@
+id: searchapi
+name: SearchApi
+description: Real-time search results as structured JSON from Google (Web, Maps, Shopping, Flights, Hotels, News,
+  Scholar, Images, Jobs, Trends), Bing, YouTube, Amazon, and 100+ other engines, through SearchApi's hosted MCP server.
+author: SearchApi
+url: https://www.searchapi.io/integrations/mcp
+category: search
+prerequisites:
+  - SearchApi account (free tier available)
+content:
+  - name: Hosted server (OAuth)
+    prerequisites:
+      - MCP client with OAuth support
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.searchapi.io/mcp"
+      }
+  - name: Hosted server (MCP token)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://www.searchapi.io/mcp",
+        "headers": {
+          "X-MCP-Token": "{{SEARCHAPI_MCP_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: SearchApi MCP Token
+        key: SEARCHAPI_MCP_TOKEN
+        placeholder: your_searchapi_mcp_token
