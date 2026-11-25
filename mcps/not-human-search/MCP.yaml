@@ -1,0 +1,16 @@
+id: not-human-search
+name: Not Human Search
+description: >-
+  Search indexed websites, APIs, and services by agent-readiness signals.
+  Inspect site details, cached llms.txt content, and OpenAPI summaries.
+  Public search requires no API key. Provider exchange actions are disabled.
+author: unitedideas
+url: https://github.com/unitedideas/nothumansearch
+category: search
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://nothumansearch.ai/mcp"
+      }
