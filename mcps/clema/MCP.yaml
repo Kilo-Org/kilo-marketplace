@@ -1,0 +1,15 @@
+id: clema
+name: Clema
+description: Works the higher-ed institutional research (IR) data request queue (list, read, create and update tickets) and queries the public IPEDS and College Scorecard datasets with read-only SQL. Hosted remote server with OAuth sign-in in the browser; nothing to install.
+author: Clema
+url: https://github.com/wilsonbright/clema-mcp
+category: data
+prerequisites:
+  - A paid Clema plan or free trial (sign up at https://app.clema.ai/sign-up); the server signs in with OAuth in the browser
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.clema.ai/mcp"
+      }
