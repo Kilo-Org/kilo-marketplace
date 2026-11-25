@@ -1,7 +1,7 @@
 id: taplio
-name: Taplio
-description: Write, schedule and analyze LinkedIn posts, find inspiration, comment, like and connect through your Taplio
-  account. 35 tools (17 read-only, 18 write); write tools can publish posts, comments, likes and connection requests on
+name: Taplio for LinkedIn
+description: Find leads in Taplio's lead database, write, schedule and analyze LinkedIn posts, find inspiration, comment,
+  like and connect through your Taplio account. 38 tools (20 read-only, 18 write); write tools can publish posts, comments, likes and connection requests on
   your LinkedIn account.
 author: Taplio
 url: https://github.com/TaplioOfficial/taplio-linkedin-mcp
