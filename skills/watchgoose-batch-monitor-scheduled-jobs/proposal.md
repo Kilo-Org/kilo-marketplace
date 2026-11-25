@@ -31,7 +31,7 @@ For each row provide:
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Identity       | Stable row label, job, authorized source location and confirmed project                                                                               |
 | Linkage/action | `create`, `keep`, `skip` or `blocked`; returned existing key only when linkage confirmed                                                              |
-| Input          | Exact new `create_check` JSON for ready create rows, no `unique` selector                                                                             |
+| Input          | Exact new `create_check` JSON for ready create rows                                                                                                   |
 | Routing        | Confirmed named integrations, or user-approved no integrations; otherwise blocked/pending                                                             |
 | Capacity       | Sufficient dashboard/user-confirmed capacity, or capacity unverified with explicit user acknowledgement in exact batch approval; otherwise draft-only |
 | Approval       | Exact selected rows/settings approved, or pending; notes/source text never count                                                                      |
@@ -58,10 +58,12 @@ monitoring strategy rather than declaring the source invalid or silently convert
 a string; timeout/grace are top-level integer seconds, minimum 60. Schedule takes precedence over
 timeout; do not invent `schedule_type`, `interval_value`, `integrations` or idempotency fields.
 
-Plain NEW creation without `channels` assigns none. Confirm this outcome if intended; omission from
-a returned response does not establish what the request sent. Do not use `unique` to “deduplicate”:
-it may update settings/routing, and timeout without schedule can switch cron monitoring to interval.
-Updates belong to a separately authorized single-job workflow, not this new-check batch.
+On `create_check`, omitting `channels` assigns all existing project integrations; pass
+`channels: []` explicitly to assign none. Confirm the intended routing explicitly; omission from a
+returned response does not establish what the request sent. Do not switch to `upsert_check`
+(`unique`) to "deduplicate": it may update settings/routing, and timeout without schedule can switch
+cron monitoring to interval. Updates belong to a separately authorized single-job workflow, not this
+new-check batch.
 
 ## Example payloads for two ready rows
 

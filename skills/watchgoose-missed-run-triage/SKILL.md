@@ -10,8 +10,8 @@ metadata:
     repository: 'https://github.com/pixeware/watchgoose-plugin'
     path: skills/watchgoose-missed-run-triage
     license_path: LICENSE
-    ref: v1.1.3
-    commit: 3839e81ee371bcd81c4ea0032894ddcb8dd21a73
+    ref: v1.2.0
+    commit: 8c755cba2455337d8d2c3911da0535e2f5eed873
 ---
 
 # Triage a missed heartbeat
@@ -21,11 +21,11 @@ delivery differs from heartbeat reception.
 
 ## Read-only tool boundary
 
-Discover actual namespaced **`list_checks`, `get_check`, `list_flips`, `list_pings`** and schemas.
-`list_pings` is non-mutating but currently exposed only with read-write connection access. Use it
-when available; otherwise report that limitation and continue with check/flip evidence. Never
-request credentials, change grants, mutate checks, fetch ping bodies, test notifications, use an
-alternate API, send pings, or run jobs.
+Discover namespaced **`list_checks`, `get_check`, `list_flips`, `list_pings`**. If unauthorized,
+tell user to sign in (`/mcp` → Authenticate / `codex mcp login watchgoose`). `list_pings` is
+non-mutating, read-write only; if absent, note it and use check/flip evidence. Never request
+credentials, change grants, mutate checks, fetch ping bodies, test notifications, use another API,
+send pings, or run jobs.
 
 Every call uses one selected project. `list_checks` accepts only `slug`, `tags`, `limit` (1–100).
 `get_check` takes the returned lowercase 40-character `unique_key`, not a slug/UUID/ping URL.
