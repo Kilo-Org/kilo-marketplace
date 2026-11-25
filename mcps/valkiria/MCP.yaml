@@ -1,0 +1,16 @@
+id: valkiria
+name: Valkiria
+description: Ad management workspace for AI assistants. Reads the ad accounts you connect (Google Ads, Meta, TikTok, LinkedIn, Microsoft Advertising, Amazon Ads, Telegram Ads and others) with social media, SEO and app-store data, explains spend and campaign health, drafts campaigns and proposes changes. Every proposal waits for the owner's approval in Valkiria; nothing reaches an ad account before that.
+author: Valkiria
+url: https://github.com/valkiria-pro/valkiria-ai-plugins
+category: business
+prerequisites:
+  - Valkiria account with at least one ad account connected
+  - MCP client with OAuth support
+content:
+  - name: Valkiria hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://valkiria.pro/mcp"
+      }
