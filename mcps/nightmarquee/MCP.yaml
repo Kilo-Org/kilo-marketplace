@@ -1,0 +1,17 @@
+id: nightmarquee
+name: NightMarquee
+description: Cinematic, animated website designs for your coding agent. Ask for a landing page or hero section and it
+  finds a design with a live demo, fetches its build prompt with your brand name in it and downloads a runnable Next.js
+  starter where one exists. It can also check any public site for signs it was made by AI and list fixes to paste.
+author: NightMarquee
+url: https://github.com/nightmarquee/nightmarquee-mcp
+category: development
+prerequisites:
+  - A free NightMarquee account for footage, starters and the site check (sign-in opens in the browser); search and free designs need none
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.nightmarquee.com/mcp"
+      }
