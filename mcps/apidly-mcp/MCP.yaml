@@ -1,0 +1,24 @@
+id: apidly-mcp
+name: Apidly Cloud MCP
+description: Lets an assistant price, launch and manage Apidly Cloud GPU servers and endpoints. Read-only by default; writes need --allow-writes and a per-launch price cap.
+author: Apidly Cloud
+url: https://github.com/idimetrix/apidly-tools/tree/main/mcp
+category: cloud
+prerequisites:
+  - Node.js 18 or newer
+  - Apidly API key
+content:
+  - name: Local stdio server (read-only)
+    prerequisites:
+      - Node.js 18 or newer
+    content: |
+      {
+        "command": "apidly-mcp",
+        "env": {
+          "APIDLY_API_KEY": "{{APIDLY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Apidly API key
+    key: APIDLY_API_KEY
+    placeholder: Create one in the Apidly console
