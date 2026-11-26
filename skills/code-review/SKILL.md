@@ -12,7 +12,7 @@ metadata:
   source:
     repository: 'https://github.com/coderabbitai/skills'
     path: skills/code-review
-    ref: 4baf5ada0b20ca2fd014660a84c43ae589ff346e
+    ref: main
     commit: 4baf5ada0b20ca2fd014660a84c43ae589ff346e
     license_path: LICENSE
   author: CodeRabbit
