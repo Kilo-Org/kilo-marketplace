@@ -1,0 +1,15 @@
+id: iqfluence
+name: IQFluence
+description: Influencer analytics for Instagram, TikTok and YouTube. Search 455M+ creators, open audience reports with fake-follower checks, compare creators, check audience overlap and build media plans.
+author: IQFluence
+url: https://github.com/iqfluence/iqfluence-mcp
+category: data
+prerequisites:
+  - IQFluence account (OAuth sign-in in the browser on first use)
+content:
+  - name: Remote (Streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.iqfluence.io/mcp"
+      }
