@@ -1,0 +1,16 @@
+id: motionvideo
+name: MotionVideo
+description: Searches the motionvideo.xyz catalog of AI-made motion videos by keyword, category, model, colour, or creator, pulls the original prompt and settings behind any entry, and browses motion tools, agent skills, and studios. Catalog tools are read-only and work without an account.
+author: motionvideohq
+url: https://github.com/motionvideohq/motionvideo-mcp
+category: search
+prerequisites:
+  - Optional free motionvideo.xyz account (OAuth sign-in) for bookmarks and featured submissions
+  - Optional MotionVideo Pro or Business plan for the Moves prompt library
+content:
+  - name: MotionVideo hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.motionvideo.xyz/mcp"
+      }
