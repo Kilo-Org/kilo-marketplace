@@ -51,6 +51,14 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/meeting-insights-analyzer
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/meeting-insights-analyzer/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/meeting-insights-analyzer.tar.gz
+  - id: redya-xiaohongshu
+    description: >-
+      使用红鸦 AI 为小红书生成普通图文、商品种草图文、逐页复刻稿和 Live 实况图。支持分步或按篇批量创作、文案敏感词检测，以及将确认的草稿交给发布插件。
+    category: business
+    author: rnthking
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redya-xiaohongshu
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redya-xiaohongshu/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redya-xiaohongshu.tar.gz
   - id: canvas-design
     description: >-
       Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the
