@@ -2,7 +2,7 @@ id: winly
 name: Winly
 description: Run your Instagram and Facebook DMs from Claude, ChatGPT or any AI agent.
 author: Winly AI
-url: https://getwinly.ai/mcp/
+url: https://github.com/getwinly/winly-mcp
 category: productivity
 prerequisites:
   - Winly account
