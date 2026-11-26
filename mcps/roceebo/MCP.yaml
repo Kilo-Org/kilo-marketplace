@@ -1,0 +1,16 @@
+id: roceebo
+name: Roceebo
+description: "Roceebo receipts and expenses: read, plus edits, receipts and budgets you approve in Roceebo."
+author: Roceebo
+url: https://github.com/Roceebo/roceebo-mcp
+category: finance
+prerequisites:
+  - Roceebo account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://roceebo.com/mcp"
+      }
+      
