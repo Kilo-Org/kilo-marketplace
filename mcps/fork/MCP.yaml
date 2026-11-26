@@ -1,0 +1,13 @@
+id: fork
+name: Fork
+description: Read and search tested fixes for AI agent harnesses (rules, skills, settings, tools), each with the case where it fails. No account needed to read.
+author: Fork
+url: https://fork.zone
+category: development
+content:
+  - name: Fork MCP (no account)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://fork.zone/api/mcp/core"
+      }
