@@ -1,0 +1,24 @@
+id: smartoken
+name: SmarToken MCP
+description: Discover SmarToken model metadata and pricing, and make text completions through its prepaid API gateway. Model lookup is free; completions require a user API key and may incur charges.
+author: LiuXiyun
+url: https://github.com/LiuXiyun/smartoken-mcp
+category: development
+prerequisites:
+  - Install uv and ensure uvx is on your PATH.
+  - For chat completions, create a SmarToken API key and check your available credit and key budget.
+content:
+  - name: uvx
+    prerequisites:
+      - uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["smartoken-mcp==0.1.3"],
+        "env": { "SMTOKEN_API_KEY": "{{SMTOKEN_API_KEY}}" }
+      }
+parameters:
+  - name: SmarToken API Key
+    key: SMTOKEN_API_KEY
+    placeholder: your_smartoken_api_key
+    optional: true
