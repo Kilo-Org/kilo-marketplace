@@ -1,0 +1,8 @@
+id: "electroatlas"
+name: "ЭлектроАтлас"
+description: "Compare electric cars and plug-in hybrids in Russia. Look up prices in roubles, rated and winter range, sales, dealers and import fees. Answers are in Russian and link to the catalog with sources."
+author: "ЭлектроАтлас"
+url: "https://github.com/electroatlas/mcp"
+category: "data"
+content: |
+  {"type":"streamable-http","url":"https://electroatlas.ru/mcp"}
