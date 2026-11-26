@@ -1,0 +1,31 @@
+id: hermoso
+name: Hermoso
+description: AI marketing agent. Research the ads competitors run, make image and video ads, publish and schedule posts
+  to your own social channels, run and report on ad campaigns, and put a site live with a domain, email and payments.
+author: hermoso-ai
+url: https://github.com/hermoso-ai/hermoso
+category: business
+prerequisites:
+  - Hermoso account (free to start at https://hermoso.ai)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.hermoso.ai/mcp"
+      }
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "hermoso", "mcp"],
+        "env": {
+          "HERMOSO_TOKEN": "{{HERMOSO_TOKEN}}"
+        }
+      }
+    parameters:
+      - name: Hermoso agent key (MCP & CLI tab in the app)
+        key: HERMOSO_TOKEN
+        placeholder: hmk_your_key_here
