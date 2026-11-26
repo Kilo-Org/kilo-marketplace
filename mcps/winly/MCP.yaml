@@ -1,0 +1,29 @@
+id: winly
+name: Winly
+description: Run your Instagram and Facebook DMs from Claude, ChatGPT or any AI agent.
+author: Winly AI
+url: https://github.com/getwinly/winly-mcp
+category: productivity
+prerequisites:
+  - Winly account
+content:
+  - name: Winly hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.sbccrm.com/bld/api/mcp"
+      }
+  - name: Winly hosted server with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.sbccrm.com/bld/api/mcp",
+        "headers": {
+          "X-API-Key": "{{WINLY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Winly API Key
+    key: WINLY_API_KEY
+    placeholder: your_winly_api_key
+    optional: true
