@@ -2063,6 +2063,25 @@ items:
     prerequisites:
       - Gumlet account
       - API key from the Gumlet dashboard under Developer, API keys
+    skills:
+      - id: gumlet-account
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-account.tar.gz
+      - id: gumlet-video-workspace
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-workspace.tar.gz
+      - id: gumlet-video-asset
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-asset.tar.gz
+      - id: gumlet-video-asset-upload
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-asset-upload.tar.gz
+      - id: gumlet-video-playlist
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-playlist.tar.gz
+      - id: gumlet-video-live
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-live.tar.gz
+      - id: gumlet-channel-viewer
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-channel-viewer.tar.gz
+      - id: gumlet-image-source
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-image-source.tar.gz
+      - id: gumlet-image-purge
+        content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-image-purge.tar.gz
     content:
       - name: Remote
         content: |

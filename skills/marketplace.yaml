@@ -1569,6 +1569,95 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/grilling
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/grilling/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/grilling.tar.gz
+  - id: gumlet-account
+    description: >-
+      Read current user details, organization details, audit logs, invoice history, and upcoming billing information
+      using the authenticated Gumlet CLI.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-account
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-account/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-account.tar.gz
+  - id: gumlet-channel-viewer
+    description: >-
+      List, invite, and remove viewers for members-only Gumlet video channels using the CLI. Requires an authenticated
+      Gumlet CLI.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-channel-viewer
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-channel-viewer/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-channel-viewer.tar.gz
+  - id: gumlet-image-purge
+    description: >-
+      Purge selected image paths from the Gumlet CDN cache using a source ID and the Gumlet CLI. Requires the Gumlet CLI
+      to be installed and authenticated via `gumlet login`.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-image-purge
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-image-purge/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-image-purge.tar.gz
+  - id: gumlet-image-source
+    description: >-
+      Manage Gumlet image sources using the Gumlet CLI. Use this skill to list all image sources, get details of a
+      specific source, create a new image source connected to a storage backend (Amazon S3, GCS, web proxy, DigitalOcean
+      Spaces, Wasabi, Azure, Cloudflare, Backblaze, etc.), update an existing source's configuration, or delete a
+      source. Requires the Gumlet CLI to be installed and authenticated via `gumlet login`.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-image-source
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-image-source/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-image-source.tar.gz
+  - id: gumlet-video-asset
+    description: >-
+      Manage Gumlet video assets using the Gumlet CLI. Use this skill to create assets from URLs, list, inspect, update,
+      manage thumbnails, delete, or recover assets, or to tag or delete assets in bulk. Requires the Gumlet CLI to be
+      installed and authenticated via `gumlet login`.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-video-asset
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-video-asset/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-asset.tar.gz
+  - id: gumlet-video-asset-upload
+    description: >-
+      Upload a local video file to Gumlet as a new video asset using the Gumlet CLI. Use this skill when you need to
+      upload a video file from the local filesystem to Gumlet for transcoding and delivery. The CLI handles the two-step
+      process automatically: creating the upload session and streaming the file to the returned pre-signed URL. A
+      real-time progress indicator is shown during upload. Requires the Gumlet CLI to be installed and authenticated via
+      gumlet login.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-video-asset-upload
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-video-asset-upload/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-asset-upload.tar.gz
+  - id: gumlet-video-live
+    description: >-
+      Manage Gumlet live streaming workspaces and assets, including stream lifecycle, status history, and thumbnail
+      upload URLs. Requires an authenticated Gumlet CLI.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-video-live
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-video-live/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-live.tar.gz
+  - id: gumlet-video-playlist
+    description: >-
+      Manage Gumlet video playlists using the Gumlet CLI. Use this skill to list, create, update, or delete playlists,
+      and to view, add, remove, or reorder playlist assets. Requires the Gumlet CLI to be installed and authenticated
+      via `gumlet login`.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-video-playlist
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-video-playlist/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-playlist.tar.gz
+  - id: gumlet-video-workspace
+    description: >-
+      Manage Gumlet video workspaces and their folders using the Gumlet CLI. Use this skill to list, get, create,
+      update, or delete workspaces and folders, and to move assets into or out of folders. Requires the Gumlet CLI to be
+      installed and authenticated via `gumlet login`.
+    category: development
+    author: Gumlet
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/gumlet-video-workspace
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/gumlet-video-workspace/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/gumlet-video-workspace.tar.gz
   - id: jupyter-notebook
     description: >-
       Use whenever the user works with Jupyter notebooks (`.ipynb`), including creating, inspecting, editing, executing,

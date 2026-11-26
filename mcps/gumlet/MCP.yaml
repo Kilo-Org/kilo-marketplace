@@ -8,6 +8,16 @@ category: development
 prerequisites:
   - Gumlet account
   - API key from the Gumlet dashboard under Developer, API keys
+skills:
+  - gumlet-account
+  - gumlet-video-workspace
+  - gumlet-video-asset
+  - gumlet-video-asset-upload
+  - gumlet-video-playlist
+  - gumlet-video-live
+  - gumlet-channel-viewer
+  - gumlet-image-source
+  - gumlet-image-purge
 content:
   - name: Remote
     content: |
