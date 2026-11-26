@@ -1,0 +1,39 @@
+id: redlinejs
+name: RedlineJS
+description: Visual website feedback for coding agents. Reviewers comment on the live page with the Redline widget, and
+  the agent lists, reads, answers and resolves each comment with the exact element attached (selector, plus component
+  and source file in development builds). Works with a local review or a shared review in Redline Cloud.
+author: perpetio
+url: https://github.com/perpetio/redlinejs-mcp
+category: development
+prerequisites:
+  - The Redline script on the page under review (https://redlinejs.com/docs)
+content:
+  - name: NPX (local review)
+    prerequisites:
+      - Node.js 20 or later
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@perpetio/redline@latest"]
+      }
+  - name: NPX (Redline Cloud review)
+    prerequisites:
+      - Node.js 20 or later
+      - A Redline Cloud review and its agent token
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "@perpetio/redline@latest"],
+        "env": {
+          "REDLINE_REVIEW": "{{REDLINE_REVIEW}}",
+          "REDLINE_INVITE": "{{REDLINE_INVITE}}"
+        }
+      }
+    parameters:
+      - name: Review ID
+        key: REDLINE_REVIEW
+        placeholder: rvw_your_review_id
+      - name: Agent token
+        key: REDLINE_INVITE
+        placeholder: agt_your_agent_token
