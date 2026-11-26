@@ -1,0 +1,45 @@
+id: feraterra
+name: FeraTerra MCP
+description: Connects AI agents to FeraTerra (Arena Exchange) via a zero-dependency 24-tool MCP gateway for cross-margined spot, perpetuals, formula perps, bounded claims, spread books, stateless pre-trade margin previews, zero-capital flash arbitrage and liquidation scanning, Gladiator leaderboard inspection, and non-custodial L2 Clearinghouse Merkle solvency verification; withdrawals remain disabled by default.
+author: FeraTerra
+url: https://github.com/FeraTerra/feraterra-sdk
+category: business
+prerequisites:
+  - Python 3.10+ and uv
+content:
+  - name: UVX (Public Base Sepolia Testnet)
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["feraterra-sdk", "--testnet"]
+      }
+  - name: UVX (Read-Only Testnet)
+    prerequisites:
+      - Python 3.10+ and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["feraterra-sdk", "--testnet", "--read-only"]
+      }
+  - name: UVX (Authenticated Testnet with Notional Cap)
+    prerequisites:
+      - Python 3.10+ and uv
+      - Arena Exchange testnet API credentials
+    content: |
+      {
+        "command": "uvx",
+        "args": ["feraterra-sdk", "--testnet", "--max-order-notional-usd", "5000"],
+        "env": {
+          "ARENA_API_KEY": "{{ARENA_API_KEY}}",
+          "ARENA_API_SECRET": "{{ARENA_API_SECRET}}"
+        }
+      }
+    parameters:
+      - name: Arena API Key
+        key: ARENA_API_KEY
+        placeholder: your_arena_testnet_api_key
+      - name: Arena API Secret
+        key: ARENA_API_SECRET
+        placeholder: your_arena_testnet_api_secret
