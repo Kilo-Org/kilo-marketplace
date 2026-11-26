@@ -1,0 +1,30 @@
+id: figment-mac
+name: Figment Mac
+description: Rents a cloud Mac by the hour or day when a task needs macOS, such as an Xcode build or the iOS Simulator,
+  then returns its SSH access and stops it when the task is done. Ordering costs money; the agent asks the user first.
+author: Figment
+url: https://github.com/figment-so/figment-mac
+category: development
+prerequisites:
+  - A Figment agent account (created by the figment_create_account tool) and prepaid credit paid by the user
+content:
+  - name: Remote (streamable HTTP)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://figment.so/api/mcp"
+      }
+  - name: Remote with API key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://figment.so/api/mcp",
+        "headers": {
+          "Authorization": "Bearer {{FIGMENT_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Figment API key
+    key: FIGMENT_API_KEY
+    placeholder: fgm_your_api_key
+    optional: true
