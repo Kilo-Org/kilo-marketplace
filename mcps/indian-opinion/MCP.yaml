@@ -1,0 +1,13 @@
+id: indian-opinion
+name: Indian Opinion
+description: Indian news briefs synthesised from 50+ outlets, with corroboration counts and per-outlet framing.
+author: Indian Opinion
+url: https://github.com/IndianOpinion/mcp
+category: search
+content:
+  - name: Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://indianopinion.org/mcp"
+      }
