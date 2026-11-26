@@ -1,0 +1,30 @@
+id: databuddy
+name: Databuddy
+description: Query web and product analytics in Databuddy, including traffic, funnels, goals, errors, Web Vitals, session
+  replays, and why a metric moved, and manage feature flags, short links, and annotations.
+author: Databuddy
+url: https://www.databuddy.cc/docs/api/mcp
+category: observability
+prerequisites:
+  - Databuddy account
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.databuddy.cc/v1/mcp"
+      }
+  - name: Remote API Key
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.databuddy.cc/v1/mcp",
+        "headers": {
+          "x-api-key": "{{DATABUDDY_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Databuddy API Key
+    key: DATABUDDY_API_KEY
+    placeholder: dbdy_your_api_key
+    optional: true
