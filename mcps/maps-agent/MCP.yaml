@@ -1,0 +1,8 @@
+id: "maps-agent"
+name: "Maps Agent"
+description: "Find guides, studies and definitions about Google Business Profile and local SEO. Use sources on reviews, categories and Google Maps rankings, and request a public profile audit where available."
+author: "Maps Agent"
+url: "https://github.com/maps-agent/mcp"
+category: "search"
+content: |
+  {"type":"streamable-http","url":"https://maps-agent.com/mcp"}
