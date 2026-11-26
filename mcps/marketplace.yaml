@@ -4538,7 +4538,7 @@ items:
     description: SSH, SFTP, databases and monitoring for your own Linux servers. Run commands and background jobs, read and
       write files, query databases, read metrics, alerts and pending security updates on the servers you connected, without
       handing the agent an SSH key. Hosted remote server with OAuth 2.1 sign-in, per-server command policy (full / allowlist /
-      read-only) and an audit log. 23 tools.
+      read-only) and an audit log. 36 tools.
     author: termalinapp
     url: https://github.com/termalinapp/termalin-plugin
     category: development
@@ -4573,6 +4573,21 @@ items:
         prerequisites:
           - Termalin account (Pro plan or 14-day trial) with at least one enrolled server
           - An API key created in the account page (API keys & MCP), for clients without OAuth support
+      - name: Local stdio bridge (npx)
+        content: |
+          {
+            "command": "npx",
+            "args": ["-y", "termalin-mcp"],
+            "env": {
+              "TERMALIN_API_KEY": "{{TERMALIN_API_KEY}}"
+            }
+          }
+        parameters:
+          - name: Termalin API Key
+            key: TERMALIN_API_KEY
+            placeholder: tk_live_...
+        prerequisites:
+          - Node.js 18 or newer; the open-source bridge termalin-mcp (npm, MIT) forwards every message to the hosted server with the API key from the environment
   - id: time
     name: Time
     description: Provides time and timezone conversion capabilities using IANA timezone names, with automatic system
