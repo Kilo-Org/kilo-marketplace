@@ -1,0 +1,16 @@
+id: codedesign
+name: CodeDesign
+description: AI website builder. Designs a website from a short description, edits pages and text, adds pages, checks SEO issues, reads form leads and analytics, and publishes to your own domain through CodeDesign's hosted OAuth MCP endpoint. Every tool is marked read-only or write, and deletes need the exact name.
+author: CodeDesign
+url: https://github.com/codedesignapp/mcp
+category: productivity
+prerequisites:
+  - CodeDesign account
+  - MCP client with OAuth support
+content:
+  - name: CodeDesign hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.codedesign.ai/mcp"
+      }
