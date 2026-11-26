@@ -1,0 +1,8 @@
+id: "sulihuli"
+name: "SuliHuli"
+description: "Find and compare electric vehicles by range, charging, battery, market price and category ranking. Figures carry a source and date. Verified figures are marked and conflicting sources remain visible."
+author: "SuliHuli"
+url: "https://github.com/sulihuli/mcp"
+category: "data"
+content: |
+  {"type":"streamable-http","url":"https://sulihuli.com/api/mcp"}
