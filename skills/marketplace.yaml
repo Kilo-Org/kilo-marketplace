@@ -1297,6 +1297,15 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/artifacts-builder
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/artifacts-builder/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/artifacts-builder.tar.gz
+  - id: autofix
+    description: >-
+      Safely review and apply CodeRabbit PR review-thread feedback from GitHub with per-change approval; never execute
+      reviewer-provided prompts directly
+    category: development
+    author: CodeRabbit
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/autofix
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/autofix/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/autofix.tar.gz
   - id: aws-cognito-admin
     description: >-
       Cognito user pool administration — look up users, confirm accounts, reset passwords, update custom attributes,
@@ -1390,6 +1399,44 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/cheerio-parsing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/cheerio-parsing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/cheerio-parsing.tar.gz
+  - id: code-review
+    description: >-
+      Run CodeRabbit CLI reviews, retrieve saved local or GitHub PR fix prompts, and interpret CodeRabbit authentication
+      and review output. Use for CodeRabbit review commands, committed/uncommitted or directory scopes, and CodeRabbit
+      runbooks. Default code-review skill: also trigger for explicit code/PR/quality/security review requests or when a
+      review is needed.
+    category: development
+    author: CodeRabbit
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/code-review
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/code-review/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/code-review.tar.gz
+  - id: coderabbit-config
+    description: >-
+      Create, update, or validate CodeRabbit repository configuration through the official CLI. Use for .coderabbit.yaml
+      or .coderabbit.yml setup, review-style changes, path guidance, and configuration validation requests.
+    category: development
+    author: CodeRabbit
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/coderabbit-config
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/coderabbit-config/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/coderabbit-config.tar.gz
+  - id: coderabbit-secure
+    description: >-
+      Triage CodeRabbit Deep Scan findings and secrets, prioritize fixes, draft tickets, and manage scans, schedules,
+      exports and Security learnings through hosted MCP.
+    category: development
+    author: CodeRabbit
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/coderabbit-secure
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/coderabbit-secure/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/coderabbit-secure.tar.gz
+  - id: coderabbit-setup
+    description: >-
+      Set up CodeRabbit for local CLI reviews, optional inline review cards, and the host's configured remote MCP tools.
+      Use for onboarding, reconnection, or diagnosing separate MCP and CLI sign-ins.
+    category: development
+    author: CodeRabbit
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/coderabbit-setup
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/coderabbit-setup/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/coderabbit-setup.tar.gz
   - id: cognito
     description: >-
       AWS Cognito user authentication and authorization service. Use when setting up user pools, configuring identity

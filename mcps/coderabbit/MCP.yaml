@@ -1,0 +1,23 @@
+id: coderabbit
+name: CodeRabbit
+description: CodeRabbit is the governance and control layer for agentic software development helping developers trust AI written code.
+author: CodeRabbit
+url: https://github.com/coderabbitai/skills
+category: development
+prerequisites:
+  - CodeRabbit account with access to the repositories and features you want to use
+  - MCP client with native OAuth support; sign in to the selected CodeRabbit region
+  - Hosted MCP works with connected repository data; local CLI reviews require a separate CodeRabbit CLI installation and authentication
+content:
+  - name: CodeRabbit hosted MCP (US)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.coderabbit.ai/"
+      }
+  - name: CodeRabbit hosted MCP (EU)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.eu.coderabbit.ai/"
+      }
