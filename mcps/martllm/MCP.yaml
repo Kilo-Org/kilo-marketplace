@@ -1,0 +1,23 @@
+id: martllm
+name: MartLLM
+description: Generate and edit images, start video jobs and wait for them, list models with their current prices, quote a
+  request before running it, and check the prepaid balance through one MartLLM API key.
+author: MartLLM
+url: https://martllm.com/docs/mcp
+category: development
+prerequisites:
+  - MartLLM account with prepaid credit (from $5, no free tier)
+content:
+  - name: Remote Server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.martllm.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{MARTLLM_API_KEY}}"
+        }
+      }
+parameters:
+  - name: MartLLM API key
+    key: MARTLLM_API_KEY
+    placeholder: ull_your_key_here
