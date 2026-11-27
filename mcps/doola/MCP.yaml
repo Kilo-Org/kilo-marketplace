@@ -1,0 +1,16 @@
+id: doola
+name: doola
+description: Form a US LLC or C-Corp in any state from a conversation with your agent, and check status on companies you already have with doola. Covers company name, industry, members, ownership, checkout and state filing.
+author: doola
+url: https://github.com/doolahq/plugins
+category: business
+prerequisites:
+  - doola account (sign in with OAuth)
+  - MCP client with OAuth support
+content:
+  - name: doola hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.doola.com"
+      }
