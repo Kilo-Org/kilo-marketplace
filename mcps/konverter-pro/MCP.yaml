@@ -1,0 +1,32 @@
+id: konverter-pro
+name: Konverter Pro
+description: Converts German bank statements (PDF, CSV, MT940, camt.053) and payment-provider reports (PayPal, Stripe, SumUp, Shopify) into verified DATEV, Lexware or MT940 booking files. Hosted MCP endpoint with a free preview; anonymous Single Orders (businesses only) are paid per
+  job, an optional Konverter Pro API key applies your plan.
+author: Konverter Pro
+url: https://konverter-pro.de
+category: business
+prerequisites:
+  - No account needed for Single Orders (businesses only; free preview, paid per job)
+content:
+  - name: Remote (Single Orders)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://konverter-pro.de/api/v1/mcp"
+      }
+  - name: Remote API Key (your Konverter Pro plan)
+    prerequisites:
+      - Konverter Pro account (API key under Einstellungen > API & KI-Agenten)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://konverter-pro.de/api/v1/mcp",
+        "headers": {
+          "Authorization": "Bearer {{KONVERTER_PRO_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Konverter Pro API Key
+    key: KONVERTER_PRO_API_KEY
+    placeholder: kp_live_...
+    optional: true
