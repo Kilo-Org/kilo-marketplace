@@ -1,0 +1,33 @@
+id: jobvetta
+name: Jobvetta Jobs & Hiring Signals
+description: Search 6.5M+ live verified employer career-site job postings across 242 countries, inspect company hiring velocity signals, and compute market salary benchmarks.
+author: jobvetta
+url: https://github.com/jobvetta/jobvetta-mcp
+category: search
+prerequisites:
+  - Jobvetta API key (free 25 calls/day at https://www.jobvetta.com/api)
+content:
+  - name: NPX
+    prerequisites:
+      - Node.js
+    content: |
+      {
+        "command": "npx",
+        "args": ["-y", "github:jobvetta/jobvetta-mcp"],
+        "env": {
+          "JOBVETTA_API_KEY": "{{JOBVETTA_API_KEY}}"
+        }
+      }
+  - name: Remote Streamable HTTP
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.jobvetta.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{JOBVETTA_API_KEY}}"
+        }
+      }
+parameters:
+  - name: Jobvetta API Key
+    key: JOBVETTA_API_KEY
+    placeholder: jvk_your_api_key_here

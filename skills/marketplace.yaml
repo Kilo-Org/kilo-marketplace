@@ -1862,3 +1862,10 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/searching-mlflow-docs
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/searching-mlflow-docs/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/searching-mlflow-docs.tar.gz
+  - id: jobvetta-jobs
+    description: >-
+      Search 6.5M+ live verified employer career-site job postings across 242 countries, inspect company hiring velocity
+      signals, and compute market salary benchmarks via the Jobvetta API.
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/jobvetta-jobs
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/jobvetta-jobs/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/jobvetta-jobs.tar.gz
