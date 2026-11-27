@@ -1,0 +1,16 @@
+id: auto-poster-ai
+name: Auto Poster AI
+description: Draft, schedule, publish and analyze social media posts on Instagram, TikTok, LinkedIn, X, Facebook, Threads, YouTube and more. 16 tools cover connected accounts, platform rules, media uploads, drafts, scheduling, publishing, editing, post status and analytics.
+author: Auto Poster AI
+url: https://github.com/autoposterai/mcp
+category: productivity
+prerequisites:
+  - Auto Poster AI account on a paid plan
+  - MCP client with OAuth support, or an API key from Settings > AI agents
+content:
+  - name: Auto Poster AI hosted OAuth server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://agent.autoposter.ai/mcp"
+      }
