@@ -1,0 +1,28 @@
+id: testsy
+name: Testsy
+description: Plan, run and read QA tests on a website or an iPhone, iPad or Android app in plain English. Each check comes back with its evidence (the value read on screen, replay, video, console and network), and failures include a fix prompt the agent can act on.
+author: testsy-ai
+url: https://github.com/testsy-ai/testsy-integrations
+category: web-automation
+prerequisites:
+  - A Testsy account (sign up at https://testsy.dev/ - the first 10 tests are free, no card)
+content:
+  - name: Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.testsy.dev/mcp"
+      }
+  - name: Remote (API key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://app.testsy.dev/mcp",
+        "headers": {
+          "Authorization": "Bearer {{TESTSY_AI_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Testsy workspace API key (Settings → API keys)
+        key: TESTSY_AI_API_KEY
+        placeholder: qa_your_workspace_key
