@@ -1,0 +1,18 @@
+id: genaya
+name: Genaya
+description: Hosted MCP server for Genaya, the business workspace of a service business (appointments, clients, invoices,
+  payments, calls, tasks, team). Seven tools let an agent ask about the connected member's own organization and prepare a
+  change such as a task, a reschedule or an invoice draft, which a person confirms before it runs.
+author: Genaya
+url: https://developer.genaya.com
+category: business
+prerequisites:
+  - Genaya account (every plan starts with a 14-day free trial)
+  - MCP client with OAuth support (Sign in with Genaya), or a Genaya API key with Allow MCP turned on (read and ask only)
+content:
+  - name: Genaya hosted MCP server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.genaya.com/mcp"
+      }
