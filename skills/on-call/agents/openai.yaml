@@ -1,0 +1,13 @@
+interface:
+  display_name: "Rootly On Call"
+  short_description: "Prepare on-call handoffs and evidence-based coverage"
+  default_prompt: "Use $on-call to help with this Rootly workflow."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rootly"
+      description: "Rootly incident and on-call data"
+      transport: "streamable_http"
+      url: "https://mcp.rootly.com/mcp?toolsets=all&readonly=true"
+policy:
+  allow_implicit_invocation: true

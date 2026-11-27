@@ -1441,6 +1441,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/dbt-migration
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/dbt-migration/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/dbt-migration.tar.gz
+  - id: deploy-check
+    description: >-
+      Assess a proposed deploy using its diff, review and test evidence, rollout safeguards, and Rootly incident
+      context. Recommend GO, CAUTION, or NO-GO with reasons; use before deploying a branch, PR, release, or
+      configuration change, without executing it.
+    category: development
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/deploy-check
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/deploy-check/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/deploy-check.tar.gz
   - id: deploy-to-vercel
     description: >-
       Deploy applications and websites to Vercel. Use when the user requests deployment actions like "deploy my app",
@@ -1712,6 +1722,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/webapp-testing
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/webapp-testing/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/webapp-testing.tar.gz
+  - id: alert-triage
+    description: >-
+      Assess a Rootly alert or alert group and recommend opening an incident, attaching it to one, waiting with a clear
+      recheck condition, or dismissing verified noise. Use for pages and alerts before the incident investigation
+      begins.
+    category: observability
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/alert-triage
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/alert-triage/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/alert-triage.tar.gz
   - id: dashboarding
     description: >-
       Create, modify, and organise Grafana dashboards including panels, variables, transformations, and alerting. Use
@@ -1759,6 +1779,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/elasticsearch-esql
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/elasticsearch-esql/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/elasticsearch-esql.tar.gz
+  - id: incident-response
+    description: >-
+      Investigate outages and active incidents with Rootly context. Use when asked to investigate a failure, assess
+      impact, compare simultaneous incidents, choose mitigation or responders, or decide whether to wait for a vendor,
+      including when the user supplies the evidence. Use alert-triage for unassigned alerts and incident-communications
+      for audience-specific updates.
+    category: observability
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/incident-response
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/incident-response/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/incident-response.tar.gz
   - id: newrelic-cli-skills
     description: >-
       Monitor, query, and manage New Relic observability data via the newrelic CLI. Covers NRQL queries, APM performance
@@ -1790,6 +1821,17 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/redis-observability
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/redis-observability/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/redis-observability.tar.gz
+  - id: service-health
+    description: >-
+      Assess whether a service is down, healthy, or deteriorating from errors, latency, traffic, and their baselines.
+      Use for zero-traffic questions, recurring spikes, health checks and trends, service or owner lookup, and recent
+      deploy context, including when evidence is already supplied. Include available Rootly incident, ownership, and
+      on-call records; incident counts alone cannot establish health.
+    category: observability
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/service-health
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/service-health/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/service-health.tar.gz
   - id: splunk-ingest-processor-setup
     description: >-
       Render Cisco Data Fabric ingest-time routing workflows and Splunk Cloud Platform Ingest Processor setup plans with
@@ -1824,6 +1866,16 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/troubleshoot-cassandra
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/troubleshoot-cassandra/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/troubleshoot-cassandra.tar.gz
+  - id: incident-communications
+    description: >-
+      Draft responder, executive, customer, or incident commander handoff updates from Rootly incident evidence. Use for
+      stakeholder briefs and status-update drafts; distinguish confirmed impact from internal hypotheses and never
+      publish messages.
+    category: productivity
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/incident-communications
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/incident-communications/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/incident-communications.tar.gz
   - id: integrate-anything
     description: >-
       This skill should be used only when an external-app action must be executed through the Membrane CLI and an
@@ -1833,6 +1885,26 @@ items:
     githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/integrate-anything
     rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/integrate-anything/SKILL.md
     content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/integrate-anything.tar.gz
+  - id: on-call
+    description: >-
+      Look up Rootly on-call coverage and personal shifts, prepare shift handoffs, and recommend coverage changes using
+      schedule, workload, expertise, and explicit availability. Use for shifts, handoffs, swaps, or coverage planning
+      without modifying schedules.
+    category: productivity
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/on-call
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/on-call/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/on-call.tar.gz
+  - id: retrospective
+    description: >-
+      Prepare a Rootly post-incident review with sourced metadata, timeline, impact evidence, facilitation questions,
+      and action proposals. Use for retrospectives and incident action-item reviews; preserve human ownership of
+      conclusions, disputed causes, and roadmap commitments.
+    category: productivity
+    author: Rootly
+    githubUrl: https://github.com/Kilo-Org/kilo-marketplace/tree/main/skills/retrospective
+    rawUrl: https://raw.githubusercontent.com/Kilo-Org/kilo-marketplace/main/skills/retrospective/SKILL.md
+    content: https://github.com/Kilo-Org/kilo-marketplace/releases/download/skills-latest/retrospective.tar.gz
   - id: microsoft-code-reference
     description: >-
       Find working code samples, verify API signatures, and fix Microsoft SDK errors using official docs. Use whenever

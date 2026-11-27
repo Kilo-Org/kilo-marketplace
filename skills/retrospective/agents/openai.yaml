@@ -1,0 +1,13 @@
+interface:
+  display_name: "Rootly Retrospective"
+  short_description: "Prepare incident reviews while humans own the learning"
+  default_prompt: "Use $retrospective to help with this Rootly workflow."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rootly"
+      description: "Rootly incident and on-call data"
+      transport: "streamable_http"
+      url: "https://mcp.rootly.com/mcp?toolsets=all&readonly=true"
+policy:
+  allow_implicit_invocation: true
