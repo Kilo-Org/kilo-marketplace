@@ -1,0 +1,16 @@
+id: signatoro
+name: Signatoro
+description: One email signature for people and AI agents. Make a free signature without signing in, or fetch and update
+  your saved one so every email an agent sends carries it. Company owners manage their people's signatures.
+author: Signatoro
+url: https://github.com/BlastraIO/signatoro-mcp-plugin
+category: productivity
+prerequisites:
+  - Signatoro account (free) for the signed-in tools; three tools work without one
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://signatoro.com/mcp"
+      }
