@@ -1,0 +1,31 @@
+id: postqued
+name: Postqued
+description: Official Postqued remote MCP server for scheduling and publishing social media posts to TikTok, Instagram,
+  LinkedIn, YouTube, X, Facebook, Threads, Pinterest, Bluesky and Mastodon, with analytics, comment replies and
+  approval workflows. Publishing starts with a dry run and waits for confirmation.
+author: Postqued
+url: https://postqued.com/mcp
+category: business
+prerequisites:
+  - Postqued account on a plan with API access
+  - MCP client with OAuth support, or a Postqued API key
+content:
+  - name: Postqued Hosted Remote (OAuth)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.postqued.com/mcp"
+      }
+  - name: Postqued Hosted Remote (API Key)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.postqued.com/mcp",
+        "headers": {
+          "Authorization": "Bearer {{POSTQUED_API_KEY}}"
+        }
+      }
+    parameters:
+      - name: Postqued API Key
+        key: POSTQUED_API_KEY
+        placeholder: pq_your_api_key
