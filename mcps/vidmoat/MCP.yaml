@@ -1,0 +1,16 @@
+id: vidmoat
+name: Vidmoat
+description: Hosted AI video editor. Agents import footage, edit a multi-track timeline, preview frames and render MP4s over remote MCP. MCP is included on every plan, including free Hobby.
+author: Vidmoat
+url: https://www.vidmoat.com
+category: productivity
+prerequisites:
+  - Vidmoat account (MCP works on every plan, including free Hobby; personal API keys start at Studio)
+  - MCP client with OAuth support, or an API key from https://www.vidmoat.com/dashboard/api
+content:
+  - name: Vidmoat hosted MCP server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://api.vidmoat.com/api/mcp"
+      }
