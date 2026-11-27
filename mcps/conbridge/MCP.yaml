@@ -1,0 +1,17 @@
+id: conbridge
+name: ConBridge
+description: >-
+  Security for the computers, servers and CMS sites you own: read the known vulnerabilities ConBridge found, verify each with a read-only check, and fix it on the one target you select.
+  Whether an action runs at once or waits for approval follows the owner's rule for that target; ConBridge never changes a system by itself.
+author: Arven Soft
+url: https://github.com/arven-soft/conbridge-mcp
+category: development
+prerequisites:
+  - A ConBridge account (https://conbridge.app, free to start) with at least one computer, server or site connected
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.conbridge.app/mcp"
+      }
