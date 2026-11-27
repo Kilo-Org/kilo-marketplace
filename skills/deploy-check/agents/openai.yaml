@@ -1,0 +1,13 @@
+interface:
+  display_name: "Rootly Deploy Check"
+  short_description: "Assess deployment risk and explain the recommendation"
+  default_prompt: "Use $deploy-check to help with this Rootly workflow."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rootly"
+      description: "Rootly incident and on-call data"
+      transport: "streamable_http"
+      url: "https://mcp.rootly.com/mcp?toolsets=all&readonly=true"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Rootly Alert Triage"
+  short_description: "Triage alerts with explicit evidence and next steps"
+  default_prompt: "Use $alert-triage to help with this Rootly workflow."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rootly"
+      description: "Rootly incident and on-call data"
+      transport: "streamable_http"
+      url: "https://mcp.rootly.com/mcp?toolsets=all&readonly=true"
+policy:
+  allow_implicit_invocation: true
