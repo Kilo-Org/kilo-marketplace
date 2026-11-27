@@ -1,0 +1,16 @@
+id: sandscale
+name: Sandscale
+description: Official hosted MCP server for Sandscale sandboxes. Lets an agent create a Firecracker microVM sandbox,
+  run commands in it, move files in and out, and stop it, with every call recorded in an audit log.
+author: Sandscale
+url: https://sandscale.dev/sandboxes/mcp
+category: development
+prerequisites:
+  - Sandscale account (free plan available)
+content:
+  - name: Remote OAuth
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.sandscale.dev/mcp"
+      }
