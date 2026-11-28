@@ -1,0 +1,13 @@
+id: saascity
+name: SaaSCity MCP
+description: Audits SaaS and AI product homepages for launch readiness, filters 1,600+ startup directories by live Ahrefs Domain Rating and link type, verifies live backlinks, and runs SaaS metric calculators over keyless Streamable HTTP.
+author: SaaSCity
+url: https://saascity.io/mcp
+category: business
+content:
+  - name: SaaSCity Remote (Keyless)
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://saascity.io/api/mcp"
+      }
