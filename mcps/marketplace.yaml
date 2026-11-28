@@ -4801,9 +4801,8 @@ items:
         optional: true
   - id: viasocket
     name: viaSocket
-    description: Use your apps through viaSocket — send emails, post to Slack, add sheet rows, read a CRM, and automate
-      across 2,300+ apps. Build and manage plugins in the Developer Hub and connect your product to other apps with the
-      viaSocket SDK.
+    description: Infrastructure for building apps and AI agents, with integrations, automation and AI
+      capabilities.
     author: Walkover
     url: https://github.com/walkover-mcp/viasocket
     category: productivity
