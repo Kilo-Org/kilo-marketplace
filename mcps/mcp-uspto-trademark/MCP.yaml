@@ -1,0 +1,13 @@
+id: mcp-uspto-trademark
+name: USPTO Trademark Status (MCP)
+description: USPTO trademark status by serial or registration number. Pay per call in USDC (x402) or Pro key.
+author: Chris Laughlin
+url: https://github.com/ChristopherLaughlin/factory-mcp-docs
+category: business
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp-uspto-trademark.scorematic.workers.dev/mcp"
+      }

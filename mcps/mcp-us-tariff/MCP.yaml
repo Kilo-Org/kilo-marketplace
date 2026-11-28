@@ -1,0 +1,13 @@
+id: mcp-us-tariff
+name: US Tariff (USITC HTS) (MCP)
+description: USITC HTS lookup, base duty, and Chapter 99 provisions. Pay per call in USDC (x402) or Pro key.
+author: Chris Laughlin
+url: https://github.com/ChristopherLaughlin/factory-mcp-docs
+category: business
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp-us-tariff.scorematic.workers.dev/mcp"
+      }

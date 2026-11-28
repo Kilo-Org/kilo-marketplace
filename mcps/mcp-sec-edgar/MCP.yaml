@@ -1,0 +1,13 @@
+id: mcp-sec-edgar
+name: SEC EDGAR Financials (MCP)
+description: Live SEC EDGAR XBRL financials and filings. Pay per call in USDC via x402, or a Pro API key.
+author: Chris Laughlin
+url: https://github.com/ChristopherLaughlin/factory-mcp-docs
+category: business
+content:
+  - name: Remote
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://mcp-sec-edgar.scorematic.workers.dev/mcp"
+      }
