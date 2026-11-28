@@ -1,0 +1,23 @@
+id: lantern-works-deals-mcp
+name: Lantern Works GPU Prices
+description: Free MCP server for GPU cloud rental prices, price changes and deals (the local uvx package is read-only; the hosted endpoint adds optional price watches and alerts). Compares H100, H200, A100,
+  L40S, RTX 4090/5090 and more across tracked providers, cheapest first, with each price's vendor source and check
+  time, price history and GPU job cost estimates. No API key.
+author: connormatthewdouglas
+url: https://github.com/connormatthewdouglas/agent-work-stack-deals
+category: business
+content:
+  - name: Hosted remote server
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "https://lantern-works-mcp.lantern-works.workers.dev/mcp"
+      }
+  - name: UVX
+    prerequisites:
+      - Python and uv
+    content: |
+      {
+        "command": "uvx",
+        "args": ["lantern-works-deals-mcp"]
+      }
